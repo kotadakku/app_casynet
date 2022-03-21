@@ -101,8 +101,14 @@ flutter:
     - assets/account/fb.svg
     - assets/account/gg.svg
     - assets/account/zalo.svg
+    - assets/account/image_user.png
     - assets/background.svg
     - assets/background_2.svg
+    - assets/notification/noti_1.png
+    - assets/filter/image83.png
+    - assets/detail_product/product_1.png
+    - assets/detail_product/coin.svg
+    - assets/detail_product/gift.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

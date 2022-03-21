@@ -1,11 +1,11 @@
-import 'package:app_casynet/containts.dart';
-import 'package:app_casynet/widget/account/account_profile.dart';
+import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/widget/account/profile_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../widget/account/menu.dart';
-import '../../widget/account/top_account.dart';
-import '../../widget/home/bottom_navigator.dart';
+import '../../widget/account/menu_account_widget.dart';
+import '../../widget/account/top_account_widget.dart';
+import '../../widget/bottom_navigator.dart';
 
 class AccountLoginPage extends StatelessWidget {
   const AccountLoginPage({Key? key}) : super(key: key);
@@ -22,8 +22,11 @@ class AccountLoginPage extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  TopAccount(),
-                  AccountProfile(),
+                  // Thanh tìm kiếm
+                  TopAccountWidget(),
+                  // Thông tin nguoif dùng
+                  ProfileAccountWidget(),
+                  // Nút của hàng của tôi
                   SizedBox(width: 250,
                     child: ElevatedButton(
                       onPressed: () {  },
@@ -41,8 +44,10 @@ class AccountLoginPage extends StatelessWidget {
                   ),
 
                   SizedBox(height: 15, child: Container(color: Color(0xffF1F3FD),),),
-                  AccountMenu(),
+                  // Tùy chọn tài khoản
+                  MenuAccountWidget(),
                   SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
+                  // nút đằng xuất
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: OutlinedButton(

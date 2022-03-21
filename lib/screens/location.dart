@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../containts.dart';
 
 class Location extends StatelessWidget {
   const Location({Key? key}) : super(key: key);

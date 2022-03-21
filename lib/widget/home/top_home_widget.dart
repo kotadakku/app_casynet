@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 
 
 
-class TopHome extends StatelessWidget {
-  const TopHome({Key? key}) : super(key: key);
+class TopHomeWidget extends StatelessWidget {
+  const TopHomeWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +44,13 @@ class TopHome extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text("|",
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: Color(0xffAAAAAA)
-                          ),),
+                          VerticalDivider(
+                            width: 20,
+                            thickness: 1,
+                            indent: 5,
+                            endIndent: 5,
+                            color: Colors.grey,
+                          ),
                           const SizedBox(width: 2.0,),
                           SvgPicture.asset(
                             "assets/home/icon_location.svg",

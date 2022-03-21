@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../containts.dart';
+import '../../containts/colors.dart';
+import '../../containts/colors.dart';
+import '../../containts/colors.dart';
 
 class CategoryBottomWidget extends StatelessWidget {
   const CategoryBottomWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 10,
-      children: [
-        CategoryItemBottom(),
-        CategoryItemBottom(),
-        CategoryItemBottom(),
-        CategoryItemBottom(),
-        CategoryItemBottom(),
-        CategoryItemBottom()
-      ]
+    return Container(
+      color: kBackgroundColor,
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: Wrap(
+          runSpacing: 10,
+          children: [
+            CategoryItemBottom(),
+            CategoryItemBottom(),
+            CategoryItemBottom(),
+            CategoryItemBottom(),
+            CategoryItemBottom(),
+            CategoryItemBottom()
+          ]
+      ),
     );
   }
 }
@@ -29,8 +35,10 @@ class CategoryItemBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: LayoutBuilder(builder: (context, constraint) => Container(
       width: constraint.maxWidth/2-10,
+
       height: 42,
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(5.0),
           border: Border.all(
             width: 1,

@@ -1,9 +1,9 @@
-import 'package:app_casynet/widget/auth/register.dart';
+import 'package:app_casynet/widget/auth/register_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../containts.dart';
-import '../../widget/auth/sign_in.dart';
+import '../../containts/colors.dart';
+import '../../widget/auth/signin_widget.dart';
 
 
 class AuthPage extends StatefulWidget {
@@ -83,7 +83,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                 controller: _controller,
                 children: [
                   SignInWidget(),
-                  Register()
+                  RegisterWidget()
                 ],
               ),
               )
