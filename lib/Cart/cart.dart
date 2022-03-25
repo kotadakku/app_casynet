@@ -2,6 +2,7 @@ import 'package:app_casynet/Cart/itemCart.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Cart extends StatelessWidget {
   @override

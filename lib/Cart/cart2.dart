@@ -1,9 +1,14 @@
+import 'package:app_casynet/controller/cart/item_selection_controller.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Cart2 extends StatelessWidget {
   static const IconData map = IconData(0xe3c8, fontFamily: 'MaterialIcons');
-  int _valuePayment = 0;
+
+  // int _valuePayment = 0;
+  ItemSelectionController itemSelectionController =
+      Get.put(ItemSelectionController());
 
   @override
   Widget build(BuildContext context) {
@@ -193,61 +198,7 @@ class Cart2 extends StatelessWidget {
                 color: Color.fromARGB(255, 255, 255, 255),
                 padding: EdgeInsets.only(left: 5.0),
                 height: 90,
-                // child: Column(
-                //   children: [
-                //     Expanded(
-                //       flex: 1,
-                //       child: Row(
-                //         mainAxisAlignment: MainAxisAlignment.start,
-                //         children: [
-                //           Text(
-                //             "Nguyễn Thị Bích",
-                //             style: TextStyle(
-                //                 fontSize: 13,
-                //                 fontWeight: FontWeight.w500,
-                //                 color: Color.fromARGB(255, 34, 34, 34)),
-                //           )
-                //         ],
-                //       ),
-                //     ),
-                //     Expanded(
-                //       flex: 1,
-                //       child: Row(
-                //         mainAxisAlignment: MainAxisAlignment.start,
-                //         children: [
-                //           Icon(Icons.call),
-                //           Text(
-                //             "0986650333",
-                //             style: TextStyle(
-                //                 fontSize: 13,
-                //                 fontWeight: FontWeight.w300,
-                //                 color: Color.fromARGB(255,102, 102, 102)),
-                //           )
-                //         ],
-                //       ),
-                //     ),
-                //     Expanded(
-                //       flex: 1,
-                //       child: Row(
-                //         mainAxisAlignment: MainAxisAlignment.start,
-                //         children: [
-                //           Icon(Icons.location_on),
-                //           Expanded(
-                //
-                //             child: Text(
-                //               "34 Vũ Phạm Hàm, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội",
-                //               style: TextStyle(
-                //                   fontSize: 13,
-                //                   fontWeight: FontWeight.w300,
-                //                   color: Color.fromARGB(255, 102, 102, 102)),
-                //             ),
-                //           )
-                //         ],
-                //       ),
-                //     ),
-                //
-                //   ],
-                // ),
+
               ),
               SizedBox(
                 height: 10,
@@ -292,6 +243,7 @@ class Cart2 extends StatelessWidget {
                   color: Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
+              //phuong thuc thanh toan
               ListView(
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
@@ -300,12 +252,34 @@ class Cart2 extends StatelessWidget {
                   ListTile(
                     title: Text("Tiền mặt khi nhận hàng"),
                     subtitle: Text("Thu phí hộ: Miễn Phí"),
-                    leading: Radio(
-
-                      groupValue: _valuePayment,
-                      onChanged: (value){},
+                    leading: Obx(()=>Radio(
+                      groupValue: itemSelectionController.selectedItem.value,
+                      onChanged: (value) {
+                        itemSelectionController.onChangeItem(value);
+                      },
                       value: 1,
+                    ),)
+                  ),
+                  ListTile(
+                    title: Text("Ví SenPay"),
+                    subtitle: Container(
+                      child: Row(
+                        children: [
+                          Text("Liên kết:",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 127, 170, 212))),
+                          Text(
+                              "Ví SenPay để thanh toán nhan hơn và nhận các ưu đãi hoàn tiền",
+                              style: TextStyle(
+                                  color: Colors.black))
+                        ],
+                      ),
                     ),
+                    leading: Obx(()=> Radio(
+                      groupValue: itemSelectionController.selectedItem.value,
+                      onChanged: (value) {itemSelectionController.onChangeItem(value);},
+                      value: 1,
+                    ))
                   ),
                 ],
               ),
@@ -472,10 +446,4 @@ class Cart2 extends StatelessWidget {
       ),
     ));
   }
-
-  void handleRadio(int? value) {
-    // setSta
-  }
-
-
 }
