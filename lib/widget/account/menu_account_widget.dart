@@ -1,11 +1,15 @@
 import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/containts/size.dart';
+import 'package:app_casynet/screens/account/message.dart';
+import 'package:app_casynet/screens/notfications.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../containts/colors.dart';
 import '../../screens/account/infor_account.dart';
+import '../../screens/account/infor_location.dart';
+import '../../screens/account/order_account.dart';
 
 
 class MenuAccountWidget extends StatelessWidget {
@@ -36,15 +40,19 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Địa chỉ":
           icon = FontAwesomeIcons.mapLocation;
+          nav=() { Get.to(InformationLocation());};
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;
+          nav=() { Get.to(MessageAccount());};
           break;
         case "Đơn hàng":
           icon = FontAwesomeIcons.bagShopping;
+          nav=() { Get.to(OrderAccount());};
           break;
         case "Thông báo":
           icon = FontAwesomeIcons.bell;
+          nav=() { Get.offAll(NotificationPage());};
           break;
         case "Ví Voucher":
           icon = FontAwesomeIcons.wallet;

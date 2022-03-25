@@ -1,6 +1,9 @@
 
+import 'package:app_casynet/screens/account/message_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../containts/colors.dart';
 
@@ -64,48 +67,53 @@ class MessageAccount extends StatelessWidget {
                 shrinkWrap: true,
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) =>
-                  ListTile(
-                    leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: ExactAssetImage("assets/account/image_user.png")
-                        )
-                      ),
-                      child:  Align(
-                        alignment: Alignment.bottomRight,
-                        child: Container(
-                          height: 10,
-                          width: 10,
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(MessageAccount_2());
+                    },
+                    child: ListTile(
+                        leading: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: ExactAssetImage("assets/account/image_user.png")
+                                )
+                            ),
+                            child:  Align(
+                              alignment: Alignment.bottomRight,
+                              child: Container(
+                                height: 10,
+                                width: 10,
 
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white, width: 1),
-                              color: Colors.greenAccent,
-                              shape: BoxShape.circle
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.white, width: 1),
+                                    color: Colors.greenAccent,
+                                    shape: BoxShape.circle
+                                ),
+                              ),
+                            )
+                        ),
+                        title: Text("Gara Ô Tô Hà Nội Car Sevices"),
+                        subtitle: Text("Bạn giới thiệu về sản phẩm được không ạ?",
+                          style: TextStyle(
+                              color: kTextColor,
+                              fontSize: 12
                           ),
                         ),
-                      )
+                        trailing: Container(
+                          height: 40,
+                          width: 40,
+                          child: Text("4 giay",
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                                color: kTextColor,
+                                fontSize: 12
+                            ),
+                          ),
+                        )
                     ),
-                    title: Text("Gara Ô Tô Hà Nội Car Sevices"),
-                    subtitle: Text("Bạn giới thiệu về sản phẩm được không ạ?",
-                      style: TextStyle(
-                        color: kTextColor,
-                        fontSize: 12
-                      ),
-                    ),
-                    trailing: Container(
-                      height: 40,
-                      width: 40,
-                      child: Text("4 giay",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color: kTextColor,
-                            fontSize: 12
-                        ),
-                      ),
-                    )
                   ),
                 separatorBuilder: (context, index)=>
                     Divider(
