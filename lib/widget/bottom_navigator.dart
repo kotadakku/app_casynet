@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../Cart/cart.dart';
 import '../screens/account/account_login.dart';
 import '../screens/account/infor_account.dart';
 import '../screens/account/order_account.dart';
@@ -91,7 +92,7 @@ class BottomNavigator extends StatelessWidget {
       break;
       case 1: Get.off(NotificationPage());
       break;
-      case 2: Get.to(OrderAccount());
+      case 2: Get.to(Cart());
       break;
       case 3: Get.off(AccountLoginPage());
       break;

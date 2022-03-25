@@ -1,5 +1,8 @@
 
+import 'package:app_casynet/screens/account/new_location.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../containts/colors.dart';
 import '../../widget/account/top_account_widget.dart';
@@ -83,7 +86,9 @@ class InformationLocation extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Get.to(NewLocation());
+                    },
                     child: Text("Thêm địa chỉ mới"),
                     style: ElevatedButton.styleFrom(
                         primary: kYellowColor
