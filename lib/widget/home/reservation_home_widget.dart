@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../containts/colors.dart';
+import '../../screens/detail_product.dart';
 import '../../screens/filter/filter_product_2.dart';
 
 class ReservationWidget extends StatelessWidget {
@@ -129,13 +130,18 @@ class ReservationWidget extends StatelessWidget {
             spacing: 10.0,
             runSpacing: 10.0,
             children: [
-              ItemBookWidget(
-                  book_image: "assets/home/book/image.png",
-                  distance: 4.5,
-                  price: "1.290.000đ",
-                  price_discount: "1.390.000đ",
-                  book_name: "Máy rửa xe Catorex - CTR",
-                  book_category: "Điện máy Đỗ Dũng"
+              GestureDetector(
+                child: ItemBookWidget(
+                    book_image: "assets/home/book/image.png",
+                    distance: 4.5,
+                    price: "1.290.000đ",
+                    price_discount: "1.390.000đ",
+                    book_name: "Máy rửa xe Catorex - CTR",
+                    book_category: "Điện máy Đỗ Dũng"
+                ),
+                onTap: (){
+                  Get.to(DetailProductPage());
+                },
               ),
               ItemBookWidget(
                   book_image: "assets/home/store/cuahang1.png",

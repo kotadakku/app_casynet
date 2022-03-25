@@ -98,9 +98,9 @@ class MenuAccountWidget extends StatelessWidget {
                       width: 50,
                       height: 50,
                       child: Icon(
-                        Icons.keyboard_arrow_down,
+                        Icons.arrow_forward_ios,
                         color: kTextColor_gray,
-                        size: sizeStar.width,
+                        size: 12,
                       ),
                     ),
                   ],
