@@ -129,6 +129,9 @@ flutter:
     - assets/detail_product/gift.svg
     - assets/detail_product/phone-volume.svg
     - assets/benefit/image.png
+    - assets/detail_store/anhCuaHang.png
+    - assets/detail_store/background.png
+    - assets/detail_store/ower_store.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
