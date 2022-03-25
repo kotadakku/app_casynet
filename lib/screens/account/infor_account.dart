@@ -1,7 +1,6 @@
 import 'package:app_casynet/containts/size.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
-
 import '../../containts/colors.dart';
 import '../../widget/bottom_navigator.dart';
 
