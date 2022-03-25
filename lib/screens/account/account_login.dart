@@ -2,6 +2,7 @@ import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/widget/account/profile_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../widget/account/menu_account_widget.dart';
 import '../../widget/account/top_account_widget.dart';
@@ -14,20 +15,21 @@ class AccountLoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomNavigator(),
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height-150,
               color: Colors.white,
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 children: [
                   // Thanh tìm kiếm
                   TopAccountWidget(),
                   // Thông tin nguoif dùng
+                  SizedBox(height: 20,),
                   ProfileAccountWidget(),
                   // Nút của hàng của tôi
-                  SizedBox(width: 250,
+                  Container(width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: ElevatedButton(
                       onPressed: () {  },
                       child:
@@ -56,7 +58,7 @@ class AccountLoginPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.assignment_ind_outlined, color: kYellowColor),
+                          FaIcon(FontAwesomeIcons.arrowRightFromBracket, size: 15, color: kYellowColor,),
                           SizedBox(width: 10.0,),
                           Text("Đăng xuất",
                             style: TextStyle(

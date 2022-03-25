@@ -1,41 +1,46 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class BannerHomeWidget extends StatefulWidget {
-  const BannerHomeWidget({Key? key}) : super(key: key);
+import '../../controller/banner_controller.dart';
 
-  @override
-  State<BannerHomeWidget> createState() => _BannerHomeWidgetState();
-}
+class BannerHomeWidget extends StatelessWidget {
+  final BannerController c = Get.put(BannerController());
+  BannerHomeWidget({Key? key}) : super(key: key);
 
-class _BannerHomeWidgetState extends State<BannerHomeWidget> {
-  List<String> banner_urls = [
-    "assets/home/banner1.png",
-    "assets/home/banner1.png"
-  ];
   @override
   Widget build(BuildContext context) {
-    // return Text("Hi");
+    List<String> banner_urls = [
+      "assets/home/banner1.png",
+      "assets/home/banner1.png"
+    ];
     return SizedBox(
-      height: MediaQuery.of(context).size.width/1125*410,
-      child: PageView.builder(
-        itemCount: banner_urls.length,
-        itemBuilder: (context, index){
-          return Stack(
-            children: [
-              Image.asset(banner_urls[index]),
-              Positioned.fill(
-                bottom: 8.0,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: indicators(index, banner_urls.length),),
-              ))
-            ],
-          );
-        }
-      )
+        height: MediaQuery.of(context).size.width/1125*410,
+        child: Stack(
+          children: [
+            PageView.builder(
+                itemCount: banner_urls.length,
+                onPageChanged: (index){
+                  c.newCurrent(index);
+                },
+                itemBuilder: (context, index){
+                  return Stack(
+                    children: [
+                      Image.asset(banner_urls[index]),
+                    ],
+                  );
+                }
+            ),
+            Positioned(
+                left: 150,
+                bottom: 15,
+                child: Obx(()=> Row(
+                    children: indicators(c.count, banner_urls.length)
+                ))
+            ),
+          ],
+        )
     );
   }
   List<Widget> indicators(curPage, numPage){
@@ -50,3 +55,6 @@ class _BannerHomeWidgetState extends State<BannerHomeWidget> {
     ));
   }
 }
+
+
+

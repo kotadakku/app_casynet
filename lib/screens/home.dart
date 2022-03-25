@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigator() ,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
                 // Thanh tìm kiếm
                 const TopHomeWidget(),
                 // Banner
-                const BannerHomeWidget(),
+                BannerHomeWidget(),
                 // Khuyến mãi
                 PromotionHomeWidget(),
                 SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
