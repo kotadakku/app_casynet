@@ -18,7 +18,7 @@ class VoteProductWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: Text("Chi tiết sản phẩm", style: TextStyle(
+          child: Text("Đánh giá sản phẩm", style: TextStyle(
               fontWeight: FontWeight.bold
           ),),
         ),
@@ -64,7 +64,7 @@ class VoteProductWidget extends StatelessWidget {
               ),
               VerticalDivider(
                 width: 20,
-                thickness: 1,
+                thickness: .5,
                 indent: 0,
                 endIndent: 0,
                 color: Colors.grey,
@@ -84,11 +84,18 @@ class VoteProductWidget extends StatelessWidget {
                           Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
+                            flex: 8,
                             child: LinearProgressIndicator(
+
                               value: 0.8,
                               color: kYellowColor,
                               backgroundColor: kTextColor,
-                            ),)
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Container(padding: EdgeInsets.only(left: 5.0), child: Text("1", textAlign: TextAlign.end,)),
+                          )
                         ],
                       ),
                       Row(
@@ -100,12 +107,18 @@ class VoteProductWidget extends StatelessWidget {
                           Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
+                            flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.2,
                               color: kYellowColor,
                               backgroundColor: kTextColor,
 
-                            ),)
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Container(padding: EdgeInsets.only(left: 5.0), child: Text("20", textAlign: TextAlign.end,)),
+                          )
                         ],
                       ),
                       Row(
@@ -117,11 +130,16 @@ class VoteProductWidget extends StatelessWidget {
                           Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
+                            flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.5,
                               color: kYellowColor,
                               backgroundColor: kTextColor,
-                            ),)
+                            ),),
+                          Expanded(
+                            flex: 2,
+                            child: Container(padding: EdgeInsets.only(left: 5.0), child: Text("8", textAlign: TextAlign.end,)),
+                          )
                         ],
                       ),
                       Row(
@@ -133,11 +151,16 @@ class VoteProductWidget extends StatelessWidget {
                           Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
+                            flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.4,
                               color: kYellowColor,
                               backgroundColor: kTextColor,
-                            ),)
+                            ),),
+                          Expanded(
+                            flex: 2,
+                            child: Container(padding: EdgeInsets.only(left: 5.0), child: Text("10", textAlign: TextAlign.end,)),
+                          )
                         ],
                       ),
                       Row(
@@ -149,11 +172,18 @@ class VoteProductWidget extends StatelessWidget {
                           Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
+                            flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.4,
                               color: kYellowColor,
                               backgroundColor: kTextColor,
-                            ),)
+                            ),
+                          ),
+
+                          Expanded(
+                            flex: 2,
+                            child: Container(padding: EdgeInsets.only(left: 5.0), child: Text("3", textAlign: TextAlign.end,)),
+                          )
                         ],
                       ),
                     ],
@@ -163,18 +193,36 @@ class VoteProductWidget extends StatelessWidget {
           ),
         )),
         SizedBox(height: 20,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("Ảnh gửi từ khách hàng (34)"),
-            Text("Xem thêm")
-          ],
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Ảnh gửi từ khách hàng (34)",
+                style: TextStyle(
+
+                ),
+              ),
+              Row(
+                children: [
+                  Text("Xem tất cả",
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w400
+                    ),
+                  ),
+                  Icon(Icons.arrow_forward_ios, size: 12, color: Colors.blue,)
+                ],
+              )
+            ],
+          ),
         ),
         SizedBox(height: 10,),
         SizedBox(
           width: double.infinity,
           child: Wrap(
-              spacing: 5.0, alignment: WrapAlignment.center,
+              spacing: 5.0,
+              alignment: WrapAlignment.center,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width /4-10,
@@ -205,16 +253,15 @@ class VoteProductWidget extends StatelessWidget {
                       fit: StackFit.expand,
                     children: [
                       Image.asset('assets/detail_product/product_1.png', fit: BoxFit.cover),
-                    ClipRRect( // Clip it cleanly.
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                          child: Container(
-                            color: Colors.black.withOpacity(0.1),
-                            alignment: Alignment.center,
-                            child: Text('+30'),
-                          ),
-                        ),
-                      )
+                      Container(
+                        color: Colors.black.withOpacity(0.6),
+                        alignment: Alignment.center,
+                        child: Text('+30', style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16
+                        ),),
+                      ),
+
                     ]
                   )
                 ),

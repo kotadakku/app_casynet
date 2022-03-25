@@ -1,8 +1,12 @@
 
+import 'package:app_casynet/controller/radio_car_controller.dart';
+import 'package:app_casynet/screens/filter/filter_product.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../widget/home/reservation_home_widget.dart';
 import '../widget/bottom_widget.dart';
@@ -16,7 +20,7 @@ class RuaXeThayDauPage extends StatefulWidget {
 }
 
 class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
-  bool _isCar = true;
+  RadioController radio_c = Get.put(RadioController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +71,7 @@ class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
                           ],
                         ),
                         onTap: (){
+                          Get.to(FilterProductPage());
                         },
                       )
 
@@ -75,43 +80,28 @@ class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
                 ),
 
                 SizedBox(height: 5, child: Container(color: Color(0xffF1F3FD),),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Obx(()=>Row(
                   children: [
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            Radio(
-                                value: true,
-                                groupValue: _isCar,
-                                onChanged: (value){
-                                  setState(() {
-                                    _isCar = !_isCar;
-                                  });
-                                },
-                                activeColor: Color(0xffDFB400)),
-                            Text("Ô tô"),
-                            SizedBox(width: 20,),
-                            Radio(
-                                value: false,
-                                groupValue: _isCar,
-                                onChanged: (value){
-                                  setState(() {
-                                    _isCar = !_isCar;
-                                  });
-                                },
-                                activeColor: Color(0xffDFB400)
-                            ),
-                            Text("Xe máy")
-                          ],
-                        )
-                      ],
+                    Radio(
+                        value: true,
+                        groupValue: radio_c.isCar.value,
+                        onChanged: (value){
+                          radio_c.isCar.value = !radio_c.isCar.value;
+                        },
+                        activeColor: Color(0xffDFB400)),
+                    Text("Ô tô"),
+                    SizedBox(width: 20,),
+                    Radio(
+                        value: false,
+                        groupValue: radio_c.isCar.value,
+                        onChanged: (value){
+                          radio_c.isCar.value = !radio_c.isCar.value;
+                        },
+                        activeColor: Color(0xffDFB400)
                     ),
-
-
+                    Text("Xe máy")
                   ],
-                ),
+                ),),
                 Wrap(
                   spacing: 10.0,
                   runSpacing: 10.0,

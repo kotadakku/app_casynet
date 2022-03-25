@@ -10,6 +10,7 @@ class InformationStoreWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Divider(height: 20,),
         ListTile(
           leading: CircleAvatar(
             child: Text("123"),
@@ -112,7 +113,7 @@ class InformationStoreWidget extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.white,
 
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                 ), onPressed: () {  },
               ),
             ),),
@@ -134,12 +135,13 @@ class InformationStoreWidget extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: kYellowColor,
 
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                 ), onPressed: () {  },
               ),
             ),),
           ],
-        )
+        ),
+        SizedBox(height: 10,)
       ],
     );
   }

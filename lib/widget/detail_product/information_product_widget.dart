@@ -39,7 +39,7 @@ class InformationProductWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 5,),
-              Text("17%", style: TextStyle(
+              Text("-17%", style: TextStyle(
                 color: kTextColor
               ),)
             ],
@@ -77,7 +77,7 @@ class InformationProductWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.add_shopping_cart, color: kYellowColor, size: sizeStar.width),
+                    Icon(Icons.add_shopping_cart, color: kTextColor, size: sizeStar.width),
                     Text("10 "),
                     Text("đã bán", style: TextStyle(
                         color: kTextColor
@@ -113,7 +113,7 @@ class InformationProductWidget extends StatelessWidget {
               Text("Casycoin", style: TextStyle(
                 color: kTextColor
               ),),
-              Icon(Icons.notifications_none_outlined, color: Colors.blue,)
+              Icon(Icons.help, color: Colors.blue, size: sizeStar.width,)
             ],
           ),
           SizedBox(height: 10,),
@@ -242,7 +242,7 @@ class InformationProductWidget extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white,
 
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0))
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ), onPressed: () {  },
                         ),
                       ),),
@@ -265,12 +265,13 @@ class InformationProductWidget extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white,
 
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0))
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ), onPressed: () {  },
                         ),
                       ),),
                     ],
-                  )
+                  ),
+                  SizedBox(height: 20,)
 
                 ],
               )

@@ -20,7 +20,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _controller = new TabController(length:2, vsync: this);
+    _controller = TabController(length:2, vsync: this);
   }
   @override
   Widget build(BuildContext context) {

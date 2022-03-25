@@ -2,32 +2,32 @@ import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/screens/account/account_base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
+import '../screens/account/account_login.dart';
+import '../screens/account/infor_account.dart';
+import '../screens/account/order_account.dart';
+import '../screens/details.dart';
 import '../screens/home.dart';
 import '../screens/notfications.dart';
 
-class BottomNavigator extends StatefulWidget {
-  const BottomNavigator({Key? key}) : super(key: key);
+class BottomNavigator extends StatelessWidget {
+  var selectedIndex = 0.obs;
+  BottomNavigator({Key? key}) : super(key: key);
 
-  @override
-  State<BottomNavigator> createState() => _BottomNavigatorState();
-}
-
-class _BottomNavigatorState extends State<BottomNavigator> {
-  int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: kTextColor,
-            offset: Offset(0.0, -1.0)
-          )
-        ]
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: kTextColor,
+                offset: Offset(0.0, -1.0)
+            )
+          ]
       ),
-      child: BottomNavigationBar(
+      child: Obx(()=> BottomNavigationBar(
         showSelectedLabels: false,
         unselectedItemColor: Colors.black,
         items: [
@@ -79,30 +79,26 @@ class _BottomNavigatorState extends State<BottomNavigator> {
               label: "Detail"
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex.value,
         selectedItemColor: Colors.black,
         onTap: _onItemTapped,
       ),
-    );
+    ));
   }
-
   void _onItemTapped(int index) {
     switch(index){
-      case 0: Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context){
-        return HomePage();
-      }), (route) => false);
+      case 0: Get.off(HomePage());
       break;
-      case 1: Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (contex){
-        return NotificationPage();
-      }), (route) => false);
+      case 1: Get.off(NotificationPage());
       break;
-      case 3:  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context){
-        return AccountBasePage();
-      }), (route) => false);
+      case 2: Get.to(OrderAccount());
       break;
-    }
-    setState(() {
-      _selectedIndex = index;
-    });
+      case 3: Get.off(AccountLoginPage());
+      break;
+      case 4: Get.to(DetailsPage());
+      break;
+    };
+    selectedIndex.value = index;
+
   }
 }

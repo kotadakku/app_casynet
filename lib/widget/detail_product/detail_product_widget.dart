@@ -16,8 +16,9 @@ class DetailProductWidget extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text("Chi tiết sản phẩm", style: TextStyle(
-              fontWeight: FontWeight.bold
-            ),),
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),),
         ),
         Divider(color: kTextColor,),
         Container(

@@ -41,10 +41,11 @@ class TopDetailProductWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                          child: SvgPicture.asset(
-                            "assets/home/icon_top_home.svg",
-                            width: 40,
-                          )
+                        padding: EdgeInsets.all(5.0),
+                        child: SvgPicture.asset(
+                          "assets/home/icon_top_home.svg",
+                          width: 30,
+                        )
                       ),
                       Expanded(
                         child: Container(
@@ -76,9 +77,110 @@ class TopDetailProductWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.message_rounded,),
-                    Icon(Icons.add_shopping_cart),
-                    Icon(Icons.more_horiz_outlined)
+                    Icon(Icons.message_rounded, color: kTextColor,),
+                    Icon(Icons.add_shopping_cart, color: kTextColor,),
+                    PopupMenuButton(
+                        elevation: 20,
+                        enabled: true,
+                        offset: Offset(30, 30),
+                        child: Icon(Icons.more_horiz, color: kTextColor,),
+                        onSelected: (value) {
+                        },
+                        itemBuilder:(context) => [
+                          PopupMenuItem(
+                            child:
+                              Row(
+                                children: [
+                                 Container(child:  Icon(Icons.home_outlined),padding: EdgeInsets.only(bottom: 15, right:10),),
+                                  Expanded(child:
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text("Trang chủ"),
+                                        Divider(
+                                          color: kTextColor,
+                                          height: 20,
+                                          thickness: 1,
+                                        ),
+                                      ],
+                                    )
+                                  )
+                                ],
+                              ),
+                            value: "first",
+                          ),
+                          PopupMenuItem(
+                            child:
+                            Row(
+                              children: [
+                                Container(child:  Icon(Icons.production_quantity_limits),padding: EdgeInsets.only(bottom: 15, right:10),),
+                                Expanded(child:
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Sản phẩm đã xem"),
+                                    Divider(
+                                      color: kTextColor,
+                                      height: 20,
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                )
+                                )
+                              ],
+                            ),
+                            value: "first",
+                          ),
+                          PopupMenuItem(
+                            child:
+                            Row(
+                              children: [
+                                Container(child:  Icon(Icons.account_circle_outlined),padding: EdgeInsets.only(bottom: 15, right:10),),
+                                Expanded(child:
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Tài khoản"),
+                                    Divider(
+                                      color: kTextColor,
+                                      height: 20,
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                )
+                                )
+                              ],
+                            ),
+                            value: "first",
+                          ),
+                          PopupMenuItem(
+                            child:
+                            Row(
+                              children: [
+                                Container(child:  Icon(Icons.help_outline, color: kTextColor,),padding: EdgeInsets.only(bottom: 15, right:10),),
+                                Expanded(child:
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Trợ giúp"),
+                                    Divider(
+                                      color: kTextColor,
+                                      height: 20,
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                )
+                                )
+                              ],
+                            ),
+                            value: "first",
+                          ),
+                        ]
+                    )
                   ],
                 )
               ),

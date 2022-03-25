@@ -1,19 +1,20 @@
 
+import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/containts/size.dart';
+import 'package:app_casynet/controller/radio_car_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class StoreWidget extends StatefulWidget {
-  const StoreWidget({Key? key}) : super(key: key);
 
-  @override
-  State<StoreWidget> createState() => _StoreWidgetState();
-}
+class StoreWidget extends StatelessWidget {
+  RadioController c = Get.put(RadioController());
+  StoreWidget({Key? key}) : super(key: key);
 
-class _StoreWidgetState extends State<StoreWidget> {
-  bool _isCar = true;
   @override
   Widget build(BuildContext context) {
-
     return Container(
       color: Colors.white,
       child: Column(
@@ -69,32 +70,28 @@ class _StoreWidgetState extends State<StoreWidget> {
             children: [
               Row(
                 children: [
-                  Row(
+                  Obx(()=> Row(
                     children: [
                       Radio(
-                        value: true,
-                        groupValue: _isCar,
-                        onChanged: (value){
-                          setState(() {
-                            _isCar = !_isCar;
-                          });
-                        },
-                        activeColor: Color(0xffDFB400)),
+                          value: true,
+                          groupValue: c.isCar.value,
+                          onChanged: (value){
+                            c.isCar.value = !c.isCar.value;
+                          },
+                          activeColor: Color(0xffDFB400)),
                       Text("Ô tô"),
                       SizedBox(width: 20,),
                       Radio(
-                        value: false,
-                        groupValue: _isCar,
-                        onChanged: (value){
-                          setState(() {
-                            _isCar = !_isCar;
-                          });
-                        },
-                        activeColor: Color(0xffDFB400)
+                          value: false,
+                          groupValue: c.isCar.value,
+                          onChanged: (value){
+                            c.isCar.value = !c.isCar.value;
+                          },
+                          activeColor: Color(0xffDFB400)
                       ),
                       Text("Xe máy")
                     ],
-                  )
+                  ))
                 ],
               ),
               Row(
@@ -117,10 +114,10 @@ class _StoreWidgetState extends State<StoreWidget> {
             runSpacing: 10.0,
             children: [
               ItemCuaHangWidget(
-                store_image: "assets/home/store/cuahang1.png",
-                distance: 4.5,
-                store_name: "Gara ô tô Vinaoto.net",
-                address: "Nam Từ Liêm, Hà Nội"
+                  store_image: "assets/home/store/cuahang1.png",
+                  distance: 4.5,
+                  store_name: "Gara ô tô Vinaoto.net",
+                  address: "Nam Từ Liêm, Hà Nội"
               ),
               ItemCuaHangWidget(
                   store_image: "assets/home/store/cuahang2.png",
@@ -188,7 +185,7 @@ class ItemCuaHangWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset("assets/home/store/icon_re2.png", width: 10, ),
+                    Icon(Icons.thumb_up_alt_rounded, color: kTextColor_gray, size: 12,),
                     SizedBox(width: 2,),
                     Text("33",
                         style: TextStyle(
@@ -199,7 +196,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset("assets/home/store/icon_re2.png", width: 10,),
+                    FaIcon(FontAwesomeIcons.comment, size: 12, color: kTextColor_gray,),
                     SizedBox(width: 2,),
                     Text("33",
                       style: TextStyle(
@@ -210,7 +207,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset("assets/home/store/icon_re2.png", width: 10,),
+                    Icon(Icons.share, color: kTextColor_gray, size: 10,),
                     SizedBox(width: 2,),
                     Text("4.5",
                         style: TextStyle(
@@ -227,7 +224,7 @@ class ItemCuaHangWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(store_name),
-              SvgPicture.asset("assets/home/store/phone.svg", width: 15,)
+              FaIcon(FontAwesomeIcons.phoneFlip, color: kTextColor_gray, size: 12,),
             ],
           ),
           SizedBox(height: 10.0,),
@@ -236,7 +233,7 @@ class ItemCuaHangWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset("assets/home/store/icon_re2.png", width: 10,),
+                  FaIcon(FontAwesomeIcons.mapLocationDot, color: kTextColor_gray, size: 12,),
                   SizedBox(width: 3,),
                   Text(address,
                     style: TextStyle(
@@ -248,7 +245,7 @@ class ItemCuaHangWidget extends StatelessWidget {
 
               Row(
                 children: [
-                  Image.asset("assets/home/store/icon_re2.png", width: 10,),
+                  FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 12,),
                   SizedBox(width: 3,),
                   Text("$distance km",
                     style: TextStyle(

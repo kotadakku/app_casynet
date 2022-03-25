@@ -1,24 +1,23 @@
 
+import 'package:app_casynet/controller/radio_car_controller.dart';
 import 'package:app_casynet/screens/filter/filter_product.dart';
 import 'package:app_casynet/screens/rua_xe_thay_dau.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../containts/colors.dart';
 import '../../screens/filter/filter_product_2.dart';
 
-class ReservationWidget extends StatefulWidget {
+class ReservationWidget extends StatelessWidget {
   final String title;
-  const ReservationWidget({Key? key, required this.title}) : super(key: key);
+  RadioController c = Get.put(RadioController());
+  ReservationWidget({Key? key, required this.title}) : super(key: key);
 
-  @override
-  State<ReservationWidget> createState() => _ReservationWidgetState();
-}
-
-class _ReservationWidgetState extends State<ReservationWidget> {
-  bool _isCar = true;
   @override
   Widget build(BuildContext context) {
-
     return Container(
       color: Colors.white,
       child: Column(
@@ -41,7 +40,7 @@ class _ReservationWidgetState extends State<ReservationWidget> {
                     ),),
                     SizedBox(width: 15,),
                     Text(
-                      widget.title.toUpperCase(),
+                      title.toUpperCase(),
                       style: TextStyle(
                           color: Color(0xffDFB400),
                           fontSize: 18,
@@ -80,32 +79,29 @@ class _ReservationWidgetState extends State<ReservationWidget> {
             children: [
               Row(
                 children: [
-                  Row(
+                  Obx(()=>Row(
                     children: [
                       Radio(
                           value: true,
-                          groupValue: _isCar,
+                          groupValue: c.isCar.value,
                           onChanged: (value){
-                            setState(() {
-                              _isCar = !_isCar;
-                            });
+                            c.isCar.value = !c.isCar.value;
                           },
                           activeColor: Color(0xffDFB400)),
                       Text("Ô tô"),
                       SizedBox(width: 20,),
                       Radio(
                           value: false,
-                          groupValue: _isCar,
+                          groupValue: c.isCar.value,
                           onChanged: (value){
-                            setState(() {
-                              _isCar = !_isCar;
-                            });
+                            c.isCar.value = !c.isCar.value;
                           },
                           activeColor: Color(0xffDFB400)
                       ),
                       Text("Xe máy")
                     ],
-                  )
+                  ))
+
                 ],
               ),
               GestureDetector(
@@ -171,17 +167,12 @@ class _ReservationWidgetState extends State<ReservationWidget> {
       ),
     );
   }
-
   void _filter_product() {
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return FilterProductPage2();
-    }));
+    Get.to(FilterProductPage2());
   }
 
   void _view_more() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context){
-      return RuaXeThayDauPage();
-    }));
+    Get.to(RuaXeThayDauPage());
   }
 }
 
@@ -214,6 +205,7 @@ class ItemBookWidget extends StatelessWidget {
           Stack(
             children: [
               Image.asset(book_image,
+              fit: BoxFit.fitHeight,
               height: constraint.maxWidth/2-10,),
               Positioned(
                   child: Text("-20%")
@@ -225,13 +217,7 @@ class ItemBookWidget extends StatelessWidget {
             // Image.asset("")
           ),
           SizedBox(height: 10.0,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(book_name),
-              SvgPicture.asset("assets/home/store/phone.svg", width: 15,)
-            ],
-          ),
+          Text(book_name),
           SizedBox(height: 10.0,),
           Row(
             children: [
@@ -255,21 +241,15 @@ class ItemBookWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Image.asset("assets/home/store/icon_re2.png", width: 10,),
-                  SizedBox(width: 3,),
-                  Text(book_category,
-                    style: TextStyle(
-                        fontSize: 10
-                    ),
-                  )
-                ],
+              Text(book_category,
+                style: TextStyle(
+                    fontSize: 10
+                ),
               ),
 
               Row(
                 children: [
-                  Image.asset("assets/home/store/icon_re2.png", width: 10,),
+                  FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 12,),
                   SizedBox(width: 3,),
                   Text("$distance km",
                     style: TextStyle(
@@ -289,7 +269,7 @@ class ItemBookWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset("assets/home/store/icon_re2.png", width: 10, ),
+                    FaIcon(FontAwesomeIcons.solidThumbsUp, color: kTextColor_gray, size: 12,),
                     SizedBox(width: 2.0,),
                     Text("33",
                       style: TextStyle(
@@ -300,7 +280,7 @@ class ItemBookWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset("assets/home/store/icon_re2.png", width: 10,),
+                    FaIcon(FontAwesomeIcons.comment, color: kTextColor_gray, size: 12,),
                     SizedBox(width: 2.0,),
                     Text("33",
                       style: TextStyle(
@@ -311,7 +291,7 @@ class ItemBookWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset("assets/home/store/icon_re2.png", width: 10,),
+                    Icon(Icons.share, size: 12, color: kTextColor_gray,),
                     SizedBox(width: 2.0,),
                     Text("4.3",
                       style: TextStyle(

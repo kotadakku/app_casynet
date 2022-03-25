@@ -1,4 +1,5 @@
 import 'package:app_casynet/containts/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChatProductWidget extends StatelessWidget {
@@ -13,8 +14,15 @@ class ChatProductWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Hỏi đáp"),
-              Text("1000 hỏi đáp")
+              Text("Hỏi đáp",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),),
+              Text("1000 hỏi đáp",
+              style: TextStyle(
+                  color: kTextColor
+              ),)
             ],
           ),
         ),
@@ -24,19 +32,115 @@ class ChatProductWidget extends StatelessWidget {
         ),
         Column(
           children: [
-            
+            CardChatItem(isFromMe: true,
+              nameCompany: "ngocbich85hd",
+              message: "Bạn giới thiệu về sản phẩm được không ạ?"
+            ),
+            CardChatItem(
+              isFromMe: false,
+              nameCompany: "CÔNG TY TNHH Ô TÔ MỸ ĐÌNH",
+                message: "Chào bạn ! Trong bài có đầy đủ các thông tin sản phẩm ạ"
+
+            ),
+            CardChatItem(isFromMe: true,
+                nameCompany: "vanphuc1503",
+                message: "Đánh giá giúp shop 5 sao để được ưu đãi các đơn"
+            ),
+            CardChatItem(isFromMe: true,
+                nameCompany: "levuhoaithuong",
+                message: "Giao hàng nhanh, chất lượng sản phẩm tốt lắm ạ, giống mô tả, dùng rất ok, cảm ơn shop"
+            ),
+
+          ]
+        ),
+        Divider(height: 20,),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("Xem tất cả", style: TextStyle(
+              color: kYellowColor,
+            ),),
+            Icon(Icons.keyboard_arrow_down_rounded, color: kYellowColor,),
+
           ],
-        )
+        ),
+        SizedBox(height: 10,),
+
       ],
     );
   }
 }
 
-class Card extends StatelessWidget {
-  const Card({Key? key}) : super(key: key);
+class CardChatItem extends StatefulWidget {
+  final bool isFromMe;
+  final String nameCompany;
+  final String message;
+  const CardChatItem({Key? key, isMe, required this.isFromMe, required this.nameCompany, required this.message}) : super(key: key);
+
+  @override
+  State<CardChatItem> createState() => _CardChatItemState();
+}
+
+class _CardChatItemState extends State<CardChatItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
+      margin: EdgeInsets.only(left: widget.isFromMe ? 0 : 30),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
+        color: widget.isFromMe ? Colors.white : Colors.blue.withOpacity(.1),
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: 40,
+            width: 40,
+            margin: EdgeInsets.all(5.0),
+            decoration: BoxDecoration(
+
+              borderRadius: BorderRadius.circular(20.0),
+                image: DecorationImage(
+                  image: AssetImage("assets/account/image_user.png"),
+                  fit: BoxFit.fill,
+                )
+            ),
+          ),
+          Expanded(
+            child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 150,
+                    child: Text(widget.nameCompany, style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        color: Colors.blue,
+
+                        fontWeight: FontWeight.bold
+                    ),
+                    ),
+                  ),
+                  Text("10:30 03/30/2020",
+                    style: TextStyle(
+                      color: kTextColor
+                    ),
+
+                  )
+                ],
+              ),
+
+              SizedBox(height: 10,),
+              Text(widget.message)
+            ],
+          ))
+        ],
+      ),
+    );
   }
 }
