@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../containts/colors.dart';
+import '../../screens/account/infor_account.dart';
 
 
 class MenuAccountWidget extends StatelessWidget {
