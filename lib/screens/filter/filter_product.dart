@@ -1,9 +1,7 @@
 import 'package:app_casynet/widget/account/top_account_widget.dart';
-import 'package:app_casynet/widget/filter/distint_product_widget.dart';
+import 'package:app_casynet/widget/filter/district_product_widget.dart';
 import 'package:app_casynet/widget/filter/origin_product_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../containts/colors.dart';
 import '../../widget/filter/attribute_product_widget.dart';
 import '../../widget/filter/bottom_button.dart';
 import '../../widget/filter/price_product_widget.dart';
@@ -37,7 +35,7 @@ class FilterProductPage extends StatelessWidget {
                 ),
               ),
               //Quận huyện
-              DistintProductWidget(),
+              DistrictProductWidget(),
               Container(
                 width: double.infinity,
                 color: const Color(0xffF1F3FD),

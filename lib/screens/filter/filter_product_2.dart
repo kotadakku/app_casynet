@@ -1,6 +1,9 @@
 
-import 'package:app_casynet/widget/filter/distint_product_widget.dart';
+import 'package:app_casynet/containts/size.dart';
+import 'package:app_casynet/widget/filter/district_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../containts/colors.dart';
 import '../../widget/account/top_account_widget.dart';
@@ -25,9 +28,16 @@ class FilterProductPage2 extends StatelessWidget {
                   color: const Color(0xffF1F3FD),
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
-                    children: const [
-                      Icon(Icons.filter_alt),
-                      SizedBox(width: 10,),
+                    children: [
+                      GestureDetector(
+                        child: Container(
+                          margin: EdgeInsets.all(5.0),
+                          child: Icon(Icons.arrow_back_ios, size: sizeStar.width,),
+                        ),
+                        onTap: (){
+                          Get.back();
+                        },
+                      ),
                       Text("Lọc sản phẩm",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -59,7 +69,8 @@ class FilterProductPage2 extends StatelessWidget {
                   height: 10,
                 ),
 
-                DistintProductWidget(),
+                DistrictProductWidget(),
+                Container(height: 10,color: Color(0xffF1F3FD),),
                 //Bottom Button
                 BottomButtonWidget(),
               ],

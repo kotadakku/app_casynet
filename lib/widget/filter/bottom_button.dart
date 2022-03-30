@@ -1,5 +1,8 @@
 
+import 'package:app_casynet/controller/filter_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../containts/colors.dart';
 
@@ -31,7 +34,13 @@ class BottomButtonWidget extends StatelessWidget {
                           style: OutlinedButton.styleFrom(
                               primary: kYellowColor,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
-                          ), onPressed: () {  },
+                          ),
+                          onPressed: () {
+                            Get.find<FilterController>().distints_active.clear();
+                            Get.find<FilterController>().categories_active.clear();
+                            Get.find<FilterController>().display.value = "Danh sách";
+                            Get.find<FilterController>().attr.value = "Mới nhất";
+                          },
                         ),
                       )
                   ),
@@ -49,7 +58,10 @@ class BottomButtonWidget extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               primary: kYellowColor,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
-                          ), onPressed: () {  },
+                          ),
+                          onPressed: () {
+                            Get.back();
+                          },
                         ),
                       )
                   )

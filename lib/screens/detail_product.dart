@@ -1,4 +1,3 @@
-
 import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/widget/detail_product/tags_product_widget.dart';
 import 'package:app_casynet/widget/detail_product/vote_product_widget.dart';
@@ -21,43 +20,57 @@ class DetailProductPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              TopDetailProductWidget(),
-              ImageProductWidget(),
-              InformationProductWidget(),
-              RevervationProductWidget(),
-              InformationStoreWidget(),
-              DetailProductWidget(),
-              Container(height: 10, color: kBackgroundColor,),
-              VoteProductWidget(),
-              Container(height: 10, color: kBackgroundColor,),
-              ChatProductWidget(),
-              Container(height: 10, color: kBackgroundColor,),
-              TagsProductWidget(),
-              Container(height: 10, color: kBackgroundColor,),
-              FeaturedProductWidget(),
-            ],
-          )
-        ),
-      ),
-      bottomNavigationBar: Container(
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: kYellowColor
-            ),
-            onPressed: () {  },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
-                Icon(Icons.add),
-                Text("Đặt hàng")
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TopDetailProductWidget(),
+                        ImageProductWidget(),
+                        InformationProductWidget(),
+                        RevervationProductWidget(),
+                        InformationStoreWidget(),
+                        DetailProductWidget(),
+                        Container(
+                          height: 10,
+                          color: kBackgroundColor,
+                        ),
+                        VoteProductWidget(),
+                        Container(
+                          height: 10,
+                          color: kBackgroundColor,
+                        ),
+                        ChatProductWidget(),
+                        Container(
+                          height: 10,
+                          color: kBackgroundColor,
+                        ),
+                        TagsProductWidget(),
+                        Container(
+                          height: 10,
+                          color: kBackgroundColor,
+                        ),
+                        FeaturedProductWidget(),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: kYellowColor),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Icon(Icons.add), Text("Đặt hàng")],
+                      )),
+                ),
               ],
-            )
-        ),
+            )),
       ),
     );
   }
-
 }

@@ -1,5 +1,7 @@
 
+import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/svg.dart';
 
 
@@ -30,13 +32,26 @@ class TopHomeWidget extends StatelessWidget {
             child: Container(
               height: 35,
               child:  TextField(
+                autofocus: false,
+                style: TextStyle(
+                    fontSize: 13
+                ),
                 textAlignVertical: TextAlignVertical.center,
+                cursorColor: kYellowColor,
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(5.0),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0)
                     ),
                     hintStyle: const TextStyle(
                         fontSize: 11
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: kYellowColor
+                      )
+
                     ),
                     hintText: 'Search Casynet',
                     suffixIcon: Padding(
