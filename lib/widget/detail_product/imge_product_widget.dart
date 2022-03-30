@@ -1,5 +1,4 @@
 
-import 'dart:ffi';
 
 import 'package:app_casynet/containts/size.dart';
 import 'package:app_casynet/controller/banner_controller.dart';

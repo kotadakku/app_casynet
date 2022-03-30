@@ -1,3 +1,4 @@
+import 'package:app_casynet/Cart/cart3.dart';
 import 'package:app_casynet/controller/cart/item_selection_controller.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,9 @@ class Cart2 extends StatelessWidget {
           child: Column(
             children: [
               TopDetailProductWidget(),
+// Thông tin giao hàng
               Container(
-                margin: EdgeInsets.only(left: 5.0, right: 5.0, top: 1.0),
+                margin: EdgeInsets.only( top: 1.0),
                 alignment: Alignment(0, 0),
                 color: Color.fromARGB(255, 241, 243, 253),
                 height: 50,
@@ -40,6 +42,7 @@ class Cart2 extends StatelessWidget {
                   ],
                 ),
               ),
+//Địa chỉ nhận hàng
               Container(
                 alignment: Alignment(0, 0),
                 color: Color.fromARGB(255, 255, 255, 255),
@@ -71,6 +74,7 @@ class Cart2 extends StatelessWidget {
                         child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+//button thay đổi
                         TextButton(
                             onPressed: () {},
                             child: Text(
@@ -91,6 +95,7 @@ class Cart2 extends StatelessWidget {
                   color: Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
+// Thông tin khách hàng
               Container(
                 alignment: Alignment(0, 0),
                 color: Color.fromARGB(255, 255, 255, 255),
@@ -98,6 +103,7 @@ class Cart2 extends StatelessWidget {
                 height: 90,
                 child: Column(
                   children: [
+//Thông tin khách hàng
                     Expanded(
                       flex: 1,
                       child: Row(
@@ -113,6 +119,7 @@ class Cart2 extends StatelessWidget {
                         ],
                       ),
                     ),
+// Số điện thoại khách hàng
                     Expanded(
                       flex: 1,
                       child: Row(
@@ -129,6 +136,7 @@ class Cart2 extends StatelessWidget {
                         ],
                       ),
                     ),
+
                     Expanded(
                       flex: 1,
                       child: Row(
@@ -243,11 +251,12 @@ class Cart2 extends StatelessWidget {
                   color: Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
-              //phuong thuc thanh toan
+//Phương thức thanh toán
               ListView(
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
+
                 children: [
                   ListTile(
                     title: Text("Tiền mặt khi nhận hàng"),
@@ -257,7 +266,7 @@ class Cart2 extends StatelessWidget {
                       onChanged: (value) {
                         itemSelectionController.onChangeItem(value);
                       },
-                      value: 1,
+                      value: "tienMat",
                     ),)
                   ),
                   ListTile(
@@ -267,27 +276,118 @@ class Cart2 extends StatelessWidget {
                         children: [
                           Text("Liên kết:",
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 127, 170, 212))),
-                          Text(
-                              "Ví SenPay để thanh toán nhan hơn và nhận các ưu đãi hoàn tiền",
-                              style: TextStyle(
-                                  color: Colors.black))
+                                  color: Color.fromARGB(255, 127, 170, 212),
+                                  fontSize: 13)),
+                          Expanded(
+                            child: Text(
+                                "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 10)),
+                          ),
+
                         ],
                       ),
                     ),
                     leading: Obx(()=> Radio(
                       groupValue: itemSelectionController.selectedItem.value,
                       onChanged: (value) {itemSelectionController.onChangeItem(value);},
-                      value: 1,
+                      value: "viSenPay",
                     ))
+                  ),
+                  ListTile(
+                      title: Text("Ngân hàng liên kết trực tiếp"),
+                      subtitle: Container(
+                        child: Row(
+                          children: [
+                            Text("Liên kết:",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 127, 170, 212),
+                                fontSize: 13)),
+                            Expanded(child: Text(
+                                "Ví SenPay để trải nghiệm thanh toán nhanh qua ngân hàng liên kết trực tiếp",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 10))),
+                          ],
+                        ),
+                      ),
+                      leading: Obx(()=> Radio(
+                        groupValue: itemSelectionController.selectedItem.value,
+                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
+                        value: "nganHangLienKet",
+                      ))
+                  ),
+                  ListTile(
+                      title: Text("Thẻ ATM đã đăng ký Internet Banking"),
+                      // subtitle: Container(
+                      //   child: Row(
+                      //     children: [
+                      //       Text("Liên kết:",
+                      //           style: TextStyle(
+                      //               color: Color.fromARGB(255, 127, 170, 212))),
+                      //       Text(
+                      //           "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
+                      //           style: TextStyle(
+                      //               color: Colors.black))
+                      //     ],
+                      //   ),
+                      // ),
+                      leading: Obx(()=> Radio(
+                        groupValue: itemSelectionController.selectedItem.value,
+                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
+                        value: "theATM",
+                      ))
+                  ),
+                  ListTile(
+                      title: Text("Thẻ tín dụng/Thẻ ghi nợ"),
+                      // subtitle: Container(
+                      //   child: Row(
+                      //     children: [
+                      //       Text("Liên kết:",
+                      //           style: TextStyle(
+                      //               color: Color.fromARGB(255, 127, 170, 212))),
+                      //       Text(
+                      //           "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
+                      //           style: TextStyle(
+                      //               color: Colors.black))
+                      //     ],
+                      //   ),
+                      // ),
+                      leading: Obx(()=> Radio(
+                        groupValue: itemSelectionController.selectedItem.value,
+                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
+                        value: "theTinDung",
+                      ))
+                  ),
+                  ListTile(
+                      title: Text("Chuyển Khoản"),
+                      // subtitle: Container(
+                      //   child: Row(
+                      //     children: [
+                      //       Text("Liên kết:",
+                      //           style: TextStyle(
+                      //               color: Color.fromARGB(255, 127, 170, 212))),
+                      //       Text(
+                      //           "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
+                      //           style: TextStyle(
+                      //               color: Colors.black))
+                      //     ],
+                      //   ),
+                      // ),
+                      leading: Obx(()=> Radio(
+                        groupValue: itemSelectionController.selectedItem.value,
+                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
+                        value: "chuyenKhoan",
+                      ))
                   ),
                 ],
               ),
+//Thông tin xuất hóa đơn
               Container(
                 child: Row(
                   children: [Text("Thông tin xuất hóa đơn")],
                 ),
               ),
+//Mã giảm giá
               Row(
                 children: [
                   Expanded(
@@ -351,7 +451,7 @@ class Cart2 extends StatelessWidget {
                           ),
                           onPressed: () {},
                           child: const Text(
-                            'Ap Dung',
+                            'Áp dụng',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                             ),
@@ -360,6 +460,7 @@ class Cart2 extends StatelessWidget {
                       )),
                 ],
               ),
+//Thành tiền
               Column(
                 children: [
                   Row(
@@ -416,6 +517,7 @@ class Cart2 extends StatelessWidget {
                   )
                 ],
               ),
+//button đặt tiền
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -429,7 +531,9 @@ class Cart2 extends StatelessWidget {
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 20),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(Cart3());
+                      },
                       child: const Text(
                         'Tiến hành đặt hàng',
                         style: TextStyle(
