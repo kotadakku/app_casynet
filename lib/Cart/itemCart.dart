@@ -9,6 +9,7 @@ class ItemCart extends StatelessWidget {
     // TODO: implement build
     return Column(
       children: [
+//Tên của hàng
         Container(
           alignment: Alignment.center,
           color: Color.fromARGB(255, 255, 255, 255),
@@ -29,6 +30,7 @@ class ItemCart extends StatelessWidget {
           ),
         ),
         SizedBox(height: 0.5),
+//quà tặng cửa hàng
         Container(
           alignment: Alignment(0, 0),
           color: Color.fromARGB(255, 255, 255, 255),
@@ -76,6 +78,7 @@ class ItemCart extends StatelessWidget {
           ),
         ),
         SizedBox(height: 0.5),
+// list sản phẩm
         Container(
           alignment: Alignment.center,
           color: Color.fromARGB(255, 255, 255, 255),
@@ -123,29 +126,33 @@ class ItemCart extends StatelessWidget {
                         children: [
                           Container(
                             height: 30.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Máy rửa xe Catorex - CTR",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w300,
-                                    letterSpacing: 0.1,
-                                  ),
-                                ),
-                                Text(
-                                  "1.290.000 đ",
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.3,
-                                  ),
-                                )
-                              ],
-                            ),
+                            child:  Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+// tên sản phẩm
+                                  Expanded(child: Text(
+                                    "Máy rửa xe Catorex - CTR ssssssssssssss",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w300,
+                                      letterSpacing: 0.1,
+                                    ),
+                                  ),),
+// giá sản phẩm
+                                  Text(
+                                    "1.290.000 đ",
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 0.3,
+                                    ),
+                                  )
+                                ],
+                              ),
                           ),
                           Container(
                             height: 30,
@@ -161,6 +168,7 @@ class ItemCart extends StatelessWidget {
                                     letterSpacing: 0.1,
                                   ),
                                 ),
+//Giá tiền txt
                                 Text(
                                   "1.290.000 đ",
                                   style: TextStyle(
@@ -189,6 +197,7 @@ class ItemCart extends StatelessWidget {
                                       color: Colors.black,
                                     ),
                                   ),
+// textfield số lượng sản phẩm
                                   Container(
                                     // transformAlignment: Center(key: ,),
                                     width: 20,
@@ -199,6 +208,7 @@ class ItemCart extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
+// button minus
                                   ElevatedButton(
                                       style: ButtonStyle(
                                         backgroundColor:
@@ -212,54 +222,53 @@ class ItemCart extends StatelessWidget {
                                       ),
                                       child: Image.asset(
                                         "assets/cart/icon_minus2.png",
-                                        // Image.asset("assets/cart/icon_minus.png",width: 15,height: 15,),
-                                        // Icons.minimize,
                                         width: 20, height: 10,
                                         color: Colors.black,
                                       ),
                                       onPressed: () {}),
-                                  ElevatedButton(
+                                  IconButton(
                                     onPressed: () {},
-                                    child: Icon(
+                                    icon: Icon(
                                       Icons.delete,
                                       color: Colors.black,
                                     ),
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Color.fromARGB(
-                                                  255, 235, 235, 255)),
-                                      padding:
-                                          MaterialStateProperty.all<EdgeInsets>(
-                                              EdgeInsets.all(0.1)),
-                                      minimumSize:
-                                          MaterialStateProperty.all<Size>(
-                                              Size(20, 20)),
-                                    ),
+                                    // style: ButtonStyle(
+                                    //   backgroundColor:
+                                    //       MaterialStateProperty.all<Color>(
+                                    //           Color.fromARGB(
+                                    //               255, 235, 235, 255)),
+                                    //   // padding:
+                                    //   //     MaterialStateProperty.all<EdgeInsets>(
+                                    //   //         EdgeInsets.all(0.1)),
+                                    //   minimumSize:
+                                    //       MaterialStateProperty.all<Size>(
+                                    //           Size(20, 20)),
+                                    // ),
                                   ),
 
                                   Expanded(
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        ElevatedButton(
+                                        IconButton(
                                           onPressed: () {},
-                                          child: Icon(
+                                          icon: Icon(
                                             Icons.edit,
                                             color: Colors.black,
                                           ),
-                                          style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty
-                                                    .all<Color>(Color.fromARGB(
-                                                        255, 235, 235, 255)),
-                                            padding: MaterialStateProperty.all<
-                                                    EdgeInsets>(
-                                                EdgeInsets.all(0.1)),
-                                            minimumSize:
-                                                MaterialStateProperty.all<Size>(
-                                                    Size(20, 20)),
-                                          ),
+
+                                          // style: ButtonStyle(
+                                          //   backgroundColor:
+                                          //       MaterialStateProperty
+                                          //           .all<Color>(Color.fromARGB(
+                                          //               255, 235, 235, 255)),
+                                          //   // padding: MaterialStateProperty.all<
+                                          //   //         EdgeInsets>(
+                                          //   //     EdgeInsets.all(0.1)),
+                                          //   minimumSize:
+                                          //       MaterialStateProperty.all<Size>(
+                                          //           Size(20, 20)),
+                                          // ),
                                         ),
                                       ],
                                     ),

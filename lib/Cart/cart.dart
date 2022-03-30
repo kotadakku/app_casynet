@@ -1,8 +1,12 @@
+import 'package:app_casynet/Cart/cart3.dart';
 import 'package:app_casynet/Cart/itemCart.dart';
+import 'package:app_casynet/store/mystore.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'cart2.dart';
 
 class Cart extends StatelessWidget {
   @override
@@ -16,6 +20,7 @@ class Cart extends StatelessWidget {
           child: Column(
             children: [
               TopDetailProductWidget(),
+              //giỏ hang của bạn
               Container(
                 alignment: Alignment(0, 0),
                 color: Color.fromARGB(255, 241, 243, 253),
@@ -39,6 +44,7 @@ class Cart extends StatelessWidget {
                   ],
                 ),
               ),
+
               ListView(
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
@@ -103,7 +109,7 @@ class Cart extends StatelessWidget {
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              hintText: 'Ma giam gia',
+                              hintText: 'Mã giảm giá',
                             ),
                           ),
                         ),
@@ -126,15 +132,15 @@ class Cart extends StatelessWidget {
                               ),
                               onPressed: () {},
                               child: const Text(
-                                'Ap Dung',
+                                'Áp dụng',
                                 style: TextStyle(fontWeight: FontWeight.w500),
                               ),
                             ),
                           )),
                     ],
                   ),
+                  // thành tiền
                   Column(
-
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,7 +155,7 @@ class Cart extends StatelessWidget {
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 149, 156, 175),
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 20
+                                      fontSize: 18
                                   ),
                                 ),
                               )
@@ -167,7 +173,7 @@ class Cart extends StatelessWidget {
                                       style: TextStyle(
                                           color: Color.fromARGB(255, 255, 69, 69),
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 25
+                                          fontSize: 20
                                       ),
                                     ),
                                   )
@@ -187,7 +193,7 @@ class Cart extends StatelessWidget {
                               style: TextStyle(
                                   color: Color.fromARGB(255, 149, 156, 175),
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 15
+                                  fontSize: 13
                               ),
                             ),
                           )
@@ -195,6 +201,7 @@ class Cart extends StatelessWidget {
                       )
                     ],
                   ),
+// button tiến hành đặt hàng
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -211,7 +218,12 @@ class Cart extends StatelessWidget {
                             primary: Colors.white,
                             textStyle: const TextStyle(fontSize: 20),
                           ),
-                          onPressed: () {},
+                          // sự kiện chuyển màn
+                          onPressed: () {
+                            Get.to(Mystore());
+                            // Get.to(Cart3());
+
+                          },
                           child: const Text(
                             'Tiến hành đặt hàng',
                             style: TextStyle(fontWeight: FontWeight.w500,),
