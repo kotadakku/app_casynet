@@ -84,7 +84,7 @@ class CategoryItemBottom extends StatelessWidget {
                       ),
                       Text(
                         name,
-                        style: TextStyle(color: kTextColor_gray, fontSize: 13),
+                        style: TextStyle(color: kTextColor_gray, fontSize: 12),
                       )
                     ],
                   ),

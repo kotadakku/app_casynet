@@ -46,7 +46,7 @@ class BottomWidget extends StatelessWidget {
                             children: [
                             Text("Cài đặt ứng dụng Casynet miễn phí",
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 11,
                                 color: kTextColor
                               ),
                             ),
@@ -66,7 +66,7 @@ class BottomWidget extends StatelessWidget {
                                 ),
                                 Text("38.000 bình chọn",
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 11,
                                     color: kTextColor
                                   ),
                                 ),
