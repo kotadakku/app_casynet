@@ -1,0 +1,149 @@
+
+import 'package:app_casynet/controller/radio_car_controller.dart';
+import 'package:app_casynet/widget/detail_store/gift_store_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+
+import '../../containts/colors.dart';
+import '../../screens/detail_product.dart';
+import '../../screens/filter/filter_product_2.dart';
+import '../home/reservation_home_widget.dart';
+
+class ProductStoreWidget extends StatelessWidget {
+  const ProductStoreWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    RadioController c = Get.put(RadioController());
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          GiftStoreWidget(),
+          Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+
+                SizedBox(height: 5, child: Container(color: Color(0xffF1F3FD),),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Obx(()=>Row(
+                          children: [
+                            Radio(
+                                value: true,
+                                groupValue: c.isCar.value,
+                                onChanged: (value){
+                                  c.isCar.value = !c.isCar.value;
+                                },
+                                activeColor: Color(0xffDFB400)),
+                            Text("Ô tô"),
+                            SizedBox(width: 20,),
+                            Radio(
+                                value: false,
+                                groupValue: c.isCar.value,
+                                onChanged: (value){
+                                  c.isCar.value = !c.isCar.value;
+                                },
+                                activeColor: Color(0xffDFB400)
+                            ),
+                            Text("Xe máy")
+                          ],
+                        ))
+
+                      ],
+                    ),
+                    GestureDetector(
+                      child: Row(
+                        children: [
+                          SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
+                          SizedBox(width: 5,),
+                          Text(
+                            "Lọc",
+                            style: TextStyle(
+                              color: Color(0xffB7BAC1),
+                            ),
+                          ),
+                          SizedBox(width: 10,)
+                        ],
+                      ),
+                      onTap: (){
+                        _filter_product();
+                      },
+                    )
+
+                  ],
+                ),
+                Wrap(
+                  spacing: 10.0,
+                  runSpacing: 10.0,
+                  children: [
+                    GestureDetector(
+                      child: ItemBookWidget(
+                          book_image: "assets/home/book/image.png",
+                          distance: 4.5,
+                          price: "1.290.000đ",
+                          price_discount: "1.390.000đ",
+                          book_name: "Máy rửa xe Catorex - CTR",
+                          book_category: "Điện máy Đỗ Dũng"
+                      ),
+                      onTap: (){
+                        Get.to(DetailProductPage());
+                      },
+                    ),
+                    ItemBookWidget(
+                        book_image: "assets/home/store/cuahang1.png",
+                        distance: 4.5,
+                        price: "1.290.000đ",
+                        price_discount: "1.390.000đ",
+                        book_name: "Máy rửa xe Catorex - CTR",
+                        book_category: "Điện máy Đỗ Dũng"
+                    ),
+                    ItemBookWidget(
+                        book_image: "assets/home/book/image.png",
+                        distance: 4.5,
+                        price: "1.290.000đ",
+                        price_discount: "1.390.000đ",
+                        book_name: "Máy rửa xe Catorex - CTR",
+                        book_category: "Điện máy Đỗ Dũng"
+                    ),
+                    ItemBookWidget(
+                        book_image: "assets/home/store/cuahang1.png",
+                        distance: 4.5,
+                        price: "1.290.000đ",
+                        price_discount: "1.390.000đ",
+                        book_name: "Máy rửa xe Catorex - CTR",
+                        book_category: "Điện máy Đỗ Dũng"
+                    ),
+                  ],
+                ),
+                Divider(height: 20,),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Xem thêm", style: TextStyle(
+                        color: kYellowColor
+                    ),),
+                    Container(
+                      margin: EdgeInsets.all(5.0),
+                      child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor, size: 15,),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  void _filter_product() {
+    Get.to(FilterProductPage2());
+  }
+}

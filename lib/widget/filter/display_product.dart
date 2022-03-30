@@ -1,5 +1,10 @@
 
+import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../controller/filter_controller.dart';
 
 class DisplayProductWidget extends StatefulWidget {
   const DisplayProductWidget({Key? key}) : super(key: key);
@@ -9,7 +14,6 @@ class DisplayProductWidget extends StatefulWidget {
 }
 
 class _DisplayProductWidgetState extends State<DisplayProductWidget> {
-  bool _display = false;
   @override
   Widget build(BuildContext context) {
     List<String> _displays = [
@@ -20,10 +24,8 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         child:  Column(
           children: [
-
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -36,35 +38,48 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
                   IconButton(
                     onPressed: (){
                       setState(() {
-                        _display = !_display;
+                        if(Get.find<FilterController>().more_display.value){
+                          Get.find<FilterController>().expandDisplayController.reverse();
+                          Get.find<FilterController>().more_display.value = !Get.find<FilterController>().more_display.value;
+                        }
+                        else{
+                          Get.find<FilterController>().expandDisplayController.forward();
+                          Get.find<FilterController>().more_display.value = !Get.find<FilterController>().more_display.value;
+                        }
                       });
                     },
                     iconSize: 20,
-                    icon: Icon(Icons.keyboard_arrow_down_outlined)
+                    icon: Obx(()=>Icon(Get.find<FilterController>().more_display.value ?Icons.keyboard_arrow_up_outlined: Icons.keyboard_arrow_down_outlined))
                   )
                 ],
               ),
             ),
-            Visibility(
-              visible: _display,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: _displays.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index){
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(_displays[index]),
-                      Radio(value: true, onChanged: (value){
-                      }, groupValue: 0,),
-                    ],
-                  );
-                }
-            ),
-            )
 
+           SizeTransition(
+              axisAlignment: 1.0,
+              sizeFactor: Get.find<FilterController>().animationDisplay,
+              child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: _displays.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index){
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(_displays[index]),
+                        Obx(()=> Radio(
+                          activeColor: kYellowColor,
+                          value: _displays[index],
+                            onChanged: (value){
+                              Get.find<FilterController>().display.value = _displays[index];
+                            },
+                            groupValue: Get.find<FilterController>().display.value,
+                        ),)
+                      ],
+                    );
+                  }
+              ),)
           ],
         )
     );

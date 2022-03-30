@@ -14,7 +14,6 @@ import '../../screens/filter/filter_product_2.dart';
 
 class ReservationWidget extends StatelessWidget {
   final String title;
-  RadioController c = Get.put(RadioController());
   ReservationWidget({Key? key, required this.title}) : super(key: key);
 
   @override
@@ -68,8 +67,6 @@ class ReservationWidget extends StatelessWidget {
                     ],
                   ),
                 )
-
-
               ],
             ),
           ),
@@ -84,18 +81,18 @@ class ReservationWidget extends StatelessWidget {
                     children: [
                       Radio(
                           value: true,
-                          groupValue: c.isCar.value,
+                          groupValue: Get.find<RadioController>().isCar.value,
                           onChanged: (value){
-                            c.isCar.value = !c.isCar.value;
+                            Get.find<RadioController>().isCar.value = !Get.find<RadioController>().isCar.value;
                           },
                           activeColor: Color(0xffDFB400)),
                       Text("Ô tô"),
                       SizedBox(width: 20,),
                       Radio(
                           value: false,
-                          groupValue: c.isCar.value,
+                          groupValue: Get.find<RadioController>().isCar.value,
                           onChanged: (value){
-                            c.isCar.value = !c.isCar.value;
+                            Get.find<RadioController>().isCar.value = !Get.find<RadioController>().isCar.value;
                           },
                           activeColor: Color(0xffDFB400)
                       ),
@@ -127,45 +124,49 @@ class ReservationWidget extends StatelessWidget {
             ],
           ),
           Wrap(
-            spacing: 10.0,
+            spacing: 5.0,
             runSpacing: 10.0,
             children: [
               GestureDetector(
                 child: ItemBookWidget(
-                    book_image: "assets/home/book/image.png",
-                    distance: 4.5,
-                    price: "1.290.000đ",
-                    price_discount: "1.390.000đ",
-                    book_name: "Máy rửa xe Catorex - CTR",
-                    book_category: "Điện máy Đỗ Dũng"
+                  book_image: "assets/home/book/image.png",
+                  distance: 4.5,
+                  price: "1.290.000đ",
+                  price_discount: "1.390.000đ",
+                  book_name: "Máy rửa xe Catorex - CTR",
+                  book_category: "Điện máy Đỗ Dũng",
+                  add_point: 10,
+                  sale: 20,
                 ),
                 onTap: (){
                   Get.to(DetailProductPage());
                 },
               ),
               ItemBookWidget(
-                  book_image: "assets/home/store/cuahang1.png",
-                  distance: 4.5,
-                  price: "1.290.000đ",
-                  price_discount: "1.390.000đ",
-                  book_name: "Máy rửa xe Catorex - CTR",
-                  book_category: "Điện máy Đỗ Dũng"
+                book_image: "assets/home/store/cuahang1.png",
+                distance: 4.5,
+                price: "1.290.000đ",
+                price_discount: "1.390.000đ",
+                book_name: "Máy rửa xe Catorex - CTR",
+                book_category: "Điện máy Đỗ Dũng"
               ),
               ItemBookWidget(
-                  book_image: "assets/home/book/image.png",
-                  distance: 4.5,
-                  price: "1.290.000đ",
-                  price_discount: "1.390.000đ",
-                  book_name: "Máy rửa xe Catorex - CTR",
-                  book_category: "Điện máy Đỗ Dũng"
+                book_image: "assets/home/book/image.png",
+                distance: 4.5,
+                price: "1.290.000đ",
+                price_discount: "1.390.000đ",
+                book_name: "Máy rửa xe Catorex - CTR",
+                book_category: "Điện máy Đỗ Dũng",
+                sale: 12,
               ),
               ItemBookWidget(
-                  book_image: "assets/home/store/cuahang1.png",
-                  distance: 4.5,
-                  price: "1.290.000đ",
-                  price_discount: "1.390.000đ",
-                  book_name: "Máy rửa xe Catorex - CTR",
-                  book_category: "Điện máy Đỗ Dũng"
+                book_image: "assets/home/store/cuahang1.png",
+                distance: 4.5,
+                price: "1.290.000đ",
+                price_discount: "1.390.000đ",
+                book_name: "Máy rửa xe Catorex - CTR",
+                book_category: "Điện máy Đỗ Dũng",
+                add_point: 20,
               ),
             ],
           ),
@@ -174,7 +175,7 @@ class ReservationWidget extends StatelessWidget {
     );
   }
   void _filter_product() {
-    Get.to(FilterProductPage2());
+    Get.toNamed('/filter');
   }
 
   void _view_more() {
@@ -189,19 +190,23 @@ class ItemBookWidget extends StatelessWidget {
   final String price;
   final String price_discount;
   final double distance;
+  int? add_point;
+  int? sale;
 
-  const ItemBookWidget({
+  ItemBookWidget({
     Key? key, required this.book_image,
     required this.book_name,
     required this.price,
     required this.price_discount,
     required this.distance, required this.book_category,
+    this.add_point,
+    this.sale
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraint) => Container(
-      width: constraint.maxWidth/2-10,
+      width: constraint.maxWidth/2-7.5,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0)
       ),
@@ -213,11 +218,15 @@ class ItemBookWidget extends StatelessWidget {
               Image.asset(book_image,
               fit: BoxFit.fitHeight,
               height: constraint.maxWidth/2-10,),
-              Positioned(
-                  child: Text("-20%")
+              if(add_point != null) Positioned(
+                right: 5,
+                top: 5,
+                child: ItemAddPoint(color: Colors.red, width: 50, point: add_point)
               ),
-              Positioned(
-                  child: Text("-20%")
+              if(sale != null) Positioned(
+                top: 5,
+                  left: 5,
+                  child: ItemSale(color: kYellowColor, width: 40, sale: sale)
               )
             ],
             // Image.asset("")
@@ -314,5 +323,93 @@ class ItemBookWidget extends StatelessWidget {
     ));
   }
 }
+
+class ItemAddPoint extends StatelessWidget {
+  final Color color;
+  final double width;
+  final int? point;
+  const ItemAddPoint({Key? key, required this.color, required this.width, required this.point}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 25,
+      child: Stack(
+        children: [
+          Stack(
+            children: [
+
+              SvgPicture.asset("assets/home/sale.svg", height: 20, color: color,),
+              Positioned.fill(
+                  child: Center(
+                    child: Text("+$point điểm",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13
+                      ),
+                    ),
+                  )
+              ),
+            ],
+          ),
+          Positioned(
+            bottom : 0.5,
+            left: 4,
+            child: SvgPicture.asset("assets/home/rect_sale.svg", height: 5, color: color,
+            ),
+          ),
+
+
+        ],
+      ),
+    );
+  }
+}
+class ItemSale extends StatelessWidget {
+  final Color color;
+  final double width;
+  final int? sale;
+  const ItemSale({Key? key, required this.color, required this.width, required this.sale}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 25,
+      width: width,
+      child: Stack(
+        children: [
+          ClipRRect(
+          borderRadius: BorderRadius.circular(3.0),
+            child: Stack(
+              children: [
+                SvgPicture.asset("assets/home/sale.svg", height: 20, fit: BoxFit.fitHeight, width: 25, color: color,),
+                Positioned.fill(
+                    child: Center(
+                      child: Text("-$sale %",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13
+                        ),
+                      ),
+                    )
+                ),
+              ],
+            )
+          ),
+
+          Positioned(
+            bottom : 0.5,
+            right: 4,
+            child: SvgPicture.asset("assets/home/rect_sale.svg", height: 5, color: color,
+            ),
+          ),
+
+
+        ],
+      ),
+    );
+  }
+}
+
 
 

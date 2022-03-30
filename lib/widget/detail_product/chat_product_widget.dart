@@ -73,26 +73,21 @@ class ChatProductWidget extends StatelessWidget {
   }
 }
 
-class CardChatItem extends StatefulWidget {
+
+class CardChatItem extends StatelessWidget {
   final bool isFromMe;
   final String nameCompany;
   final String message;
   const CardChatItem({Key? key, isMe, required this.isFromMe, required this.nameCompany, required this.message}) : super(key: key);
 
   @override
-  State<CardChatItem> createState() => _CardChatItemState();
-}
-
-class _CardChatItemState extends State<CardChatItem> {
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-      margin: EdgeInsets.only(left: widget.isFromMe ? 0 : 30),
+      margin: EdgeInsets.only(left: isFromMe ? 0 : 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
-        color: widget.isFromMe ? Colors.white : Colors.blue.withOpacity(.1),
+        color: isFromMe ? Colors.white : Colors.blue.withOpacity(.1),
       ),
       child: Row(
         children: [
@@ -102,7 +97,7 @@ class _CardChatItemState extends State<CardChatItem> {
             margin: EdgeInsets.all(5.0),
             decoration: BoxDecoration(
 
-              borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(20.0),
                 image: DecorationImage(
                   image: AssetImage("assets/account/image_user.png"),
                   fit: BoxFit.fill,
@@ -110,37 +105,38 @@ class _CardChatItemState extends State<CardChatItem> {
             ),
           ),
           Expanded(
-            child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 150,
-                    child: Text(widget.nameCompany, style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        color: Colors.blue,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 150,
+                        child: Text(nameCompany, style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            color: Colors.blue,
 
-                        fontWeight: FontWeight.bold
-                    ),
-                    ),
+                            fontWeight: FontWeight.bold
+                        ),
+                        ),
+                      ),
+                      Text("10:30 03/30/2020",
+                        style: TextStyle(
+                            color: kTextColor
+                        ),
+
+                      )
+                    ],
                   ),
-                  Text("10:30 03/30/2020",
-                    style: TextStyle(
-                      color: kTextColor
-                    ),
 
-                  )
+                  SizedBox(height: 10,),
+                  Text(message)
                 ],
-              ),
-
-              SizedBox(height: 10,),
-              Text(widget.message)
-            ],
-          ))
+              ))
         ],
       ),
     );
   }
 }
+

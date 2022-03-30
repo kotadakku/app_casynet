@@ -2,11 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import '../../controller/banner_controller.dart';
+import '../../controller/home_controller.dart';
 
 class BannerHomeWidget extends StatelessWidget {
-  final BannerController c = Get.put(BannerController());
   BannerHomeWidget({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +20,7 @@ class BannerHomeWidget extends StatelessWidget {
             PageView.builder(
                 itemCount: banner_urls.length,
                 onPageChanged: (index){
-                  c.newCurrent(index);
+                  Get.find<BannerController>().current.value = index;
                 },
                 itemBuilder: (context, index){
                   return Stack(
@@ -32,12 +30,16 @@ class BannerHomeWidget extends StatelessWidget {
                   );
                 }
             ),
-            Positioned(
-                left: 150,
-                bottom: 15,
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.bottomCenter,
                 child: Obx(()=> Row(
-                    children: indicators(c.count, banner_urls.length)
-                ))
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: indicators(Get.find<BannerController>().current, banner_urls.length)
+                  )
+                )
+              )
             ),
           ],
         )

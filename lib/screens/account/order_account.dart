@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../containts/colors.dart';
+import '../../controller/detail_store_controller.dart';
 import '../../controller/tabview_controller.dart';
 import '../../widget/account/order_all_widget.dart';
 import '../../widget/account/order_cancel_widget.dart';

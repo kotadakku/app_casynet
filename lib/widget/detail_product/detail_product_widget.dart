@@ -32,7 +32,9 @@ Chất lượng sửa chữa bảo dưỡng
 Phụ tùng phụ kiện chính hãng
 Bảo hành sửa chữa và phụ tùng
 Chăm sóc khách hàng
-            """),
+            """,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 16,),
 
         ),
 
