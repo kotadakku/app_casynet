@@ -94,7 +94,7 @@ class BottomNavigator extends StatelessWidget {
       break;
       case 2: Get.to(Cart());
       break;
-      case 3: Get.off(AccountLoginPage());
+      case 3: Get.offNamed('/account/login');
       break;
       case 4: Get.to(DetailsPage());
       break;

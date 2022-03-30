@@ -8,7 +8,7 @@ import '../../containts/size.dart';
 import '../../data.dart';
 
 class ProfileStoreWidget extends StatelessWidget {
-  var id = Get.parameters['storeId'];
+  var id = Get.parameters['storeId'] ?? 1;
   ProfileStoreWidget({Key? key}) : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class ProfileStoreWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: ExactAssetImage(
-                        stores[int.parse(id!)-1]["image_url"],)),
+                        stores[int.parse(id.toString())-1]["image_url"],)),
                   border: Border.all(color: Colors.blue, width: 2),
                   shape: BoxShape.circle),
             ),
@@ -42,7 +42,7 @@ class ProfileStoreWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    stores[int.parse(id!)-1]["name"],
+                    stores[int.parse(id.toString())-1]["name"],
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

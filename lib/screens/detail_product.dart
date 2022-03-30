@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../widget/detail_product/chat_product_widget.dart';
 import '../widget/detail_product/detail_product_widget.dart';
 import '../widget/detail_product/featured_product_widget.dart';
-import '../widget/detail_product/imge_product_widget.dart';
+import '../widget/detail_product/image_product_widget.dart';
 import '../widget/detail_product/information_product_widget.dart';
 import '../widget/detail_product/information_store_widget.dart';
 import '../widget/detail_product/revervation_product.dart';

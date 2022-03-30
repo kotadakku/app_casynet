@@ -25,7 +25,7 @@ class SignInWidget extends StatelessWidget {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50.0),
-                      borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                      borderSide: BorderSide(color: kTextColor, width: 2.0),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50.0),
@@ -53,7 +53,7 @@ class SignInWidget extends StatelessWidget {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50.0),
-                      borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                      borderSide: BorderSide(color: kTextColor, width: 2.0),
                     ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50.0)

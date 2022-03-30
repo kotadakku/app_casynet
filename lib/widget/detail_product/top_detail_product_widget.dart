@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../containts/colors.dart';
@@ -51,10 +52,23 @@ class TopDetailProductWidget extends StatelessWidget {
                         child: Container(
                           height: 35,
                           child:  TextField(
+                            autofocus: false,
+                            cursorColor: kYellowColor,
+                            style: TextStyle(
+                              color: kTextColor_gray,
+                              fontSize: 13,
+                            ),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(5.0),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0)
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: BorderSide(
+                                    color: kYellowColor
+                                  )
                               ),
                               hintStyle: const TextStyle(
                                   fontSize: 11
@@ -62,7 +76,7 @@ class TopDetailProductWidget extends StatelessWidget {
                               hintText: 'Search Sản phẩm',
                               prefixIcon: SizedBox(width: 50, child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                                child: Icon(Icons.search),
+                                child: Icon(Icons.search, color: kTextColor,),
                               ),),
                             ),
                           ),
@@ -77,8 +91,19 @@ class TopDetailProductWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.message_rounded, color: kTextColor,),
-                    Icon(Icons.add_shopping_cart, color: kTextColor,),
+                    Container(
+                      height: 30,
+                      width: 30,
+                      padding: EdgeInsets.all(2.0),
+                      child: SvgPicture.asset("assets/detail_product/message.svg"),
+                    ),
+                    Container(
+                      height: 30,
+                      width: 30,
+                      padding: EdgeInsets.all(2.0),
+                      child: SvgPicture.asset("assets/detail_product/cart.svg"),
+                    ),
+
                     PopupMenuButton(
                         elevation: 20,
                         enabled: true,

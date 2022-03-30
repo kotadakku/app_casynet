@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import '../../containts/colors.dart';
 import '../../widget/account/profile_account_widget.dart';
 import '../../widget/bottom_navigator.dart';
@@ -14,6 +15,7 @@ class InformationAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var date_birthday = "".obs;
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigator(),
@@ -222,10 +224,10 @@ class InformationAccount extends StatelessWidget {
                       GestureDetector(
                         child: Row(
                           children: [
-                            Text(
-                              "Thiết lập ngay",
+                            Obx(()=>Text(
+                              date_birthday.value == "" ? "Thiết lập ngay" :date_birthday.value,
                               style: TextStyle(color: kTextColor),
-                            ),
+                            ),),
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: Icon(
@@ -240,11 +242,13 @@ class InformationAccount extends StatelessWidget {
                           DatePicker.showDatePicker(context,
                               showTitleActions: true,
                               minTime: DateTime(1900, 1, 1),
-                              maxTime: DateTime.now(), onChanged: (date) {
-                            print('change $date');
-                          }, onConfirm: (date) {
-                            print('confirm $date');
-                          },
+                              maxTime: DateTime.now(),
+                              onChanged: (date) {
+                                print('change $date');
+                              },
+                              onConfirm: (date) {
+                                date_birthday.value = DateFormat('yyyy-MM-dd').format(date).toString();
+                               },
                               currentTime: DateTime.now(),
                               locale: LocaleType.vi);
                         },

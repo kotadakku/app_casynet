@@ -39,6 +39,8 @@ dependencies:
   font_awesome_flutter:
   dotted_border:
   flutter_datetime_picker:
+  intl:
+  flutter_slidable:
 
 dev_dependencies:
   flutter_test:
@@ -132,6 +134,13 @@ flutter:
     - assets/detail_product/coin.svg
     - assets/detail_product/gift.svg
     - assets/detail_product/phone-volume.svg
+    - assets/detail_product/cart.svg
+    - assets/detail_product/cart2.svg
+    - assets/detail_product/ic_perm_phone.svg
+    - assets/detail_product/ic_alarm.svg
+    - assets/detail_product/calendar-alt.svg
+    - assets/detail_product/back_sale.svg
+    - assets/detail_product/message.svg
     - assets/benefit/image.png
     - assets/detail_store/anhCuaHang.png
     - assets/detail_store/background.png
@@ -141,6 +150,19 @@ flutter:
     - assets/detail_store/vote.png
     - assets/home/sale.svg
     - assets/home/rect_sale.svg
+    - assets/Icon/icon_ttcuahang.png
+    - assets/Icon/icon_thongbao.png
+    - assets/Icon/icon_quatang.png
+    - assets/Icon/icon_home.png
+    - assets/Icon/icon_dashboard.png
+    - assets/Icon/icon_tintuc.png
+    - assets/Icon/icon_dvsp.png
+    - assets/Icon/icon_doanhso.png
+    - assets/Icon/icon_dung.png
+    - assets/Icon/icon_dongho.png
+    - assets/Icon/icon_butchi.png
+
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

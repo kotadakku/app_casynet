@@ -1,6 +1,7 @@
 import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../containts/size.dart';
@@ -33,14 +34,14 @@ class InformationProductWidget extends StatelessWidget {
               Text("1.800.000",
                 textAlign: TextAlign.end,
                 style: TextStyle(
-                  color: kTextColor,
+                  color: kTextColor_gray,
                   fontSize: 13,
                   decoration: TextDecoration.lineThrough
                 ),
               ),
-              SizedBox(width: 5,),
-              Text("-17%", style: TextStyle(
-                color: kTextColor
+              Text("  -17%", style: TextStyle(
+                color: kTextColor_gray,
+                fontSize: 13,
               ),)
             ],
           ),
@@ -62,26 +63,42 @@ class InformationProductWidget extends StatelessWidget {
                     Icon(Icons.star_half_outlined , size: sizeStar.width, color: kYellowColor,),
                     SizedBox(width: 5,),
                     Text("4.5", style: TextStyle(
-                        color: kTextColor
+                        color: kTextColor_gray
                     ),)
                   ],
                 ),
                 Row(
                   children: [
                     Icon(Icons.warning, color: kYellowColor, size: sizeStar.width),
-                    Text("Báo xấu: ", style: TextStyle(
-                        color: kTextColor
+                    Text("Báo xấu: ",
+                      style: TextStyle(
+                        color: kTextColor_gray
                     ),),
-                    Text("3")
+                    Text("3",
+                      style: TextStyle(
+                        color: kTextColor_gray,
+                        fontWeight: FontWeight.bold
+                    ),)
                   ],
                 ),
                 Row(
                   children: [
-                    Icon(Icons.add_shopping_cart, color: kTextColor, size: sizeStar.width),
-                    Text("10 "),
+                    Container(
+                      height: 20,
+                      width: 20,
+                      padding: EdgeInsets.all(2.0),
+                      child: SvgPicture.asset("assets/detail_product/cart2.svg"),
+                    ),
+                    Text("10 ",
+                        style: TextStyle(
+                        color: kTextColor_gray,
+                        fontWeight: FontWeight.bold
+                      )
+                    ),
                     Text("đã bán", style: TextStyle(
-                        color: kTextColor
-                    ),),
+                        color: kTextColor_gray
+                      ),
+                    ),
 
                   ],
                 )
@@ -96,8 +113,68 @@ class InformationProductWidget extends StatelessWidget {
               SvgPicture.asset("assets/detail_product/gift.svg", width: sizeStar.width),
               SizedBox(width: 5,),
               Text("Quà tặng của của hàng: "),
-              Text("Giảm đ 2K"),
-              Text("Giảm đ 3K"),
+              Container(
+                height: 20,
+                width: 60,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 20,
+                      child: SvgPicture.asset("assets/detail_product/back_sale.svg"),
+                    ),
+                    Positioned.fill(
+                        child: Center(
+                            child: RichText(
+                              text: TextSpan(
+                                text: 'Giảm ',
+                                style: TextStyle(
+                                    color: kYellowColor,
+                                    fontSize: 10
+                                ),
+                                children:[
+                                  TextSpan(text: 'đ ', style: TextStyle(
+                                      decoration: TextDecoration.underline
+                                  )),
+                                  TextSpan(text: '2K')
+                                ],
+                              ),
+                            )
+                        )
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                height: 20,
+                width: 60,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 20,
+                      child: SvgPicture.asset("assets/detail_product/back_sale.svg"),
+                    ),
+                    Positioned.fill(
+                        child: Center(
+                            child: RichText(
+                              text: TextSpan(
+                                text: 'Giảm ',
+                                style: TextStyle(
+                                    color: kYellowColor,
+                                    fontSize: 10
+                                ),
+                                children:[
+                                  TextSpan(text: 'đ ', style: TextStyle(
+                                      decoration: TextDecoration.underline
+                                  )),
+                                  TextSpan(text: '3K')
+                                ],
+                              ),
+                            )
+                        )
+                    )
+                  ],
+                ),
+              )
             ],
           ),
           SizedBox(height: 10,),
@@ -113,7 +190,10 @@ class InformationProductWidget extends StatelessWidget {
               Text("Casycoin", style: TextStyle(
                 color: kTextColor
               ),),
-              Icon(Icons.help, color: Colors.blue, size: sizeStar.width,)
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child: Icon(Icons.help, color: Colors.blue, size: sizeStar.width,),
+              )
             ],
           ),
           SizedBox(height: 10,),
@@ -147,9 +227,14 @@ class InformationProductWidget extends StatelessWidget {
                                     height: 30,
                                     color: Colors.white,
                                     child: TextField(
+                                      style: TextStyle(
+                                        color: kTextColor_gray,
+                                        fontSize: 13,
+                                      ),
                                       decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.all(5.0),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                          borderSide: BorderSide(color: kYellowColor, width: 1.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(color: kTextColor, width: 1.0),
@@ -174,9 +259,15 @@ class InformationProductWidget extends StatelessWidget {
                                   color: Colors.white,
                                   height: 30,
                                   child: TextField(
+                                    style: TextStyle(
+                                      color: kTextColor_gray,
+                                      fontSize: 13,
+                                    ),
+                                    cursorColor: kYellowColor,
                                     decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(5.0),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                        borderSide: BorderSide(color: kYellowColor, width: 1.0),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(color: kTextColor, width: 1.0),
@@ -229,7 +320,7 @@ class InformationProductWidget extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.favorite_border, color: kYellowColor, size: sizeStar.width,),
+                              Icon(Icons.map_outlined, color: kYellowColor, size: sizeStar.width,),
                               SizedBox(width: 5,),
                               Text("Bản đồ",
                                 style: TextStyle(
@@ -253,7 +344,7 @@ class InformationProductWidget extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.share, color: kYellowColor, size: sizeStar.width,),
+                              SvgPicture.asset("assets/detail_product/ic_perm_phone.svg"),
                               SizedBox(width: 5,),
                               Text("Liên hệ",
                                 style: TextStyle(

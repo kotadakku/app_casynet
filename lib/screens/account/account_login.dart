@@ -3,10 +3,13 @@ import 'package:app_casynet/widget/account/profile_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../widget/account/menu_account_widget.dart';
 import '../../widget/account/top_account_widget.dart';
 import '../../widget/bottom_navigator.dart';
+import 'UI_qlch/UI_cuahang.dart';
 
 class AccountLoginPage extends StatelessWidget {
   const AccountLoginPage({Key? key}) : super(key: key);
@@ -33,6 +36,7 @@ class AccountLoginPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: ElevatedButton(
                           onPressed: () {
+                            Get.to(menucuahang());
                           },
                           child:
                           Text("Cửa hàng của tôi",

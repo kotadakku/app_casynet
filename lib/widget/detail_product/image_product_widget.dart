@@ -2,6 +2,7 @@
 import 'dart:ffi';
 
 import 'package:app_casynet/containts/size.dart';
+import 'package:app_casynet/controller/detail_product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class ImageProductWidget extends StatelessWidget {
                 controller: _pageController,
                 itemCount: banner_urls.length,
                 onPageChanged: (value){
-                  // c.newCurrent(value);
+                  Get.find<BannerProductController>().current.value = value;
                 },
                 itemBuilder: (context, index){
 
@@ -92,7 +93,7 @@ class ImageProductWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 20,),
                     Obx(()=> Row(
-                        children: indicators(2, banner_urls.length)
+                        children: indicators(Get.find<BannerProductController>().current.value, banner_urls.length)
                     ))
                   ],
                 )
@@ -108,7 +109,7 @@ class ImageProductWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
 
-                    child: Obx(()=> Text("${2+1}/${banner_urls.length}"))
+                    child: Obx(()=> Text("${Get.find<BannerProductController>().current.value+1}/${banner_urls.length}"))
                 )
             )
           ],

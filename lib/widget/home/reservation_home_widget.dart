@@ -139,7 +139,7 @@ class ReservationWidget extends StatelessWidget {
                   sale: 20,
                 ),
                 onTap: (){
-                  Get.to(DetailProductPage());
+                  Get.toNamed('/detail_product/12');
                 },
               ),
               ItemBookWidget(
