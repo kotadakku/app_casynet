@@ -20,38 +20,46 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigator() ,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Thanh tìm kiếm
-                const TopHomeWidget(),
-                // Banner
-                BannerHomeWidget(),
-                // Khuyến mãi
-                PromotionHomeWidget(),
-                SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
+        child: Column(
+          children: [
+            // Thanh tìm kiếm
+            TopHomeWidget(),
+            Expanded(child:SingleChildScrollView(
+                child: Container(
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      // Banner
+                      BannerHomeWidget(),
+                      // Khuyến mãi
+                      PromotionHomeWidget(),
+                      SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
 
-                SizedBox(height: 10),
-                //Danh mục
-                CategoryWidget(),
-                SizedBox(height: 10),
-                SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
-                //Cửa hàng
-                StoreWidget(),
-                SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
-                // Đặt chỗ
-                ReservationWidget(title: "Đặt chỗ"),
-                SizedBox(height: 40),
-                // Danh mục
-                CategoryBottomWidget(),
-                BottomWidget(),
-              ],
-            ),
+                      SizedBox(height: 10),
+                      //Danh mục
+                      CategoryWidget(),
+                      SizedBox(height: 10),
+                      SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
+                      //Cửa hàng
+                      StoreWidget(),
+                      SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
+                      // Đặt chỗ
+                      ReservationWidget(title: "Đặt chỗ"),
+                      SizedBox(height: 40),
+                      // Danh mục
+                      CategoryBottomWidget(),
+
+                      BottomWidget(),
+                    ],
+                  ),
+                )
+            ))
+          ],
         )
-      )
+
+
     ),
     )
     ;

@@ -1,7 +1,6 @@
 
 
 import 'package:app_casynet/containts/size.dart';
-import 'package:app_casynet/controller/banner_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import '../../containts/colors.dart';
 
 class ImageProductWidget extends StatelessWidget {
-  final BannerController c = Get.put(BannerController());
   ImageProductWidget({Key? key}) : super(key: key);
 
   @override
@@ -30,7 +28,7 @@ class ImageProductWidget extends StatelessWidget {
                 controller: _pageController,
                 itemCount: banner_urls.length,
                 onPageChanged: (value){
-                  c.newCurrent(value);
+                  // c.newCurrent(value);
                 },
                 itemBuilder: (context, index){
 
@@ -93,7 +91,7 @@ class ImageProductWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 20,),
                     Obx(()=> Row(
-                        children: indicators(c.count, banner_urls.length)
+                        children: indicators(2, banner_urls.length)
                     ))
                   ],
                 )
@@ -109,7 +107,7 @@ class ImageProductWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
 
-                    child: Obx(()=> Text("${c.count.value+1}/${banner_urls.length}"))
+                    child: Obx(()=> Text("${2+1}/${banner_urls.length}"))
                 )
             )
           ],

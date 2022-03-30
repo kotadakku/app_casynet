@@ -88,7 +88,7 @@ class BottomNavigator extends StatelessWidget {
   }
   void _onItemTapped(int index) {
     switch(index){
-      case 0: Get.off(HomePage());
+      case 0: Get.offNamed("/home");
       break;
       case 1: Get.off(NotificationPage());
       break;

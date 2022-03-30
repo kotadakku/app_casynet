@@ -37,6 +37,8 @@ dependencies:
   flutter_svg:
   get:
   font_awesome_flutter:
+  dotted_border:
+  flutter_datetime_picker:
 
 dev_dependencies:
   flutter_test:
@@ -124,6 +126,8 @@ flutter:
     - assets/account/gg.svg
     - assets/account/zalo.svg
     - assets/account/image_user.png
+    - assets/account/background.png
+    - assets/account/right_background.png
     - assets/background.svg
     - assets/background_2.svg
     - assets/notification/noti_1.png
@@ -136,6 +140,11 @@ flutter:
     - assets/detail_store/anhCuaHang.png
     - assets/detail_store/background.png
     - assets/detail_store/ower_store.png
+    - assets/detail_store/gift.svg
+    - assets/detail_store/right.svg
+    - assets/detail_store/vote.png
+    - assets/home/sale.svg
+    - assets/home/rect_sale.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
