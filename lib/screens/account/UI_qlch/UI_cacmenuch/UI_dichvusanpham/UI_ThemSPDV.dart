@@ -1,3 +1,4 @@
+import 'package:app_casynet/screens/account/UI_qlch/UI_cacmenuch/UI_dichvusanpham/UI_Chonxuatxu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class themspdv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final clsp=Get.put(chonloaisp());
+    final chonqgs=Get.put(chonqg());
     final tensanpham = TextEditingController();
     var demtensanpham = 0.obs;
     var chon="".obs;
@@ -305,11 +307,13 @@ class themspdv extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(child: Text("Xuất xứ")),
-                        Text("Chọn xuất xứ"),
+                        Text(chonqgs.quocgia.toString()),
                         Icon(Icons.navigate_next),
                       ],
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(chonxuatxu());
+                    },
                   ),
                 ),
                 Container(
@@ -427,4 +431,7 @@ class themspdv extends StatelessWidget {
 }
 class chonloaisp extends GetxController{
   var lsp="".obs;
+}
+class chonqg extends GetxController{
+  var quocgia="".obs;
 }

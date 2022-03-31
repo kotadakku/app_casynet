@@ -9,51 +9,57 @@ class chitietdonhang extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isSelected = [true, false, false, false].obs;
-    Future Showpopuphuydon() =>showDialog(
-      context: context,
-      builder: (context)=>Center(
-        child: AlertDialog(
-          title: Text("Hủy đơn hàng",textAlign: TextAlign.center,),
-          content: Container(
-            height: 250,
-            child: Center(
-              child: Column(
-                children: [
-                  Text("Bạn có chắc muốn hủy bỏ đơn đặt hàng này không?",textAlign: TextAlign.center),
-                  Container(
-                    padding: new EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: SingleChildScrollView(
-                      child: TextField(
-                        maxLines: 5,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Lý do bạn muốn hủy đơn hàng nay",
+    var x="".obs;
+    Future Showpopuphuydon() => showDialog(
+          context: context,
+          builder: (context) => Center(
+            child: AlertDialog(
+              title: Text(
+                "Hủy đơn hàng",
+                textAlign: TextAlign.center,
+              ),
+              content: Container(
+                height: 250,
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text("Bạn có chắc muốn hủy bỏ đơn đặt hàng này không?",
+                          textAlign: TextAlign.center),
+                      Container(
+                        padding: new EdgeInsets.only(left: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        child: SingleChildScrollView(
+                          child: TextField(
+                            maxLines: 5,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Lý do bạn muốn hủy đơn hàng nay",
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Container(
+                        margin: new EdgeInsets.only(top: 20),
+                        child: RaisedButton(
+                          color: Colors.amber,
+                          child: Text(
+                            "Ok",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    margin: new EdgeInsets.only(top: 20),
-                    child: RaisedButton(
-                      color: Colors.amber,
-                      child: Text("Ok",style: TextStyle(color: Colors.white),),
-                      onPressed: () {
-
-                      },),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
-
-        ),
-      ),
-    );
+        );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -289,79 +295,58 @@ class chitietdonhang extends StatelessWidget {
                   ),
                 ),
               ),
-              Obx(()=>
-                  Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: new EdgeInsets.only(left: 10),
-                          height: 40,
-                          child: ToggleButtons(
-                            selectedBorderColor: Colors.amber,
-                            borderColor: Colors.white,
-                            children: <Widget>[
-                              Container(
-                                width: 60,
-                                child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png"),
+              Obx(
+                () => Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: new EdgeInsets.only(left: 10),
+                        height: 40,
+                        width: MediaQuery.of(context).size.width-100,
+                        child: DefaultTabController(
+                          length: 4,
+                          child: TabBar(
+                            indicatorColor: Colors.amber,
+                            tabs: [
+                              Tab(
+                                child: Container(
+                                  width: 60,
+                                  child: Image.network(
+                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png"),
+                                ),
                               ),
-                              Container(
-                                width: 60,
-                                child: Image.network("https://taichinh.online/wp-content/uploads/2017/02/the-mastercard.png"),
+                              Tab(
+                                child: Container(
+                                  width: 60,
+                                  child: Image.network("https://taichinh.online/wp-content/uploads/2017/02/the-mastercard.png"),
+                                ),
                               ),
-                              Container(
-                                width: 60,
-                                child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJp5JAM724arqL1PuHZCCrXMS_LG5barn6dOqRETUiAn5hxa9AQjCNctYuJ0mUjYGi8M&usqp=CAU"),
+                              Tab(
+                                child:Container(
+                                  width: 60,
+                                  child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJp5JAM724arqL1PuHZCCrXMS_LG5barn6dOqRETUiAn5hxa9AQjCNctYuJ0mUjYGi8M&usqp=CAU"),
+                                ),
                               ),
-                              Container(
-                                width: 60,
-                                child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/PayPal_logo.svg/2560px-PayPal_logo.svg.png"),
+                              Tab(
+                                child: Container(
+                                  width: 60,
+                                  child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/PayPal_logo.svg/2560px-PayPal_logo.svg.png"),
+                                ),
                               ),
                             ],
-                            onPressed: (int index) {
-                              isSelected[index] = true;
-                              if (isSelected[3] == true) {
-                                isSelected[0] = false;
-                                isSelected[1] = false;
-                                isSelected[2] = false;
-                                isSelected[3] = false;
-                                isSelected[index] = true;
-                                print("2");
-                              }
-                              if (isSelected[2] == true) {
-                                isSelected[0] = false;
-                                isSelected[1] = false;
-                                isSelected[3] = false;
-                                isSelected[index] = true;
-                                print("2");
-                              }
-                              if (isSelected[1] == true) {
-                                isSelected[0] = false;
-                                isSelected[2] = false;
-                                isSelected[1] = false;
-                                isSelected[3] = false;
-                                isSelected[index] = true;
-                              }
-                              if (isSelected[0] == true) {
-                                isSelected[1] = false;
-                                isSelected[2] = false;
-                                isSelected[0] = false;
-                                isSelected[3] = false;
-                                isSelected[index] = true;
-
-                                print("0");
-                              }
-                            },
-                            isSelected: isSelected,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
 
+                      ),
+                      Text(x.toString()),
+                    ],
+                  ),
+                ),
               ),
               Container(
                 margin: new EdgeInsets.only(left: 10),
-                child: Text("Phương thức thanh toán do Chủ Cửa Hàng và Người Dùng tự thỏa thuận"),
+                child: Text(
+                    "Phương thức thanh toán do Chủ Cửa Hàng và Người Dùng tự thỏa thuận"),
               ),
               Container(
                 height: 50,
@@ -376,10 +361,8 @@ class chitietdonhang extends StatelessWidget {
                         margin: new EdgeInsets.only(right: 10),
                         child: Text("#000000372"),
                       ),
-
                     ],
                   ),
-                  
                 ),
               ),
               Container(
@@ -403,7 +386,6 @@ class chitietdonhang extends StatelessWidget {
                             margin: new EdgeInsets.only(bottom: 10),
                             child: Text("TG giao hàng và vận chuyển"),
                           ),
-
                         ],
                       ),
                     ),
@@ -424,21 +406,20 @@ class chitietdonhang extends StatelessWidget {
                             margin: new EdgeInsets.only(bottom: 10),
                             child: Text("06:59:28, 1/10/2021"),
                           ),
-
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
               Container(
                 height: 50,
-                  margin: new EdgeInsets.only(top: 20,bottom: 20),
-                  child: Row(
-                    children: [
-                      Expanded(child: Container(
-                        margin: new EdgeInsets.only(right: 5,left: 10),
+                margin: new EdgeInsets.only(top: 20, bottom: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        margin: new EdgeInsets.only(right: 5, left: 10),
                         child: RaisedButton(
                           color: Colors.white,
                           child: Text("Hủy đơn hàng"),
@@ -446,32 +427,25 @@ class chitietdonhang extends StatelessWidget {
                             Showpopuphuydon();
                           },
                         ),
-                      ),),
-                      Expanded(
-                        child: Container(
-                          margin: new EdgeInsets.only(right: 10,left: 5),
-                          child: RaisedButton(
-                            color: Colors.amber,
-                            child: Text("Xác nhận"),
-                            onPressed: () {
-
-                            },
-                          ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: new EdgeInsets.only(right: 10, left: 5),
+                        child: RaisedButton(
+                          color: Colors.amber,
+                          child: Text("Xác nhận"),
+                          onPressed: () {},
                         ),
                       ),
-
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-
-
+              ),
             ],
           ),
         ),
       ),
     );
-
   }
-
 }
-
