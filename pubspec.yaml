@@ -41,6 +41,7 @@ dependencies:
   flutter_datetime_picker:
   intl:
   flutter_slidable:
+  flutter_native_splash:
 
 dev_dependencies:
   flutter_test:

@@ -7,8 +7,8 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../containts/colors.dart';
 
-class MessageAccount extends StatelessWidget {
-  const MessageAccount({Key? key}) : super(key: key);
+class AllMessageAccount extends StatelessWidget {
+  const AllMessageAccount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

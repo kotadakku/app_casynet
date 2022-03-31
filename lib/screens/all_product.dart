@@ -12,17 +12,13 @@ import '../widget/home/reservation_home_widget.dart';
 import '../widget/bottom_widget.dart';
 import '../widget/home/category_bottom_widget.dart';
 
-class RuaXeThayDauPage extends StatefulWidget {
-  const RuaXeThayDauPage({Key? key}) : super(key: key);
+class AllProductPage extends StatelessWidget {
+  final String title;
+  const AllProductPage({Key? key, required this.title}) : super(key: key);
 
-  @override
-  State<RuaXeThayDauPage> createState() => _RuaXeThayDauPageState();
-}
-
-class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
-  RadioController radio_c = Get.put(RadioController());
   @override
   Widget build(BuildContext context) {
+    RadioController radio_c = Get.put(RadioController());
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -47,7 +43,7 @@ class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
                           ),),
                           SizedBox(width: 15,),
                           Text(
-                            "Rửa xe thay dầu",
+                            title,
                             style: TextStyle(
                                 color: Color(0xffDFB400),
                                 fontSize: 18,
@@ -57,6 +53,7 @@ class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
                         ],
                       ),
                       GestureDetector(
+                        behavior: HitTestBehavior.translucent,
                         child: Row(
                           children: [
                             SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
@@ -71,7 +68,7 @@ class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
                           ],
                         ),
                         onTap: (){
-                          Get.to(FilterProductPage());
+                          Get.toNamed('/filter2');
                         },
                       )
 
@@ -145,7 +142,7 @@ class _RuaXeThayDauPageState extends State<RuaXeThayDauPage> {
                 BottomWidget(),
               ],
             ),
-        )
+          )
       ),
     );
   }

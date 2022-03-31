@@ -34,18 +34,11 @@ class CategoryProductWidget extends StatelessWidget {
                   const Spacer(),
                   IconButton(
                       onPressed: (){
-                        if(Get.find<FilterController>().more_categories.value){
-                          Get.find<FilterCategoriesController>().expandFilterCategoriesController.reverse();
-                          Get.find<FilterController>().more_categories.value = !Get.find<FilterController>().more_categories.value;
-                        }
-                        else{
-                          Get.find<FilterCategoriesController>().expandFilterCategoriesController.forward();
-                          Get.find<FilterController>().more_categories.value = !Get.find<FilterController>().more_categories.value;
-                        }
+
 
                       },
                       iconSize: 20,
-                      icon: Obx(()=>Icon( Get.find<FilterController>().more_categories.value ? Icons.keyboard_arrow_up_outlined : Icons.keyboard_arrow_down_outlined))
+                      icon: Obx(()=>Icon( Get.find<FilterCategoriesController>().more_categories.value ? Icons.keyboard_arrow_up_outlined : Icons.keyboard_arrow_down_outlined))
                   )
                 ],
               ),
@@ -60,25 +53,26 @@ class CategoryProductWidget extends StatelessWidget {
                   children: _categories.map((e) => Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Obx(()=>Container(
-                        child: ElevatedButton(
-                          child: Text(e,
-                            style: TextStyle(
-                                color: Get.find<FilterController>().categories_active.contains(e) ? Colors.white :  kTextColor
+                      Obx((){
+                        bool isContains = Get.find<FilterCategoriesController>().isContains(e);
+                        return Container(
+                          child: ElevatedButton(
+                            child: Text(e,
+                              style: TextStyle(
+                                  color: isContains ? Colors.white :  kTextColor
+                              ),
                             ),
+                            style: ElevatedButton.styleFrom(
+                                primary: isContains ? kYellowColor : Colors.white,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                                side: BorderSide(width: 1, color: isContains ? kYellowColor : kTextColor),
+                                elevation: 0
+                            ), onPressed: () {
+                            Get.find<FilterCategoriesController>().change_list(e);
+                          },
                           ),
-                          style: ElevatedButton.styleFrom(
-                              primary: Get.find<FilterController>().categories_active.contains(e) ? kYellowColor : Colors.white,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                              side: BorderSide(width: 1, color: Get.find<FilterController>().categories_active.contains(e) ? kYellowColor : kTextColor),
-                              elevation: 0
-                          ), onPressed: () {
-                          !Get.find<FilterController>().categories_active.contains(e) ?
-                          Get.find<FilterController>().categories_active.add(e):
-                          Get.find<FilterController>().categories_active.remove(e);
-                        },
-                        ),
-                      ))
+                        );
+                      })
                     ],
                   )).toList(),
                 )

@@ -8,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../screens/filter/filter_product_map.dart';
+
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
 
@@ -111,26 +113,34 @@ class StoreWidget extends StatelessWidget {
                       ))
                 ],
               ),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    "assets/home/store/icon_filter.svg",
-                    width: 15,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    "Lọc",
-                    style: TextStyle(
-                      color: Color(0xffB7BAC1),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: (){
+                  Get.to(FilterProductMap());
+                },
+
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/home/store/icon_filter.svg",
+                      width: 15,
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  )
-                ],
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Lọc",
+                      style: TextStyle(
+                        color: Color(0xffB7BAC1),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    )
+                  ],
+                ),
               )
+
             ],
           ),
           Wrap(

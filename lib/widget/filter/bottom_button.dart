@@ -36,10 +36,12 @@ class BottomButtonWidget extends StatelessWidget {
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                           ),
                           onPressed: () {
-                            Get.find<FilterController>().distints_active.clear();
-                            Get.find<FilterController>().categories_active.clear();
-                            Get.find<FilterController>().display.value = "Danh sách";
-                            Get.find<FilterController>().attr.value = "Mới nhất";
+                            Get.find<FilterDistrictController>().clear();
+                            Get.find<FilterCategoriesController>().clear();
+                            Get.find<FilterDisplayController>().clear();
+                            Get.find<FilterAttrController>().clear();
+                            Get.find<FilterOriginController>().clear();
+                            Get.find<FilterPriceController>().clear();
                           },
                         ),
                       )

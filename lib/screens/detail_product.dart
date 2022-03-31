@@ -2,7 +2,6 @@ import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/widget/detail_product/tags_product_widget.dart';
 import 'package:app_casynet/widget/detail_product/vote_product_widget.dart';
 import 'package:flutter/material.dart';
-
 import '../widget/detail_product/chat_product_widget.dart';
 import '../widget/detail_product/detail_product_widget.dart';
 import '../widget/detail_product/featured_product_widget.dart';
@@ -25,11 +24,12 @@ class DetailProductPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
+                TopDetailProductWidget(),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        TopDetailProductWidget(),
+
                         ImageProductWidget(),
                         InformationProductWidget(),
                         RevervationProductWidget(),

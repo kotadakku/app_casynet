@@ -1,7 +1,7 @@
 
 import 'package:app_casynet/controller/radio_car_controller.dart';
 import 'package:app_casynet/screens/filter/filter_product.dart';
-import 'package:app_casynet/screens/rua_xe_thay_dau.dart';
+import 'package:app_casynet/screens/all_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -51,7 +51,7 @@ class ReservationWidget extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: (){
-                    _view_more();
+                    _view_more(title);
                   },
                   child: Row(
                     children: [
@@ -103,6 +103,7 @@ class ReservationWidget extends StatelessWidget {
                 ],
               ),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 child: Row(
                   children: [
                     SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
@@ -178,8 +179,8 @@ class ReservationWidget extends StatelessWidget {
     Get.toNamed('/filter');
   }
 
-  void _view_more() {
-    Get.to(RuaXeThayDauPage());
+  void _view_more(title) {
+    Get.to(AllProductPage(title: title,));
   }
 }
 

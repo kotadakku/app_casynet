@@ -1,6 +1,8 @@
 
-import 'package:app_casynet/screens/rua_xe_thay_dau.dart';
+import 'package:app_casynet/screens/all_product.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({Key? key}) : super(key: key);
@@ -42,12 +44,9 @@ class ItemCategoryWidget extends StatelessWidget {
     return
       LayoutBuilder(builder: (context, constraint) {
         return GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: (){
-            if(key == ValueKey(1)){
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return RuaXeThayDauPage();
-              }));
-            }
+            Get.to(AllProductPage(title: title,));
           },
           child: Container(
             width: constraint.maxWidth / 3,

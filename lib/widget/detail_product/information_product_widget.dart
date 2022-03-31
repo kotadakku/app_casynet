@@ -1,8 +1,10 @@
 import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../containts/size.dart';
 
@@ -11,6 +13,10 @@ class InformationProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var date = "".obs;
+    TextEditingController date_controller = TextEditingController();
+    TextEditingController hours_controller = TextEditingController();
+    TextEditingController note_controller = TextEditingController();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
@@ -197,6 +203,7 @@ class InformationProductWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10,),
+          //Yeu cau hen truoc
           Container(
             color: kBackgroundColor,
             child: Padding(
@@ -211,6 +218,7 @@ class InformationProductWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10,),
+                  // Ngay
                   Row(
                     children: [
                       Flexible(
@@ -227,11 +235,14 @@ class InformationProductWidget extends StatelessWidget {
                                     height: 30,
                                     color: Colors.white,
                                     child: TextField(
+                                      controller: date_controller,
+                                      readOnly: true,
                                       style: TextStyle(
                                         color: kTextColor_gray,
                                         fontSize: 13,
                                       ),
                                       decoration: InputDecoration(
+
                                         contentPadding: EdgeInsets.all(5.0),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(color: kYellowColor, width: 1.0),
@@ -239,7 +250,35 @@ class InformationProductWidget extends StatelessWidget {
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(color: kTextColor, width: 1.0),
                                         ),
-                                        suffixIcon: Icon(Icons.calendar_today, color: kTextColor, size: sizeStar.width,)
+                                        suffixIcon: GestureDetector(
+                                          behavior: HitTestBehavior.translucent,
+                                          onTap: (){
+                                            DatePicker.showDatePicker(context,
+                                                showTitleActions: true,
+                                                minTime: DateTime.now(),
+                                                maxTime: DateTime.now().add(Duration(days: 100)),
+                                                onChanged: (date) {
+                                                },
+                                                onConfirm: (value) {
+                                                  date.value = DateFormat('yyyy-MM-dd').format(value).toString();
+                                                  date_controller.text = date.value;
+                                                },
+                                                currentTime: DateTime.now(),
+                                                locale: LocaleType.vi);
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: SvgPicture.asset(
+                                              'assets/detail_product/calendar-alt.svg',
+                                              height: 14,
+                                              color: kTextColor,
+                                            )
+                                          ),
+                                        ),
+                                        suffixIconConstraints: BoxConstraints(
+                                          maxWidth: 30,
+                                          minHeight: 30,
+                                        )
                                       ),
                                     )
                                 )
@@ -259,6 +298,8 @@ class InformationProductWidget extends StatelessWidget {
                                   color: Colors.white,
                                   height: 30,
                                   child: TextField(
+                                    readOnly: true,
+                                    controller: hours_controller,
                                     style: TextStyle(
                                       color: kTextColor_gray,
                                       fontSize: 13,
@@ -272,7 +313,32 @@ class InformationProductWidget extends StatelessWidget {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(color: kTextColor, width: 1.0),
                                       ),
-                                        suffixIcon: Icon(Icons.access_time, color: kTextColor, size: sizeStar.width,)
+                                      suffixIcon: GestureDetector(
+                                        behavior: HitTestBehavior.translucent,
+                                        onTap: (){
+                                          DatePicker.showTimePicker(context,
+                                              showTitleActions: true,
+                                              onChanged: (hours) {
+                                              },
+                                              onConfirm: (hours) {
+                                                hours_controller.text = DateFormat('hh:mm').format(hours).toString();
+                                              },
+                                              currentTime: DateTime.now(),
+                                              locale: LocaleType.en);
+                                        },
+                                        child: Container(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: SvgPicture.asset(
+                                              'assets/detail_product/ic_alarm.svg',
+                                              height: 14,
+                                              color: kTextColor,
+                                            )
+                                        ),
+                                      ),
+                                      suffixIconConstraints: BoxConstraints(
+                                        maxWidth: 30,
+                                        minHeight: 30,
+                                      )
                                     ),
                                   )
                                 )
@@ -285,6 +351,7 @@ class InformationProductWidget extends StatelessWidget {
 
                   ),
                   SizedBox(height: 10,),
+                  //Ghi chus
                   Row(
                     children: [
                       Container(
@@ -296,9 +363,12 @@ class InformationProductWidget extends StatelessWidget {
                               color: Colors.white,
                               height: 30,
                               child: TextField(
+                                controller: note_controller,
+                                cursorColor: kYellowColor,
                                 decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.all(5.0),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                    borderSide: BorderSide(color: kYellowColor, width: 1.0),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: kTextColor, width: 1.0),
@@ -344,7 +414,12 @@ class InformationProductWidget extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SvgPicture.asset("assets/detail_product/ic_perm_phone.svg"),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                padding: EdgeInsets.all(3.0),
+                                child: SvgPicture.asset("assets/detail_product/ic_perm_phone.svg"),
+                              ),
                               SizedBox(width: 5,),
                               Text("Liên hệ",
                                 style: TextStyle(

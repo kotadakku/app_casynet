@@ -1,11 +1,11 @@
 import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/containts/size.dart';
-import 'package:app_casynet/screens/account/message.dart';
+import 'package:app_casynet/screens/account/all_message.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+
 import '../../containts/colors.dart';
 import '../../screens/account/casycoin_manager.dart';
 import '../../screens/account/favourite_product.dart';
@@ -49,7 +49,7 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;
-          nav=() { Get.to(MessageAccount());};
+          nav=() { Get.toNamed('/account/all_message');};
           break;
         case "Đơn hàng":
           icon = FontAwesomeIcons.bagShopping;
@@ -77,7 +77,7 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Sản phẩm đã xem":
           icon = FontAwesomeIcons.eye;
-          nav =(){Get.to(SeenProduct());};
+          nav =(){Get.toNamed('/account/seen_product');};
           break;
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;

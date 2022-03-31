@@ -30,6 +30,7 @@ class DetailsPage extends StatelessWidget {
                     SizedBox(
                         width: 30,
                         child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           onTap: () {
                             Get.back();
                           },
@@ -51,6 +52,7 @@ class DetailsPage extends StatelessWidget {
               Obx(() => Column(
                     children: [
                       GestureDetector(
+                        behavior: HitTestBehavior.translucent,
                         child: Container(
                           padding:
                               EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -172,6 +174,7 @@ class DetailsPage extends StatelessWidget {
               Obx(() => Column(
                     children: [
                       GestureDetector(
+                        behavior: HitTestBehavior.translucent,
                         child: Container(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Row(
@@ -293,6 +296,7 @@ class DetailsPage extends StatelessWidget {
               Obx(() => Column(
                     children: [
                       GestureDetector(
+                        behavior: HitTestBehavior.translucent,
                         child: Container(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Row(

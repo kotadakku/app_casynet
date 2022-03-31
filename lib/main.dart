@@ -2,10 +2,12 @@ import 'package:app_casynet/routes.dart';
 import 'package:app_casynet/screens/detail_product.dart';
 import 'package:app_casynet/screens/details_store.dart';
 import 'package:app_casynet/screens/home.dart';
+import 'package:app_casynet/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       getPages:  routes ,
       home: MaterialApp(
-        home: DetailsStore(),
+        home: HomePage(),
       ),
     ) ;
   }

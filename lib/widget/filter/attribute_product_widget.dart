@@ -31,17 +31,10 @@ class AttributeProductWidget extends StatelessWidget {
                   Spacer(),
                   IconButton(
                     onPressed: (){
-                      if(Get.find<FilterController>().more_attr.value){
-                        Get.find<FilterAttrController>().expandAttrController.reverse();
-                        Get.find<FilterController>().more_attr.value = !Get.find<FilterController>().more_attr.value;
-                      }
-                      else{
-                        Get.find<FilterAttrController>().expandAttrController.forward();
-                        Get.find<FilterController>().more_attr.value = !Get.find<FilterController>().more_attr.value;
-                      }
+                      Get.find<FilterAttrController>().expand();
                     },
                     iconSize: 20,
-                    icon: Obx(()=>Icon(Get.find<FilterController>().more_attr.value ?Icons.keyboard_arrow_up_outlined: Icons.keyboard_arrow_down_outlined))
+                    icon: Obx(()=>Icon(Get.find<FilterAttrController>().more_attr.value ?Icons.keyboard_arrow_up_outlined: Icons.keyboard_arrow_down_outlined))
                   )
                 ],
               ),
@@ -64,9 +57,9 @@ class AttributeProductWidget extends StatelessWidget {
                           value: _attrs[index],
                           activeColor: kYellowColor,
                           onChanged: (value){
-                            Get.find<FilterController>().attr.value = _attrs[index];
+                            Get.find<FilterAttrController>().attr.value = _attrs[index];
                           },
-                          groupValue: Get.find<FilterController>().attr.value,),)
+                          groupValue: Get.find<FilterAttrController>().attr.value,),)
                       ],
                     );
                   }
