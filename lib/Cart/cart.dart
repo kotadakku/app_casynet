@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../store/edit_mystore.dart';
 import 'cart2.dart';
 
 class Cart extends StatelessWidget {
@@ -221,7 +222,9 @@ class Cart extends StatelessWidget {
                           // sự kiện chuyển màn
                           onPressed: () {
                             Get.to(Mystore());
-                            // Get.to(Cart3());
+                            // Get.to(Cart2());
+                            Get.to(EditMyStore());
+
 
                           },
                           child: const Text(

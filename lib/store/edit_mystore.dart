@@ -1,12 +1,14 @@
-import 'package:app_casynet/store/short_description.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-class NewCreatedStore extends StatelessWidget {
+class EditMyStore extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    var open_hours = "".obs;
+    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
@@ -16,79 +18,79 @@ class NewCreatedStore extends StatelessWidget {
               children: [
                 Center(
                     child: Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      height: 50,
-                      child: const Text(
-                        "Tạo mới cửa hàng",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-// Ảnh đại diện
-                    Stack(
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 150,
-                          color: Color.fromARGB(255, 241, 222, 144),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              decoration: BoxDecoration(
+                          alignment: Alignment.center,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          height: 50,
+                          child: const Text(
+                            "Sửa thông tin cửa hàng",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+// Ảnh đại diện
+                        Stack(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 150,
+                              color: Color.fromARGB(255, 241, 222, 144),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  decoration: BoxDecoration(
 
-                                  image: DecorationImage(
-                                    image: ExactAssetImage(
-                                        "assets/store/img_mask_group_14.png"),
+                                      image: DecorationImage(
+                                        image: ExactAssetImage(
+                                            "assets/store/img_mask_group_14.png"),
+                                      ),
+                                      shape: BoxShape.circle),
+                                  width: 100,
+                                  height: 100,
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      // _tripEditModalBottomSheet(context);
+                                    },
+                                    child: Text(
+                                      "Sửa",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                    style: OutlinedButton.styleFrom(
+                                      side: BorderSide(
+                                          width: 2.0,
+                                          color: Color.fromARGB(255, 223, 180, 0)),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+                                      elevation: 10,
+                                      padding: EdgeInsets.only(bottom: 10.0),
+                                    ),
                                   ),
-                                  shape: BoxShape.circle),
-                              width: 100,
-                              height: 100,
-                              child: OutlinedButton(
-                                onPressed: () {
-                                  _tripEditModalBottomSheet(context);
-                                },
-                                child: Text(
-                                  "Sửa",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                                style: OutlinedButton.styleFrom(
-                                  side: BorderSide(
-                                      width: 2.0,
-                                      color: Color.fromARGB(255, 223, 180, 0)),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100),
-                                  ),
-                                  elevation: 10,
-                                  padding: EdgeInsets.only(bottom: 10.0),
                                 ),
                               ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          color: Color.fromARGB(255, 96, 88, 57),
+                          height: 50,
+                          child: const Text(
+                            "Chạm để thay đổi",
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
                       ],
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      color: Color.fromARGB(255, 96, 88, 57),
-                      height: 50,
-                      child: const Text(
-                        "Chạm để thay đổi",
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
+                    )),
                 Column(
                   children: [
 //Nhập Tên cửa hàng
@@ -102,7 +104,7 @@ class NewCreatedStore extends StatelessWidget {
                               child: Text("Tên cửa hàng",
                                   style: TextStyle(
                                       color:
-                                          Color.fromARGB(255, 127, 141, 171)))),
+                                      Color.fromARGB(255, 127, 141, 171)))),
                           Expanded(
                             child: TextField(
                               maxLines: 1,
@@ -137,7 +139,7 @@ class NewCreatedStore extends StatelessWidget {
                               child: Text("Đường link cửa hàng",
                                   style: TextStyle(
                                       color:
-                                          Color.fromARGB(255, 127, 141, 171)))),
+                                      Color.fromARGB(255, 127, 141, 171)))),
                           Expanded(
                             // flex: 2,
                             child: TextField(
@@ -173,7 +175,7 @@ class NewCreatedStore extends StatelessWidget {
                               child: Text("Số điện thoại",
                                   style: TextStyle(
                                       color:
-                                          Color.fromARGB(255, 127, 141, 171)))),
+                                      Color.fromARGB(255, 127, 141, 171)))),
                           Expanded(
                             child: TextField(
                               autofocus: false,
@@ -206,30 +208,42 @@ class NewCreatedStore extends StatelessWidget {
                         height: 50.0,
                         child: InkWell(
                           splashColor: Color.fromARGB(255, 188, 195, 216),
-                          onTap: () {},
+                          onTap: () {
+                            DatePicker.showDatePicker(context,
+                                showTitleActions: true,
+                                onChanged: (date) {
+                                  print('change $date');
+                                },
+                                onConfirm: (date) {
+                                  open_hours.value = DateFormat('hh-mm').format(date).toString();
+                                },
+                                currentTime: DateTime.now(),
+                                locale: LocaleType.vi);
+
+                          },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text("Giờ mở cửa",
-                                      style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 127, 141, 171)))
-                                ],
-                              )),
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("Giờ mở cửa",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 127, 141, 171)))
+                                    ],
+                                  )),
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "Thiết lập",
-                                  ),
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Thiết lập",
+                                      ),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
                             ],
                           ),
                         )),
@@ -254,24 +268,24 @@ class NewCreatedStore extends StatelessWidget {
                             children: [
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text("Giờ đóng cửa",
-                                      style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 127, 141, 171)))
-                                ],
-                              )),
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("Giờ đóng cửa",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 127, 141, 171)))
+                                    ],
+                                  )),
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "Thiết lập",
-                                  ),
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Thiết lập",
+                                      ),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
                             ],
                           ),
                         )),
@@ -305,14 +319,14 @@ class NewCreatedStore extends StatelessWidget {
                               ),
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "- Chọn -",
-                                  ),
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "- Chọn -",
+                                      ),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
                             ],
                           ),
                         )),
@@ -346,14 +360,14 @@ class NewCreatedStore extends StatelessWidget {
                               ),
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "- Chọn -",
-                                  ),
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "- Chọn -",
+                                      ),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
                             ],
                           ),
                         )),
@@ -387,14 +401,14 @@ class NewCreatedStore extends StatelessWidget {
                               ),
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "- Chọn -",
-                                  ),
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "- Chọn -",
+                                      ),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
                             ],
                           ),
                         )),
@@ -424,21 +438,21 @@ class NewCreatedStore extends StatelessWidget {
                                     "Tỉnh/Thành Phố",
                                     style: TextStyle(
                                         color:
-                                            Color.fromARGB(255, 127, 141, 171)),
+                                        Color.fromARGB(255, 127, 141, 171)),
                                   )
                                 ],
                               ),
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "Hà Nội",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Hà Nội",
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
                             ],
                           ),
                         )),
@@ -468,21 +482,21 @@ class NewCreatedStore extends StatelessWidget {
                                     "Quận/Huyện",
                                     style: TextStyle(
                                         color:
-                                            Color.fromARGB(255, 127, 141, 171)),
+                                        Color.fromARGB(255, 127, 141, 171)),
                                   )
                                 ],
                               ),
                               Expanded(
                                   child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "Thanh Xuân",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Thanh Xuân",
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
                             ],
                           ),
                         )),
@@ -505,7 +519,7 @@ class NewCreatedStore extends StatelessWidget {
                               Text("Địa chỉ cửa hàng",
                                   style: TextStyle(
                                       color:
-                                          Color.fromARGB(255, 127, 141, 171)))
+                                      Color.fromARGB(255, 127, 141, 171)))
                             ],
                           ),
                           Expanded(
@@ -555,17 +569,17 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                           Expanded(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Thêm +",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Color.fromARGB(255, 0, 85, 170),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ))
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "Thêm +",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color.fromARGB(255, 0, 85, 170),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ))
                         ],
                       ),
                     )),
@@ -600,15 +614,15 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                           Expanded(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Gắn link",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              Icon(Icons.navigate_next),
-                            ],
-                          ))
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "Gắn link",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  Icon(Icons.navigate_next),
+                                ],
+                              ))
                         ],
                       ),
                     )),
@@ -643,15 +657,15 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                           Expanded(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Gắn link",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              Icon(Icons.navigate_next),
-                            ],
-                          ))
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "Gắn link",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  Icon(Icons.navigate_next),
+                                ],
+                              ))
                         ],
                       ),
                     )),
@@ -686,15 +700,15 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                           Expanded(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Gắn link",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              Icon(Icons.navigate_next),
-                            ],
-                          ))
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "Gắn link",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  Icon(Icons.navigate_next),
+                                ],
+                              ))
                         ],
                       ),
                     )),
@@ -712,7 +726,7 @@ class NewCreatedStore extends StatelessWidget {
                       splashColor: Color.fromARGB(255, 188, 195, 216),
                       // splashColor: Colors.blue,
                       onTap: () {
-                        Get.to(ShortDescription());
+                        // Get.to(ShortDescription());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -729,11 +743,11 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                           Expanded(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(Icons.navigate_next),
-                            ],
-                          ))
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(Icons.navigate_next),
+                                ],
+                              ))
                         ],
                       ),
                     )),
@@ -768,11 +782,11 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                           Expanded(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(Icons.navigate_next),
-                            ],
-                          ))
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(Icons.navigate_next),
+                                ],
+                              ))
                         ],
                       ),
                     )),
@@ -840,7 +854,7 @@ class NewCreatedStore extends StatelessWidget {
                                     width: 1.0,
                                     color: Color.fromARGB(255, 223, 180, 0)),
                                 backgroundColor:
-                                    Color.fromARGB(255, 255, 255, 255),
+                                Color.fromARGB(255, 255, 255, 255),
                                 primary: Color.fromARGB(255, 223, 180, 0),
                                 textStyle: const TextStyle(fontSize: 18),
                               ),
@@ -867,12 +881,12 @@ class NewCreatedStore extends StatelessWidget {
                             child: TextButton(
                               style: TextButton.styleFrom(
                                 backgroundColor:
-                                    Color.fromARGB(255, 223, 180, 0),
+                                Color.fromARGB(255, 223, 180, 0),
                                 primary: Colors.white,
                                 textStyle: const TextStyle(fontSize: 18),
                               ),
                               onPressed: () {
-                                Get.to(NewCreatedStore());
+                                // Get.to(NewCreatedStore());
                               },
                               child: const Text(
                                 'Tạo cửa hàng',
@@ -895,148 +909,4 @@ class NewCreatedStore extends StatelessWidget {
     );
   }
 
-  _tripEditModalBottomSheet(context) {
-    showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: (BuildContext bc) {
-          return Container(
-            child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * .30,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  margin: EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          // padding: const EdgeInsets.only(top: 15, bottom: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Sửa hình đại diện",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 188, 195, 216),
-                                    fontSize: 15),
-                              ),
-                            ],)
-                      ),
-                      Divider(
-                        height: 2.0,
-                      ),
-                      Expanded(
-                          flex: 1,
-                          // padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
-                          child: InkWell(
-                              onTap: () {
-                              },
-                              // splashColor: Colors.black26,
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Sửa",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 0, 85, 170),
-                                        fontSize: 15),
-                                  )
-                                ],
-                              ))),
-
-                      Divider(
-                        height: 2.0,
-                      ),
-                      Expanded(
-                          flex: 1,
-                          // padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
-                          child: InkWell(
-                              onTap: () {
-                              },
-                              // splashColor: Colors.black26,
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Chụp ảnh",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 0, 85, 170),
-                                        fontSize: 15),
-                                  )
-                                ],
-                              ))),
-
-                      Divider(
-                        height: 2.0,
-                      ),
-                      Expanded(
-                          flex: 1,
-                          // padding: const EdgeInsets.only(top: 15, bottom: 10, left: 5.0,right: 5.0),
-                          child: InkWell(
-                              onTap: () {
-                              },
-                              // splashColor: Colors.black26,
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Chọn có sẵn",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 0, 85, 170),
-                                        fontSize: 15),
-                                  )
-                                ],
-                              ))),
-
-
-
-
-                    ],
-                  ),
-                ),
-                Divider(
-                  height: 5.0,
-
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    margin: EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
-                    padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                            },
-                            // splashColor: Colors.black26,
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Hủy",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 0, 85, 170),
-                                      fontSize: 15),
-                                )
-                              ],
-                            ))
-                      ],
-                    )),
-              ],
-            ),
-          );
-        });
-  }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ItemCart extends StatelessWidget {
   const ItemCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController mycontroller = TextEditingController();
+    var soluong=0.obs;
     // TODO: implement build
     return Column(
       children: [
@@ -17,7 +20,10 @@ class ItemCart extends StatelessWidget {
           padding: EdgeInsets.only(left: 5.0),
           child: Row(
             children: [
-              Icon(Icons.check_box, color: Colors.amberAccent,),
+              Icon(
+                Icons.check_box,
+                color: Colors.amberAccent,
+              ),
               Text(
                 "Siêu Thị An Minh ",
                 style: TextStyle(
@@ -102,8 +108,10 @@ class ItemCart extends StatelessWidget {
                   child: Row(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.check_box,color: Color.fromARGB(
-                          223, 223, 183, 0),),
+                      Icon(
+                        Icons.check_box,
+                        color: Color.fromARGB(223, 223, 183, 0),
+                      ),
                       SizedBox(
                         width: 2.0,
                       ),
@@ -126,11 +134,12 @@ class ItemCart extends StatelessWidget {
                         children: [
                           Container(
                             height: 30.0,
-                            child:  Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
 // tên sản phẩm
-                                  Expanded(child: Text(
+                                Expanded(
+                                  child: Text(
                                     "Máy rửa xe Catorex - CTR ssssssssssssss",
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -140,19 +149,20 @@ class ItemCart extends StatelessWidget {
                                       fontWeight: FontWeight.w300,
                                       letterSpacing: 0.1,
                                     ),
-                                  ),),
+                                  ),
+                                ),
 // giá sản phẩm
-                                  Text(
-                                    "1.290.000 đ",
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 0.3,
-                                    ),
-                                  )
-                                ],
-                              ),
+                                Text(
+                                  "1.290.000 đ",
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.3,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                           Container(
                             height: 30,
@@ -190,63 +200,126 @@ class ItemCart extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  GestureDetector(
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 15,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-// textfield số lượng sản phẩm
+                                  ///////
                                   Container(
-                                    // transformAlignment: Center(key: ,),
-                                    width: 20,
-                                    height: 20,
 
-                                    child: TextField(
-                                      keyboardType: TextInputType.number,
-                                      textAlign: TextAlign.center,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(width: 1, color: Colors.lightBlue)
+                                    ),
+                                    width: 35,
+                                    child: InkWell(
+
+
+                                      splashColor: Color.fromARGB(255, 188, 195, 216),
+                                      // splashColor: Colors.blue,
+                                      onTap: () {
+                                        if(soluong<=0){
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                            content: Text("số lượng đã tối thiểu, phải lớn hơn 0"),
+                                          ));
+                                        }else{
+                                          soluong--;
+                                          mycontroller.text=soluong.toString();
+                                        }
+
+
+                                      },
+                                      child: Row(
+
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text("-", style: TextStyle(fontSize: 30),)
+                                          // Icon(Icons.navigate_next),
+                                        ],
+                                      ),
                                     ),
                                   ),
-// button minus
-                                  ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Color.fromARGB(
-                                                    255, 235, 235, 255)),
-                                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(0.1)),
-                                        minimumSize:
-                                            MaterialStateProperty.all<Size>(
-                                                Size(20, 20)),
-                                      ),
-                                      child: Image.asset(
-                                        "assets/cart/icon_minus2.png",
-                                        width: 20, height: 10,
-                                        color: Colors.black,
-                                      ),
-                                      onPressed: () {}),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: Colors.black,
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(width: 1, color: Colors.lightBlue)
+                                      // border: Border(
+                                      //   top: BorderSide(width: 1, color: Colors.lightBlue),
+                                      //   bottom: BorderSide(width: 1, color: Colors.lightBlue),
+                                      // ),
                                     ),
-                                    // style: ButtonStyle(
-                                    //   backgroundColor:
-                                    //       MaterialStateProperty.all<Color>(
-                                    //           Color.fromARGB(
-                                    //               255, 235, 235, 255)),
-                                    //   // padding:
-                                    //   //     MaterialStateProperty.all<EdgeInsets>(
-                                    //   //         EdgeInsets.all(0.1)),
-                                    //   minimumSize:
-                                    //       MaterialStateProperty.all<Size>(
-                                    //           Size(20, 20)),
-                                    // ),
-                                  ),
+                                    width: 40,
+                                    child: Obx(
+                                          ()=>
+                                          TextField(
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                              hintText: soluong.toString(),
+                                              // prefixText: "1",
+                                              counterText: "",
+                                              border: InputBorder.none,
+                                              contentPadding: EdgeInsets.only(top: 8,bottom: 10),
+                                            ),
+                                            keyboardType: TextInputType.number,
+                                            maxLength: 2,
+                                            maxLines: 1,
+                                            controller: mycontroller,
+                                            onChanged: (t) {
+                                              soluong.value = int.parse(t);
+                                            },
 
-                                  Expanded(
+                                          ),
+                                    ),
+
+                                  ),
+                                  Container(
+
+                                    decoration: BoxDecoration(
+                                      border: Border.all(width: 1, color: Colors.lightBlue),
+
+                                    ),
+                                    width: 35,
+                                    child: InkWell(
+                                      splashColor: Color.fromARGB(255, 188, 195, 216),
+                                      // splashColor: Colors.blue,
+                                      onTap: () {
+                                        if(soluong<99){
+                                          soluong++;
+                                          mycontroller.text=soluong.toString();
+                                        }
+                                        else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text(
+                                                "số lượng đã tối đa, phải nhỏ hơn 100"),
+                                          ));
+                                        }
+
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text("+", style: TextStyle(fontSize: 30),)
+                                          // Icon(Icons.navigate_next),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(bottom: 10),
+
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            print("xóa");
+                                          },
+                                          icon: Icon(
+                                            Icons.delete,
+                                            color: Colors.black26,
+                                          ),
+
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
@@ -254,7 +327,7 @@ class ItemCart extends StatelessWidget {
                                           onPressed: () {},
                                           icon: Icon(
                                             Icons.edit,
-                                            color: Colors.black,
+                                            color: Colors.black26,
                                           ),
 
                                           // style: ButtonStyle(
@@ -272,7 +345,7 @@ class ItemCart extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               )),
                         ],
