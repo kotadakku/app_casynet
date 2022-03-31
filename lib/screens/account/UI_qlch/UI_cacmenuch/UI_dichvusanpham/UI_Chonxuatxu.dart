@@ -37,7 +37,6 @@ class chonxuatxu extends StatelessWidget {
                                   chonqgs.quocgia.value=quocgia[indext];
                                   countqg.value=int.parse(value.toString());
                                   x.value=x.value+" ";
-
                                   Get.back();
                                 }
                         );
