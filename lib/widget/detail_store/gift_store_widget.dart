@@ -13,7 +13,7 @@ class GiftStoreWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          padding: EdgeInsets.symmetric(vertical: 15),
           child: Text("Quà tặng cửa hàng",
             style: TextStyle(
                 fontSize: 16,
@@ -22,7 +22,6 @@ class GiftStoreWidget extends StatelessWidget {
           ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width,
           child: Wrap(
             spacing: 10,
             alignment: WrapAlignment.center,
@@ -31,7 +30,7 @@ class GiftStoreWidget extends StatelessWidget {
               Container(
                 height: 60,
                 padding: EdgeInsets.symmetric(vertical: 5.0),
-                width: MediaQuery.of(context).size.width/2-20,
+                width: MediaQuery.of(context).size.width/2-15,
                 decoration: BoxDecoration(
                     border: Border.all(width: 0.5, color: kTextColor)
                 ),
@@ -82,7 +81,7 @@ class GiftStoreWidget extends StatelessWidget {
               Container(
                 height: 60,
                 padding: EdgeInsets.symmetric(vertical: 5.0),
-                width: MediaQuery.of(context).size.width/2-20,
+                width: MediaQuery.of(context).size.width/2-15,
                 decoration: BoxDecoration(
                     border: Border.all(width: 0.5, color: kTextColor)
                 ),
@@ -133,7 +132,7 @@ class GiftStoreWidget extends StatelessWidget {
               Container(
                 height: 60,
                 padding: EdgeInsets.symmetric(vertical: 5.0),
-                width: MediaQuery.of(context).size.width/2-20,
+                width: MediaQuery.of(context).size.width/2-15,
                 decoration: BoxDecoration(
                     border: Border.all(width: 0.5, color: kTextColor)
                 ),

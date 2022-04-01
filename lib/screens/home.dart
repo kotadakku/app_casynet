@@ -19,49 +19,81 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigator() ,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Thanh tìm kiếm
-            TopHomeWidget(),
-            Expanded(child:SingleChildScrollView(
-                child: Container(
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      // Banner
-                      BannerHomeWidget(),
-                      // Khuyến mãi
-                      PromotionHomeWidget(),
-                      SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
+      body: WillPopScope(onWillPop: () => _onWillPop(context),
+      child: SafeArea(
+          child: Column(
+            children: [
+              // Thanh tìm kiếm
+              TopHomeWidget(),
+              Expanded(child:SingleChildScrollView(
+                  child: Container(
+                    color: Colors.white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        // Banner
+                        BannerHomeWidget(),
+                        // Khuyến mãi
+                        PromotionHomeWidget(),
+                        SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
 
-                      SizedBox(height: 10),
-                      //Danh mục
-                      CategoryWidget(),
-                      SizedBox(height: 10),
-                      SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
-                      //Cửa hàng
-                      StoreWidget(),
-                      SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
-                      // Đặt chỗ
-                      ReservationWidget(title: "Đặt chỗ"),
-                      SizedBox(height: 40),
-                      // Danh mục
-                      CategoryBottomWidget(),
+                        SizedBox(height: 10),
+                        //Danh mục
+                        CategoryWidget(),
+                        SizedBox(height: 10),
+                        SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
+                        //Cửa hàng
+                        StoreWidget(),
+                        SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
+                        // Đặt chỗ
+                        ReservationWidget(title: "Đặt chỗ"),
+                        SizedBox(height: 40),
+                        // Danh mục
+                        CategoryBottomWidget(),
 
-                      BottomWidget(),
-                    ],
-                  ),
-                )
-            ))
-          ],
-        )
+                        BottomWidget(),
+                      ],
+                    ),
+                  )
+              ))
+            ],
+          )
 
 
-    ),
+      ),),
     )
     ;
+  }
+  Future<bool> _onWillPop(BuildContext context) async {
+    bool? exitResult = await showDialog(
+      context: context,
+      builder: (context) => _buildExitDialog(context),
+    );
+    return exitResult ?? false;
+  }
+
+  Future<bool?> _showExitDialog(BuildContext context) async {
+    return await showDialog(
+      context: context,
+      builder: (context) => _buildExitDialog(context),
+    );
+  }
+
+  AlertDialog _buildExitDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Please confirm'),
+      content: const Text('Do you want to exit the app?'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(false),
+          child: Text('No'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(true),
+          child: Text('Yes'),
+        ),
+      ],
+    );
   }
 }

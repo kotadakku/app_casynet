@@ -41,7 +41,7 @@ dependencies:
   flutter_datetime_picker:
   intl:
   flutter_slidable:
-  flutter_native_splash:
+  dropdown_button2:
 
 dev_dependencies:
   flutter_test:
@@ -131,6 +131,7 @@ flutter:
     - assets/account/image_user.png
     - assets/account/background.png
     - assets/account/right_background.png
+    - assets/account/edit.svg
     - assets/background.svg
     - assets/background_2.svg
     - assets/notification/noti_1.png

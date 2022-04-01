@@ -1,5 +1,5 @@
 import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/screens/account/all_message.dart';
+import 'package:app_casynet/screens/account/message/all_message.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,8 +11,8 @@ import '../../screens/account/casycoin_manager.dart';
 import '../../screens/account/favourite_product.dart';
 import '../../screens/account/follow_store.dart';
 import '../../screens/account/infor_account.dart';
-import '../../screens/account/infor_location.dart';
-import '../../screens/account/order_account.dart';
+import '../../screens/account/address/information_address.dart';
+import '../../screens/account/order/order_account.dart';
 import '../../screens/account/seen_product.dart';
 import '../../screens/account/wallet_voucher.dart';
 
@@ -45,7 +45,7 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Địa chỉ":
           icon = FontAwesomeIcons.mapLocation;
-          nav=() { Get.to(InformationLocation());};
+          nav=() { Get.to(InformationAddress());};
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;
@@ -77,13 +77,14 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Sản phẩm đã xem":
           icon = FontAwesomeIcons.eye;
-          nav =(){Get.toNamed('/account/seen_product');};
+          nav =(){Get.toNamed('/product/seen_product');};
           break;
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;
           break;
       }
       return GestureDetector(
+        behavior: HitTestBehavior.translucent,
         child: Container(
           child: Row(
             children: [

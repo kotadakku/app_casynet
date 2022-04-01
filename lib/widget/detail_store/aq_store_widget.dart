@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../containts/colors.dart';
 import '../../containts/size.dart';
+import '../../data.dart';
 import 'gift_store_widget.dart';
 
 class AQStoreWidget extends StatelessWidget {
@@ -75,19 +76,20 @@ class AQStoreWidget extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: 4,
-                    itemBuilder: (context, index) => CardChatItem(isFromMe: true, nameUser: "asdas", message: "Bạn giới thiệu về sản phẩm được không ạ?")
+                    itemCount: chats.length,
+                    itemBuilder: (context, index) => CardChatItem(isFromMe: chats[index]['isMe'], nameUser:  chats[index]['user_name'], message:  chats[index]['content'])
                   ),
 
                   Container(
                     margin: EdgeInsets.all(10.0),
                     child: Row(
                       children: [
-
                         Expanded(
                           child: Container(
                             height: 40,
                             child: TextField(
+                              autofocus: false,
+                              autocorrect: false,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(5.0),
                                 hintText: "Đặt câu hỏi cho sản phẩm",
@@ -116,8 +118,6 @@ class AQStoreWidget extends StatelessWidget {
                   )
                 ],
               ), itemCount: 6,
-
-
           )
         ],
       ),
@@ -135,10 +135,10 @@ class CardChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-      margin: EdgeInsets.only(left: isFromMe ? 0 : 30),
+      margin: EdgeInsets.only(left: isFromMe ? 30 : 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
-        color: isFromMe ? Colors.white : Colors.blue.withOpacity(.1),
+        color: isFromMe ? Colors.blue.withOpacity(.1) : Colors.white,
       ),
       child: Row(
         children: [

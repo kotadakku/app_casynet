@@ -2,7 +2,7 @@ import 'package:app_casynet/controller/filter_controller.dart';
 import 'package:app_casynet/controller/home_controller.dart';
 import 'package:app_casynet/screens/account/account_base.dart';
 import 'package:app_casynet/screens/account/account_login.dart';
-import 'package:app_casynet/screens/account/all_message.dart';
+import 'package:app_casynet/screens/account/message/all_message.dart';
 import 'package:app_casynet/screens/account/seen_product.dart';
 import 'package:app_casynet/screens/all_product.dart';
 import 'package:app_casynet/screens/detail_product.dart';

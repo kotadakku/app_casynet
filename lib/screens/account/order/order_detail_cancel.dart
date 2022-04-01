@@ -1,8 +1,8 @@
 import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../widget/account/order_cancel_widget.dart';
-import '../../widget/account/top_account_widget.dart';
+import '../../../widget/account/order_cancel_widget.dart';
+import '../../../widget/account/top_account_widget.dart';
 
 class OrderDetailCancel extends StatelessWidget {
   const OrderDetailCancel({Key? key}) : super(key: key);

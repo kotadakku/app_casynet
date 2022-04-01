@@ -3,8 +3,11 @@ import 'package:app_casynet/screens/detail_product.dart';
 import 'package:app_casynet/screens/details_store.dart';
 import 'package:app_casynet/screens/home.dart';
 import 'package:app_casynet/screens/splash/splash.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'controller/home_controller.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/home',
+      initialBinding: HomeBinding(),
       getPages:  routes ,
       home: MaterialApp(
         home: HomePage(),

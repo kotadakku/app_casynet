@@ -260,7 +260,7 @@ class InformationProductWidget extends StatelessWidget {
                                                 onChanged: (date) {
                                                 },
                                                 onConfirm: (value) {
-                                                  date.value = DateFormat('yyyy-MM-dd').format(value).toString();
+                                                  date.value = DateFormat('yyyy/MM/dd').format(value).toString();
                                                   date_controller.text = date.value;
                                                 },
                                                 currentTime: DateTime.now(),
@@ -401,8 +401,9 @@ class InformationProductWidget extends StatelessWidget {
                             ],
                           ),
                           style: ElevatedButton.styleFrom(
+                              onPrimary: kYellowColor,
                               primary: Colors.white,
-
+                              side: BorderSide(color: kYellowColor),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ), onPressed: () {  },
                         ),
@@ -430,7 +431,8 @@ class InformationProductWidget extends StatelessWidget {
                           ),
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white,
-
+                              onPrimary: kYellowColor,
+                              side: BorderSide(color: kYellowColor),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ), onPressed: () {  },
                         ),

@@ -25,17 +25,18 @@ class InformationStoreWidget extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    height: 10,
-                    width: 10,
+                    height: 8,
+                    width: 8,
                     decoration: BoxDecoration(
                       color: kYellowColor,
-                      borderRadius: BorderRadius.circular(10)
+                      borderRadius: BorderRadius.circular(8)
                     ),
                   ),
                   SizedBox(width: 5,),
                   Text("Hoạt động cách đây 3 giờ trước",
                     style: TextStyle(
-                      color: kTextColor
+                      color: kTextColor,
+                      fontSize: 12
                     ),
                   )
                 ],
@@ -112,7 +113,10 @@ class InformationStoreWidget extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.white,
-
+                    onPrimary: kYellowColor,
+                    side: BorderSide(
+                      color: kYellowColor,
+                    ),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                 ), onPressed: () {  },
               ),

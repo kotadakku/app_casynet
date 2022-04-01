@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../containts/colors.dart';
 import '../../containts/size.dart';
+import '../../data.dart';
 import '../detail_product/chat_product_widget.dart';
 import 'gift_store_widget.dart';
 
@@ -10,6 +12,7 @@ class VoteStoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isReadMore = false.obs;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -126,29 +129,35 @@ class VoteStoreWidget extends StatelessWidget {
             color: kBackgroundColor,
             height: 10,
           ),
-          ListView.builder(
+          Obx(()=>ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: 4,
+              itemCount: isReadMore.value ? 5: chats.length,
               itemBuilder: (context, index){
-                if(index%2==1) return CardChatItem(isFromMe: false, nameUser: "asdas", message: "Bạn giới thiệu về sản phẩm được không ạ?");
-                else return CardChatItem(isFromMe: true, nameUser: "asdas", message: "Bạn giới thiệu về sản phẩm được không ạ?");
+                return CardChatItem(isFromMe: chats[index]['isMe'], nameUser:  chats[index]['user_name'], message:  chats[index]['content']);
               }
-          ),
+          )),
           Divider(),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Xem thêm", style: TextStyle(
-                  color: kYellowColor
-              ),),
-              Container(
-                margin: EdgeInsets.all(5.0),
-                child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor, size: 15,),
-              )
-            ],
+          GestureDetector(
+            onTap: (){
+              isReadMore.value = !isReadMore.value;
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Obx(()=>Text(isReadMore.value ? "Xem thêm": "Ẩn bớt", style: TextStyle(
+                    color: kYellowColor
+                ),),),
+                Obx(()=>Container(
+                  margin: EdgeInsets.all(5.0),
+                  child: Icon(isReadMore.value ? Icons.keyboard_arrow_down_sharp : Icons.keyboard_arrow_up_sharp, color: kYellowColor, size: 15,),
+                ))
+
+              ],
+            ),
           )
+
         ],
       ),
     );
@@ -165,10 +174,10 @@ class CardChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-      margin: EdgeInsets.only(left: isFromMe ? 0 : 30),
+      margin: EdgeInsets.only(left: isFromMe ? 30 : 0, bottom: 5, top:5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
-        color: isFromMe ? Colors.white : Colors.blue.withOpacity(.1),
+        color: isFromMe ? Colors.blue.withOpacity(.1) : Colors.white,
       ),
       child: Row(
         children: [

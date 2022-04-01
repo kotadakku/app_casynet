@@ -1,14 +1,16 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../containts/colors.dart';
-import '../../widget/account/top_account_widget.dart';
+import '../../../containts/colors.dart';
+import '../../../widget/account/top_account_widget.dart';
 
-class NewLocation extends StatelessWidget {
-  const NewLocation({Key? key}) : super(key: key);
+class NewAddress extends StatelessWidget {
+  const NewAddress({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var switch_default = true.obs;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -37,10 +39,11 @@ class NewLocation extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextField(
+                          cursorColor: kTextColor_gray,
                           textAlign: TextAlign.end,
                           decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Nhập mật khẩu",
+                              hintText: "Nhập họ và tên",
                               hintStyle: TextStyle(
                                   color: kTextColor
                               )
@@ -64,6 +67,7 @@ class NewLocation extends StatelessWidget {
                         child: TextField(
                           textAlign: TextAlign.end,
                           obscureText: true,
+                          cursorColor: kTextColor_gray,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Nhập số điện thoại",
@@ -88,6 +92,7 @@ class NewLocation extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                          readOnly: true,
                           initialValue: "Hà Nội",
                           textAlign: TextAlign.end,
                           decoration: InputDecoration(
@@ -115,18 +120,19 @@ class NewLocation extends StatelessWidget {
                         )
                     ),
                     Expanded(
-                        child: TextFormField(
-                          initialValue: "Quận Nam Từ Liêm",
-                          textAlign: TextAlign.end,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Hà Nội",
-                              hintStyle: TextStyle(
-                                  color: kTextColor
-                              ),
-                              suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
+                      child: TextFormField(
+                        readOnly: true,
+                        initialValue: "Quận Nam Từ Liêm",
+                        textAlign: TextAlign.end,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Hà Nội",
+                          hintStyle: TextStyle(
+                              color: kTextColor
                           ),
-                        )
+                          suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
+                        ),
+                      )
                     )
                   ],
                 ),),
@@ -146,6 +152,7 @@ class NewLocation extends StatelessWidget {
                         child: TextField(
                           textAlign: TextAlign.end,
                           obscureText: true,
+                          cursorColor: kTextColor_gray,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Nhập Phường/Xã",
@@ -169,17 +176,19 @@ class NewLocation extends StatelessWidget {
                         )
                     ),
                     Expanded(
-                        child: TextField(
-                          textAlign: TextAlign.end,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Nhập địa chỉ cụ thể",
-                              hintStyle: TextStyle(
-                                  color: kTextColor
-                              )
-                          ),
-                        ))
+                      child: TextField(
+                        cursorColor: kTextColor_gray,
+                        textAlign: TextAlign.end,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Nhập địa chỉ cụ thể",
+                            hintStyle: TextStyle(
+                                color: kTextColor
+                            )
+                        ),
+                      )
+                    )
                   ],
                 ),),
                 SizedBox(height: 30,),
@@ -190,10 +199,13 @@ class NewLocation extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Đặt làm địa chỉ mặc định",
-                        style: TextStyle(
-                            color: kTextColor_gray
-                        )),
-                    Switch(value: true, onChanged: (value) {})
+                      style: TextStyle(
+                          color: kTextColor_gray
+                      )
+                    ),
+                    Obx(()=>Switch(value: switch_default.value, onChanged: (value) {
+                      switch_default.value = value;
+                    }))
                   ],
                 ),
                 ),

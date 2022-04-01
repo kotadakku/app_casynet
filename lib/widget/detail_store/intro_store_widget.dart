@@ -15,6 +15,7 @@ class IntroStoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isReadMore = false.obs;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -60,8 +61,7 @@ class IntroStoreWidget extends StatelessWidget {
                 child: Icon(Icons.location_on_rounded, color: kYellowColor,size: sizeStar.width,),
               ),
 
-              Expanded(child: Text("Địa chỉ: 587 đường Phúc Diễn, Xuân Phương, Nam Từ Liêm, Hà Nội",
-              ),)
+              Expanded(child: Text("Địa chỉ: 587 đường Phúc Diễn, Xuân Phương, Nam Từ Liêm, Hà Nội",),)
             ],
           ),
           //Thống kê
@@ -210,30 +210,37 @@ class IntroStoreWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold
                 ),
               ),
-              Text("Với trang thiết bị và cơ sở vật chất nhà xưởng hiện đại bậc nhất tại Việt Nam, THC áp dụng những quy chuẩn về chất lượng hàng đầu thế giới như Kaizen - Nhật Bản, tiêu chuẩn quốc tế ISO 9001, SAE hiệp hội ô tô Mỹ, tiêu chuẩn 5S về dịch vụ và nhà xưởng."),
+              Obx(()=>Text("""Với trang thiết bị và cơ sở vật chất nhà xưởng hiện đại bậc nhất tại Việt Nam, THC áp dụng những quy chuẩn về chất lượng hàng đầu thế giới như Kaizen - Nhật Bản, tiêu chuẩn quốc tế ISO 9001, SAE hiệp hội ô tô Mỹ, tiêu chuẩn 5S về dịch vụ và nhà xưởng.
+              Chúng tôi là trung tâm dịch vụ sửa chữa ô tô đầu tiên đưa tiêu chuẩn 4s vào dịch vụ sửa chữa đó là 4 tiêu chuẩn:""",
+                overflow: isReadMore.value ? TextOverflow.ellipsis : TextOverflow.visible,
+                maxLines: isReadMore.value ? 5: null,
+              ),),
               Divider(
                 height: 6,
                 thickness: 1,
               ),
-              TextButton(
-                  onPressed: (){},
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      Text("Xem thêm",
-                        style: TextStyle(
-                            color: kYellowColor
-                        ),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: (){
+                 isReadMore.value = !isReadMore.value;
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Obx(()=>Text(isReadMore.value ? "Xem thêm": "Ẩn bớt",
+                      style: TextStyle(
+                          color: kYellowColor
                       ),
-                      Container(
-                        margin: EdgeInsets.all(5.0),
-                        child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor,),
-                      ),
-                    ],
-                  )
+                    )),
+                    Container(
+                      margin: EdgeInsets.all(5.0),
+                      child: Obx(()=>Icon(isReadMore.value ? Icons.keyboard_arrow_down_sharp : Icons.keyboard_arrow_up_sharp, color: kYellowColor,)),
+                    ),
+                  ],
+                ),
               )
+
             ],
           ),
           Container(

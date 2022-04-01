@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../controller/detail_store_controller.dart';
-import '../../controller/tabview_controller.dart';
-import '../../widget/account/order_all_widget.dart';
-import '../../widget/account/order_cancel_widget.dart';
+import '../../../containts/colors.dart';
+import '../../../controller/detail_store_controller.dart';
+import '../../../controller/tabview_controller.dart';
+import '../../../widget/account/order_all_widget.dart';
+import '../../../widget/account/order_cancel_widget.dart';
 
 class OrderAccount extends StatelessWidget{
   final MyTabController _tabx = Get.put(MyTabController());
@@ -27,7 +27,6 @@ class OrderAccount extends StatelessWidget{
               mainAxisSize: MainAxisSize.max,
               children: [
                 TopAccountWidget(),
-                SizedBox(height: 20,),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Text("Đơn hàng của Tôi",
@@ -38,7 +37,6 @@ class OrderAccount extends StatelessWidget{
                   ),
                 ),
                 Divider(),
-
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.white
