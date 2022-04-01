@@ -1,11 +1,5 @@
 import 'package:app_casynet/containts/colors.dart';
-<<<<<<< HEAD
-import 'package:app_casynet/containts/size.dart';
 import 'package:app_casynet/screens/account/UI_qlch/UI_cuahang.dart';
-import 'package:app_casynet/screens/account/message.dart';
-=======
-import 'package:app_casynet/screens/account/message/all_message.dart';
->>>>>>> 4533b3b5862e73b2c05f5a8681efd8a16137b9be
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
