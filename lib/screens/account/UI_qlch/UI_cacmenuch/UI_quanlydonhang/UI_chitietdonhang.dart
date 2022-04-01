@@ -72,7 +72,7 @@ class chitietdonhang extends StatelessWidget {
             icon: Icon(Icons.arrow_back_rounded),
             color: Colors.amberAccent,
             onPressed: () {
-              Get.to(doiduyet());
+              Get.back();
             },
           ),
         ),

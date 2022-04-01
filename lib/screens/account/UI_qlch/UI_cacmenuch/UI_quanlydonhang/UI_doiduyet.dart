@@ -35,7 +35,6 @@ class doiduyet extends StatelessWidget {
         ),
       ),
       body: Container(
-        child: SingleChildScrollView(
           child: DefaultTabController(
             length: 4,
             child: Column(
@@ -83,264 +82,278 @@ class doiduyet extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(
-                  () => Container(
-                    color: Color.fromRGBO(200, 200, 200, 200),
-                    child: ListView.builder(
-                      itemCount: xemthem.toInt(),
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        if (index == (xemthem.toInt() - 1)) {
-                          return Container(
-                            margin: new EdgeInsets.only(
-                                left: 10, right: 10, bottom: 10),
-                            height: 50,
-                            child: RaisedButton(
-                              child: Text("Xem hêm"),
-                              color: Colors.amber,
-                              onPressed: () {
-                                xemthem += 5;
-                              },
-                            ),
-                          );
-                        }
-                        return Container(
-                          margin: new EdgeInsets.only(bottom: 10),
-                          child: Column(
-                            children: [
-                              RaisedButton(
-                                color: Colors.white,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                        bottom: BorderSide(
-                                            width: 1.0,
-                                            color: Color.fromRGBO(
-                                                200, 200, 200, 200)),
-                                      )),
-                                      height: 50,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("ĐƠN HÀNG: "),
-                                          Expanded(
-                                            child: Text("DH001"),
-                                          ),
-                                          Text("Trần thế quyền"),
-                                          Icon(Icons.navigate_next),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: new EdgeInsets.only(top: 15),
-                                      height: 60,
-                                      child: Row(
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                margin: new EdgeInsets.only(
-                                                    bottom: 10),
-                                                child: Text("Ngày: "),
-                                              ),
-                                              Text("Trạng thái: "),
-                                            ],
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  margin: new EdgeInsets.only(
-                                                      bottom: 10),
-                                                  child: Text("15/09/2021"),
-                                                ),
-                                                Text(
-                                                  "Đợi duyệt",
-                                                  style: TextStyle(
-                                                      color: Colors.amber),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                margin: new EdgeInsets.only(
-                                                    bottom: 10),
-                                                child: Text("Tổng tiền: "),
-                                              ),
-                                              Text("Chiếu khấu: "),
-                                            ],
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                margin: new EdgeInsets.only(
-                                                    bottom: 10),
-                                                child: Text(
-                                                  "3.000.000",
-                                                  style: TextStyle(
-                                                      color: Colors.blue),
-                                                ),
-                                              ),
-                                              Text("10%"),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                onPressed: () {
-                                  Get.to(chitietdonhang());
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+
+                Expanded(
+                    child: TabBarView(
+                      children: [
+                        cs(),
+                        cs(),
+                        cs(),
+                        cs(),
+                      ],
+
                     ),
-                  ),
                 ),
+                // Obx(() =>
+                //     Container(
+                //     color: Color.fromRGBO(200, 200, 200, 200),
+                //     child: ListView.builder(
+                //       itemCount: xemthem.toInt(),
+                //       physics: NeverScrollableScrollPhysics(),
+                //       shrinkWrap: true,
+                //       itemBuilder: (context, index) {
+                //         if (index == (xemthem.toInt() - 1)) {
+                //           return Container(
+                //             margin: new EdgeInsets.only(
+                //                 left: 10, right: 10, bottom: 10),
+                //             height: 50,
+                //             child: RaisedButton(
+                //               child: Text("Xem hêm"),
+                //               color: Colors.amber,
+                //               onPressed: () {
+                //                 xemthem += 5;
+                //               },
+                //             ),
+                //           );
+                //         }
+                //         return Container(
+                //           margin: new EdgeInsets.only(bottom: 10),
+                //           child: Column(
+                //             children: [
+                //               RaisedButton(
+                //                 color: Colors.white,
+                //                 child: Column(
+                //                   children: [
+                //                     Container(
+                //                       decoration: BoxDecoration(
+                //                           border: Border(
+                //                         bottom: BorderSide(
+                //                             width: 1.0,
+                //                             color: Color.fromRGBO(
+                //                                 200, 200, 200, 200)),
+                //                       )),
+                //                       height: 50,
+                //                       child: Row(
+                //                         mainAxisAlignment:
+                //                             MainAxisAlignment.spaceBetween,
+                //                         children: [
+                //                           Text("ĐƠN HÀNG: "),
+                //                           Expanded(
+                //                             child: Text("DH001"),
+                //                           ),
+                //                           Text("Trần thế quyền"),
+                //                           Icon(Icons.navigate_next),
+                //                         ],
+                //                       ),
+                //                     ),
+                //                     Container(
+                //                       margin: new EdgeInsets.only(top: 15),
+                //                       height: 60,
+                //                       child: Row(
+                //                         children: [
+                //                           Column(
+                //                             crossAxisAlignment:
+                //                                 CrossAxisAlignment.start,
+                //                             children: [
+                //                               Container(
+                //                                 margin: new EdgeInsets.only(
+                //                                     bottom: 10),
+                //                                 child: Text("Ngày: "),
+                //                               ),
+                //                               Text("Trạng thái: "),
+                //                             ],
+                //                           ),
+                //                           Expanded(
+                //                             child: Column(
+                //                               crossAxisAlignment:
+                //                                   CrossAxisAlignment.start,
+                //                               children: [
+                //                                 Container(
+                //                                   margin: new EdgeInsets.only(
+                //                                       bottom: 10),
+                //                                   child: Text("15/09/2021"),
+                //                                 ),
+                //                                 Text(
+                //                                   "Đợi duyệt",
+                //                                   style: TextStyle(
+                //                                       color: Colors.amber),
+                //                                 ),
+                //                               ],
+                //                             ),
+                //                           ),
+                //                           Column(
+                //                             crossAxisAlignment:
+                //                                 CrossAxisAlignment.start,
+                //                             children: [
+                //                               Container(
+                //                                 margin: new EdgeInsets.only(
+                //                                     bottom: 10),
+                //                                 child: Text("Tổng tiền: "),
+                //                               ),
+                //                               Text("Chiếu khấu: "),
+                //                             ],
+                //                           ),
+                //                           Column(
+                //                             crossAxisAlignment:
+                //                                 CrossAxisAlignment.start,
+                //                             children: [
+                //                               Container(
+                //                                 margin: new EdgeInsets.only(
+                //                                     bottom: 10),
+                //                                 child: Text(
+                //                                   "3.000.000",
+                //                                   style: TextStyle(
+                //                                       color: Colors.blue),
+                //                                 ),
+                //                               ),
+                //                               Text("10%"),
+                //                             ],
+                //                           ),
+                //                         ],
+                //                       ),
+                //                     ),
+                //                   ],
+                //                 ),
+                //                 onPressed: () {
+                //                   Get.to(chitietdonhang());
+                //                 },
+                //               ),
+                //             ],
+                //           ),
+                //         );
+                //       },
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
         ),
-      ),
+
       bottomNavigationBar: Bottommenu(),
     );
   }
 
   Widget cs() {
     return Container(
-      child: Obx(
-        () => Container(
-          color: Color.fromRGBO(200, 200, 200, 200),
-          child: ListView.builder(
-            itemCount: xemthem.toInt(),
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              if (index == (xemthem.toInt() - 1)) {
+      child: SingleChildScrollView(
+        child: Obx(
+              () => Container(
+            color: Color.fromRGBO(200, 200, 200, 200),
+            child: ListView.builder(
+              itemCount: xemthem.toInt(),
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                if (index == (xemthem.toInt() - 1)) {
+                  return Container(
+                    margin: new EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    height: 50,
+                    child: RaisedButton(
+                      child: Text("Xem hêm"),
+                      color: Colors.amber,
+                      onPressed: () {
+                        xemthem += 5;
+                      },
+                    ),
+                  );
+                }
                 return Container(
-                  margin: new EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                  height: 50,
-                  child: RaisedButton(
-                    child: Text("Xem hêm"),
-                    color: Colors.amber,
-                    onPressed: () {
-                      xemthem += 5;
-                    },
-                  ),
-                );
-              }
-              return Container(
-                margin: new EdgeInsets.only(bottom: 10),
-                child: Column(
-                  children: [
-                    RaisedButton(
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                              bottom: BorderSide(
-                                  width: 1.0,
-                                  color: Color.fromRGBO(200, 200, 200, 200)),
-                            )),
-                            height: 50,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("ĐƠN HÀNG: "),
-                                Expanded(
-                                  child: Text("DH001"),
-                                ),
-                                Text("Trần thế quyền"),
-                                Icon(Icons.navigate_next),
-                              ],
+                  margin: new EdgeInsets.only(bottom: 10),
+                  child: Column(
+                    children: [
+                      RaisedButton(
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                        width: 1.0,
+                                        color: Color.fromRGBO(200, 200, 200, 200)),
+                                  )),
+                              height: 50,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("ĐƠN HÀNG: "),
+                                  Expanded(
+                                    child: Text("DH001"),
+                                  ),
+                                  Text("Trần thế quyền"),
+                                  Icon(Icons.navigate_next),
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: new EdgeInsets.only(top: 15),
-                            height: 60,
-                            child: Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: new EdgeInsets.only(bottom: 10),
-                                      child: Text("Ngày: "),
-                                    ),
-                                    Text("Trạng thái: "),
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                            Container(
+                              margin: new EdgeInsets.only(top: 15),
+                              height: 60,
+                              child: Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         margin: new EdgeInsets.only(bottom: 10),
-                                        child: Text("15/09/2021"),
+                                        child: Text("Ngày: "),
                                       ),
-                                      Text(
-                                        "Đợi duyệt",
-                                        style: TextStyle(color: Colors.amber),
-                                      ),
+                                      Text("Trạng thái: "),
                                     ],
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: new EdgeInsets.only(bottom: 10),
-                                      child: Text("Tổng tiền: "),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          margin: new EdgeInsets.only(bottom: 10),
+                                          child: Text("15/09/2021"),
+                                        ),
+                                        Text(
+                                          "Đợi duyệt",
+                                          style: TextStyle(color: Colors.amber),
+                                        ),
+                                      ],
                                     ),
-                                    Text("Chiếu khấu: "),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: new EdgeInsets.only(bottom: 10),
-                                      child: Text(
-                                        "3.000.000",
-                                        style: TextStyle(color: Colors.blue),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: new EdgeInsets.only(bottom: 10),
+                                        child: Text("Tổng tiền: "),
                                       ),
-                                    ),
-                                    Text("10%"),
-                                  ],
-                                ),
-                              ],
+                                      Text("Chiếu khấu: "),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: new EdgeInsets.only(bottom: 10),
+                                        child: Text(
+                                          "3.000.000",
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      ),
+                                      Text("10%"),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        onPressed: () {
+                          Get.to(chitietdonhang());
+                        },
                       ),
-                      onPressed: () {
-                        Get.to(chitietdonhang());
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
