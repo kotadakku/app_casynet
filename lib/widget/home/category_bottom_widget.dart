@@ -1,4 +1,4 @@
-import 'package:app_casynet/screens/rua_xe_thay_dau.dart';
+import 'package:app_casynet/screens/all_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -82,19 +82,19 @@ class CategoryItemBottom extends StatelessWidget {
                       SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        name,
-                        style: TextStyle(color: kTextColor_gray, fontSize: 12),
+                      FittedBox(
+                        child: Text(
+                          name,
+                          style: TextStyle(color: kTextColor_gray, fontSize: 12),
+                        ),
                       )
+
                     ],
                   ),
                 ],
               ))),
       onTap: (){
-        switch(name){
-          case "Rửa xe thay dầu": Get.to(RuaXeThayDauPage());
-          break;
-        }
+        Get.to(AllProductPage(title: name,));
       },
     );
   }

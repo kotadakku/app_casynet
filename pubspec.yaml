@@ -34,6 +34,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_switch: ^0.3.2
+  image_picker: ^0.8.4+11
   flutter_svg:
   get:
   font_awesome_flutter:
@@ -41,6 +43,7 @@ dependencies:
   flutter_datetime_picker:
   intl:
   flutter_slidable:
+  dropdown_button2:
 
 dev_dependencies:
   flutter_test:
@@ -132,6 +135,7 @@ flutter:
     - assets/account/image_user.png
     - assets/account/background.png
     - assets/account/right_background.png
+    - assets/account/edit.svg
     - assets/background.svg
     - assets/background_2.svg
     - assets/notification/noti_1.png
@@ -167,6 +171,7 @@ flutter:
     - assets/Icon/icon_dung.png
     - assets/Icon/icon_dongho.png
     - assets/Icon/icon_butchi.png
+    - assets/Icon/icon_date.png
 
 
 

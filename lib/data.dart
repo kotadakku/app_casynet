@@ -72,3 +72,77 @@ List<Map<String, dynamic>>  stores =[
     "category" : "car",
   }
 ];
+
+List<Map<String, dynamic>>  chats =[
+  {
+    "user_name" : "ngocbich85hd",
+    "content" : "Bạn giới thiệu về sản phẩm được không ạ?",
+    "isMe" : false,
+    "time" : "10:30  03/30/2020"
+  },
+  {
+    "user_name" : "CÔNG TY TNHH Ô TÔ MỸ ĐÌNH",
+    "content" : "Chào bạn ! Trong bài có đầy đủ các thông tin sản phẩm ạ",
+    "isMe" : true,
+    "time" : "10:30  03/30/2020"
+  },
+  {
+    "user_name" : "levuhoaithuong",
+    "content" : "Giao hàng nhanh, chất lượng sản phẩm tốt lắm ạ, giống mô tả, dùng rất ok, cảm ơn shop",
+    "isMe" : false,
+    "time" : "10:30  03/30/2020"
+  },
+  {
+    "user_name" : "vanphuc1503",
+    "content" : "Đánh giá giúp shop 5 sao để được ưu đãi các đơn",
+    "isMe" : false,
+    "time" : "10:30  03/30/2020"
+  },
+  {
+    "user_name" : "vanphuc1503",
+    "content" : "Đánh giá giúp shop 5 sao để được ưu đãi các đơn",
+    "isMe" : false,
+    "time" : "10:30  03/30/2020"
+  },
+  {
+    "user_name" : "ht3432",
+    "content" : "Đánh giá giúp shop 5 sao để được ưu đãi các đơn",
+    "isMe" : false,
+    "time" : "10:30  03/30/2020"
+  },
+  {
+    "user_name" : "vanphuc1503",
+    "content" : "Đánh giá giúp shop 5 sao để được ưu đãi các đơn",
+    "isMe" : false,
+    "time" : "10:30  03/30/2020"
+  },
+];
+
+List<Map<String, dynamic>>  address =[
+  {
+    "name": "Nguyễn Thị Bích",
+    "phone": "097635263",
+    "province": "Hà Nội",
+    "district" : "Thanh Xuân",
+    "detail_address": "6/86 Phùng khoang trung văn Nam Từ Liêm, Hà Nội",
+    "default_address" : false
+  },
+  {
+    "name": "Nguyễn Thị Bích",
+    "phone": "097635263",
+    "province": "Hà Nội",
+    "district" : "La Khê",
+    "detail_address": "Phan Đình Giót, La Khê, Hà Đông, Hà Nội",
+    "default_address" : true
+  },
+  {
+    "name": "Nguyễn Thị Bích",
+    "phone": "097635263",
+    "province": "Hà Nội",
+    "district" : "Dương Nôi",
+    "detail_address": "Lê Trọng Tấn, Hà Đông, Hà Nội",
+    "default_address" : false
+  }
+];
+
+

@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-import '../home.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -61,9 +63,7 @@ class _SplashState extends State<Splash> {
     initialization();
   }
 
-  void initialization() async {
-    await Future.delayed(const Duration(seconds: 2)).then((value) => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context){
-      return HomePage();
-    }), (route) => false));
+  Future<Timer> initialization() async {
+    return Timer(Duration(seconds: 10),() => Get.toNamed('/home'));
   }
 }

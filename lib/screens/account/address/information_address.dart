@@ -1,14 +1,20 @@
 
-import 'package:app_casynet/screens/account/new_location.dart';
+import 'dart:convert';
+
+import 'package:app_casynet/models/address.dart';
+import 'package:app_casynet/screens/account/address/edit_address.dart';
+import 'package:app_casynet/screens/account/address/new_address.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../widget/account/top_account_widget.dart';
+import '../../../containts/colors.dart';
+import '../../../data.dart';
+import '../../../widget/account/top_account_widget.dart';
 
-class InformationLocation extends StatelessWidget {
-  const InformationLocation({Key? key}) : super(key: key);
+class InformationAddress extends StatelessWidget {
+  const InformationAddress({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,7 @@ class InformationLocation extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 2,
+                    itemCount: address.length,
                     separatorBuilder: (context, index) => Container(height: 10, color: kBackgroundColor, ),
                     itemBuilder: (context, index) =>  Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -43,22 +49,27 @@ class InformationLocation extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Nguyễn Thị Bích",
+                                Text(address[index]['name'],
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold
                                   ),
                                 ),
-                                Icon(Icons.note_outlined, color: kTextColor,)
+                                GestureDetector(
+                                  onTap: (){
+                                    Get.to(EditAddress(), arguments: Address.fromJson(address[index]));
+                                  },
+                                  child: SvgPicture.asset("assets/account/edit.svg", width: 15, color: kTextColor,),
+                                )
                               ],
                             ),
                             SizedBox(height: 2,),
-                            Text("0974745553",
+                            Text(address[index]['phone'],
                               style: TextStyle(
                                   color: kTextColor
                               ),
                             ),
                             SizedBox(height: 2,),
-                            Text("6/86 Phùng khoang trung văn Nam Từ Liêm, Hà Nội",
+                            Text(address[index]['detail_address'],
                               style: TextStyle(
                                   color: kTextColor
                               ),
@@ -66,7 +77,7 @@ class InformationLocation extends StatelessWidget {
                             SizedBox(height: 2,),
                             Row(
                               children: [
-                                Text("[ mặc định ]",
+                                Text(address[index]['default_address'] ? "[ bỏ mặc định ]" : "[ mặc định ]",
                                   style: TextStyle(
                                       color: kYellowColor
                                   ),),
@@ -87,7 +98,7 @@ class InformationLocation extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.to(NewLocation());
+                      Get.to(NewAddress());
                     },
                     child: Text("Thêm địa chỉ mới"),
                     style: ElevatedButton.styleFrom(

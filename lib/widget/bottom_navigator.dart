@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../Cart/cart.dart';
 import '../screens/account/account_login.dart';
 import '../screens/account/infor_account.dart';
-import '../screens/account/order_account.dart';
+import '../screens/account/order/order_account.dart';
 import '../screens/details.dart';
 import '../screens/home.dart';
 import '../screens/notfications.dart';

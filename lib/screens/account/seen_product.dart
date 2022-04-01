@@ -9,8 +9,8 @@ import '../../containts/size.dart';
 import '../../controller/tabview_controller.dart';
 import '../../widget/account/top_account_widget.dart';
 
-class SeenProduct extends StatelessWidget {
-  const SeenProduct({Key? key}) : super(key: key);
+class SeenProductPage extends StatelessWidget {
+  const SeenProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

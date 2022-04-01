@@ -38,18 +38,11 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
                   IconButton(
                     onPressed: (){
                       setState(() {
-                        if(Get.find<FilterController>().more_display.value){
-                          Get.find<FilterController>().expandDisplayController.reverse();
-                          Get.find<FilterController>().more_display.value = !Get.find<FilterController>().more_display.value;
-                        }
-                        else{
-                          Get.find<FilterController>().expandDisplayController.forward();
-                          Get.find<FilterController>().more_display.value = !Get.find<FilterController>().more_display.value;
-                        }
+                        Get.find<FilterDisplayController>().expand();
                       });
                     },
                     iconSize: 20,
-                    icon: Obx(()=>Icon(Get.find<FilterController>().more_display.value ?Icons.keyboard_arrow_up_outlined: Icons.keyboard_arrow_down_outlined))
+                    icon: Obx(()=>Icon(Get.find<FilterDisplayController>().more_display.value ?Icons.keyboard_arrow_up_outlined: Icons.keyboard_arrow_down_outlined))
                   )
                 ],
               ),
@@ -57,7 +50,7 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
 
            SizeTransition(
               axisAlignment: 1.0,
-              sizeFactor: Get.find<FilterController>().animationDisplay,
+              sizeFactor: Get.find<FilterDisplayController>().animationDisplay,
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: _displays.length,
@@ -72,9 +65,9 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
                           activeColor: kYellowColor,
                           value: _displays[index],
                             onChanged: (value){
-                              Get.find<FilterController>().display.value = _displays[index];
+                              Get.find<FilterDisplayController>().display.value = _displays[index];
                             },
-                            groupValue: Get.find<FilterController>().display.value,
+                            groupValue: Get.find<FilterDisplayController>().display.value,
                         ),)
                       ],
                     );

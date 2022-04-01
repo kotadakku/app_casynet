@@ -1,5 +1,6 @@
 import 'package:app_casynet/containts/size.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,7 @@ class InformationAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var date_birthday = "".obs;
+    var isAddPhone = false.obs;
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigator(),
@@ -98,6 +100,7 @@ class InformationAccount extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
+                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Email"),
@@ -134,10 +137,12 @@ class InformationAccount extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
+                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Số điện thoại"),
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
                             "Thêm",

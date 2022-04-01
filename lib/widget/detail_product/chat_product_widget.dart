@@ -1,13 +1,19 @@
 import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../data.dart';
 
 class ChatProductWidget extends StatelessWidget {
   const ChatProductWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    var isReadMore = false.obs;
+    return ListView(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -19,7 +25,7 @@ class ChatProductWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),),
-              Text("1000 hỏi đáp",
+              Text("${chats.length} hỏi đáp",
               style: TextStyle(
                   color: kTextColor
               ),)
@@ -30,47 +36,43 @@ class ChatProductWidget extends StatelessWidget {
           height: 10,
           color: kTextColor,
         ),
-        Column(
-          children: [
-            CardChatItem(isFromMe: true,
-              nameCompany: "ngocbich85hd",
-              message: "Bạn giới thiệu về sản phẩm được không ạ?"
-            ),
-            CardChatItem(
-              isFromMe: false,
-              nameCompany: "CÔNG TY TNHH Ô TÔ MỸ ĐÌNH",
-                message: "Chào bạn ! Trong bài có đầy đủ các thông tin sản phẩm ạ"
 
-            ),
-            CardChatItem(isFromMe: true,
-                nameCompany: "vanphuc1503",
-                message: "Đánh giá giúp shop 5 sao để được ưu đãi các đơn"
-            ),
-            CardChatItem(isFromMe: true,
-                nameCompany: "levuhoaithuong",
-                message: "Giao hàng nhanh, chất lượng sản phẩm tốt lắm ạ, giống mô tả, dùng rất ok, cảm ơn shop"
-            ),
-
-          ]
-        ),
+        Obx(()=>ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          itemCount: isReadMore.value ? chats.length : 5,
+          itemBuilder: (context, index) => CardChatItem(
+            isFromMe: chats[index]['isMe'],
+            nameCompany: chats[index]['user_name'],
+            message: chats[index]['content'],
+            time: chats[index]['time'],
+          )
+          ,
+        )),
         Divider(height: 20,),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("Xem tất cả", style: TextStyle(
-              color: kYellowColor,
-            ),),
-            Icon(Icons.keyboard_arrow_down_rounded, color: kYellowColor,),
-
-          ],
+        GestureDetector(
+          onTap: (){
+            isReadMore.value = !isReadMore.value;
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Obx(()=>Text(isReadMore.value ? "Ẩn bớt" : "Xem tất cả", style: TextStyle(
+                color: kYellowColor,
+              ),)),
+              Obx(()=>Icon(isReadMore.value ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded, color: kYellowColor,))
+            ],
+          ),
         ),
+
         SizedBox(height: 10,),
 
       ],
     );
   }
+
 }
 
 
@@ -78,16 +80,17 @@ class CardChatItem extends StatelessWidget {
   final bool isFromMe;
   final String nameCompany;
   final String message;
-  const CardChatItem({Key? key, isMe, required this.isFromMe, required this.nameCompany, required this.message}) : super(key: key);
+  final String time;
+  const CardChatItem({Key? key, isMe, required this.isFromMe, required this.nameCompany, required this.message, required this.time}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-      margin: EdgeInsets.only(left: isFromMe ? 0 : 30),
+      margin: EdgeInsets.only(left: isFromMe ? 30 : 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
-        color: isFromMe ? Colors.white : Colors.blue.withOpacity(.1),
+        color: isFromMe ? Colors.blue.withOpacity(.1) : Colors.white,
       ),
       child: Row(
         children: [
@@ -121,7 +124,7 @@ class CardChatItem extends StatelessWidget {
                         ),
                         ),
                       ),
-                      Text("10:30 03/30/2020",
+                      Text(time,
                         style: TextStyle(
                             color: kTextColor
                         ),
