@@ -198,7 +198,7 @@ class ItemCart extends StatelessWidget {
                               height: 30.0,
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.start,
                                 children: [
                                   ///////
                                   Container(
@@ -208,8 +208,6 @@ class ItemCart extends StatelessWidget {
                                     ),
                                     width: 35,
                                     child: InkWell(
-
-
                                       splashColor: Color.fromARGB(255, 188, 195, 216),
                                       // splashColor: Colors.blue,
                                       onTap: () {
@@ -236,11 +234,11 @@ class ItemCart extends StatelessWidget {
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(width: 1, color: Colors.lightBlue)
-                                      // border: Border(
-                                      //   top: BorderSide(width: 1, color: Colors.lightBlue),
-                                      //   bottom: BorderSide(width: 1, color: Colors.lightBlue),
-                                      // ),
+                                      // border: Border.all(width: 1, color: Colors.lightBlue)
+                                      border: Border(
+                                        top: BorderSide(width: 1, color: Colors.lightBlue),
+                                        bottom: BorderSide(width: 1, color: Colors.lightBlue),
+                                      ),
                                     ),
                                     width: 40,
                                     child: Obx(
@@ -304,7 +302,7 @@ class ItemCart extends StatelessWidget {
                                     padding: EdgeInsets.only(bottom: 10),
 
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         IconButton(
                                           onPressed: () {

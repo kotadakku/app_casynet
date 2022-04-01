@@ -1,5 +1,6 @@
 import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/containts/size.dart';
+import 'package:app_casynet/screens/account/UI_qlch/UI_cuahang.dart';
 import 'package:app_casynet/screens/account/message.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:flutter/material.dart';
@@ -81,6 +82,7 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;
+          nav =(){Get.to(menucuahang());};
           break;
       }
       return GestureDetector(

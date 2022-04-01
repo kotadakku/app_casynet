@@ -221,11 +221,8 @@ class Cart extends StatelessWidget {
                           ),
                           // sự kiện chuyển màn
                           onPressed: () {
-                            Get.to(Mystore());
-                            // Get.to(Cart2());
-                            Get.to(EditMyStore());
 
-
+                            Get.to(Cart2());
                           },
                           child: const Text(
                             'Tiến hành đặt hàng',

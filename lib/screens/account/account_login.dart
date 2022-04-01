@@ -1,4 +1,5 @@
 import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/store/mystore.dart';
 import 'package:app_casynet/widget/account/profile_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class AccountLoginPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.to(menucuahang());
+                            Get.to(Mystore());
                           },
                           child:
                           Text("Cửa hàng của tôi",

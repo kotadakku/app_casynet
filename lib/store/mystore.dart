@@ -1,6 +1,12 @@
+import 'package:app_casynet/store/quan_ly_doanh_thu.dart';
+import 'package:app_casynet/store/quan_ly_don_hang.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import 'edit_mystore.dart';
 
 class Mystore extends StatelessWidget {
   @override
@@ -19,7 +25,9 @@ class Mystore extends StatelessWidget {
                 children: [
                   Container(
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.back();
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -171,7 +179,9 @@ class Mystore extends StatelessWidget {
                           InkWell(
                             splashColor: Color.fromARGB(255, 188, 195, 216),
                             // splashColor: Colors.blue,
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(QuanLyDoanhThu());
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -206,13 +216,14 @@ class Mystore extends StatelessWidget {
                             Text("Quản lý đơn hàng",
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.black))
-//                          
                           ],),
 
                           InkWell(
                             splashColor: Color.fromARGB(255, 188, 195, 216),
                             // splashColor: Colors.blue,
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(QuanLyDonHang());
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
