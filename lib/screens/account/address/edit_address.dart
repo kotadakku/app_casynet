@@ -1,11 +1,8 @@
-
-import 'package:app_casynet/containts/size.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
-import '../../../containts/colors.dart';
-import '../../../models/Address.dart';
+import '../../../theme/app_sizes.dart';
 import '../../../widget/account/top_account_widget.dart';
 
 class EditAddress extends StatelessWidget {
@@ -33,7 +30,7 @@ class EditAddress extends StatelessWidget {
                             fontWeight: FontWeight.bold
                         ),
                       ),
-                        FaIcon(FontAwesomeIcons.solidTrashCan, color: kTextColor, size: sizeStar.width,)
+                        FaIcon(FontAwesomeIcons.solidTrashCan, color: kTextColor, size: sizeIcon.width,)
                       ],
                     ),
                   ),

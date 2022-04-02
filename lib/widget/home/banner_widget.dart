@@ -18,25 +18,26 @@ class BannerHomeWidget extends StatelessWidget {
         child: Stack(
           children: [
             PageView.builder(
-                itemCount: banner_urls.length,
-                onPageChanged: (index){
-                  Get.find<BannerController>().current.value = index;
-                },
-                itemBuilder: (context, index){
-                  return Stack(
-                    children: [
-                      Image.asset(banner_urls[index]),
-                    ],
-                  );
-                }
+              itemCount: banner_urls.length,
+              onPageChanged: (index){
+                Get.find<HomeController>().current_banner.value = index;
+              },
+              itemBuilder: (context, index){
+                return Stack(
+                  children: [
+                    Image.asset(banner_urls[index]),
+                  ],
+                );
+              }
             ),
             Positioned.fill(
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Obx(()=> Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: indicators(Get.find<BannerController>().current, banner_urls.length)
+                child: Obx(()=>
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: indicators(Get.find<HomeController>().current_banner, banner_urls.length)
                   )
                 )
               )
@@ -46,15 +47,17 @@ class BannerHomeWidget extends StatelessWidget {
     );
   }
   List<Widget> indicators(curPage, numPage){
-    return List.generate(numPage, (index) => Container(
-      width: 10,
-      height: 10,
-      margin: EdgeInsets.all(3.0),
-      decoration: BoxDecoration(
+    return List.generate(numPage, (index) =>
+      Container(
+        width: 10,
+        height: 10,
+        margin: EdgeInsets.all(3.0),
+        decoration: BoxDecoration(
           color: curPage == index ? Color(0xffD4AD0B): Colors.white,
           shape: BoxShape.circle
-      ),
-    ));
+        ),
+      )
+    );
   }
 }
 

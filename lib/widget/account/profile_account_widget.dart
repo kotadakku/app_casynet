@@ -1,6 +1,7 @@
 import 'dart:math' as math;
-import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../theme/app_colors.dart';
 
 class ProfileAccountWidget extends StatelessWidget {
   const ProfileAccountWidget({Key? key}) : super(key: key);

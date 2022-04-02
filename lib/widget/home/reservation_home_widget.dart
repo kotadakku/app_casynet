@@ -1,6 +1,4 @@
 
-import 'package:app_casynet/controller/radio_car_controller.dart';
-import 'package:app_casynet/screens/filter/filter_product.dart';
 import 'package:app_casynet/screens/all_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,9 +6,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../screens/detail_product.dart';
-import '../../screens/filter/filter_product_2.dart';
+import '../../controller/home_controller.dart';
+import '../../routes/app_pages.dart';
+import '../../theme/app_colors.dart';
 
 class ReservationWidget extends StatelessWidget {
   final String title;
@@ -81,18 +79,18 @@ class ReservationWidget extends StatelessWidget {
                     children: [
                       Radio(
                           value: true,
-                          groupValue: Get.find<RadioController>().isCar.value,
+                          groupValue: Get.find<HomeController>().isCar.value,
                           onChanged: (value){
-                            Get.find<RadioController>().isCar.value = !Get.find<RadioController>().isCar.value;
+                            Get.find<HomeController>().isCar.value = !Get.find<HomeController>().isCar.value;
                           },
                           activeColor: Color(0xffDFB400)),
                       Text("Ô tô"),
                       SizedBox(width: 20,),
                       Radio(
                           value: false,
-                          groupValue: Get.find<RadioController>().isCar.value,
+                          groupValue: Get.find<HomeController>().isCar.value,
                           onChanged: (value){
-                            Get.find<RadioController>().isCar.value = !Get.find<RadioController>().isCar.value;
+                            Get.find<HomeController>().isCar.value = !Get.find<HomeController>().isCar.value;
                           },
                           activeColor: Color(0xffDFB400)
                       ),
@@ -140,7 +138,7 @@ class ReservationWidget extends StatelessWidget {
                   sale: 20,
                 ),
                 onTap: (){
-                  Get.toNamed('/detail_product/12');
+                  Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 });
                 },
               ),
               ItemBookWidget(
@@ -176,7 +174,7 @@ class ReservationWidget extends StatelessWidget {
     );
   }
   void _filter_product() {
-    Get.toNamed('/filter');
+    Get.toNamed(Routes.FILTER_PRODUCT);
   }
 
   void _view_more(title) {

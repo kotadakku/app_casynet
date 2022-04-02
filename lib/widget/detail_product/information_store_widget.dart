@@ -1,7 +1,9 @@
-import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/containts/size.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 
 class InformationStoreWidget extends StatelessWidget {
   const InformationStoreWidget({Key? key}) : super(key: key);
@@ -53,7 +55,7 @@ class InformationStoreWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.add, color: kYellowColor, size: sizeStar.width,),
+                      Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
                       Text("2000", style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
@@ -67,7 +69,7 @@ class InformationStoreWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.add, color: kYellowColor, size: sizeStar.width,),
+                      Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
                       Text("75%", style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
@@ -81,7 +83,7 @@ class InformationStoreWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.add, color: kYellowColor, size: sizeStar.width,),
+                      Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
                       Text("145", style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
@@ -102,7 +104,7 @@ class InformationStoreWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.favorite_border, color: kYellowColor, size: sizeStar.width,),
+                    Icon(Icons.favorite_border, color: kYellowColor, size: sizeIcon.width,),
                     SizedBox(width: 5,),
                     Text("Theo dõi",
                       style: TextStyle(
@@ -128,7 +130,7 @@ class InformationStoreWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.share, size: sizeStar.width,),
+                    Icon(Icons.share, size: sizeIcon.width,),
                     SizedBox(width: 5,),
                     Text("Xem cửa hàng",
                       style: TextStyle(

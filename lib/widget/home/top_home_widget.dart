@@ -1,11 +1,6 @@
-
-import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/svg.dart';
-
-
-
 
 class TopHomeWidget extends StatelessWidget {
   const TopHomeWidget({Key? key}) : super(key: key);
@@ -37,47 +32,47 @@ class TopHomeWidget extends StatelessWidget {
                     fontSize: 13
                 ),
                 textAlignVertical: TextAlignVertical.center,
-                cursorColor: kYellowColor,
+                cursorColor: kTextColor,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(5.0),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)
-                    ),
-                    hintStyle: const TextStyle(
-                        fontSize: 11
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                      borderSide: BorderSide(
-                        color: kYellowColor
-                      )
-
-                    ),
-                    hintText: 'Search Casynet',
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          VerticalDivider(
-                            width: 20,
-                            thickness: 1,
-                            indent: 5,
-                            endIndent: 5,
-                            color: Colors.grey,
-                          ),
-                          const SizedBox(width: 2.0,),
-                          SvgPicture.asset(
-                            "assets/home/icon_location.svg",
-                            width: 14),
-                          const SizedBox(width: 5.0,),
-                          const Text(
-                            "Hà Nội",
-                          ),
-                          const SizedBox(width: 5.0,),
-                        ],
-                      ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0)
+                  ),
+                  hintStyle: const TextStyle(
+                      fontSize: 11
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      color: kYellowColor
                     )
+
+                  ),
+                  hintText: 'Search Casynet',
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        VerticalDivider(
+                          width: 20,
+                          thickness: 1,
+                          indent: 5,
+                          endIndent: 5,
+                          color: Colors.grey,
+                        ),
+                        const SizedBox(width: 2.0,),
+                        SvgPicture.asset(
+                          "assets/home/icon_location.svg",
+                          width: 14),
+                        const SizedBox(width: 5.0,),
+                        const Text(
+                          "Hà Nội",
+                        ),
+                        const SizedBox(width: 5.0,),
+                      ],
+                    ),
+                  )
                 ),
               ),
             ),

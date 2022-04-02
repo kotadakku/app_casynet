@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../containts/colors.dart';
-import '../../controller/filter_controller.dart';
+import '../../theme/app_colors.dart';
+import '../../controller/filter_product_controller.dart';
 
 class PriceProductWidget extends StatelessWidget {
   const PriceProductWidget({Key? key}) : super(key: key);

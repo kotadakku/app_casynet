@@ -1,6 +1,4 @@
 
-import 'package:app_casynet/controller/radio_car_controller.dart';
-import 'package:app_casynet/screens/filter/filter_product.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../controller/home_controller.dart';
+import '../routes/app_pages.dart';
 import '../widget/home/reservation_home_widget.dart';
 import '../widget/bottom_widget.dart';
 import '../widget/home/category_bottom_widget.dart';
@@ -18,7 +18,7 @@ class AllProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RadioController radio_c = Get.put(RadioController());
+    HomeController radio_c = Get.put(HomeController());
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -68,7 +68,7 @@ class AllProductPage extends StatelessWidget {
                           ],
                         ),
                         onTap: (){
-                          Get.toNamed('/filter2');
+                          Get.toNamed(Routes.FILTER_PRODUCT);
                         },
                       )
 

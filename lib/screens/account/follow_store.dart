@@ -1,16 +1,14 @@
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
 import '../../controller/tabview_controller.dart';
+import '../../theme/app_colors.dart';
 import '../../widget/account/top_account_widget.dart';
 
-class FollowedStore extends StatelessWidget {
-  const FollowedStore({Key? key}) : super(key: key);
+class FollowedStorePage extends StatelessWidget {
+  const FollowedStorePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

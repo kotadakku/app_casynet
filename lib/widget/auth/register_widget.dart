@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../containts/colors.dart';
+import '../../theme/app_colors.dart';
 
 class RegisterWidget extends StatelessWidget {
   const RegisterWidget({Key? key}) : super(key: key);

@@ -1,10 +1,12 @@
-import 'package:app_casynet/containts/colors.dart';
+
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../controller/account/change_password_controller.dart';
+import '../../theme/app_colors.dart';
+
 
 class ChangePasswordAccount extends StatelessWidget {
   final ChangePasswordController c = Get.put(ChangePasswordController());
@@ -43,24 +45,26 @@ class ChangePasswordAccount extends StatelessWidget {
                             )
                         ),
                         Expanded(
-                            child: Obx(()=> TextField(
+                          child: Obx(()=>
+                            TextField(
                               textAlign: TextAlign.end,
                               obscureText: c.isObscurePassword.value,
                               decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  suffixIcon: GestureDetector(
-                                    child: c.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
-                                    Icon(Icons.visibility_outlined, color: kYellowColor,),
-                                    onTap: (){
-                                      c.changeObscurePassword(!c.isObscurePassword.value);
-                                    },
-                                  ),
-                                  hintText: "Nhập mật khẩu",
-                                  hintStyle: TextStyle(
-                                      color: kTextColor
-                                  )
+                                border: InputBorder.none,
+                                suffixIcon: GestureDetector(
+                                  child: c.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
+                                  Icon(Icons.visibility_outlined, color: kYellowColor,),
+                                  onTap: (){
+                                    c.changeObscurePassword(!c.isObscurePassword.value);
+                                  },
+                                ),
+                                hintText: "Nhập mật khẩu",
+                                hintStyle: TextStyle(
+                                    color: kTextColor
+                                )
                               ),
-                            ))
+                            )
+                          )
                         )
                       ],
                     ),),
@@ -77,7 +81,8 @@ class ChangePasswordAccount extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                            child: Obx(() => TextField(
+                          child: Obx(() =>
+                            TextField(
                               textAlign: TextAlign.end,
                               obscureText: c.isObscureConfirmPassword.value,
                               decoration: InputDecoration(
@@ -92,9 +97,8 @@ class ChangePasswordAccount extends StatelessWidget {
                                     color: kTextColor
                                 ),
                               ),
-
                             )
-                            )
+                          )
                         )
                       ],
                     ),),

@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
-
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
 import '../../data.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 import 'gift_store_widget.dart';
 
 class AQStoreWidget extends StatelessWidget {
@@ -172,11 +171,11 @@ class CardChatItem extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_half_outlined , size: sizeStar.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                         ],
                       ),
                       SizedBox(width: 10,),

@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../containts/colors.dart';
+import '../../../theme/app_colors.dart';
 
 class AllMessageAccount extends StatelessWidget {
   const AllMessageAccount({Key? key}) : super(key: key);

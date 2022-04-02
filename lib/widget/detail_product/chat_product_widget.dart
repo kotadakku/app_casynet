@@ -1,9 +1,9 @@
-import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../data.dart';
+import '../../theme/app_colors.dart';
 
 class ChatProductWidget extends StatelessWidget {
   const ChatProductWidget({Key? key}) : super(key: key);

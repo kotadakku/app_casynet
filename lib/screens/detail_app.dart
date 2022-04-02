@@ -1,14 +1,15 @@
-import 'package:app_casynet/containts/size.dart';
+
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../containts/colors.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_sizes.dart';
 import 'benefit/benefit_owner.dart';
 import 'benefit/benefit_store.dart';
 
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+class DetailAppPage extends StatelessWidget {
+  const DetailAppPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class DetailsPage extends StatelessWidget {
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: kTextColor_gray,
-                            size: sizeStar.height,
+                            size: sizeIcon.height,
                           ),
                         )),
                     Text(
@@ -69,7 +70,7 @@ class DetailsPage extends StatelessWidget {
                                   isExpandCasyney.value
                                       ? Icons.keyboard_arrow_up
                                       : Icons.keyboard_arrow_down,
-                                  size: sizeStar.height,
+                                  size: sizeIcon.height,
                                   color: kTextColor_gray,
                                 ),
                               ),
@@ -190,7 +191,7 @@ class DetailsPage extends StatelessWidget {
                                   isExpandBenefit.value
                                       ? Icons.keyboard_arrow_up_sharp
                                       : Icons.keyboard_arrow_down_sharp,
-                                  size: sizeStar.width,
+                                  size: sizeIcon.width,
                                   color: kTextColor_gray,
                                 ),
                               )
@@ -312,7 +313,7 @@ class DetailsPage extends StatelessWidget {
                                   isExpandPolicy.value
                                       ? Icons.keyboard_arrow_up_sharp
                                       : Icons.keyboard_arrow_down_sharp,
-                                  size: sizeStar.height,
+                                  size: sizeIcon.height,
                                   color: kTextColor_gray,
                                 ),
                               ),

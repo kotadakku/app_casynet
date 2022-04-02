@@ -1,4 +1,4 @@
-import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,12 +1,9 @@
 
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 
 class VoteProductWidget extends StatelessWidget {
   const VoteProductWidget({Key? key}) : super(key: key);
@@ -48,11 +45,11 @@ class VoteProductWidget extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                              Icon(Icons.star_half_outlined , size: sizeStar.width, color: kYellowColor,),
+                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                              Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                             ],
                           ),
                         ],
@@ -77,11 +74,11 @@ class VoteProductWidget extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
@@ -100,11 +97,11 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
@@ -123,11 +120,11 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
@@ -144,11 +141,11 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
@@ -165,11 +162,11 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeStar.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,

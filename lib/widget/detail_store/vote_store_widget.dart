@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
+import '../../theme//app_colors.dart';
+import '../../theme/app_sizes.dart';
 import '../../data.dart';
-import '../detail_product/chat_product_widget.dart';
 import 'gift_store_widget.dart';
 
 class VoteStoreWidget extends StatelessWidget {
@@ -212,11 +211,11 @@ class CardChatItem extends StatelessWidget {
                       if(isFromMe)
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                          Icon(Icons.star_half_outlined , size: sizeStar.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                         ],
                       ),
                       if(isFromMe) SizedBox(width: 10,),

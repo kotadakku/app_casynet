@@ -1,5 +1,4 @@
 
-import 'package:app_casynet/controller/radio_car_controller.dart';
 import 'package:app_casynet/widget/detail_store/gift_store_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-import '../../containts/colors.dart';
+import '../../controller/home_controller.dart';
+import '../../theme/app_colors.dart';
 import '../../screens/detail_product.dart';
 import '../../screens/filter/filter_product_2.dart';
 import '../home/reservation_home_widget.dart';
@@ -17,7 +17,7 @@ class ProductStoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RadioController c = Get.put(RadioController());
+    HomeController c = Get.put(HomeController());
     return SingleChildScrollView(
       child: Column(
         children: [

@@ -82,16 +82,16 @@ class HomePage extends StatelessWidget {
 
   AlertDialog _buildExitDialog(BuildContext context) {
     return AlertDialog(
-      title: const Text('Please confirm'),
-      content: const Text('Do you want to exit the app?'),
+      title: const Text('Xác nhận'),
+      content: const Text('Bạn có muốn thoát?'),
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: Text('No'),
+          child: Text('Đồng ý'),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: Text('Yes'),
+          child: Text('Không'),
         ),
       ],
     );

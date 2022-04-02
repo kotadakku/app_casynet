@@ -1,14 +1,13 @@
-import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/containts/size.dart';
-import 'package:app_casynet/controller/radio_car_controller.dart';
+
 import 'package:app_casynet/data.dart';
+import 'package:app_casynet/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import '../../screens/filter/filter_product_map.dart';
+import '../../controller/home_controller.dart';
+import '../../theme/app_colors.dart';
 
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
@@ -89,10 +88,10 @@ class StoreWidget extends StatelessWidget {
                           Radio(
                               value: true,
                               groupValue:
-                                  Get.find<RadioController>().isCar.value,
+                                  Get.find<HomeController>().isCar.value,
                               onChanged: (value) {
-                                Get.find<RadioController>().isCar.value =
-                                    !Get.find<RadioController>().isCar.value;
+                                Get.find<HomeController>().isCar.value =
+                                    !Get.find<HomeController>().isCar.value;
                               },
                               activeColor: Color(0xffDFB400)),
                           Text("Ô tô"),
@@ -102,10 +101,10 @@ class StoreWidget extends StatelessWidget {
                           Radio(
                               value: false,
                               groupValue:
-                                  Get.find<RadioController>().isCar.value,
+                                  Get.find<HomeController>().isCar.value,
                               onChanged: (value) {
-                                Get.find<RadioController>().isCar.value =
-                                    !Get.find<RadioController>().isCar.value;
+                                Get.find<HomeController>().isCar.value =
+                                    !Get.find<HomeController>().isCar.value;
                               },
                               activeColor: Color(0xffDFB400)),
                           Text("Xe máy")
@@ -116,7 +115,7 @@ class StoreWidget extends StatelessWidget {
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: (){
-                  Get.to(FilterProductMap());
+                  Get.toNamed(Routes.FILTER_MAP);
                 },
 
                 child: Row(
@@ -198,7 +197,7 @@ class ItemCuaHangWidget extends StatelessWidget {
             GestureDetector(
                 onTap: () {
                   print(id);
-                  if (id != null) Get.toNamed('/detail_store/$id');
+                  if (id != null) Get.toNamed(Routes.STORE_DETAIL, arguments: { 'store_Id': id});
                   FocusScope.of(context).unfocus();
                 },
                 child: Container(
@@ -267,7 +266,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       print(id);
-                      if (id != null) Get.toNamed('/detail_store/$id');
+                      if (id != null) Get.toNamed(Routes.STORE_DETAIL, arguments: { 'store_Id': id});
                       FocusScope.of(context).unfocus();
                     },
                     child: Text(

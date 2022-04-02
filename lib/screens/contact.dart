@@ -1,7 +1,8 @@
 
-import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../theme/app_colors.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({Key? key}) : super(key: key);

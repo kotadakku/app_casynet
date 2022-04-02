@@ -1,9 +1,10 @@
 
-import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/controller/filter_controller.dart';
+import 'package:app_casynet/controller/filter_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+
+import '../../theme/app_colors.dart';
 
 class AttributeProductWidget extends StatelessWidget {
   AttributeProductWidget({Key? key}) : super(key: key);

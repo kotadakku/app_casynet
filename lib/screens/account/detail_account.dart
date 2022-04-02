@@ -1,4 +1,4 @@
-import 'package:app_casynet/containts/size.dart';
+
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +6,13 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
-import '../../containts/colors.dart';
+import '../../theme/app_colors.dart';
 import '../../widget/account/profile_account_widget.dart';
 import '../../widget/bottom_navigator.dart';
 import 'change_password.dart';
 
-class InformationAccount extends StatelessWidget {
-  const InformationAccount({Key? key}) : super(key: key);
+class AccountDetailPage extends StatelessWidget {
+  const AccountDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

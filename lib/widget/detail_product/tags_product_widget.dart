@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../containts/colors.dart';
+import '../../theme/app_colors.dart';
+
 
 class TagsProductWidget extends StatelessWidget {
   const TagsProductWidget({Key? key}) : super(key: key);

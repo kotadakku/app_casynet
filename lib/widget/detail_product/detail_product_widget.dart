@@ -1,9 +1,11 @@
 
-import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/containts/size.dart';
+import 'package:app_casynet/theme/app_colors.dart';
+import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../theme/app_colors.dart';
 
 class DetailProductWidget extends StatelessWidget {
   const DetailProductWidget({Key? key}) : super(key: key);
@@ -53,7 +55,7 @@ Chăm sóc khách hàng
                 ),
 
               ),
-              Icon(isReadMore.value ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down, color: kYellowColor, size: sizeStar.width,)
+              Icon(isReadMore.value ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down, color: kYellowColor, size: sizeIcon.width,)
             ],
           ),
         ),),

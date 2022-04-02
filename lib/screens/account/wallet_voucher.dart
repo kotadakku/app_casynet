@@ -1,14 +1,14 @@
-import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../controller/tabview_controller.dart';
+import '../../theme/app_colors.dart';
 
-class WalletVoucher extends StatelessWidget {
-  const WalletVoucher({Key? key}) : super(key: key);
+class WalletVoucherPage extends StatelessWidget {
+  const WalletVoucherPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +87,7 @@ class WalletVoucher extends StatelessWidget {
                       e,
                       style: TextStyle(),
                     ),
-                  ))
-                      .toList()),
+                  )).toList()),
             ),
             Expanded(
                 child: TabBarView(
@@ -98,8 +97,6 @@ class WalletVoucher extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemBuilder: (context, index) => Container(
-                            width: 100,
-                            height: 100,
                             margin: EdgeInsets.all(5.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -222,7 +219,6 @@ class WalletVoucher extends StatelessWidget {
                         itemBuilder: (context, index) => Stack(
                           fit: StackFit.passthrough,
                           children: [
-
                             Container(
                             width: 100,
                             height: 100,
