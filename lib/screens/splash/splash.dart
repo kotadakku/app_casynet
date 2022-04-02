@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app_casynet/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -64,6 +65,6 @@ class _SplashState extends State<Splash> {
   }
 
   Future<Timer> initialization() async {
-    return Timer(Duration(seconds: 10),() => Get.toNamed('/home'));
+    return Timer(Duration(seconds: 10),() => Get.toNamed(Routes.HOME));
   }
 }

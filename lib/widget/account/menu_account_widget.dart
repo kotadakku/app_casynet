@@ -40,7 +40,7 @@ class MenuAccountWidget extends StatelessWidget {
       switch (e) {
         case "Thông tin tài khoản":
           icon = FontAwesomeIcons.user;
-          nav=() { Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: {"userId": 12});};
+          nav=() { Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: [12]);};
           break;
         case "Địa chỉ":
           icon = FontAwesomeIcons.mapLocation;
@@ -48,35 +48,35 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;
-          nav=() { Get.toNamed(Routes.MESSAGES, arguments: {"userId": 12});};
+          nav=() { Get.toNamed(Routes.MESSAGES,  arguments: [12]);};
           break;
         case "Đơn hàng":
           icon = FontAwesomeIcons.bagShopping;
-          nav=() { Get.toNamed(Routes.ACCOUNT_STORE, arguments: {"userId": 12});};
+          nav=() { Get.toNamed(Routes.ACCOUNT_ORDER, arguments: [12]);};
           break;
         case "Thông báo":
           icon = FontAwesomeIcons.bell;
-          nav=() { Get.offNamed(Routes.NOTIFICATIONS, arguments: {"userId": 12});};
+          nav=() { Get.offNamed(Routes.NOTIFICATIONS,  arguments: [12]);};
           break;
         case "Ví Voucher":
           icon = FontAwesomeIcons.wallet;
-          nav=() {Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER, arguments: {"userId": 12});};
+          nav=() {Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER,  arguments: [12]);};
           break;
         case "Quản lý tích điểm":
           icon = FontAwesomeIcons.bitcoin;
-          nav =(){Get.toNamed(Routes.ACCOUNT_CASYCOIN, arguments: {"userId": 12});};
+          nav =(){Get.toNamed(Routes.ACCOUNT_CASYCOIN,  arguments: [12]);};
           break;
         case "Sản phẩm yêu thích":
           icon = FontAwesomeIcons.heart;
-          nav =(){Get.toNamed(Routes.PRODUCTS_FAVOURITE, arguments: {"userId": 12});};
+          nav =(){Get.toNamed(Routes.PRODUCTS_FAVOURITE,  arguments: [12]);};
           break;
         case "Cửa hàng theo dõi":
           icon = FontAwesomeIcons.store;
-          nav =(){Get.toNamed(Routes.STORE_FOLLOWED, arguments: {"userId": 12});};
+          nav =(){Get.toNamed(Routes.STORE_FOLLOWED,  arguments: [12]);};
           break;
         case "Sản phẩm đã xem":
           icon = FontAwesomeIcons.eye;
-          nav =(){Get.toNamed(Routes.PRODUCTS_SEEN, arguments: {"userId": 12});};
+          nav =(){Get.toNamed(Routes.PRODUCTS_SEEN, arguments: [12] );};
           break;
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;

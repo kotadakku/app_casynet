@@ -3,6 +3,7 @@ import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/detail_app_controller.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_sizes.dart';
 import 'benefit/benefit_owner.dart';
@@ -13,9 +14,9 @@ class DetailAppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isExpandCasyney = false.obs;
-    var isExpandBenefit = false.obs;
-    var isExpandPolicy = false.obs;
+    var isExpandCasyney = Get.find<DetailAppController>().isExpandCasyney;
+    var isExpandBenefit = Get.find<DetailAppController>().isExpandBenefit;
+    var isExpandPolicy = Get.find<DetailAppController>().isExpandPolicy;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -50,162 +51,168 @@ class DetailAppPage extends StatelessWidget {
                 ),
               ),
               // Về Casynet
-              Obx(() => Column(
-                    children: [
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        child: Container(
-                          padding:
-                              EdgeInsets.only(top: 10, left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Về Casynet",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Container(
-                                height: 30,
-                                child: Icon(
-                                  isExpandCasyney.value
-                                      ? Icons.keyboard_arrow_up
-                                      : Icons.keyboard_arrow_down,
-                                  size: sizeIcon.height,
-                                  color: kTextColor_gray,
-                                ),
-                              ),
-                            ],
+              Column(
+                children: [
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    child: Container(
+                      padding:
+                          EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Về Casynet",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        onTap: () {
-                          isExpandCasyney.value = !isExpandCasyney.value;
-                        },
+                          Obx(()=>
+                            Container(
+                              height: 30,
+                              child: Icon(
+                                isExpandCasyney.value
+                                    ? Icons.keyboard_arrow_up
+                                    : Icons.keyboard_arrow_down,
+                                size: sizeIcon.height,
+                                color: kTextColor_gray,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      Divider(
-                        thickness: 1,
-                      ),
-                      Visibility(
-                          visible: isExpandCasyney.value,
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Chính sách bán hàng",
-                                        style:
-                                            TextStyle(color: kTextColor_gray),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12,
-                                          color: kTextColor_gray,
-                                        ),
-                                      ),
-                                    ],
+                    ),
+                    onTap: () {
+                      isExpandCasyney.value = !isExpandCasyney.value;
+                    },
+                  ),
+                  Divider(
+                    thickness: 1,
+                  ),
+                  Obx(()=>Visibility(
+                      visible: isExpandCasyney.value,
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Chính sách bán hàng",
+                                    style:
+                                    TextStyle(color: kTextColor_gray),
                                   ),
-                                ),
-                                onTap: () {},
-                              ),
-                              Divider(indent: 10, thickness: 1),
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Điều khoản sử dụng",
-                                        style:
-                                            TextStyle(color: kTextColor_gray),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12,
-                                          color: kTextColor_gray,
-                                        ),
-                                      ),
-                                    ],
+                                  Container(
+                                    height: 30,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: kTextColor_gray,
+                                    ),
                                   ),
-                                ),
-                                onTap: () {},
+                                ],
                               ),
-                              Divider(indent: 10, thickness: 1),
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Chính sách bảo mật",
-                                        style:
-                                            TextStyle(color: kTextColor_gray),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12,
-                                          color: kTextColor_gray,
-                                        ),
-                                      ),
-                                    ],
+                            ),
+                            onTap: () {},
+                          ),
+                          Divider(indent: 10, thickness: 1),
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Điều khoản sử dụng",
+                                    style:
+                                    TextStyle(color: kTextColor_gray),
                                   ),
-                                ),
-                                onTap: () {},
+                                  Container(
+                                    height: 30,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: kTextColor_gray,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Divider(indent: 10, thickness: 1),
-                            ],
-                          )),
-                    ],
-                  )),
+                            ),
+                            onTap: () {},
+                          ),
+                          Divider(indent: 10, thickness: 1),
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Chính sách bảo mật",
+                                    style:
+                                    TextStyle(color: kTextColor_gray),
+                                  ),
+                                  Container(
+                                    height: 30,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: kTextColor_gray,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: () {},
+                          ),
+                          Divider(indent: 10, thickness: 1),
+                        ],
+                      )),),
+
+                ],
+              ),
               // Hợp tác chủ xe
 
-              Obx(() => Column(
-                    children: [
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Hợp tác chủ xe",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Container(
-                                height: 30,
-                                child: Icon(
-                                  isExpandBenefit.value
-                                      ? Icons.keyboard_arrow_up_sharp
-                                      : Icons.keyboard_arrow_down_sharp,
-                                  size: sizeIcon.width,
-                                  color: kTextColor_gray,
-                                ),
-                              )
-                            ],
+              Column(
+                children: [
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 10, right: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Hợp tác chủ xe",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        onTap: () {
-                          isExpandBenefit.value = !isExpandBenefit.value;
-                        },
+                          Obx(()=>
+                            Container(
+                              height: 30,
+                              child: Icon(
+                                isExpandBenefit.value
+                                    ? Icons.keyboard_arrow_up_sharp
+                                    : Icons.keyboard_arrow_down_sharp,
+                                size: sizeIcon.width,
+                                color: kTextColor_gray,
+                              ),
+                            )
+                          )
+                        ],
                       ),
-                      Divider(
-                        thickness: 1,
-                      ),
-                      Visibility(
+                    ),
+                    onTap: () {
+                      isExpandBenefit.value = !isExpandBenefit.value;
+                    },
+                  ),
+                  Divider(
+                    thickness: 1,
+                  ),
+                  Obx(()=>
+                    Visibility(
                           visible: isExpandBenefit.value,
                           child: Column(
                             children: [
@@ -214,12 +221,12 @@ class DetailAppPage extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Lợi ích cho chủ của hàng",
                                         style:
-                                            TextStyle(color: kTextColor_gray),
+                                        TextStyle(color: kTextColor_gray),
                                       ),
                                       Container(
                                           height: 30,
@@ -241,12 +248,12 @@ class DetailAppPage extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Lợi ích cho chủ xe",
                                         style:
-                                            TextStyle(color: kTextColor_gray),
+                                        TextStyle(color: kTextColor_gray),
                                       ),
                                       Container(
                                         height: 30,
@@ -269,12 +276,12 @@ class DetailAppPage extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Quảng cáo với Casynet",
                                         style:
-                                            TextStyle(color: kTextColor_gray),
+                                        TextStyle(color: kTextColor_gray),
                                       ),
                                       Container(
                                         height: 30,
@@ -292,153 +299,160 @@ class DetailAppPage extends StatelessWidget {
                               Divider(indent: 10, thickness: 1),
                             ],
                           ))
-                    ],
-                  )),
-              Obx(() => Column(
-                    children: [
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Hỗ trợ tư vấn",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Container(
-                                height: 30,
-                                child: Icon(
-                                  isExpandPolicy.value
-                                      ? Icons.keyboard_arrow_up_sharp
-                                      : Icons.keyboard_arrow_down_sharp,
-                                  size: sizeIcon.height,
-                                  color: kTextColor_gray,
-                                ),
-                              ),
-                            ],
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 10, right: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Hỗ trợ tư vấn",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        onTap: () {
-                          isExpandPolicy.value = !isExpandPolicy.value;
-                        },
+                          Obx(()=>
+                            Container(
+                              height: 30,
+                              child: Icon(
+                                isExpandPolicy.value
+                                    ? Icons.keyboard_arrow_up_sharp
+                                    : Icons.keyboard_arrow_down_sharp,
+                                size: sizeIcon.height,
+                                color: kTextColor_gray,
+                              ),
+                            ),
+                          )
+
+                        ],
                       ),
-                      Divider(
-                        thickness: 1,
-                      ),
-                      Visibility(
-                          visible: isExpandPolicy.value,
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Chính sách vận chuyển",
-                                        style:
-                                            TextStyle(color: kTextColor_gray),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12,
-                                          color: kTextColor_gray,
-                                        ),
-                                      ),
-                                    ],
+                    ),
+                    onTap: () {
+                      isExpandPolicy.value = !isExpandPolicy.value;
+                    },
+                  ),
+                  Divider(
+                    thickness: 1,
+                  ),
+                  Obx(()=>
+                    Visibility(
+                      visible: isExpandPolicy.value,
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Chính sách vận chuyển",
+                                    style:
+                                    TextStyle(color: kTextColor_gray),
                                   ),
-                                ),
-                                onTap: () {},
-                              ),
-                              Divider(indent: 10, thickness: 1),
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Hướng dẫn bán hàng",
-                                        style:
-                                            TextStyle(color: kTextColor_gray),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12,
-                                          color: kTextColor_gray,
-                                        ),
-                                      ),
-                                    ],
+                                  Container(
+                                    height: 30,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: kTextColor_gray,
+                                    ),
                                   ),
-                                ),
-                                onTap: () {},
+                                ],
                               ),
-                              Divider(indent: 10, thickness: 1),
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Hướng dẫn mua hàng",
-                                        style:
-                                            TextStyle(color: kTextColor_gray),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12,
-                                          color: kTextColor,
-                                        ),
-                                      ),
-                                    ],
+                            ),
+                            onTap: () {},
+                          ),
+                          Divider(indent: 10, thickness: 1),
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Hướng dẫn bán hàng",
+                                    style:
+                                    TextStyle(color: kTextColor_gray),
                                   ),
-                                ),
-                                onTap: () {},
-                              ),
-                              Divider(indent: 10, thickness: 1),
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Tin tức",
-                                        style:
-                                            TextStyle(color: kTextColor_gray),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12,
-                                          color: kTextColor_gray,
-                                        ),
-                                      ),
-                                    ],
+                                  Container(
+                                    height: 30,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: kTextColor_gray,
+                                    ),
                                   ),
-                                ),
-                                onTap: () {},
+                                ],
                               ),
-                              Divider(indent: 10, thickness: 1),
-                            ],
-                          ))
-                    ],
-                  ))
+                            ),
+                            onTap: () {},
+                          ),
+                          Divider(indent: 10, thickness: 1),
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Hướng dẫn mua hàng",
+                                    style:
+                                    TextStyle(color: kTextColor_gray),
+                                  ),
+                                  Container(
+                                    height: 30,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: kTextColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: () {},
+                          ),
+                          Divider(indent: 10, thickness: 1),
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Tin tức",
+                                    style:
+                                    TextStyle(color: kTextColor_gray),
+                                  ),
+                                  Container(
+                                    height: 30,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: kTextColor_gray,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: () {},
+                          ),
+                          Divider(indent: 10, thickness: 1),
+                        ],
+                      )
+                  )
+                  )
+                ],
+              )
               // Hỗ trợ tư vấn
             ],
           ),

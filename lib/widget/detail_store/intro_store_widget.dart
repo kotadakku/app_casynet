@@ -1,3 +1,4 @@
+import 'package:app_casynet/routes/app_pages.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -247,7 +248,7 @@ class IntroStoreWidget extends StatelessWidget {
             color: kBackgroundColor,
             height: 10,
           ),
-          ReservationWidget(title: 'Khuyến mãi',),
+          // ReservationWidget(title: 'Khuyến mãi',),
           Container(
             color: kBackgroundColor,
             height: 10,
@@ -283,7 +284,7 @@ class IntroStoreWidget extends StatelessWidget {
                           book_category: "Điện máy Đỗ Dũng"
                       ),
                       onTap: (){
-                        Get.to(DetailProductPage());
+                        Get.toNamed(Routes.PRODUCT_DETAIL);
                       },
                     ),
                     ItemBookWidget(

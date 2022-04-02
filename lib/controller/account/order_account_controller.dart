@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DetailStoreController extends GetxController with GetSingleTickerProviderStateMixin  {
+class OrderAccountController extends GetxController with GetSingleTickerProviderStateMixin{
   final List<String> listTabs = [
-    "Giới thiệu", "Sản phẩm (200)", "Tin tức", "Đánh giá", "Hỏi đáp"
+    "Tất cả", "Đặt mua", "Đã hủy"
   ];
-
   late TabController controller;
 
   @override

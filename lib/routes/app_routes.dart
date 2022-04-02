@@ -9,12 +9,13 @@ abstract class Routes{
   static const ACCOUNT_LOGIN = '/account/login';
   static const ACCOUNT_BASE = '/account/base';
   static const ACCOUNT_DETAIL = '/account/detail';
-  static const ACCOUNT_STORE = '/account/store';
+  static const ACCOUNT_ORDER = '/account/order';
   static const PRODUCTS_SEEN = '/products/seen';
   static const PRODUCTS_FAVOURITE = '/products/favourite';
   static const STORE_FOLLOWED = '/stores/followed';
   static const ACCOUNT_WALLET_VOUCHER = '/account/wallet_voucher';
   static const ACCOUNT_CASYCOIN = '/account/casycoin';
+  static const ACCOUNT_CHANGE_PASS = '/account/change_password';
   static const PRODUCT_DETAIL= '/product';
   static const PRODUCTS_BY_CATEGORY = '/products';
 

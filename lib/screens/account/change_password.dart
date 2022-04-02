@@ -9,7 +9,7 @@ import '../../theme/app_colors.dart';
 
 
 class ChangePasswordAccount extends StatelessWidget {
-  final ChangePasswordController c = Get.put(ChangePasswordController());
+  final ChangePasswordController c = Get.find<ChangePasswordController>();
   ChangePasswordAccount({Key? key}) : super(key: key);
 
   @override

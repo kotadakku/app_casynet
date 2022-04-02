@@ -13,6 +13,7 @@ class ChatProductWidget extends StatelessWidget {
     var isReadMore = false.obs;
     return ListView(
       scrollDirection: Axis.vertical,
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
         Padding(
@@ -39,6 +40,7 @@ class ChatProductWidget extends StatelessWidget {
 
         Obx(()=>ListView.builder(
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemCount: isReadMore.value ? chats.length : 5,
           itemBuilder: (context, index) => CardChatItem(

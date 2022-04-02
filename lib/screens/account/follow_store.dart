@@ -1,9 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import '../../controller/tabview_controller.dart';
 import '../../theme/app_colors.dart';
 import '../../widget/account/top_account_widget.dart';
 
@@ -12,8 +9,6 @@ class FollowedStorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TabWalletVoucherController _tabx =
-    Get.put(TabWalletVoucherController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

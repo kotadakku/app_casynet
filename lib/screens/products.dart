@@ -1,24 +1,24 @@
 
+import 'package:app_casynet/controller/products_controller.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import '../controller/home_controller.dart';
 import '../routes/app_pages.dart';
 import '../widget/home/reservation_home_widget.dart';
 import '../widget/bottom_widget.dart';
 import '../widget/home/category_bottom_widget.dart';
 
-class AllProductPage extends StatelessWidget {
-  final String title;
-  const AllProductPage({Key? key, required this.title}) : super(key: key);
+class ProductsPage extends StatelessWidget {
+  const ProductsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    HomeController radio_c = Get.put(HomeController());
+    var c = Get.find<ProductsController>();
+    var category = Get.arguments[0].toString();
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -43,7 +43,7 @@ class AllProductPage extends StatelessWidget {
                           ),),
                           SizedBox(width: 15,),
                           Text(
-                            title,
+                            category,
                             style: TextStyle(
                                 color: Color(0xffDFB400),
                                 fontSize: 18,
@@ -81,18 +81,18 @@ class AllProductPage extends StatelessWidget {
                   children: [
                     Radio(
                         value: true,
-                        groupValue: radio_c.isCar.value,
+                        groupValue: c.isCar.value,
                         onChanged: (value){
-                          radio_c.isCar.value = !radio_c.isCar.value;
+                          c.isCar.value = !c.isCar.value;
                         },
                         activeColor: Color(0xffDFB400)),
                     Text("Ô tô"),
                     SizedBox(width: 20,),
                     Radio(
                         value: false,
-                        groupValue: radio_c.isCar.value,
+                        groupValue: c.isCar.value,
                         onChanged: (value){
-                          radio_c.isCar.value = !radio_c.isCar.value;
+                          c.isCar.value = !c.isCar.value;
                         },
                         activeColor: Color(0xffDFB400)
                     ),

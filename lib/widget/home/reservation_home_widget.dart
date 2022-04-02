@@ -1,5 +1,5 @@
 
-import 'package:app_casynet/screens/all_product.dart';
+import 'package:app_casynet/screens/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -178,7 +178,7 @@ class ReservationWidget extends StatelessWidget {
   }
 
   void _view_more(title) {
-    Get.to(AllProductPage(title: title,));
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
   }
 }
 

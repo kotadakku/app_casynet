@@ -3,10 +3,8 @@ import 'package:app_casynet/widget/detail_store/gift_store_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-
 import '../../controller/home_controller.dart';
+import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../screens/detail_product.dart';
 import '../../screens/filter/filter_product_2.dart';
@@ -17,7 +15,6 @@ class ProductStoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController c = Get.put(HomeController());
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -33,28 +30,28 @@ class ProductStoreWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Obx(()=>Row(
-                          children: [
-                            Radio(
-                                value: true,
-                                groupValue: c.isCar.value,
-                                onChanged: (value){
-                                  c.isCar.value = !c.isCar.value;
-                                },
-                                activeColor: Color(0xffDFB400)),
-                            Text("Ô tô"),
-                            SizedBox(width: 20,),
-                            Radio(
-                                value: false,
-                                groupValue: c.isCar.value,
-                                onChanged: (value){
-                                  c.isCar.value = !c.isCar.value;
-                                },
-                                activeColor: Color(0xffDFB400)
-                            ),
-                            Text("Xe máy")
-                          ],
-                        ))
+                        // Obx(()=>Row(
+                        //   children: [
+                        //     Radio(
+                        //         value: true,
+                        //         groupValue: c.isCar.value,
+                        //         onChanged: (value){
+                        //           c.isCar.value = !c.isCar.value;
+                        //         },
+                        //         activeColor: Color(0xffDFB400)),
+                        //     Text("Ô tô"),
+                        //     SizedBox(width: 20,),
+                        //     Radio(
+                        //         value: false,
+                        //         groupValue: c.isCar.value,
+                        //         onChanged: (value){
+                        //           c.isCar.value = !c.isCar.value;
+                        //         },
+                        //         activeColor: Color(0xffDFB400)
+                        //     ),
+                        //     Text("Xe máy")
+                        //   ],
+                        // ))
 
                       ],
                     ),
@@ -93,7 +90,7 @@ class ProductStoreWidget extends StatelessWidget {
                           book_category: "Điện máy Đỗ Dũng"
                       ),
                       onTap: (){
-                        Get.to(DetailProductPage());
+                        Get.to(Routes.PRODUCT_DETAIL);
                       },
                     ),
                     ItemBookWidget(
@@ -144,6 +141,6 @@ class ProductStoreWidget extends StatelessWidget {
     );
   }
   void _filter_product() {
-    Get.to(FilterProductPage2());
+    Get.toNamed(Routes.FILTER);
   }
 }

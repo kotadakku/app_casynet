@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/controller/account/order_account_controller.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import '../../../widget/account/order_all_widget.dart';
 import '../../../widget/account/order_cancel_widget.dart';
 
 class OrderAccountPage extends StatelessWidget{
-  final MyTabController _tabx = Get.put(MyTabController());
+  var _tabx = Get.find<OrderAccountController>();
   OrderAccountPage({Key? key}) : super(key: key);
 
   @override
@@ -65,7 +66,7 @@ class OrderAccountPage extends StatelessWidget{
                             name_store: "Garage Minh Thức",
                           ),
                     ),
-                    Text("4343"),
+                    OrderCancelWidget(name_stores: ["Garage Minh Thức", "Siêu thị anh ninh"],),
                     OrderCancelWidget(name_stores: ["Garage Minh Thức", "Siêu thị anh ninh"],),
 
                   ],

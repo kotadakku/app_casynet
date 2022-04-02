@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../controller/tabview_controller.dart';
+import '../../controller/account/wallet_voucher_controller.dart';
 import '../../theme/app_colors.dart';
 
 class WalletVoucherPage extends StatelessWidget {
@@ -12,8 +12,7 @@ class WalletVoucherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TabWalletVoucherController _tabx =
-        Get.put(TabWalletVoucherController());
+    final WalletVoucherController _tabx = Get.find<WalletVoucherController>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -302,7 +301,9 @@ class WalletVoucherPage extends StatelessWidget {
                                       decoration: BoxDecoration(color: kYellowColor),
                                       child: Text(
                                         "AirPay- Tối đa 70k  ",
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(color: Colors.white,
+                                          fontSize: 12
+                                        ),
                                       ),
                                     ),
                                     Text("Mã miễn phí vận chuyển"),

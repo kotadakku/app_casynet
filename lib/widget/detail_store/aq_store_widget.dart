@@ -87,8 +87,6 @@ class AQStoreWidget extends StatelessWidget {
                           child: Container(
                             height: 40,
                             child: TextField(
-                              autofocus: false,
-                              autocorrect: false,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(5.0),
                                 hintText: "Đặt câu hỏi cho sản phẩm",

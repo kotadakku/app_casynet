@@ -1,9 +1,10 @@
-import 'package:app_casynet/screens/all_product.dart';
+import 'package:app_casynet/screens/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 
 class CategoryBottomWidget extends StatelessWidget {
@@ -94,7 +95,7 @@ class CategoryItemBottom extends StatelessWidget {
                 ],
               ))),
       onTap: (){
-        Get.to(AllProductPage(title: name,));
+        Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, 12] );
       },
     );
   }

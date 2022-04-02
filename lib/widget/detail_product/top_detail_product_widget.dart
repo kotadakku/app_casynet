@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 
 class TopDetailProductWidget extends StatelessWidget {
@@ -13,23 +14,7 @@ class TopDetailProductWidget extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         child: Container(
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: kTextColor,
-              offset: const Offset(
-                0.0,
-                13.0,
-              ),
-              blurRadius: 0.0,
-              spreadRadius: 1.0,
-            ), //BoxShadow
-            BoxShadow(
-              color: Colors.white,
-              offset: const Offset(0.0, 12.0),
-              blurRadius: 0.0,
-              spreadRadius: 0.0,
-            ),
-          ]),
+          decoration: BoxDecoration(),
           child: Row(
             children: [
               Flexible(
@@ -90,7 +75,7 @@ class TopDetailProductWidget extends StatelessWidget {
                       GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: (){
-                          Get.toNamed('/account/all_message');
+                          Get.toNamed(Routes.MESSAGES);
                         },
                         child: Container(
                           height: 30,
@@ -102,7 +87,7 @@ class TopDetailProductWidget extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: (){
-                          Get.toNamed('/cart');
+                          Get.toNamed(Routes.CART);
                         },
                         behavior: HitTestBehavior.translucent,
                         child: Container(
@@ -123,10 +108,10 @@ class TopDetailProductWidget extends StatelessWidget {
                         ),
                         onSelected: (value) {
                           switch(value){
-                            case 'home': Get.toNamed('/home'); break;
-                            case 'product': Get.toNamed('/product/seen_product'); break;
-                            case 'account': Get.toNamed('/account/login'); break;
-                            case 'help': Get.toNamed('/detail');
+                            case 'home': Get.toNamed(Routes.HOME); break;
+                            case 'product': Get.toNamed(Routes.PRODUCTS_SEEN); break;
+                            case 'account': Get.toNamed(Routes.ACCOUNT_LOGIN); break;
+                            case 'help': Get.toNamed(Routes.INFORMATION_APP);
                           }
                         },
                         itemBuilder: (context) => [
