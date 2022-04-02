@@ -1,3 +1,4 @@
+import 'package:app_casynet/routes/app_pages.dart';
 import 'package:app_casynet/store/new_created_store.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -94,7 +95,7 @@ class Cart3 extends StatelessWidget {
                               textStyle: const TextStyle(fontSize: 18),
                             ),
                             onPressed: () {
-                              Get.to(NewCreatedStore());
+                              Get.toNamed(Routes.HOME);
                             },
                             child: const Text(
                               'TIẾP TỤC MUA SẮM',

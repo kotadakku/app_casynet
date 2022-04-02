@@ -44,6 +44,7 @@ dependencies:
   intl:
   flutter_slidable:
   dropdown_button2:
+  flutter_staggered_grid_view:
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/store/ic_edit.png
+    - assets/store/ic_trash.png
+    - assets/store/ic_eye_slash.png
+    - assets/store/img_sanpham.svg
+    - assets/store/ic_filter.svg
+    - assets/store/ic_plus.svg
     - assets/store/img_donhang.png
     - assets/store/img_money.png
     - assets/store/img_74.png

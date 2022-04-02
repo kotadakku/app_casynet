@@ -11,5 +11,4 @@ class FilterProductBindings extends Bindings{
     Get.lazyPut(() => FilterPriceController());
     Get.lazyPut(() => FilterOriginController());
   }
-
 }
