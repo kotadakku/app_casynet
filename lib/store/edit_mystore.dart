@@ -989,6 +989,7 @@ class EditMyStore extends StatelessWidget {
                           // padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
                           child: InkWell(
                               onTap: () {
+                                print("Chụp ảnh");
                               },
                               // splashColor: Colors.black26,
                               splashColor: Color.fromARGB(255, 188, 195, 216),
@@ -1038,33 +1039,30 @@ class EditMyStore extends StatelessWidget {
 
                 ),
                 Container(
+                    // alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     margin: EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
                     padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                            },
-                            // splashColor: Colors.black26,
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Hủy",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 0, 85, 170),
-                                      fontSize: 15),
-                                )
-                              ],
-                            ))
-                      ],
-                    )),
+                    child: InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        // splashColor: Colors.black26,
+                        splashColor: Color.fromARGB(255, 188, 195, 216),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Hủy",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 85, 170),
+                                  fontSize: 15),
+                            )
+                          ],
+                        ))),
               ],
             ),
           );
