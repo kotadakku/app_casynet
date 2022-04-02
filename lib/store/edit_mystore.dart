@@ -53,7 +53,7 @@ class EditMyStore extends StatelessWidget {
                               height: 100,
                               child: OutlinedButton(
                                 onPressed: () {
-                                  // _tripEditModalBottomSheet(context);
+                                  _tripEditModalBottomSheet(context);
                                 },
                                 child: Text(
                                   "Sửa",
@@ -925,5 +925,149 @@ class EditMyStore extends StatelessWidget {
         ),
       ),
     );
+  }
+  _tripEditModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext bc) {
+          return Container(
+            child: Column(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * .30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  margin: EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          // padding: const EdgeInsets.only(top: 15, bottom: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Sửa hình đại diện",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 188, 195, 216),
+                                    fontSize: 15),
+                              ),
+                            ],)
+                      ),
+                      Divider(
+                        height: 2.0,
+                      ),
+                      Expanded(
+                          flex: 1,
+                          // padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
+                          child: InkWell(
+                              onTap: () {
+                              },
+                              // splashColor: Colors.black26,
+                              splashColor: Color.fromARGB(255, 188, 195, 216),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Sửa",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 0, 85, 170),
+                                        fontSize: 15),
+                                  )
+                                ],
+                              ))),
+
+                      Divider(
+                        height: 2.0,
+                      ),
+                      Expanded(
+                          flex: 1,
+                          // padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
+                          child: InkWell(
+                              onTap: () {
+                              },
+                              // splashColor: Colors.black26,
+                              splashColor: Color.fromARGB(255, 188, 195, 216),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Chụp ảnh",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 0, 85, 170),
+                                        fontSize: 15),
+                                  )
+                                ],
+                              ))),
+
+                      Divider(
+                        height: 2.0,
+                      ),
+                      Expanded(
+                          flex: 1,
+                          // padding: const EdgeInsets.only(top: 15, bottom: 10, left: 5.0,right: 5.0),
+                          child: InkWell(
+                              onTap: () {
+                              },
+                              // splashColor: Colors.black26,
+                              splashColor: Color.fromARGB(255, 188, 195, 216),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Chọn có sẵn",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 0, 85, 170),
+                                        fontSize: 15),
+                                  )
+                                ],
+                              ))),
+
+
+
+
+                    ],
+                  ),
+                ),
+                Divider(
+                  height: 5.0,
+
+                ),
+                Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    margin: EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
+                    padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                            onTap: () {
+                            },
+                            // splashColor: Colors.black26,
+                            splashColor: Color.fromARGB(255, 188, 195, 216),
+                            child: Row(
+                              // mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Hủy",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 85, 170),
+                                      fontSize: 15),
+                                )
+                              ],
+                            ))
+                      ],
+                    )),
+              ],
+            ),
+          );
+        });
   }
 }

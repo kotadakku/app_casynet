@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../controller/home_controller.dart';
 import '../../theme/app_colors.dart';
-
+/* */
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
 

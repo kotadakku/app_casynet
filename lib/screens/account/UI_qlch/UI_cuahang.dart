@@ -1,4 +1,6 @@
+import 'package:app_casynet/screens/account/UI_qlch/UI_cacmenuch/UI_quanlyquatang/UI_Quanlyquatang.dart';
 import 'package:app_casynet/screens/account/UI_qlch/UI_cacmenuch/UI_dichvusanpham/UI_Dichvusanpham.dart';
+import 'package:app_casynet/screens/account/UI_qlch/UI_cacmenuch/UI_quanlythongbao/UI_Quanlythongbao.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -162,7 +164,9 @@ class menucuahang extends StatelessWidget {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(quanlyquatang());
+                  },
                 ),
               ),
               Container(
@@ -186,7 +190,9 @@ class menucuahang extends StatelessWidget {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(quanlythongbao());
+                  },
                 ),
               ),
               Container(
