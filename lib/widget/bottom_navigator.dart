@@ -90,15 +90,15 @@ class BottomNavigator extends StatelessWidget {
   }
   void _onItemTapped(int index) {
     switch(index){
-      case 0: Get.offNamed(Routes.HOME);
+      case 0: Get.toNamed(Routes.HOME);
       break;
-      case 1: Get.offNamed(Routes.NOTIFICATIONS);
+      case 1: Get.toNamed(Routes.NOTIFICATIONS);
       break;
-      case 2: Get.offNamed(Routes.CART);
+      case 2: Get.toNamed(Routes.CART);
       break;
-      case 3: Get.offNamed(Routes.ACCOUNT_LOGIN);
+      case 3: Get.toNamed(Routes.ACCOUNT_LOGIN);
       break;
-      case 4: Get.offNamed(Routes.INFORMATION_APP);
+      case 4: Get.toNamed(Routes.INFORMATION_APP);
       break;
     };
     selectedIndex.value = index;
