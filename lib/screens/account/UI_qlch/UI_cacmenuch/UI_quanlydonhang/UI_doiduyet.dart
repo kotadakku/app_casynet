@@ -239,7 +239,7 @@ class doiduyet extends StatelessWidget {
       child: SingleChildScrollView(
         child: Obx(
               () => Container(
-            color: Color.fromRGBO(200, 200, 200, 200),
+                  color: Color.fromARGB(255, 241, 243, 253),
             child: ListView.builder(
               itemCount: xemthem.toInt(),
               physics: NeverScrollableScrollPhysics(),

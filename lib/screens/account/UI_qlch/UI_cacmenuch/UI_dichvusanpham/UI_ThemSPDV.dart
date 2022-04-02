@@ -48,8 +48,6 @@ class themspdv extends StatelessWidget {
   }
 
   Widget themspdvs(BuildContext context) {
-    File file = new File(
-        "/data/user/0/com.example.app_casynet/cache/image_picker2429502788362259276.jpg");
     List<dynamic> imagepicker = [].obs;
     var x = "".obs;
     File imagepk;
@@ -64,7 +62,7 @@ class themspdv extends StatelessWidget {
     }
 
     return Container(
-      color: Color.fromRGBO(200, 200, 200, 200),
+      color: Color.fromARGB(255, 241, 243, 253),
       child: Obx(
         () => SingleChildScrollView(
           child: ListView(
@@ -108,8 +106,7 @@ class themspdv extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(20.0),
-                                          color: Color.fromARGB(
-                                              255, 179, 177, 177),
+                                          color: Color.fromARGB(255, 241, 243, 253),
                                           border: Border.all(
                                             width: 1,
                                             style: BorderStyle.solid,
@@ -161,7 +158,7 @@ class themspdv extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 90,
+                height: 100,
                 color: Colors.white,
                 margin: EdgeInsets.only(bottom: 10),
                 child: Column(
@@ -195,6 +192,7 @@ class themspdv extends StatelessWidget {
                           border: InputBorder.none,
                         ),
                         maxLength: 120,
+                        maxLines: 2,
                         controller: tensanpham,
                         onChanged: (text) {
                           demtensanpham.value = text.length;
@@ -207,7 +205,7 @@ class themspdv extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(bottom: 10),
                 color: Colors.white,
-                height: 90,
+                height: 100,
                 child: Column(
                   children: [
                     Container(
@@ -239,6 +237,7 @@ class themspdv extends StatelessWidget {
                           border: InputBorder.none,
                         ),
                         maxLength: 3000,
+                        maxLines: 2,
                         controller: tensanpham,
                         onChanged: (text) {
                           demtensanpham.value = text.length;

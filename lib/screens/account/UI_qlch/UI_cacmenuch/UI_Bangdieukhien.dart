@@ -34,7 +34,7 @@ class bangdieukhien extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                color: Color.fromRGBO(200, 200, 200, 200),
+                color: Color.fromARGB(255, 241, 243, 253),
                 child: Wrap(
                   children: [
                     Container(

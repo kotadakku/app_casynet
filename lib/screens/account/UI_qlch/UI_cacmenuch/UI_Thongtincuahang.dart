@@ -30,7 +30,7 @@ class thongtincuahang extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            color: Color.fromRGBO(200, 200, 200, 200),
+            color: Color.fromARGB(255, 241, 243, 253),
             child: ListView(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,

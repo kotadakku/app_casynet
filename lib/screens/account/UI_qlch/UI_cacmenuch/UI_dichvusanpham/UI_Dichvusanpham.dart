@@ -56,7 +56,7 @@ class dichvusanpham extends StatelessWidget {
       ),
       body: Obx(
         () => Container(
-          color: Color.fromRGBO(200, 200, 200, 200),
+          color: Color.fromARGB(255, 241, 243, 253),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -73,6 +73,7 @@ class dichvusanpham extends StatelessWidget {
                         child: Column(
                           children: [
                             Container(
+                              margin: new EdgeInsets.only(left: 10,right: 10),
                               decoration: BoxDecoration(
                                   border: Border(
                                     bottom: BorderSide(
