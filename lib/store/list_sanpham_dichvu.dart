@@ -204,9 +204,9 @@ class SanPhamDichVu extends StatelessWidget {
                                           size = 4;
                                         return GridView.builder(
                                           shrinkWrap: true,
-                                          itemCount: 5,
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
+                                          itemCount: 20,
+                                          // physics:
+                                          //     NeverScrollableScrollPhysics(),
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: size,
@@ -318,116 +318,144 @@ class SanPhamDichVu extends StatelessWidget {
                                                       PopupMenuButton(
                                                           elevation: 20,
                                                           enabled: true,
-                                                          offset: Offset(0, 0),// điểm xuất phát
+                                                          offset: Offset(0, 0),
+                                                          // điểm xuất phát
                                                           child: Icon(
                                                             Icons.more_horiz,
                                                             color: kTextColor,
                                                           ),
                                                           onSelected: (value) {
-                                                            switch(value){
-                                                              case 'home': Get.toNamed('/home'); break;
-                                                              case 'product': Get.toNamed('/product/seen_product'); break;
-                                                              case 'account': Get.toNamed('/account/login');
+                                                            switch (value) {
+                                                              case 'home':
+                                                                Get.toNamed(
+                                                                    '/home');
+                                                                break;
+                                                              case 'product':
+                                                                Get.toNamed(
+                                                                    '/product/seen_product');
+                                                                break;
+                                                              case 'account':
+                                                                Get.toNamed(
+                                                                    '/account/login');
                                                             }
                                                           },
-                                                          itemBuilder: (context) => [
-                                                            PopupMenuItem(
-                                                              child: Row(
-                                                                children: [
-                                                                  Container(
-                                                                    child: Image.asset("assets/store/ic_eye_slash.png",color: kTextColor,width: 20,height: 20,),
-                                                                    padding: EdgeInsets.only(
-                                                                        bottom: 15,
-                                                                        right: 10
+                                                          itemBuilder:
+                                                              (context) => [
+                                                                    PopupMenuItem(
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            child:
+                                                                                Image.asset(
+                                                                              "assets/store/ic_eye_slash.png",
+                                                                              color: kTextColor,
+                                                                              width: 20,
+                                                                              height: 20,
+                                                                            ),
+                                                                            padding:
+                                                                                EdgeInsets.only(bottom: 15, right: 10),
+                                                                          ),
+                                                                          Expanded(
+                                                                              child: Column(
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Text(
+                                                                                "Ẩn",
+                                                                                style: TextStyle(color: kTextColor),
+                                                                              ),
+                                                                              Divider(
+                                                                                color: kTextColor,
+                                                                                height: 20,
+                                                                                thickness: 1,
+                                                                              ),
+                                                                            ],
+                                                                          ))
+                                                                        ],
+                                                                      ),
+                                                                      value:
+                                                                          "home",
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                      child: Column(
-                                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                    PopupMenuItem(
+                                                                      child:
+                                                                          Row(
                                                                         children: [
-                                                                          Text("Ẩn",
-                                                                            style: TextStyle(
-                                                                                color: kTextColor
+                                                                          Container(
+                                                                            child:
+                                                                                Image.asset(
+                                                                              "assets/store/ic_trash.png",
+                                                                              color: kTextColor,
+                                                                              width: 20,
+                                                                              height: 20,
                                                                             ),
+                                                                            padding:
+                                                                                EdgeInsets.only(bottom: 15, right: 10),
                                                                           ),
-                                                                          Divider(
-                                                                            color: kTextColor,
-                                                                            height: 20,
-                                                                            thickness: 1,
-                                                                          ),
+                                                                          Expanded(
+                                                                              child: Column(
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Text(
+                                                                                "Xóa",
+                                                                                style: TextStyle(color: kTextColor),
+                                                                              ),
+                                                                              Divider(
+                                                                                color: kTextColor,
+                                                                                height: 20,
+                                                                                thickness: 1,
+                                                                              ),
+                                                                            ],
+                                                                          ))
                                                                         ],
-                                                                      )
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              value: "home",
-                                                            ),
-                                                            PopupMenuItem(
-                                                              child: Row(
-                                                                children: [
-                                                                  Container(
-                                                                    child: Image.asset("assets/store/ic_trash.png",color: kTextColor,width: 20,height: 20,),
-                                                                    padding: EdgeInsets.only(
-                                                                        bottom: 15, right: 10),
-                                                                  ),
-                                                                  Expanded(
-                                                                      child: Column(
-                                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                      ),
+                                                                      value:
+                                                                          "product",
+                                                                    ),
+                                                                    PopupMenuItem(
+                                                                      child:
+                                                                          Row(
                                                                         children: [
-                                                                          Text(
-                                                                            "Xóa",
-                                                                            style: TextStyle(
-                                                                                color: kTextColor
+                                                                          Container(
+                                                                            child:
+                                                                                Image.asset(
+                                                                              "assets/store/ic_edit.png",
+                                                                              color: kTextColor,
+                                                                              width: 20,
+                                                                              height: 20,
                                                                             ),
+                                                                            padding:
+                                                                                EdgeInsets.only(bottom: 15, right: 10),
                                                                           ),
-                                                                          Divider(
-                                                                            color: kTextColor,
-                                                                            height: 20,
-                                                                            thickness: 1,
-                                                                          ),
+                                                                          Expanded(
+                                                                              child: Column(
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Text(
+                                                                                "Sửa",
+                                                                                style: TextStyle(color: kTextColor),
+                                                                              ),
+                                                                              Divider(
+                                                                                color: kTextColor,
+                                                                                height: 20,
+                                                                                thickness: 1,
+                                                                              ),
+                                                                            ],
+                                                                          ))
                                                                         ],
-                                                                      )
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              value: "product",
-                                                            ),
-                                                            PopupMenuItem(
-                                                              child: Row(
-                                                                children: [
-                                                                  Container(
-                                                                    child: Image.asset("assets/store/ic_edit.png",color: kTextColor,width: 20,height: 20,),
-
-                                                                    padding: EdgeInsets.only(
-                                                                        bottom: 15,
-                                                                        right: 10),
-                                                                  ),
-                                                                  Expanded(
-                                                                      child: Column(
-                                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Text("Sửa",
-                                                                            style: TextStyle(
-                                                                                color: kTextColor
-                                                                            ),
-                                                                          ),
-                                                                          Divider(
-                                                                            color: kTextColor,
-                                                                            height: 20,
-                                                                            thickness: 1,
-                                                                          ),
-                                                                        ],
-                                                                      )
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              value: "account",
-                                                            ),
-                                                          ]
-                                                      )
+                                                                      ),
+                                                                      value:
+                                                                          "account",
+                                                                    ),
+                                                                  ])
                                                     ],
                                                   ),
                                                 ],
@@ -438,6 +466,23 @@ class SanPhamDichVu extends StatelessWidget {
                                         );
                                       }),
                                     ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.only(left: 10, right: 10),
+                                      height: 50,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.check_box_outlined,
+                                            color: Colors.amber,
+                                          ),
+                                          SizedBox(width: 5,),
+                                          Text("Chọn tất cả", style: TextStyle(fontSize: 15),)
+                                        ],
+                                      ),
+                                    )
                                   ],
                                 ),
                                 Text("36363636"),
