@@ -1,6 +1,5 @@
-import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-
 import '../../../widget/account/order_cancel_widget.dart';
 import '../../../widget/account/top_account_widget.dart';
 
@@ -160,8 +159,6 @@ class OrderDetailCancel extends StatelessWidget {
                 thickness: 10,
               ),
               OrderCancelWidget(name_stores: ["Garage Minh Thức"]),
-
-
             ],
           ),
         ),

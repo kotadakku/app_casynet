@@ -1,8 +1,9 @@
-import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/screens/auth/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../routes/app_pages.dart';
+import '../../theme/app_colors.dart';
 import '../../widget/account/menu_account_widget.dart';
 import '../../widget/account/top_account_widget.dart';
 import '../../widget/bottom_navigator.dart';
@@ -34,9 +35,7 @@ class AccountBasePage extends StatelessWidget {
                         width: 150,
                         child: OutlinedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (builder){
-                              return AuthPage();
-                            }));
+                            Get.toNamed(Routes.AUTH);
                           },
                           child: Text("Đăng nhập"),
                           style: OutlinedButton.styleFrom(
@@ -50,9 +49,7 @@ class AccountBasePage extends StatelessWidget {
                         width: 150,
                         child: OutlinedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (builder){
-                              return AuthPage();
-                            }));
+                            Get.toNamed(Routes.AUTH);
                           },
                           child: Text("Đăng ký"),
                           style: OutlinedButton.styleFrom(

@@ -2,7 +2,7 @@ import 'package:app_casynet/screens/benefit/widget/step_benefit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../containts/colors.dart';
+import '../../theme/app_colors.dart';
 import '../../widget/account/top_account_widget.dart';
 
 class Introduction extends StatelessWidget {

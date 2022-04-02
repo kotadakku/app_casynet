@@ -1,7 +1,8 @@
 
-import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/app_colors.dart';
 import '../home/reservation_home_widget.dart';
 
 class FeaturedProductWidget extends StatelessWidget {

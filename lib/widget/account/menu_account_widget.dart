@@ -1,4 +1,3 @@
-import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/screens/account/UI_qlch/UI_cuahang.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
+import '../../routes/app_pages.dart';
+import '../../theme/app_colors.dart';
 import '../../screens/account/casycoin_manager.dart';
 import '../../screens/account/favourite_product.dart';
 import '../../screens/account/follow_store.dart';
-import '../../screens/account/infor_account.dart';
+import '../../screens/account/detail_account.dart';
 import '../../screens/account/address/information_address.dart';
 import '../../screens/account/order/order_account.dart';
-import '../../screens/account/seen_product.dart';
 import '../../screens/account/wallet_voucher.dart';
 
 
@@ -41,7 +40,7 @@ class MenuAccountWidget extends StatelessWidget {
       switch (e) {
         case "Thông tin tài khoản":
           icon = FontAwesomeIcons.user;
-          nav=() { Get.to(InformationAccount());};
+          nav=() { Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: {"userId": 12});};
           break;
         case "Địa chỉ":
           icon = FontAwesomeIcons.mapLocation;
@@ -49,35 +48,35 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;
-          nav=() { Get.toNamed('/account/all_message');};
+          nav=() { Get.toNamed(Routes.MESSAGES, arguments: {"userId": 12});};
           break;
         case "Đơn hàng":
           icon = FontAwesomeIcons.bagShopping;
-          nav=() { Get.to(OrderAccount());};
+          nav=() { Get.toNamed(Routes.ACCOUNT_STORE, arguments: {"userId": 12});};
           break;
         case "Thông báo":
           icon = FontAwesomeIcons.bell;
-          nav=() { Get.offAll(NotificationPage());};
+          nav=() { Get.offNamed(Routes.NOTIFICATIONS, arguments: {"userId": 12});};
           break;
         case "Ví Voucher":
           icon = FontAwesomeIcons.wallet;
-          nav=() {Get.to(WalletVoucher());};
+          nav=() {Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER, arguments: {"userId": 12});};
           break;
         case "Quản lý tích điểm":
           icon = FontAwesomeIcons.bitcoin;
-          nav =(){Get.to(CasycoinManager());};
+          nav =(){Get.toNamed(Routes.ACCOUNT_CASYCOIN, arguments: {"userId": 12});};
           break;
         case "Sản phẩm yêu thích":
           icon = FontAwesomeIcons.heart;
-          nav =(){Get.to(FavouriteProduct());};
+          nav =(){Get.toNamed(Routes.PRODUCTS_FAVOURITE, arguments: {"userId": 12});};
           break;
         case "Cửa hàng theo dõi":
           icon = FontAwesomeIcons.store;
-          nav =(){Get.to(FollowedStore());};
+          nav =(){Get.toNamed(Routes.STORE_FOLLOWED, arguments: {"userId": 12});};
           break;
         case "Sản phẩm đã xem":
           icon = FontAwesomeIcons.eye;
-          nav =(){Get.toNamed('/product/seen_product');};
+          nav =(){Get.toNamed(Routes.PRODUCTS_SEEN, arguments: {"userId": 12});};
           break;
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;

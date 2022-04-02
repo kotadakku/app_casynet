@@ -6,8 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
+import '../../theme/app_colors.dart';
 
 class RevervationProductWidget extends StatelessWidget {
   const RevervationProductWidget({Key? key}) : super(key: key);

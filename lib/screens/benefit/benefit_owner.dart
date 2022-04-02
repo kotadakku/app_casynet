@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 import '../../widget/account/top_account_widget.dart';
 
 class BenefitOwner extends StatelessWidget {
@@ -46,7 +46,7 @@ class BenefitOwner extends StatelessWidget {
                         },
                         child: Icon(
                           Icons.arrow_back_ios,
-                          size: sizeStar.height,
+                          size: sizeIcon.height,
                         ),
                       )),
                   Text(

@@ -1,4 +1,4 @@
-import 'package:app_casynet/containts/colors.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -6,7 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../containts/size.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 
 class InformationProductWidget extends StatelessWidget {
   const InformationProductWidget({Key? key}) : super(key: key);
@@ -62,11 +63,11 @@ class InformationProductWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_half_outlined , size: sizeStar.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                     SizedBox(width: 5,),
                     Text("4.5", style: TextStyle(
                         color: kTextColor_gray
@@ -75,7 +76,7 @@ class InformationProductWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.warning, color: kYellowColor, size: sizeStar.width),
+                    Icon(Icons.warning, color: kYellowColor, size: sizeIcon.width),
                     Text("Báo xấu: ",
                       style: TextStyle(
                         color: kTextColor_gray
@@ -116,7 +117,7 @@ class InformationProductWidget extends StatelessWidget {
           SizedBox(height: 10,),
           Row(
             children: [
-              SvgPicture.asset("assets/detail_product/gift.svg", width: sizeStar.width),
+              SvgPicture.asset("assets/detail_product/gift.svg", width: sizeIcon.width),
               SizedBox(width: 5,),
               Text("Quà tặng của của hàng: "),
               Container(
@@ -186,7 +187,7 @@ class InformationProductWidget extends StatelessWidget {
           SizedBox(height: 10,),
           Row(
             children: [
-              SvgPicture.asset("assets/detail_product/coin.svg", width: sizeStar.width),
+              SvgPicture.asset("assets/detail_product/coin.svg", width: sizeIcon.width),
               SizedBox(width: 5,),
               Text("Mua hàng và tích "),
               Text("800 ", style: TextStyle(
@@ -198,7 +199,7 @@ class InformationProductWidget extends StatelessWidget {
               ),),
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: Icon(Icons.help, color: Colors.blue, size: sizeStar.width,),
+                child: Icon(Icons.help, color: Colors.blue, size: sizeIcon.width,),
               )
             ],
           ),
@@ -390,7 +391,7 @@ class InformationProductWidget extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.map_outlined, color: kYellowColor, size: sizeStar.width,),
+                              Icon(Icons.map_outlined, color: kYellowColor, size: sizeIcon.width,),
                               SizedBox(width: 5,),
                               Text("Bản đồ",
                                 style: TextStyle(

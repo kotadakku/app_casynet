@@ -1,7 +1,8 @@
 
-import 'package:app_casynet/containts/colors.dart';
 import 'package:app_casynet/widget/detail_store/gift_store_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../theme/app_colors.dart';
 
 class NewsStoreWidget extends StatelessWidget {
   const NewsStoreWidget({Key? key}) : super(key: key);

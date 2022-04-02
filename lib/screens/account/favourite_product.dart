@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
 import '../../controller/tabview_controller.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 import '../../widget/account/top_account_widget.dart';
 
-class FavouriteProduct extends StatelessWidget {
-  const FavouriteProduct({Key? key}) : super(key: key);
+class FavouriteProductPage extends StatelessWidget {
+  const FavouriteProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -125,11 +124,11 @@ class FavouriteProduct extends StatelessWidget {
                                         children: [
                                           Row(
                                             children: [
-                                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                              Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                              Icon(Icons.star_half_outlined , size: sizeStar.width, color: kYellowColor,),
+                                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                              Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                                               SizedBox(width: 10),
                                               Text("Mã: 235345345",
                                                 style: TextStyle(

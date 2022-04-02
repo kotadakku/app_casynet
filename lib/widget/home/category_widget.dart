@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/routes/app_pages.dart';
 import 'package:app_casynet/screens/all_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +47,7 @@ class ItemCategoryWidget extends StatelessWidget {
         return GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: (){
-            Get.to(AllProductPage(title: title,));
+            Get.toNamed(Routes.PRODUCTS_BY_CATEGORY);
           },
           child: Container(
             width: constraint.maxWidth / 3,

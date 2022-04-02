@@ -1,11 +1,9 @@
 
-import 'package:app_casynet/containts/size.dart';
 import 'package:app_casynet/widget/filter/district_product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import '../../containts/colors.dart';
+import '../../theme/app_sizes.dart';
 import '../../widget/account/top_account_widget.dart';
 import '../../widget/filter/attribute_product_widget.dart';
 import '../../widget/filter/bottom_button.dart';
@@ -32,7 +30,7 @@ class FilterProductPage2 extends StatelessWidget {
                       GestureDetector(
                         child: Container(
                           margin: EdgeInsets.all(5.0),
-                          child: Icon(Icons.arrow_back_ios, size: sizeStar.width,),
+                          child: Icon(Icons.arrow_back_ios, size: sizeIcon.width,),
                         ),
                         onTap: (){
                           Get.back();

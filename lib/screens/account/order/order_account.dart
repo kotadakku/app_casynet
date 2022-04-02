@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../containts/colors.dart';
+import '../../../theme/app_colors.dart';
 import '../../../controller/detail_store_controller.dart';
-import '../../../controller/tabview_controller.dart';
 import '../../../widget/account/order_all_widget.dart';
 import '../../../widget/account/order_cancel_widget.dart';
 
-class OrderAccount extends StatelessWidget{
+class OrderAccountPage extends StatelessWidget{
   final MyTabController _tabx = Get.put(MyTabController());
-  OrderAccount({Key? key}) : super(key: key);
+  OrderAccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

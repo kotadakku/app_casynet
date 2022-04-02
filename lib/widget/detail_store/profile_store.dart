@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 import '../../data.dart';
+import '../../theme/app_colors.dart';
 
 class ProfileStoreWidget extends StatelessWidget {
   var id = Get.parameters['storeId'] ?? 1;
@@ -78,7 +79,7 @@ class ProfileStoreWidget extends StatelessWidget {
                       Icon(
                         Icons.supervisor_account,
                         color: kYellowColor,
-                        size: sizeStar.width,
+                        size: sizeIcon.width,
                       ),
                       Text(
                         "1.2k người theo dõi",
@@ -101,7 +102,7 @@ class ProfileStoreWidget extends StatelessWidget {
                                 child: Icon(
                                   Icons.share,
                                   color: kYellowColor,
-                                  size: sizeStar.width,
+                                  size: sizeIcon.width,
                                 ),
                               ),
                               Text(
@@ -132,7 +133,7 @@ class ProfileStoreWidget extends StatelessWidget {
                                 child: Icon(
                                   Icons.message_outlined,
                                   color: kYellowColor,
-                                  size: sizeStar.width,
+                                  size: sizeIcon.width,
                                 ),
                               ),
                               Text(

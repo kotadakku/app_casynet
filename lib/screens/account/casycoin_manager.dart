@@ -1,15 +1,14 @@
 
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
 import '../../controller/tabview_controller.dart';
+import '../../theme/app_colors.dart';
 
-class CasycoinManager extends StatelessWidget {
-  const CasycoinManager({Key? key}) : super(key: key);
+class CasycoinManagerPage extends StatelessWidget {
+  const CasycoinManagerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

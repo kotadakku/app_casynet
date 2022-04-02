@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 
 class BenefitStore extends StatelessWidget {
   const BenefitStore({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class BenefitStore extends StatelessWidget {
                               },
                               child: Icon(
                                 Icons.arrow_back_ios,
-                                size: sizeStar.height,
+                                size: sizeIcon.height,
                               ),
                             )
                         ),

@@ -1,16 +1,18 @@
-import 'package:app_casynet/containts/colors.dart';
+
 import 'package:app_casynet/screens/account/account_base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../Cart/cart.dart';
+import '../routes/app_pages.dart';
 import '../screens/account/account_login.dart';
-import '../screens/account/infor_account.dart';
+import '../screens/account/detail_account.dart';
 import '../screens/account/order/order_account.dart';
-import '../screens/details.dart';
+import '../screens/detail_app.dart';
 import '../screens/home.dart';
 import '../screens/notfications.dart';
+import '../theme/app_colors.dart';
 
 class BottomNavigator extends StatelessWidget {
   var selectedIndex = 0.obs;
@@ -88,15 +90,15 @@ class BottomNavigator extends StatelessWidget {
   }
   void _onItemTapped(int index) {
     switch(index){
-      case 0: Get.offNamed("/home");
+      case 0: Get.offNamed(Routes.HOME);
       break;
-      case 1: Get.off(NotificationPage());
+      case 1: Get.offNamed(Routes.NOTIFICATIONS);
       break;
-      case 2: Get.to(Cart());
+      case 2: Get.offNamed(Routes.CART);
       break;
-      case 3: Get.offNamed('/account/login');
+      case 3: Get.offNamed(Routes.ACCOUNT_LOGIN);
       break;
-      case 4: Get.to(DetailsPage());
+      case 4: Get.offNamed(Routes.INFORMATION_APP);
       break;
     };
     selectedIndex.value = index;

@@ -1,6 +1,5 @@
-import 'package:app_casynet/containts/colors.dart';
-import 'package:app_casynet/containts/size.dart';
-import 'package:app_casynet/widget/detail_product/information_store_widget.dart';
+import 'package:app_casynet/theme/app_colors.dart';
+import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,10 +14,10 @@ import '../widget/detail_store/product_store.dart';
 import '../widget/detail_store/profile_store.dart';
 import '../widget/detail_store/vote_store_widget.dart';
 
-class DetailsStore extends StatelessWidget {
+class DetailsStorePage extends StatelessWidget {
   final TabStoreController _tabx = Get.put(TabStoreController());
 
-  DetailsStore({Key? key}) : super(key: key);
+  DetailsStorePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +114,7 @@ class DetailsStore extends StatelessWidget {
                                   child: Icon(
                                     Icons.map,
                                     color: kYellowColor,
-                                    size: sizeStar.width,
+                                    size: sizeIcon.width,
                                   ),
                                 ),
                                 Text(

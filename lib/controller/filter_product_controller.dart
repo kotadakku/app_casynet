@@ -3,18 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 
-class FilterBinding extends Bindings{
-  @override
-  void dependencies() {
-    Get.lazyPut(() => FilterDisplayController());
-    Get.lazyPut(() => FilterAttrController());
-    Get.lazyPut(() => FilterCategoriesController());
-    Get.lazyPut(() => FilterDistrictController());
-    Get.lazyPut(() => FilterPriceController());
-    Get.lazyPut(() => FilterOriginController());
-  }
 
-}
 class FilterDisplayController extends GetxController with GetSingleTickerProviderStateMixin{
   var display = "Danh sách".obs;
   var more_display = true.obs;

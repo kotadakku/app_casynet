@@ -1,9 +1,9 @@
 
-import 'package:app_casynet/containts/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../containts/colors.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_sizes.dart';
 
 class BottomWidget extends StatelessWidget {
   const BottomWidget({Key? key}) : super(key: key);
@@ -57,11 +57,11 @@ class BottomWidget extends StatelessWidget {
                                 // Image.asset(name)
                                 Row(
                                   children: [
-                                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                                    Icon(Icons.star_half_outlined , size: sizeStar.width, color: kYellowColor,),
+                                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                    Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                                   ],
                                 ),
                                 Text("38.000 bình chọn",

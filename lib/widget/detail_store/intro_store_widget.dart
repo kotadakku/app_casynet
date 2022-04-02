@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../containts/colors.dart';
-import '../../containts/size.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 import '../../screens/detail_product.dart';
 import '../home/reservation_home_widget.dart';
 import 'gift_store_widget.dart';
@@ -25,7 +25,7 @@ class IntroStoreWidget extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: Icon(Icons.watch_later, size: sizeStar.width, color: kYellowColor,),
+                child: Icon(Icons.watch_later, size: sizeIcon.width, color: kYellowColor,),
               ),
 
               Text("Giờ mở cửa  "),
@@ -41,7 +41,7 @@ class IntroStoreWidget extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: Icon(Icons.phone, size: sizeStar.width, color: kYellowColor,),
+                child: Icon(Icons.phone, size: sizeIcon.width, color: kYellowColor,),
               ),
               Text("Điện thoại  "),
               Text("0962.68.87.68",
@@ -58,7 +58,7 @@ class IntroStoreWidget extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: Icon(Icons.location_on_rounded, color: kYellowColor,size: sizeStar.width,),
+                child: Icon(Icons.location_on_rounded, color: kYellowColor,size: sizeIcon.width,),
               ),
 
               Expanded(child: Text("Địa chỉ: 587 đường Phúc Diễn, Xuân Phương, Nam Từ Liêm, Hà Nội",),)
@@ -150,7 +150,7 @@ class IntroStoreWidget extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: Icon(Icons.add, color: kYellowColor, size: sizeStar.width,),
+                child: Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
               ),
               Text("Tham gia: "),
               Text("3 năm",
@@ -168,11 +168,11 @@ class IntroStoreWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeStar.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
                     SizedBox(width: 10),
                     Text("4.5",
                       style: TextStyle(
@@ -186,7 +186,7 @@ class IntroStoreWidget extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.all(5.0),
-                      child: Icon(Icons.add, color: kYellowColor, size: sizeStar.width,),
+                      child: Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
                     ),
                     Text("Báo xấu: "),
                     Text("3",

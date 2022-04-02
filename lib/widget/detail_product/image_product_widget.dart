@@ -1,14 +1,14 @@
 
 
-import 'package:app_casynet/containts/size.dart';
-import 'package:app_casynet/controller/detail_product.dart';
+import 'package:app_casynet/theme/app_sizes.dart';
+import 'package:app_casynet/controller/detail_product_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-import '../../containts/colors.dart';
+import '../../theme/app_colors.dart';
 
 class ImageProductWidget extends StatelessWidget {
   ImageProductWidget({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class ImageProductWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.favorite_border, color: Colors.red, size: sizeStar.width,),
+                            Icon(Icons.favorite_border, color: Colors.red, size: sizeIcon.width,),
                             SizedBox(width: 5,),
                             Text("Yêu thích",
                               style: TextStyle(
@@ -74,7 +74,7 @@ class ImageProductWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.share, color: kTextColor, size: sizeStar.width,),
+                            Icon(Icons.share, color: kTextColor, size: sizeIcon.width,),
                             SizedBox(width: 5,),
                             Text("Chia sẻ",
                               style: TextStyle(

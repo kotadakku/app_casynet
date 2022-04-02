@@ -1,4 +1,4 @@
-import 'package:app_casynet/containts/colors.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:app_casynet/widget/detail_product/tags_product_widget.dart';
 import 'package:app_casynet/widget/detail_product/vote_product_widget.dart';
 import 'package:flutter/material.dart';

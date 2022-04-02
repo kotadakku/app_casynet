@@ -1,5 +1,6 @@
-import 'package:app_casynet/containts/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../theme/app_colors.dart';
 
 class OrderAllWidget extends StatelessWidget {
   final String name_store;
