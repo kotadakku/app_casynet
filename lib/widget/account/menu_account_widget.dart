@@ -56,7 +56,7 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Thông báo":
           icon = FontAwesomeIcons.bell;
-          nav=() { Get.offNamed(Routes.NOTIFICATIONS,  arguments: [12]);};
+          nav=() { Get.toNamed(Routes.NOTIFICATIONS,  arguments: [12]);};
           break;
         case "Ví Voucher":
           icon = FontAwesomeIcons.wallet;

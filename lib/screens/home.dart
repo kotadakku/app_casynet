@@ -48,6 +48,11 @@ class HomePage extends StatelessWidget {
                         SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
                         // Đặt chỗ
                         ReservationWidget(title: "Đặt chỗ"),
+                        // Khuyến mãi
+                        SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
+                        ReservationWidget(title: "Khuyến mãi"),
+                        SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
+                        ReservationWidget(title: "Gợi ý"),
                         SizedBox(height: 40),
                         // Danh mục
                         CategoryBottomWidget(),
@@ -87,11 +92,11 @@ class HomePage extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: Text('Đồng ý'),
+          child: Text('Không'),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: Text('Không'),
+          child: Text('Đồng ý'),
         ),
       ],
     );

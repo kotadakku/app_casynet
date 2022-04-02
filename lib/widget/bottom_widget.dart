@@ -64,12 +64,14 @@ class BottomWidget extends StatelessWidget {
                                     Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                                   ],
                                 ),
-                                Text("38.000 bình chọn",
+                                Expanded(child:Text("38.000 bình chọn",
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                    fontSize: 11,
-                                    color: kTextColor
+                                      fontSize: 12,
+                                      color: kTextColor
                                   ),
-                                ),
+                                ))
+                                ,
                               ],
                             )),
                           ],

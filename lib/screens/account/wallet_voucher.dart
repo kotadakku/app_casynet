@@ -166,7 +166,7 @@ class WalletVoucherPage extends StatelessWidget {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Column(
+                                Expanded(child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,22 +194,21 @@ class WalletVoucherPage extends StatelessWidget {
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
+                                        Expanded(child: Text(
                                           "Có hiệu lực từ: 16.03.2020  00:00",
+                                          overflow: TextOverflow.fade,
                                           style: TextStyle(fontSize: 12),
-                                        ),
-                                        SizedBox(
-                                          width: 30,
-                                        ),
+                                        ),),
                                         Text(
                                           "Điều kiện",
                                           style: TextStyle(
                                               fontSize: 12, color: kTextLink),
-                                        )
+                                        ),
+                                        SizedBox(width: 10,),
                                       ],
                                     )
                                   ],
-                                )
+                                ))
                               ],
                             ))),
                     ListView.builder(
