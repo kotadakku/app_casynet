@@ -60,7 +60,25 @@ class dichvusanpham extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(x.toString()),
+
+                Container(
+                  height: 50,
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Checkbox(
+                          value: false,
+                          onChanged: (value) {
+                            // iscs[index] = value!;
+                          },
+                        ),
+                      ),
+                      Text("Xóa "),
+                      Text("20 Bản ghi"),
+
+                    ],
+                  ),
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
@@ -244,6 +262,7 @@ class dichvusanpham extends StatelessWidget {
                     );
                   },
                 ),
+                Text(x.toString()),
               ],
             ),
           ),
