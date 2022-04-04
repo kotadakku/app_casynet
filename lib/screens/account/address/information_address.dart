@@ -1,14 +1,14 @@
 import 'package:app_casynet/screens/account/address/edit_address.dart';
 import 'package:app_casynet/screens/account/address/new_address.dart';
+import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../data.dart';
-import '../../../model/address.dart';
+import '../../../data/model/address.dart';
 import '../../../theme/app_colors.dart';
-import '../../../widget/account/top_account_widget.dart';
 
 class InformationAddress extends StatelessWidget {
   const InformationAddress({Key? key}) : super(key: key);

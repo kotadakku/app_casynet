@@ -19,6 +19,7 @@ import '../bindings/detail_product_bindings.dart';
 import '../bindings/detail_store_bindings.dart';
 import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
+import '../main.dart';
 import '../screens/account/account_base.dart';
 import '../screens/account/account_login.dart';
 import '../screens/account/follow_store.dart';
@@ -39,7 +40,7 @@ part './app_routes.dart';
 class AppPages {
   static final routes = [
     GetPage(name: Routes.HOME,
-        page: () => HomePage(),
+        page: () => Home(),
         binding: HomeBindings()
     ),
     GetPage(
