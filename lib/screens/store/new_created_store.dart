@@ -1,4 +1,5 @@
-import 'package:app_casynet/store/short_description.dart';
+
+import 'package:app_casynet/screens/store/short_description.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

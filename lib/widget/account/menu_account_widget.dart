@@ -44,7 +44,7 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Địa chỉ":
           icon = FontAwesomeIcons.mapLocation;
-          nav=() { Get.to(InformationAddress());};
+          nav=() { Get.toNamed(Routes.ACCOUNT_ADDRESS);};
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;

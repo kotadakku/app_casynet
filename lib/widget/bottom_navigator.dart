@@ -1,21 +1,13 @@
 
+import 'package:app_casynet/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/screens/account/account_base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
-import '../Cart/cart.dart';
-import '../routes/app_pages.dart';
-import '../screens/account/account_login.dart';
-import '../screens/account/detail_account.dart';
-import '../screens/account/order/order_account.dart';
-import '../screens/detail_app.dart';
-import '../screens/home.dart';
-import '../screens/notfications.dart';
 import '../theme/app_colors.dart';
 
 class BottomNavigator extends StatelessWidget {
-  var selectedIndex = 0.obs;
+  var c = Get.find<BottomNavController>();
   BottomNavigator({Key? key}) : super(key: key);
 
   @override
@@ -82,26 +74,26 @@ class BottomNavigator extends StatelessWidget {
               label: "Detail"
           ),
         ],
-        currentIndex: selectedIndex.value,
+        currentIndex: c.tabIndex.value,
         selectedItemColor: Colors.black,
-        onTap: _onItemTapped,
+        onTap:(index)=> c.changeTabIndex(index),
       ),
     ));
   }
-  void _onItemTapped(int index) {
-    switch(index){
-      case 0: Get.toNamed(Routes.HOME);
-      break;
-      case 1: Get.toNamed(Routes.NOTIFICATIONS);
-      break;
-      case 2: Get.toNamed(Routes.CART);
-      break;
-      case 3: Get.toNamed(Routes.ACCOUNT_LOGIN);
-      break;
-      case 4: Get.toNamed(Routes.INFORMATION_APP);
-      break;
-    };
-    selectedIndex.value = index;
-
-  }
+  // void _onItemTapped(int index) {
+  //   switch(index){
+  //     case 0: Get.toNamed(Routes.HOME);
+  //     break;
+  //     case 1: Get.toNamed(Routes.NOTIFICATIONS);
+  //     break;
+  //     case 2: Get.toNamed(Routes.CART);
+  //     break;
+  //     case 3: Get.toNamed(Routes.ACCOUNT_LOGIN);
+  //     break;
+  //     case 4: Get.toNamed(Routes.INFORMATION_APP);
+  //     break;
+  //   };
+  //   selectedIndex.value = index;
+  //
+  // }
 }

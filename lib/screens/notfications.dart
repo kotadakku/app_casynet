@@ -63,7 +63,6 @@ class NotificationPage extends StatelessWidget {
     ];
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigator(),
       body: SafeArea(
         child: Column(
           children: [

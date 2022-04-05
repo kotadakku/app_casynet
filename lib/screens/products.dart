@@ -1,6 +1,7 @@
 
 import 'package:app_casynet/controller/products_controller.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
+import 'package:app_casynet/widget/home/reservation_home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../controller/home_controller.dart';
 import '../routes/app_pages.dart';
-import '../widget/home/reservation_home_widget.dart';
 import '../widget/bottom_widget.dart';
 import '../widget/home/category_bottom_widget.dart';
 

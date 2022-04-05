@@ -18,9 +18,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigator() ,
-      body: WillPopScope(onWillPop: () => _onWillPop(context),
-      child: SafeArea(
+      body: SafeArea(
           child: Column(
             children: [
               // Thanh tìm kiếm
@@ -66,7 +64,7 @@ class HomePage extends StatelessWidget {
           )
 
 
-      ),),
+      )
     )
     ;
   }
