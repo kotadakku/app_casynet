@@ -16,7 +16,6 @@ class AddressProvider{
         onSuccess: (data){
           print(data);
           onSuccess((json.decode(data) as List).map((postJson) => Address.fromJson(postJson)).toList());
-
         },
         onError:(error)=> {if(onError !=null) onError(error)}
     );

@@ -9,41 +9,46 @@ class BannerHomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     List<String> banner_urls = [
       "assets/home/banner1.png",
       "assets/home/banner1.png"
     ];
     return SizedBox(
         height: MediaQuery.of(context).size.width/1125*410,
-        child: Stack(
-          children: [
-            PageView.builder(
-              itemCount: banner_urls.length,
-              onPageChanged: (index){
-                Get.find<HomeController>().current_banner.value = index;
-              },
-              itemBuilder: (context, index){
-                return Stack(
-                  children: [
-                    Image.asset(banner_urls[index]),
-                  ],
-                );
-              }
-            ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Obx(()=>
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: indicators(Get.find<HomeController>().current_banner, banner_urls.length)
-                  )
-                )
-              )
-            ),
-          ],
-        )
+        child: GetBuilder<HomeController>(
+          init: HomeController(),
+          builder: (controller){
+            return Stack(
+              children: [
+                PageView.builder(
+                    itemCount: banner_urls.length,
+                    onPageChanged: (index){
+                      controller.current_banner.value = index;
+                    },
+                    itemBuilder: (context, index){
+                      return Stack(
+                        children: [
+                          if(controller.listBanners.isNotEmpty)
+                          Image.network(controller.listBanners[index].image),
+                        ],
+                      );
+                    }
+                ),
+                Positioned.fill(
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child:
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.max,
+                              children: indicators(controller.current_banner, controller.listBanners.length)
+                          )
+                    )
+                ),
+              ],
+            );
+        })
     );
   }
   List<Widget> indicators(curPage, numPage){
