@@ -4,15 +4,6 @@ import 'package:app_casynet/screens/account/account_base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
-import '../Cart/cart.dart';
-import '../routes/app_pages.dart';
-import '../screens/account/account_login.dart';
-import '../screens/account/detail_account.dart';
-import '../screens/account/order/order_account.dart';
-import '../screens/detail_app.dart';
-import '../screens/home.dart';
-import '../screens/notfications.dart';
 import '../theme/app_colors.dart';
 
 class BottomNavigator extends StatelessWidget {

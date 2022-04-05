@@ -1,13 +1,11 @@
-import 'package:app_casynet/Cart/cart3.dart';
-import 'package:app_casynet/Cart/itemCart.dart';
-import 'package:app_casynet/store/mystore.dart';
+
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../store/edit_mystore.dart';
 import 'cart2.dart';
+import 'itemCart.dart';
 
 class Cart extends StatelessWidget {
   @override

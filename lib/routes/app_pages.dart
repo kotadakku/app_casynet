@@ -1,7 +1,10 @@
+import 'package:app_casynet/bindings/account/new_address_bindings.dart';
 import 'package:app_casynet/bindings/account/order_account_bindings.dart';
 import 'package:app_casynet/bindings/change_password_bindings.dart';
 import 'package:app_casynet/bindings/detail_app_bindings.dart';
 import 'package:app_casynet/bindings/products_bindings.dart';
+import 'package:app_casynet/screens/account/address/edit_address.dart';
+import 'package:app_casynet/screens/account/address/new_address.dart';
 import 'package:app_casynet/screens/account/change_password.dart';
 import 'package:app_casynet/screens/account/detail_account.dart';
 import 'package:app_casynet/screens/account/casycoin_manager.dart';
@@ -12,16 +15,19 @@ import 'package:app_casynet/screens/filter/filter_product_map.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:app_casynet/widget/home/store_widget.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import '../Cart/cart.dart';
 import '../bindings/account/casycoin_manager_bindings.dart';
+import '../bindings/account/edit_address_bindings.dart';
+import '../bindings/account/information_address.dart';
 import '../bindings/account/wallet_voucher_bindings.dart';
 import '../bindings/detail_product_bindings.dart';
 import '../bindings/detail_store_bindings.dart';
 import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../main.dart';
+import '../screens/Cart/cart.dart';
 import '../screens/account/account_base.dart';
 import '../screens/account/account_login.dart';
+import '../screens/account/address/information_address.dart';
 import '../screens/account/follow_store.dart';
 import '../screens/account/message/all_message.dart';
 import '../screens/account/order/order_account.dart';
@@ -67,6 +73,19 @@ class AppPages {
       name: Routes.ACCOUNT_CASYCOIN,
       page: ()=> CasycoinManagerPage(),
       binding: CasycoinManagerBindings(),
+    ),
+    GetPage(name: Routes.ACCOUNT_ADDRESS, page: ()=> InformationAddress(),
+      binding: InformationAddressBindings()
+    ),
+    GetPage(
+      name: Routes.ACCOUNT_ADDRESS_NEW,
+      page: ()=> NewAddress(),
+      binding: NewAddressBinding(),
+    ),
+    GetPage(
+      name: Routes.ACCOUNT_ADDRESS_EDIT,
+      page: ()=> EditAddress(),
+      binding: EditAddressBindings(),
     ),
     GetPage(name: Routes.PRODUCTS_FAVOURITE, page: ()=>FavouriteProductPage()),
     GetPage(name: Routes.STORE_FOLLOWED, page: ()=> FollowedStorePage()),

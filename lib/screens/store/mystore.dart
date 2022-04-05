@@ -1,5 +1,6 @@
-import 'package:app_casynet/store/quan_ly_doanh_thu.dart';
-import 'package:app_casynet/store/quan_ly_don_hang.dart';
+
+import 'package:app_casynet/screens/store/quan_ly_doanh_thu.dart';
+import 'package:app_casynet/screens/store/quan_ly_don_hang.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

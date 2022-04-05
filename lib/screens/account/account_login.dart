@@ -1,4 +1,3 @@
-import 'package:app_casynet/store/mystore.dart';
 import 'package:app_casynet/widget/account/profile_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import '../../theme/app_colors.dart';
 import '../../widget/account/menu_account_widget.dart';
 import '../../widget/account/top_account_widget.dart';
 import '../../widget/bottom_navigator.dart';
+import '../store/mystore.dart';
 
 class AccountLoginPage extends StatelessWidget {
   const AccountLoginPage({Key? key}) : super(key: key);

@@ -1,7 +1,8 @@
-import 'package:app_casynet/Cart/cart.dart';
+
 import 'package:app_casynet/bindings/home_bindings.dart';
 import 'package:app_casynet/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/routes/app_pages.dart';
+import 'package:app_casynet/screens/Cart/cart.dart';
 import 'package:app_casynet/screens/account/account_login.dart';
 import 'package:app_casynet/screens/detail_app.dart';
 import 'package:app_casynet/screens/home.dart';
