@@ -15,6 +15,8 @@ class EditAddressController extends GetxController{
     address = Address.init(0,'', '', '', '', '', false);
   }
 
+
+
   void updateAddress(int id){
 
     AddressProvider().updateAddress(

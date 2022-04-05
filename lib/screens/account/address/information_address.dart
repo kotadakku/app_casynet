@@ -17,9 +17,10 @@ class InformationAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var c = Get.find<InformationAddressController>();
+    var c1 = Get.find<InformationAddressController>();
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: SafeArea(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,13 +36,26 @@ class InformationAddress extends StatelessWidget {
                 Divider(
                   indent: 10,
                 ),
-                Obx(()=>ListView.separated(
-                    scrollDirection: Axis.vertical,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: c.addressList.length,
-                    separatorBuilder: (context, index) => Container(height: 10, color: kBackgroundColor, ),
-                    itemBuilder: (context, index) =>  Padding(
+                GetBuilder<InformationAddressController>(
+                  init: InformationAddressController(),
+                  builder:  (c)=> NotificationListener<ScrollEndNotification>(
+                      onNotification: (scrollEnd) {
+                        final metrics = scrollEnd.metrics;
+                        if (metrics.atEdge) {
+                          bool isTop = metrics.pixels == 0;
+                          if (isTop) {
+                            c.updateAddress();
+                          } else {
+                            print('At the bottom');
+                          }
+                        }
+                        return true;
+                      },
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: c.addressList.length,
+                      separatorBuilder: (context, index) => Container(height: 10, color: kBackgroundColor, ),
+                      itemBuilder: (context, index) =>  Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +104,10 @@ class InformationAddress extends StatelessWidget {
                           ],
                         )
                     )
-                ),),
+                )),
+
+                ),
+
                 Container(height: 10, color: kBackgroundColor, ),
                 SizedBox(height: 15,),
                 Container(
