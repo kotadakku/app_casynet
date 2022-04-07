@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../data/provider/address_provider.dart';
+import '../../data/provider/address_api_provider.dart';
 
 class InformationAddressController extends GetxController{
   var addressList = [];

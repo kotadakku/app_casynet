@@ -14,7 +14,6 @@ class AddressProvider{
     ApiRequest(url: 'https://coaxial-typewriter.000webhostapp.com/Server/address.php', data: null).get(
         beforeSend:()=> {if(beforeSend != null) beforeSend()},
         onSuccess: (data){
-          print(data);
           onSuccess((json.decode(data) as List).map((postJson) => Address.fromJson(postJson)).toList());
         },
         onError:(error)=> {if(onError !=null) onError(error)}

@@ -1,20 +1,127 @@
-import 'package:app_casynet/data/provider/banner_provider.dart';
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:app_casynet/data/provider/banner_api_provider.dart';
+import 'package:app_casynet/data/provider/user_db_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+
+import '../data/model/banner_slider.dart';
+import '../data/model/sales.dart';
+import '../data/provider/sales_api_provider.dart';
+import '../utlis/base64.dart';
 
 class HomeController extends GetxController{
   var current_banner = 0.obs;
   var isCar = true.obs;
   var listBanners = [];
+  List<Sales> listSales = [];
+  var isLoading = true;
+  late Timer _timer;
+  PageController pageController = PageController(
+    initialPage: 0,
+  );
 
   @override
   void onInit() {
-      BannerProvider().getBanners(onSuccess: (data){
-        print(data);
-        listBanners.addAll(data);
-        update();
-      },
-      onError: (error){
-        print(error);
-      });
+      _getData();
+      _autoPageView();
+      _getSales();
   }
+
+  void _autoPageView(){
+    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+      if (current_banner.value < listBanners.length-1) {
+        current_banner.value++;
+      } else {
+        current_banner.value = 0;
+      }
+
+      pageController.animateToPage(
+        current_banner.value,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeIn,
+      );
+    });
+  }
+  void swippingPageView(details){
+    if (details.velocity.pixelsPerSecond.dx > 0) {
+      if(current_banner.value < listBanners.length -1)
+        current_banner.value++;
+      else current_banner.value = 0;
+      pageController.animateToPage(
+        current_banner.value,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeOutSine,
+      );
+    }
+
+    // Swiping in left direction.
+    if (details.velocity.pixelsPerSecond.dx < 0) {
+      if(current_banner.value > 0)
+        current_banner.value--;
+      else current_banner.value = listBanners.length -1;
+      pageController.animateToPage(
+        current_banner.value,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeOutSine,
+      );
+    }
+  }
+
+  void _getData() {
+    BannerDatabaseHelper.instance.queryAllRows().then((value) {
+      if(value?.length == 0){
+        print("Load from api");
+        BannerProvider().getBanners(onSuccess: (banners){
+          addData(banners);
+        },
+        beforeSend: (){},
+          onError: (error){
+            print("Error " + error.toString());
+            isLoading = false;
+            update();
+          }
+        );
+
+      }else{
+        print("Load from db");
+        value?.forEach((element) {
+          listBanners.add(BannerSlider(
+            id: element['id'],
+            image: element['image'],
+          ));
+          isLoading = false;
+          update();
+        });
+      }
+    });
+  }
+
+  void _getSales(){
+    SalesProvider().getSales(onSuccess: (sales){
+      listSales.addAll(sales);
+      update();
+    },
+    onError: (error){
+      print(error);
+      update();
+    }
+    );
+  }
+
+  void addData(List<BannerSlider> banners) async {
+    await Future.wait(banners.map((e){
+      return ImageNetworkToBase64(url: e.image).getHttp().then((base64) {
+        BannerDatabaseHelper.instance.insert(
+          BannerSlider(image: base64)).then((value){
+            listBanners.add(BannerSlider(image: base64));
+            isLoading = false;
+            update();
+        });
+      });
+    }));
+  }
+
 }
