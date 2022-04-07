@@ -10,6 +10,9 @@ abstract class Routes{
   static const ACCOUNT_BASE = '/account/base';
   static const ACCOUNT_DETAIL = '/account/detail';
   static const ACCOUNT_ORDER = '/account/order';
+  static const ACCOUNT_ADDRESS = '/account/address';
+  static const ACCOUNT_ADDRESS_NEW = '/account/address/new';
+  static const ACCOUNT_ADDRESS_EDIT = '/account/address/edit';
   static const PRODUCTS_SEEN = '/products/seen';
   static const PRODUCTS_FAVOURITE = '/products/favourite';
   static const STORE_FOLLOWED = '/stores/followed';

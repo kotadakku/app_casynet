@@ -1,14 +1,13 @@
-import 'package:app_casynet/store/datetime_range_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-import '../theme/app_colors.dart';
-import '../widget/home/reservation_home_widget.dart';
+import '../../theme/app_colors.dart';
+import '../../widget/home/reservation_home_widget.dart';
+import 'datetime_range_controller.dart';
+
 
 class SanPhamDichVu extends StatelessWidget {
   @override

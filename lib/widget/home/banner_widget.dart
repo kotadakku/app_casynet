@@ -1,4 +1,7 @@
 
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -9,41 +12,49 @@ class BannerHomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> banner_urls = [
-      "assets/home/banner1.png",
-      "assets/home/banner1.png"
-    ];
     return SizedBox(
         height: MediaQuery.of(context).size.width/1125*410,
-        child: Stack(
-          children: [
-            PageView.builder(
-              itemCount: banner_urls.length,
-              onPageChanged: (index){
-                Get.find<HomeController>().current_banner.value = index;
-              },
-              itemBuilder: (context, index){
-                return Stack(
-                  children: [
-                    Image.asset(banner_urls[index]),
-                  ],
-                );
-              }
-            ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Obx(()=>
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: indicators(Get.find<HomeController>().current_banner, banner_urls.length)
-                  )
+        child: GetBuilder<HomeController>(
+          init: HomeController(),
+          builder: (controller){
+            return Stack(
+              children: [
+
+                PageView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: controller.listBanners.length,
+                    controller: controller.pageController,
+                    pageSnapping: true,
+                    onPageChanged: (index){
+                      controller.current_banner.value = index;
+                    },
+                    itemBuilder: (context, index){
+                      if(controller.listBanners.isNotEmpty)
+                        return Image.memory(base64.decode(controller.listBanners[index].image), fit: BoxFit.fitWidth);
+                      else return CircularProgressIndicator();
+                    }
+                ),
+                Positioned.fill(
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child:
+                          Obx(()=>Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.max,
+                              children: indicators(controller.current_banner.value, controller.listBanners.length)
+                          ))
+                    )
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  onPanEnd: (details) {
+                    controller.swippingPageView(details);
+
+                  },
                 )
-              )
-            ),
-          ],
-        )
+              ],
+            );
+        })
     );
   }
   List<Widget> indicators(curPage, numPage){

@@ -14,7 +14,6 @@ class AccountBasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigator(),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(

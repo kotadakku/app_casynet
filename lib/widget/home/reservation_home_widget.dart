@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/controller/datcho_controller.dart';
 import 'package:app_casynet/screens/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -75,28 +76,34 @@ class ReservationWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Obx(()=>Row(
-                    children: [
-                      Radio(
-                          value: true,
-                          groupValue: Get.find<HomeController>().isCar.value,
-                          onChanged: (value){
-                            Get.find<HomeController>().isCar.value = !Get.find<HomeController>().isCar.value;
-                          },
-                          activeColor: Color(0xffDFB400)),
-                      Text("Ô tô"),
-                      SizedBox(width: 20,),
-                      Radio(
-                          value: false,
-                          groupValue: Get.find<HomeController>().isCar.value,
-                          onChanged: (value){
-                            Get.find<HomeController>().isCar.value = !Get.find<HomeController>().isCar.value;
-                          },
-                          activeColor: Color(0xffDFB400)
-                      ),
-                      Text("Xe máy")
-                    ],
-                  ))
+                  GetBuilder<DatChoController>(
+                      init: DatChoController(),
+                      builder: ((controller) {
+                    return Row(
+                      children: [
+                        Radio(
+                            value: true,
+                            groupValue: controller.isCar,
+                            onChanged: (value){
+                             controller.updateIsCar(controller.isCar);
+                             controller.updateAPI();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Ô tô"),
+                        SizedBox(width: 20,),
+                        Radio(
+                            value: false,
+                            groupValue: controller.isCar,
+                            onChanged: (value){
+                              controller.updateIsCar(controller.isCar);
+                              controller.updateAPI();
+                            },
+                            activeColor: Color(0xffDFB400)
+                        ),
+                        Text("Xe máy")
+                      ],
+                    );
+                  }))
 
                 ],
               ),
@@ -122,53 +129,28 @@ class ReservationWidget extends StatelessWidget {
 
             ],
           ),
-          Wrap(
-            spacing: 5.0,
-            runSpacing: 10.0,
-            children: [
-              GestureDetector(
-                child: ItemBookWidget(
-                  book_image: "assets/home/book/image.png",
-                  distance: 4.5,
-                  price: "1.290.000đ",
-                  price_discount: "1.390.000đ",
-                  book_name: "Máy rửa xe Catorex - CTR",
-                  book_category: "Điện máy Đỗ Dũng",
-                  add_point: 10,
-                  sale: 20,
-                ),
-                onTap: (){
-                  Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 });
-                },
-              ),
-              ItemBookWidget(
-                book_image: "assets/home/store/cuahang1.png",
-                distance: 4.5,
-                price: "1.290.000đ",
-                price_discount: "1.390.000đ",
-                book_name: "Máy rửa xe Catorex - CTR",
-                book_category: "Điện máy Đỗ Dũng"
-              ),
-              ItemBookWidget(
-                book_image: "assets/home/book/image.png",
-                distance: 4.5,
-                price: "1.290.000đ",
-                price_discount: "1.390.000đ",
-                book_name: "Máy rửa xe Catorex - CTR",
-                book_category: "Điện máy Đỗ Dũng",
-                sale: 12,
-              ),
-              ItemBookWidget(
-                book_image: "assets/home/store/cuahang1.png",
-                distance: 4.5,
-                price: "1.290.000đ",
-                price_discount: "1.390.000đ",
-                book_name: "Máy rửa xe Catorex - CTR",
-                book_category: "Điện máy Đỗ Dũng",
-                add_point: 20,
-              ),
-            ],
-          ),
+          GetBuilder<DatChoController>(
+              init: DatChoController(),
+              builder: ((controller) {
+                return Wrap(
+                  spacing: 5.0,
+                  runSpacing: 10.0,
+                  children: controller.datchoList.map((e) => GestureDetector(
+                    child: ItemBookWidget(
+                        book_image: e.hinhanhsanpham.toString(),
+                        distance: double.parse(e.khoangcachtoicuahang.toString()),
+                        price: e.giauudai.toString(),
+                        price_discount: e.giasanpham.toString(),
+                        book_name: e.tensanpham.toString(),
+                        book_category: e.tencuahang.toString(),
+
+                    ),
+                    onTap: (){
+                      Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 });
+                    },
+                  )).toList(),
+                );
+          }))
         ],
       ),
     );
@@ -214,7 +196,7 @@ class ItemBookWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.asset(book_image,
+              Image.network(book_image,
               fit: BoxFit.fitHeight,
               height: constraint.maxWidth/2-10,),
               if(add_point != null) Positioned(

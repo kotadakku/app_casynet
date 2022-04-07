@@ -1,9 +1,13 @@
+import 'dart:async';
+
+import 'package:app_casynet/controller/filter_map_controller.dart';
 import 'package:app_casynet/theme/app_colors.dart';
 import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 class FilterProductMap extends StatelessWidget {
@@ -12,6 +16,13 @@ class FilterProductMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _isCar = true.obs;
+
+
+    final CameraPosition _kGooglePlex = CameraPosition(
+      target: LatLng(21.021269086008136, 105.83777770400047),
+      zoom: 14.4746,
+    );
+
     return SafeArea(
         child: Scaffold(
           body: Column(
@@ -74,7 +85,27 @@ class FilterProductMap extends StatelessWidget {
               ),
 
               Expanded(
-                child: Image.asset("assets/filter/image83.png", fit: BoxFit.fitHeight, height: double.infinity,),
+                child: GetBuilder<FilterMapController>(
+                  init: FilterMapController(),
+                  builder: (c){
+                    return GoogleMap(
+                      onLongPress: (position){
+                        print("${position.latitude} ${position.longitude}");
+                      },
+                      mapType: MapType.terrain,
+                      initialCameraPosition: _kGooglePlex,
+                      myLocationEnabled: true,
+                      markers: c.markers,
+                      onCameraMove: (position){
+
+                      },
+                      onMapCreated: (GoogleMapController controller) {
+                        c.controller.complete(controller);
+                        c.googleMap = controller;
+                      },
+                    );
+                  },
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,36 +147,49 @@ class FilterProductMap extends StatelessWidget {
                   Divider(
                       height: 5
                   ),
-                  ListTile(
-                    leading: CircleAvatar(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset("assets/account/image_user.png"),
-                        )
-                    ),
-                    title: Text("Gara Ô Tô Hà Nội Car Sevices"),
-                    subtitle: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("số 2 Phố Trần Hữu Dực, Mỹ Đình, Từ Liêm, Hà Nội",
-                          style: TextStyle(
-                              color: kTextColor_gray,
-                              fontSize: 12
-                          ),
+                  GetBuilder<FilterMapController>(
+                    init: FilterMapController(),
+                    builder: (controller){
+                      return GestureDetector(
+                        onTap: (){
+                          controller.add();
+
+                        },
+                        child: ListTile(
+                        leading: CircleAvatar(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Image.asset("assets/account/image_user.png"),
+                            )
                         ),
-                        Row(children: [
-                          Container(
-                            height: 20,
-                            width: 20,
-                            margin: EdgeInsets.all(5.0),
-                            child: Icon(Icons.add),
-                          ),
-                          Text("Vào cửa hàng"),
-                        ],)
-                      ],
-                    ),
-                  ),
+                        title: Text("Gara Ô Tô Hà Nội Car Sevices"),
+                        subtitle: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("số 2 Phố Trần Hữu Dực, Mỹ Đình, Từ Liêm, Hà Nội",
+                              style: TextStyle(
+                                  color: kTextColor_gray,
+                                  fontSize: 12
+                              ),
+                            ),
+                            Row(children: [
+                              Container(
+                                height: 20,
+                                width: 20,
+                                margin: EdgeInsets.all(5.0),
+                                child: Icon(Icons.add),
+                              ),
+                              Text("Vào cửa hàng"),
+                            ],)
+                          ],
+                        ),
+                      ),
+                      );
+                    }
+                  )
+
+
                 ],
               )
 

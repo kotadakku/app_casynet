@@ -1,8 +1,10 @@
-import 'package:app_casynet/store/new_created_store.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'new_created_store.dart';
 
 class ShortDescription extends StatelessWidget {
   @override

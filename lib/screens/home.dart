@@ -18,9 +18,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigator() ,
-      body: WillPopScope(onWillPop: () => _onWillPop(context),
-      child: SafeArea(
+      body: SafeArea(
           child: Column(
             children: [
               // Thanh tìm kiếm
@@ -40,7 +38,10 @@ class HomePage extends StatelessWidget {
 
                         SizedBox(height: 10),
                         //Danh mục
-                        CategoryWidget(),
+                        Container(height: 200,
+                          child: CategoryWidget(),
+                        ),
+
                         SizedBox(height: 10),
                         SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
                         //Cửa hàng
@@ -66,7 +67,7 @@ class HomePage extends StatelessWidget {
           )
 
 
-      ),),
+      )
     )
     ;
   }

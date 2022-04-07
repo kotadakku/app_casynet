@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/detail_app_controller.dart';
+import '../controller/detail_app_controller.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_sizes.dart';
 import 'benefit/benefit_owner.dart';
