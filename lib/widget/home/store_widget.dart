@@ -1,13 +1,13 @@
-
-import 'package:app_casynet/data.dart';
+import 'package:app_casynet/controller/cuahang_controller.dart';
 import 'package:app_casynet/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../../controller/home_controller.dart';
+
 import '../../theme/app_colors.dart';
+
 /* */
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
@@ -83,38 +83,41 @@ class StoreWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Obx(() => Row(
-                        children: [
-                          Radio(
-                              value: true,
-                              groupValue:
-                                  Get.find<HomeController>().isCar.value,
-                              onChanged: (value) {
-                                Get.find<HomeController>().isCar.value =
-                                    !Get.find<HomeController>().isCar.value;
-                              },
-                              activeColor: Color(0xffDFB400)),
-                          Text("Ô tô"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Radio(
-                              value: false,
-                              groupValue:
-                                  Get.find<HomeController>().isCar.value,
-                              onChanged: (value) {
-                                Get.find<HomeController>().isCar.value =
-                                    !Get.find<HomeController>().isCar.value;
-                              },
-                              activeColor: Color(0xffDFB400)),
-                          Text("Xe máy")
-                        ],
-                      ))
+                  GetBuilder<CuaHangController>(
+                      init: CuaHangController(),
+                      builder: (controller){
+                    return Row(
+                      children: [
+                        Radio(
+                            value: true,
+                            groupValue:
+                            controller.isCar,
+                            onChanged: (value) {
+                              controller.updateIsCar(controller.isCar);
+                              controller.updateAPI();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Ô tô"),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Radio(
+                            value: false,
+                            groupValue: controller.isCar,
+                            onChanged: (value) {
+                              controller.updateIsCar(controller.isCar);
+                              controller.updateAPI();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Xe máy")
+                      ],
+                    );
+                  })
                 ],
               ),
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onTap: (){
+                onTap: () {
                   Get.toNamed(Routes.FILTER_MAP);
                 },
 
@@ -142,21 +145,26 @@ class StoreWidget extends StatelessWidget {
 
             ],
           ),
-          Wrap(
-              spacing: 5.0,
-              runSpacing: 10.0,
-              children: stores
-                  .map((e) => ItemCuaHangWidget(
-                        id: e['id'].toString(),
-                        store_image: e['image_url'],
-                        distance: double.parse(e['distance'].toString()),
-                        store_name: e['name'].toString(),
-                        address: e['address'].toString(),
-                        quality: int.parse(e['quality'].toString()),
-                        comment: int.parse(e['comment'].toString()),
-                        like: int.parse(e['like'].toString()),
-                      ))
-                  .toList()),
+          GetBuilder<CuaHangController>(
+              init: CuaHangController(),
+              builder: (controller) {
+                return Wrap(
+                    spacing: 5.0,
+                    runSpacing: 10.0,
+                    children: controller.cuahangList.map((e) =>
+                        ItemCuaHangWidget(
+                          id: e.idcuahang.toString(),
+                          store_image: e.anhsanpham.toString(),
+                          distance: double.parse(
+                              e.khoangcachtoicuahang.toString()),
+                          store_name: e.tencuahang.toString(),
+                          address: e.diachicuahang.toString(),
+                          quality: int.parse(e.slchiase.toString()),
+                          comment: int.parse(e.slbinhluan.toString()),
+                          like: int.parse(e.slthich.toString()),
+                        ))
+                        .toList());
+              })
         ],
       ),
     );
@@ -188,151 +196,156 @@ class ItemCuaHangWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraint) => Container(
-        width: constraint.maxWidth / 2 - 7.5,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-                onTap: () {
-                  print(id);
-                  if (id != null) Get.toNamed(Routes.STORE_DETAIL, arguments: { 'store_Id': id});
-                  FocusScope.of(context).unfocus();
-                },
-                child: Container(
-                  height: 120,
-                  width: constraint.maxWidth / 2 - 7.5,
-                  child: Image.asset(
-                    store_image,
-                    fit: BoxFit.fitWidth,
-                  ),
-                )),
-            Container(
-              padding: EdgeInsets.all(5.0),
-              color: Color(0xffEFF1FC),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.thumb_up_alt_rounded,
-                        color: kTextColor_gray,
-                        size: 12,
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Text(like.toString(), style: TextStyle(fontSize: 10))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.comment,
-                        size: 12,
-                        color: kTextColor_gray,
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Text(comment.toString(), style: TextStyle(fontSize: 10))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.share,
-                        color: kTextColor_gray,
-                        size: 10,
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Text(quality.toString(), style: TextStyle(fontSize: 10))
-                    ],
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      builder: (context, constraint) =>
+          Container(
+            width: constraint.maxWidth / 2 - 7.5,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: GestureDetector(
+                GestureDetector(
                     onTap: () {
                       print(id);
-                      if (id != null) Get.toNamed(Routes.STORE_DETAIL, arguments: { 'store_Id': id});
+                      if (id != null) Get.toNamed(
+                          Routes.STORE_DETAIL, arguments: { 'store_Id': id});
                       FocusScope.of(context).unfocus();
                     },
-                    child: Text(
-                      store_name,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ),
-                FaIcon(
-                  FontAwesomeIcons.phoneFlip,
-                  color: kTextColor_gray,
-                  size: 12,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
+                    child: Container(
+                      height: 120,
+                      width: constraint.maxWidth / 2 - 7.5,
+                      child: Image.network(
+                        store_image,
+                        fit: BoxFit.fitWidth,
+                      ),
+                    )),
+                Container(
+                  padding: EdgeInsets.all(5.0),
+                  color: Color(0xffEFF1FC),
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.mapLocationDot,
-                        color: kTextColor_gray,
-                        size: 12,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.thumb_up_alt_rounded,
+                            color: kTextColor_gray,
+                            size: 12,
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text(like.toString(), style: TextStyle(fontSize: 10))
+                        ],
                       ),
-                      SizedBox(
-                        width: 3,
+                      Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.comment,
+                            size: 12,
+                            color: kTextColor_gray,
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text(comment.toString(),
+                              style: TextStyle(fontSize: 10))
+                        ],
                       ),
-                      Expanded(
-                          child: Text(
-                        address,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 10),
-                      ))
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.share,
+                            color: kTextColor_gray,
+                            size: 10,
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text(quality.toString(),
+                              style: TextStyle(fontSize: 10))
+                        ],
+                      )
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 10.0,
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          print(id);
+                          if (id != null) Get.toNamed(Routes.STORE_DETAIL,
+                              arguments: { 'store_Id': id});
+                          FocusScope.of(context).unfocus();
+                        },
+                        child: Text(
+                          store_name,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                     FaIcon(
-                      FontAwesomeIcons.locationArrow,
+                      FontAwesomeIcons.phoneFlip,
                       color: kTextColor_gray,
                       size: 12,
                     ),
-                    SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      "$distance km",
-                      style: TextStyle(fontSize: 10),
-                    )
                   ],
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.mapLocationDot,
+                            color: kTextColor_gray,
+                            size: 12,
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Expanded(
+                              child: Text(
+                                address,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontSize: 10),
+                              ))
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.locationArrow,
+                          color: kTextColor_gray,
+                          size: 12,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          "$distance km",
+                          style: TextStyle(fontSize: 10),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30.0,
                 ),
               ],
             ),
-            SizedBox(
-              height: 30.0,
-            ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

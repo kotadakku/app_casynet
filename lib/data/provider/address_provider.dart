@@ -8,13 +8,13 @@ import '../../library/http_service.dart';
 
 class AddressProvider{
   void fetchAddressList({Function()? beforeSend,
-    required Function(List<Address> posts) onSuccess,
+    required Function(List<Address> address) onSuccess,
     Function(dynamic error)? onError
   }){
-    ApiRequest(url: 'https://coaxial-typewriter.000webhostapp.com/Server/address.php', data: null).get(
+    ApiRequest(
+            url: 'https://coaxial-typewriter.000webhostapp.com/Server/address.php', data: null).get(
         beforeSend:()=> {if(beforeSend != null) beforeSend()},
         onSuccess: (data){
-          print(data);
           onSuccess((json.decode(data) as List).map((postJson) => Address.fromJson(postJson)).toList());
 
         },

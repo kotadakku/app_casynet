@@ -11,7 +11,7 @@ class ApiRequest {
     return Dio(
       BaseOptions(
         headers: {
-          'Authorization': ''
+          'Authorization': 'token'
         },
         // baseUrl: '',
       )
