@@ -45,6 +45,7 @@ dependencies:
   flutter_slidable:
   dropdown_button2:
   flutter_staggered_grid_view:
+  http:
 
 dev_dependencies:
   flutter_test:
