@@ -1,4 +1,4 @@
-import 'package:app_casynet/data/provider/address_provider.dart';
+import 'package:app_casynet/data/provider/address_api_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -20,11 +20,11 @@ class NewAddressController extends GetxController{
   void postAddress(){
     AddressProvider().createAddress(
       onSuccess: (data){
-        print("Success ${data.toJson(data)}");
+        print("Success ${data.toJson()}");
       },
       onError: (error){
         print(error);
       },
-      data: address.toJson(address));
+      data: address.toJson());
   }
 }

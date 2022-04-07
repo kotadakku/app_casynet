@@ -1,5 +1,7 @@
 
+import 'package:app_casynet/controller/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PromotionHomeWidget extends StatelessWidget {
   const PromotionHomeWidget({Key? key}) : super(key: key);
@@ -9,17 +11,17 @@ class PromotionHomeWidget extends StatelessWidget {
     return Container(
       height: 100,
       padding: EdgeInsets.all(10.0),
-      child: ListView(
-      scrollDirection: Axis.horizontal,
-      shrinkWrap: true,
-      physics: ClampingScrollPhysics(),
-      children: const [
-        CardItem(image_url: "assets/home/flash_sale.png", title: "Flash Sale"),
-        CardItem(image_url: "assets/home/free_ship.png", title: "Free Ship"),
-        CardItem(image_url: "assets/home/tichdiem.png", title: "Tích điểm"),
-        CardItem(image_url: "assets/home/khuyenmai.png", title: "Khuyến mãi  10"),
-      ],
-    ),);
+      child: GetBuilder<HomeController>(
+        init: HomeController(),
+        builder: (controller){
+          return ListView(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
+            children: controller.listSales.map((e) => CardItem(image_url: e.image, title: e.title)).toList()
+          );
+        }
+      ));
   }
 }
 
@@ -35,7 +37,7 @@ class CardItem extends StatelessWidget {
       width: 100,
       child: Column(
         children: [
-          Image.asset(image_url, width: 50, height: 50,),
+          Image.network(image_url, width: 50, height: 50,),
           SizedBox(height: 10,),
           Text(title),
         ],

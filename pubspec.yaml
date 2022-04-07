@@ -46,6 +46,11 @@ dependencies:
   dropdown_button2:
   flutter_staggered_grid_view:
   dio:
+  sqflite:
+  path_provider:
+  http:
+  google_maps_flutter:
+  location:
 
 dev_dependencies:
   flutter_test:

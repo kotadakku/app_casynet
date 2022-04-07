@@ -18,18 +18,11 @@ class CategoryWidget extends StatelessWidget {
       ItemCategoryWidget(key: ValueKey(5), image_url: "assets/home/category/chamsocxe.png", title: "Chăm sóc xe"),
       ItemCategoryWidget(key: ValueKey(6), image_url: "assets/home/category/lopacquy.png", title: "Lốp và ác quy xe"),
     ];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding:EdgeInsets.all(10.0),
-          child: Text('DANH MỤC'),
-        ),
-        Wrap(
-          runSpacing: 10,
-          children: danhmuc,
-        )
-      ],
+    return GridView.count(crossAxisCount: 2,
+      childAspectRatio: 0.8,
+      scrollDirection: Axis.horizontal,
+      shrinkWrap: true,
+      children: danhmuc,
     );
   }
 }
@@ -50,7 +43,6 @@ class ItemCategoryWidget extends StatelessWidget {
             Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
           },
           child: Container(
-            width: constraint.maxWidth / 3,
             child: Column(
               children: [
                 Image.asset(image_url, width: 50, height: 50,),

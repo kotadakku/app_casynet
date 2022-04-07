@@ -25,14 +25,14 @@ class Address {
     );
   }
 
-  Map<String, dynamic> toJson(Address address) {
+  Map<String, dynamic> toJson() {
     return {
-      'name': address.name,
-      'phone': address.phone,
-      'province': address.province,
-      'district': address.district,
-      'detail_address': address.detail_address,
-      'default_address': address.default_address ? '0': '1',
+      'name': name,
+      'phone': phone,
+      'province': province,
+      'district': district,
+      'detail_address': detail_address,
+      'default_address': default_address ? '0': '1',
     };
   }
 }
