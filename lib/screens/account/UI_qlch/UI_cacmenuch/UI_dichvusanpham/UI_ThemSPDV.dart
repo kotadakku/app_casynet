@@ -1,21 +1,40 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:app_casynet/model/Danhmucsanpham.dart';
+import 'package:app_casynet/model/Sanpham.dart';
 import 'package:app_casynet/screens/account/UI_qlch/UI_cacmenuch/UI_dichvusanpham/UI_Chonxuatxu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../../model/Xuatxu.dart';
 import 'UI_Chondanhmuc.dart';
 import 'UI_Chonloaisanpham.dart';
 import 'UI_Dichvusanpham.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
-class themspdv extends StatelessWidget {
+class themspdv extends StatefulWidget {
+  @override
+  State<themspdv> createState() => _themspdvState();
+}
+
+final getdms = Get.put(getdanhmuc());
+
+class _themspdvState extends State<themspdv> {
   var _date = new DateTime.now().obs;
   final clsp = Get.put(chonloaisp());
   final chonqgs = Get.put(chonqg());
+  final xcv = Get.put(xc());
   final tensanpham = TextEditingController();
+  final motasanpham = TextEditingController();
+  final soluongnhapkho = TextEditingController();
+  final soluongconlai = TextEditingController();
+  final gia = TextEditingController();
+  final giakhuyenmai = TextEditingController();
   var demtensanpham = 0.obs;
+  var demmotasanpham = 0.obs;
   var status = false.obs;
   var statushtsp = false.obs;
   var statushttc = false.obs;
@@ -23,6 +42,16 @@ class themspdv extends StatelessWidget {
   var textsthtsp = "không".obs;
   var textsthttc = "không".obs;
   var chon = "".obs;
+  @override
+  void initState() {
+    super.initState();
+    getdms.fetchdanhmucsp();
+    xcv.fetchXuatxu(
+        "https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php");
+    soluongnhapkho.text = 0.toString();
+    soluongconlai.text = 0.toString();
+    gia.text = 0.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +135,8 @@ class themspdv extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(20.0),
-                                          color: Color.fromARGB(255, 241, 243, 253),
+                                          color: Color.fromARGB(
+                                              255, 241, 243, 253),
                                           border: Border.all(
                                             width: 1,
                                             style: BorderStyle.solid,
@@ -223,7 +253,7 @@ class themspdv extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            child: Text(demtensanpham.toString() + "/3000"),
+                            child: Text(demmotasanpham.toString() + "/3000"),
                           ),
                         ],
                       ),
@@ -238,9 +268,9 @@ class themspdv extends StatelessWidget {
                         ),
                         maxLength: 3000,
                         maxLines: 2,
-                        controller: tensanpham,
+                        controller: motasanpham,
                         onChanged: (text) {
-                          demtensanpham.value = text.length;
+                          demmotasanpham.value = text.length;
                         },
                       ),
                     ),
@@ -318,7 +348,22 @@ class themspdv extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(child: Text("Số lượng nhập kho")),
-                      Text("0"),
+                      // Text("0"),
+                      Expanded(
+                        child: TextField(
+                          controller: soluongnhapkho,
+                          textDirection: TextDirection.rtl,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          onTap: () {
+                            if (soluongnhapkho.text == "0") {
+                              soluongnhapkho.text = "";
+                            }
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -385,15 +430,39 @@ class themspdv extends StatelessWidget {
                   margin: EdgeInsets.only(right: 10, left: 10),
                   child: Row(
                     children: [
-                      Expanded(child: Text("Giá")),
-                      Text("0"),
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: RaisedButton(
-                          color: Colors.red,
-                          child: Text("Giá khuyến mãi",
-                              style: TextStyle(color: Colors.white)),
-                          onPressed: () {},
+                      Text("Giá"),
+                      Expanded(
+                        child: TextField(
+                          controller: gia,
+                          textDirection: TextDirection.rtl,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          onTap: () {
+                            if (gia.text == "0") {
+                              gia.text = "";
+                            }
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 40,
+                          width: 200,
+                          child: TextField(
+                            controller: giakhuyenmai,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              fillColor: Colors.red,
+                              filled: true,
+                              hintText: "Giá khuyến mại",
+                              hintStyle: TextStyle(color: Colors.white),
+                              border: InputBorder.none,
+                            ),
+                            style: TextStyle(color: Colors.white),
+                            onTap: () {},
+                          ),
                         ),
                       ),
                     ],
@@ -414,6 +483,21 @@ class themspdv extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text("Số lượng còn lại"),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          controller: soluongconlai,
+                          textDirection: TextDirection.rtl,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          onTap: () {
+                            if (soluongconlai.text == "0") {
+                              soluongconlai.text = "";
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -442,8 +526,63 @@ class themspdv extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(child: Text("Danh mục")),
-                      Text("Lựa chọn danh mục"),
-                      Icon(Icons.navigate_next),
+                      Expanded(
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: getdms.getdanhmuctid.length,
+                            itemBuilder: (context, index) {
+                              return Center(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 20),
+                                  child: Stack(
+                                    overflow: Overflow.visible,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.only(right: 5, left: 5),
+                                        height: 30,
+                                        child: Center(
+                                          child: Text(getdms
+                                              .getdanhmuctid[index].title
+                                              .toString()),
+                                        ),
+                                        color:
+                                            Color.fromARGB(255, 241, 243, 253),
+                                        // decoration: BoxDecoration(
+                                        //     border: Border.all(color: Colors.black)
+                                        // ),
+                                      ),
+                                      Positioned(
+                                          width: 20,
+                                          height: 20,
+                                          right: -8,
+                                          top: -8,
+                                          child: ClipOval(
+                                            child: Material(
+                                              color: Color.fromARGB(255, 241,
+                                                  243, 253), // Button color
+                                              child: InkWell(
+                                                onTap: () {
+                                                  getdms.getdanhmuctid
+                                                      .removeAt(index);
+                                                },
+                                                child: SizedBox(
+                                                    child: Icon(
+                                                  Icons.close,
+                                                  size: 10,
+                                                )),
+                                              ),
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                      ),
+                      // Text("Lựa chọn danh mục"),
+                      // Icon(Icons.navigate_next),
                     ],
                   ),
                   onPressed: () {
@@ -474,7 +613,7 @@ class themspdv extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(child: Text("Xuất xứ")),
-                      Text(chonqgs.quocgia.toString()),
+                      Text(xcv.tenxuatxu.toString()),
                       Icon(Icons.navigate_next),
                     ],
                   ),
@@ -612,7 +751,29 @@ class themspdv extends StatelessWidget {
                         child: RaisedButton(
                           color: Colors.amber,
                           child: Text("Lưu thông tin"),
-                          onPressed: () {},
+                          onPressed: () {
+                            var array = [];
+                            var c = Sanpham.s(
+                                "vbn",
+                                tensanpham.text,
+                                motasanpham.text,
+                                soluongnhapkho.text,
+                                gia.text,
+                                giakhuyenmai.text,
+                                soluongconlai.text,
+                                xcv.idxs.toString(),
+                                "loaisanpham",
+                                status.toString(),
+                                _date.value.day.toString() +
+                                    "/" +
+                                    _date.value.month.toString() +
+                                    "/" +
+                                    _date.value.year.toString(),
+                                statushtsp.toString(),
+                                statushttc.toString(),
+                                "hienthiotrangchinh");
+                            print(c.toJson());
+                          },
                         ),
                       ),
                     ),
@@ -633,4 +794,44 @@ class chonloaisp extends GetxController {
 
 class chonqg extends GetxController {
   var quocgia = "Chọn quốc gia".obs;
+}
+
+class xc extends GetxController {
+  var ischeck = false.obs;
+  var xuatxu = [].obs;
+  var countqg = 0.obs;
+  var idxs = 0.obs;
+  var tenxuatxu = "Chọn xuất xứ".obs;
+  var list;
+  Future<List<dynamic>> fetchXuatxu(String url) async {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      list = json.decode(response.body);
+      xcv.xuatxu.value = list.map((e) => Xuatxu.fromJson(e)).toList();
+      if (xcv.xuatxu.value != null) {
+        ischeck.value = true;
+      }
+    }
+
+    return list;
+  }
+}
+
+class getdanhmuc extends GetxController {
+  var ischeck = false.obs;
+  var danhmucs = [].obs;
+  var getdanhmuctid = [].obs;
+  var dem = 0.obs;
+  Future fetchdanhmucsp() async {
+    final response = await http.get(Uri.parse(
+        "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
+    if (response.statusCode == 200) {
+      var list = json.decode(response.body);
+      getdms.danhmucs.value =
+          list.map((e) => Danhmucsanpham.fromJson(e)).toList();
+      if (getdms.danhmucs.value != null) {
+        ischeck.value = true;
+      }
+    }
+  }
 }

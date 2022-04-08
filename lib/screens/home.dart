@@ -17,59 +17,58 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-          child: Column(
-            children: [
-              // Thanh tìm kiếm
-              TopHomeWidget(),
-              Expanded(child:SingleChildScrollView(
-                  child: Container(
-                    color: Colors.white,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        // Banner
-                        BannerHomeWidget(),
-                        // Khuyến mãi
-                        PromotionHomeWidget(),
-                        SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
+      appBar: AppBar(
+        elevation: 10,
+        backgroundColor: Colors.white,
+        flexibleSpace: TopHomeWidget(),
+      ),
+      body: Column(
+        children: [
+          // Thanh tìm kiếm
 
-                        SizedBox(height: 10),
-                        //Danh mục
-                        Container(height: 200,
-                          child: CategoryWidget(),
-                        ),
+          Expanded(child:SingleChildScrollView(
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    // Banner
+                    BannerHomeWidget(),
+                    // Khuyến mãi
+                    PromotionHomeWidget(),
+                    SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
 
-                        SizedBox(height: 10),
-                        SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
-                        //Cửa hàng
-                        StoreWidget(),
-                        SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
-                        // Đặt chỗ
-                        ReservationWidget(title: "Đặt chỗ"),
-                        // Khuyến mãi
-                        SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
-                        ReservationWidget(title: "Khuyến mãi"),
-                        SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
-                        ReservationWidget(title: "Gợi ý"),
-                        SizedBox(height: 40),
-                        // Danh mục
-                        CategoryBottomWidget(),
-
-                        BottomWidget(),
-                      ],
+                    SizedBox(height: 10),
+                    //Danh mục
+                    Container(height: 200,
+                      child: CategoryWidget(),
                     ),
-                  )
-              ))
-            ],
-          )
 
+                    SizedBox(height: 10),
+                    SizedBox(height: 10, child: Container(color: Color(0xffF1F3FD),),),
+                    //Cửa hàng
+                    StoreWidget(),
+                    SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
+                    // Đặt chỗ
+                    ReservationWidget(title: "Đặt chỗ"),
+                    // Khuyến mãi
+                    SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
+                    ReservationWidget(title: "Khuyến mãi"),
+                    SizedBox(height: 30, child: Container(color: Color(0xffF1F3FD),),),
+                    ReservationWidget(title: "Gợi ý"),
+                    SizedBox(height: 40),
+                    // Danh mục
+                    CategoryBottomWidget(),
 
-      )
-    )
-    ;
+                    BottomWidget(),
+                  ],
+                ),
+              )
+          ))
+        ],
+      ),
+    ) ;
   }
   Future<bool> _onWillPop(BuildContext context) async {
     bool? exitResult = await showDialog(

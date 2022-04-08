@@ -1,16 +1,30 @@
+import 'dart:convert';
+
+import 'package:app_casynet/model/Xuatxu.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 import 'UI_ThemSPDV.dart';
-class chonxuatxu extends StatelessWidget {
+
+class chonxuatxu extends StatefulWidget {
+  @override
+  State<chonxuatxu> createState() => _chonxuatxuState();
+}
+
+final xcv = Get.put(xc());
+
+class _chonxuatxuState extends State<chonxuatxu> {
+  @override
+  void initState() {
+    super.initState();
+    xcv.fetchXuatxu("https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php");
+  }
 
   @override
   Widget build(BuildContext context) {
-    final chonqgs=Get.put(chonqg());
-    var countqg=0.obs;
-    var x="".obs;
-    List quocgia=["Việt Nam","Mỹ","Trung Quốc","Anh","Pháp","Indonesia","Nhật Bản","Đài Loan","Ấn Độ","khác"];
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -19,33 +33,34 @@ class chonxuatxu extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Container(
+      body: Visibility(
+        visible: xcv.ischeck.value,
+        replacement: const Center(
+          child: CircularProgressIndicator(),
+        ),
         child: SingleChildScrollView(
-          child: Obx(()=>
-              Column(
+          child: Obx(() => Column(
                 children: [
                   ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: quocgia.length,
-                      itemBuilder:(context,indext){
+                      itemCount: xcv.xuatxu.length,
+                      itemBuilder: (context, indext) {
                         return RadioListTile(
-                                title: Text(quocgia[indext]),
-                                value: indext,
-                                groupValue: countqg.value,
-                                onChanged: (value){
-                                  chonqgs.quocgia.value=quocgia[indext];
-                                  countqg.value=int.parse(value.toString());
-                                  x.value=x.value+" ";
-                                  Get.back();
-                                }
-                        );
-                      }
-                  ),
-                  Text(x.toString(),maxLines: 1,),
+                            title:
+                                Text(xcv.xuatxu[indext].tenxuatxu.toString()),
+                            value: indext,
+                            groupValue: xcv.countqg.value,
+                            onChanged: (value) {
+                              xcv.idxs.value=int.parse(xcv.xuatxu[indext].idxuaxu.toString());
+                              xcv.tenxuatxu.value=xcv.xuatxu[indext].tenxuatxu.toString();
+                              xcv.countqg.value = int.parse(value.toString());
+                              Get.back();
+                            });
+                      }),
+
                 ],
-              )
-          ),
+              )),
         ),
       ),
     );

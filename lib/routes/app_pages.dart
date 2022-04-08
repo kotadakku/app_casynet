@@ -58,7 +58,6 @@ class AppPages {
       name: Routes.FILTER_MAP,
       page:()=> FilterProductMap()
     ),
-    GetPage(name: Routes.NOTIFICATIONS, page: ()=>NotificationPage()),
     GetPage(name: Routes.AUTH, page: ()=> AuthPage()),
     GetPage(name: Routes.ACCOUNT_DETAIL, page: ()=> AccountDetailPage()),
     GetPage(name: Routes.ACCOUNT_ORDER,
@@ -104,10 +103,7 @@ class AppPages {
       page:()=> ProductsPage(),
       binding:ProductsBindings(),
     ),
-    GetPage(
-      name: Routes.ACCOUNT_LOGIN,
-      page: ()=>AccountLoginPage(),
-    ),
+
     GetPage(
       name: Routes.ACCOUNT_BASE,
       page: ()=>AccountBasePage(),
@@ -125,16 +121,6 @@ class AppPages {
       name: Routes.STORE_DETAIL,
       page: () => DetailsStorePage(),
       binding: DetailStoreBindings(),
-    ),
-    GetPage(
-      name: Routes.INFORMATION_APP,
-      page: ()=> DetailAppPage(),
-      binding: DetailAppBindings(),
-
-    ),
-    GetPage(
-      name: Routes.CART,
-      page: ()=> Cart()
     ),
     GetPage(
       name: Routes.MESSAGES,

@@ -38,6 +38,7 @@ class dichvusanpham extends StatelessWidget {
                 color: Colors.amber,
                 child: Text("Thêm +"),
                 onPressed: () {
+                  getdms.getdanhmuctid.value=[];
                     Get.to(themspdv());
                 },
               ),

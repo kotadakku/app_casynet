@@ -4,20 +4,36 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class chondanhmuc extends StatelessWidget {
-  var dem=0.obs;
+final getdms = Get.put(getdanhmuc());
+class chondanhmuc extends StatefulWidget {
+  @override
+  State<chondanhmuc> createState() => _chondanhmucState();
+}
+
+class _chondanhmucState extends State<chondanhmuc> {
+
+
   final nothing = [
-    danhmuc(title: "Rửa xe, thay dầu"),
-    danhmuc(title: "Sửa chữa xe"),
-    danhmuc(title: "Đồ chơi, phụ kiện"),
-    danhmuc(title: "Mua ban xe"),
-    danhmuc(title: "Chăm sóc xe"),
-    danhmuc(title: "Lốp và ắc quy"),
-    danhmuc(title: "Cứu hộ xe"),
-    danhmuc(title: "Máy móc, phụ tùng"),
-    danhmuc(title: "Cho thuê xe"),
-    danhmuc(title: "khác"),
   ].obs;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getdms.fetchdanhmucsp();
+    for(int i=0;i<getdms.danhmucs.length;i++){
+      nothing.add(danhmuc(title: getdms.danhmucs[i].tendanhmuc.toString(),id: int.parse(getdms.danhmucs[i].iddanhmuc)));
+    };
+    if(getdms.getdanhmuctid.length>0){
+      for(int x=0;x<getdms.getdanhmuctid.length;x++){
+        for(int j=0;j<nothing.length;j++){
+          if(nothing[j].id==getdms.getdanhmuctid[x].id){
+            nothing[j].checkdanhmuc=true;
+          }
+        }
+      }
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,18 +43,21 @@ class chondanhmuc extends StatelessWidget {
           "Chọn danh mục",
           style: TextStyle(color: Colors.black),
         ),
-        // leading: Container(
-        //   child: IconButton(
-        //     icon: Icon(Icons.arrow_back_rounded),
-        //     color: Colors.amberAccent,
-        //     onPressed: () {
-        //       Get.to(themspdv());
-        //     },
-        //   ),
-        // ),
+        leading: Container(
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_rounded),
+            color: Colors.amberAccent,
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ),
       ),
-      body: Container(
-
+      body: Visibility(
+        visible: getdms.ischeck.value,
+        replacement: const Center(
+          child: CircularProgressIndicator(),
+        ),
         child: Obx(
           () => SingleChildScrollView(
             child: Column(
@@ -58,7 +77,7 @@ class chondanhmuc extends StatelessWidget {
                               onChanged: (value) {
                                 nothing[indext].checkdanhmuc =
                                     !nothing[indext].checkdanhmuc;
-                                dem.value=0;
+                                getdms.dem.value=0;
                                 if(nothing.last.checkdanhmuc==true){
                                   for(int i=0;i<nothing.length-1;i++){
                                     nothing[i].checkdanhmuc =false;
@@ -66,7 +85,7 @@ class chondanhmuc extends StatelessWidget {
                                 }
                                 for(int i=0;i<nothing.length;i++){
                                   if(nothing[i].checkdanhmuc==true){
-                                    dem++;
+                                    getdms.dem++;
                                   }
                                 }
                               },
@@ -78,12 +97,17 @@ class chondanhmuc extends StatelessWidget {
                     );
                   },
                 ),
-
-
                 Container(
                   child: RaisedButton(
-                    child: Text("Lưu "+dem.toString()+" (Tùy chọn)"),
+                    child: Text("Lưu "+getdms.dem.toString()+" (Tùy chọn)"),
                     onPressed: () {
+                      getdms.getdanhmuctid.value=[];
+                      for(int i=0;i<nothing.length;i++){
+                        if(nothing[i].checkdanhmuc==true){
+                          getdms.getdanhmuctid.add(nothing[i]);
+                        }
+                      }
+                      Get.back();
                     },
                   ),
                 ),

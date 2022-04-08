@@ -8,7 +8,7 @@ import '../controller/home_controller.dart';
 class HomeBindings extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut(() => HomeController(), fenix: true );
+    Get.put(HomeController());
     Get.lazyPut(() => DetailAppController(), fenix: true );
     Get.put(InformationAddressController());
   }
