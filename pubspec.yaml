@@ -54,6 +54,7 @@ dependencies:
   cached_network_image:
   flutter_screenutil:
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
