@@ -18,6 +18,7 @@ class HomeController extends GetxController{
   var listBanners = [];
   List<Sales> listSales = [];
   var isLoading = true;
+  var isLoadingSales = true;
   late Timer _timer;
   PageController pageController = PageController(
     initialPage: 0,
@@ -102,6 +103,7 @@ class HomeController extends GetxController{
   void _getSales(){
     SalesProvider().getSales(onSuccess: (sales){
       listSales.addAll(sales);
+      isLoadingSales = false;
       update();
     },
     onError: (error){

@@ -44,7 +44,14 @@ class DistrictProductWidget extends StatelessWidget {
                   const Spacer(),
                   IconButton(
                       onPressed: (){
-
+                        if(Get.find<FilterDistrictController>().more_district.value){
+                          Get.find<FilterDistrictController>().more_district.value = !Get.find<FilterDistrictController>().more_district.value;
+                          Get.find<FilterDistrictController>().expandDistrictController.reverse();
+                        }
+                        else{
+                          Get.find<FilterDistrictController>().more_district.value = !Get.find<FilterDistrictController>().more_district.value;
+                          Get.find<FilterDistrictController>().expandDistrictController.forward();
+                        }
                       },
                       iconSize: 20,
                       icon: Obx(()=>Icon( Get.find<FilterDistrictController>().more_district.value ? Icons.keyboard_arrow_up_outlined : Icons.keyboard_arrow_down_outlined))

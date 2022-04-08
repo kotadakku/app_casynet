@@ -6,7 +6,6 @@ abstract class Routes{
   static const FILTER = '/filter';
   static const FILTER_MAP = '/filter/map';
   static const FILTER_PRODUCT = '/filter/product';
-  static const ACCOUNT_LOGIN = '/account/login';
   static const ACCOUNT_BASE = '/account/base';
   static const ACCOUNT_DETAIL = '/account/detail';
   static const ACCOUNT_ORDER = '/account/order';
@@ -23,10 +22,7 @@ abstract class Routes{
   static const PRODUCTS_BY_CATEGORY = '/products';
 
   static const STORE_DETAIL = '/store';
-  static const INFORMATION_APP = '/information_app';
   static const MESSAGES = '/messages';
-  static const CART = '/cart';
-  static const NOTIFICATIONS = '/notifications';
   static const AUTH = '/auth';
 
 }

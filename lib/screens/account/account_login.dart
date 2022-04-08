@@ -9,6 +9,7 @@ import '../../theme/app_colors.dart';
 import '../../widget/account/menu_account_widget.dart';
 import '../../widget/account/top_account_widget.dart';
 import '../../widget/bottom_navigator.dart';
+import '../../widget/home/top_home_widget.dart';
 import '../store/mystore.dart';
 
 class AccountLoginPage extends StatelessWidget {
@@ -17,14 +18,15 @@ class AccountLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 10,
+          backgroundColor: Colors.white,
+          flexibleSpace: TopHomeWidget(),
+        ),
         backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Column(
-            children: [
-              // Thanh tìm kiếm
-              TopAccountWidget(),
-
-              Expanded(
+        body: Column(
+          children: [
+            Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -81,10 +83,9 @@ class AccountLoginPage extends StatelessWidget {
                     ],
                   ),
                 )
-              )
-            ],
-          ),
-        )
+            )
+          ],
+        ),
     );
   }
 }

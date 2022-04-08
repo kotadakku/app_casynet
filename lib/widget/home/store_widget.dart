@@ -1,5 +1,6 @@
 import 'package:app_casynet/controller/cuahang_controller.dart';
 import 'package:app_casynet/routes/app_pages.dart';
+import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -215,7 +216,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                       width: constraint.maxWidth / 2 - 7.5,
                       child: Image.network(
                         store_image,
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.fill,
                       ),
                     )),
                 Container(
@@ -229,40 +230,44 @@ class ItemCuaHangWidget extends StatelessWidget {
                           Icon(
                             Icons.thumb_up_alt_rounded,
                             color: kTextColor_gray,
-                            size: 12,
+                            size: IconSize.iconSize,
                           ),
                           SizedBox(
                             width: 2,
                           ),
-                          Text(like.toString(), style: TextStyle(fontSize: 10))
+                          Text(like.toString(), style: TextStyle(fontSize: 13))
                         ],
                       ),
                       Row(
                         children: [
                           FaIcon(
                             FontAwesomeIcons.comment,
-                            size: 12,
+                            size: IconSize.iconSize,
                             color: kTextColor_gray,
                           ),
                           SizedBox(
                             width: 2,
                           ),
                           Text(comment.toString(),
-                              style: TextStyle(fontSize: 10))
+                              style: TextStyle(fontSize: 13))
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.share,
-                            color: kTextColor_gray,
-                            size: 10,
+
+
+                          Text(quality.toString(),
+                            style: TextStyle(fontSize: 15)
                           ),
                           SizedBox(
                             width: 2,
                           ),
-                          Text(quality.toString(),
-                              style: TextStyle(fontSize: 10))
+
+                          Icon(
+                            Icons.star_outlined,
+                            color: kTextColor_gray,
+                            size: 12,
+                          ),
                         ],
                       )
                     ],
@@ -308,7 +313,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                           FaIcon(
                             FontAwesomeIcons.mapLocationDot,
                             color: kTextColor_gray,
-                            size: 12,
+                            size: 18,
                           ),
                           SizedBox(
                             width: 3,
