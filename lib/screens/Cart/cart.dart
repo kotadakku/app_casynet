@@ -1,16 +1,19 @@
 
+import 'package:app_casynet/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../main.dart';
 import 'cart2.dart';
 import 'itemCart.dart';
 
 class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
@@ -20,19 +23,32 @@ class Cart extends StatelessWidget {
             children: [
               TopDetailProductWidget(),
               //giỏ hang của bạn
-              Container(
-                alignment: Alignment(0, 0),
-                color: Color.fromARGB(255, 241, 243, 253),
-                height: 50,
-                padding: EdgeInsets.only(left: 5.0),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      "assets/cart/ic_check.png",
-                      width: 20,
-                      height: 20,
+              Row(
+                children: [
+                  Container(
+                    alignment: Alignment(-1, 0),
+                    color: Color.fromARGB(255, 241, 243, 253),
+                    padding: EdgeInsets.only(left: 10.0),
+                    width: screenWidth*0.1,
+                    height: 50,
+                    child: GetBuilder<BottomNavController>(
+                      init: BottomNavController(),
+                      builder: (controller)=>InkWell(
+                        splashColor: Colors.blue,
+                        child: Icon(Icons.arrow_back),/*Center(child: ),*/
+                        onTap: (){
+                          controller.changeTabIndex(0);
+                        },
+                      ),
                     ),
-                    const Text(
+                  ),
+                  Container(
+                    alignment: Alignment(-1, 0),
+                    color: Color.fromARGB(255, 241, 243, 253),
+                    padding: EdgeInsets.only(left: 5.0),
+                    width: screenWidth*0.9,
+                    height: 50,
+                    child: Text(
                       "Giỏ Hàng Của Bạn ",
                       style: const TextStyle(
                         color: Colors.black,
@@ -40,9 +56,10 @@ class Cart extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+
 
               ListView(
                 physics: BouncingScrollPhysics(),

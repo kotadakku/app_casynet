@@ -8,8 +8,8 @@ class ItemCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController mycontroller = TextEditingController();
-    var soluong=0.obs;
-    // TODO: implement build
+    var soluong = 0.obs;
+
     return Column(
       children: [
 //Tên của hàng
@@ -99,258 +99,270 @@ class ItemCart extends StatelessWidget {
                   thickness: 1.0,
                 );
               },
-              padding: EdgeInsets.only(left: 5.0, right: 5.0),
+              padding: EdgeInsets.only(left: 10.0, right: 10.0),
               shrinkWrap: true,
               itemCount: 3,
               itemBuilder: (context, index) {
-                return Container(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
+                return Row(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.005,
+                      child: Icon(
                         Icons.check_box,
                         color: Color.fromARGB(223, 223, 183, 0),
                       ),
-                      SizedBox(
-                        width: 2.0,
-                      ),
-                      Container(
+                    ),
+
+                    /*SizedBox(
+                      width: 2.0,
+                    ),*/
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: 90,
+                      margin: EdgeInsets.only(left: 5.0),
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Image.asset(
+                        "assets/cart/img_rectangle.png",
                         width: 90,
-                        height: 90,
-                        padding: EdgeInsets.only(top: 10, bottom: 10),
-                        child: Image.asset(
-                          "assets/cart/img_rectangle.png",
-                          width: 90,
-                          height: 80,
-                        ),
+                        height: 80,
                       ),
-                      SizedBox(
-                        width: 2.0,
-                      ),
-                      Expanded(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: 30.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                    ),
+                    /*SizedBox(
+                      width: 2.0,
+                    ),*/
+                    Container(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.only(top: 5.0),
+                              height: 30.0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
 // tên sản phẩm
-                                Expanded(
-                                  child: Text(
-                                    "Máy rửa xe Catorex - CTR ssssssssssssss",
+                                  Text(
+                                    "Máy rửa xe Catorex - CTR",
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 12.0,
+                                      fontSize: 17.0,
                                       fontWeight: FontWeight.w300,
                                       letterSpacing: 0.1,
                                     ),
                                   ),
-                                ),
 // giá sản phẩm
-                                Text(
-                                  "1.290.000 đ",
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.3,
-                                  ),
-                                )
-                              ],
+                                  Text(
+                                    "1.290.000 đ",
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 17.0,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 0.3,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            height: 30,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Phân loại hàng",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 11.0,
-                                    fontWeight: FontWeight.w100,
-                                    letterSpacing: 0.1,
-                                  ),
-                                ),
-//Giá tiền txt
-                                Text(
-                                  "1.290.000 đ",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 11.0,
-                                    fontWeight: FontWeight.w100,
-                                    decoration: TextDecoration.lineThrough,
-                                    letterSpacing: 0.3,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              padding: EdgeInsets.only(left: 0.0),
-                              height: 30.0,
+                            Container(
+                              height: 30,
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.start,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ///////
-                                  Container(
-
-                                    decoration: BoxDecoration(
-                                        border: Border.all(width: 1, color: Colors.lightBlue)
-                                    ),
-                                    width: 35,
-                                    child: InkWell(
-                                      splashColor: Color.fromARGB(255, 188, 195, 216),
-                                      // splashColor: Colors.blue,
-                                      onTap: () {
-                                        if(soluong<=0){
-                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                            content: Text("số lượng đã tối thiểu, phải lớn hơn 0"),
-                                          ));
-                                        }else{
-                                          soluong--;
-                                          mycontroller.text=soluong.toString();
-                                        }
-
-
-                                      },
-                                      child: Row(
-
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text("-", style: TextStyle(fontSize: 30),)
-                                          // Icon(Icons.navigate_next),
-                                        ],
-                                      ),
+                                  Text(
+                                    "Phân loại hàng",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w100,
+                                      letterSpacing: 0.1,
                                     ),
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      // border: Border.all(width: 1, color: Colors.lightBlue)
-                                      border: Border(
-                                        top: BorderSide(width: 1, color: Colors.lightBlue),
-                                        bottom: BorderSide(width: 1, color: Colors.lightBlue),
-                                      ),
+//Giá tiền txt
+                                  Text(
+                                    "1.290.000 đ",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w200,
+                                      decoration: TextDecoration.lineThrough,
+                                      letterSpacing: 0.3,
                                     ),
-                                    width: 40,
-                                    child: Obx(
-                                          ()=>
-                                          TextField(
-                                            textAlign: TextAlign.center,
-                                            decoration: InputDecoration(
-                                              hintText: soluong.toString(),
-                                              // prefixText: "1",
-                                              counterText: "",
-                                              border: InputBorder.none,
-                                              contentPadding: EdgeInsets.only(top: 8,bottom: 10),
-                                            ),
-                                            keyboardType: TextInputType.number,
-                                            maxLength: 2,
-                                            maxLines: 1,
-                                            controller: mycontroller,
-                                            onChanged: (t) {
-                                              soluong.value = int.parse(t);
-                                            },
-
-                                          ),
-                                    ),
-
-                                  ),
-                                  Container(
-
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 1, color: Colors.lightBlue),
-
-                                    ),
-                                    width: 35,
-                                    child: InkWell(
-                                      splashColor: Color.fromARGB(255, 188, 195, 216),
-                                      // splashColor: Colors.blue,
-                                      onTap: () {
-                                        if(soluong<99){
-                                          soluong++;
-                                          mycontroller.text=soluong.toString();
-                                        }
-                                        else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            content: Text(
-                                                "số lượng đã tối đa, phải nhỏ hơn 100"),
-                                          ));
-                                        }
-
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Text("+", style: TextStyle(fontSize: 30),)
-                                          // Icon(Icons.navigate_next),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(bottom: 10),
-
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            print("xóa");
-                                          },
-                                          icon: Icon(
-                                            Icons.delete,
-                                            color: Colors.black26,
-                                          ),
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.edit,
-                                            color: Colors.black26,
-                                          ),
-
-                                          // style: ButtonStyle(
-                                          //   backgroundColor:
-                                          //       MaterialStateProperty
-                                          //           .all<Color>(Color.fromARGB(
-                                          //               255, 235, 235, 255)),
-                                          //   // padding: MaterialStateProperty.all<
-                                          //   //         EdgeInsets>(
-                                          //   //     EdgeInsets.all(0.1)),
-                                          //   minimumSize:
-                                          //       MaterialStateProperty.all<Size>(
-                                          //           Size(20, 20)),
-                                          // ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  )
                                 ],
-                              )),
-                        ],
-                      ))
-                    ],
-                  ),
+                              ),
+                            ),
+                            Container(
+                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                margin: EdgeInsets.only(bottom: 5.0),
+                                padding: EdgeInsets.only(left: 0.0),
+                                height: 30.0,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    ///////
+                                    Container(
+                                      alignment: Alignment(0, 0),
+                                      padding: EdgeInsets.all(1.0),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1,
+                                              color: Colors.lightBlue)),
+                                      width: 35,
+                                      child: InkWell(
+                                        splashColor:
+                                            Color.fromARGB(255, 188, 195, 216),
+                                        // splashColor: Colors.blue,
+                                        onTap: () {
+                                          if (soluong <= 0) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                              content: Text(
+                                                  "số lượng đã tối thiểu, phải lớn hơn 0"),
+                                            ));
+                                          } else {
+                                            soluong--;
+                                            mycontroller.text =
+                                                soluong.toString();
+                                          }
+                                        },
+                                        child: Container(
+                                          width: 50,
+                                          height: 25,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "-",
+                                            style: TextStyle(
+                                                fontSize: 15,fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        // border: Border.all(width: 1, color: Colors.lightBlue)
+                                        border: Border(
+                                          top: BorderSide(
+                                              width: 1,
+                                              color: Colors.lightBlue),
+                                          bottom: BorderSide(
+                                              width: 1,
+                                              color: Colors.lightBlue),
+                                        ),
+                                      ),
+                                      width: 40,
+                                      child: Obx(
+                                        () => TextField(
+                                          textAlign: TextAlign.center,
+                                          decoration: InputDecoration(
+                                            hintText: soluong.toString(),
+                                            // prefixText: "1",
+                                            counterText: "",
+                                            border: InputBorder.none,
+                                            contentPadding: EdgeInsets.only(
+                                                top: 8, bottom: 10),
+                                          ),
+                                          keyboardType: TextInputType.number,
+                                          maxLength: 2,
+                                          maxLines: 1,
+                                          controller: mycontroller,
+                                          onChanged: (t) {
+                                            soluong.value = int.parse(t);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1, color: Colors.lightBlue),
+                                      ),
+                                      width: 35,
+                                      child: InkWell(
+                                          splashColor: Color.fromARGB(
+                                              255, 188, 195, 216),
+                                          // splashColor: Colors.blue,
+                                          onTap: () {
+                                            if (soluong < 99) {
+                                              soluong++;
+                                              mycontroller.text =
+                                                  soluong.toString();
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    "số lượng đã tối đa, phải nhỏ hơn 100"),
+                                              ));
+                                            }
+                                          },
+                                          child: Text(
+                                            "+",
+                                            style: TextStyle(fontSize: 30),
+                                          )),
+                                    ),
+                                    /*btn xóa*/
+                                    Container(
+                                      padding: EdgeInsets.only(bottom: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {
+                                              print("xóa");
+                                            },
+                                            icon: Icon(
+                                              Icons.delete,
+                                              color: Colors.black26,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    /*btn sửa*/
+                                    Container(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.edit,
+                                              color: Colors.black26,
+                                            ),
+
+                                            // style: ButtonStyle(
+                                            //   backgroundColor:
+                                            //       MaterialStateProperty
+                                            //           .all<Color>(Color.fromARGB(
+                                            //               255, 235, 235, 255)),
+                                            //   // padding: MaterialStateProperty.all<
+                                            //   //         EdgeInsets>(
+                                            //   //     EdgeInsets.all(0.1)),
+                                            //   minimumSize:
+                                            //       MaterialStateProperty.all<Size>(
+                                            //           Size(20, 20)),
+                                            // ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                          ],
+                        ))
+                  ],
                 );
+                /*Container(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  child:
+                );*/
               }),
         ),
       ],
