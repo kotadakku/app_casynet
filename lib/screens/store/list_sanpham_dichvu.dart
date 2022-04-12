@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -10,6 +8,8 @@ import 'datetime_range_controller.dart';
 
 
 class SanPhamDichVu extends StatelessWidget {
+  const SanPhamDichVu({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final DateTimeRangeController QLDTController =
@@ -21,49 +21,33 @@ class SanPhamDichVu extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                 height: 50.0,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      child: Container(
-                        // margin: EdgeInsets.only(left: 10,right: 5),
-                        child: TextButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.arrow_back,
-                                color: Colors.black,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      /*GestureDetector(
-                        onTap: () {
+                      // margin: EdgeInsets.only(left: 10,right: 5),
+                      child: TextButton(
+                        onPressed: () {
                           Get.back();
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(Icons.arrow_back),
+                          children: const [
+                            Icon(
+                              Icons.arrow_back,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
-                      ),*/
+                      ),
                     ),
-                    Container(
-                      // flex: 1,
-                      child: SizedBox(),
-                    ),
+
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             "Danh sách sản phẩm/ dịch vụ",
                             style: TextStyle(
@@ -91,7 +75,7 @@ class SanPhamDichVu extends StatelessWidget {
                   ],
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 3,
               ),
               Expanded(
@@ -109,7 +93,7 @@ class SanPhamDichVu extends StatelessWidget {
                                     children: [
                                       Container(
                                         width: 500,
-                                        child: TabBar(
+                                        child: const TabBar(
                                           labelColor:
                                               Color.fromARGB(255, 223, 180, 0),
                                           unselectedLabelColor: Colors.grey,
@@ -145,14 +129,14 @@ class SanPhamDichVu extends StatelessWidget {
                                   children: [
                                     /* Lọc sản phẩm */
                                     Container(
-                                      color: Color.fromARGB(255, 241, 243, 253),
-                                      padding: EdgeInsets.all(10.0),
+                                      color: const Color.fromARGB(255, 241, 243, 253),
+                                      padding: const EdgeInsets.all(10.0),
                                       height: 50.0,
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
+                                          const Text(
                                             "4 sảm phẩm ",
                                             style: TextStyle(
                                                 fontSize: 15,
@@ -191,7 +175,7 @@ class SanPhamDichVu extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 30,
                                     ),
                                     /* Danh sách sản phẩm*/
@@ -215,7 +199,7 @@ class SanPhamDichVu extends StatelessWidget {
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return Container(
-                                              margin: EdgeInsets.only(
+                                              margin: const EdgeInsets.only(
                                                 left: 10.0,
                                                 right: 10.0,
                                               ),
@@ -239,7 +223,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                       ),
                                                       /* % giảm giá */
                                                       if (7 != null)
-                                                        Positioned(
+                                                        const Positioned(
                                                             right: 5,
                                                             top: 5,
                                                             child: ItemAddPoint(
@@ -249,7 +233,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                 point: 10)),
                                                       /* Điểm cộng */
                                                       if (20 != null)
-                                                        Positioned(
+                                                        const Positioned(
                                                             top: 5,
                                                             left: 5,
                                                             child: ItemSale(
@@ -261,7 +245,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                     // Image.asset("")
                                                   ),
                                                   Row(
-                                                    children: [
+                                                    children: const [
                                                       Expanded(
                                                           child: Text(
                                                         "Máy rửa xe Catorex - CTR gggggggggggggggg",
@@ -272,7 +256,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                   Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
-                                                    children: [
+                                                    children: const [
                                                       Text(
                                                         "100.290.000 đ",
                                                         style: TextStyle(
@@ -304,7 +288,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      Text(
+                                                      const Text(
                                                         "Tên cửa hàng",
                                                         style: TextStyle(
                                                             color:
@@ -317,9 +301,9 @@ class SanPhamDichVu extends StatelessWidget {
                                                       PopupMenuButton(
                                                           elevation: 20,
                                                           enabled: true,
-                                                          offset: Offset(0, 0),
+                                                          offset: const Offset(0, 0),
                                                           // điểm xuất phát
-                                                          child: Icon(
+                                                          child: const Icon(
                                                             Icons.more_horiz,
                                                             color: kTextColor,
                                                           ),
@@ -353,7 +337,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                               height: 20,
                                                                             ),
                                                                             padding:
-                                                                                EdgeInsets.only(bottom: 15, right: 10),
+                                                                                const EdgeInsets.only(bottom: 15, right: 10),
                                                                           ),
                                                                           Expanded(
                                                                               child: Column(
@@ -361,7 +345,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                                 MainAxisAlignment.start,
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
-                                                                            children: [
+                                                                            children: const [
                                                                               Text(
                                                                                 "Ẩn",
                                                                                 style: TextStyle(color: kTextColor),
@@ -391,7 +375,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                               height: 20,
                                                                             ),
                                                                             padding:
-                                                                                EdgeInsets.only(bottom: 15, right: 10),
+                                                                                const EdgeInsets.only(bottom: 15, right: 10),
                                                                           ),
                                                                           Expanded(
                                                                               child: Column(
@@ -399,7 +383,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                                 MainAxisAlignment.start,
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
-                                                                            children: [
+                                                                            children: const [
                                                                               Text(
                                                                                 "Xóa",
                                                                                 style: TextStyle(color: kTextColor),
@@ -429,7 +413,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                               height: 20,
                                                                             ),
                                                                             padding:
-                                                                                EdgeInsets.only(bottom: 15, right: 10),
+                                                                                const EdgeInsets.only(bottom: 15, right: 10),
                                                                           ),
                                                                           Expanded(
                                                                               child: Column(
@@ -437,7 +421,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                                 MainAxisAlignment.start,
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
-                                                                            children: [
+                                                                            children: const [
                                                                               Text(
                                                                                 "Sửa",
                                                                                 style: TextStyle(color: kTextColor),
@@ -467,12 +451,12 @@ class SanPhamDichVu extends StatelessWidget {
                                     ),
                                     Container(
                                       margin:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                       height: 50,
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
-                                        children: [
+                                        children: const [
                                           Icon(
                                             Icons.check_box_outlined,
                                             color: Colors.amber,
@@ -484,10 +468,10 @@ class SanPhamDichVu extends StatelessWidget {
                                     )
                                   ],
                                 ),
-                                Text("36363636"),
-                                Text("66666663"),
-                                Text("33333333"),
-                                Text("66666666"),
+                                const Text("36363636"),
+                                const Text("66666663"),
+                                const Text("33333333"),
+                                const Text("66666666"),
                               ],
                             ),
                           ),

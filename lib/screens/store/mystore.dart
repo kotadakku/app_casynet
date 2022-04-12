@@ -1,11 +1,11 @@
 
 import 'package:app_casynet/screens/store/quan_ly_doanh_thu.dart';
 import 'package:app_casynet/screens/store/quan_ly_don_hang.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:app_casynet/screens/store/themsanphamdichvu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import 'edit_mystore.dart';
 import 'list_sanpham_dichvu.dart';
@@ -20,8 +20,8 @@ class Mystore extends StatelessWidget {
             child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 5.0, right: 5.0),
-              height: 50.0,
+              margin: EdgeInsets.only(left: 5.0.w, right: 5.0.w),
+              height: 50.0.h,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -33,7 +33,7 @@ class Mystore extends StatelessWidget {
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.arrow_back,
                             color: Colors.black,
@@ -43,14 +43,14 @@ class Mystore extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
+                  /*Container(
                     // flex: 1,
                     child: SizedBox(),
-                  ),
+                  ),*/
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text(
                           "Cửa hàng của tôi",
                           style: TextStyle(
@@ -88,7 +88,7 @@ class Mystore extends StatelessWidget {
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           ImageIcon(
                             AssetImage("assets/store/ic_question_circle.png"),
                             size: 20,
@@ -126,7 +126,7 @@ class Mystore extends StatelessWidget {
                                 // color: Colors.black26,
                                 alignment: Alignment.center,
                                 height: 50,
-                                child: Text(
+                                child: const Text(
                                   "Công ty TNHH Thế Bảo",
                                   style: TextStyle(
                                       fontSize: 15,
@@ -143,12 +143,12 @@ class Mystore extends StatelessWidget {
                             child: TextButton(
                               style: TextButton.styleFrom(
                                 backgroundColor:
-                                    Color.fromARGB(255, 195, 164, 43).withOpacity(0.5),
+                                    const Color.fromARGB(255, 195, 164, 43).withOpacity(0.5),
                               ),
                               onPressed: () {
                                 Get.to(EditMyStore());
                               },
-                              child: Text(
+                              child: const Text(
                                 "Sửa cửa hàng",
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -162,10 +162,10 @@ class Mystore extends StatelessWidget {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Color.fromARGB(255, 223, 180, 0),
+                                  color: const Color.fromARGB(255, 223, 180, 0),
                                   width: 2,
                                 ),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                   image: ExactAssetImage(
                                       "assets/store/img_mask_group_14.png"),
                                   fit: BoxFit.cover,
@@ -175,207 +175,198 @@ class Mystore extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 // quản lý doanh thu
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.amber,
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {
+                      Get.to(QuanLyDoanhThu());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.amber,
+                                ),
+                                child: const Icon(Icons.money_sharp),
                               ),
-                              child: Icon(Icons.money_sharp),
-                            ),
-                            Text("Quản lý doanh thu",
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black))
+                              const Text("Quản lý doanh thu",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black))
 //
-                          ],
-                        ),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {
-                              Get.to(QuanLyDoanhThu());
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                            ],
+                          ),
+                          const Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 // Quản lý đơn hàng
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.amber,
-                              ),
-                              child: Icon(Icons.money_sharp),
-                            ),
-                            Text("Quản lý đơn hàng",
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black))
-                          ],
-                        ),
-                        InkWell(
-                          splashColor: Color.fromARGB(255, 188, 195, 216),
-                          // splashColor: Colors.blue,
-                          onTap: () {
-                            Get.to(QuanLyDonHang());
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                      // splashColor: Colors.blue,
+                      onTap: () {
+                        Get.to(QuanLyDonHang());
+                      },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
                             children: [
-                              Icon(Icons.navigate_next),
+                              Container(
+                                margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.amber,
+                                ),
+                                child: const Icon(Icons.money_sharp),
+                              ),
+                              const Text("Quản lý đơn hàng",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black))
                             ],
                           ),
-                        )
-                      ],
+                          const Icon(Icons.navigate_next),
+
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                     thickness: 10,
                   ),
 // Quản lý sản phẩm
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.amber,
-                              ),
-                              child: Icon(Icons.money_sharp),
-                            ),
-                            Text("Quản lý sản phẩm",
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black))
-//
-                          ],
-                        ),
-                        InkWell(
-                          splashColor: Color.fromARGB(255, 188, 195, 216),
-                          // splashColor: Colors.blue,
-                          onTap: () {
-                            Get.to(SanPhamDichVu());
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {
+                      Get.to(SanPhamDichVu());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
                             children: [
-                              Icon(Icons.navigate_next),
+                              Container(
+                                margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.amber,
+                                ),
+                                child: const Icon(Icons.money_sharp),
+                              ),
+                              const Text("Quản lý sản phẩm",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black))
+//
                             ],
                           ),
-                        )
-                      ],
+                          const Icon(Icons.navigate_next),
+
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Danh sách sản phẩm/Dịch vụ
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Danh sách sản phẩm/Dịch vụ",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {
-                              Get.to(SanPhamDichVu());
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {
+                      Get.to(SanPhamDichVu());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Danh sách sản phẩm/Dịch vụ",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Thêm sản phẩm dịch vụ
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Thêm sản phẩm dịch vụ",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {
+                      Get.to(const ThemSanPhamDichVu());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Thêm sản phẩm dịch vụ",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          InkWell(
+                              splashColor: const Color.fromARGB(255, 188, 195, 216),
+                              // splashColor: Colors.blue,
+                              onTap: () {},
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const [
+                                  Icon(Icons.navigate_next),
+                                ],
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                   //////////////////
-                  Divider(
+                  const Divider(
                     height: 5,
                     thickness: 10,
                   ),
 // Kênh marketing
                   Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                    margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                     height: 50.0,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -383,14 +374,14 @@ class Mystore extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                              decoration: BoxDecoration(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.amber,
                               ),
-                              child: Icon(Icons.money_sharp),
+                              child: const Icon(Icons.money_sharp),
                             ),
-                            Text("Kênh marketing",
+                            const Text("Kênh marketing",
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.black))
 //
@@ -399,148 +390,134 @@ class Mystore extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Quà tặng cửa hàng
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Quà tặng cửa hàng",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
-                    ),
+                   InkWell(
+                     splashColor: const Color.fromARGB(255, 188, 195, 216),
+                     // splashColor: Colors.blue,
+                     onTap: () {},
+                     child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Quà tặng cửa hàng",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+
+                        ],
+                      ),
                   ),
-                  Divider(
+                   ),
+                  const Divider(
                     height: 5,
                   ),
 //Thông báo tới khách hàng
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Thông báo tới khách hàng",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Thông báo tới khách hàng",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
                   ),
                   ////
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Quản lý Casycoin
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Quản lý Casycoin",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Quản lý Casycoin",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Quảng cáo với Casynet
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Quảng cáo với Casynet",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Quảng cáo với Casynet",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+
+                        ],
+                      ),
                     ),
                   ),
 
                   //////////////////
-                  Divider(
+                  const Divider(
                     height: 5,
                     thickness: 10,
                   ),
 // Quản lý cửa hàng
                   Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                    margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                     height: 50.0,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -548,14 +525,14 @@ class Mystore extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                              decoration: BoxDecoration(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.amber,
                               ),
-                              child: Icon(Icons.money_sharp),
+                              child: const Icon(Icons.money_sharp),
                             ),
-                            Text("Quản lý cửa hàng",
+                            const Text("Quản lý cửa hàng",
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.black))
 //
@@ -564,148 +541,132 @@ class Mystore extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Đánh giá
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Đánh giá",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Đánh giá",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Hỏi đáp
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Hỏi đáp",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Hỏi đáp",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+
+                        ],
+                      ),
                     ),
                   ),
                   ////
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Tin Tức
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Tin Tức",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Tin Tức",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Dữ liệu
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Dữ liệu",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Dữ liệu",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
                   ),
-
-                  //////////////////
-                  Divider(
+                  const Divider(
                     height: 5,
                     thickness: 10,
                   ),
 // Cài đặt cửa hàng
                   Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                    margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                     height: 50.0,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -713,14 +674,14 @@ class Mystore extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                              decoration: BoxDecoration(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.amber,
                               ),
-                              child: Icon(Icons.money_sharp),
+                              child: const Icon(Icons.money_sharp),
                             ),
-                            Text("Cài đặt cửa hàng",
+                            const Text("Cài đặt cửa hàng",
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.black))
 //
@@ -729,79 +690,72 @@ class Mystore extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Thiết lập thông tin
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Thiết lập thông tin",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Thiết lập thông tin",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                   ),
 //Cài đặt thông báo
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Cài đặt thông báo",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black))
-                              ],
-                            )),
-                        InkWell(
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
-                            // splashColor: Colors.blue,
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.navigate_next),
-                              ],
-                            ))
-                      ],
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 188, 195, 216),
+                    // splashColor: Colors.blue,
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: const [
+                                  Text("Cài đặt thông báo",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black))
+                                ],
+                              )),
+                          const Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 5,
                     thickness: 10,
                   ),
 // btn Đăng xuất
                   Container(
-                      margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 70.0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -813,14 +767,14 @@ class Mystore extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 child: TextButton(
                                   style: TextButton.styleFrom(
-                                    alignment: Alignment(0, 0),
-                                    side: BorderSide(
+                                    alignment: const Alignment(0, 0),
+                                    side: const BorderSide(
                                         width: 1.0,
                                         color:
                                             Color.fromARGB(255, 223, 180, 0)),
                                     // padding: EdgeInsets.only(left: 10, right: 10),
                                     backgroundColor:
-                                        Color.fromARGB(255, 255, 255, 255),
+                                        const Color.fromARGB(255, 255, 255, 255),
                                     primary: Colors.white,
                                     textStyle: const TextStyle(fontSize: 15),
                                   ),
@@ -829,8 +783,8 @@ class Mystore extends StatelessWidget {
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
+                                    children: const [
+                                      Text(
                                         'Đăng xuất',
                                         style: TextStyle(
                                           fontSize: 15,
@@ -857,13 +811,13 @@ class Mystore extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 child: TextButton(
                                   style: TextButton.styleFrom(
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                         width: 1.0,
                                         color:
                                             Color.fromARGB(255, 223, 180, 0)),
                                     // padding: EdgeInsets.only(left: 10, right: 10),
                                     backgroundColor:
-                                        Color.fromARGB(255, 255, 255, 255),
+                                        const Color.fromARGB(255, 255, 255, 255),
                                     primary: Colors.white,
                                     textStyle: const TextStyle(fontSize: 15),
                                   ),
@@ -872,8 +826,8 @@ class Mystore extends StatelessWidget {
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
+                                    children: const [
+                                      Text(
                                         'Đi đến cửa hàng',
                                         style: TextStyle(
                                           fontSize: 15,

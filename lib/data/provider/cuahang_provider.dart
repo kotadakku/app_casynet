@@ -16,7 +16,7 @@ class CuaHangProvider {
         data: null).get(
         beforeSend: () => {if(beforeSend != null) beforeSend()},
         onSuccess: (data) {
-          print("list: /n"+ data );
+          // print("list: /n"+ data );
           onSuccess((json.decode(data) as List).map((postJson) =>
               CuaHang.fromJson(postJson)).toList());
 

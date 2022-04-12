@@ -1,13 +1,16 @@
-import 'package:app_casynet/controller/bottom_nav_controller.dart';
+import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../main.dart';
+import '../../controller/bottom_nav_controller.dart';
 import 'cart2.dart';
 import 'itemCart.dart';
 
 class Cart extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -17,9 +20,9 @@ class Cart extends StatelessWidget {
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        flexibleSpace: TopDetailProductWidget(),
+        flexibleSpace: const TopDetailProductWidget(),
       ),
-      body: SafeArea(
+      body: Material(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -29,15 +32,18 @@ class Cart extends StatelessWidget {
                 Container(
                   alignment: Alignment(0, 0),
                   color: Color.fromARGB(255, 241, 243, 253),
-                  height: 50,
-                  padding: EdgeInsets.only(left: 5.0),
+                  height: 50.h,
+                  padding: EdgeInsets.only(left: 5.w),
                   child: Row(
                     children: [
-                      Image.asset(
-                        "assets/cart/ic_check.png",
-                        width: 20,
-                        height: 20,
-                      ),
+                      GetBuilder<BottomNavController>(
+                          init: BottomNavController(),builder: (controller)=>InkWell(
+                        splashColor: Colors.blue,
+                        child: Icon(Icons.arrow_back),/*Center(child: ),*/
+                        onTap: (){
+                          controller.changeTabIndex(0);
+                        },
+                      ),),
                       const Text(
                         "Giỏ Hàng Của Bạn ",
                         style: const TextStyle(
@@ -64,11 +70,11 @@ class Cart extends StatelessWidget {
                         },
                         separatorBuilder: (context, index) {
                           return Divider(
-                            height: 30.0,
+                            height: 30.h,
                             thickness: 0.5,
                           );
                         },
-                        padding: EdgeInsets.all(0.1),
+                        padding: EdgeInsets.all(0.1.h),
                         itemCount: 2,
                         shrinkWrap: true,
                       ),
@@ -78,7 +84,7 @@ class Cart extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: Container(
-                            height: 50,
+                            height: 50.h,
                             alignment: AlignmentDirectional.centerStart,
                             child: Stack(
                               // alignment: const Alignment(-0.5, 1),
@@ -87,8 +93,8 @@ class Cart extends StatelessWidget {
                                   alignment: AlignmentDirectional.center,
                                   child: Image.asset(
                                     "assets/cart/img_sale.png",
-                                    width: 70,
-                                    height: 40,
+                                    width: 70.h,
+                                    height: 40.h,
                                   ),
                                 ),
                                 Container(
@@ -241,6 +247,7 @@ class Cart extends StatelessWidget {
               ],
             ),
           )),
+
     );
   }
 }
