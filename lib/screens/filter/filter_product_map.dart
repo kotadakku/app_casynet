@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:app_casynet/controller/filter_map_controller.dart';
 import 'package:app_casynet/theme/app_colors.dart';
-import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../widget/account/appbar_account_widget.dart';
 
 
 class FilterProductMap extends StatelessWidget {
@@ -25,10 +26,10 @@ class FilterProductMap extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
+          appBar:  AppBarAccountWidget(),
           body: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              TopAccountWidget(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

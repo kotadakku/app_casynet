@@ -1,5 +1,5 @@
 
-import 'package:app_casynet/widget/account/top_account_widget.dart';
+import 'package:app_casynet/widget/home/appbar_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +7,6 @@ import '../controller/detail_app_controller.dart';
 import '../controller/detail_app_controller.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_sizes.dart';
-import '../widget/home/top_home_widget.dart';
 import 'benefit/benefit_owner.dart';
 import 'benefit/benefit_store.dart';
 
@@ -20,11 +19,7 @@ class DetailAppPage extends StatelessWidget {
     var isExpandBenefit = Get.find<DetailAppController>().isExpandBenefit;
     var isExpandPolicy = Get.find<DetailAppController>().isExpandPolicy;
     return Scaffold(
-      appBar: AppBar(
-        elevation: 10,
-        backgroundColor: Colors.white,
-        flexibleSpace: TopHomeWidget(),
-      ),
+      appBar: AppBarHomeWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: [

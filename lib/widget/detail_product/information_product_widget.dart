@@ -2,12 +2,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InformationProductWidget extends StatelessWidget {
   const InformationProductWidget({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class InformationProductWidget extends StatelessWidget {
     TextEditingController hours_controller = TextEditingController();
     TextEditingController note_controller = TextEditingController();
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -76,7 +78,10 @@ class InformationProductWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.warning, color: kYellowColor, size: sizeIcon.width),
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      child: Icon(Icons.warning, color: kYellowColor, size: sizeIcon.width),
+                    ),
                     Text("Báo xấu: ",
                       style: TextStyle(
                         color: kTextColor_gray
@@ -93,8 +98,8 @@ class InformationProductWidget extends StatelessWidget {
                     Container(
                       height: 20,
                       width: 20,
-                      padding: EdgeInsets.all(2.0),
-                      child: SvgPicture.asset("assets/detail_product/cart2.svg"),
+                      margin: EdgeInsets.all(5.0),
+                      child: SvgPicture.asset("assets/detail_product/cart2.svg", width: sizeIcon.width,),
                     ),
                     Text("10 ",
                         style: TextStyle(
@@ -123,6 +128,7 @@ class InformationProductWidget extends StatelessWidget {
               Container(
                 height: 20,
                 width: 60,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
                 child: Stack(
                   children: [
                     Container(
@@ -208,7 +214,7 @@ class InformationProductWidget extends StatelessWidget {
           Container(
             color: kBackgroundColor,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -366,6 +372,9 @@ class InformationProductWidget extends StatelessWidget {
                               child: TextField(
                                 controller: note_controller,
                                 cursorColor: kYellowColor,
+                                style: TextStyle(
+                                  color: kTextColor_gray
+                                ),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(5.0),
                                   focusedBorder: OutlineInputBorder(
@@ -402,10 +411,11 @@ class InformationProductWidget extends StatelessWidget {
                             ],
                           ),
                           style: ElevatedButton.styleFrom(
-                              onPrimary: kYellowColor,
-                              primary: Colors.white,
-                              side: BorderSide(color: kYellowColor),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
+                            elevation: 0,
+                            onPrimary: kYellowColor,
+                            primary: Colors.white,
+                            side: BorderSide(color: kYellowColor),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ), onPressed: () {  },
                         ),
                       ),),
@@ -431,16 +441,20 @@ class InformationProductWidget extends StatelessWidget {
                             ],
                           ),
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              onPrimary: kYellowColor,
-                              side: BorderSide(color: kYellowColor),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
-                          ), onPressed: () {  },
+                            elevation: 0,
+                            primary: Colors.white,
+                            onPrimary: kYellowColor,
+                            side: BorderSide(color: kYellowColor),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
+                          ),
+                          onPressed: () {
+                            print("Call");
+                            launch("tel://0973647367");
+                          },
                         ),
                       ),),
                     ],
                   ),
-                  SizedBox(height: 20,)
 
                 ],
               )

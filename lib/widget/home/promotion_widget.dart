@@ -1,6 +1,7 @@
 
 import 'package:app_casynet/controller/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../image_network_loading.dart';
 import '../loading_overlay.dart';
@@ -11,26 +12,29 @@ class PromotionHomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      padding: EdgeInsets.all(10.0),
-      child: GetBuilder<HomeController>(
-        init: HomeController(),
-        builder: (controller){
-          return LoadingOverlay(
-            isLoading: controller.isLoadingSales,
-            shimmer: PromotionBlurWidget(),
-            child: Center(
-              child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  children: controller.listSales.map((e) => CardItem(image_url: e.image, title: e.title)).toList()
-              ),
-            )
-          );
-        }
-      ));
+    return Material(
+      elevation: 3,
+      child: Container(
+          height: 100,
+          padding: EdgeInsets.all(10.0),
+          child: GetBuilder<HomeController>(
+              init: HomeController(),
+              builder: (controller){
+                return LoadingOverlay(
+                    isLoading: controller.isLoadingSales,
+                    shimmer: PromotionBlurWidget(),
+                    child: Center(
+                      child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          children: controller.listSales.map((e) => CardItem(image_url: e.image, title: e.title)).toList()
+                      ),
+                    )
+                );
+              }
+          )),
+    );
   }
 }
 
@@ -72,7 +76,7 @@ class PromotionBlurWidget extends StatelessWidget {
       children: List.generate(
           4, (index) => Container(
         width: 100,
-        height: 80,
+        height: 80.w,
         child: Column(
           children: [
             ShimmerLoading(isLoading: true,

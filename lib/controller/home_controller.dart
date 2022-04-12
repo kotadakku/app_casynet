@@ -20,6 +20,9 @@ class HomeController extends GetxController{
   var isLoading = true;
   var isLoadingSales = true;
   late Timer _timer;
+  late String search_text = "";
+  late bool _isVN = true;
+
   PageController pageController = PageController(
     initialPage: 0,
   );
@@ -41,8 +44,8 @@ class HomeController extends GetxController{
 
       pageController.animateToPage(
         current_banner.value,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeIn,
+        duration: Duration(milliseconds: 1000),
+        curve: Curves.fastOutSlowIn,
       );
     });
   }
@@ -54,7 +57,7 @@ class HomeController extends GetxController{
       pageController.animateToPage(
         current_banner.value,
         duration: Duration(milliseconds: 500),
-        curve: Curves.easeOutSine,
+        curve: Curves.fastOutSlowIn,
       );
     }
 
@@ -66,7 +69,7 @@ class HomeController extends GetxController{
       pageController.animateToPage(
         current_banner.value,
         duration: Duration(milliseconds: 500),
-        curve: Curves.easeOutSine,
+        curve: Curves.fastOutSlowIn,
       );
     }
   }
@@ -126,4 +129,20 @@ class HomeController extends GetxController{
     }));
   }
 
+  void onChangeSearchText( value){
+    search_text = value;
+    print(search_text);
+  }
+
+  bool get isVN => _isVN;
+
+  void setIsVN() {
+    _isVN = !isVN;
+    update();
+  }
+
+  String languageToString() {
+    if(_isVN) return 'VN';
+    return 'EN';
+  }
 }

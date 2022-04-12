@@ -1,6 +1,7 @@
 
 import 'package:app_casynet/controller/filter_product_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -12,11 +13,12 @@ class CategoryProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FilterCategoriesController controller = Get.find<FilterCategoriesController>();
     List<String> _categories = [
       "Rửa xe, thay dầu", "Sửa chữa xe", "Đồ chơi, phụ kiện", "Mua bán xe", "Chăm sóc xe", "Lốp và ác quy xe"
     ];
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
         child:  Column(
           children: [
 
@@ -34,27 +36,31 @@ class CategoryProductWidget extends StatelessWidget {
                   const Spacer(),
                   IconButton(
                       onPressed: (){
-
-
+                        controller.expand();
                       },
                       iconSize: 20,
-                      icon: Obx(()=>Icon( Get.find<FilterCategoriesController>().more_categories.value ? Icons.keyboard_arrow_up_outlined : Icons.keyboard_arrow_down_outlined))
+                      icon: AnimatedBuilder(
+                        animation: controller.expandFilterCategoriesController,
+                        builder: (context, child){
+                          return Transform.rotate(angle: controller.animationRotale.value, child: Icon(Icons.keyboard_arrow_down_outlined,) );
+                        },
+                      )
                   )
                 ],
               ),
             ),
            SizeTransition(
-              sizeFactor: Get.find<FilterCategoriesController>().animationCategories,
+              sizeFactor: controller.animationCategories,
               axisAlignment: 1.0,
               child: Container(
                 width: double.infinity,
                 child: Wrap(
-                  spacing: 5.0,
+                  spacing: 5.0.w,
                   children: _categories.map((e) => Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Obx((){
-                        bool isContains = Get.find<FilterCategoriesController>().isContains(e);
+                        bool isContains = controller.isContains(e);
                         return Container(
                           child: ElevatedButton(
                             child: Text(e,
@@ -68,7 +74,7 @@ class CategoryProductWidget extends StatelessWidget {
                                 side: BorderSide(width: 1, color: isContains ? kYellowColor : kTextColor),
                                 elevation: 0
                             ), onPressed: () {
-                            Get.find<FilterCategoriesController>().change_list(e);
+                            controller.change_list(e);
                           },
                           ),
                         );

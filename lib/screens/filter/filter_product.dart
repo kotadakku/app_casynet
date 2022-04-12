@@ -1,7 +1,11 @@
-import 'package:app_casynet/widget/account/top_account_widget.dart';
+
+import 'package:app_casynet/widget/account/appbar_account_widget.dart';
 import 'package:app_casynet/widget/filter/district_product_widget.dart';
 import 'package:app_casynet/widget/filter/origin_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../../theme/app_sizes.dart';
 import '../../widget/filter/attribute_product_widget.dart';
 import '../../widget/filter/bottom_button.dart';
 import '../../widget/filter/price_product_widget.dart';
@@ -11,63 +15,69 @@ class FilterProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
+      appBar: AppBarAccountWidget(),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              // Thanh tìm kiếm
-              const TopAccountWidget(),
-              Container(
-                width: double.infinity,
-                color: const Color(0xffF1F3FD),
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  children: const [
-                    Icon(Icons.filter_alt),
-                    SizedBox(width: 10,),
-                    Text("Lọc sản phẩm",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              color: const Color(0xffF1F3FD),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.0.w),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    child: Container(
+                      padding: EdgeInsets.all(5.0.w),
+                      child: Icon(Icons.arrow_back_ios, size: sizeIcon.width,),
                     ),
-                  ],
-                ),
+                    onTap: (){
+                      Get.back();
+                    },
+                  ),
+                  Text("Lọc sản phẩm",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-              //Quận huyện
-              DistrictProductWidget(),
-              Container(
-                width: double.infinity,
-                color: const Color(0xffF1F3FD),
-                height: 10,
-              ),
-              //Thuộc tính
-              AttributeProductWidget(),
-              Container(
-                width: double.infinity,
-                color: const Color(0xffF1F3FD),
-                height: 10,
-              ),
-              //Theo giá
-              PriceProductWidget(),
-              Container(
-                width: double.infinity,
-                color: const Color(0xffF1F3FD),
-                height: 10,
-              ),
-              // Xuất xư
-              OriginProductWidget(),
-              Container(
-                width: double.infinity,
-                color: const Color(0xffF1F3FD),
-                height: 10,
-              ),
-              //Bottom Button
-              BottomButtonWidget(),
-            ],
-          ),
-        )
+            ),
+            //Quận huyện
+            DistrictProductWidget(),
+            Container(
+              width: double.infinity,
+              color: const Color(0xffF1F3FD),
+              height: 10,
+            ),
+            //Thuộc tính
+            AttributeProductWidget(),
+            Container(
+              width: double.infinity,
+              color: const Color(0xffF1F3FD),
+              height: 10,
+            ),
+            //Theo giá
+            PriceProductWidget(),
+            Container(
+              width: double.infinity,
+              color: const Color(0xffF1F3FD),
+              height: 10,
+            ),
+            // Xuất xư
+            OriginProductWidget(),
+            Container(
+              width: double.infinity,
+              color: const Color(0xffF1F3FD),
+              height: 10,
+            ),
+            //Bottom Button
+            BottomButtonWidget(),
+          ],
+        ),
       ),
+    )
     );
   }
 }

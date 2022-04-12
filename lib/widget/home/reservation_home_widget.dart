@@ -1,7 +1,9 @@
 
 import 'package:app_casynet/controller/datcho_controller.dart';
 import 'package:app_casynet/screens/products.dart';
+import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -17,141 +19,152 @@ class ReservationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        children: [
-          Padding(padding: EdgeInsets.symmetric(vertical: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+    return Material(
+      elevation: 3,
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            Material(
+              elevation: 2,
+              child: Padding(padding: EdgeInsets.symmetric(vertical: 12.0.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(width: 15,),
-                    Container(child: CircleAvatar(
-                      child: Text(
-                        "123",
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
-                      ),
-                      backgroundColor: Color(0xffDFB400),
-                    ),),
-                    SizedBox(width: 15,),
-                    Text(
-                      title.toUpperCase(),
-                      style: TextStyle(
-                          color: Color(0xffDFB400),
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
+                    Row(
+                      children: [
+
+                        Container(
+                          padding: EdgeInsets.only(left: 10.w),
+                          child: CircleAvatar(
+                            child: Text(
+                              "123",
+                              style: TextStyle(
+                                  color: Colors.white
+                              ),
+                            ),
+                            backgroundColor: Color(0xffDFB400),
+                          ),),
+                        SizedBox(width: 15,),
+                        Text(
+                          title.toUpperCase(),
+                          style: TextStyle(
+                              color: Color(0xffDFB400),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        _view_more(title);
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            "Xem thêm",
+                            style: TextStyle(
+                              color: Color(0xffB7BAC1),
+                            ),
+                          ),
+                          SizedBox(width: 5.0,),
+                          Container(
+                            padding: EdgeInsets.only(right: 10.0),
+                            child: SvgPicture.asset("assets/home/store/icon_xemthem.svg", width: 5,),
+                          )
+                        ],
                       ),
                     )
                   ],
                 ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    GetBuilder<DatChoController>(
+                        init: DatChoController(),
+                        builder: ((controller) {
+                          return Row(
+                            children: [
+                              Radio(
+                                  value: true,
+                                  groupValue: controller.isCar,
+                                  onChanged: (value){
+                                    controller.updateIsCar(controller.isCar);
+                                    controller.updateAPI();
+                                  },
+                                  activeColor: Color(0xffDFB400)),
+                              Text("Ô tô"),
+                              SizedBox(width: 20,),
+                              Radio(
+                                  value: false,
+                                  groupValue: controller.isCar,
+                                  onChanged: (value){
+                                    controller.updateIsCar(controller.isCar);
+                                    controller.updateAPI();
+                                  },
+                                  activeColor: Color(0xffDFB400)
+                              ),
+                              Text("Xe máy")
+                            ],
+                          );
+                        }))
+
+                  ],
+                ),
                 GestureDetector(
-                  onTap: (){
-                    _view_more(title);
-                  },
+                  behavior: HitTestBehavior.translucent,
                   child: Row(
                     children: [
+                      SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
+                      SizedBox(width: 5,),
                       Text(
-                        "Xem thêm",
+                        "Lọc",
                         style: TextStyle(
                           color: Color(0xffB7BAC1),
                         ),
                       ),
-                      SizedBox(width: 5,),
-                      SvgPicture.asset("assets/home/store/icon_xemthem.svg", width: 5,),
                       SizedBox(width: 10,)
                     ],
                   ),
+                  onTap: (){
+                    _filter_product();
+                  },
                 )
+
               ],
             ),
-          ),
+            GetBuilder<DatChoController>(
+                init: DatChoController(),
+                builder: ((controller) {
+                  return Padding(padding: EdgeInsets.only(bottom: 15.h),
+                      child: Wrap(
+                        spacing: 5.0.w,
+                        runSpacing: 10.0,
+                        children: controller.datchoList.map((e) => GestureDetector(
+                          child: ItemBookWidget(
+                            book_image: e.hinhanhsanpham.toString(),
+                            distance: double.parse(e.khoangcachtoicuahang.toString()),
+                            price: e.giauudai.toString(),
+                            price_discount: e.giasanpham.toString(),
+                            book_name: e.tensanpham.toString(),
+                            book_category: e.tencuahang.toString(),
+                            add_point: 12,
 
-          SizedBox(height: 5, child: Container(color: Color(0xffF1F3FD),),),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  GetBuilder<DatChoController>(
-                      init: DatChoController(),
-                      builder: ((controller) {
-                    return Row(
-                      children: [
-                        Radio(
-                            value: true,
-                            groupValue: controller.isCar,
-                            onChanged: (value){
-                             controller.updateIsCar(controller.isCar);
-                             controller.updateAPI();
-                            },
-                            activeColor: Color(0xffDFB400)),
-                        Text("Ô tô"),
-                        SizedBox(width: 20,),
-                        Radio(
-                            value: false,
-                            groupValue: controller.isCar,
-                            onChanged: (value){
-                              controller.updateIsCar(controller.isCar);
-                              controller.updateAPI();
-                            },
-                            activeColor: Color(0xffDFB400)
-                        ),
-                        Text("Xe máy")
-                      ],
-                    );
-                  }))
-
-                ],
-              ),
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                child: Row(
-                  children: [
-                    SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
-                    SizedBox(width: 5,),
-                    Text(
-                      "Lọc",
-                      style: TextStyle(
-                        color: Color(0xffB7BAC1),
-                      ),
-                    ),
-                    SizedBox(width: 10,)
-                  ],
-                ),
-                onTap: (){
-                  _filter_product();
-                },
-              )
-
-            ],
-          ),
-          GetBuilder<DatChoController>(
-              init: DatChoController(),
-              builder: ((controller) {
-                return Wrap(
-                  spacing: 5.0,
-                  runSpacing: 10.0,
-                  children: controller.datchoList.map((e) => GestureDetector(
-                    child: ItemBookWidget(
-                        book_image: e.hinhanhsanpham.toString(),
-                        distance: double.parse(e.khoangcachtoicuahang.toString()),
-                        price: e.giauudai.toString(),
-                        price_discount: e.giasanpham.toString(),
-                        book_name: e.tensanpham.toString(),
-                        book_category: e.tencuahang.toString(),
-
-                    ),
-                    onTap: (){
-                      Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 });
-                    },
-                  )).toList(),
-                );
-          }))
-        ],
+                          ),
+                          onTap: (){
+                            Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 });
+                          },
+                        )).toList(),
+                      )
+                  );
+                }))
+          ],
+        ),
       ),
     );
   }
@@ -186,122 +199,130 @@ class ItemBookWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraint) => Container(
-      width: constraint.maxWidth/2-7.5,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0)
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Image.network(book_image,
-              fit: BoxFit.fitHeight,
-              height: constraint.maxWidth/2-10,),
-              if(add_point != null) Positioned(
-                right: 5,
-                top: 5,
-                child: ItemAddPoint(color: Colors.red, width: 50, point: add_point)
-              ),
-              if(sale != null) Positioned(
-                top: 5,
-                  left: 5,
-                  child: ItemSale(color: kYellowColor, width: 40, sale: sale)
-              )
-            ],
-            // Image.asset("")
-          ),
-          SizedBox(height: 10.0,),
-          Text(book_name),
-          SizedBox(height: 10.0,),
-          Row(
-            children: [
-              Text(
-                price,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              SizedBox(width: 5,),
-              Text(
-                price_discount,
-                style: TextStyle(
-                    fontSize: 13,
-                    decoration: TextDecoration.lineThrough
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10.0,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(book_category,
-                style: TextStyle(
-                    fontSize: 10
-                ),
-              ),
-
-              Row(
+    return LayoutBuilder(builder: (context, constraints) {
+      double grid = .5;
+      if(constraints.maxWidth > 500){
+        grid = .333;
+      }
+      return Container(
+        width: grid.sw -5.0.w*(1/grid + 1)*grid,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: grid.sw -5.0.w*(1/grid + 1)*grid,
+              width: grid.sw -5.0.w*(1/grid + 1)*grid,
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 12,),
-                  SizedBox(width: 3,),
-                  Text("$distance km",
-                    style: TextStyle(
-                        fontSize: 10
-                    ),
+                  Image.network(book_image,
+                      fit: BoxFit.fill),
+                  if(add_point != null) Positioned(
+                      right: 5,
+                      top: 5,
+                      child: ItemAddPoint(color: Colors.red, width: 50, point: add_point)
+                  ),
+                  if(sale != null) Positioned(
+                      top: 5,
+                      left: 5,
+                      child: ItemSale(color: kYellowColor, width: 40, sale: sale)
+                  )
+                ],
+                // Image.asset("")
+              ),
+            ),
+            SizedBox(height: 10.0.h,),
+            Text(book_name),
+            SizedBox(height: 10.0.h,),
+            Row(
+              children: [
+                Text(
+                  price,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                SizedBox(width: 5.w,),
+                Text(
+                  price_discount,
+                  style: TextStyle(
+                      fontSize: 13.sp,
+                      decoration: TextDecoration.lineThrough
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10.0.h,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(book_category,
+                  style: TextStyle(
+                      fontSize: 12
+                  ),
+                ),
+
+                Row(
+                  children: [
+                    FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
+                    SizedBox(width: 3,),
+                    Text("$distance km",
+                      style: TextStyle(
+                          fontSize: 12.sp
+                      ),
+                    )
+                  ],
+                ),
+
+              ],
+            ),
+            SizedBox(height: 10.0,),
+            Container(
+              padding: EdgeInsets.all(4),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      FaIcon(FontAwesomeIcons.solidThumbsUp, color: kTextColor_gray, size: IconSize.iconSize,),
+                      SizedBox(width: 2.0,),
+                      Text("33",
+                          style: TextStyle(
+                              fontSize: 15.sp
+                          )
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      FaIcon(FontAwesomeIcons.comment, color: kTextColor_gray, size: IconSize.iconSize,),
+                      SizedBox(width: 2.0,),
+                      Text("33",
+                          style: TextStyle(
+                              fontSize: 15.sp
+                          )
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+
+                      Text("4.3",
+                        style: TextStyle(
+                            fontSize: 15.sp
+                        ),
+                      ),
+                      SizedBox(width: 2.0,),
+                      Icon(Icons.star_outlined, size: 15, color: kTextColor_gray,),
+                    ],
                   )
                 ],
               ),
-
-            ],
-          ),
-          SizedBox(height: 10.0,),
-          Container(
-            padding: EdgeInsets.all(4),
-            child:Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    FaIcon(FontAwesomeIcons.solidThumbsUp, color: kTextColor_gray, size: 12,),
-                    SizedBox(width: 2.0,),
-                    Text("33",
-                      style: TextStyle(
-                          fontSize: 10
-                      )
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    FaIcon(FontAwesomeIcons.comment, color: kTextColor_gray, size: 12,),
-                    SizedBox(width: 2.0,),
-                    Text("33",
-                      style: TextStyle(
-                          fontSize: 10
-                      )
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.share, size: 12, color: kTextColor_gray,),
-                    SizedBox(width: 2.0,),
-                    Text("4.3",
-                      style: TextStyle(
-                        fontSize: 10
-                      )
-                    )
-                  ],
-                )
-              ],
             ),
-          ),
-        ],
-      ),
-    ));
+          ],
+        ),
+      );
+    });
   }
 }
 

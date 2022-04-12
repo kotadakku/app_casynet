@@ -1,17 +1,19 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../theme/app_colors.dart';
 import '../../controller/filter_product_controller.dart';
 
 class PriceProductWidget extends StatelessWidget {
-  const PriceProductWidget({Key? key}) : super(key: key);
+  final FilterPriceController controller = Get.find<FilterPriceController>();
+  PriceProductWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
         child:  Column(
           children: [
             Container(
@@ -27,168 +29,181 @@ class PriceProductWidget extends StatelessWidget {
                   Spacer(),
                   IconButton(
                       onPressed: () {
-                        Get.find<FilterPriceController>().expand();
+                        controller.expand();
                       },
                       iconSize: 20,
-                      icon: Obx(()=>Icon( Get.find<FilterPriceController>().more_price.value? Icons.keyboard_arrow_down_outlined: Icons.keyboard_arrow_up_outlined))
+                      icon: AnimatedBuilder(
+                        animation: controller.expandPriceController,
+                        builder: (context, child){
+                          return Transform.rotate(angle: controller.animationRotale.value, child: Icon(Icons.keyboard_arrow_down_outlined,) );
+                        },
+                      )
                   )
                 ],
               ),
             ),
             SizeTransition(
-              sizeFactor: Get.find<FilterPriceController>().animationPrice,
-              child: Column(
-                children: [
-                  Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Obx((){
-                        bool is_high_price = Get.find<FilterPriceController>().is_high_price.value;
-                        return Row(
-                          children: [
-                            ElevatedButton(
-                              child: Text("Giá cao",
-                                style: TextStyle(
-                                  color: is_high_price ? Colors.white: kTextColor
-                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  primary: is_high_price ? kYellowColor: Colors.white,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),
-                                  side: BorderSide(
-                                    width: 1,
-                                    color: is_high_price ? kYellowColor: kTextColor
-                                  )
-                                  )
-                              ), onPressed: () {
-                                  Get.find<FilterPriceController>().is_high_price.value = ! is_high_price;
-                              },
-                            ),
-                            SizedBox(width: 10,),
-                            ElevatedButton(
-                              child: Text(
-                                "Giá thấp",
-                                style: TextStyle(
-                                color: !is_high_price ? Colors.white: kTextColor
-                                ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                primary: is_high_price ? Colors.white : kYellowColor,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: !is_high_price ? kYellowColor: kTextColor
-                                )
-                              ),
-                              onPressed: () {
-                                Get.find<FilterPriceController>().is_high_price.value = ! is_high_price;
-                              },
-                            ),
-                          ],
-                        );
-                      })
-                  ),
-                  SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      Flexible(
-                          flex: 1,
-                          child: Row(
+              sizeFactor: controller.animationPrice,
+              child: Padding(
+                padding: EdgeInsets.only(left: 5.0.w),
+                child: Column(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Obx((){
+                          bool is_high_price = controller.is_high_price.value;
+                          return Row(
                             children: [
-                              const Text("Từ "),
-
-                              Container(
-                                width: 100,
-                                height: 30,
-                                child: Obx(()=>
-                                  TextFormField(
-                                    controller: Get.find<FilterPriceController>().price_min_text,
-                                    cursorColor: kYellowColor,
-                                    keyboardType: TextInputType.number,
-
-                                    textAlignVertical: TextAlignVertical.center,
-                                    style: TextStyle(
-                                        color: kTextColor_gray
-                                    ),
-                                    validator: (value){
-                                      if(value == null || value.isEmpty){
-                                        return 'Trống';
-                                      }
-                                      final number = int.tryParse(value);
-                                      if(number == null){
-                                        return 'Không đúng định dạng';
-                                      }
-                                      return null;
-                                    },
-
-                                    onChanged: (value){
-                                      Get.find<FilterPriceController>().validate_min(value);
-                                    },
-                                    decoration: InputDecoration(
-                                      errorText: Get.find<FilterPriceController>().price_min_error.value!=""? Get.find<FilterPriceController>().price_min_error.value:null,
-                                      errorStyle: TextStyle(
-                                        fontSize: 10,
-                                      ),
-                                      contentPadding: EdgeInsets.all(5.0),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: kYellowColor, width: 1.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: kTextColor, width: 1.0),
-                                      ),
+                              ElevatedButton(
+                                child: Text("Giá cao",
+                                  style: TextStyle(
+                                      color: is_high_price ? Colors.white: kTextColor
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    primary: is_high_price ? kYellowColor: Colors.white,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),
+                                        side: BorderSide(
+                                            width: 1,
+                                            color: is_high_price ? kYellowColor: kTextColor
+                                        )
                                     )
-                                )),
+                                ), onPressed: () {
+                                controller.is_high_price.value = ! is_high_price;
+                              },
                               ),
-                            ],
-                          )
-                      ),
-                      Flexible(
-                          flex: 1,
-                          child: Row(
-                            children: [
-                              const Text("Đến "),
-                              Container(
-                                width: 100,
-                                height: 30,
-                                child: Obx(()=>
-                                  TextFormField(
-                                    cursorColor: kYellowColor,
-                                    keyboardType: TextInputType.number,
-                                    controller:  Get.find<FilterPriceController>().price_max_text,
-                                    textAlignVertical: TextAlignVertical.center,
-                                    style: TextStyle(
-                                        color: kTextColor_gray
-                                    ),
-                                    decoration: InputDecoration(
-                                      errorText: Get.find<FilterPriceController>().price_max_error.value!=""? Get.find<FilterPriceController>().price_max_error.value:null,
-                                      errorStyle: TextStyle(
-                                        fontSize: 10,
-                                      ),
-                                      contentPadding: EdgeInsets.all(5.0),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: kYellowColor, width: 1.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: kTextColor, width: 1.0),
-                                      ),
-                                    ),
-                                    onChanged: (value){
-                                      Get.find<FilterPriceController>().validate_max(value);
-                                    },
-                                  )
+                              SizedBox(width: 10,),
+                              ElevatedButton(
+                                child: Text(
+                                  "Giá thấp",
+                                  style: TextStyle(
+                                      color: !is_high_price ? Colors.white: kTextColor
+                                  ),
                                 ),
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    primary: is_high_price ? Colors.white : kYellowColor,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                                    side: BorderSide(
+                                        width: 1,
+                                        color: !is_high_price ? kYellowColor: kTextColor
+                                    )
+                                ),
+                                onPressed: () {
+                                  controller.is_high_price.value = ! is_high_price;
+                                },
                               ),
                             ],
+                          );
+                        })
+                    ),
+                    Padding(padding: EdgeInsets.symmetric(vertical: 5.0.h),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Row(
+                                children: [
+                                  const Text("Từ "),
+
+                                  Container(
+                                    width: 120.w,
+                                    height: 30,
+                                    padding: EdgeInsets.only(left: 5.0.w),
+                                    child: Obx(()=>
+                                        TextFormField(
+                                            controller: controller.price_min_text,
+                                            cursorColor: kYellowColor,
+                                            keyboardType: TextInputType.number,
+
+                                            textAlignVertical: TextAlignVertical.center,
+                                            style: TextStyle(
+                                                color: kTextColor_gray
+                                            ),
+                                            validator: (value){
+                                              if(value == null || value.isEmpty){
+                                                return 'Trống';
+                                              }
+                                              final number = int.tryParse(value);
+                                              if(number == null){
+                                                return 'Không đúng định dạng';
+                                              }
+                                              return null;
+                                            },
+
+                                            onChanged: (value){
+                                              controller.validate_min(value);
+                                            },
+                                            decoration: InputDecoration(
+                                              errorText: controller.price_min_error.value!=""? controller.price_min_error.value:null,
+                                              errorStyle: TextStyle(
+                                                fontSize: 10,
+                                              ),
+                                              contentPadding: EdgeInsets.all(5.0),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                              ),
+                                            )
+                                        )),
+                                  ),
+                                ],
+                              )
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Row(
+                                children: [
+                                  const Text("Đến "),
+                                  Container(
+                                    width: 120.w,
+                                    height: 30,
+                                    padding: EdgeInsets.only(left: 5.0.w),
+                                    child: Obx(()=>
+                                        TextFormField(
+                                          cursorColor: kYellowColor,
+                                          keyboardType: TextInputType.number,
+                                          controller:  controller.price_max_text,
+                                          textAlignVertical: TextAlignVertical.center,
+                                          style: TextStyle(
+                                              color: kTextColor_gray
+                                          ),
+                                          decoration: InputDecoration(
+                                            errorText: controller.price_max_error.value!=""? controller.price_max_error.value:null,
+                                            errorStyle: TextStyle(
+                                              fontSize: 10,
+                                            ),
+                                            contentPadding: EdgeInsets.all(5.0),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                            ),
+                                          ),
+                                          onChanged: (value){
+                                            controller.validate_max(value);
+                                          },
+                                        )
+                                    ),
+                                  ),
+                                ],
+                              )
                           )
-                      )
-                    ],
-                  ),
-                ],
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],

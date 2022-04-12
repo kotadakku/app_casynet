@@ -1,6 +1,7 @@
 
-import 'package:app_casynet/widget/account/top_account_widget.dart';
+import 'package:app_casynet/widget/account/appbar_account_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -13,109 +14,115 @@ class CasycoinManagerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CasycoinManagerController _tabx = Get.find<CasycoinManagerController>();
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            TopAccountWidget(),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Quản lý tích điểm",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Row(
-                    children: [
-                      Image.asset("assets/cart/icon_coin.png", width: 30,),
-                      SizedBox(width: 5.0,),
-                      Column(
-                        children: [
-                          Text("1.800",
-                            style: TextStyle(
-                                color: kYellowColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          Text("Tích điểm",
-                            style: TextStyle(
-                                color: kTextColor_gray
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Divider(
-              thickness: 10,
-              color: kBackgroundColor,
-            ),
-            Container(
-              decoration: BoxDecoration(color: Colors.white),
-              child: TabBar(
-                controller: _tabx.controller,
-                indicatorColor: kYellowColor,
-                unselectedLabelColor: kTextColor,
-                labelColor: kYellowColor,
-                tabs: _tabx.listTab
-                    .map((e) => Tab(
-                  child: Text(
-                    e,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(),
-                  ),
-                )
-                ).toList()),
-            ),
-            Expanded(
-                child: TabBarView(
-                  controller: _tabx.controller,
+    return Material(
+
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBarAccountWidget(),
+          body: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ListView.separated(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      separatorBuilder: (context, index){
-                        return Divider();
-                      },
-                      itemBuilder: (context, index) => ItemCoin(
-                        point_change: 200,
-                        store_name: "Gara Ô Tô Hà Nội Car Sevices",
-                        store_image: ""),
-                      itemCount: 3,),
-                    ListView.separated(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      separatorBuilder: (context, index){
-                        return Divider();
-                      },
-                      itemBuilder: (context, index) => ItemCoin(
-                          point_change: 200,
-                          store_name: "Gara Ô Tô Hà Nội Car Sevices",
-                          store_image: ""),
-                      itemCount: 3,),
-                    ListView.separated(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      separatorBuilder: (context, index){
-                        return Divider();
-                      },
-                      itemBuilder: (context, index) => ItemCoin(
-                          point_change: 200,
-                          store_name: "Gara Ô Tô Hà Nội Car Sevices",
-                          store_image: ""),
-                      itemCount: 3,),
+                    Text(
+                      "Quản lý tích điểm",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Image.asset("assets/cart/icon_coin.png", width: 30,),
+                        SizedBox(width: 5.0.w,),
+                        Column(
+                          children: [
+                            Text("1.800",
+                              style: TextStyle(
+                                  color: kYellowColor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            Text("Tích điểm",
+                              style: TextStyle(
+                                  color: kTextColor_gray
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    )
                   ],
-                )),
-          ],
+                ),
+              ),
+              Divider(
+                thickness: 10,
+                color: kBackgroundColor,
+              ),
+              Container(
+                decoration: BoxDecoration(color: Colors.white),
+                child: TabBar(
+                    controller: _tabx.controller,
+                    indicatorColor: kYellowColor,
+                    unselectedLabelColor: kTextColor,
+                    labelColor: kYellowColor,
+                    tabs: _tabx.listTab
+                        .map((e) => Tab(
+                      child: Text(
+                        e,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(),
+                      ),
+                    )
+                    ).toList()),
+              ),
+              Expanded(
+                  child: TabBarView(
+                    controller: _tabx.controller,
+                    children: [
+                      ListView.separated(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index){
+                          return Divider();
+                        },
+                        itemBuilder: (context, index) => ItemCoin(
+                            point_change: 200,
+                            store_name: "Gara Ô Tô Hà Nội Car Sevices",
+                            store_image: ""),
+                        itemCount: 3,),
+                      ListView.separated(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index){
+                          return Divider();
+                        },
+                        itemBuilder: (context, index) => ItemCoin(
+                            point_change: 200,
+                            store_name: "Gara Ô Tô Hà Nội Car Sevices",
+                            store_image: ""),
+                        itemCount: 3,),
+                      ListView.separated(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index){
+                          return Divider();
+                        },
+                        itemBuilder: (context, index) => ItemCoin(
+                            point_change: 200,
+                            store_name: "Gara Ô Tô Hà Nội Car Sevices",
+                            store_image: ""),
+                        itemCount: 3,),
+                    ],
+                  )),
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 }

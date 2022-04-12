@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../data.dart';
@@ -17,7 +18,7 @@ class ChatProductWidget extends StatelessWidget {
       shrinkWrap: true,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -88,8 +89,8 @@ class CardChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-      margin: EdgeInsets.only(left: isFromMe ? 30 : 0),
+      padding: EdgeInsets.only(left: 10.w, right: 30.w, top: 10.h, bottom: 10.h),
+      margin: EdgeInsets.only(left: isFromMe ? 30.w : 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
         color: isFromMe ? Colors.blue.withOpacity(.1) : Colors.white,

@@ -1,9 +1,9 @@
 import 'package:app_casynet/screens/benefit/widget/step_benefit.dart';
+import 'package:app_casynet/widget/account/appbar_account_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
-import '../../widget/account/top_account_widget.dart';
 
 class Introduction extends StatelessWidget {
   const Introduction({Key? key}) : super(key: key);
@@ -30,16 +30,16 @@ class Introduction extends StatelessWidget {
       "Nhận tư vấn từ các Cửa hàng thông qua các công cụ Chát, Gọi điện, Gửi thư, Nhắn tin tích hợp trên Casynet.",
       "Đánh giá chất lượng dịch vụ, sản phẩm của Cửa hàng sau khi sử dụng."
     ];
-    return Scaffold(
-      body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SafeArea(
+    return Material(
+      color: Colors.white,
+      child: Scaffold(
+        appBar: AppBarAccountWidget(),
+        body: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
               child: ListView(
 
                   children: [
-                    TopAccountWidget(),
-                    SizedBox(height: 15,),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       color: kBackgroundColor,
@@ -56,17 +56,17 @@ class Introduction extends StatelessWidget {
                       children: [
                         Image.asset("assets/benefit/image.png"),
                         Positioned.fill(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Column(
-                              children: [
-                                Text("WEBSITE CUNG CẤP"),
-                                Text("DỊCH VỤ TMĐT CASYNET.COM", style: TextStyle(
-                                    fontWeight: FontWeight.bold
-                                ),)
-                              ],
-                            ),
-                          )
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: [
+                                  Text("WEBSITE CUNG CẤP"),
+                                  Text("DỊCH VỤ TMĐT CASYNET.COM", style: TextStyle(
+                                      fontWeight: FontWeight.bold
+                                  ),)
+                                ],
+                              ),
+                            )
                         )
                       ],
                     ),
@@ -82,7 +82,7 @@ class Introduction extends StatelessWidget {
                     Text("Cơ sở dịch vụ (Cửa hàng):",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold
                       ),
                     ),
                     SizedBox(height: 30,),
@@ -100,9 +100,9 @@ class Introduction extends StatelessWidget {
                     StepBenefit(benefits: intro_owers),
                   ]
               ),
-            ),
-          )
+            )
+        ),
       ),
-    );;
+    );
   }
 }

@@ -13,6 +13,7 @@ class ImageNetworkLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: image_url,
+      fit: fit,
       placeholder: (context, url) => SizedBox(
         height: 20,
         width: 20,
@@ -23,7 +24,7 @@ class ImageNetworkLoading extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  borderRadius: BorderRadius.circular(16),
+                  // borderRadius: BorderRadius.circular(),
                 ),
               ),
             ),
