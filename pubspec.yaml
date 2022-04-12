@@ -53,6 +53,8 @@ dependencies:
   location:
   cached_network_image:
   flutter_screenutil:
+  url_launcher:
+  connectivity_plus:
 
 
 dev_dependencies:

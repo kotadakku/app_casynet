@@ -1,6 +1,8 @@
 import 'package:app_casynet/theme/app_colors.dart';
+import 'package:app_casynet/widget/account/appbar_account_widget.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -15,13 +17,13 @@ class WalletVoucherPage extends StatelessWidget {
     final WalletVoucherController _tabx = Get.find<WalletVoucherController>();
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBarAccountWidget(),
       body: SafeArea(
         child: Column(
           children: [
-            TopDetailProductWidget(),
             Container(
               color: kBackgroundColor,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
               child: Row(
                 children: [
                   Text(
@@ -29,17 +31,17 @@ class WalletVoucherPage extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   SizedBox(
-                    width: 20,
+                    width: 10.w,
                   ),
                   Expanded(
                     child: Container(
-                      height: 30,
+                      height: 35,
                       margin: EdgeInsets.all(5.0),
                       child: TextField(
                         cursorColor: kTextColor,
                         style: TextStyle(
                           color: kTextColor,
-                          fontSize: 13
+                          fontSize: 14
                         ),
                         decoration: InputDecoration(
                             filled: true,
@@ -60,7 +62,7 @@ class WalletVoucherPage extends StatelessWidget {
                     )
                   ),
                   Container(
-                    height: 30,
+                    height: 35,
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Text("Lưu"),
@@ -96,12 +98,16 @@ class WalletVoucherPage extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemBuilder: (context, index) => Container(
-                            margin: EdgeInsets.all(5.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                    width: 1, color: kTextColor.withOpacity(0.5))),
+                          margin: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                                width: 1, color: kTextColor.withOpacity(0.5)
+                            )
+                          ),
+                          child: IntrinsicHeight(
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Container(
                                   child: Stack(
@@ -143,19 +149,18 @@ class WalletVoucherPage extends StatelessWidget {
                                                     Container(
                                                       height: 30,
                                                       child: ElevatedButton(
-                                                          onPressed: () {},
-                                                          child: Text(
-                                                            "Dùng ngay",
-                                                            style: TextStyle(
-                                                                color: Colors.blue),
-                                                          ),
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                              padding:
-                                                              EdgeInsets.all(
-                                                                  5.0),
-                                                              primary:
-                                                              Colors.white)),
+                                                        onPressed: () {},
+                                                        child: Text(
+                                                          "Dùng ngay",
+                                                          style: TextStyle(
+                                                              color: Colors.blue),
+                                                        ),
+                                                        style: ElevatedButton.styleFrom(
+                                                          padding:  EdgeInsets.all(5.0),
+                                                          primary:
+                                                          Colors.white
+                                                        )
+                                                      ),
                                                     )
                                                   ],
                                                 ),
@@ -166,51 +171,56 @@ class WalletVoucherPage extends StatelessWidget {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.all(2.0),
-                                      decoration: BoxDecoration(color: kYellowColor),
-                                      child: Text(
-                                        "AirPay- Tối đa 70k  ",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                    Text("Mã miễn phí vận chuyển"),
-                                    Container(
-                                      padding: EdgeInsets.all(3.0),
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 1, color: kYellowColor)),
-                                      child: Text(
-                                        "AirPay- Tối đa 70k  ",
-                                        style: TextStyle(color: kYellowColor),
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(child: Text(
-                                          "Có hiệu lực từ: 16.03.2020  00:00",
-                                          overflow: TextOverflow.fade,
-                                          style: TextStyle(fontSize: 12),
-                                        ),),
-                                        Text(
-                                          "Điều kiện",
-                                          style: TextStyle(
-                                              fontSize: 12, color: kTextLink),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(2.0),
+                                        decoration: BoxDecoration(color: kYellowColor),
+                                        child: Text(
+                                          "AirPay- Tối đa 70k  ",
+                                          style: TextStyle(color: Colors.white),
                                         ),
-                                        SizedBox(width: 10,),
-                                      ],
-                                    )
-                                  ],
-                                ))
+                                      ),
+                                      Text("Mã miễn phí vận chuyển"),
+                                      Container(
+                                        padding: EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 1, color: kYellowColor)),
+                                        child: Text(
+                                          "AirPay- Tối đa 70k  ",
+                                          style: TextStyle(color: kYellowColor),
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(child: Text(
+                                            "Có hiệu lực từ: 16.03.2020  00:00",
+                                            overflow: TextOverflow.fade,
+                                            style: TextStyle(fontSize: 12),
+                                          ),),
+                                          Text(
+                                            "Điều kiện",
+                                            style: TextStyle(
+                                                fontSize: 12, color: kTextLink),
+                                          ),
+                                          SizedBox(width: 10.w,),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
                               ],
-                            ))),
+                            ),
+                          )
+                        )
+                    ),
                     ListView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,

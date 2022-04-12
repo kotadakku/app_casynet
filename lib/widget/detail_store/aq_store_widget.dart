@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../data.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
@@ -35,39 +36,45 @@ class AQStoreWidget extends StatelessWidget {
                       child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
                           width: 60,
                           height: 60,
                           child: Image.asset("assets/detail_product/product_1.png"),
                         ),
-                        SizedBox(width: 10,),
+                        SizedBox(width: 10.w,),
 
                         Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text("Máy rửa xe Catorex - CTR" , style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15
-                            ),),
-                            Row(
-                              children: [
-                                Text("1.290.000 đ" , style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15
-                                ),),
-                                Text("1.390.000 đ" , style: TextStyle(
-                                    color: kTextColor_gray,
-                                    decoration: TextDecoration.lineThrough,
-                                    fontSize: 12
-                                ),),
-                              ],
-                            )
-                          ],
-                        ))
-
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text("Máy rửa xe Catorex - CTRádasdasdasdasdsadsa" ,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text("1.290.000 đ" , style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15
+                                  ),),
+                                  SizedBox(width: 10.w,),
+                                  Text("1.390.000 đ" , style: TextStyle(
+                                      color: kTextColor_gray,
+                                      decoration: TextDecoration.lineThrough,
+                                      fontSize: 12
+                                  ),),
+                                ],
+                              )
+                            ],
+                          )
+                        )
                       ],
                     ),
                   )),
@@ -80,7 +87,7 @@ class AQStoreWidget extends StatelessWidget {
                   ),
 
                   Container(
-                    margin: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
                     child: Row(
                       children: [
                         Expanded(
@@ -92,7 +99,7 @@ class AQStoreWidget extends StatelessWidget {
                                 hintText: "Đặt câu hỏi cho sản phẩm",
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: kTextColor
+                                        color: kYellowColor
                                     )
                                 ),
                                 enabledBorder: OutlineInputBorder(
@@ -107,7 +114,7 @@ class AQStoreWidget extends StatelessWidget {
                         Container(
                           width: 30,
                           height: 30,
-                          child: Icon(Icons.send),
+                          child: Icon(Icons.send, color: kTextColor,),
                         )
 
                       ],
@@ -131,7 +138,7 @@ class CardChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
+      padding: EdgeInsets.only(left: 10.w, right: 30.w, top: 10.h, bottom: 10.h),
       margin: EdgeInsets.only(left: isFromMe ? 30 : 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
@@ -176,7 +183,7 @@ class CardChatItem extends StatelessWidget {
                           Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
                         ],
                       ),
-                      SizedBox(width: 10,),
+                      SizedBox(width: 10.w,),
                       Text("10:30 03/30/2020",
                         style: TextStyle(
                           color: kTextColor,
@@ -187,7 +194,7 @@ class CardChatItem extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10.h,),
                   Text(message)
                 ],
               ))

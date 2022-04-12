@@ -19,12 +19,15 @@ class LoadingOverlay extends StatelessWidget {
       return Stack(
         children: [
 
-          this.shimmer!,
-          Center(
-            child: CircularProgressIndicator(
-              color: kTextColor,
+          if(this.shimmer != null) this.shimmer!,
+          Container(
+            height: 200,
+            child: Center(
+              child: CircularProgressIndicator(
+                color: kTextColor,
+              ),
             ),
-          ),
+          )
         ],
       );
     }

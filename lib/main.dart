@@ -8,8 +8,8 @@ import 'package:app_casynet/screens/detail_app.dart';
 import 'package:app_casynet/screens/home.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:app_casynet/widget/bottom_navigator.dart';
-import 'package:app_casynet/widget/home/top_home_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: Size(392, 816),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () =>  GetMaterialApp(
@@ -61,24 +61,59 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Material(
-      color: Colors.white,
-      child: SafeArea(
-        child: Scaffold(
-            backgroundColor: Colors.white,
-            bottomNavigationBar: BottomNavigator(),
-            body:Obx(()=>IndexedStack(
-              index: c.tabIndex.value,
-              children: [
-                HomePage(),
-                NotificationPage(),
-                Cart(),
-                AccountLoginPage(),
-                DetailAppPage(),
-              ],
-            ),)
+    return WillPopScope(
+      onWillPop:()=> _onWillPop(context),
+      child: Material(
+        color: Colors.white,
+        child: SafeArea(
+          child: Scaffold(
+              backgroundColor: Colors.white,
+              bottomNavigationBar: BottomNavigator(),
+              body:Obx(()=>IndexedStack(
+                index: c.tabIndex.value,
+                children: [
+                  HomePage(),
+                  NotificationPage(),
+                  Cart(),
+                  AccountLoginPage(),
+                  DetailAppPage(),
+                ],
+              ),)
+          ),
         ),
       ),
+    ) ;
+  }
+  Future<bool> _onWillPop(BuildContext context) async {
+    late bool? exitResult;
+    if(Get.put(BottomNavController()).tabIndex.value == 0){
+      exitResult = await showDialog(
+        context: context,
+        builder: (context) => _buildExitDialog(context),
+      );
+    }
+    else {
+      Get.put(BottomNavController()).tabIndex.value = 0;
+      exitResult =  false;
+    }
+
+    return exitResult ?? false;
+  }
+
+  AlertDialog _buildExitDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Xác nhận'),
+      content: const Text('Bạn có muốn thoát?'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Get.back(result: false),
+          child: Text('Không'),
+        ),
+        TextButton(
+          onPressed: () => Get.back(result: true),
+          child: Text('Đồng ý'),
+        ),
+      ],
     );
   }
 }

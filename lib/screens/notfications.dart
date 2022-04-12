@@ -1,8 +1,7 @@
 import 'package:app_casynet/widget/bottom_navigator.dart';
+import 'package:app_casynet/widget/home/appbar_home_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../widget/account/top_account_widget.dart';
-import '../widget/home/top_home_widget.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({Key? key}) : super(key: key);
@@ -63,12 +62,9 @@ class NotificationPage extends StatelessWidget {
       ),
     ];
     return Scaffold(
-      appBar: AppBar(
-        elevation: 10,
-        backgroundColor: Colors.white,
-        flexibleSpace: TopHomeWidget(),
-      ),
+      appBar: AppBarHomeWidget(),
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           Container(
               width: double.infinity,
@@ -81,18 +77,17 @@ class NotificationPage extends StatelessWidget {
                   ),
                 ),
               )
-
-
           ),
           // Danh sách thông báo
-          ListView.builder(
+          Expanded(child: ListView.builder(
               itemCount: 4,
+              physics: BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemBuilder: (context, index){
                 return Padding(padding: EdgeInsets.symmetric(vertical: 10), child: _menus[index]);
               }
-          )
+          ))
         ],
       ),
     );

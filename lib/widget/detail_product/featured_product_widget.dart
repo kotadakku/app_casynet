@@ -1,6 +1,7 @@
 
 import 'package:app_casynet/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/app_colors.dart';
 import '../home/reservation_home_widget.dart';
@@ -11,24 +12,25 @@ class FeaturedProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [ Container(
-        padding: const EdgeInsets.only(top: 10, left: 10),
-        width: double.infinity,
-        child: Text("Sản phẩm nổi bật",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kYellowColor,
-            fontSize: 18
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 10.h, left: 10.w),
+          width: double.infinity,
+          child: Text("Sản phẩm nổi bật",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: kYellowColor,
+              fontSize: 18
+            ),
           ),
-        ),
         ),
         Divider(
           height: 20,
           color: kTextColor,
         ),
         Wrap(
-          spacing: 10.0,
-          runSpacing: 10.0,
+          spacing: 5.0,
+          runSpacing: 10.0.h,
           children: [
             ItemBookWidget(
                 book_image: "assets/home/book/image.png",

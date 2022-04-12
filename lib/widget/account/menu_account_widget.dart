@@ -1,3 +1,5 @@
+import 'package:app_casynet/controller/bottom_nav_controller.dart';
+import 'package:app_casynet/controller/home_controller.dart';
 import 'package:app_casynet/screens/account/UI_qlch/UI_cuahang.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +58,9 @@ class MenuAccountWidget extends StatelessWidget {
           break;
         case "Thông báo":
           icon = FontAwesomeIcons.bell;
-          nav=() { Get.toNamed(Routes.HOME,  arguments: [12]);};
+          nav=() {
+            Get.put(BottomNavController()).tabIndex.value = 1;
+          };
           break;
         case "Ví Voucher":
           icon = FontAwesomeIcons.wallet;

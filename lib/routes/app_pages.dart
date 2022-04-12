@@ -15,6 +15,7 @@ import 'package:app_casynet/screens/filter/filter_product_map.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:app_casynet/widget/home/store_widget.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import '../bindings/account/account_page_bindings.dart';
 import '../bindings/account/casycoin_manager_bindings.dart';
 import '../bindings/account/edit_address_bindings.dart';
 import '../bindings/account/information_address.dart';
@@ -107,6 +108,12 @@ class AppPages {
     GetPage(
       name: Routes.ACCOUNT_BASE,
       page: ()=>AccountBasePage(),
+      binding: AccountPageBindings(),
+    ),
+    GetPage(
+      name: Routes.ACCOUNT_BASE,
+      page: ()=>AccountLoginPage(),
+      binding: AccountPageBindings(),
     ),
     GetPage(
       name: Routes.PRODUCT_DETAIL,

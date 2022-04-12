@@ -5,8 +5,10 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
   final List<String> listTabs = [
     "Giới thiệu", "Sản phẩm (200)", "Tin tức", "Đánh giá", "Hỏi đáp"
   ];
-
+  RxInt vote_selected = 5.obs;
+  RxBool followed = true.obs;
   late TabController controller;
+  RxBool isLive = true.obs;
 
   @override
   void onInit() {

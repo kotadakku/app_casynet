@@ -3,6 +3,7 @@ import 'package:app_casynet/theme/app_colors.dart';
 import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../theme/app_colors.dart';
@@ -18,7 +19,7 @@ class DetailProductWidget extends StatelessWidget {
       children: [
         Divider(color: kTextColor,),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Text("Chi tiết sản phẩm", style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,

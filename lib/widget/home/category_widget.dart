@@ -39,22 +39,20 @@ class ItemCategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      LayoutBuilder(builder: (context, constraint) {
-        return GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onTap: (){
-            Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
-          },
-          child: Container(
-            child: Column(
-              children: [
-                Image.asset(image_url, width: 50, height: 50,),
-                SizedBox(height: 10,),
-                Text(title),
-              ],
-            ),
+      GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: (){
+          Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
+        },
+        child: Container(
+          child: Column(
+            children: [
+              Image.asset(image_url, width: 50, height: 50,),
+              SizedBox(height: 10,),
+              Text(title),
+            ],
           ),
-        ) ;
-      });
+        ),
+      ) ;
   }
 }

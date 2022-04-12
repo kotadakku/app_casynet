@@ -1,5 +1,4 @@
 
-import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
@@ -18,7 +17,7 @@ class ContactPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TopAccountWidget(),
+                // TopAccountWidget(),
                 SizedBox(height: 15),
                 Container(
                   width: MediaQuery.of(context).size.width,

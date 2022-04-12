@@ -1,12 +1,12 @@
 
+import 'package:app_casynet/widget/account/appbar_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/account/new_address_controller.dart';
-import '../../../data/model/address.dart';
 import '../../../theme/app_colors.dart';
-import '../../../widget/account/top_account_widget.dart';
+
 
 class NewAddress extends StatelessWidget {
   const NewAddress({Key? key}) : super(key: key);
@@ -15,15 +15,16 @@ class NewAddress extends StatelessWidget {
   Widget build(BuildContext context) {
 
     NewAddressController controller = Get.find<NewAddressController>();
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
+    return Material(
+      color: Colors.white,
+      child: Scaffold(
+        appBar: AppBarAccountWidget(),
+        body: SingleChildScrollView(
           child: Form(
             key: controller.formStateKey,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TopAccountWidget(),
                   SizedBox(height: 30,),
                   Text("Thêm địa chỉ mới",
                     style: TextStyle(
@@ -243,9 +244,9 @@ class NewAddress extends StatelessWidget {
                   )
                 ]
             ),
-          )
-        ),
-      )
+          ),
+        )
+      ),
     );
   }
 }

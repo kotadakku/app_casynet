@@ -6,6 +6,6 @@ class DetailProductBindings extends Bindings{
 
   @override
   void dependencies() {
-    Get.lazyPut(() => BannerProductController());
+    Get.lazyPut(() => DetailProductController());
   }
 }
