@@ -1,4 +1,3 @@
-
 import 'package:app_casynet/bindings/home_bindings.dart';
 import 'package:app_casynet/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/routes/app_pages.dart';
@@ -26,29 +25,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(392, 816),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: () =>  GetMaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        builder: (context, widget) {
-          ScreenUtil.setContext(context);
-          return MediaQuery(
-            //Setting font does not change with system font size
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: widget!,
-          );
-        },
-        initialRoute: '/',
-        initialBinding: HomeBindings(),
-        getPages:  AppPages.routes ,
-        home: MaterialApp(
-          home: Home(),
-        ),
-      )
+        designSize: Size(392, 816),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: () =>  GetMaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          builder: (context, widget) {
+            ScreenUtil.setContext(context);
+            return MediaQuery(
+              //Setting font does not change with system font size
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: widget!,
+            );
+          },
+          initialRoute: '/',
+          initialBinding: HomeBindings(),
+          getPages:  AppPages.routes ,
+          home: MaterialApp(
+            home: Home(),
+          ),
+        )
     );
   }
 }
@@ -117,9 +116,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
