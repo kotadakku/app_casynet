@@ -3,6 +3,7 @@ import 'package:app_casynet/controller/cart/item_selection_controller.dart';
 import 'package:app_casynet/screens/Cart/cart3.dart';
 import 'package:app_casynet/widget/detail_product/top_detail_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class Cart2 extends StatelessWidget {
@@ -319,19 +320,7 @@ class Cart2 extends StatelessWidget {
                   ),
                   ListTile(
                       title: Text("Thẻ ATM đã đăng ký Internet Banking"),
-                      // subtitle: Container(
-                      //   child: Row(
-                      //     children: [
-                      //       Text("Liên kết:",
-                      //           style: TextStyle(
-                      //               color: Color.fromARGB(255, 127, 170, 212))),
-                      //       Text(
-                      //           "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
-                      //           style: TextStyle(
-                      //               color: Colors.black))
-                      //     ],
-                      //   ),
-                      // ),
+
                       leading: Obx(()=> Radio(
                         groupValue: itemSelectionController.selectedItem.value,
                         onChanged: (value) {itemSelectionController.onChangeItem(value);},
@@ -384,6 +373,8 @@ class Cart2 extends StatelessWidget {
               ),
 //Thông tin xuất hóa đơn
               Container(
+                height: 50.h,
+
                 child: Row(
                   children: [Text("Thông tin xuất hóa đơn")],
                 ),

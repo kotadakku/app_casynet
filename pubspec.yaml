@@ -51,6 +51,10 @@ dependencies:
   http:
   google_maps_flutter:
   location:
+  cached_network_image:
+  flutter_screenutil:
+  url_launcher:
+  connectivity_plus:
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -14,6 +15,7 @@ class DisplayProductWidget extends StatefulWidget {
 }
 
 class _DisplayProductWidgetState extends State<DisplayProductWidget> {
+  FilterDisplayController controller = Get.find<FilterDisplayController>();
   @override
   Widget build(BuildContext context) {
     List<String> _displays = [
@@ -21,7 +23,7 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
     ];
 
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 5.0.h, horizontal: 10.w),
         child:  Column(
           children: [
             Container(
@@ -38,11 +40,16 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
                   IconButton(
                     onPressed: (){
                       setState(() {
-                        Get.find<FilterDisplayController>().expand();
+                        controller.expand();
                       });
                     },
                     iconSize: 20,
-                    icon: Obx(()=>Icon(Get.find<FilterDisplayController>().more_display.value ?Icons.keyboard_arrow_up_outlined: Icons.keyboard_arrow_down_outlined))
+                    icon: AnimatedBuilder(
+                      animation: controller.expandDisplayController,
+                      builder: (context, child){
+                        return Transform.rotate(angle: controller.animationRotale.value, child: Icon(Icons.keyboard_arrow_down_outlined,) );
+                      },
+                    )
                   )
                 ],
               ),
@@ -50,7 +57,7 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
 
            SizeTransition(
               axisAlignment: 1.0,
-              sizeFactor: Get.find<FilterDisplayController>().animationDisplay,
+              sizeFactor: controller.animationDisplay,
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: _displays.length,
@@ -60,14 +67,17 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(_displays[index]),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5.w),
+                          child: Text(_displays[index]),
+                        ),
                         Obx(()=> Radio(
                           activeColor: kYellowColor,
                           value: _displays[index],
                             onChanged: (value){
-                              Get.find<FilterDisplayController>().display.value = _displays[index];
+                              controller.display.value = _displays[index];
                             },
-                            groupValue: Get.find<FilterDisplayController>().display.value,
+                            groupValue: controller.display.value,
                         ),)
                       ],
                     );

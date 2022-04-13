@@ -18,11 +18,14 @@ class CategoryWidget extends StatelessWidget {
       ItemCategoryWidget(key: ValueKey(5), image_url: "assets/home/category/chamsocxe.png", title: "Chăm sóc xe"),
       ItemCategoryWidget(key: ValueKey(6), image_url: "assets/home/category/lopacquy.png", title: "Lốp và ác quy xe"),
     ];
-    return GridView.count(crossAxisCount: 2,
-      childAspectRatio: 0.8,
-      scrollDirection: Axis.horizontal,
-      shrinkWrap: true,
-      children: danhmuc,
+    return Center(
+      child: GridView.count(
+        crossAxisCount: 2,
+        childAspectRatio: 0.8,
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        children: danhmuc,
+      ),
     );
   }
 }
@@ -36,22 +39,20 @@ class ItemCategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      LayoutBuilder(builder: (context, constraint) {
-        return GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onTap: (){
-            Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
-          },
-          child: Container(
-            child: Column(
-              children: [
-                Image.asset(image_url, width: 50, height: 50,),
-                SizedBox(height: 10,),
-                Text(title),
-              ],
-            ),
+      GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: (){
+          Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
+        },
+        child: Container(
+          child: Column(
+            children: [
+              Image.asset(image_url, width: 50, height: 50,),
+              SizedBox(height: 10,),
+              Text(title),
+            ],
           ),
-        ) ;
-      });
+        ),
+      ) ;
   }
 }

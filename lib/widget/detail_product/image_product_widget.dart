@@ -4,6 +4,7 @@ import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:app_casynet/controller/detail_product_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -29,88 +30,92 @@ class ImageProductWidget extends StatelessWidget {
                 controller: _pageController,
                 itemCount: banner_urls.length,
                 onPageChanged: (value){
-                  Get.find<BannerProductController>().current.value = value;
+                  Get.find<DetailProductController>().current.value = value;
                 },
                 itemBuilder: (context, index){
 
-                  return Image.asset(banner_urls[index], fit: BoxFit.fitHeight);
+                  return Image.asset(banner_urls[index], fit: BoxFit.fill);
                 }
             ),
             // Button yêu thích
-            Positioned(
-                left: 5,
-                bottom: 15,
-                child: Row(
-                  children: [
-                    Container(
-                      height: 30,
-                      child: ElevatedButton(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.favorite_border, color: Colors.red, size: sizeIcon.width,),
-                            SizedBox(width: 5,),
-                            Text("Yêu thích",
-                              style: TextStyle(
-
-                                  color: Colors.red
-                              ),
-                            )
-                          ],
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
-
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
-                        ), onPressed: () {  },
-                      ),
-                    ),
-                    SizedBox(width: 5,),
-                    Container(
-                      height: 30,
-                      child: ElevatedButton(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.share, color: kTextColor, size: sizeIcon.width,),
-                            SizedBox(width: 5,),
-                            Text("Chia sẻ",
-                              style: TextStyle(
-                                  color: kTextColor
-                              ),
-                            )
-                          ],
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
-
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
-                        ), onPressed: () {  },
-                      ),
-                    ),
-                    SizedBox(width: 20,),
-                    Obx(()=> Row(
-                        children: indicators(Get.find<BannerProductController>().current.value, banner_urls.length)
-                    ))
-                  ],
-                )
-            ),
-            Positioned(
-                bottom: 15,
-                right: 10,
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.bottomCenter,
                 child: Container(
-                    height: 30,
-                    padding: EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.white,
-                    ),
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 30,
+                        child: ElevatedButton(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.favorite_border, color: Colors.red, size: sizeIcon.width,),
+                              SizedBox(width: 5,),
+                              Text("Yêu thích",
+                                style: TextStyle(
 
-                    child: Obx(()=> Text("${Get.find<BannerProductController>().current.value+1}/${banner_urls.length}"))
+                                    color: Colors.red
+                                ),
+                              )
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
+                          ), onPressed: () {  },
+                        ),
+                      ),
+                      SizedBox(width: 5.w,),
+                      Container(
+                        height: 30,
+                        child: ElevatedButton(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.share, color: kTextColor, size: sizeIcon.width,),
+                              SizedBox(width: 5,),
+                              Text("Chia sẻ",
+                                style: TextStyle(
+                                    color: kTextColor
+                                ),
+                              )
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
+                          ), onPressed: () {  },
+                        ),
+                      ),
+                      Expanded(
+                        child: Obx(()=>Center(
+                          child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: indicators(Get.find<DetailProductController>().current.value, banner_urls.length)
+                          ),
+                        ),),),
+                      Container(
+                          height: 30,
+                          padding: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Colors.white,
+                          ),
+
+                          child: Obx(()=> Text("${Get.find<DetailProductController>().current.value+1}/${banner_urls.length}"))
+                      )
+                    ],
+                  ),
                 )
-            )
+              )
+            ),
           ],
         )
     );

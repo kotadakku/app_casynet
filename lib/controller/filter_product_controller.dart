@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -6,9 +8,9 @@ import 'package:get/get.dart';
 
 class FilterDisplayController extends GetxController with GetSingleTickerProviderStateMixin{
   var display = "Danh sách".obs;
-  var more_display = true.obs;
   late AnimationController expandDisplayController;
   late Animation<double> animationDisplay;
+  late Animation animationRotale;
 
   @override
   void onInit() {
@@ -20,17 +22,11 @@ class FilterDisplayController extends GetxController with GetSingleTickerProvide
       parent: expandDisplayController,
       curve: Curves.fastOutSlowIn,
     );
+    animationRotale = Tween(begin: 0.0, end: pi).animate(expandDisplayController);
     expandDisplayController.forward();
   }
   void expand(){
-    if(more_display.value){
-      expandDisplayController.reverse();
-      more_display.value = !more_display.value;
-    }
-    else{
-      expandDisplayController.forward();
-      more_display.value = !more_display.value;
-    }
+    expandDisplayController.isCompleted ? expandDisplayController.reverse(): expandDisplayController.forward();
   }
   void clear(){
     display.value = "Danh sách";
@@ -41,17 +37,11 @@ class FilterDisplayController extends GetxController with GetSingleTickerProvide
 class FilterAttrController extends GetxController with GetSingleTickerProviderStateMixin{
   late AnimationController expandAttrController;
   late Animation<double> animationAttr;
-  var more_attr = true.obs;
+  late Animation animationRotale;
   var attr = "Mới nhất".obs;
   void expand(){
-    if(more_attr.value){
-      expandAttrController.reverse();
-      more_attr.value = !more_attr.value;
-    }
-    else{
-      expandAttrController.forward();
-      more_attr.value = !more_attr.value;
-    }
+    expandAttrController.isCompleted ? expandAttrController.reverse():
+        expandAttrController.forward();
   }
   void clear(){
     attr.value = "Mới nhất";
@@ -70,13 +60,15 @@ class FilterAttrController extends GetxController with GetSingleTickerProviderSt
       parent: expandAttrController,
       curve: Curves.fastOutSlowIn,
     );
+
+    animationRotale = Tween(begin: 0.0, end: pi).animate(expandAttrController);
     expandAttrController.forward();
   }
 }
 class FilterCategoriesController extends GetxController with GetSingleTickerProviderStateMixin{
   late AnimationController expandFilterCategoriesController;
   late Animation<double> animationCategories;
-  var more_categories = true.obs;
+  late Animation animationRotale;
   var categories_active = [].obs;
 
   @override
@@ -90,17 +82,12 @@ class FilterCategoriesController extends GetxController with GetSingleTickerProv
       parent: expandFilterCategoriesController,
       curve: Curves.fastOutSlowIn,
     );
+
+    animationRotale = Tween(begin: 0.0, end: pi).animate(expandFilterCategoriesController);
     expandFilterCategoriesController.forward();
   }
   void expand(){
-    if(more_categories.value){
-      expandFilterCategoriesController.reverse();
-      more_categories.value = !more_categories.value;
-    }
-    else{
-      expandFilterCategoriesController.forward();
-      more_categories.value = !more_categories.value;
-    }
+    expandFilterCategoriesController.isCompleted ? expandFilterCategoriesController.reverse(): expandFilterCategoriesController.forward();
   }
   bool isContains(e){
     if(categories_active.contains(e)){
@@ -118,10 +105,8 @@ class FilterCategoriesController extends GetxController with GetSingleTickerProv
 class FilterDistrictController extends GetxController with GetSingleTickerProviderStateMixin{
   late AnimationController expandDistrictController;
   late Animation<double> animationDistrict;
-  var more_district = true.obs;
   var distints_active = [].obs;
-
-
+  late Animation animationRotale;
 
   @override
   void onInit() {
@@ -133,18 +118,15 @@ class FilterDistrictController extends GetxController with GetSingleTickerProvid
       parent: expandDistrictController,
       curve: Curves.fastOutSlowIn,
     );
+    animationRotale = Tween(begin: 0.0, end: pi).animate(expandDistrictController);
     expandDistrictController.forward();
   }
+
   void expand(){
-    if(more_district.value){
-      more_district.value = !more_district.value;
-     expandDistrictController.reverse();
-    }
-    else{
-      more_district.value = !more_district.value;
-      expandDistrictController.forward();
-    }
+    expandDistrictController.isCompleted ?
+    expandDistrictController.reverse() : expandDistrictController.forward();
   }
+
   bool isContain(e) {
     if(distints_active.contains(e)) {
       return true;
@@ -163,7 +145,8 @@ class FilterDistrictController extends GetxController with GetSingleTickerProvid
 class FilterPriceController extends GetxController with GetSingleTickerProviderStateMixin{
   late AnimationController expandPriceController;
   late Animation<double> animationPrice;
-  var more_price = true.obs;
+  late Animation animationRotale;
+
   var price_min = 0.obs;
   var is_high_price = false.obs;
   var price_max = 99999999.obs;
@@ -184,17 +167,13 @@ class FilterPriceController extends GetxController with GetSingleTickerProviderS
       parent: expandPriceController,
       curve: Curves.fastOutSlowIn,
     );
+    animationRotale = Tween(begin: 0.0, end: pi).animate(expandPriceController);
     expandPriceController.forward();
   }
 
   void expand(){
-    if(more_price.value){
-      more_price.value = !more_price.value;
-      expandPriceController.forward();
-    } else{
-      more_price.value = !more_price.value;
-      expandPriceController.reverse();
-    }
+    expandPriceController.isCompleted ? expandPriceController.reverse():
+        expandPriceController.forward();
   }
   void clear(){
     price_min.value = 0;
@@ -233,9 +212,8 @@ class FilterPriceController extends GetxController with GetSingleTickerProviderS
 class FilterOriginController extends GetxController with GetSingleTickerProviderStateMixin{
   late AnimationController expandOriginController;
   late Animation<double> animationOrigin;
-  var more_origin = true.obs;
   var origins_active = [].obs;
-
+  late Animation animationRotale;
 
 
   @override
@@ -249,6 +227,7 @@ class FilterOriginController extends GetxController with GetSingleTickerProvider
       parent: expandOriginController,
       curve: Curves.fastOutSlowIn,
     );
+    animationRotale = Tween(begin: 0.0, end: pi).animate(expandOriginController);
     expandOriginController.forward();
   }
 
@@ -264,5 +243,9 @@ class FilterOriginController extends GetxController with GetSingleTickerProvider
 
   void clear() {
     origins_active.clear();
+  }
+
+  void expand() {
+    expandOriginController.isCompleted ? expandOriginController.reverse() : expandOriginController.forward();
   }
 }

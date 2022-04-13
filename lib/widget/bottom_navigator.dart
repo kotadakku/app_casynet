@@ -1,7 +1,9 @@
 
 import 'package:app_casynet/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/screens/account/account_base.dart';
+import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../theme/app_colors.dart';
@@ -15,26 +17,20 @@ class BottomNavigator extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-                color: kTextColor,
-                offset: Offset(0.0, -1.0)
-            )
-          ]
       ),
       child: Obx(()=> BottomNavigationBar(
         showSelectedLabels: false,
-        unselectedItemColor: Colors.black,
         items: [
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/bottom_navi_icon/home.svg", width: 30,),
+              icon: Icon(Icons.home_outlined, color: kTextColor, size: 35,),
+              activeIcon: Icon(Icons.home, color: kYellowColor, size: 35,),
               // activeIcon: ,
               label: "Home"
           ),
           BottomNavigationBarItem(
               icon: Stack(
                 children: <Widget>[
-                  SvgPicture.asset("assets/bottom_navi_icon/noti.svg", width: 30,),
+                  Icon(Icons.notifications_none, color: kTextColor, size: 35,),
                   Positioned(
                     right: 0,
                     child: new Container(
@@ -59,41 +55,58 @@ class BottomNavigator extends StatelessWidget {
                   )
                 ],
               ),
+              activeIcon: Stack(
+                children: <Widget>[
+                  Icon(Icons.notifications, color: kYellowColor, size: 35,),
+                  Positioned(
+                    right: 0,
+                    child: new Container(
+                      padding: EdgeInsets.all(1),
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: kYellowColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      constraints: BoxConstraints(
+                        minWidth: 18,
+                        minHeight: 18,
+                      ),
+                      child: new Text(
+                        '10',
+                        style: new TextStyle(
+                          color: kYellowColor,
+                          fontSize: 13,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )
+                ],
+              ),
               label: "Notications"
           ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/bottom_navi_icon/cart.svg", width: 30,),
+              icon: Icon(Icons.shopping_cart_outlined, color: kTextColor, size: 35),
+              activeIcon: Icon(Icons.shopping_cart, color: kYellowColor, size: 35),
               label: "Cart"
           ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/bottom_navi_icon/account.svg", width: 30,),
+              icon: Icon(Icons.account_circle_outlined, color: kTextColor, size: 35,),
+              activeIcon: Icon(Icons.account_circle, color: kYellowColor, size: 35,),
               label: "Account"
           ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/bottom_navi_icon/detail.svg", width:30),
+              icon: Icon(Icons.help_outline, color: kTextColor, size: 35,),
+              activeIcon: Icon(Icons.help, color: kYellowColor, size: 35,),
               label: "Detail"
           ),
         ],
+        showUnselectedLabels: false,
         currentIndex: c.tabIndex.value,
-        selectedItemColor: Colors.black,
+        elevation: 10,
+        type: BottomNavigationBarType.fixed,
         onTap:(index)=> c.changeTabIndex(index),
       ),
     ));
   }
-  // void _onItemTapped(int index) {
-  //   switch(index){
-  //     case 0: Get.toNamed(Routes.HOME);
-  //     break;
-  //     case 1: Get.toNamed(Routes.NOTIFICATIONS);
-  //     break;
-  //     case 2: Get.toNamed(Routes.CART);
-  //     break;
-  //     case 3: Get.toNamed(Routes.ACCOUNT_LOGIN);
-  //     break;
-  //     case 4: Get.toNamed(Routes.INFORMATION_APP);
-  //     break;
-  //   };
-  //   selectedIndex.value = index;
-  //
-  // }
 }

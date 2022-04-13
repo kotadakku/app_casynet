@@ -1,4 +1,6 @@
+import 'package:app_casynet/controller/detail_store_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../theme//app_colors.dart';
@@ -12,117 +14,141 @@ class VoteStoreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isReadMore = false.obs;
+    DetailStoreController controller = Get.find<DetailStoreController>();
     return SingleChildScrollView(
       child: Column(
         children: [
           GiftStoreWidget(),
           SizedBox(height: 10,),
           Image.asset("assets/detail_store/vote.png", fit: BoxFit.fitWidth),
-          Wrap(
-            runSpacing: 0,
-            spacing: 10,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width/3-15,
-                child:  ElevatedButton(
-                  onPressed: (){},
-                  child: Text("Tất cả (44)"),
-                  style: ElevatedButton.styleFrom(
-                    primary: kYellowColor,
-                    side: BorderSide(
-                      color: kYellowColor
-                    )
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width/3-15,
-                child:  ElevatedButton(
-                  onPressed: (){},
-                  child: Text("5 Sao (12)",
-                    style: TextStyle(
-                      color: kTextColor
+          Obx(()=>
+              Wrap(
+                runSpacing: 0,
+                spacing: 10.w,
+                children: [
+                  SizedBox(
+                    width: 0.33.sw-15,
+                    child:  ElevatedButton(
+                      onPressed: (){
+                        controller.vote_selected.value = 0;
+                      },
+                      child: Text("Tất cả (44)",
+                        style: TextStyle(
+                            color: controller.vote_selected.value == 0 ? Colors.white : kTextColor
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: controller.vote_selected.value == 0 ? kYellowColor : Colors.white,
+                          side: BorderSide(
+                              color: controller.vote_selected.value == 0 ? kYellowColor: kTextColor
+                          )
+                      ),
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(
-                          color: kTextColor
-                      )
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width/3-15,
-                child:  ElevatedButton(
-                  onPressed: (){},
-                  child: Text("4 Sao (8)",
-                    style: TextStyle(
-                        color: kTextColor
+                  SizedBox(
+                    width: 0.33.sw-15,
+                    child:  ElevatedButton(
+                      onPressed: (){
+                        controller.vote_selected.value = 5;
+                      },
+                      child: Text("5 Sao (12)",
+                        style: TextStyle(
+                            color: controller.vote_selected.value == 5 ? Colors.white : kTextColor
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: controller.vote_selected.value == 5 ? kYellowColor : Colors.white,
+                          side: BorderSide(
+                              color: controller.vote_selected.value == 5 ? kYellowColor: kTextColor
+                          )
+                      ),
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(
-                          color: kTextColor
-                      )
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width/3-15,
-                child:  ElevatedButton(
-                  onPressed: (){},
-                  child: Text("3 Sao (3)",
-                    style: TextStyle(
-                        color: kTextColor
+                  SizedBox(
+                    width: 0.33.sw-15,
+                    child:  ElevatedButton(
+                      onPressed: (){
+                        controller.vote_selected.value = 4;
+                      },
+                      child: Text("4 Sao (12)",
+                        style: TextStyle(
+                            color: controller.vote_selected.value == 4 ? Colors.white : kTextColor
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: controller.vote_selected.value == 4 ? kYellowColor : Colors.white,
+                          side: BorderSide(
+                              color: controller.vote_selected.value == 4 ? kYellowColor: kTextColor
+                          )
+                      ),
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(
-                          color: kTextColor
-                      )
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width/3-15,
-                child:  ElevatedButton(
-                  onPressed: (){},
-                  child: Text("2 Sao (2)",
-                    style: TextStyle(
-                        color: kTextColor
+                  SizedBox(
+                    width: 0.33.sw-15,
+                    child:  ElevatedButton(
+                      onPressed: (){
+                        controller.vote_selected.value = 3;
+                      },
+                      child: Text("3 Sao (12)",
+                        style: TextStyle(
+                            color: controller.vote_selected.value == 3 ? Colors.white : kTextColor
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: controller.vote_selected.value == 3 ? kYellowColor : Colors.white,
+                          side: BorderSide(
+                              color: controller.vote_selected.value == 3 ? kYellowColor: kTextColor
+                          )
+                      ),
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(
-                          color: kTextColor
-                      )
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width/3-15,
-                child:  ElevatedButton(
-                  onPressed: (){},
-                  child: Text("1 Sao (1)",
-                    style: TextStyle(
-                        color: kTextColor
+                  SizedBox(
+                    width: 0.33.sw-15,
+                    child:  ElevatedButton(
+                      onPressed: (){
+                        controller.vote_selected.value = 2;
+                      },
+                      child: Text("2 Sao (12)",
+                        style: TextStyle(
+                            color: controller.vote_selected.value == 2 ? Colors.white : kTextColor
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: controller.vote_selected.value == 2 ? kYellowColor : Colors.white,
+                          side: BorderSide(
+                              color: controller.vote_selected.value == 2 ? kYellowColor: kTextColor
+                          )
+                      ),
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(
-                          color: kTextColor
-                      )
+                  SizedBox(
+                    width: 0.33.sw-15,
+                    child:  ElevatedButton(
+                      onPressed: (){
+                        controller.vote_selected.value = 1;
+                      },
+                      child: Text("1 Sao (12)",
+                        style: TextStyle(
+                            color: controller.vote_selected.value == 1 ? Colors.white : kTextColor
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: controller.vote_selected.value == 1 ? kYellowColor : Colors.white,
+                          side: BorderSide(
+                              color: controller.vote_selected.value == 1 ? kYellowColor: kTextColor
+                          )
+                      ),
+                    ),
                   ),
-                ),
-              ),
 
-
-            ],
+                ],
+              ),
           ),
           Container(
             color: kBackgroundColor,
@@ -172,8 +198,8 @@ class CardChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-      margin: EdgeInsets.only(left: isFromMe ? 30 : 0, bottom: 5, top:5),
+      padding: EdgeInsets.only(left: 10.w, right: 30.w, top: 10.h, bottom: 10.h),
+      margin: EdgeInsets.only(left: isFromMe ? 30.w : 0, bottom: 5.h, top:5.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
         color: isFromMe ? Colors.blue.withOpacity(.1) : Colors.white,

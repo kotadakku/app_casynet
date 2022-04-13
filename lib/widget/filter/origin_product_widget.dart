@@ -1,6 +1,7 @@
 
 import 'package:app_casynet/controller/filter_product_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../theme/app_colors.dart';
@@ -10,11 +11,13 @@ class OriginProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FilterOriginController controller = Get.find<FilterOriginController>();
+
     List<String> _countrys = [
       'Mỹ', 'Việt Nam', 'Trung Quốc', 'Nhật Bản', 'Thái Lan', 'Thụy Điển'
     ];
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
         child:  Column(
           children: [
             Container(
@@ -30,32 +33,27 @@ class OriginProductWidget extends StatelessWidget {
                   Spacer(),
                   IconButton(
                       onPressed: () {
-                        if(Get.find<FilterOriginController>().more_origin.value){
-                          Get.find<FilterOriginController>().more_origin.value = !Get.find<FilterOriginController>().more_origin.value;
-                          Get.find<FilterOriginController>().expandOriginController.reverse();
-                        }
-                        else{
-                          Get.find<FilterOriginController>().more_origin.value = !Get.find<FilterOriginController>().more_origin.value;
-                          Get.find<FilterOriginController>().expandOriginController.forward();
-                        }
+                        controller.expand();
                       },
                       iconSize: 20,
-                      icon: Obx(()=>Icon(
-                          Get.find<FilterOriginController>().more_origin.value ?
-                          Icons.keyboard_arrow_up_outlined:
-                          Icons.keyboard_arrow_down_outlined)
+                      icon: AnimatedBuilder(
+                        animation: controller.animationOrigin,
+                        builder: (context, child){
+                          return Transform.rotate(angle: controller.animationRotale.value, child: Icon(Icons.keyboard_arrow_down_outlined,) );
+                        },
                       )
                   )
                 ],
               ),
             ),
             SizeTransition(
-              sizeFactor: Get.find<FilterOriginController>().animationOrigin,
+              sizeFactor: controller.animationOrigin,
               child: Container(
                   width: double.infinity,
                   child: Obx(()=>Wrap(
+                    spacing: 5.0.w,
                     children: _countrys.map((e){
-                      bool isContain = Get.find<FilterOriginController>().isContain(e);
+                      bool isContain = controller.isContain(e);
                       return Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -79,11 +77,11 @@ class OriginProductWidget extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30.0),
                                     side: BorderSide(
                                         width: 1,
-                                        color: Get.find<FilterOriginController>().isContain(e) ? kYellowColor: kTextColor
+                                        color: controller.isContain(e) ? kYellowColor: kTextColor
                                     ),
                                   )
                               ), onPressed: () {
-                              Get.find<FilterOriginController>().change_list(e);
+                              controller.change_list(e);
                             },
                             ),
                           )

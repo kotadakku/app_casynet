@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/app_colors.dart';
 
@@ -16,7 +17,7 @@ class OrderAllWidget extends StatelessWidget {
         Container(
             width: double.infinity,
             color: Colors.white,
-            padding: EdgeInsets.only(left: 15, top: 5, bottom: 5),
+            padding: EdgeInsets.only(left: 15.w, top: 10.h, bottom: 5.h),
             child: Row(
               children: [
                 Text(name_store,
@@ -26,13 +27,13 @@ class OrderAllWidget extends StatelessWidget {
                       color: kTextLink
                   ),
                 ),
-                SizedBox(width: 20,),
+                SizedBox(width: 20.w,),
                 Icon(Icons.message_outlined, color: kYellowColor,)
               ],
             )
         ),
         Divider(),
-        Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: Row(
+        Padding(padding: EdgeInsets.symmetric(horizontal: 10.w), child: Row(
           children: [
             Container(
               height: 50,
@@ -43,9 +44,11 @@ class OrderAllWidget extends StatelessWidget {
                   )
               ),
             ),
-            SizedBox(width: 10,),
+            SizedBox(width: 10.w,),
             Expanded(child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,9 +89,11 @@ class OrderAllWidget extends StatelessWidget {
             ))
           ],
         ),),
-        Divider(),
+        Divider(
+          height: 10,
+        ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

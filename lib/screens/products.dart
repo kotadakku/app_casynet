@@ -1,6 +1,5 @@
 
 import 'package:app_casynet/controller/products_controller.dart';
-import 'package:app_casynet/widget/account/top_account_widget.dart';
 import 'package:app_casynet/widget/home/reservation_home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class ProductsPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                TopAccountWidget(),
+                // TopAccountWidget(),
                 Padding(padding: EdgeInsets.symmetric(vertical: 12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
