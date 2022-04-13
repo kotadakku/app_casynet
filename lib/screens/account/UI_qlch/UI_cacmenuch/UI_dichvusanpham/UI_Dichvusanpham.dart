@@ -146,6 +146,7 @@ class dichvusanpham extends StatelessWidget {
                                     child: Image.network(
                                       "https://image.bnews.vn/MediaUpload/Org/2020/10/29/winner-x-bike-sport.jpg",
                                       width: 100,
+                                      height: 100,
                                     ),
                                   ),
                                   Expanded(
@@ -188,7 +189,8 @@ class dichvusanpham extends StatelessWidget {
                                               ),
                                             ),
                                             Container(
-                                              margin: new EdgeInsets.only(),
+                                              margin: new EdgeInsets.only(
+                                                  bottom: 5),
                                               child: Text("Giá: 1.000.000",
                                                   maxLines: 1,
                                                   overflow:

@@ -563,6 +563,7 @@ class _themspdvState extends State<themspdv> {
                                               color: Color.fromARGB(255, 241,
                                                   243, 253), // Button color
                                               child: InkWell(
+                                                splashColor: Colors.red,
                                                 onTap: () {
                                                   getdms.getdanhmuctid
                                                       .removeAt(index);

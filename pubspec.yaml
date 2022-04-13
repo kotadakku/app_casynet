@@ -50,6 +50,7 @@ dependencies:
   path_provider:
   http:
   google_maps_flutter:
+  location:
 
 dev_dependencies:
   flutter_test:

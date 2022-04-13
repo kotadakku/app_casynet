@@ -19,7 +19,7 @@ class DatChoProvider {
         data: null).get(
         beforeSend: () => {if(beforeSend != null) beforeSend()},
         onSuccess: (data) {
-          print("list: /n"+ data );
+          // print("list: /n"+ data );
           onSuccess((json.decode(data) as List).map((postJson){
             print(postJson);
             return DatCho.fromJson(postJson);

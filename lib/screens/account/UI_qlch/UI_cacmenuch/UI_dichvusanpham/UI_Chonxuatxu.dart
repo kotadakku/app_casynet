@@ -20,7 +20,8 @@ class _chonxuatxuState extends State<chonxuatxu> {
   @override
   void initState() {
     super.initState();
-    xcv.fetchXuatxu("https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php");
+    xcv.fetchXuatxu(
+        "https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php");
   }
 
   @override
@@ -33,34 +34,72 @@ class _chonxuatxuState extends State<chonxuatxu> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Visibility(
-        visible: xcv.ischeck.value,
-        replacement: const Center(
-          child: CircularProgressIndicator(),
-        ),
-        child: SingleChildScrollView(
-          child: Obx(() => Column(
-                children: [
-                  ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: xcv.xuatxu.length,
-                      itemBuilder: (context, indext) {
-                        return RadioListTile(
-                            title:
-                                Text(xcv.xuatxu[indext].tenxuatxu.toString()),
-                            value: indext,
-                            groupValue: xcv.countqg.value,
-                            onChanged: (value) {
-                              xcv.idxs.value=int.parse(xcv.xuatxu[indext].idxuaxu.toString());
-                              xcv.tenxuatxu.value=xcv.xuatxu[indext].tenxuatxu.toString();
-                              xcv.countqg.value = int.parse(value.toString());
-                              Get.back();
-                            });
-                      }),
-
-                ],
-              )),
+      // body: Visibility(
+      //   visible: xcv.ischeck.value,
+      //   replacement: const Center(
+      //     child: CircularProgressIndicator(),
+      //   ),
+      //   child: SingleChildScrollView(
+      //     child: Obx(() => Column(
+      //           children: [
+      //             ListView.builder(
+      //                 shrinkWrap: true,
+      //                 physics: NeverScrollableScrollPhysics(),
+      //                 itemCount: xcv.xuatxu.length,
+      //                 itemBuilder: (context, indext) {
+      //                   return RadioListTile(
+      //                       title:
+      //                           Text(xcv.xuatxu[indext].tenxuatxu.toString()),
+      //                       value: indext,
+      //                       groupValue: xcv.countqg.value,
+      //                       onChanged: (value) {
+      //                         xcv.idxs.value=int.parse(xcv.xuatxu[indext].idxuaxu.toString());
+      //                         xcv.tenxuatxu.value=xcv.xuatxu[indext].tenxuatxu.toString();
+      //                         xcv.countqg.value = int.parse(value.toString());
+      //                         Get.back();
+      //                       });
+      //                 }),
+      //
+      //           ],
+      //         )),
+      //   ),
+      // ),
+      body: Container(
+        child: FutureBuilder(
+          builder: (context, snapshot) {
+            if (xcv.xuatxu.length == 0) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return SingleChildScrollView(
+                child: Obx(() => Column(
+                      children: [
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: xcv.xuatxu.length,
+                            itemBuilder: (context, indext) {
+                              return RadioListTile(
+                                  title: Text(
+                                      xcv.xuatxu[indext].tenxuatxu.toString()),
+                                  value: indext,
+                                  groupValue: xcv.countqg.value,
+                                  onChanged: (value) {
+                                    xcv.idxs.value = int.parse(
+                                        xcv.xuatxu[indext].idxuaxu.toString());
+                                    xcv.tenxuatxu.value =
+                                        xcv.xuatxu[indext].tenxuatxu.toString();
+                                    xcv.countqg.value =
+                                        int.parse(value.toString());
+                                    Get.back();
+                                  });
+                            }),
+                      ],
+                    )),
+              );
+            }
+          },
         ),
       ),
     );

@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 class DatCho {
   int? idsanpham;
@@ -14,6 +14,7 @@ class DatCho {
   double? sldanhgia;
   int? diemthuongcasycoin;
   int? phantramgiamgia;
+
 
   DatCho(
       {this.idsanpham,
