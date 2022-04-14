@@ -12,33 +12,27 @@ class chondanhmuc extends StatefulWidget {
 }
 
 class _chondanhmucState extends State<chondanhmuc> {
-  final nothing = [].obs;
+
   @override
   void initState() {
     // TODO: implement initState
+    // if (getdms.getdanhmuctid.length > 0) {
+    //   for (int x = 0; x < getdms.getdanhmuctid.length; x++) {
+    //     for (int j = 0; j < getdms.nothing.length; j++) {
+    //       if (getdms.nothing[j].id == getdms.getdanhmuctid[x].id) {
+    //         getdms.nothing[j].checkdanhmuc = true;
+    //       }
+    //     }
+    //   }
+    // }
     super.initState();
-    getdms.fetchdanhmucsp();
-    for (int i = 0; i < getdms.danhmucs.length; i++) {
-      nothing.add(danhmuc(
-          title: getdms.danhmucs[i].tendanhmuc.toString(),
-          id: int.parse(getdms.danhmucs[i].iddanhmuc)));
-    }
-
-    if (getdms.getdanhmuctid.length > 0) {
-      for (int x = 0; x < getdms.getdanhmuctid.length; x++) {
-        for (int j = 0; j < nothing.length; j++) {
-          if (nothing[j].id == getdms.getdanhmuctid[x].id) {
-            nothing[j].checkdanhmuc = true;
-          }
-        }
-      }
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
             "Chọn danh mục",
@@ -56,8 +50,9 @@ class _chondanhmucState extends State<chondanhmuc> {
         ),
         body: Container(
           child: FutureBuilder(
+            future: getdms.fetchDanhmuc(),
             builder: (context, snapshot) {
-              if (getdms.danhmucs.length == 0) {
+              if (getdms.danhmucsp.length == 0) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
@@ -67,7 +62,7 @@ class _chondanhmucState extends State<chondanhmuc> {
                     child: Column(
                       children: [
                         ListView.builder(
-                          itemCount: nothing.length,
+                          itemCount: getdms.nothing.length,
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, indext) {
@@ -76,29 +71,29 @@ class _chondanhmucState extends State<chondanhmuc> {
                                 child: Row(
                                   children: [
                                     Checkbox(
-                                      value: nothing[indext].checkdanhmuc,
+                                      value: getdms.nothing[indext].checkdanhmuc,
                                       activeColor: Colors.amber,
                                       onChanged: (value) {
-                                        nothing[indext].checkdanhmuc =
-                                            !nothing[indext].checkdanhmuc;
+                                        getdms.nothing[indext].checkdanhmuc =
+                                            !getdms.nothing[indext].checkdanhmuc;
                                         getdms.dem.value = 0;
-                                        if (nothing.last.checkdanhmuc == true) {
+                                        if (getdms.nothing.last.checkdanhmuc == true) {
                                           for (int i = 0;
-                                              i < nothing.length - 1;
+                                              i < getdms.nothing.length - 1;
                                               i++) {
-                                            nothing[i].checkdanhmuc = false;
+                                            getdms.nothing[i].checkdanhmuc = false;
                                           }
                                         }
                                         for (int i = 0;
-                                            i < nothing.length;
+                                            i < getdms.nothing.length;
                                             i++) {
-                                          if (nothing[i].checkdanhmuc == true) {
+                                          if (getdms.nothing[i].checkdanhmuc == true) {
                                             getdms.dem++;
                                           }
                                         }
                                       },
                                     ),
-                                    Text(nothing[indext].title),
+                                    Text(getdms.nothing[indext].title),
                                   ],
                                 ),
                               ),
@@ -111,9 +106,9 @@ class _chondanhmucState extends State<chondanhmuc> {
                                 "Lưu " + getdms.dem.toString() + " (Tùy chọn)"),
                             onPressed: () {
                               getdms.getdanhmuctid.value = [];
-                              for (int i = 0; i < nothing.length; i++) {
-                                if (nothing[i].checkdanhmuc == true) {
-                                  getdms.getdanhmuctid.add(nothing[i]);
+                              for (int i = 0; i < getdms.nothing.length; i++) {
+                                if (getdms.nothing[i].checkdanhmuc == true) {
+                                  getdms.getdanhmuctid.add(getdms.nothing[i]);
                                 }
                               }
                               Get.back();

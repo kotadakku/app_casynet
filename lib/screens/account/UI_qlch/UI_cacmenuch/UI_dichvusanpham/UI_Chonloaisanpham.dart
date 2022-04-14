@@ -11,6 +11,7 @@ class chonloaisanpham extends StatelessWidget {
     var chon="".obs;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Chọn loại sản phẩm",

@@ -11,6 +11,7 @@ class themthongbao extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Thêm mới thông báo",

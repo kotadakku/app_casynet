@@ -17,6 +17,7 @@ class bangdieukhien extends StatelessWidget {
     final heightdt = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Appbars(),
         leading: Container(
           child: IconButton(
@@ -360,95 +361,105 @@ class bangdieukhien extends StatelessWidget {
                   ],
                 ),
               ),
-              Obx(
-                () => Container(
-                  color: Color.fromRGBO(200, 200, 200, 200),
+              DefaultTabController(length: 3,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 30,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  child: RaisedButton(
-                                    color: Colors.white,
-                                    child: Text("Đơn hàng cuối"),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                                Container(
-                                  child: RaisedButton(
-                                    color: Colors.white,
-                                    child: Text("Bán chạy nhất"),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                                Container(
-                                  child: RaisedButton(
-                                    color: Colors.white,
-                                    child: Text("Sản phẩm được xem"),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: heightdon.toDouble(),
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Column(
-                              children: [
-                                DataTable(
-                                  columns: [
-                                    DataColumn(
-                                      label: Text('#'),
-                                    ),
-                                    DataColumn(
-                                      label: Text('Ngày đặt hàng'),
-                                    ),
-                                    DataColumn(
-                                      label: Text('Khách hàng'),
-                                    ),
-                                    DataColumn(
-                                      label: Text('Tổng tiền hàng'),
-                                    ),
-                                    DataColumn(
-                                      label: Text('Hiện thị'),
+                      Obx(
+                            () => Container(
+                          color: Color.fromRGBO(200, 200, 200, 200),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                color: Colors.white,
+                                height: 40,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin: new EdgeInsets.only(top: 10, left: 10),
+                                          height: 40,
+                                          child: TabBar(
+                                            isScrollable: true,
+                                            indicatorColor: Colors.amber,
+                                            labelColor: Colors.amber,
+                                            unselectedLabelColor: Colors.black,
+                                            tabs: [
+                                              Tab(
+                                                text: "Đơn hàng cuối",
+                                              ),
+                                              Tab(
+                                                text: "Bán chạy nhất",
+                                              ),
+                                              Tab(
+                                                text: "Sản phẩm được xem",
+                                              ),
+                                            ],
+                                            onTap: (indext) {
+                                              print(indext);
+                                            },
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
-                                  rows: _createRows(sopt),
                                 ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              Container(
+                                height: heightdon.toDouble(),
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        DataTable(
+                                          columns: [
+                                            DataColumn(
+                                              label: Text('#'),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Ngày đặt hàng'),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Khách hàng'),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Tổng tiền hàng'),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Hiện thị'),
+                                            ),
+                                          ],
+                                          rows: _createRows(sopt),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
+                      Obx(()=>Container(
+                        margin: new EdgeInsets.only(left: 10,right: 10,bottom: 10),
+                        width: widthdt,
+                        child: RaisedButton(
+                          color: Colors.amber,
+                          child: Text("Xem thêm"+ss.toString()),
+                          onPressed: () {
+                            heightdon = heightdon + 500-tinh.toInt();
+
+                            sopt=sopt+10;
+                            tinh=20.obs;
+                          },
+                        ),
+                      )),
                     ],
                   ),
-                ),
               ),
-              Obx(()=>Container(
-                margin: new EdgeInsets.only(left: 10,right: 10,bottom: 10),
-                width: widthdt,
-                child: RaisedButton(
-                  color: Colors.amber,
-                  child: Text("Xem thêm"+ss.toString()),
-                  onPressed: () {
-                    heightdon = heightdon + 500-tinh.toInt();
-
-                    sopt=sopt+10;
-                    tinh=20.obs;
-                  },
-                ),
-              )),
             ],
           ),
         ),

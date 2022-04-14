@@ -15,6 +15,8 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
+import 'danhmuc.dart';
+
 class themspdv extends StatefulWidget {
   @override
   State<themspdv> createState() => _themspdvState();
@@ -25,8 +27,7 @@ final getdms = Get.put(getdanhmuc());
 class _themspdvState extends State<themspdv> {
   var _date = new DateTime.now().obs;
   final clsp = Get.put(chonloaisp());
-  final chonqgs = Get.put(chonqg());
-  final xcv = Get.put(xc());
+  final GetXuatxu = Get.put(getxuatxu());
   final tensanpham = TextEditingController();
   final motasanpham = TextEditingController();
   final soluongnhapkho = TextEditingController();
@@ -45,9 +46,6 @@ class _themspdvState extends State<themspdv> {
   @override
   void initState() {
     super.initState();
-    getdms.fetchdanhmucsp();
-    xcv.fetchXuatxu(
-        "https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php");
     soluongnhapkho.text = 0.toString();
     soluongconlai.text = 0.toString();
     gia.text = 0.toString();
@@ -57,6 +55,7 @@ class _themspdvState extends State<themspdv> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Thêm Dịch vụ/ Sản phẩm",
@@ -614,7 +613,7 @@ class _themspdvState extends State<themspdv> {
                   child: Row(
                     children: [
                       Expanded(child: Text("Xuất xứ")),
-                      Text(xcv.tenxuatxu.toString()),
+                      Text(GetXuatxu.tenxuatxu.toString()),
                       Icon(Icons.navigate_next),
                     ],
                   ),
@@ -762,7 +761,7 @@ class _themspdvState extends State<themspdv> {
                                 gia.text,
                                 giakhuyenmai.text,
                                 soluongconlai.text,
-                                xcv.idxs.toString(),
+                                GetXuatxu.idxs.toString(),
                                 "loaisanpham",
                                 status.toString(),
                                 _date.value.day.toString() +
@@ -793,46 +792,63 @@ class chonloaisp extends GetxController {
   var lsp = "Chọn loại sp".obs;
 }
 
-class chonqg extends GetxController {
-  var quocgia = "Chọn quốc gia".obs;
+// class getdanhmuc extends GetxController {
+//   var ischeck = false.obs;
+//   var danhmucs = [].obs;
+//   var getdanhmuctid = [].obs;
+//   var dem = 0.obs;
+//   Future fetchdanhmucsp() async {
+//     final response = await http.get(Uri.parse(
+//         "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
+//     if (response.statusCode == 200) {
+//       var list = json.decode(response.body);
+//       getdms.danhmucs.value =
+//           list.map((e) => Danhmucsanpham.fromJson(e)).toList();
+//       if (getdms.danhmucs.value != null) {
+//         ischeck.value = true;
+//       }
+//     }
+//   }
+// }
+class getdanhmuc extends GetxController{
+  var danhmucsp=[].obs;
+  var getdanhmuctid = [].obs;
+  var dem = 0.obs;
+  var nothing = [].obs;
+  Future<List<Danhmucsanpham>> fetchDanhmuc() async {
+
+    final response = await http.get(Uri.parse("https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
+    List<dynamic> list = json.decode(response.body);
+    List<Danhmucsanpham> pp=[];
+
+    pp= list.map((e) => Danhmucsanpham.fromJson(e)).toList();
+    if(getdms.nothing.length==0){
+      for (int i = 0; i < pp.length; i++) {
+        getdms.nothing.add(danhmuc(
+            title: pp[i].tendanhmuc.toString(),
+            id: int.parse(pp[i].iddanhmuc.toString())));
+      }
+    }
+    danhmucsp.value=pp;
+    return pp;
+  }
+
 }
 
-class xc extends GetxController {
-  var ischeck = false.obs;
-  var xuatxu = [].obs;
+class getxuatxu extends GetxController{
+  var xuatxu=[].obs;
   var countqg = 0.obs;
   var idxs = 0.obs;
   var tenxuatxu = "Chọn xuất xứ".obs;
-  var list;
-  Future<List<dynamic>> fetchXuatxu(String url) async {
-    final response = await http.get(Uri.parse(url));
+  Future<List<Xuatxu>> fetchXuatxu() async {
+    final response = await http.get(Uri.parse("https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php"));
+    List<Xuatxu> pp=[];
     if (response.statusCode == 200) {
-      list = json.decode(response.body);
-      xcv.xuatxu.value = list.map((e) => Xuatxu.fromJson(e)).toList();
-      if (xcv.xuatxu.value != null) {
-        ischeck.value = true;
-      }
+      List<dynamic> list = json.decode(response.body);
+      pp= list.map((e) => Xuatxu.fromJson(e)).toList();
+      xuatxu.value=pp;
     }
-
-    return list;
+    return pp;
   }
-}
 
-class getdanhmuc extends GetxController {
-  var ischeck = false.obs;
-  var danhmucs = [].obs;
-  var getdanhmuctid = [].obs;
-  var dem = 0.obs;
-  Future fetchdanhmucsp() async {
-    final response = await http.get(Uri.parse(
-        "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
-    if (response.statusCode == 200) {
-      var list = json.decode(response.body);
-      getdms.danhmucs.value =
-          list.map((e) => Danhmucsanpham.fromJson(e)).toList();
-      if (getdms.danhmucs.value != null) {
-        ischeck.value = true;
-      }
-    }
-  }
 }

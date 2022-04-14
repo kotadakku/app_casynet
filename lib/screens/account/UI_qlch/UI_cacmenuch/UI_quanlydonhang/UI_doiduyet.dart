@@ -19,6 +19,7 @@ class doiduyet extends StatelessWidget {
     var isSelected = [true, false, false, false].obs;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Quản lý đơn hàng",

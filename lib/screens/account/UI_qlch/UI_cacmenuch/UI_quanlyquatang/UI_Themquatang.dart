@@ -32,6 +32,7 @@ class themquatang extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Thêm mới quà tặng",
