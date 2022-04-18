@@ -14,6 +14,7 @@ class dichvusanpham extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Row(
           children: [
             Expanded(
@@ -39,6 +40,11 @@ class dichvusanpham extends StatelessWidget {
                 child: Text("Thêm +"),
                 onPressed: () {
                   getdms.getdanhmuctid.value=[];
+                  getdms.dem.value=0;
+                  for(int i=0;i<getdms.nothing.length;i++){
+                    getdms.nothing[i].checkdanhmuc=false;
+                  }
+
                     Get.to(themspdv());
                 },
               ),
@@ -131,8 +137,8 @@ class dichvusanpham extends StatelessWidget {
                                 ],
                               ),
                               child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(x.toString()),
                                   Checkbox(
@@ -146,6 +152,7 @@ class dichvusanpham extends StatelessWidget {
                                     child: Image.network(
                                       "https://image.bnews.vn/MediaUpload/Org/2020/10/29/winner-x-bike-sport.jpg",
                                       width: 100,
+                                      height: 100,
                                     ),
                                   ),
                                   Expanded(
@@ -167,7 +174,7 @@ class dichvusanpham extends StatelessWidget {
                                             ),
                                             Container(
                                               margin: new EdgeInsets.only(
-                                                  bottom: 5),
+                                                  bottom: 5,right: 5),
                                               child: Text("Số lượng:1000",
                                                   maxLines: 1,
                                                   overflow:
@@ -188,7 +195,8 @@ class dichvusanpham extends StatelessWidget {
                                               ),
                                             ),
                                             Container(
-                                              margin: new EdgeInsets.only(),
+                                              margin: new EdgeInsets.only(
+                                                  bottom: 5,right: 5),
                                               child: Text("Giá: 1.000.000",
                                                   maxLines: 1,
                                                   overflow:
@@ -196,29 +204,24 @@ class dichvusanpham extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        ExpansionTile(
-                                          title: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Container(
-                                                  margin: new EdgeInsets.only(),
-                                                  child: Text(
-                                                    "Loại Sản phẩm: xe máy",
-                                                    maxLines: 1,
-                                                    overflow:
-                                                    TextOverflow.ellipsis,
-                                                  ),
+                                        // SizeTransition(sizeFactor: sizeFactor),
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                margin: new EdgeInsets.only(),
+                                                child: Text(
+                                                  "Loại Sản phẩm: xe máy",
+                                                  maxLines: 1,
+                                                  overflow:
+                                                  TextOverflow.ellipsis,
                                                 ),
                                               ),
-                                              Container(
-                                                child: Text("Xem"),
-                                              ),
-                                            ],
-                                          ),
-                                          children: [
-                                            Text("sdasd"),
-                                            Text("sdasd"),
-                                            Text("sdasd"),
+                                            ),
+                                            Container(
+                                              child: Text("Xem"),
+                                            ),
                                           ],
                                         ),
                                         // Row(

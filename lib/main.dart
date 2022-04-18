@@ -1,4 +1,3 @@
-
 import 'package:app_casynet/bindings/home_bindings.dart';
 import 'package:app_casynet/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/routes/app_pages.dart';
@@ -117,9 +116,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

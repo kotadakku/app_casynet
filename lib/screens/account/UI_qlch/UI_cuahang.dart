@@ -20,6 +20,7 @@ class menucuahang extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Appbars(),
         leading: Container(
           child: IconButton(
@@ -48,10 +49,14 @@ class menucuahang extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        ImageIcon(
-                          AssetImage("assets/Icon/icon_dashboard.png"),
-                          color: Colors.amber,
+                        Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child: ImageIcon(
+                            AssetImage("assets/Icon/icon_dashboard.png"),
+                            color: Colors.amber,
+                          ),
                         ),
+
                         Expanded(
                           child: Text(
                             "Bảng điều khiển",
@@ -76,10 +81,14 @@ class menucuahang extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ImageIcon(
-                        AssetImage("assets/Icon/icon_ttcuahang.png"),
-                        color: Colors.deepOrangeAccent,
+                      Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child:ImageIcon(
+                            AssetImage("assets/Icon/icon_ttcuahang.png"),
+                            color: Colors.deepOrangeAccent,
+                          ),
                       ),
+
                       Expanded(
                         child: Text(
                           "Thông tin cửa hàng",
@@ -102,7 +111,11 @@ class menucuahang extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Icon(Icons.dashboard),
+                      Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child:Icon(Icons.dashboard),
+                      ),
+
                       Expanded(
                         child: Text(
                           "Quản lý đơn hàng",
@@ -125,10 +138,14 @@ class menucuahang extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ImageIcon(
-                        AssetImage("assets/Icon/icon_dvsp.png"),
+                      Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child:ImageIcon(
+                            AssetImage("assets/Icon/icon_dvsp.png"),
 
+                          ),
                       ),
+
                       Expanded(
                         child: Text(
                           "Dịch vụ/ Sản phẩm",
@@ -151,10 +168,14 @@ class menucuahang extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ImageIcon(
-                        AssetImage("assets/Icon/icon_quatang.png"),
-                        color: Colors.red,
+                      Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child:ImageIcon(
+                            AssetImage("assets/Icon/icon_quatang.png"),
+                            color: Colors.red,
+                          ),
                       ),
+
                       Expanded(
                         child: Text(
                           "Quản lý quà tặng",
@@ -177,10 +198,14 @@ class menucuahang extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ImageIcon(
-                        AssetImage("assets/Icon/icon_thongbao.png"),
-                        color: Colors.blue,
+                      Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child:ImageIcon(
+                            AssetImage("assets/Icon/icon_thongbao.png"),
+                            color: Colors.blue,
+                          ),
                       ),
+
                       Expanded(
                         child: Text(
                           "Quản lý thông báo",
@@ -203,10 +228,14 @@ class menucuahang extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ImageIcon(
-                        AssetImage("assets/Icon/icon_tintuc.png"),
-                        color: Colors.blue,
+                      Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child:ImageIcon(
+                            AssetImage("assets/Icon/icon_tintuc.png"),
+                            color: Colors.blue,
+                          ),
                       ),
+
                       Expanded(
                         child: Text(
                           "Tin tức",

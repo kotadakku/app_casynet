@@ -1,3 +1,4 @@
+
 class DatCho {
   int? idsanpham;
   int? loaixe;
@@ -12,6 +13,7 @@ class DatCho {
   double? sldanhgia;
   int? diemthuongcasycoin;
   int? phantramgiamgia;
+
 
   DatCho(
       {this.idsanpham,

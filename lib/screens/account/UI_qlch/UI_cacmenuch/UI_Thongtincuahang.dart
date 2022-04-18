@@ -12,6 +12,7 @@ class thongtincuahang extends StatelessWidget {
     final heightdt = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Thông tin cửa hàng",

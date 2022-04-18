@@ -62,6 +62,7 @@ class chitietdonhang extends StatelessWidget {
         );
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Chi tiết đơn hàng",
