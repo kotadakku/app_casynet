@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(392, 816),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: () =>  GetMaterialApp(
+      builder: (context) =>  GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,

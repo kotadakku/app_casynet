@@ -51,20 +51,7 @@ class EditMyStore extends StatelessWidget {
                               fontSize: 15,
                             ),)
                         )
-                      /*Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Sửa thông tin cửa hàng",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),*/
+
                     )
 
 
@@ -981,7 +968,10 @@ class EditMyStore extends StatelessWidget {
         backgroundColor: Colors.transparent,
         builder: (BuildContext bc) {
           return Container(
-            child: Column(
+            child:
+             Wrap(
+              children: [
+              Column(
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height * .30,
@@ -1088,7 +1078,7 @@ class EditMyStore extends StatelessWidget {
 
                 ),
                 Container(
-                    // alignment: Alignment.center,
+                  // alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -1112,6 +1102,8 @@ class EditMyStore extends StatelessWidget {
                             )
                           ],
                         ))),
+              ],
+            ),
               ],
             ),
           );

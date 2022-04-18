@@ -11,6 +11,8 @@ import 'edit_mystore.dart';
 import 'list_sanpham_dichvu.dart';
 
 class Mystore extends StatelessWidget {
+  const Mystore({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -327,7 +329,7 @@ class Mystore extends StatelessWidget {
                     splashColor: const Color.fromARGB(255, 188, 195, 216),
                     // splashColor: Colors.blue,
                     onTap: () {
-                      Get.to(const ThemSanPhamDichVu());
+                      Get.to(ThemSanPhamDichVu());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
@@ -345,16 +347,12 @@ class Mystore extends StatelessWidget {
                                           fontSize: 15, color: Colors.black))
                                 ],
                               )),
-                          InkWell(
-                              splashColor: const Color.fromARGB(255, 188, 195, 216),
-                              // splashColor: Colors.blue,
-                              onTap: () {},
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: const [
-                                  Icon(Icons.navigate_next),
-                                ],
-                              ))
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const [
+                              Icon(Icons.navigate_next),
+                            ],
+                          )
                         ],
                       ),
                     ),

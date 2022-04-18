@@ -55,6 +55,7 @@ dependencies:
   flutter_screenutil:
   url_launcher:
   connectivity_plus:
+  video_player:
 
 
 dev_dependencies:
