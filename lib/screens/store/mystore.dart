@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/screens/store/gift_store_page.dart';
 import 'package:app_casynet/screens/store/quan_ly_doanh_thu.dart';
 import 'package:app_casynet/screens/store/quan_ly_don_hang.dart';
 import 'package:app_casynet/screens/store/themsanphamdichvu.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 
 import 'edit_mystore.dart';
 import 'list_sanpham_dichvu.dart';
+import 'notications_customer.dart';
 
 class Mystore extends StatelessWidget {
   const Mystore({Key? key}) : super(key: key);
@@ -395,7 +397,9 @@ class Mystore extends StatelessWidget {
                    InkWell(
                      splashColor: const Color.fromARGB(255, 188, 195, 216),
                      // splashColor: Colors.blue,
-                     onTap: () {},
+                     onTap: () {
+                       Get.to(GiftStorePage());
+                     },
                      child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 50.0,
@@ -425,7 +429,9 @@ class Mystore extends StatelessWidget {
                   InkWell(
                     splashColor: const Color.fromARGB(255, 188, 195, 216),
                     // splashColor: Colors.blue,
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(NotificationCustomer());
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 50.0,

@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/screens/account/address/select_region.dart';
 import 'package:app_casynet/widget/account/appbar_account_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -92,90 +93,132 @@ class NewAddress extends StatelessWidget {
                     indent: 10,
                   ),
                   // Nhap thanh pho
-                  Padding(padding: EdgeInsets.only(left: 10, ), child: Row(
-                    children: [
-                      Expanded(
-                          child: Text("Tỉnh/Thành phố",
-                            style: TextStyle(
-                                color: kTextColor_gray
-                            ),
-                          )
-                      ),
-                      Expanded(
-                          child: TextFormField(
-                            readOnly: true,
-                            initialValue: "Hà Nội",
-                            textAlign: TextAlign.end,
-                            onSaved: (value)=> controller.address.province = value!,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Hà Nội",
-                                hintStyle: TextStyle(
-                                    color: kTextColor
-                                ),
-                                suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
-                            ),
-                          )
-                      )
-                    ],
-                  ),),
+                 GestureDetector(
+                   behavior: HitTestBehavior.translucent,
+                   onTap: (){
+                     var data = Get.to(SelectRegionPage(title: "Chọn tỉnh/ thành phố", regions: controller.provinces));
+                     if(data != null){
+                       data.then((value){
+                         controller.textProvinceCotroller.text = value['name'];
+                         controller.updateDistrict(value['id']);
+                         controller.textDistrictController.clear();
+                         controller.textCommuneController.clear();
+                       });
+                     }
+                   },
+                   child:  Padding(padding: EdgeInsets.only(left: 10, ), child: Row(
+                     children: [
+                       Expanded(
+                           child: Text("Tỉnh/Thành phố",
+                             style: TextStyle(
+                                 color: kTextColor_gray
+                             ),
+                           )
+                       ),
+                       Expanded(
+                           child: TextFormField(
+                             readOnly: true,
+                             controller: controller.textProvinceCotroller,
+                             textAlign: TextAlign.end,
+                             onSaved: (value)=> controller.address.province = value!,
+                             decoration: InputDecoration(
+                                 border: InputBorder.none,
+                                 hintText: "Chọn tỉnh/ thành phố",
+                                 hintStyle: TextStyle(
+                                     color: kTextColor
+                                 ),
+                                 suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
+                             ),
+                           )
+                       )
+                     ],
+                   ),),
+                 ),
                   Divider(
                     indent: 10,
                   ),
                   // Nhap quan huyen
-                  Padding(padding: EdgeInsets.only(left: 10, ), child: Row(
-                    children: [
-                      Expanded(
-                          child: Text("Quận/Huyện",
-                            style: TextStyle(
-                                color: kTextColor_gray
-                            ),
-                          )
-                      ),
-                      Expanded(
-                          child: TextFormField(
-                            readOnly: true,
-                            initialValue: "Quận Nam Từ Liêm",
-                            textAlign: TextAlign.end,
-                            onSaved: (value) => controller.address.district = value!,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Hà Nội",
-                                hintStyle: TextStyle(
-                                    color: kTextColor
-                                ),
-                                suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
-                            ),
-                          )
-                      )
-                    ],
-                  ),),
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: (){
+                      var data = Get.to(SelectRegionPage(title: "Chọn quận/ huyện", regions: controller.districts));
+                      if(data!=null){
+                        data.then((value){
+                          controller.textDistrictController.text = value['name'];
+                          controller.updateCommune(value['id']);
+                          controller.textCommuneController.clear();
+                        });
+                      }
+                    },
+                    child: Padding(padding: EdgeInsets.only(left: 10, ), child: Row(
+                      children: [
+                        Expanded(
+                            child: Text("Quận/Huyện",
+                              style: TextStyle(
+                                  color: kTextColor_gray
+                              ),
+                            )
+                        ),
+                        Expanded(
+                            child: TextFormField(
+                              readOnly: true,
+                              controller: controller.textDistrictController,
+                              textAlign: TextAlign.end,
+                              onSaved: (value) => controller.address.district = value!,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Chọn quận/ huyện",
+                                  hintStyle: TextStyle(
+                                      color: kTextColor
+                                  ),
+                                  suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
+                              ),
+                            )
+                        )
+                      ],
+                    ),),
+                  ),
                   Divider(
                     indent: 10,
                   ),
-                  Padding(padding: EdgeInsets.only(left: 10, right: 10), child: Row(
-                    children: [
-                      Expanded(
-                          child: Text("Phường/Xã",
-                            style: TextStyle(
-                                color: kTextColor_gray
-                            ),
-                          )
-                      ),
-                      Expanded(
-                          child: TextField(
-                            textAlign: TextAlign.end,
-                            cursorColor: kTextColor_gray,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Nhập Phường/Xã",
-                                hintStyle: TextStyle(
-                                    color: kTextColor
-                                )
-                            ),
-                          ))
-                    ],
-                  ),),
+                  //Chon xa phuong
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: (){
+                      var data = Get.to(SelectRegionPage(title: "Chọn xã/ phường", regions: controller.communes));
+                      if(data!=null){
+                        data.then((value){
+                          controller.textCommuneController.text = value['name'];
+                        });
+                      }
+                    },
+                    child: Padding(padding: EdgeInsets.only(left: 10), child: Row(
+                      children: [
+                        Expanded(
+                            child: Text("Phường/Xã",
+                              style: TextStyle(
+                                  color: kTextColor_gray
+                              ),
+                            )
+                        ),
+                        Expanded(
+                            child: TextFormField(
+                              readOnly: true,
+                              textAlign: TextAlign.end,
+                              controller: controller.textCommuneController,
+                              cursorColor: kTextColor_gray,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Chọn Phường/Xã",
+                                  hintStyle: TextStyle(
+                                      color: kTextColor
+                                  ),
+                                  suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
+                              ),
+                            ))
+                      ],
+                    ),),
+                  ),
                   Divider(
                     indent: 10,
                   ),

@@ -112,7 +112,7 @@ class FilterDistrictController extends GetxController with GetSingleTickerProvid
   void onInit() {
     expandDistrictController  = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 500)
+        duration: Duration(milliseconds: 300)
     );
     animationDistrict = CurvedAnimation(
       parent: expandDistrictController,
@@ -221,7 +221,7 @@ class FilterOriginController extends GetxController with GetSingleTickerProvider
 
     expandOriginController  = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 500)
+        duration: Duration(milliseconds: 1000)
     );
     animationOrigin = CurvedAnimation(
       parent: expandOriginController,

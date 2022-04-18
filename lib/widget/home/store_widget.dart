@@ -161,9 +161,10 @@ class StoreWidget extends StatelessWidget {
                               e.khoangcachtoicuahang.toString()),
                           store_name: e.tencuahang.toString(),
                           address: e.diachicuahang.toString(),
-                          quality: int.parse(e.slchiase.toString()),
+                          quality: double.parse(e.slchiase.toString()),
                           comment: int.parse(e.slbinhluan.toString()),
                           like: int.parse(e.slthich.toString()),
+                          phone: e.sodienthoai.toString(),
                         ))
                         .toList()),
               ),
@@ -182,9 +183,10 @@ class ItemCuaHangWidget extends StatelessWidget {
   final String store_name;
   final int like;
   final int comment;
-  final int quality;
+  final double quality;
   final String address;
   final double distance;
+  final String phone;
 
   const ItemCuaHangWidget({
     Key? key,
@@ -196,6 +198,7 @@ class ItemCuaHangWidget extends StatelessWidget {
     required this.comment,
     required this.quality,
     required this.id,
+    required this.phone,
   }) : super(key: key);
 
   @override
@@ -300,7 +303,7 @@ class ItemCuaHangWidget extends StatelessWidget {
               GestureDetector(
 
                 onTap: (){
-                  controller.callPhone('09485748');
+                  controller.callPhone(phone);
                 },
                 child: Container(
                   padding: EdgeInsets.all(5.0),

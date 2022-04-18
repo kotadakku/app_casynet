@@ -12,9 +12,9 @@ class BannerProvider{
     onError(error)?,
     beforeSend()?
   }){
-    ApiRequest(url: "https://coaxial-typewriter.000webhostapp.com/Server/banner.php").get(
+    ApiRequest(url: "https://api-casynet-app.herokuapp.com/api").get(
       onSuccess: (data){
-        onSuccess((json.decode(data) as List).map((e) => BannerSlider.fromJson(e)).toList());
+        onSuccess((json.decode(data['banners']) as List).map((e) => BannerSlider.fromJson(e)).toList());
       },
       onError: (error){
         if(onError!= null) onError(error);

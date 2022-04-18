@@ -15,8 +15,7 @@ class FilterProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
       appBar: AppBarAccountWidget(),
       body: SingleChildScrollView(
         child: Column(
@@ -77,7 +76,6 @@ class FilterProductPage extends StatelessWidget {
           ],
         ),
       ),
-    )
     );
   }
 }

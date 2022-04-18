@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_pages.dart';
 import '../home.dart';
 
 class Splash_1 extends StatefulWidget {
@@ -33,7 +36,8 @@ class _Splash_1State extends State<Splash_1> {
     initialization();
   }
 
-  void initialization() async {
-    await Future.delayed(const Duration(seconds: 3)).then((value) => Get.offNamed('/home'));
+  Future<Timer> initialization() async {
+    return await Timer(Duration(seconds: 5),() => Get.offNamed(Routes.HOME
+    ));
   }
 }

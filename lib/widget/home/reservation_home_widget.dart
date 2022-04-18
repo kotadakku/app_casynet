@@ -2,6 +2,8 @@
 import 'package:app_casynet/controller/datcho_controller.dart';
 import 'package:app_casynet/screens/products.dart';
 import 'package:app_casynet/theme/app_sizes.dart';
+import 'package:app_casynet/widget/home/store_widget.dart';
+import 'package:app_casynet/widget/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -141,26 +143,32 @@ class ReservationWidget extends StatelessWidget {
             GetBuilder<DatChoController>(
                 init: DatChoController(),
                 builder: ((controller) {
-                  return Padding(padding: EdgeInsets.only(bottom: 15.h),
-                      child: Wrap(
-                        spacing: 5.0.w,
-                        runSpacing: 10.0,
-                        children: controller.datchoList.map((e) => GestureDetector(
-                          child: ItemBookWidget(
-                            book_image: e.hinhanhsanpham.toString(),
-                            distance: double.parse(e.khoangcachtoicuahang.toString()),
-                            price: e.giauudai.toString(),
-                            price_discount: e.giasanpham.toString(),
-                            book_name: e.tensanpham.toString(),
-                            book_category: e.tencuahang.toString(),
-                            add_point: 12,
+                  return LoadingOverlay(
+                    isLoading: controller.loadingDatcho,
+                    shimmer: ItemCuaHangShimmer(),
+                    child: Padding(padding: EdgeInsets.only(bottom: 15.h),
+                        child: controller.datchoList.isEmpty ?
+                          Text("Không có sẳn phẩm nào để hiển thi") :
+                          Wrap(
+                          spacing: 5.0.w,
+                          runSpacing: 10.0,
+                          children: controller.datchoList.map((e) => GestureDetector(
+                            child: ItemBookWidget(
+                              book_image: e.hinhanhsanpham.toString(),
+                              distance: double.parse(e.store!.khoangcachtoicuahang.toString()),
+                              price: e.giauudai == null ? "Liên hệ" : e.giauudai.toString(),
+                              price_discount: e.giasanpham == null ? "" : e.giasanpham.toString(),
+                              book_name: e.tensanpham.toString(),
+                              book_category: e.store!.tencuahang.toString(),
+                              add_point: 12,
 
-                          ),
-                          onTap: (){
-                            Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 });
-                          },
-                        )).toList(),
-                      )
+                            ),
+                            onTap: (){
+                              Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 },);
+                            },
+                          )).toList(),
+                        )
+                    )
                   );
                 }))
           ],
@@ -232,7 +240,9 @@ class ItemBookWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.0.h,),
-            Text(book_name),
+            Text(book_name,
+              overflow: TextOverflow.ellipsis,
+            ),
             SizedBox(height: 10.0.h,),
             Row(
               children: [
@@ -256,11 +266,13 @@ class ItemBookWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(book_category,
+                Expanded(child: Text(book_category,
                   style: TextStyle(
-                      fontSize: 12
+                    fontSize: 12,
+
                   ),
-                ),
+                  overflow: TextOverflow.ellipsis,
+                ),),
 
                 Row(
                   children: [

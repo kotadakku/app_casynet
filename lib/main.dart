@@ -2,15 +2,19 @@ import 'package:app_casynet/bindings/home_bindings.dart';
 import 'package:app_casynet/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/routes/app_pages.dart';
 import 'package:app_casynet/screens/Cart/cart.dart';
+import 'package:app_casynet/screens/account/account_base.dart';
 import 'package:app_casynet/screens/account/account_login.dart';
 import 'package:app_casynet/screens/detail_app.dart';
 import 'package:app_casynet/screens/home.dart';
 import 'package:app_casynet/screens/notfications.dart';
+import 'package:app_casynet/screens/splash/splash.dart';
 import 'package:app_casynet/widget/bottom_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import 'controller/authentication_manager.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +49,7 @@ class MyApp extends StatelessWidget {
         initialBinding: HomeBindings(),
         getPages:  AppPages.routes ,
         home: MaterialApp(
-          home: Home(),
+          home: Splash(),
         ),
       )
     );
@@ -59,28 +63,43 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationManager _authManager = Get.find();
 
     return WillPopScope(
       onWillPop:()=> _onWillPop(context),
-      child: Material(
-        color: Colors.white,
-        child: SafeArea(
-          child: Scaffold(
-              backgroundColor: Colors.white,
-              bottomNavigationBar: BottomNavigator(),
-              body:Obx(()=>IndexedStack(
-                index: c.tabIndex.value,
-                children: [
-                  HomePage(),
-                  NotificationPage(),
-                  Cart(),
-                  AccountLoginPage(),
-                  DetailAppPage(),
-                ],
-              ),)
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onPanDown: (value) {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: Scaffold(
+            backgroundColor: Colors.white,
+            bottomNavigationBar: BottomNavigator(),
+            body:Obx(()=>IndexedStack(
+              index: c.tabIndex.value,
+              children: [
+                HomePage(),
+                NotificationPage(),
+                Cart(),
+                Obx(() {
+                  return _authManager.isLogged.value ? AccountLoginPage(   ) : AccountBasePage();
+                }),
+                DetailAppPage(),
+              ],
+            ),
+            ),
           ),
         ),
-      ),
+      )
     ) ;
   }
   Future<bool> _onWillPop(BuildContext context) async {
