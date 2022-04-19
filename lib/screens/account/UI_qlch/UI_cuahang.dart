@@ -12,7 +12,6 @@ import 'UI_cacmenuch/UI_Bangdieukhien.dart';
 import 'UI_cacmenuch/UI_Thongtincuahang.dart';
 import 'UI_cacmenuch/UI_quanlydonhang/UI_doiduyet.dart';
 
-
 class menucuahang extends StatelessWidget {
   const menucuahang({Key? key}) : super(key: key);
 
@@ -37,8 +36,38 @@ class menucuahang extends StatelessWidget {
           child: ListView(
             children: [
               Container(
-                child: Image.network(
-                    "https://xemaynghean.com/wp-content/uploads/2019/03/50272791_137653880484230_7970165378053570560_n-1024x554.jpg"),
+                child: Stack(
+                  children: [
+                    Image.network(
+                        "https://xemaynghean.com/wp-content/uploads/2019/03/50272791_137653880484230_7970165378053570560_n-1024x554.jpg"),
+                    Positioned(
+                      width:  MediaQuery.of(context).size.width,
+                      bottom: 40,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.amber,
+                                border: Border.all(color: Colors.white,width: 2,),
+                            ),
+                            width: 100,
+                            height: 100,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: ExactAssetImage(
+                                        "assets/Icon/icon_xemay.png"),
+                                  ),
+                                ),
+                                width: 80,
+                                height: 80,
+                              ),
+                            ),
+                          ),
+                        ),
+                  ],
+                ),
               ),
               Container(
                 height: 50,
@@ -56,7 +85,6 @@ class menucuahang extends StatelessWidget {
                             color: Colors.amber,
                           ),
                         ),
-
                         Expanded(
                           child: Text(
                             "Bảng điều khiển",
@@ -82,13 +110,12 @@ class menucuahang extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child:ImageIcon(
-                            AssetImage("assets/Icon/icon_ttcuahang.png"),
-                            color: Colors.deepOrangeAccent,
-                          ),
+                        margin: EdgeInsets.only(right: 10),
+                        child: ImageIcon(
+                          AssetImage("assets/Icon/icon_ttcuahang.png"),
+                          color: Colors.deepOrangeAccent,
+                        ),
                       ),
-
                       Expanded(
                         child: Text(
                           "Thông tin cửa hàng",
@@ -112,10 +139,9 @@ class menucuahang extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child:Icon(Icons.dashboard),
+                        margin: EdgeInsets.only(right: 10),
+                        child: Icon(Icons.dashboard),
                       ),
-
                       Expanded(
                         child: Text(
                           "Quản lý đơn hàng",
@@ -139,13 +165,11 @@ class menucuahang extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child:ImageIcon(
-                            AssetImage("assets/Icon/icon_dvsp.png"),
-
-                          ),
+                        margin: EdgeInsets.only(right: 10),
+                        child: ImageIcon(
+                          AssetImage("assets/Icon/icon_dvsp.png"),
+                        ),
                       ),
-
                       Expanded(
                         child: Text(
                           "Dịch vụ/ Sản phẩm",
@@ -169,13 +193,12 @@ class menucuahang extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child:ImageIcon(
-                            AssetImage("assets/Icon/icon_quatang.png"),
-                            color: Colors.red,
-                          ),
+                        margin: EdgeInsets.only(right: 10),
+                        child: ImageIcon(
+                          AssetImage("assets/Icon/icon_quatang.png"),
+                          color: Colors.red,
+                        ),
                       ),
-
                       Expanded(
                         child: Text(
                           "Quản lý quà tặng",
@@ -199,13 +222,12 @@ class menucuahang extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child:ImageIcon(
-                            AssetImage("assets/Icon/icon_thongbao.png"),
-                            color: Colors.blue,
-                          ),
+                        margin: EdgeInsets.only(right: 10),
+                        child: ImageIcon(
+                          AssetImage("assets/Icon/icon_thongbao.png"),
+                          color: Colors.blue,
+                        ),
                       ),
-
                       Expanded(
                         child: Text(
                           "Quản lý thông báo",
@@ -229,13 +251,12 @@ class menucuahang extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child:ImageIcon(
-                            AssetImage("assets/Icon/icon_tintuc.png"),
-                            color: Colors.blue,
-                          ),
+                        margin: EdgeInsets.only(right: 10),
+                        child: ImageIcon(
+                          AssetImage("assets/Icon/icon_tintuc.png"),
+                          color: Colors.blue,
+                        ),
                       ),
-
                       Expanded(
                         child: Text(
                           "Tin tức",
@@ -268,4 +289,3 @@ class menucuahang extends StatelessWidget {
     );
   }
 }
-
