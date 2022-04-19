@@ -741,11 +741,7 @@ packages:
       name: video_player_web
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "2.0.7"
-=======
     version: "2.0.8"
->>>>>>> ad348bfd351f252f80230cc9eb64c07f9b749fe2
   win32:
     dependency: transitive
     description:

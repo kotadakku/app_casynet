@@ -56,10 +56,7 @@ dependencies:
   url_launcher:
   connectivity_plus:
   video_player:
-<<<<<<< HEAD
-=======
   get_storage:
->>>>>>> ad348bfd351f252f80230cc9eb64c07f9b749fe2
 
 
 dev_dependencies:
