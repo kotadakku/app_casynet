@@ -15,6 +15,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
+
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.find<HomeController>();
@@ -37,7 +38,6 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
       title: Container(
         height: 40,
         child:  TextField(
-          autofocus: false,
           style: TextStyle(
             fontSize: 15.sp,
             color: AppColors.textGrayBoldColor,

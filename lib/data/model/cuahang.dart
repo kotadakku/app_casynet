@@ -36,16 +36,15 @@ class CuaHang {
         this.anhsanpham});
 
   CuaHang.fromJson(Map<String, dynamic> json) {
-    idcuahang = json['idcuahang'];
-    loaixe = json['loaixe'];
-    slthich = json['slthich'];
-    slbinhluan = json['slbinhluan'];
-    slchiase = json['slchiase'];
-    tencuahang = json['tencuahang'];
-    sodienthoai = json['sodienthoai'];
-    diachicuahang = json['diachicuahang'];
-    khoangcachtoicuahang = json['khoangcachtoicuahang'];
-    anhsanpham = json['anhsanpham'];
+    idcuahang = json['id'].toString();
+    slthich = json['liked'].toString();
+    slbinhluan = json['comment'].toString();
+    slchiase = json['vote'].toString();
+    tencuahang = json['name'].toString();
+    sodienthoai = json['phone'].toString();
+    diachicuahang = json['address'].toString();
+    khoangcachtoicuahang = json['distance'].toString();
+    anhsanpham = "https://api-casynet-app.herokuapp.com"+json['image'].toString();
   }
 
   Map<String, dynamic> toJson() {

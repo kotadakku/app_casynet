@@ -5,8 +5,6 @@ import 'package:app_casynet/data/provider/banner_api_provider.dart';
 import 'package:app_casynet/data/provider/user_db_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-
 import '../data/model/banner_slider.dart';
 import '../data/model/sales.dart';
 import '../data/provider/sales_api_provider.dart';
@@ -30,8 +28,13 @@ class HomeController extends GetxController{
   @override
   void onInit() {
       _getData();
-      _autoPageView();
       _getSales();
+  }
+
+
+  @override
+  void onReady() {
+    _autoPageView();
   }
 
   void _autoPageView(){

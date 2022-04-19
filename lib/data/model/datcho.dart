@@ -1,3 +1,5 @@
+import 'cuahang.dart';
+
 
 class DatCho {
   int? idsanpham;
@@ -13,6 +15,7 @@ class DatCho {
   double? sldanhgia;
   int? diemthuongcasycoin;
   int? phantramgiamgia;
+  CuaHang? store;
 
 
   DatCho(
@@ -28,22 +31,25 @@ class DatCho {
         this.slbinhluan,
         this.sldanhgia,
         this.diemthuongcasycoin,
-        this.phantramgiamgia});
+        this.phantramgiamgia,
+        this.store
+      });
 
   DatCho.fromJson(Map<String, dynamic> json) {
-    idsanpham = int.parse(json['idsanpham']);
-    loaixe = int.parse(json['loaixe']);
-    tensanpham = json['tensanpham'];
-    hinhanhsanpham = json['hinhanhsanpham'];
-    giauudai = int.parse(json['giauudai']);
-    giasanpham = int.parse(json['giasanpham']);
-    tencuahang = json['tencuahang'];
-    khoangcachtoicuahang = int.parse(json['khoangcachtoicuahang']);
-    slthich = int.parse(json['slthich']);
-    slbinhluan = int.parse(json['slbinhluan']);
-    sldanhgia = double.parse(json['sldanhgia']);
-    diemthuongcasycoin = int.parse(json['diemthuongcasycoin']);
-    phantramgiamgia = int.parse(json['phantramgiamgia']);
+    idsanpham = int.parse(json['id'].toString());
+    tensanpham = json["name"].toString();
+    // hinhanhsanpham = json["image"];
+    giauudai = json[ "price"];
+    giasanpham = json["discount_price"];
+    slthich = json["liked"];
+    slbinhluan = json["comment"];
+    sldanhgia = json["vote"];
+    diemthuongcasycoin = json["point"];
+    phantramgiamgia = json["sale_off"];
+    store = CuaHang(
+      tencuahang: json["store"]["name"].toString(),
+      khoangcachtoicuahang: json["store"]["distance"].toString()
+    );
   }
 
   Map<String, dynamic> toJson() {

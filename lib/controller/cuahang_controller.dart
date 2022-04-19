@@ -2,6 +2,7 @@ import 'package:app_casynet/data/model/cuahang.dart';
 import 'package:app_casynet/data/provider/cuahang_provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 class CuaHangController extends GetxController{
   List<CuaHang> cuahangList = [];
   var isCar = true;
@@ -13,6 +14,7 @@ class CuaHangController extends GetxController{
   }
 
   void updateAPI(){
+    isLoadStore = true;
     cuahangList.clear();
     CuaHangProvider().fetchCuaHangList(onSuccess: (data){
       print(data.length);
@@ -32,6 +34,6 @@ class CuaHangController extends GetxController{
   }
 
   void callPhone(String s) {
-    print("Call $s");
+    launch("tel:$s");
   }
 }

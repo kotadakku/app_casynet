@@ -1,6 +1,9 @@
 
+import 'package:app_casynet/controller/authentication_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import '../../data/model/user.dart';
 import '../../theme/app_colors.dart';
 
 class SignInWidget extends StatelessWidget {
@@ -8,14 +11,23 @@ class SignInWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationManager controller = Get.find();
+    User user = User();
+
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30.0),
-          child: Column(
-            children: [
-              SizedBox(height: 30,),
-              TextField(
+        Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          key: controller.formSignInKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: Column(
+              children: [
+                SizedBox(height: 30,),
+                TextFormField(
+                  onSaved: (value){
+                    user.email = value;
+                  },
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
@@ -39,67 +51,77 @@ class SignInWidget extends StatelessWidget {
                       child: Icon(Icons.perm_identity, color: kYellowColor,),
                     ),
                   )
-              ),
-              SizedBox(height: 20,),
-              TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  obscureText: true,
-
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                      borderSide: BorderSide(color: kYellowColor, width: 2.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                      borderSide: BorderSide(color: kTextColor, width: 2.0),
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50.0)
-                    ),
-                    hintStyle: const TextStyle(
-                        fontSize: 15
-                    ),
-                    hintText: 'Mật khẩu',
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: Icon(Icons.lock, color: kYellowColor,),
-                    ),
-                  )
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Quên mật khẩu"),
-                  Text("Cần trợ giúp?")
-                ],
-              ),
-              SizedBox(height: 30,),
-              ElevatedButton(
-                onPressed: () {  },
-                style: ElevatedButton.styleFrom(
-                    primary: kYellowColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                    )
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.assignment_ind_outlined),
-                    SizedBox(width: 10.0,),
-                    Text("Đăng nhập",
-                      style: TextStyle(
+                SizedBox(height: 20,),
+                TextFormField(
+                    textAlignVertical: TextAlignVertical.center,
+                    obscureText: true,
+                    onSaved: (value){
+                      user.password = value;
+                    },
 
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide(color: kTextColor, width: 2.0),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0)
+                      ),
+                      hintStyle: const TextStyle(
+                          fontSize: 15
+                      ),
+                      hintText: 'Mật khẩu',
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Icon(Icons.lock, color: kYellowColor,),
                       ),
                     )
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Quên mật khẩu"),
+                    Text("Cần trợ giúp?")
                   ],
                 ),
-              ),
-              SizedBox(height: 10,),
-            ],
+                SizedBox(height: 30,),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.formSignInKey.currentState?.save();
+                    print(user.email);
+                    print(user.password);
+                    controller.loginUser(user);
+                    Get.back();
+                  },
+                  style: ElevatedButton.styleFrom(
+                      primary: kYellowColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      )
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.assignment_ind_outlined),
+                      SizedBox(width: 10.0,),
+                      Text("Đăng nhập",
+                        style: TextStyle(
+
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10,),
+              ],
+            ),
           ),
         ),
 

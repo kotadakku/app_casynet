@@ -15,13 +15,11 @@ class DatChoProvider {
     Function(dynamic error)? onError
   }) {
     ApiRequest(
-        url: 'https://coaxial-typewriter.000webhostapp.com/Server/datcho.php?loaixe=$loaixe',
+        url: 'https://api-casynet-app.herokuapp.com/api?isCar=$loaixe',
         data: null).get(
         beforeSend: () => {if(beforeSend != null) beforeSend()},
         onSuccess: (data) {
-          // print("list: /n"+ data );
-          onSuccess((json.decode(data) as List).map((postJson){
-            print(postJson);
+          onSuccess((data["reservations"] as List).map((postJson){
             return DatCho.fromJson(postJson);
           }
               ).toList());

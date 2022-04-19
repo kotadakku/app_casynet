@@ -7,11 +7,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class Cart2 extends StatelessWidget {
+  Cart2({Key? key}) : super(key: key);
   static const IconData map = IconData(0xe3c8, fontFamily: 'MaterialIcons');
 
   // int _valuePayment = 0;
   ItemSelectionController itemSelectionController =
       Get.put(ItemSelectionController());
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +26,17 @@ class Cart2 extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              TopDetailProductWidget(),
+              const TopDetailProductWidget(),
 // Thông tin giao hàng
               Container(
-                margin: EdgeInsets.only( top: 1.0),
-                alignment: Alignment(0, 0),
-                color: Color.fromARGB(255, 241, 243, 253),
+                margin: const EdgeInsets.only( top: 1.0),
+                alignment: const Alignment(0, 0),
+                color: const Color.fromARGB(255, 241, 243, 253),
                 height: 50,
-                padding: EdgeInsets.only(left: 5.0),
+                padding: const EdgeInsets.only(left: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       "Thông tin giao hàng",
                       style: TextStyle(
@@ -46,23 +49,23 @@ class Cart2 extends StatelessWidget {
               ),
 //Địa chỉ nhận hàng
               Container(
-                alignment: Alignment(0, 0),
-                color: Color.fromARGB(255, 255, 255, 255),
+                alignment: const Alignment(0, 0),
+                color: const Color.fromARGB(255, 255, 255, 255),
                 height: 50,
-                padding: EdgeInsets.only(left: 5.0),
+                padding: const EdgeInsets.only(left: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                         child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           map,
                           size: 30,
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 5.0),
-                          child: Text(
+                          margin: const EdgeInsets.only(left: 5.0),
+                          child: const Text(
                             "Địa chỉ nhận hàng",
                             style: TextStyle(
                                 color: Colors.black,
@@ -79,7 +82,7 @@ class Cart2 extends StatelessWidget {
 //button thay đổi
                         TextButton(
                             onPressed: () {},
-                            child: Text(
+                            child: const Text(
                               "Thay đổi",
                               style: TextStyle(
                                   fontSize: 15,
@@ -94,14 +97,14 @@ class Cart2 extends StatelessWidget {
               SizedBox(
                 height: 3,
                 child: Container(
-                  color: Color.fromARGB(255, 242, 245, 253),
+                  color: const Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
 // Thông tin khách hàng
               Container(
-                alignment: Alignment(0, 0),
-                color: Color.fromARGB(255, 255, 255, 255),
-                padding: EdgeInsets.only(left: 5.0),
+                alignment: const Alignment(0, 0),
+                color: const Color.fromARGB(255, 255, 255, 255),
+                padding: const EdgeInsets.only(left: 5.0),
                 height: 90,
                 child: Column(
                   children: [
@@ -110,7 +113,7 @@ class Cart2 extends StatelessWidget {
                       flex: 1,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "Nguyễn Thị Bích",
                             style: TextStyle(
@@ -126,7 +129,7 @@ class Cart2 extends StatelessWidget {
                       flex: 1,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(Icons.call),
                           Text(
                             "0986650333",
@@ -143,7 +146,7 @@ class Cart2 extends StatelessWidget {
                       flex: 1,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(Icons.location_on),
                           Expanded(
                             child: Text(
@@ -163,14 +166,14 @@ class Cart2 extends StatelessWidget {
               SizedBox(
                 height: 10,
                 child: Container(
-                  color: Color.fromARGB(255, 242, 245, 253),
+                  color: const Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
               Container(
-                alignment: Alignment(0, 0),
-                color: Color.fromARGB(255, 255, 255, 255),
+                alignment: const Alignment(0, 0),
+                color: const Color.fromARGB(255, 255, 255, 255),
                 height: 50,
-                padding: EdgeInsets.only(left: 5.0),
+                padding: const EdgeInsets.only(left: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -183,8 +186,8 @@ class Cart2 extends StatelessWidget {
                           height: 30,
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 5.0),
-                          child: Text(
+                          margin: const EdgeInsets.only(left: 5.0),
+                          child: const Text(
                             "Phương thức vận chuyển",
                             style: TextStyle(
                                 color: Colors.black,
@@ -200,27 +203,27 @@ class Cart2 extends StatelessWidget {
               SizedBox(
                 height: 3,
                 child: Container(
-                  color: Color.fromARGB(255, 242, 245, 253),
+                  color: const Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
               Container(
-                alignment: Alignment(0, 0),
-                color: Color.fromARGB(255, 255, 255, 255),
-                padding: EdgeInsets.only(left: 5.0),
+                alignment: const Alignment(0, 0),
+                color: const Color.fromARGB(255, 255, 255, 255),
+                padding: const EdgeInsets.only(left: 5.0),
                 height: 90,
 
               ),
               SizedBox(
                 height: 10,
                 child: Container(
-                  color: Color.fromARGB(255, 242, 245, 253),
+                  color: const Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
               Container(
-                alignment: Alignment(0, 0),
-                color: Color.fromARGB(255, 255, 255, 255),
+                alignment: const Alignment(0, 0),
+                color: const Color.fromARGB(255, 255, 255, 255),
                 height: 50,
-                padding: EdgeInsets.only(left: 5.0),
+                padding: const EdgeInsets.only(left: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -233,8 +236,8 @@ class Cart2 extends StatelessWidget {
                           height: 30,
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 5.0),
-                          child: Text(
+                          margin: const EdgeInsets.only(left: 5.0),
+                          child: const Text(
                             "Phương thức thanh toán",
                             style: TextStyle(
                                 color: Colors.black,
@@ -250,19 +253,19 @@ class Cart2 extends StatelessWidget {
               SizedBox(
                 height: 3,
                 child: Container(
-                  color: Color.fromARGB(255, 242, 245, 253),
+                  color: const Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
 //Phương thức thanh toán
               ListView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
 
                 children: [
                   ListTile(
-                    title: Text("Tiền mặt khi nhận hàng"),
-                    subtitle: Text("Thu phí hộ: Miễn Phí"),
+                    title: const Text("Tiền mặt khi nhận hàng"),
+                    subtitle: const Text("Thu phí hộ: Miễn Phí"),
                     leading: Obx(()=>Radio(
                       groupValue: itemSelectionController.selectedItem.value,
                       onChanged: (value) {
@@ -272,10 +275,10 @@ class Cart2 extends StatelessWidget {
                     ),)
                   ),
                   ListTile(
-                    title: Text("Ví SenPay"),
+                    title: const Text("Ví SenPay"),
                     subtitle: Container(
                       child: Row(
-                        children: [
+                        children: const [
                           Text("Liên kết:",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 127, 170, 212),
@@ -297,10 +300,10 @@ class Cart2 extends StatelessWidget {
                     ))
                   ),
                   ListTile(
-                      title: Text("Ngân hàng liên kết trực tiếp"),
+                      title: const Text("Ngân hàng liên kết trực tiếp"),
                       subtitle: Container(
                         child: Row(
-                          children: [
+                          children: const [
                             Text("Liên kết:",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 127, 170, 212),
@@ -319,7 +322,7 @@ class Cart2 extends StatelessWidget {
                       ))
                   ),
                   ListTile(
-                      title: Text("Thẻ ATM đã đăng ký Internet Banking"),
+                      title: const Text("Thẻ ATM đã đăng ký Internet Banking"),
 
                       leading: Obx(()=> Radio(
                         groupValue: itemSelectionController.selectedItem.value,
@@ -328,7 +331,7 @@ class Cart2 extends StatelessWidget {
                       ))
                   ),
                   ListTile(
-                      title: Text("Thẻ tín dụng/Thẻ ghi nợ"),
+                      title: const Text("Thẻ tín dụng/Thẻ ghi nợ"),
                       // subtitle: Container(
                       //   child: Row(
                       //     children: [
@@ -349,7 +352,7 @@ class Cart2 extends StatelessWidget {
                       ))
                   ),
                   ListTile(
-                      title: Text("Chuyển Khoản"),
+                      title: const Text("Chuyển Khoản"),
                       // subtitle: Container(
                       //   child: Row(
                       //     children: [
@@ -376,7 +379,7 @@ class Cart2 extends StatelessWidget {
                 height: 50.h,
 
                 child: Row(
-                  children: [Text("Thông tin xuất hóa đơn")],
+                  children: const [Text("Thông tin xuất hóa đơn")],
                 ),
               ),
 //Mã giảm giá
@@ -400,7 +403,7 @@ class Cart2 extends StatelessWidget {
                           ),
                           Container(
                             alignment: AlignmentDirectional.center,
-                            child: Text(
+                            child: const Text(
                               "SALE",
                               style: TextStyle(
                                   color: Color.fromARGB(193, 193, 115, 10),
@@ -416,7 +419,7 @@ class Cart2 extends StatelessWidget {
                     child: Container(
                       height: 50,
                       alignment: AlignmentDirectional.centerStart,
-                      child: TextField(
+                      child: const TextField(
                         keyboardType: TextInputType.text,
                         textAlign: TextAlign.left,
                         decoration: InputDecoration(
@@ -426,18 +429,18 @@ class Cart2 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 2.0,
                   ),
                   Expanded(
                       flex: 1,
                       child: Container(
-                        margin: EdgeInsets.only(right: 2.0),
+                        margin: const EdgeInsets.only(right: 2.0),
                         height: 50,
                         child: TextButton(
                           style: TextButton.styleFrom(
-                            padding: EdgeInsets.all(2.5),
-                            backgroundColor: Color.fromARGB(255, 4, 119, 233),
+                            padding: const EdgeInsets.all(2.5),
+                            backgroundColor: const Color.fromARGB(255, 4, 119, 233),
                             primary: Colors.white,
                             textStyle: const TextStyle(fontSize: 15),
                           ),
@@ -462,8 +465,8 @@ class Cart2 extends StatelessWidget {
                           flex: 1,
                           child: Container(
                             height: 40.0,
-                            margin: EdgeInsets.only(left: 5.0, top: 10.0),
-                            child: Text(
+                            margin: const EdgeInsets.only(left: 5.0, top: 10.0),
+                            child: const Text(
                               "Thành tiền: ",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 149, 156, 175),
@@ -478,8 +481,8 @@ class Cart2 extends StatelessWidget {
                             children: [
                               Container(
                                 height: 40.0,
-                                margin: EdgeInsets.only(top: 5.0),
-                                child: Text(
+                                margin: const EdgeInsets.only(top: 5.0),
+                                child: const Text(
                                   "100.000.000.000 đ ",
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 255, 69, 69),
@@ -496,8 +499,8 @@ class Cart2 extends StatelessWidget {
                     children: [
                       Container(
                         height: 20,
-                        margin: EdgeInsets.only(right: 5.0),
-                        child: Text(
+                        margin: const EdgeInsets.only(right: 5.0),
+                        child: const Text(
                           "(Đã bao gồm VAT nếu có) ",
                           style: TextStyle(
                               color: Color.fromARGB(255, 149, 156, 175),
@@ -514,12 +517,12 @@ class Cart2 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(5.0),
                     height: 50,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        padding: EdgeInsets.only(left: 80, right: 80),
-                        backgroundColor: Color.fromARGB(255, 223, 180, 0),
+                        padding: const EdgeInsets.only(left: 80, right: 80),
+                        backgroundColor: const Color.fromARGB(255, 223, 180, 0),
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 20),
                       ),

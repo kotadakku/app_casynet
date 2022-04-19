@@ -48,6 +48,7 @@ class OriginProductWidget extends StatelessWidget {
             ),
             SizeTransition(
               sizeFactor: controller.animationOrigin,
+              axisAlignment: 1.0,
               child: Container(
                   width: double.infinity,
                   child: Obx(()=>Wrap(
