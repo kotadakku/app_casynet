@@ -8,13 +8,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../model/Xuatxu.dart';
+import '../../CheckInternet.dart';
 import 'UI_Chondanhmuc.dart';
 import 'UI_Chonloaisanpham.dart';
 import 'UI_Dichvusanpham.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:video_player/video_player.dart';
 import 'danhmuc.dart';
 
 class themspdv extends StatefulWidget {
@@ -43,12 +44,15 @@ class _themspdvState extends State<themspdv> {
   var textsthtsp = "không".obs;
   var textsthttc = "không".obs;
   var chon = "".obs;
+  var _controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4").obs;
+  late Future<void> _initializeVideoPlayerFuture;
   @override
   void initState() {
     super.initState();
     soluongnhapkho.text = 0.toString();
     soluongconlai.text = 0.toString();
     gia.text = 0.toString();
+
   }
 
   @override
@@ -76,19 +80,142 @@ class _themspdvState extends State<themspdv> {
   }
 
   Widget themspdvs(BuildContext context) {
+
     List<dynamic> imagepicker = [].obs;
     var x = "".obs;
     File imagepk;
-    Future pickimage() async {
-      final image = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-      );
-      if (image != null) {
-        imagepk = File(image.path);
+    Future pickvideo() async {
+      final XFile? video = await ImagePicker().pickVideo(source: ImageSource.camera);
+      if (video != null) {
+        imagepk = File(video.path);
         imagepicker.add(imagepk);
       }
     }
+    Future pickimagecamera() async {
+      final XFile? photo = await ImagePicker().pickImage(source: ImageSource.camera);
+      if (photo != null) {
+        imagepk = File(photo.path);
+        imagepicker.add(imagepk);
+      }
+    }
+    Future pickimage() async {
+      final List<XFile>? images = await ImagePicker().pickMultiImage();
+      if (images != null) {
+        for(int i=0;i<images.length;i++){
+          imagepk = File(images[i].path);
+          imagepicker.add(imagepk);
+        }
 
+
+      }
+    }
+    void showbottonsheet(){
+      showModalBottomSheet(context: context,backgroundColor: Colors.transparent, builder: (context){
+        return Container(
+          height: 255,
+          margin: EdgeInsets.only(left: 5,right: 5),
+          child: Column(
+            children: [
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                  child: Text("Thêm ảnh-video sản phẩm",style: TextStyle(color: Colors.grey,),),
+                  onPressed: (){
+
+                  },
+                ),
+              ),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                  child: Text("Chụp ảnh",style: TextStyle(color: Colors.blue,),),
+                  onPressed: (){
+                    pickimagecamera();
+                  },
+                ),
+              ),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                  child: Text("Quay video",style: TextStyle(color: Colors.blue,),),
+                  onPressed: (){
+                      _controller.value = VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4");
+                      //_controller = VideoPlayerController.asset("videos/sample_video.mp4");
+                      _initializeVideoPlayerFuture = _controller.value.initialize();
+                      _controller.value.setLooping(true);
+                      _controller.value.setVolume(1.0);
+                    pickvideo();
+                    for(int i=0;i<imagepicker.length;i++){
+                      print(imagepicker[i]);
+                    }
+
+                  },
+                ),
+              ),Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                  child: Text("Thư viện ảnh",style: TextStyle(color: Colors.blue,),),
+                  onPressed: (){
+                    pickimage();
+                    for(int i=0;i<imagepicker.length;i++){
+                      if(imagepicker[i].toString().contains(".jpg")){
+                        print("anh");
+                      }
+                      if(imagepicker[i].toString().contains(".mp4")){
+                        print("video");
+                      }
+                    }
+                  },
+                ),
+              ),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                  child: Text("Thư viện video",style: TextStyle(color: Colors.blue,),),
+                  onPressed: (){
+
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                  child: Text("Hủy",style: TextStyle(color: Colors.black,),),
+                  onPressed: (){
+
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      });
+    }
     return Container(
       color: Color.fromARGB(255, 241, 243, 253),
       child: Obx(
@@ -111,52 +238,75 @@ class _themspdvState extends State<themspdv> {
                           itemCount: imagepicker.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return Row(
-                              children: [
-                                Stack(
-                                  overflow: Overflow.visible,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          bottom: 5, left: 5, top: 5),
-                                      color: Colors.red,
-                                      child: Image.file(
-                                        imagepicker[index],
-                                        width: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      width: 30,
-                                      height: 30,
-                                      left: 80,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Color.fromARGB(
-                                              255, 241, 243, 253),
-                                          border: Border.all(
-                                            width: 1,
-                                            style: BorderStyle.solid,
+                            return FutureBuilder(builder: (context, snapshot) {
+                                if(imagepicker[index].toString().contains(".jpg")){
+                                  return Row(
+                                    children: [
+                                      Stack(
+                                        overflow: Overflow.visible,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                bottom: 5, left: 5, top: 5),
+                                            color: Colors.red,
+                                            child: Image.file(
+                                              imagepicker[index],
+                                              width: 100,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                        ),
-                                        child: IconButton(
-                                          icon: Icon(
-                                            Icons.close,
-                                            size: 12,
-                                          ),
-                                          onPressed: () {
-                                            imagepicker.removeAt(index);
-                                          },
-                                        ),
+                                          Positioned(
+                                            width: 30,
+                                            height: 30,
+                                            left: 80,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(20.0),
+                                                color: Color.fromARGB(
+                                                    255, 241, 243, 253),
+                                                border: Border.all(
+                                                  width: 1,
+                                                  style: BorderStyle.solid,
+                                                ),
+                                              ),
+                                              child: IconButton(
+                                                icon: Icon(
+                                                  Icons.close,
+                                                  size: 12,
+                                                ),
+                                                onPressed: () {
+                                                  imagepicker.removeAt(index);
+                                                },
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                    )
-                                  ],
-                                ),
 
-                                // Text(x.toString()),
-                              ],
+                                      // Text(x.toString()),
+                                    ],
+                                  );
+                                }else if(imagepicker[index].toString().contains(".mp4")){
+                                  return Container(
+                                    width: 100,
+                                    child: FutureBuilder(
+                                      future: _initializeVideoPlayerFuture,
+                                      builder: (context, snapshot) {
+
+                                        return AspectRatio(
+                                          aspectRatio: _controller.value.value.aspectRatio,
+                                          child: VideoPlayer(
+                                            _controller.value,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                }else{
+                                  return Text("cv");
+                                }
+                              },
                             );
                           },
                         ),
@@ -176,8 +326,8 @@ class _themspdvState extends State<themspdv> {
                             child: Text("Thêm ảnh/ video",
                                 maxLines: 2, textAlign: TextAlign.center),
                             onPressed: () {
-                              x.value = x.value + " ";
-                              pickimage();
+                              // x.value = x.value + " ";
+                              showbottonsheet();
                             },
                           ),
                         ),
@@ -314,11 +464,9 @@ class _themspdvState extends State<themspdv> {
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Obx(
-                          () => FlutterSwitch(
-                            width: 60.0,
+                          () => CupertinoSwitch(
                             value: status.value,
-                            padding: 8.0,
-                            onToggle: (val) {
+                            onChanged: (val) {
                               status.value = !status.value;
                               if (status.value == true) {
                                 textst.value = "có";
@@ -553,28 +701,29 @@ class _themspdvState extends State<themspdv> {
                                         // ),
                                       ),
                                       Positioned(
-                                          width: 20,
-                                          height: 20,
-                                          right: -8,
-                                          top: -8,
-                                          child: ClipOval(
-                                            child: Material(
-                                              color: Color.fromARGB(255, 241,
-                                                  243, 253), // Button color
-                                              child: InkWell(
-                                                splashColor: Colors.red,
-                                                onTap: () {
-                                                  getdms.getdanhmuctid
-                                                      .removeAt(index);
-                                                },
-                                                child: SizedBox(
-                                                    child: Icon(
-                                                  Icons.close,
-                                                  size: 10,
-                                                )),
-                                              ),
+                                        width: 20,
+                                        height: 20,
+                                        right: -8,
+                                        top: -8,
+                                        child: ClipOval(
+                                          child: Material(
+                                            color: Color.fromARGB(255, 241, 243,
+                                                253), // Button color
+                                            child: InkWell(
+                                              splashColor: Colors.red,
+                                              onTap: () {
+                                                getdms.getdanhmuctid
+                                                    .removeAt(index);
+                                              },
+                                              child: SizedBox(
+                                                  child: Icon(
+                                                Icons.close,
+                                                size: 10,
+                                              )),
                                             ),
-                                          )),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -656,11 +805,9 @@ class _themspdvState extends State<themspdv> {
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Obx(
-                          () => FlutterSwitch(
-                            width: 60.0,
+                          () => CupertinoSwitch(
                             value: statushtsp.value,
-                            padding: 8.0,
-                            onToggle: (val) {
+                            onChanged: (val) {
                               statushtsp.value = !statushtsp.value;
                               if (statushtsp.value == true) {
                                 textsthtsp.value = "có";
@@ -692,11 +839,9 @@ class _themspdvState extends State<themspdv> {
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Obx(
-                          () => FlutterSwitch(
-                            width: 60.0,
+                          () => CupertinoSwitch(
                             value: statushttc.value,
-                            padding: 8.0,
-                            onToggle: (val) {
+                            onChanged: (val) {
                               statushttc.value = !statushttc.value;
                               if (statushttc.value == true) {
                                 textsthttc.value = "có";
@@ -810,45 +955,45 @@ class chonloaisp extends GetxController {
 //     }
 //   }
 // }
-class getdanhmuc extends GetxController{
-  var danhmucsp=[].obs;
+class getdanhmuc extends GetxController {
+  var danhmucsp = [].obs;
   var getdanhmuctid = [].obs;
   var dem = 0.obs;
   var nothing = [].obs;
   Future<List<Danhmucsanpham>> fetchDanhmuc() async {
-
-    final response = await http.get(Uri.parse("https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
+    final response = await http.get(Uri.parse(
+        "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
     List<dynamic> list = json.decode(response.body);
-    List<Danhmucsanpham> pp=[];
+    List<Danhmucsanpham> pp = [];
 
-    pp= list.map((e) => Danhmucsanpham.fromJson(e)).toList();
-    if(getdms.nothing.length==0){
+    pp = list.map((e) => Danhmucsanpham.fromJson(e)).toList();
+    if (getdms.nothing.length == 0) {
       for (int i = 0; i < pp.length; i++) {
         getdms.nothing.add(danhmuc(
             title: pp[i].tendanhmuc.toString(),
             id: int.parse(pp[i].iddanhmuc.toString())));
       }
     }
-    danhmucsp.value=pp;
+    danhmucsp.value = pp;
     return pp;
   }
-
 }
 
-class getxuatxu extends GetxController{
-  var xuatxu=[].obs;
+class getxuatxu extends GetxController {
+  final checkinternet CheckInternet = Get.put(checkinternet());
+  var xuatxu = [].obs;
   var countqg = 0.obs;
   var idxs = 0.obs;
   var tenxuatxu = "Chọn xuất xứ".obs;
   Future<List<Xuatxu>> fetchXuatxu() async {
-    final response = await http.get(Uri.parse("https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php"));
-    List<Xuatxu> pp=[];
+    final response = await http.get(Uri.parse(
+        "https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php"));
+    List<Xuatxu> pp = [];
     if (response.statusCode == 200) {
       List<dynamic> list = json.decode(response.body);
-      pp= list.map((e) => Xuatxu.fromJson(e)).toList();
-      xuatxu.value=pp;
+      pp = list.map((e) => Xuatxu.fromJson(e)).toList();
+      xuatxu.value = pp;
     }
     return pp;
   }
-
 }

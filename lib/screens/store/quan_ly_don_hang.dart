@@ -7,15 +7,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-import 'datetime_range_controller.dart';
+import '../../controller/store/datetime_range_controller.dart';
 
 class QuanLyDonHang extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateTimeRangeController QLDTController =
     Get.put(DateTimeRangeController());
-    var open_hours = "Thiết lập".obs;
-    var close_hours = "Thiết lập".obs;
+
     // TODO: implement build
     return MaterialApp(
       home: Scaffold(

@@ -1,8 +1,12 @@
 
 import 'package:app_casynet/screens/store/data_store_page.dart';
 import 'package:app_casynet/screens/store/gift_store_page.dart';
+import 'package:app_casynet/screens/store/news.dart';
 import 'package:app_casynet/screens/store/quan_ly_doanh_thu.dart';
 import 'package:app_casynet/screens/store/quan_ly_don_hang.dart';
+import 'package:app_casynet/screens/store/question_answer.dart';
+import 'package:app_casynet/screens/store/rate_store_page.dart';
+import 'package:app_casynet/screens/store/setting_notications.dart';
 import 'package:app_casynet/screens/store/themsanphamdichvu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +22,8 @@ class Mystore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     // TODO: implement build
     return MaterialApp(
       home: Scaffold(
@@ -553,7 +559,9 @@ class Mystore extends StatelessWidget {
                   InkWell(
                     splashColor: const Color.fromARGB(255, 188, 195, 216),
                     // splashColor: Colors.blue,
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(RateStorePage());
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 50.0,
@@ -578,11 +586,14 @@ class Mystore extends StatelessWidget {
                   const Divider(
                     height: 5,
                   ),
+
 //Hỏi đáp
                   InkWell(
                     splashColor: const Color.fromARGB(255, 188, 195, 216),
                     // splashColor: Colors.blue,
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(QuestionAnswer());
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 50.0,
@@ -613,7 +624,9 @@ class Mystore extends StatelessWidget {
                   InkWell(
                     splashColor: const Color.fromARGB(255, 188, 195, 216),
                     // splashColor: Colors.blue,
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(News());
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 50.0,
@@ -734,7 +747,9 @@ class Mystore extends StatelessWidget {
                   InkWell(
                     splashColor: const Color.fromARGB(255, 188, 195, 216),
                     // splashColor: Colors.blue,
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(SettingNotications());
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 50.0,
