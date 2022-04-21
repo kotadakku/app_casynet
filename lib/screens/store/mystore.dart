@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/screens/store/data_store_page.dart';
 import 'package:app_casynet/screens/store/gift_store_page.dart';
 import 'package:app_casynet/screens/store/quan_ly_doanh_thu.dart';
 import 'package:app_casynet/screens/store/quan_ly_don_hang.dart';
@@ -642,7 +643,9 @@ class Mystore extends StatelessWidget {
                   InkWell(
                     splashColor: const Color.fromARGB(255, 188, 195, 216),
                     // splashColor: Colors.blue,
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(DataStorePage());
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 50.0,

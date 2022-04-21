@@ -1,17 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:get/get.dart';
+
+import '../controller/authentication_manager.dart';
 
 class ApiRequest {
   final String url;
   final Map<String, dynamic>? data;
+  final String? token;
 
-  ApiRequest({ required this.url, this.data});
+  ApiRequest({ required this.url, this.data, this.token});
 
   Dio _dio(){
     return Dio(
       BaseOptions(
         headers: {
-          'Authorization': 'token'
+          'Authorization': token == null ? '' : 'Bearer $token'
         },
         // baseUrl: '',
       )
@@ -37,8 +41,8 @@ class ApiRequest {
     _dio().post(this.url, queryParameters: null, data: data).then((value){
       if(onSuccess != null) onSuccess(value.data);
     }).catchError((error){
-      final errorMessage = DioExceptions.fromDioError(error).toString();
-      if(onError != null ) onError(errorMessage);
+      // final errorMessage = DioExceptions.fromDioError(error).toString();
+      if(onError != null ) onError(error);
     });;
   }
 

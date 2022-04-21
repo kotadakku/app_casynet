@@ -15,7 +15,6 @@ class AuthProvider {
     ApiRequest(url: 'https://casynet-api.herokuapp.com/api/login').post(
         data: user.toJsonLogin(),
         onSuccess: (data){
-          print(data);
           onSuccess!(User.successLogin(data));
         },
         onError: (error) { if(onError!= null) onError(error);}
@@ -35,5 +34,21 @@ class AuthProvider {
         },
         onError: (error) => onError!(error)
     );
+  }
+
+  void fetchCurrentUser({
+    String? token,
+    required onSuccess(data),
+    onError(error)?,
+    beforePost()?
+  }) {
+    ApiRequest(url: 'https://casynet-api.herokuapp.com/api/user', token: token).get(
+        onSuccess: (data){
+          print(data);
+          onSuccess(User.successLogin(data));
+        },
+        onError: (error) { if(onError!= null) onError(error);}
+    );
+
   }
 }

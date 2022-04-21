@@ -58,32 +58,36 @@ class GiftStoreWidget extends StatelessWidget {
                           ),)
                       ],
                     ),),
-                    Expanded(flex: 2, child: Stack(
-                      children: [
-                      SvgPicture.asset("assets/detail_store/right.svg",),
-                        GestureDetector(
-                          child: Positioned.fill(
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 2.w),
-                                child: Text("Nhận",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12
-                                  ),
+                    Expanded(flex: 2, child:
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER);
+                      },
+                      child: Stack(
+                        children: [
+                          SvgPicture.asset("assets/detail_store/right.svg",),
+                          Positioned.fill(
+                              child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 2.w),
+                                    child: Text("Nhận",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12
+                                      ),
 
-                                ),
+                                    ),
+                                  )
                               )
-                            )
                           ),
-                          onTap: (){
-                            Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER);
-                          },
-                        ),
 
-                      ],
-                    ))
+                        ],
+                      ),
+                    )
+
+
+                    )
                   ],
 
                 ),

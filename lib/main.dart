@@ -8,6 +8,7 @@ import 'package:app_casynet/screens/detail_app.dart';
 import 'package:app_casynet/screens/home.dart';
 import 'package:app_casynet/screens/notfications.dart';
 import 'package:app_casynet/screens/splash/splash.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:app_casynet/widget/bottom_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -38,6 +39,21 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          appBarTheme: AppBarTheme(
+            color: Colors.white,
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500
+            ),
+            iconTheme: IconThemeData(
+              color: Colors.black,
+            ),
+            elevation: 1,
+            centerTitle: true,
+            shadowColor: kTextColor,
+
+          )
         ),
         builder: (context, widget) {
           ScreenUtil.setContext(context);

@@ -12,6 +12,7 @@ class AuthenticationManager extends GetxController with CacheManager {
   final isLogged = false.obs;
   GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
   GlobalKey<FormState> formRegisterKey = GlobalKey<FormState>();
+  late User user_current;
 
 
   void logOut() {
@@ -30,6 +31,7 @@ class AuthenticationManager extends GetxController with CacheManager {
       onSuccess: (data){
       if(data!=null){
         login(data.token);
+        fetchCurrentUser(data.token);
       }
     },
     onError: (error) {
@@ -66,10 +68,35 @@ class AuthenticationManager extends GetxController with CacheManager {
     Get.back();
   }
 
+  fetchCurrentUser(token){
+    AuthProvider().fetchCurrentUser(
+        token: token,
+        onSuccess: (data){
+
+          if(data!=null){
+            login(data.token);
+            user_current = data;
+            update();
+          }
+        },
+        onError: (error) {
+          print(error);
+          // Get.defaultDialog(
+          //     middleText: '$error!',
+          //     textConfirm: 'OK',
+          //     confirmTextColor: Colors.white,
+          //     onConfirm: () {
+          //       Get.back();
+          //     });
+        }
+    );
+  }
+
 
   void checkLoginStatus() {
     final token = getToken();
     if (token != null) {
+      fetchCurrentUser(token);
       isLogged.value = true;
     }
   }
