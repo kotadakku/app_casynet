@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:app_casynet/controller/CuaHangCuaToi/hinh_thuc_selection_controller.dart';
-import 'package:app_casynet/screens/store/imagepicker_controller.dart';
+import 'package:app_casynet/screens/store/chon_danh_muc.dart';
+import 'package:app_casynet/controller/store/imagepicker_controller.dart';
+import 'package:app_casynet/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,20 +16,11 @@ class ThemSanPhamDichVu extends StatelessWidget {
       Get.put(HinhThucSelectionController());
   ImagePickerController imgController = Get.put(ImagePickerController());
 
+  ThemSanPhamDichVu({Key? key}) : super(key: key);
 
 
-  /*List<dynamic> imageAndVideoPicker = [].obs;
-  var x = "".obs;
-  late File imagepk;
-  Future pickImage() async {
-    final image = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
-    if (image != null) {
-      imagepk = File(image.path);
-      imageAndVideoPicker.add(imagepk);
-    }
-  }*/
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +28,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
     var checkSanPhamNoiBat = false.obs;
     var countTenSP = 0.obs;
     var countMoTaSP = 0.obs;
-
-
-
-    var masanpham = TextEditingController();
+    final ChonDanhMucController controller = Get.put(ChonDanhMucController());
 
     return MaterialApp(
       home: Scaffold(
@@ -60,7 +50,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
           ),
           title: const Text(
             "Thêm sản phẩm/ dịch vụ",
-            style: TextStyle(fontSize: 15, color: Colors.black),
+            style: TextStyle(fontSize: 17, color: Colors.black),
           ),
           actions: [
             Padding(
@@ -121,14 +111,14 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                         right: 0.w,
                                         child: ClipOval(
                                           child: Material(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 241, 243, 253),
                                             // Button color
                                             child: InkWell(
                                               onTap: () {
                                                 imgController.imageAndVideoPicker.removeAt(i);
                                               },
-                                              child: SizedBox(
+                                              child: const SizedBox(
                                                   child: Icon(
                                                 Icons.close,
                                                 size: 10,
@@ -140,17 +130,17 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     ],
                                   ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 20),
+                                  margin: const EdgeInsets.only(left: 20),
                                   width: 110,
                                   height: 90,
                                   child: OutlinedButton(
                                     style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
+                                      side: const BorderSide(
                                         color: Colors.amber,
                                         style: BorderStyle.solid,
                                       ),
                                     ),
-                                    child: Text("Thêm ảnh/ video",
+                                    child: const Text("Thêm ảnh/ video",
                                         maxLines: 2,
                                         textAlign: TextAlign.center),
                                     onPressed: () {
@@ -211,7 +201,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         Container(
                           height: 50.h,
                           margin: EdgeInsets.only(left: 10.w, right: 10.w),
-                          child: Text(
+                          child: const Text(
                             "Hình thức",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
@@ -236,7 +226,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                         },
                                         value: 'datMua',
                                       )),
-                                  Text("Đặt mua"),
+                                  const Text("Đặt mua"),
                                 ],
                               ),
                             ),
@@ -255,7 +245,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                         },
                                         value: 'datCho',
                                       )),
-                                  Text("Đặt chỗ"),
+                                  const Text("Đặt chỗ"),
                                 ],
                               ),
                             ),
@@ -267,7 +257,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Tên sản phẩm",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
@@ -283,10 +273,12 @@ class ThemSanPhamDichVu extends StatelessWidget {
                             height: 50.h,
                             margin: EdgeInsets.only(left: 10.w, right: 10.w),
                             child: TextField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: "Nhập tên sản phẩm",
+                                hintStyle: TextStyle(color: kTextColor),
                                 counterText: "",
                                 border: InputBorder.none,
+                                suffixIcon: Icon(Icons.edit_outlined,color: kTextColor,)
                               ),
                               maxLength: 120,
                               maxLines: 2,
@@ -305,7 +297,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Mô tả sản phẩm",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
@@ -321,11 +313,12 @@ class ThemSanPhamDichVu extends StatelessWidget {
                             height: 150.h,
                             margin: EdgeInsets.only(left: 10.w, right: 10.w),
                             child: TextField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: "Nhập mô tả sản phẩm",
+                                hintStyle: TextStyle(color: kTextColor),
                                 counterText: "",
                                 border: InputBorder.none,
-                                suffixIcon: Icon(Icons.edit),
+                                suffixIcon: Icon(Icons.edit_outlined, color: kTextColor,),
                               ),
                               maxLength: 400,
                               maxLines: null,
@@ -343,7 +336,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Expanded(
                                   child: Text("Mã sản phẩm",
                                       style: TextStyle(
@@ -359,6 +352,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     // suffixIcon: Icon(Icons.navigate_next),
 
                                     hintText: 'Nhập mã sản phẩm',
+                                    hintStyle: TextStyle(color: kTextColor),
                                   ),
                                 ),
                               ),
@@ -373,7 +367,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
+                              splashColor: const Color.fromARGB(255, 188, 195, 216),
                               onTap: () {},
                               child: Row(
                                 mainAxisAlignment:
@@ -382,7 +376,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text("Giá",
                                           style: TextStyle(
                                               color: Color.fromARGB(
@@ -392,9 +386,9 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text("Thiết lập giá"),
-                                      Icon(Icons.navigate_next),
+                                    children: const [
+                                      Text("Thiết lập giá",style: TextStyle(color: kTextColor),),
+                                      Icon(Icons.navigate_next,color: kTextColor,),
                                     ],
                                   ))
                                 ],
@@ -408,7 +402,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Expanded(
                                   child: Text("Số lượng",
                                       style: TextStyle(
@@ -424,6 +418,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     // suffixIcon: Icon(Icons.navigate_next),
 
                                     hintText: 'Nhập số lượng',
+                                    hintStyle: TextStyle(color: kTextColor),
                                   ),
                                 ),
                               ),
@@ -438,7 +433,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
+                              splashColor: const Color.fromARGB(255, 188, 195, 216),
                               onTap: () {},
                               child: Row(
                                 mainAxisAlignment:
@@ -447,7 +442,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text("Tình trạng kho hàng",
                                           style: TextStyle(
                                               color: Color.fromARGB(
@@ -457,7 +452,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
+                                    children: const [
                                       Text("Còn hàng"),
                                       Icon(Icons.navigate_next),
                                     ],
@@ -473,7 +468,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
+                              splashColor: const Color.fromARGB(255, 188, 195, 216),
                               onTap: () {},
                               child: Row(
                                 mainAxisAlignment:
@@ -482,7 +477,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text("Hiển thị",
                                           style: TextStyle(
                                               color: Color.fromARGB(
@@ -492,7 +487,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
+                                    children: const [
                                       Text("Danh mục, tìm kiếm"),
                                       Icon(Icons.navigate_next),
                                     ],
@@ -508,8 +503,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
-                              onTap: () {},
+                              splashColor: const Color.fromARGB(255, 188, 195, 216),
+                              onTap: () {
+                                Get.to(const ChonDanhMuc());
+                              },
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -517,7 +514,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text("Danh mục",
                                           style: TextStyle(
                                               color: Color.fromARGB(
@@ -528,8 +525,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Text("Lựa chọn"),
-                                      Icon(Icons.navigate_next),
+                                      Text(controller.chonDanhmuc.toString(), style: TextStyle(color: kTextColor),),
+                                      const Icon(Icons.navigate_next),
                                     ],
                                   ))
                                 ],
@@ -543,7 +540,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
-                              splashColor: Color.fromARGB(255, 188, 195, 216),
+                              splashColor: const Color.fromARGB(255, 188, 195, 216),
                               onTap: () {},
                               child: Row(
                                 mainAxisAlignment:
@@ -552,7 +549,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text("Thương hiệu",
                                           style: TextStyle(
                                               color: Color.fromARGB(
@@ -562,8 +559,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text("Chọn thương hiệu"),
+                                    children: const [
+                                      Text("Chọn thương hiệu",style: TextStyle(color: kTextColor),),
                                       Icon(Icons.navigate_next),
                                     ],
                                   ))
@@ -577,7 +574,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         Container(
                           height: 50.h,
                           margin: EdgeInsets.only(left: 10.w, right: 10.w),
-                          child: Text(
+                          child: const Text(
                             "Tối ưu công cụ tìm kiếm",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
@@ -590,7 +587,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Expanded(
                                   child: Text("URL key",
                                       style: TextStyle(
@@ -606,6 +603,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     // suffixIcon: Icon(Icons.navigate_next),
 
                                     hintText: 'Nhập URL key',
+                                    hintStyle: TextStyle(color: kTextColor),
                                   ),
                                 ),
                               ),
@@ -620,7 +618,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Expanded(
                                   child: Text("Tiêu đề meta",
                                       style: TextStyle(
@@ -636,6 +634,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     // suffixIcon: Icon(Icons.navigate_next),
 
                                     hintText: 'Nhập tiêu đề meta',
+                                    hintStyle: TextStyle(color: kTextColor),
                                   ),
                                 ),
                               ),
@@ -650,7 +649,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Expanded(
                                   child: Text("Từ khóa meta",
                                       style: TextStyle(
@@ -666,6 +665,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     // suffixIcon: Icon(Icons.navigate_next),
 
                                     hintText: 'Nhập từ khóa meta',
+                                    hintStyle: TextStyle(color: kTextColor),
                                   ),
                                 ),
                               ),
@@ -680,7 +680,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Expanded(
                                   child: Text("Mô tả meta",
                                       style: TextStyle(
@@ -696,6 +696,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     // suffixIcon: Icon(Icons.navigate_next),
 
                                     hintText: 'Nhập mô tả meta',
+                                    hintStyle: TextStyle(color: kTextColor),
                                   ),
                                 ),
                               ),
@@ -730,7 +731,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
 
                     Container(
                       height: MediaQuery.of(context).size.height * .30.h,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
@@ -745,7 +746,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                               // padding: const EdgeInsets.only(top: 15, bottom: 15),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                children: const [
                                   Text(
                                     "Thêm hình ảnh/video sản phẩm",
                                     style: TextStyle(
@@ -755,7 +756,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   ),
                                 ],
                               )),
-                          Divider(
+                          const Divider(
                             height: 2.0,
                           ),
                           // chụp ảnh
@@ -768,10 +769,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   },
                                   // splashColor: Colors.black26,
                                   splashColor:
-                                      Color.fromARGB(255, 188, 195, 216),
+                                      const Color.fromARGB(255, 188, 195, 216),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Text(
                                         "Chụp ảnh",
                                         style: TextStyle(
@@ -781,7 +782,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                       )
                                     ],
                                   ))),
-                          Divider(
+                          const Divider(
                             height: 2.0,
                           ),
                           // quay video
@@ -794,10 +795,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   },
                                   // splashColor: Colors.black26,
                                   splashColor:
-                                      Color.fromARGB(255, 188, 195, 216),
+                                      const Color.fromARGB(255, 188, 195, 216),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Text(
                                         "Quay video",
                                         style: TextStyle(
@@ -807,7 +808,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                       )
                                     ],
                                   ))),
-                          Divider(
+                          const Divider(
                             height: 2.0,
                           ),
                           Expanded(
@@ -823,10 +824,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   },
                                   // splashColor: Colors.black26,
                                   splashColor:
-                                      Color.fromARGB(255, 188, 195, 216),
+                                      const Color.fromARGB(255, 188, 195, 216),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Text(
                                         "Thư viện ảnh",
                                         style: TextStyle(
@@ -836,7 +837,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                       )
                                     ],
                                   ))),
-                          Divider(
+                          const Divider(
                             height: 2.0,
                           ),
                           Expanded(
@@ -848,10 +849,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   },
                                   // splashColor: Colors.black26,
                                   splashColor:
-                                      Color.fromARGB(255, 188, 195, 216),
+                                      const Color.fromARGB(255, 188, 195, 216),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Text(
                                         "Thư viện video",
                                         style: TextStyle(
@@ -864,17 +865,17 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       height: 5.0,
                     ),
                     Container(
                         // alignment: Alignment.center,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         margin:
-                            EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
+                            const EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 15, left: 5.0, right: 5.0),
                         child: InkWell(
@@ -882,10 +883,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                               Get.back();
                             },
                             // splashColor: Colors.black26,
-                            splashColor: Color.fromARGB(255, 188, 195, 216),
+                            splashColor: const Color.fromARGB(255, 188, 195, 216),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: const [
                                 Text(
                                   "Hủy",
                                   style: TextStyle(
@@ -902,3 +903,9 @@ class ThemSanPhamDichVu extends StatelessWidget {
         });
   }
 }
+class ChonDanhMucController extends GetxController{
+  var chonDanhmuc = "Lựa chọn".obs;
+
+
+}
+

@@ -15,7 +15,7 @@ class DatChoProvider {
     Function(dynamic error)? onError
   }) {
     ApiRequest(
-        url: 'https://api-casynet-app.herokuapp.com/api?isCar=$loaixe',
+        url: 'https://casynet-api.herokuapp.com/api?isCar=$loaixe',
         data: null).get(
         beforeSend: () => {if(beforeSend != null) beforeSend()},
         onSuccess: (data) {

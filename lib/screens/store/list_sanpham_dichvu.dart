@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../../theme/app_colors.dart';
 import '../../widget/home/reservation_home_widget.dart';
-import 'datetime_range_controller.dart';
+import '../../controller/store/datetime_range_controller.dart';
 
 
 class SanPhamDichVu extends StatelessWidget {
@@ -23,14 +23,24 @@ class SanPhamDichVu extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          leading: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
+          leading: TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
+              ],
+            ),
           ),
           title: Text(
             "Danh sách sản phẩm/ dịch vụ",
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 17,
               color: Colors.black
             ),
           ),
@@ -220,7 +230,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                     children: const [
                                                       Expanded(
                                                           child: Text(
-                                                            "Máy rửa xe Catorex - CTR gggggggggggggggg",
+                                                            "Máy rửa xe Catorex - CTR",
                                                             maxLines: 2,
                                                           ))
                                                     ],
@@ -271,10 +281,10 @@ class SanPhamDichVu extends StatelessWidget {
                                                                 153)),
                                                       ),
                                                       PopupMenuButton(
-                                                          elevation: 20,
-                                                          enabled: true,
-                                                          offset: const Offset(0, 0),
-                                                          // điểm xuất phát
+                                                          elevation: 20,//độ nổi của nút
+                                                          enabled: true, //đươc kích hoạt
+                                                          offset: const Offset(0, 0),// vị trí hiện nút
+
                                                           child: const Icon(
                                                             Icons.more_horiz,
                                                             color: kTextColor,

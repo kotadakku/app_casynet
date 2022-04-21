@@ -24,7 +24,7 @@ class NewPromotionPage extends StatelessWidget {
           },
         ),
         title: Text("Tạo chương trình khuyến mãi",
-          style: TextStyle(
+          style: TextStyle(fontSize: 17,
               color: Colors.black
           ),
         ),

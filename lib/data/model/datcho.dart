@@ -38,7 +38,7 @@ class DatCho {
   DatCho.fromJson(Map<String, dynamic> json) {
     idsanpham = int.parse(json['id'].toString());
     tensanpham = json["name"].toString();
-    // hinhanhsanpham = json["image"];
+    hinhanhsanpham = "https://casynet-api.herokuapp.com"+json['images'][0]['image'];;
     giauudai = json[ "price"];
     giasanpham = json["discount_price"];
     slthich = json["liked"];

@@ -57,6 +57,8 @@ dependencies:
   connectivity_plus:
   video_player:
   get_storage:
+  geocoding:
+  geolocator:
 
 
 dev_dependencies:
@@ -83,6 +85,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/store/ic_thongbao_email.png
+    - assets/store/img_background.png
+    - assets/store/ic_lop.png
+    - assets/store/ic_chamsocxe.png
+    - assets/store/ic_muabanxe.png
+    - assets/store/ic_dochoi.png
+    - assets/store/ic_suachua.png
+    - assets/store/ic_ruaxe.png
     - assets/splash.png
     - assets/store/ic_edit.png
     - assets/store/ic_trash.png

@@ -7,7 +7,7 @@ class BannerSlider{
 
   factory BannerSlider.fromJson(Map<String, dynamic> json){
     return BannerSlider(
-      id: int.parse(json['id']),
+      id: json['id'],
       image: json['image']
     );
   }

@@ -1,4 +1,5 @@
 import 'package:app_casynet/controller/cuahang_controller.dart';
+import 'package:app_casynet/data/model/cuahang.dart';
 import 'package:app_casynet/routes/app_pages.dart';
 import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:app_casynet/widget/loading_overlay.dart';
@@ -155,16 +156,7 @@ class StoreWidget extends StatelessWidget {
                     runSpacing: 10.0,
                     children: controller.cuahangList.map((e) =>
                         ItemCuaHangWidget(
-                          id: e.idcuahang.toString(),
-                          store_image: e.anhsanpham.toString(),
-                          distance: double.parse(
-                              e.khoangcachtoicuahang.toString()),
-                          store_name: e.tencuahang.toString(),
-                          address: e.diachicuahang.toString(),
-                          quality: double.parse(e.slchiase.toString()),
-                          comment: int.parse(e.slbinhluan.toString()),
-                          like: int.parse(e.slthich.toString()),
-                          phone: e.sodienthoai.toString(),
+                          store: e,
                         ))
                         .toList()),
               ),
@@ -178,27 +170,11 @@ class StoreWidget extends StatelessWidget {
 }
 
 class ItemCuaHangWidget extends StatelessWidget {
-  final String id;
-  final String store_image;
-  final String store_name;
-  final int like;
-  final int comment;
-  final double quality;
-  final String address;
-  final double distance;
-  final String phone;
+ final CuaHang store;
 
   const ItemCuaHangWidget({
     Key? key,
-    required this.store_image,
-    required this.store_name,
-    required this.address,
-    required this.distance,
-    required this.like,
-    required this.comment,
-    required this.quality,
-    required this.id,
-    required this.phone,
+    required this.store
   }) : super(key: key);
 
   @override
@@ -211,16 +187,15 @@ class ItemCuaHangWidget extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              print(id);
-              if (id != null) Get.toNamed(
-                  Routes.STORE_DETAIL, arguments: { 'store_Id': id});
+              if (store != null) Get.toNamed(
+                  Routes.STORE_DETAIL, arguments: { 'store': store});
               FocusScope.of(context).unfocus();
             },
             child: Container(
               height: 120.w,
               width:  0.5.sw - 7.5.w,
               child: ImageNetworkLoading(
-                image_url: store_image,
+                image_url: store.anhsanpham.toString(),
                 fit: BoxFit.fill,
               ),
             )
@@ -241,7 +216,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                     SizedBox(
                       width: 2,
                     ),
-                    Text(like.toString(), style: TextStyle(fontSize: 13))
+                    Text(store.slthich.toString(), style: TextStyle(fontSize: 13))
                   ],
                 ),
                 Row(
@@ -254,13 +229,13 @@ class ItemCuaHangWidget extends StatelessWidget {
                     SizedBox(
                       width: 2,
                     ),
-                    Text(comment.toString(),
+                    Text(store.slbinhluan.toString(),
                         style: TextStyle(fontSize: 13))
                   ],
                 ),
                 Row(
                   children: [
-                    Text(quality.toString(),
+                    Text(store.slchiase.toString(),
                         style: TextStyle(fontSize: 15)
                     ),
                     SizedBox(
@@ -286,13 +261,12 @@ class ItemCuaHangWidget extends StatelessWidget {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    print(id);
-                    if (id != null) Get.toNamed(Routes.STORE_DETAIL,
-                        arguments: { 'store_Id': id});
+                    if (store != null) Get.toNamed(
+                        Routes.STORE_DETAIL, arguments: { 'store': store});
                     FocusScope.of(context).unfocus();
                   },
                   child: Text(
-                    store_name,
+                    store.tencuahang.toString(),
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 15.sp
@@ -303,7 +277,7 @@ class ItemCuaHangWidget extends StatelessWidget {
               GestureDetector(
 
                 onTap: (){
-                  controller.callPhone(phone);
+                  controller.callPhone(store.sodienthoai.toString());
                 },
                 child: Container(
                   padding: EdgeInsets.all(5.0),
@@ -336,7 +310,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                     ),
                     Expanded(
                         child: Text(
-                          address,
+                          store.diachicuahang.toString(),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontSize: 12.sp),
                         ))
@@ -354,7 +328,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                     width: 3,
                   ),
                   Text(
-                    "$distance km",
+                    "${store.khoangcachtoicuahang} km",
                     style: TextStyle(fontSize: 12.sp),
                   )
                 ],
