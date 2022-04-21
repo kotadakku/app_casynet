@@ -7,13 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../../CheckInternet.dart';
 import 'UI_ThemSPDV.dart';
 
 class chonxuatxu extends StatefulWidget {
   @override
   State<chonxuatxu> createState() => _chonxuatxuState();
 }
+
 final GetXuatxu = Get.put(getxuatxu());
+final checkinternet CheckInternet = Get.put(checkinternet());
+var x="".obs;
 
 class _chonxuatxuState extends State<chonxuatxu> {
   @override
@@ -27,45 +31,83 @@ class _chonxuatxuState extends State<chonxuatxu> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-
-      body: Container(
-        child: FutureBuilder(
-          future: GetXuatxu.fetchXuatxu(),
-          builder: (context, snapshot) {
-            if (GetXuatxu.xuatxu.length == 0) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return SingleChildScrollView(
-                child: Obx(() => Column(
-                      children: [
-                        ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: GetXuatxu.xuatxu.length,
-                            itemBuilder: (context, indext) {
-                              return RadioListTile(
-                                  title: Text(
-                                      GetXuatxu.xuatxu[indext].tenxuatxu.toString()),
-                                  value: indext,
-                                  groupValue: GetXuatxu.countqg.value,
-                                  onChanged: (value) {
-                                    GetXuatxu.idxs.value = int.parse(
-                                        GetXuatxu.xuatxu[indext].idxuaxu.toString());
-                                    GetXuatxu.tenxuatxu.value =
-                                        GetXuatxu.xuatxu[indext].tenxuatxu.toString();
-                                    GetXuatxu.countqg.value =
-                                        int.parse(value.toString());
-                                    Get.back();
-                                  }
-                                  );
-                            }),
-                      ],
-                    )),
-              );
-            }
-          },
+      body: SingleChildScrollView(
+        child: Obx(
+          () => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                FutureBuilder(
+                  builder: (context, snapshot) {
+                    if (CheckInternet.satatusinternet.toString() ==
+                            "No Internet" &&
+                        GetXuatxu.xuatxu.length == 0) {
+                      return Center(
+                        child: Text(CheckInternet.satatusinternet.toString()),
+                      );
+                    } else {
+                      return Column(
+                        children: [
+                          FutureBuilder(
+                            future: GetXuatxu.fetchXuatxu(),
+                            builder: (context, snapshot) {
+                              if (GetXuatxu.xuatxu.length == 0) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else {
+                                return SingleChildScrollView(
+                                  child: Obx(() => Column(
+                                        children: [
+                                          ListView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  NeverScrollableScrollPhysics(),
+                                              itemCount:
+                                                  GetXuatxu.xuatxu.length,
+                                              itemBuilder: (context, indext) {
+                                                return RadioListTile(
+                                                    title: Text(GetXuatxu
+                                                        .xuatxu[indext]
+                                                        .tenxuatxu
+                                                        .toString()),
+                                                    value: indext,
+                                                    groupValue:
+                                                        GetXuatxu.countqg.value,
+                                                    onChanged: (value) {
+                                                      GetXuatxu.idxs.value =
+                                                          int.parse(GetXuatxu
+                                                              .xuatxu[indext]
+                                                              .idxuaxu
+                                                              .toString());
+                                                      GetXuatxu
+                                                              .tenxuatxu.value =
+                                                          GetXuatxu
+                                                              .xuatxu[indext]
+                                                              .tenxuatxu
+                                                              .toString();
+                                                      GetXuatxu.countqg.value =
+                                                          int.parse(
+                                                              value.toString());
+                                                      Get.back();
+                                                    });
+                                              }),
+                                        ],
+                                      )),
+                                );
+                              }
+                            },
+                          )
+                        ],
+                      );
+                    }
+                  },
+                ),
+              Offstage(
+                offstage: true,
+                child: Text(CheckInternet.satatusinternet.toString()),
+              ),
+            ],
+          ),
         ),
       ),
     );
