@@ -12,9 +12,9 @@ class BannerProvider{
     onError(error)?,
     beforeSend()?
   }){
-    ApiRequest(url: "https://api-casynet-app.herokuapp.com/api").get(
+    ApiRequest(url: "https://casynet-api.herokuapp.com/api").get(
       onSuccess: (data){
-        onSuccess((json.decode(data['banners']) as List).map((e) => BannerSlider.fromJson(e)).toList());
+        onSuccess((data['banners'] as List).map((e) => BannerSlider.fromJson(e)).toList());
       },
       onError: (error){
         if(onError!= null) onError(error);

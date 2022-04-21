@@ -1,3 +1,6 @@
+
+import 'dart:convert';
+
 class CuaHang {
   String? idcuahang;
   String? loaixe;
@@ -9,6 +12,10 @@ class CuaHang {
   String? diachicuahang;
   String? khoangcachtoicuahang;
   String? anhsanpham;
+  String? time_open;
+  String? time_close;
+  String? intro_store;
+  String? product_count;
 
 
   CuaHang.init(
@@ -35,16 +42,20 @@ class CuaHang {
         this.khoangcachtoicuahang,
         this.anhsanpham});
 
-  CuaHang.fromJson(Map<String, dynamic> json) {
-    idcuahang = json['id'].toString();
-    slthich = json['liked'].toString();
-    slbinhluan = json['comment'].toString();
-    slchiase = json['vote'].toString();
-    tencuahang = json['name'].toString();
-    sodienthoai = json['phone'].toString();
-    diachicuahang = json['address'].toString();
-    khoangcachtoicuahang = json['distance'].toString();
-    anhsanpham = "https://api-casynet-app.herokuapp.com"+json['image'].toString();
+  CuaHang.fromJson(Map<String, dynamic> data) {
+    idcuahang = data['id'].toString();
+    slthich = data['liked'].toString();
+    slbinhluan = data['comment'].toString();
+    slchiase = data['vote'].toString();
+    tencuahang = data['name'].toString();
+    sodienthoai = data['phone'].toString();
+    diachicuahang = data['address'].toString();
+    khoangcachtoicuahang = data['distance'].toString();
+    anhsanpham = "https://casynet-api.herokuapp.com"+data['images'][0]['image'];
+    time_open = data['time_open'].toString();
+    time_close = data['time_close'].toString();
+    intro_store = data['intro_store'].toString();
+    product_count = data['product_count'].toString();
   }
 
   Map<String, dynamic> toJson() {

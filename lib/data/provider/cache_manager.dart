@@ -10,10 +10,12 @@ mixin CacheManager {
   String? getToken() {
     final box = GetStorage();
     return box.read(CacheManagerKey.TOKEN.toString());
+
   }
 
   Future<void> removeToken() async {
     final box = GetStorage();
+
     await box.remove(CacheManagerKey.TOKEN.toString());
   }
 }

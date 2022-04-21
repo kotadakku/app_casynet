@@ -57,6 +57,8 @@ dependencies:
   connectivity_plus:
   video_player:
   get_storage:
+  geocoding:
+  geolocator:
 
 
 dev_dependencies:

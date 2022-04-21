@@ -13,11 +13,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'controller/authentication_manager.dart';
 
-void main() {
+void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -91,7 +93,7 @@ class Home extends StatelessWidget {
                 NotificationPage(),
                 Cart(),
                 Obx(() {
-                  return _authManager.isLogged.value ? AccountLoginPage(   ) : AccountBasePage();
+                  return _authManager.isLogged.value ? AccountLoginPage() : AccountBasePage();
                 }),
                 DetailAppPage(),
               ],

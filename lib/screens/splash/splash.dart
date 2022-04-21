@@ -13,6 +13,12 @@ class Splash extends StatelessWidget {
   final AuthenticationManager _authmanager = Get.put(AuthenticationManager());
   Splash({Key? key}) : super(key: key);
 
+  Future<void> initializeSettings() async {
+    _authmanager.checkLoginStatus();
+    //Simulate other services for 3 seconds
+    await Future.delayed(Duration(seconds: 3));
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -72,12 +78,7 @@ class Splash extends StatelessWidget {
 
 
   }
-  Future<void> initializeSettings() async {
-    _authmanager.checkLoginStatus();
 
-    //Simulate other services for 3 seconds
-    await Future.delayed(Duration(seconds: 1));
-  }
   // Future<Timer> initialization() async {
     //   Future<void> initializeSettings() async {
     //     _authmanager.checkLoginStatus();

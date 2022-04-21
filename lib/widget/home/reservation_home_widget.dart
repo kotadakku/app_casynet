@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/controller/datcho_controller.dart';
+import 'package:app_casynet/data/model/datcho.dart';
 import 'package:app_casynet/screens/products.dart';
 import 'package:app_casynet/theme/app_sizes.dart';
 import 'package:app_casynet/widget/home/store_widget.dart';
@@ -154,14 +155,7 @@ class ReservationWidget extends StatelessWidget {
                           runSpacing: 10.0,
                           children: controller.datchoList.map((e) => GestureDetector(
                             child: ItemBookWidget(
-                              book_image: e.hinhanhsanpham.toString(),
-                              distance: double.parse(e.store!.khoangcachtoicuahang.toString()),
-                              price: e.giauudai == null ? "Liên hệ" : e.giauudai.toString(),
-                              price_discount: e.giasanpham == null ? "" : e.giasanpham.toString(),
-                              book_name: e.tensanpham.toString(),
-                              book_category: e.store!.tencuahang.toString(),
-                              add_point: 12,
-
+                              product: e
                             ),
                             onTap: (){
                               Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 },);
@@ -186,23 +180,10 @@ class ReservationWidget extends StatelessWidget {
 }
 
 class ItemBookWidget extends StatelessWidget {
-  final String book_image;
-  final String book_name;
-  final String book_category;
-  final String price;
-  final String price_discount;
-  final double distance;
-  int? add_point;
-  int? sale;
+  DatCho product;
 
   ItemBookWidget({
-    Key? key, required this.book_image,
-    required this.book_name,
-    required this.price,
-    required this.price_discount,
-    required this.distance, required this.book_category,
-    this.add_point,
-    this.sale
+    Key? key, required this.product
   }) : super(key: key);
 
   @override
@@ -223,38 +204,38 @@ class ItemBookWidget extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.network(book_image,
+                  Image.network(product.hinhanhsanpham.toString(),
                       fit: BoxFit.fill),
-                  if(add_point != null) Positioned(
+                  if(product.diemthuongcasycoin != null) Positioned(
                       right: 5,
                       top: 5,
-                      child: ItemAddPoint(color: Colors.red, width: 50, point: add_point)
+                      child: ItemAddPoint(color: Colors.red, width: 50, point: product.diemthuongcasycoin)
                   ),
-                  if(sale != null) Positioned(
+                  if(product.phantramgiamgia != null) Positioned(
                       top: 5,
                       left: 5,
-                      child: ItemSale(color: kYellowColor, width: 40, sale: sale)
+                      child: ItemSale(color: kYellowColor, width: 40, sale: product.phantramgiamgia)
                   )
                 ],
                 // Image.asset("")
               ),
             ),
             SizedBox(height: 10.0.h,),
-            Text(book_name,
+            Text(product.tensanpham.toString(),
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 10.0.h,),
             Row(
               children: [
                 Text(
-                  price,
+                  product.giasanpham == null ? "Liên hệ" : product.giasanpham.toString(),
                   style: TextStyle(
                       fontWeight: FontWeight.bold
                   ),
                 ),
                 SizedBox(width: 5.w,),
                 Text(
-                  price_discount,
+                  product.giauudai == null ? "" : product.giauudai.toString(),
                   style: TextStyle(
                       fontSize: 13.sp,
                       decoration: TextDecoration.lineThrough
@@ -266,7 +247,7 @@ class ItemBookWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(child: Text(book_category,
+                Expanded(child: Text(product.store!.tencuahang.toString(),
                   style: TextStyle(
                     fontSize: 12,
 
@@ -278,7 +259,7 @@ class ItemBookWidget extends StatelessWidget {
                   children: [
                     FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
                     SizedBox(width: 3,),
-                    Text("$distance km",
+                    Text("${product.store?.khoangcachtoicuahang} km",
                       style: TextStyle(
                           fontSize: 12.sp
                       ),

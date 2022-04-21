@@ -30,6 +30,9 @@ class RegisterWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
 
                     cursorColor: kYellowColor,
+                    onSaved: (value){
+                      user.username = value;
+                    },
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),

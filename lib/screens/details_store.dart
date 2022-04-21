@@ -1,12 +1,15 @@
 import 'package:app_casynet/controller/detail_store_controller.dart';
+import 'package:app_casynet/controller/map_store_controller.dart';
 import 'package:app_casynet/screens/store_map.dart';
 import 'package:app_casynet/theme/app_colors.dart';
 import 'package:app_casynet/theme/app_sizes.dart';
+import 'package:app_casynet/widget/image_network_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../data/model/cuahang.dart';
 import '../routes/app_pages.dart';
 import '../widget/detail_product/top_detail_product_widget.dart';
 import '../widget/detail_store/aq_store_widget.dart';
@@ -23,6 +26,7 @@ class DetailsStorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DetailStoreController controller = Get.find();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -234,10 +238,10 @@ class DetailsStorePage extends StatelessWidget {
 
                             Container(
                               height: 150,
-                              child: Image.asset(
-                                "assets/detail_store/anhCuaHang.png",
+                              child: ImageNetworkLoading(
+                                image_url: controller.store.anhsanpham.toString(),
                                 fit: BoxFit.fill,
-                              ),
+                              )
                             ),
                             ProfileStoreWidget(),
                           ],
@@ -289,7 +293,9 @@ class DetailsStorePage extends StatelessWidget {
                             padding: EdgeInsets.all(5.0),
                             child: ElevatedButton(
                                 onPressed: () {
-                                  Get.to(StoreMapPage());
+
+                                    Get.to(StoreMapPage(), arguments: {"name": controller.store.tencuahang, "address": controller.store.diachicuahang});
+
                                 },
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,

@@ -1,8 +1,12 @@
 
+import 'package:app_casynet/controller/filter_map_controller.dart';
 import 'package:app_casynet/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../controller/map_store_controller.dart';
+import '../data/model/cuahang.dart';
 
 class StoreMapPage extends StatelessWidget {
   const StoreMapPage({Key? key}) : super(key: key);
@@ -13,6 +17,8 @@ class StoreMapPage extends StatelessWidget {
       target: LatLng(21.021269086008136, 105.83777770400047),
       zoom: 14.4746,
     );
+    String store_name = Get.arguments['name'];
+    String store_address = Get.arguments['address'];
 
     return SafeArea(
       child: Scaffold(
@@ -28,36 +34,49 @@ class StoreMapPage extends StatelessWidget {
             color: Colors.black
           ),),
         ),
-        body: Stack(
-          children: [
-            GoogleMap(
-              onLongPress: (position){
-                print("${position.latitude} ${position.longitude}");
-              },
-              mapType: MapType.terrain,
-              initialCameraPosition: _kGooglePlex,
-              myLocationEnabled: true,
-              onCameraMove: (position){
+        body: GetBuilder<MapStoreController>(
+            init: MapStoreController(),
+            builder: (c){
 
-              },
-              onMapCreated: (GoogleMapController controller) {
+              return Stack(
+                children: [
 
-              },
-            ),
-            Positioned(
-                left: 10.0,
-                bottom: 10.0,
-                child: ElevatedButton(
-                  onPressed: (){},
-                  child: Text("XEM CHỈ ĐƯỜNG"),
-                  style: ElevatedButton.styleFrom(
-                    primary: kYellowColor,
+                  GoogleMap(
+                    onLongPress: (position){
+                      print("${position.latitude} ${position.longitude}");
+                    },
+                    markers: c.markers,
+                    mapType: MapType.terrain,
+                    initialCameraPosition: _kGooglePlex,
+                    myLocationEnabled: true,
+                    onCameraMove: (position){
 
+                    },
+                    onMapCreated: (GoogleMapController controller) {
+                      c.controller.complete(controller);
+                      c.googleMap = controller;
+                      c.getStoreLocation(store_address, store_name);
+                    },
                   ),
-                )
-            )
-          ],
-        ),
+                  Positioned(
+                      left: 10.0,
+                      bottom: 10.0,
+                      child: ElevatedButton(
+                        onPressed: (){},
+                        child: Text("XEM CHỈ ĐƯỜNG"),
+                        style: ElevatedButton.styleFrom(
+                          primary: kYellowColor,
+
+                        ),
+                      )
+                  ),
+                  if(c.isLoading) Center(
+                    child: CircularProgressIndicator(
+                    ),
+                  ),
+                ],
+              );
+            }),
       )
     );
   }

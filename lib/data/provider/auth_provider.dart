@@ -13,7 +13,7 @@ class AuthProvider {
     onError(error)?,
     beforePost()?}) {
     ApiRequest(url: 'https://casynet-api.herokuapp.com/api/login').post(
-        data: user.toJsonRegister(),
+        data: user.toJsonLogin(),
         onSuccess: (data){
           print(data);
           onSuccess!(User.successLogin(data));
@@ -31,7 +31,7 @@ class AuthProvider {
         data: user.toJsonRegister(),
         onSuccess: (data){
           print(data);
-          // onSuccess!(User.successRegister(json.decode(data)));
+          onSuccess!(User.successRegister(json.decode(data)));
         },
         onError: (error) => onError!(error)
     );

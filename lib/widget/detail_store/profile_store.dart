@@ -1,10 +1,12 @@
 
 import 'package:app_casynet/controller/detail_store_controller.dart';
+import 'package:app_casynet/widget/image_network_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../data/model/cuahang.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
@@ -12,7 +14,7 @@ import '../../data.dart';
 import '../../theme/app_colors.dart';
 
 class ProfileStoreWidget extends StatelessWidget {
-  var id = Get.parameters['storeId'] ?? 1;
+  CuaHang store = Get.arguments['store'];
   ProfileStoreWidget({Key? key}) : super(key: key);
 
   @override
@@ -33,15 +35,23 @@ class ProfileStoreWidget extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
+
               Container(
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: ExactAssetImage(
-                          stores[int.parse(id.toString())-1]["image_url"],)),
                     border: Border.all(color: Colors.blue, width: 2),
                     shape: BoxShape.circle),
+                child: CircleAvatar(
+                    child: ClipOval(
+                      child: ImageNetworkLoading(
+                        image_url: store.anhsanpham.toString(),
+                        width: 80.0,
+                        height: 80.0,
+                        fit: BoxFit.fill,
+                      )
+                    )
+                ),
               ),
               SizedBox(
                 width: 10,
@@ -55,7 +65,7 @@ class ProfileStoreWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        stores[int.parse(id.toString())-1]["name"],
+                        store.tencuahang.toString(),
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -45,9 +45,9 @@ class AuthenticationManager extends GetxController with CacheManager {
   }
 
   void registerUser(User user){
+    print("${user.email}, ${user.password}, ${user.username}");
     AuthProvider().fetchRegister(user: user,
         onSuccess: (data){
-          print(data.token);
 
           if(data!=null){
             login(data.token);
@@ -63,6 +63,7 @@ class AuthenticationManager extends GetxController with CacheManager {
               });
         }
     );
+    Get.back();
   }
 
 
