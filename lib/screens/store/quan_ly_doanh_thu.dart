@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-import 'datetime_range_controller.dart';
+import '../../controller/store/datetime_range_controller.dart';
 
 class QuanLyDoanhThu extends StatelessWidget {
   @override

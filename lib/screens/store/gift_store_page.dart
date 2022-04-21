@@ -25,7 +25,7 @@ class GiftStorePage extends StatelessWidget {
           },
         ),
         title: Text("Quà tặng cửa hàng",
-          style: TextStyle(
+          style: TextStyle(fontSize: 17,
             color: Colors.black
           ),
         ),

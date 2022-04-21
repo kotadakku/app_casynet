@@ -91,7 +91,7 @@ class Home extends StatelessWidget {
                 NotificationPage(),
                 Cart(),
                 Obx(() {
-                  return _authManager.isLogged.value ? AccountLoginPage(   ) : AccountBasePage();
+                  return _authManager.isLogged.value ? AccountBasePage() : AccountLoginPage() ;
                 }),
                 DetailAppPage(),
               ],
