@@ -44,8 +44,10 @@ class _themspdvState extends State<themspdv> {
   var textsthtsp = "không".obs;
   var textsthttc = "không".obs;
   var chon = "".obs;
+  var cc="".obs;
   var _controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4").obs;
   late Future<void> _initializeVideoPlayerFuture;
+  var playpause = false.obs;
   @override
   void initState() {
     super.initState();
@@ -89,6 +91,19 @@ class _themspdvState extends State<themspdv> {
       if (video != null) {
         imagepk = File(video.path);
         imagepicker.add(imagepk);
+      }
+      return imagepicker;
+    }
+    Future hienvideo() async{
+      if(imagepicker.length>0){
+        for(int i=0;i<imagepicker.length;i++){
+          if(imagepicker[i].toString().contains(".mp4")){
+            _controller.value = VideoPlayerController.file((imagepicker[i]));
+            _initializeVideoPlayerFuture = _controller.value.initialize();
+            _controller.value.setLooping(true);
+            _controller.value.setVolume(1.0);
+          }
+        }
       }
     }
     Future pickimagecamera() async {
@@ -151,15 +166,7 @@ class _themspdvState extends State<themspdv> {
                   ),
                   child: Text("Quay video",style: TextStyle(color: Colors.blue,),),
                   onPressed: (){
-                      _controller.value = VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4");
-                      //_controller = VideoPlayerController.asset("videos/sample_video.mp4");
-                      _initializeVideoPlayerFuture = _controller.value.initialize();
-                      _controller.value.setLooping(true);
-                      _controller.value.setVolume(1.0);
                     pickvideo();
-                    for(int i=0;i<imagepicker.length;i++){
-                      print(imagepicker[i]);
-                    }
 
                   },
                 ),
@@ -291,14 +298,41 @@ class _themspdvState extends State<themspdv> {
                                   return Container(
                                     width: 100,
                                     child: FutureBuilder(
-                                      future: _initializeVideoPlayerFuture,
+                                      future: hienvideo(),
                                       builder: (context, snapshot) {
 
-                                        return AspectRatio(
-                                          aspectRatio: _controller.value.value.aspectRatio,
-                                          child: VideoPlayer(
-                                            _controller.value,
-                                          ),
+                                        return Stack(
+                                          children: [
+                                            AspectRatio(
+                                              aspectRatio: _controller.value.value.aspectRatio,
+                                              child: VideoPlayer(
+                                                _controller.value,
+                                              ),
+                                            ),
+                                                Positioned(
+                                                  child: Obx(()=>
+                                                      Row(
+                                                        children: [
+                                                          TextButton(
+                                                            child: Icon(playpause.value? Icons.pause:Icons.play_arrow),
+                                                            onPressed: () {
+                                                              if(_controller.value.value.isPlaying){
+                                                                _controller.value.pause();
+                                                                playpause.value=false;
+                                                                cc.value="s";
+                                                              }else{
+                                                                _controller.value.play();
+                                                                playpause.value=true;
+                                                                cc.value="x";
+                                                              }
+
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
+                                                  ),
+                                                ),
+                                          ],
                                         );
                                       },
                                     ),
@@ -988,6 +1022,25 @@ class getxuatxu extends GetxController {
   Future<List<Xuatxu>> fetchXuatxu() async {
     final response = await http.get(Uri.parse(
         "https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php"));
+    List<Xuatxu> pp = [];
+    if (response.statusCode == 200) {
+      List<dynamic> list = json.decode(response.body);
+      pp = list.map((e) => Xuatxu.fromJson(e)).toList();
+      xuatxu.value = pp;
+    }
+    return pp;
+  }
+}
+
+class getImagesp extends GetxController {
+  final checkinternet CheckInternet = Get.put(checkinternet());
+  var xuatxu = [].obs;
+  var countqg = 0.obs;
+  var idxs = 0.obs;
+  var tenxuatxu = "Chọn xuất xứ".obs;
+  Future<List<Xuatxu>> fetchXuatxu() async {
+    final response = await http.get(Uri.parse(
+        "https://coaxial-typewriter.000webhostapp.com/Server/SelectImagesp.php"));
     List<Xuatxu> pp = [];
     if (response.statusCode == 200) {
       List<dynamic> list = json.decode(response.body);

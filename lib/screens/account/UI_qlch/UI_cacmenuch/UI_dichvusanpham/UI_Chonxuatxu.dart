@@ -38,9 +38,7 @@ class _chonxuatxuState extends State<chonxuatxu> {
             children: [
                 FutureBuilder(
                   builder: (context, snapshot) {
-                    if (CheckInternet.satatusinternet.toString() ==
-                            "No Internet" &&
-                        GetXuatxu.xuatxu.length == 0) {
+                    if (CheckInternet.satatusinternet.toString() == "No Internet") {
                       return Center(
                         child: Text(CheckInternet.satatusinternet.toString()),
                       );
