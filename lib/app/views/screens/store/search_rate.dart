@@ -12,28 +12,8 @@ class SearchRate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: TextButton(
-          onPressed: () {
-            Get.back();
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-            ],
-          ),
-        ),
-        title: Align(
-          alignment: Alignment.center,
-          child: const Text(
-            "Tìm kiếm đánh giá",
-            style: TextStyle(fontSize: 17, color: Colors.black),
-          ),
-        ),
+        title: Text(
+          "Tìm kiếm đánh giá",),
       ),
       body: Column(
         children: [

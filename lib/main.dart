@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -43,18 +44,21 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
             color: Colors.white,
             titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w500
+                color: Colors.black,
+                fontSize: 19.r,
+                fontWeight: FontWeight.bold
             ),
             iconTheme: IconThemeData(
               color: Colors.black,
             ),
+
             elevation: 1,
             centerTitle: true,
             shadowColor: kTextColor,
 
-          )
+          ),
+          // textTheme:
+
         ),
         builder: (context, widget) {
           ScreenUtil.setContext(context);

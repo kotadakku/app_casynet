@@ -59,6 +59,10 @@ dependencies:
   get_storage:
   geocoding:
   geolocator:
+  google_sign_in:
+  firebase_auth:
+  firebase_core:
+
 
 
 dev_dependencies:

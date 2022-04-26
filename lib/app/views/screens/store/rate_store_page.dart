@@ -14,28 +14,9 @@ class RateStorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: TextButton(
-          onPressed: () {
-            Get.back();
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-            ],
-          ),
+        title: Text(
+          "Đánh giá",
         ),
-        title: Align(
-          alignment: Alignment.center,
-          child: const Text(
-            "Đánh giá",
-            style: TextStyle(fontSize: 17, color: Colors.black),
-          ),
-        )
       ),
       body: Column(
         children: [

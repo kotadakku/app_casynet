@@ -16,27 +16,20 @@ class GiftStorePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 5.0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Colors.black,
-          onPressed: (){
+        leading: InkWell(
+          onTap: (){
             Get.back();
           },
+          child: Icon(Icons.arrow_back),
         ),
-        title: Text("Quà tặng cửa hàng",
-          style: TextStyle(fontSize: 17,
-            color: Colors.black
-          ),
-        ),
+        title: Text("Quà tặng cửa hàng",),
         actions: [
-          IconButton(
-            icon: Icon(CupertinoIcons.add_circled),
-            color: Colors.black,
-            onPressed: (){
+          InkWell(
+            onTap: (){
               Get.to(NewPromotionPage());
             },
+            child: Container(margin: EdgeInsets.only(right: 10.0.w),
+            child: Icon(CupertinoIcons.add_circled, ),)
           )
 
         ],

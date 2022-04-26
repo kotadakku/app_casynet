@@ -13,28 +13,7 @@ class QuestionAnswer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                ),
-              ],
-            ),
-          ),
-          title: Align(
-            alignment: Alignment.center,
-            child: const Text(
-              "Hỏi đáp",
-              style: TextStyle(fontSize: 17, color: Colors.black),
-            ),
-          )
+          title: Text("Hỏi đáp",),
       ),
       body: Column(
         children: [
