@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/screens/store/themsanphamdichvu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,123 +21,113 @@ class SanPhamDichVu extends StatelessWidget {
 
     RxBool isImageHide = false.obs;
     // TODO: implement build
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          leading: TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                ),
-              ],
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back,
           ),
-          title: Text(
-            "Danh sách sản phẩm/ dịch vụ",
-            style: TextStyle(
-              fontSize: 17,
-              color: Colors.black
-            ),
-          ),
-          elevation: 5.0,
-          backgroundColor: Colors.white,
-          actions: [
-            Padding(padding: EdgeInsets.all(10.0),
-              child: SvgPicture.asset(
-                "assets/store/ic_plus.svg",
-                width: 20,
-              ),
-            )
-          ],
+        ),
+        title: const Text(
+          "Danh sách sản phẩm/ dịch vụ",
 
         ),
-        body: SafeArea(
-          child:  DefaultTabController(
-              length: 5,
-              child: Column(
-                children: [
-                  Container(
-                      height: 50.0,
-                      child: ListView(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 500,
-                                child: const TabBar(
-                                  labelColor:
-                                  Color.fromARGB(255, 223, 180, 0),
-                                  unselectedLabelColor: Colors.grey,
-                                  indicatorColor:
-                                  Color.fromARGB(255, 223, 180, 0),
-                                  tabs: [
-                                    Tab(
-                                      child: Text("Tất cả"),
-                                    ),
-                                    Tab(
-                                      child: Text("Còn hàng"),
-                                    ),
-                                    Tab(
-                                      child: Text("Hết hàng"),
-                                    ),
-                                    Tab(
-                                      child: Text("Đã bị khóa"),
-                                    ),
-                                    Tab(
-                                      child: Text("Bị ẩn"),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        Column(
-                          children: [
-                            /* Lọc sản phẩm */
-                            Container(
-                              color: const Color.fromARGB(255, 241, 243, 253),
-                              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-                              height: 50.0,
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "4 sảm phẩm ",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.black),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                      children: [
-                                        SvgPicture.asset(
-                                            "assets/store/ic_filter.svg",
-                                            width: 30),
-                                      ],
-                                    ),
-                                    // style: TextButton.styleFrom(
-                                    //   side: BorderSide(width: 0.0, color: Colors.white)
-                                    // ),
-                                  )
+        actions: [
+          InkWell(
+              onTap: (){
+                Get.to(ThemSanPhamDichVu());
+              },
+              child: Container(margin: EdgeInsets.only(right: 10.0.w),
+                child: Icon(CupertinoIcons.add_circled, ),)
+          )
 
-                                  /*InkWell(
+        ],
+
+      ),
+      body: SafeArea(
+        child:  DefaultTabController(
+            length: 5,
+            child: Column(
+              children: [
+                Container(
+                    height: 50.0,
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 500,
+                              child: const TabBar(
+                                labelColor:
+                                Color.fromARGB(255, 223, 180, 0),
+                                unselectedLabelColor: Colors.grey,
+                                indicatorColor:
+                                Color.fromARGB(255, 223, 180, 0),
+                                tabs: [
+                                  Tab(
+                                    child: Text("Tất cả"),
+                                  ),
+                                  Tab(
+                                    child: Text("Còn hàng"),
+                                  ),
+                                  Tab(
+                                    child: Text("Hết hàng"),
+                                  ),
+                                  Tab(
+                                    child: Text("Đã bị khóa"),
+                                  ),
+                                  Tab(
+                                    child: Text("Bị ẩn"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      Column(
+                        children: [
+                          /* Lọc sản phẩm */
+                          Container(
+                            color: const Color.fromARGB(255, 241, 243, 253),
+                            padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                            height: 50.0,
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "4 sảm phẩm ",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black),
+                                ),
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.end,
+                                    children: [
+                                      SvgPicture.asset(
+                                          "assets/store/ic_filter.svg",
+                                          width: 30),
+                                    ],
+                                  ),
+                                  // style: TextButton.styleFrom(
+                                  //   side: BorderSide(width: 0.0, color: Colors.white)
+                                  // ),
+                                )
+
+                                /*InkWell(
                                             splashColor: Color.fromARGB(
                                                 255, 188, 195, 216),
                                             onTap: () {
@@ -150,33 +141,33 @@ class SanPhamDichVu extends StatelessWidget {
                                               ],
                                             ),
                                           ),*/
-                                ],
-                              ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            /* Danh sách sản phẩm*/
-                            Expanded(
-                              child: LayoutBuilder(
-                                  builder: (context, constraints) {
-                                    var size = 2;
-                                    if (constraints.maxWidth > 600)
-                                      size = 4;
-                                    return GridView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: 20,
-                                      // physics:
-                                      //     NeverScrollableScrollPhysics(),
-                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          /* Danh sách sản phẩm*/
+                          Expanded(
+                            child: LayoutBuilder(
+                                builder: (context, constraints) {
+                                  var size = 2;
+                                  if (constraints.maxWidth > 600)
+                                    size = 4;
+                                  return GridView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: 20,
+                                    // physics:
+                                    //     NeverScrollableScrollPhysics(),
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: size,
                                         crossAxisSpacing: 0.5,
                                         mainAxisSpacing: 5.0.w,
                                         childAspectRatio: 0.7
-                                      ),
-                                      itemBuilder: (BuildContext context,
-                                          int index) {
-                                        return Container(
+                                    ),
+                                    itemBuilder: (BuildContext context,
+                                        int index) {
+                                      return Container(
                                           margin: EdgeInsets.only(
                                             left: 5.0.w,
                                             right: 5.0.w,
@@ -425,81 +416,80 @@ class SanPhamDichVu extends StatelessWidget {
                                                 ],
                                               ),
                                               Obx(()=>Visibility(
-                                                visible: isImageHide.value,
-                                                child: Positioned.fill(
-                                                child: Container(
-                                                  color: Colors.black.withOpacity(0.5),
-                                                  child: Column(
-                                                    mainAxisSize: MainAxisSize.max,
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: [
-                                                      Icon(Icons.lock, color: Colors.white, size: 40,),
-                                                      Text("Đã ẩn",
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            fontWeight: FontWeight.bold,
-                                                            color: Colors.white
-                                                        ),
-                                                      ),
-                                                      OutlinedButton(
-                                                        child: Text("Hiển thị",
-                                                          style: TextStyle(
-                                                              color: Colors.white
+                                                  visible: isImageHide.value,
+                                                  child: Positioned.fill(
+                                                    child: Container(
+                                                      color: Colors.black.withOpacity(0.5),
+                                                      child: Column(
+                                                        mainAxisSize: MainAxisSize.max,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(Icons.lock, color: Colors.white, size: 40,),
+                                                          Text("Đã ẩn",
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: Colors.white
+                                                            ),
                                                           ),
-                                                        ),
-                                                        onPressed: (){
-                                                          isImageHide.value = !isImageHide.value;
-                                                        },
-                                                        style: OutlinedButton.styleFrom(
-                                                            side: BorderSide(
-                                                                color: Colors.white,
-                                                                width: 1
-                                                            )
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
+                                                          OutlinedButton(
+                                                            child: Text("Hiển thị",
+                                                              style: TextStyle(
+                                                                  color: Colors.white
+                                                              ),
+                                                            ),
+                                                            onPressed: (){
+                                                              isImageHide.value = !isImageHide.value;
+                                                            },
+                                                            style: OutlinedButton.styleFrom(
+                                                                side: BorderSide(
+                                                                    color: Colors.white,
+                                                                    width: 1
+                                                                )
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )
                                               )
                                               )
                                             ],
                                           )
-                                          // child: ,
-                                        );
-                                      },
-                                    );
-                                  }),
+                                        // child: ,
+                                      );
+                                    },
+                                  );
+                                }),
+                          ),
+                          Container(
+                            margin:
+                            const EdgeInsets.only(left: 10, right: 10),
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.start,
+                              children: [
+                                Checkbox(
+                                  checkColor: Colors.white,
+                                  activeColor: kYellowColor,
+                                  value: true, onChanged: (value) {  },),
+                                SizedBox(width: 5,),
+                                Text("Chọn tất cả", style: TextStyle(fontSize: 15),),
+                              ],
                             ),
-                            Container(
-                              margin:
-                              const EdgeInsets.only(left: 10, right: 10),
-                              height: 50,
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.start,
-                                children: [
-                                  Checkbox(
-                                    checkColor: Colors.white,
-                                    activeColor: kYellowColor,
-                                    value: true, onChanged: (value) {  },),
-                                  SizedBox(width: 5,),
-                                  Text("Chọn tất cả", style: TextStyle(fontSize: 15),),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        const Text("36363636"),
-                        const Text("66666663"),
-                        const Text("33333333"),
-                        const Text("66666666"),
-                      ],
-                    ),
+                          )
+                        ],
+                      ),
+                      const Text("36363636"),
+                      const Text("66666663"),
+                      const Text("33333333"),
+                      const Text("66666666"),
+                    ],
                   ),
-                ],
-              )),
-        ),
+                ),
+              ],
+            )),
       ),
     );
   }

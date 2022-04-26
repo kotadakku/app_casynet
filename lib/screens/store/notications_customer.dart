@@ -22,26 +22,23 @@ class NotificationCustomer extends StatelessWidget {
       appBar: AppBar(
         // elevation: 5.0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Colors.black,
-          onPressed: () {
+        leading: InkWell(
+          onTap: (){
             Get.back();
           },
-        ),
-        title: Text("Thông báo tới khách hàng",
-          style: TextStyle(fontSize: 17,
-              color: Colors.black
+          child: Icon(
+            Icons.arrow_back,
           ),
         ),
+        title: Text("Thông báo tới khách hàng",),
         actions: [
-          IconButton(
-            icon: Icon(CupertinoIcons.add_circled),
-            color: Colors.black,
-            onPressed: () {
-              Get.to(AddNotication());
-            },
-          )
+          InkWell(
+              onTap: (){
+                Get.to(AddNotication());
+              },
+              child: Container(margin: EdgeInsets.only(right: 10.0.w),
+                child: Icon(CupertinoIcons.add_circled, ),)
+          ),
 
         ],
       ),

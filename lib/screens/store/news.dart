@@ -1,6 +1,5 @@
 import 'package:app_casynet/screens/store/new_post.dart';
 import 'package:app_casynet/screens/store/search_news.dart';
-import 'package:app_casynet/screens/store/search_rate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,37 +15,28 @@ class News extends StatelessWidget {
   Widget build(BuildContext context) {
     var soLuongHienThi = 30;
     var tongSoLuong = 1000;
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: TextButton(
-          onPressed: () {
+        leading: InkWell(
+          onTap: (){
             Get.back();
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-            ],
+          child: Icon(
+            Icons.arrow_back,
           ),
         ),
-        title: Align(
-          alignment: Alignment.center,
-          child: const Text(
-            "Tin tức",
-            style: TextStyle(fontSize: 17, color: Colors.black),
-          ),
+        title: Text(
+          "Tin tức",
+          // style: TextStyle(fontSize: 17, color: Colors.black),
         ),
         actions: [
-          IconButton(
-            icon: Icon(CupertinoIcons.add_circled),
-            color: Colors.black,
-            onPressed: () {
-              Get.to(NewPost());
-            },
+          InkWell(
+              onTap: (){
+                Get.to(NewPost());
+              },
+              child: Container(margin: EdgeInsets.only(right: 10.0.w),
+                child: Icon(CupertinoIcons.add_circled, ),)
           )
         ],
       ),
@@ -82,32 +72,34 @@ class News extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-                child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: 50.0.h,
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
-                    child: Row(
-                      children: [
-                        Text( soLuongHienThi.toString()+ " Sản phẩm", style: TextStyle(fontWeight: FontWeight.w600),),
-                        SizedBox(width: 20.0.w,),
-                        Container(
-                          padding: EdgeInsets.only(left: 10.0.w, right: 10.0.w, top: 5.0.h, bottom: 5.0.h),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.lightBlueAccent)
+            ListView(
+              shrinkWrap:true,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: 50.0.h,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                      child: Row(
+                        children: [
+                          Text( soLuongHienThi.toString()+ " Sản phẩm", style: TextStyle(fontWeight: FontWeight.w600),),
+                          SizedBox(width: 20.0.w,),
+                          Container(
+                            padding: EdgeInsets.only(left: 10.0.w, right: 10.0.w, top: 5.0.h, bottom: 5.0.h),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Colors.lightBlueAccent)
 
-                          ),
-                          child: Text(soLuongHienThi.toString() +"/"+tongSoLuong.toString(), style: TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.w500,),),
-                        )
-                      ],
-                    ),)
-                ],
-              ),
-            ))
+                            ),
+                            child: Text(soLuongHienThi.toString() +"/"+tongSoLuong.toString(), style: TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.w500,),),
+                          )
+                        ],
+                      ),)
+                  ],
+                ),
+              ],
+            )
           ],
         ),
       ),

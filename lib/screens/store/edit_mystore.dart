@@ -1,3 +1,4 @@
+import 'package:app_casynet/screens/store/short_description.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -10,54 +11,14 @@ class EditMyStore extends StatelessWidget {
     var open_hours = "Thiết lập".obs;
     var close_hours = "Thiết lập".obs;
     // TODO: implement build
-    return MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sửa thông tin cửa hàng"),
+
+      ),
+      body: SafeArea(
           child: Column(
             children: [
-              Container(
-                margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                height: 50.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      // margin: EdgeInsets.only(left: 10,right: 5),
-                      child: TextButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.arrow_back,
-                              color: Colors.black,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    // Container(
-                    //   // flex: 1,
-                    //   child: SizedBox(width: 30,),
-                    // ),
-                    Expanded(
-                        child:Center(
-                          child: Text(
-                            "Sửa thông tin cửa hàng",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),)
-                        )
-
-                    )
-
-
-                  ],
-                ),
-              ),
               Expanded(child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
@@ -778,7 +739,7 @@ class EditMyStore extends StatelessWidget {
                           splashColor: Color.fromARGB(255, 188, 195, 216),
                           // splashColor: Colors.blue,
                           onTap: () {
-                            // Get.to(ShortDescription());
+                            Get.to(ShortDescription());
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -958,7 +919,6 @@ class EditMyStore extends StatelessWidget {
               ),)
             ],
           )
-        ),
       ),
     );
   }

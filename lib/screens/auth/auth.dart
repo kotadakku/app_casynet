@@ -1,6 +1,8 @@
 import 'package:app_casynet/widget/auth/register_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../theme/app_colors.dart';
 import '../../widget/auth/signin_widget.dart';
@@ -15,6 +17,7 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin {
   late TabController _controller;
+  late Rx<GoogleSignInAccount> googleSignInAccount;
 
 
   @override

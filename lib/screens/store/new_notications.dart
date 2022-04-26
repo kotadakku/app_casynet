@@ -15,19 +15,16 @@ class AddNotication extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
+        leading: InkWell(
+          onTap: (){
             Get.back();
           },
-          icon: Icon(Icons.arrow_back),
-          color: Colors.black,
-        ),
-        title: Center(
-          child: Text(
-            "Gửi Thông báo",
-            style: TextStyle(fontSize: 17, color: Colors.black),
+          child: Icon(
+            Icons.arrow_back,
           ),
         ),
+        title: Text(
+          "Gửi Thông báo",),
       ),
       body: SingleChildScrollView(
         child: Column(
