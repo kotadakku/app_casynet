@@ -1,22 +1,23 @@
-import 'package:app_casynet/bindings/home_bindings.dart';
-import 'package:app_casynet/controller/bottom_nav_controller.dart';
-import 'package:app_casynet/routes/app_pages.dart';
-import 'package:app_casynet/screens/Cart/cart.dart';
-import 'package:app_casynet/screens/account/account_base.dart';
-import 'package:app_casynet/screens/account/account_login.dart';
-import 'package:app_casynet/screens/detail_app.dart';
-import 'package:app_casynet/screens/home.dart';
-import 'package:app_casynet/screens/notfications.dart';
-import 'package:app_casynet/screens/splash/splash.dart';
-import 'package:app_casynet/theme/app_colors.dart';
-import 'package:app_casynet/widget/bottom_navigator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'controller/authentication_manager.dart';
+import 'app/bindings/home_bindings.dart';
+import 'app/bindings/main_bindings.dart';
+import 'app/controller/authentication_manager.dart';
+import 'app/controller/bottom_nav_controller.dart';
+import 'app/routes/app_pages.dart';
+import 'app/views/screens/Cart/cart.dart';
+import 'app/views/screens/account/account_base.dart';
+import 'app/views/screens/account/account_login.dart';
+import 'app/views/screens/detail_app.dart';
+import 'app/views/screens/home/home.dart';
+import 'app/views/screens/notfications.dart';
+import 'app/views/screens/splash/splash.dart';
+import 'app/views/screens/theme/app_colors.dart';
+import 'app/views/widgets/bottom_navigator.dart';
+
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -64,7 +65,7 @@ class MyApp extends StatelessWidget {
           );
         },
         initialRoute: '/',
-        initialBinding: HomeBindings(),
+        initialBinding: MainBindings(),
         getPages:  AppPages.routes ,
         home: MaterialApp(
           home: Splash(),
