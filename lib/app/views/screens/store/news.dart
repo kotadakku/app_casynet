@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../app/views/theme/app_colors.dart';
 import '../theme/app_colors.dart';
 import 'new_post.dart';
 import 'search_news.dart';

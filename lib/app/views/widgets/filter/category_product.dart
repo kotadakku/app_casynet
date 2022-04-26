@@ -1,12 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../controller/filter_product_controller.dart';
-import '../../app/views/theme/app_colors.dart';
 import '../../screens/theme/app_colors.dart';
 
 class CategoryProductWidget extends StatelessWidget {

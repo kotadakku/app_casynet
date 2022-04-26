@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import '../../app/views/theme/app_colors.dart';
 import '../theme/app_colors.dart';
 class RateStorePage extends StatelessWidget {
   const RateStorePage({Key? key}) : super(key: key);

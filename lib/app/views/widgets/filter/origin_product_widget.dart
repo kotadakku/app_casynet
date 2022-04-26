@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/filter_product_controller.dart';
-import '../../app/views/theme/app_colors.dart';
 import '../../screens/theme/app_colors.dart';
 
 class OriginProductWidget extends StatelessWidget {

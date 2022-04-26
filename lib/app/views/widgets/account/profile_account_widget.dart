@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-import '../../app/views/theme/app_colors.dart';
 import '../../screens/theme/app_colors.dart';
 
 class ProfileAccountWidget extends StatelessWidget {

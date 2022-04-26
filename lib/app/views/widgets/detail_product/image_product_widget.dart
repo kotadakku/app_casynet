@@ -7,7 +7,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../controller/detail_product_controller.dart';
-import '../../app/views/theme/app_colors.dart';
 import '../../screens/theme/app_colors.dart';
 import '../../screens/theme/app_sizes.dart';
 
