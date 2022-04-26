@@ -1,10 +1,4 @@
-<<<<<<< HEAD:lib/app/views/screens/store/new_post.dart
 
-=======
-import 'package:app_casynet/controller/CuaHangCuaToi/hinh_thuc_selection_controller.dart';
-import 'package:app_casynet/controller/store/imagepicker_controller.dart';
-import 'package:app_casynet/theme/app_colors.dart';
->>>>>>> 51325907f4ea1b8a7ae08eb376afbe96b6e538ef:lib/screens/store/new_post.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

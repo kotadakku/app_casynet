@@ -1,9 +1,4 @@
-<<<<<<< HEAD:lib/app/views/screens/store/news.dart
 
-=======
-import 'package:app_casynet/screens/store/new_post.dart';
-import 'package:app_casynet/screens/store/search_news.dart';
->>>>>>> 51325907f4ea1b8a7ae08eb376afbe96b6e538ef:lib/screens/store/news.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

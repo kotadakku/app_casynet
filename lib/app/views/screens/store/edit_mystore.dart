@@ -1,4 +1,5 @@
-import 'package:app_casynet/screens/store/short_description.dart';
+
+import 'package:app_casynet/app/views/screens/store/short_description.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
