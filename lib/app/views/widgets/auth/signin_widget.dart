@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import '../../../controller/authentication_manager.dart';
+import '../../../controller/auth/authentication_manager.dart';
 import '../../../data/model/user.dart';
 import '../../screens/theme/app_colors.dart';
 
@@ -14,6 +14,8 @@ class SignInWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthenticationManager controller = Get.find();
     User user = User();
+
+    var _emailController = TextEditingController();
 
     return ListView(
       children: [
@@ -28,6 +30,7 @@ class SignInWidget extends StatelessWidget {
                   children: [
                     SizedBox(height: 30,),
                     TextFormField(
+                      controller: _emailController,
                       onSaved: (value){
                         user.email = value;
                       },

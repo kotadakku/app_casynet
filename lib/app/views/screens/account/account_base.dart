@@ -35,7 +35,7 @@ class AccountBasePage extends StatelessWidget {
                           width: 150,
                           child: OutlinedButton(
                             onPressed: () {
-                              Get.toNamed(Routes.AUTH);
+                              Get.toNamed(Routes.AUTH, arguments: 0);
                             },
                             child: Text("Đăng nhập"),
                             style: OutlinedButton.styleFrom(
@@ -49,7 +49,7 @@ class AccountBasePage extends StatelessWidget {
                           width: 150,
                           child: OutlinedButton(
                             onPressed: () {
-                              Get.toNamed(Routes.AUTH);
+                              Get.toNamed(Routes.AUTH, arguments: 1);
                             },
                             child: Text("Đăng ký"),
                             style: OutlinedButton.styleFrom(

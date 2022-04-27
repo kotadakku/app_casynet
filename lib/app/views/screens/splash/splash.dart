@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/authentication_manager.dart';
+import '../../../controller/auth/authentication_manager.dart';
 import 'splash_1.dart';
 
 

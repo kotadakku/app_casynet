@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 import 'app/bindings/home_bindings.dart';
 import 'app/bindings/main_bindings.dart';
-import 'app/controller/authentication_manager.dart';
+import 'app/controller/auth/authentication_manager.dart';
 import 'app/controller/bottom_nav_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/views/screens/Cart/cart.dart';
@@ -51,12 +51,17 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(
               color: Colors.black,
             ),
-
             elevation: 1,
             centerTitle: true,
             shadowColor: kTextColor,
 
           ),
+          inputDecorationTheme: InputDecorationTheme(
+            errorStyle: TextStyle(
+              color: kYellowColor,
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 0)
+          )
           // textTheme:
 
         ),

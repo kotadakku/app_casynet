@@ -2,15 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../data/model/user.dart';
-import '../data/provider/auth_provider.dart';
-import '../data/provider/cache_manager.dart';
+import '../../data/model/user.dart';
+import '../../data/provider/auth_provider.dart';
+import 'cache_manager.dart';
 
 
 class AuthenticationManager extends GetxController with CacheManager {
   final isLogged = false.obs;
   GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
   GlobalKey<FormState> formRegisterKey = GlobalKey<FormState>();
+  var birthDayTextController =TextEditingController();
+  var passwordController = TextEditingController();
   late User user_current;
 
 

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import '../controller/account/information_address_controller.dart';
-import '../controller/authentication_manager.dart';
+import '../controller/auth/authentication_manager.dart';
 import '../controller/home/cuahang_controller.dart';
 import '../controller/detail_app_controller.dart';
 import '../controller/home/datcho_controller.dart';
