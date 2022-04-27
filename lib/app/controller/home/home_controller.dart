@@ -23,37 +23,61 @@ class HomeController extends GetxController{
 
   @override
   void onInit() {
-      _getBanner();
-      _getSales();
+    _getBannerDB();
+    _getSales();
+    _getBannerAPI();
+
   }
 
-  void _getBanner() {
+
+  @override
+  void onReady(){
+    super.onReady();
+  }
+
+  void _getBannerDB() {
     BannerDatabaseHelper.instance.queryAllRows().then((value) {
       if(value?.length == 0){
-        print("Load from api");
-        BannerProvider().getBanners(onSuccess: (banners){
-          addData(banners);
-        },
-        beforeSend: (){},
-          onError: (error){
-            print("Error " + error.toString());
-            isLoading = false;
-            update();
-          }
-        );
-
+        print("<Home Controller> Load from api");
+        _getBannerAPI();
       }else{
-        print("Load from db");
+        print("<Home Controller> Load from db");
         value?.forEach((element) {
           listBanners.add(BannerSlider(
             id: element['id'],
             image: element['image'],
           ));
           isLoading = false;
+
           update();
         });
       }
     });
+
+  }
+
+  void _getBannerAPI(){
+    print("<Home Controller> Load from api");
+    BannerProvider().getBanners(onSuccess: (banners){
+      listBanners.clear();
+      BannerDatabaseHelper.instance.clear();
+
+      banners.forEach((banner){
+        ImageNetworkToBase64(url: banner.image).getHttp().then((base64) {
+          BannerDatabaseHelper.instance.insert(BannerSlider(image: base64));
+          listBanners.add(BannerSlider(image: base64));
+          isLoading = false;
+          print(listBanners.length);
+        });
+      });
+    },
+    beforeSend: (){},
+    onError: (error){
+      print("Error " + error.toString());
+      isLoading = false;
+      update();
+    }
+    );
   }
 
   void _getSales(){
@@ -67,19 +91,6 @@ class HomeController extends GetxController{
       update();
     }
     );
-  }
-
-  void addData(List<BannerSlider> banners) async {
-    await Future.wait(banners.map((e){
-      return ImageNetworkToBase64(url: e.image).getHttp().then((base64) {
-        BannerDatabaseHelper.instance.insert(
-          BannerSlider(image: base64)).then((value){
-            listBanners.add(BannerSlider(image: base64));
-            isLoading = false;
-            update();
-        });
-      });
-    }));
   }
 
   void onChangeSearchText( value){

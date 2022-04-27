@@ -52,4 +52,9 @@ class BannerDatabaseHelper{
     return res;
   }
 
+  Future<void> clear() async {
+    Database? db = await instance.database;
+    await db?.delete(table);
+  }
+
 }

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:app_casynet/app/controller/home/banner_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controller/home/home_controller.dart';
 
@@ -14,7 +15,7 @@ class BannerHomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     BannerController bannerController = Get.find();
     return SizedBox(
-        height: MediaQuery.of(context).size.width/1125*410,
+        height: ScreenUtil().screenWidth/1125*410,
         child: GetBuilder<HomeController>(
           init: HomeController(),
           builder: (controller){
@@ -49,7 +50,6 @@ class BannerHomeWidget extends StatelessWidget {
                   onTap: () {},
                   onPanEnd: (details) {
                     bannerController.swippingPageView(details);
-
                   },
                 )
               ],

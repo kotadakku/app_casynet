@@ -56,43 +56,46 @@ class CategoryItemBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: LayoutBuilder(
-          builder: (context, constraint) => Container(
-              width: constraint.maxWidth / 2 - 15,
-              height: 42,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
-                  border: Border.all(width: 1, color: kYellowColor)),
-              child: Column(
-                children: [
-                  Row(
+          builder: (context, constraint){
+              var width = constraint.maxWidth>785 ? (constraint.maxWidth / 3 - 20) :  (constraint.maxWidth / 2 - 15);
+              return Container(
+                  width: width,
+                  height: 42,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5.0),
+                      border: Border.all(width: 1, color: kYellowColor)),
+                  child: Column(
                     children: [
-                      Stack(
+                      Row(
                         children: [
-                          SvgPicture.asset(
-                            "assets/home/category/left_bottom.svg",
-                            height: 40,
+                          Stack(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/home/category/left_bottom.svg",
+                                height: 40,
+                              ),
+                              Positioned(
+                                  left: 10,
+                                  top: 10,
+                                  child: SvgPicture.asset(images_url, height: 16))
+                            ],
                           ),
-                          Positioned(
-                              left: 10,
-                              top: 10,
-                              child: SvgPicture.asset(images_url, height: 16))
+                          SizedBox(
+                            width: 5,
+                          ),
+                          FittedBox(
+                            child: Text(
+                              name,
+                              style: TextStyle(color: kTextColor_gray, fontSize: 12),
+                            ),
+                          )
+
                         ],
                       ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      FittedBox(
-                        child: Text(
-                          name,
-                          style: TextStyle(color: kTextColor_gray, fontSize: 12),
-                        ),
-                      )
-
                     ],
-                  ),
-                ],
-              ))),
+                  ));
+          }),
       onTap: (){
         Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, 12] );
       },

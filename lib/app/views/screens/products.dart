@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../../controller/products_controller.dart';
+import '../../controller/home/products_controller.dart';
 import '../../routes/app_pages.dart';
 import '../widgets/bottom_widget.dart';
 import 'home/widgets/category_bottom_widget.dart';

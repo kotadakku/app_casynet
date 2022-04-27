@@ -20,9 +20,6 @@ class CategoryWidget extends StatelessWidget {
       ItemCategoryWidget(image_url: "assets/home/category/chamsocxe.png", title: "Chăm sóc xe"),
       ItemCategoryWidget(image_url: "assets/home/category/lopacquy.png", title: "Lốp và ác quy xe"),
       ItemCategoryWidget(image_url: "assets/home/category/chamsocxe.png", title: "Chăm sóc xe"),
-      ItemCategoryWidget(image_url: "assets/home/category/lopacquy.png", title: "Lốp và ác quy xe"),
-      ItemCategoryWidget(image_url: "assets/home/category/chamsocxe.png", title: "Chăm sóc xe"),
-      ItemCategoryWidget(image_url: "assets/home/category/lopacquy.png", title: "Lốp và ác quy xe"),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,17 +30,25 @@ class CategoryWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: 160,
-            child: GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: 80/(ScreenUtil().screenWidth/3),
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.all(0.0),
+          child: Center(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
 
-              shrinkWrap: true,
-              children: danhmuc,
-            )
-        ),
+                  int device = constraints.maxWidth>=780 ? 5 : 3;
+                  return GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: (80/(ScreenUtil().screenWidth/device)),
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.all(0.0),
 
+                    shrinkWrap: true,
+                    children: danhmuc,
+                  );
+              }
+            ),
+
+          )
+        )
       ],
     ) ;
   }

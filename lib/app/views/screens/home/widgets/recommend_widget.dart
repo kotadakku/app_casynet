@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/home/datcho_controller.dart';
+import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../widgets/loading_overlay.dart';
 
@@ -18,6 +19,7 @@ class RecommendWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RadioController controller = Get.find();
     return Material(
       elevation: 3,
       child: Container(
@@ -80,34 +82,28 @@ class RecommendWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    GetBuilder<DatChoController>(
-                        init: DatChoController(),
-                        builder: ((controller) {
-                          return Row(
-                            children: [
-                              Radio(
-                                  value: true,
-                                  groupValue: controller.isCar,
-                                  onChanged: (value){
-                                    controller.updateIsCar(controller.isCar);
-                                    controller.updateAPI();
-                                  },
-                                  activeColor: Color(0xffDFB400)),
-                              Text("Ô tô"),
-                              SizedBox(width: 20,),
-                              Radio(
-                                  value: false,
-                                  groupValue: controller.isCar,
-                                  onChanged: (value){
-                                    controller.updateIsCar(controller.isCar);
-                                    controller.updateAPI();
-                                  },
-                                  activeColor: Color(0xffDFB400)
-                              ),
-                              Text("Xe máy")
-                            ],
-                          );
-                        }))
+                    Obx(()=>Row(
+                      children: [
+                        Radio(
+                            value: true,
+                            groupValue: controller.isCarRecommend.value,
+                            onChanged: (value){
+                              controller.updateIsCarRecommend();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Ô tô"),
+                        SizedBox(width: 20,),
+                        Radio(
+                            value: false,
+                            groupValue: controller.isCarRecommend.value,
+                            onChanged: (value){
+                              controller.updateIsCarRecommend();
+                            },
+                            activeColor: Color(0xffDFB400)
+                        ),
+                        Text("Xe máy")
+                      ],
+                    ))
 
                   ],
                 ),

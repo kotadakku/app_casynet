@@ -4,6 +4,7 @@ import 'package:app_casynet/app/views/screens/home/widgets/banner_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/category_bottom_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/category_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/promotion_widget.dart';
+import 'package:app_casynet/app/views/screens/home/widgets/recommend_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/top_sale_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/reservation_home_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/store_widget.dart';
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
                 PromotionWidget(),
                 SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
-                PromotionWidget(),
+                RecommendWidget(),
                 // Danh mục
                 CategoryBottomWidget(),
 

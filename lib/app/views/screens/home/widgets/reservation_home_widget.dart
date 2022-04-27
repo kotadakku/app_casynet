@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/home/datcho_controller.dart';
+import '../../../../controller/home/radio_controller.dart';
 import '../../../../data/model/datcho.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../widgets/loading_overlay.dart';
@@ -19,6 +20,7 @@ class ReservationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RadioController controller = Get.find();
     return Material(
       elevation: 3,
       child: Container(
@@ -81,34 +83,29 @@ class ReservationWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    GetBuilder<DatChoController>(
-                        init: DatChoController(),
-                        builder: ((controller) {
-                          return Row(
-                            children: [
-                              Radio(
-                                  value: true,
-                                  groupValue: controller.isCar,
-                                  onChanged: (value){
-                                    controller.updateIsCar(controller.isCar);
-                                    controller.updateAPI();
-                                  },
-                                  activeColor: Color(0xffDFB400)),
-                              Text("Ô tô"),
-                              SizedBox(width: 20,),
-                              Radio(
-                                  value: false,
-                                  groupValue: controller.isCar,
-                                  onChanged: (value){
-                                    controller.updateIsCar(controller.isCar);
-                                    controller.updateAPI();
-                                  },
-                                  activeColor: Color(0xffDFB400)
-                              ),
-                              Text("Xe máy")
-                            ],
-                          );
-                        }))
+                    Obx(()=>Row(
+                      children: [
+                        Radio(
+                            value: true,
+                            groupValue: controller.isCarReservation.value,
+                            onChanged: (value) {
+                              controller.updateIsCarReservation();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Ô tô"),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Radio(
+                            value: false,
+                            groupValue: controller.isCarReservation.value,
+                            onChanged: (value) {
+                              controller.updateIsCarReservation();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Xe máy")
+                      ],
+                    ))
 
                   ],
                 ),
@@ -237,10 +234,10 @@ class ItemBookWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10.0.h,),
-            Row(
+            product.store == null ? Text('Chưa có thông tin') : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(child: Text(product.store!.tencuahang.toString(),
+                Expanded(child: Text( product.store?.tencuahang ==null ? 'Chưa có thông tin' : product.store!.tencuahang.toString(),
                   style: TextStyle(
                     fontSize: 12,
 
@@ -252,7 +249,7 @@ class ItemBookWidget extends StatelessWidget {
                   children: [
                     FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
                     SizedBox(width: 3,),
-                    Text("${product.store?.khoangcachtoicuahang} km",
+                    Text("${ product.store?.khoangcachtoicuahang ==null ? '0.0' : product.store?.khoangcachtoicuahang} km",
                       style: TextStyle(
                           fontSize: 12.sp
                       ),

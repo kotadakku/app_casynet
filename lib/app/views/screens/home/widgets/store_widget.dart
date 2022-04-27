@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/home/cuahang_controller.dart';
+import '../../../../controller/home/radio_controller.dart';
 import '../../../../data/model/cuahang.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../widgets/image_network_loading.dart';
@@ -21,6 +22,7 @@ class StoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RadioController controller = Get.find();
     return Container(
       color: Colors.white,
       child: Column(
@@ -82,36 +84,29 @@ class StoreWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    GetBuilder<CuaHangController>(
-                        init: CuaHangController(),
-                        builder: (controller){
-                          return Row(
-                            children: [
-                              Radio(
-                                  value: true,
-                                  groupValue:
-                                  controller.isCar,
-                                  onChanged: (value) {
-                                    controller.updateIsCar(controller.isCar);
-                                    controller.updateAPI();
-                                  },
-                                  activeColor: Color(0xffDFB400)),
-                              Text("Ô tô"),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Radio(
-                                  value: false,
-                                  groupValue: controller.isCar,
-                                  onChanged: (value) {
-                                    controller.updateIsCar(controller.isCar);
-                                    controller.updateAPI();
-                                  },
-                                  activeColor: Color(0xffDFB400)),
-                              Text("Xe máy")
-                            ],
-                          );
-                        })
+                    Obx(()=>Row(
+                      children: [
+                        Radio(
+                            value: true,
+                            groupValue: controller.isCarStore.value,
+                            onChanged: (value) {
+                              controller.updateIsCarStore();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Ô tô"),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Radio(
+                            value: false,
+                            groupValue: controller.isCarStore.value,
+                            onChanged: (value) {
+                              controller.updateIsCarStore();
+                            },
+                            activeColor: Color(0xffDFB400)),
+                        Text("Xe máy")
+                      ],
+                    ))
                   ],
                 ),
                 GestureDetector(
@@ -181,164 +176,168 @@ class ItemCuaHangWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CuaHangController controller = Get.put(CuaHangController());
-    return Container(
-      width: 0.5.sw -7.5.w,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () {
-              if (store != null) Get.toNamed(
-                  Routes.STORE_DETAIL, arguments: { 'store': store});
-              FocusScope.of(context).unfocus();
-            },
-            child: Container(
-              height: 120.w,
-              width:  0.5.sw - 7.5.w,
-              child: ImageNetworkLoading(
-                image_url: store.anhsanpham.toString(),
-                fit: BoxFit.fill,
-              ),
-            )
-          ),
-          Container(
-            padding: EdgeInsets.all(5.0),
-            color: Color(0xffEFF1FC),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.thumb_up_alt_rounded,
-                      color: kTextColor_gray,
-                      size: IconSize.iconSize,
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Text(store.slthich.toString(), style: TextStyle(fontSize: 13))
-                  ],
-                ),
-                Row(
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.comment,
-                      size: IconSize.iconSize,
-                      color: kTextColor_gray,
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Text(store.slbinhluan.toString(),
-                        style: TextStyle(fontSize: 13))
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(store.slchiase.toString(),
-                        style: TextStyle(fontSize: 15)
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-
-                    Icon(
-                      Icons.star_outlined,
-                      color: kTextColor_gray,
-                      size: 12,
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 10.0.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    if (store != null) Get.toNamed(
-                        Routes.STORE_DETAIL, arguments: { 'store': store});
-                    FocusScope.of(context).unfocus();
-                  },
-                  child: Text(
-                    store.tencuahang.toString(),
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 15.sp
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-
-                onTap: (){
-                  controller.callPhone(store.sodienthoai.toString());
+    return LayoutBuilder(builder: (context, constraints) {
+      var divide = constraints.maxWidth > 785? 3: 2;
+      return Container(
+        width:  (1/divide).sw - 7.5.w,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+                onTap: () {
+                  if (store != null) Get.toNamed(
+                      Routes.STORE_DETAIL, arguments: { 'store': store});
+                  FocusScope.of(context).unfocus();
                 },
                 child: Container(
-                  padding: EdgeInsets.all(5.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.phoneFlip,
-                    color: kTextColor_gray,
-                    size: IconSize.iconSize,
+                  height: 120.w,
+                  width:  (1/divide).sw - 7.5.w,
+                  child: ImageNetworkLoading(
+                    image_url: store.anhsanpham.toString(),
+                    fit: BoxFit.fill,
                   ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10.0.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.mapLocationDot,
-                      color: kTextColor_gray,
-                      size: 15,
-                    ),
-                    SizedBox(
-                      width: 3.0.w,
-                    ),
-                    Expanded(
-                        child: Text(
-                          store.diachicuahang.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 12.sp),
-                        ))
-                  ],
-                ),
-              ),
-              Row(
+                )
+            ),
+            Container(
+              padding: EdgeInsets.all(5.0),
+              color: Color(0xffEFF1FC),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FaIcon(
-                    FontAwesomeIcons.locationArrow,
-                    color: kTextColor_gray,
-                    size: 15.0,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.thumb_up_alt_rounded,
+                        color: kTextColor_gray,
+                        size: IconSize.iconSize,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Text(this.store.slthich == null ? '0': store.slthich.toString(), style: TextStyle(fontSize: 13))
+                    ],
                   ),
-                  SizedBox(
-                    width: 3,
+                  Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.comment,
+                        size: IconSize.iconSize,
+                        color: kTextColor_gray,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Text(store.slbinhluan == null ? '0' : store.slbinhluan.toString(),
+                          style: TextStyle(fontSize: 13))
+                    ],
                   ),
-                  Text(
-                    "${store.khoangcachtoicuahang} km",
-                    style: TextStyle(fontSize: 12.sp),
+                  Row(
+                    children: [
+                      Text(store.slchiase == null ? '0.0' : store.slchiase.toString(),
+                          style: TextStyle(fontSize: 15)
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+
+                      Icon(
+                        Icons.star_outlined,
+                        color: kTextColor_gray,
+                        size: 12,
+                      ),
+                    ],
                   )
                 ],
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+            SizedBox(
+              height: 10.0.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      if (store != null) Get.toNamed(
+                          Routes.STORE_DETAIL, arguments: { 'store': store});
+                      FocusScope.of(context).unfocus();
+                    },
+                    child: Text(
+                      store.tencuahang.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 15.sp
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+
+                  onTap: (){
+                    controller.callPhone(store.sodienthoai.toString());
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(5.0),
+                    child: FaIcon(
+                      FontAwesomeIcons.phoneFlip,
+                      color: kTextColor_gray,
+                      size: IconSize.iconSize,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10.0.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.mapLocationDot,
+                        color: kTextColor_gray,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 3.0.w,
+                      ),
+                      Expanded(
+                          child: Text(
+                          store.diachicuahang == null? 'Chưa có thông tin' :
+                            store.diachicuahang.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 12.sp),
+                          ))
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.locationArrow,
+                      color: kTextColor_gray,
+                      size: 15.0,
+                    ),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    Text(
+                      "${store.khoangcachtoicuahang == null? 0.0: store.khoangcachtoicuahang} km",
+                      style: TextStyle(fontSize: 12.sp),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 
