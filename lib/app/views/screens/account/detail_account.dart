@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
-import '../../../controller/authentication_manager.dart';
+import '../../../controller/auth/authentication_manager.dart';
 import '../../../routes/app_pages.dart';
 import '../../widgets/account/appbar_account_widget.dart';
 import '../../widgets/account/profile_account_widget.dart';

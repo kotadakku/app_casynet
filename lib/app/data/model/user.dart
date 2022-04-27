@@ -8,13 +8,19 @@ class User{
   bool? gender;
   String? birthday;
   String? image;
+  bool? receiveNotification;
 
-  User({this.email, this.password, this.id, this.token, this.username, this.phone, this.gender, this.birthday, this.image});
+  User({this.email, this.password, this.id, this.token, this.username, this.phone, this.gender, this.birthday, this.image, this.receiveNotification});
+
   Map<String, dynamic> toJsonRegister(){
     return {
       'email': this.email,
       'password': this.password,
-      'username': this.username
+      'username': this.username,
+      'phone': this.phone,
+      'birthday': this.birthday,
+      'gender': this.gender,
+      'receiveNotification': this.receiveNotification,
     };
   }
 

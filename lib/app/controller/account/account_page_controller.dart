@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../authentication_manager.dart';
+import '../auth/authentication_manager.dart';
 
 class AccountPageController extends GetxController{
   RxBool isAuth = true.obs;
