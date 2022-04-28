@@ -24,7 +24,6 @@ class RegisterWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Form(
         key: controller.formRegisterKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: ListView(
           children: [
             Column(children: [
@@ -33,8 +32,8 @@ class RegisterWidget extends StatelessWidget {
               ),
               //TextField Họ và tên
               TextFormField(
-
                   textAlignVertical: TextAlignVertical.center,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   cursorColor: kYellowColor,
                   onSaved: (value) {
                     user.username = value;
@@ -82,8 +81,8 @@ class RegisterWidget extends StatelessWidget {
               ),
               //TextField Email
               TextFormField(
-
                   textAlignVertical: TextAlignVertical.center,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   onSaved: (value) {
                     user.email = value;
                   },
@@ -129,6 +128,7 @@ class RegisterWidget extends StatelessWidget {
               //TextField Số điện thoại
               TextFormField(
                   textAlignVertical: TextAlignVertical.center,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   onSaved: (value) {
                     user.phone = value;
                   },
@@ -174,6 +174,7 @@ class RegisterWidget extends StatelessWidget {
               ),
               // TextField mật khẩu
               TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: controller.passwordController,
                   textAlignVertical: TextAlignVertical.center,
                   onSaved: (value) {
@@ -222,6 +223,7 @@ class RegisterWidget extends StatelessWidget {
               ),
               //TextField xác nhận mật khẩu
               TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   textAlignVertical: TextAlignVertical.center,
                   obscureText: true,
                   cursorColor: kYellowColor,
@@ -271,6 +273,7 @@ class RegisterWidget extends StatelessWidget {
               TextFormField(
                   textAlignVertical: TextAlignVertical.center,
                   cursorColor: kYellowColor,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.birthDayTextController,
                   onSaved: (value) {
                     user.birthday = value;
