@@ -9,6 +9,12 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   late final AuthenticationManager _authManager;
   late TabController controller;
 
+  final GlobalKey<FormState>loginFormKey = GlobalKey<FormState>();
+
+  late TextEditingController emailController, passwordController;
+  var email = '';
+  var password = '';
+
 
   @override
   void onInit() {
@@ -16,8 +22,30 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
     _authManager = Get.find();
     int index = Get.arguments;
     controller = TabController(length:2, vsync: this, initialIndex: index);
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+
   }
 
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  String?  validateEmail(String value){
+    if(!GetUtils.isEmail(value)){
+      return "Provide valid Email";
+    }
+  }
+  void checkLogin(){
+    final isValid = loginFormKey.currentState!.validate();
+    if(!isValid){
+      return;
+    }
+    loginFormKey.currentState!.save();
+  }
 
   Future<void> loginUser(User user) async {
     AuthProvider().fetchLogin(user: user,

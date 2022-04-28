@@ -30,9 +30,18 @@ class SignInWidget extends StatelessWidget {
                   children: [
                     SizedBox(height: 30,),
                     TextFormField(
-                      controller: _emailController,
+                      /*controller: _emailController,*/
                       onSaved: (value){
                         user.email = value;
+                      },
+                      validator: (value){
+                        if(value!.isEmpty){
+                          return "Bạn chưa nhập email";
+                        }if(!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)){
+                          return "Bạn chưa nhập đúng định dạng email, Ex: a@gmail.com";
+                        }/*if(){
+                        return "Không tồn tại tài khoản";
+                        }*/
                       },
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
@@ -62,10 +71,17 @@ class SignInWidget extends StatelessWidget {
                     TextFormField(
                         textAlignVertical: TextAlignVertical.center,
                         obscureText: true,
+
                         onSaved: (value){
                           user.password = value;
                         },
-
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return "Bạn chưa nhập mật khẩu";
+                          }/*if(){
+                            return "Bạn nhập chưa đúng mật khẩu";
+                          }*/
+                        },
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
@@ -98,11 +114,15 @@ class SignInWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 30,),
                     ElevatedButton(
+
                       onPressed: () {
+
+
                         controller.formSignInKey.currentState?.save();
                         print(user.email);
                         print(user.password);
                         controller.loginUser(user);
+                        print(user.toJsonLogin());
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
