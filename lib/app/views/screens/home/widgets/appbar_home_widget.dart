@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../controller/account/new_address_controller.dart';
+import '../../../../controller/account/search_controller.dart';
 import '../../../../controller/bottom_nav_controller.dart';
 import '../../../../controller/home/home_controller.dart';
 import '../../../../routes/app_pages.dart';
@@ -20,6 +22,8 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.find<HomeController>();
+    NewAddressController regioncontroller = Get.find<NewAddressController>();
+    SearchController searchController = Get.find();
     return AppBar(
       backgroundColor: Colors.white,
       leading: GestureDetector(
@@ -39,10 +43,11 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
       title: Container(
         height: 40,
         child:  TextField(
-          style: TextStyle(
-            fontSize: 15.sp,
-            color: AppColors.textGrayBoldColor,
-          ),
+          readOnly: true,
+          onTap: (){
+            Get.toNamed(Routes.SEARCH);
+          },
+
           onChanged: (value) => controller.onChangeSearchText(value),
           textAlignVertical: TextAlignVertical.center,
           cursorColor: kTextColor,
@@ -66,38 +71,49 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
 
               ),
               hintText: 'Search Casynet',
-              suffixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0.w),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    VerticalDivider(
-                      width: 20,
-                      thickness: 1,
-                      indent: 5,
-                      endIndent: 5,
-                      color: AppColors.borderGray_0_5,
-                    ),
-                    SizedBox(width: 2.0.w,),
-                    SvgPicture.asset(
-                        "assets/home/icon_location.svg",
-                        width: 14.sp),
-                    SizedBox(width: 5.0.w,),
-                    const Text(
-                      "Hà Nội",
-                      style: TextStyle(
-                        color: kTextColor,
-                        fontSize: 13,
+              suffixIcon: GestureDetector(
+                onTap: (){
+                  var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                    "title": "Chọn tỉnh/ thành phố", "regions": regioncontroller.provinces
+                  });
+                  if(data != null){
+                    data.then((value){
+                      searchController.setLocation(value['name']);
+                    });
+                  }
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      VerticalDivider(
+                        width: 20,
+                        thickness: 1,
+                        indent: 5,
+                        endIndent: 5,
+                        color: AppColors.borderGray_0_5,
                       ),
-                    ),
-                    SizedBox(width: 5.0.w,),
-                  ],
+                      SizedBox(width: 2.0.w,),
+                      SvgPicture.asset(
+                          "assets/home/icon_location.svg",
+                          width: 14.sp),
+                      SizedBox(width: 5.0.w,),
+                      Obx(()=> Text(
+                        searchController.location.value,
+                        style: TextStyle(
+                          color: kTextColor,
+                          fontSize: 13,
+                        ),
+                      ),),
+                      SizedBox(width: 5.0.w,),
+                    ],
+                  ),
                 ),
               )
           ),
         ),
       ),
-      elevation: 10,
       actions: [
         Container(
             width: 40,

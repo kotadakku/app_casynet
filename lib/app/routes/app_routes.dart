@@ -18,6 +18,7 @@ abstract class Routes{
   static const ACCOUNT_WALLET_VOUCHER = '/account/wallet_voucher';
   static const ACCOUNT_CASYCOIN = '/account/casycoin';
   static const ACCOUNT_CHANGE_PASS = '/account/change_password';
+  static const SELECT_REGION = '/select_region';
 
   static const PRODUCT_DETAIL= '/product';
   static const PRODUCTS_BY_CATEGORY = '/products';
@@ -25,5 +26,7 @@ abstract class Routes{
   static const STORE_DETAIL = '/store';
   static const MESSAGES = '/messages';
   static const AUTH = '/auth';
+
+  static const SEARCH = '/search';
 
 }

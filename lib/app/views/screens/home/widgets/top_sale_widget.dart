@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,11 +27,19 @@ class TopSaleWidget extends StatelessWidget {
                     isLoading: controller.isLoadingSales,
                     shimmer: PromotionBlurWidget(),
                     child: Center(
-                      child: ListView(
+                      child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
-                          children: controller.listSales.map((e) => CardItem(image_url: e.image, title: e.title)).toList()
+                          itemCount: controller.listSales.length,
+                          itemBuilder: (context, index){
+                            if(controller.listSales.length ==0){
+                              return Text("Không có dữ liệu");
+                            }
+                            else{
+                              return CardItem(image_url: controller.listSales[index].image, title: controller.listSales[index].title);
+                            }
+                          },
                       ),
                     )
                 );
@@ -57,7 +67,7 @@ class CardItem extends StatelessWidget {
              SizedBox(
                height: 50,
                width: 50,
-               child: ImageNetworkLoading(image_url: image_url),
+               child: Image.memory(base64.decode(image_url)),
              ),
 
              SizedBox(height: 10,),

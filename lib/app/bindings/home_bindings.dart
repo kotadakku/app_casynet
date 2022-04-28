@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/controller/account/search_controller.dart';
 import 'package:app_casynet/app/controller/home/banner_controller.dart';
 import 'package:get/get.dart';
 
@@ -10,5 +11,6 @@ class HomeBindings extends Bindings{
   void dependencies() {
     Get.lazyPut(() => BannerController());
     Get.lazyPut(() => RadioController());
+    Get.put(SearchController());
   }
 }

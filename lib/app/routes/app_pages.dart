@@ -1,4 +1,6 @@
 
+import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
+import 'package:app_casynet/app/views/screens/search_screen.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -51,10 +53,14 @@ class AppPages {
         binding: HomeBindings()
     ),
     GetPage(
+      name: Routes.SEARCH,
+      page: ()=> SearchSreen()),
+    GetPage(
       name: Routes.FILTER,
       page:() => FilterProductPage2(),
       binding: FilterProductBindings(),
     ),
+
     GetPage(
       name: Routes.FILTER_MAP,
       page:()=> FilterProductMap()
@@ -108,7 +114,9 @@ class AppPages {
       page:()=> ProductsPage(),
       binding:ProductsBindings(),
     ),
-
+    GetPage(name: Routes.SELECT_REGION,
+      page: ()=>SelectRegionPage()
+    ),
     GetPage(
       name: Routes.ACCOUNT_BASE,
       page: ()=>AccountBasePage(),

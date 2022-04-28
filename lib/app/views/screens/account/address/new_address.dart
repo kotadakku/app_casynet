@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/account/new_address_controller.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../widgets/account/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 import 'select_region.dart';
@@ -27,11 +28,13 @@ class NewAddress extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 30,),
-                  Text("Thêm địa chỉ mới",
-                    style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold
+
+                  Padding(padding: EdgeInsets.symmetric(vertical: 15.0),
+                    child: Text("Thêm địa chỉ mới",
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold
+                      ),
                     ),
                   ),
                   Divider(
@@ -97,7 +100,9 @@ class NewAddress extends StatelessWidget {
                  GestureDetector(
                    behavior: HitTestBehavior.translucent,
                    onTap: (){
-                     var data = Get.to(SelectRegionPage(title: "Chọn tỉnh/ thành phố", regions: controller.provinces));
+                     var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                       "title": "Chọn tỉnh/ thành phố", "regions": controller.provinces
+                     });
                      if(data != null){
                        data.then((value){
                          controller.textProvinceCotroller.text = value['name'];
@@ -123,6 +128,7 @@ class NewAddress extends StatelessWidget {
                              textAlign: TextAlign.end,
                              onSaved: (value)=> controller.address.province = value!,
                              decoration: InputDecoration(
+                               contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                  border: InputBorder.none,
                                  hintText: "Chọn tỉnh/ thành phố",
                                  hintStyle: TextStyle(
@@ -142,7 +148,10 @@ class NewAddress extends StatelessWidget {
                   GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: (){
-                      var data = Get.to(SelectRegionPage(title: "Chọn quận/ huyện", regions: controller.districts));
+                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                        "title": "Chọn tỉnh/ thành phố", "regions":  controller.districts
+                      });
+
                       if(data!=null){
                         data.then((value){
                           controller.textDistrictController.text = value['name'];
@@ -163,11 +172,13 @@ class NewAddress extends StatelessWidget {
                         Expanded(
                             child: TextFormField(
                               readOnly: true,
+
                               controller: controller.textDistrictController,
                               textAlign: TextAlign.end,
                               onSaved: (value) => controller.address.district = value!,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
+                                  contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                   hintText: "Chọn quận/ huyện",
                                   hintStyle: TextStyle(
                                       color: kTextColor
@@ -186,7 +197,9 @@ class NewAddress extends StatelessWidget {
                   GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: (){
-                      var data = Get.to(SelectRegionPage(title: "Chọn xã/ phường", regions: controller.communes));
+                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                        "title": "Chọn xã/ phường", "regions":  controller.communes
+                      });
                       if(data!=null){
                         data.then((value){
                           controller.textCommuneController.text = value['name'];
@@ -209,6 +222,7 @@ class NewAddress extends StatelessWidget {
                               controller: controller.textCommuneController,
                               cursorColor: kTextColor_gray,
                               decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                   border: InputBorder.none,
                                   hintText: "Chọn Phường/Xã",
                                   hintStyle: TextStyle(

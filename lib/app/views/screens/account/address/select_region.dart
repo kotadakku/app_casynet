@@ -4,12 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class SelectRegionPage extends StatelessWidget {
-  final String title;
-  final List regions;
-  const SelectRegionPage({Key? key, required this.title, required this.regions}) : super(key: key);
+
+  const SelectRegionPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final String title = Get.arguments['title'];
+    final List regions = Get.arguments['regions'];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
