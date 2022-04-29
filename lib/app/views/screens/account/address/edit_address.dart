@@ -82,31 +82,7 @@ class EditAddress extends StatelessWidget {
                       Divider(
                         indent: 10,
                       ),
-                      TextFormField(
-                        // keyboardType: TextInputType.phone,
-                        initialValue: address.phone,
-                        textAlign: TextAlign.end,
-                        cursorColor: kTextColor_gray,
-
-                        onSaved: (value)=> controller.address.phone = value!,
-                        onChanged: (value){
-                          String test = value;
-                          print(test);
-                        },
-                        validator: (value){
-                          if (!RegExp(r"^0[0-9]{9}$").hasMatch(value!)) {
-                            return "Bạn nhập số điện thoại chưa đúng định dạng";
-                          }
-                        },
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Nhập số điện thoại",
-                            hintStyle: TextStyle(
-                                color: kTextColor
-                            )
-                        ),
-                      ),
-                     /* Padding(padding: EdgeInsets.only(left: 10, right: 10 ), child: Row(
+                      Padding(padding: EdgeInsets.only(left: 10, right: 10 ), child: Row(
                         children: [
                           Expanded(
                               child: Text("Số điện thoại",
@@ -121,9 +97,7 @@ class EditAddress extends StatelessWidget {
                                 initialValue: address.phone,
                                 textAlign: TextAlign.end,
                                 cursorColor: kTextColor_gray,
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.digitsOnly,
-                                ],
+
                                 onSaved: (value)=> controller.address.phone = value!,
                                 onChanged: (value){
                                   String test = value;
@@ -143,7 +117,7 @@ class EditAddress extends StatelessWidget {
                                 ),
                               ))
                         ],
-                      ),),*/
+                      ),),
                       Divider(
                         indent: 10,
                       ),
