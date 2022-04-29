@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/detail_product_controller.dart';
-import '../../theme/app_colors.dart';
-import '../../theme/app_sizes.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/app_sizes.dart';
 
 
 class VoteProductWidget extends StatelessWidget {

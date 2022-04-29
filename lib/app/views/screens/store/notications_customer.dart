@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../controller/store/datetime_range_controller.dart';
-import '../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 import 'new_notications.dart';
 
 

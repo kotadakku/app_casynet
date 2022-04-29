@@ -9,7 +9,7 @@ import '../controller/home/radio_controller.dart';
 class HomeBindings extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut(() => BannerController());
+
     Get.lazyPut(() => RadioController());
     Get.put(SearchController());
   }

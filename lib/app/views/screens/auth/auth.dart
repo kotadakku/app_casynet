@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'widgets/register_widget.dart';
-import '../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 import 'widgets/signin_widget.dart';
 
 class AuthPage extends StatelessWidget {

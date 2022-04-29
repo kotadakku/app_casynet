@@ -1,11 +1,11 @@
 
-import 'package:app_casynet/app/views/screens/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../routes/app_pages.dart';
-import '../../theme/textTheme.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/textTheme.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({Key? key}) : super(key: key);

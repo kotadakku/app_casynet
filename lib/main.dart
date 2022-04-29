@@ -16,7 +16,7 @@ import 'app/views/screens/detail_app.dart';
 import 'app/views/screens/home/home.dart';
 import 'app/views/screens/notfications.dart';
 import 'app/views/screens/splash/splash.dart';
-import 'app/views/screens/theme/app_colors.dart';
+import 'app/views/theme/app_colors.dart';
 import 'app/views/widgets/bottom_navigator.dart';
 
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
 
-  // This widget is the root of your application.
+  // This widgets is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

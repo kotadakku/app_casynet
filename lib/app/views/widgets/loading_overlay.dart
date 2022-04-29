@@ -17,7 +17,7 @@ class LoadingOverlay extends StatelessWidget {
     if (isLoading) {
       return Stack(
         children: [
-          if(this.shimmer != null) this.shimmer!,
+          if(this.shimmer != null) this.shimmer! else child,
           Container(
             height: 200,
             child: Center(

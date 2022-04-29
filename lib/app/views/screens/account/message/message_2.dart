@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 class MessageAccount_2 extends StatelessWidget {
   const MessageAccount_2({Key? key}) : super(key: key);

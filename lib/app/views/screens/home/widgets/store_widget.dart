@@ -13,8 +13,8 @@ import '../../../../routes/app_pages.dart';
 import '../../../widgets/image_network_loading.dart';
 import '../../../widgets/loading_overlay.dart';
 import '../../../widgets/shimmer_loading.dart';
-import '../../theme/app_colors.dart';
-import '../../theme/app_sizes.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/app_sizes.dart';
 
 /* */
 class StoreWidget extends StatelessWidget {

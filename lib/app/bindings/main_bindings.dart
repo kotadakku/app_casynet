@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../controller/account/information_address_controller.dart';
 import '../controller/account/new_address_controller.dart';
 import '../controller/auth/authentication_manager.dart';
+import '../controller/home/banner_controller.dart';
 import '../controller/home/cuahang_controller.dart';
 import '../controller/detail_app_controller.dart';
 import '../controller/home/datcho_controller.dart';
@@ -11,6 +12,7 @@ class MainBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(HomeController());
+    Get.lazyPut(() => BannerController());
     Get.lazyPut(() => DetailAppController(), fenix: true );
     Get.put(NewAddressController());
     Get.put(InformationAddressController());

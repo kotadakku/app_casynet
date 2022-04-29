@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../widgets/account/appbar_account_widget.dart';
-import '../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 class FollowedStorePage extends StatelessWidget {
   const FollowedStorePage({Key? key}) : super(key: key);

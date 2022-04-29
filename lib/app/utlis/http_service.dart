@@ -13,10 +13,12 @@ class ApiRequest {
         headers: {
           'Authorization': token == null ? '' : 'Bearer $token'
         },
-        baseUrl: '',
+        baseUrl: 'https://casynet-api.herokuapp.com/api',
         // connectTimeout: 5000,
         // receiveTimeout: 5000,
       )
+    )..interceptors.add(
+      LoggingInterceptors()
     );
 
   }
@@ -37,6 +39,7 @@ class ApiRequest {
     Function(dynamic error)? onError,
     required Map<String, dynamic> data,
   }){
+    print(this.url);
     _dio().post(this.url, queryParameters: null, data: data).then((value){
       if(onSuccess != null) onSuccess(value.data);
     }).catchError((error){
@@ -191,6 +194,8 @@ class LoggingInterceptors extends Interceptor {
     print(
         "${dioError.response != null ? dioError.response?.data : 'Unknown Error'}");
     print("<-- End error");
+    return super.onError(dioError, handler);
+
   }
 
   @override
@@ -203,5 +208,6 @@ class LoggingInterceptors extends Interceptor {
     }
     print("Response: ${response.data}");
     print("<-- END HTTP");
+    return super.onResponse(response, handler);
   }
 }

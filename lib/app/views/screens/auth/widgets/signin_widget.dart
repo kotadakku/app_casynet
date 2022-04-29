@@ -1,11 +1,12 @@
 
 import 'package:app_casynet/app/controller/auth/auth_controller.dart';
+import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/model/user.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 
 class SignInWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class SignInWidget extends StatelessWidget {
     AuthController authController = Get.find();
     User user = User();
 
-    return ListView(
+    return Obx(()=>LoadingOverlay(isLoading: authController.sigin_loading.value, child: ListView(
       children: [
         Column(
           children: [
@@ -116,26 +117,9 @@ class SignInWidget extends StatelessWidget {
                     SizedBox(height: 30,),
                     ElevatedButton(
 
-                      onPressed: () async  {
+                      onPressed: (){
                         authController.formSignInKey.currentState?.save();
-                        await authController.loginUser(user);
-                        print(user.toJsonLogin());
-
-
-                        Get.back();
-                        Get.snackbar("", "Đăng nhập thành công",
-                          duration: 2.seconds,
-                          // it could be any reasonable time, but I set it lo-o-ong
-                          snackPosition: SnackPosition.BOTTOM,
-                          snackStyle: SnackStyle.FLOATING,
-                          //*showProgressIndicator: true,*//
-                          isDismissible: true,
-                          backgroundColor: Colors.black26,
-
-                          colorText: Colors.white,
-                        );
-
-
+                        authController.loginUser(user);
                       },
                       style: ElevatedButton.styleFrom(
                           primary: kYellowColor,
@@ -257,6 +241,6 @@ class SignInWidget extends StatelessWidget {
           ],
         ),
       ],
-    );
+    )));
   }
 }

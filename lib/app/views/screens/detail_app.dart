@@ -1,10 +1,10 @@
 
-import 'package:app_casynet/app/views/screens/theme/app_colors.dart';
-import 'package:app_casynet/app/views/screens/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/detail_app_controller.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_sizes.dart';
 import 'benefit/benefit_owner.dart';
 import 'benefit/benefit_store.dart';
 import 'home/widgets/appbar_home_widget.dart';

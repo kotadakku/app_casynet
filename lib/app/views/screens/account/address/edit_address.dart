@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 
 import '../../../../controller/account/edit_address_controller.dart';
 import '../../../widgets/account/appbar_account_widget.dart';
-import '../../theme/app_colors.dart';
-import '../../theme/app_sizes.dart';
+import '../../../theme/app_colors.dart';
+
 
 
 class EditAddress extends StatelessWidget {
@@ -40,7 +40,6 @@ class EditAddress extends StatelessWidget {
                             ),
                           ),
                           InkWell(
-                            child:  FaIcon(FontAwesomeIcons.solidTrashCan, color: kTextColor, size: sizeIcon.width,),
                             onTap: (){
                               print("Delete");
                               controller.deleteAddress(address.id);

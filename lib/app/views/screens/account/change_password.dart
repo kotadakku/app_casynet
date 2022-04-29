@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../controller/account/change_password_controller.dart';
 
 import '../../widgets/account/appbar_account_widget.dart';
-import '../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 
 class ChangePasswordAccount extends StatelessWidget {

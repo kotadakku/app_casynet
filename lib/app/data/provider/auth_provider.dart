@@ -44,7 +44,6 @@ class AuthProvider {
   }) {
     ApiRequest(url: 'https://client.casynet.com/rest/default/V1/customers/me', token: token).get(
         onSuccess: (data){
-          print(data);
           onSuccess(User.successLogin(data));
         },
         onError: (error) { if(onError!= null) onError(error);}

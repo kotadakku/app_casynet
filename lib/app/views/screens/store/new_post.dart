@@ -8,7 +8,7 @@ import 'package:video_player/video_player.dart';
 
 import '../../../controller/CuaHangCuaToi/hinh_thuc_selection_controller.dart';
 import '../../../controller/store/imagepicker_controller.dart';
-import '../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 class NewPost extends StatelessWidget {
   HinhThucSelectionController htSelecttion =

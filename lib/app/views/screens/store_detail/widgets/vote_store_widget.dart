@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 import '../../../../../data.dart';
 import '../../../../controller/detail_store_controller.dart';
-import '../../theme/app_colors.dart';
-import '../../theme/app_sizes.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/app_sizes.dart';
 import 'gift_store_widget.dart';
 
 class VoteStoreWidget extends StatelessWidget {

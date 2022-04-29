@@ -1,4 +1,5 @@
 import 'package:app_casynet/app/data/model/address.dart';
+import 'package:app_casynet/app/utlis/app_config.dart';
 
 class User{
   int? id;
@@ -61,7 +62,7 @@ class User{
           phone = v['value'];
         };
       if(v['attribute_code'] == 'avatar'){
-        image = 'https://client.casynet.com${v['value']}';
+        image = '${AppConfig.URL_IMAGE_CUSTOMER}${v['value']}';
       };
       if(v['attribute_code'] == 'follow_seller'){
         follow_seller = int.parse(v['value']);

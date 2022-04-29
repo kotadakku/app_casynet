@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/home/home_controller.dart';
-import '../../screens/theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget {
 

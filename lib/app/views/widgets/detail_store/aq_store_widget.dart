@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../data.dart';
-import '../../screens/theme/app_colors.dart';
-import '../../screens/theme/app_sizes.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 import 'gift_store_widget.dart';
 
 class AQStoreWidget extends StatelessWidget {

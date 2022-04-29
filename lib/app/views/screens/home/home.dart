@@ -8,7 +8,6 @@ import 'package:app_casynet/app/views/screens/home/widgets/recommend_widget.dart
 import 'package:app_casynet/app/views/screens/home/widgets/top_sale_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/reservation_home_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/store_widget.dart';
-import 'package:app_casynet/app/views/screens/theme/textTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

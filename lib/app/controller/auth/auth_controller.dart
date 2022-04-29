@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 
 import '../../data/model/user.dart';
 import '../../data/provider/auth_provider.dart';
+import '../../routes/app_pages.dart';
 
 class AuthController extends GetxController with GetSingleTickerProviderStateMixin {
   late final AuthenticationManager _authManager;
   late TabController controller;
+  var sigin_loading = false.obs;
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
@@ -46,12 +48,14 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
     loginFormKey.currentState!.save();
   }
 
-  Future<void> loginUser(User user) async {
-     await AuthProvider().fetchLogin(user: user,
+  void loginUser(User user) {
+      sigin_loading.value = true;
+     AuthProvider().fetchLogin(user: user,
         onSuccess: (data){
-        print(data);
           if(data!=null){
             _authManager.login(data);
+            sigin_loading.value = false;
+            Get.offNamed(Routes.HOME);
           }
           else {
             /// Show user a dialog about the error response

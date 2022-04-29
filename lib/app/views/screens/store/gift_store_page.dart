@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 import 'new_promotion.dart';
 
 class GiftStorePage extends StatelessWidget {

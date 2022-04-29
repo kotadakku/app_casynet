@@ -8,8 +8,8 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../controller/detail_store_controller.dart';
 import '../../../data/model/cuahang.dart';
 import '../../../routes/app_pages.dart';
-import '../../screens/theme/app_colors.dart';
-import '../../screens/theme/app_sizes.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 import '../image_network_loading.dart';
 
 class ProfileStoreWidget extends StatelessWidget {

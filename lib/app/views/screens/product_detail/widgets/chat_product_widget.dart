@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../../data.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 class ChatProductWidget extends StatelessWidget {
   const ChatProductWidget({Key? key}) : super(key: key);
