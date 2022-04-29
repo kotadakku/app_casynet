@@ -12,10 +12,10 @@ class AuthProvider {
     onSuccess(data)?,
     onError(error)?,
     beforePost()?}) {
-    ApiRequest(url: 'https://casynet-api.herokuapp.com/api/login').post(
+    ApiRequest(url: 'https://client.casynet.com/rest/V1/integration/customer/token').post(
         data: user.toJsonLogin(),
         onSuccess: (data){
-          onSuccess!(User.successLogin(data));
+          onSuccess!(data);
         },
         onError: (error) { if(onError!= null) onError(error);}
     );
@@ -42,7 +42,7 @@ class AuthProvider {
     onError(error)?,
     beforePost()?
   }) {
-    ApiRequest(url: 'https://casynet-api.herokuapp.com/api/user', token: token).get(
+    ApiRequest(url: 'https://client.casynet.com/rest/default/V1/customers/me', token: token).get(
         onSuccess: (data){
           print(data);
           onSuccess(User.successLogin(data));

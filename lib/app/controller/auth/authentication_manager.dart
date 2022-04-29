@@ -9,10 +9,7 @@ import 'cache_manager.dart';
 
 class AuthenticationManager extends GetxController with CacheManager {
   final isLogged = false.obs;
-  GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
-  GlobalKey<FormState> formRegisterKey = GlobalKey<FormState>();
-  var birthDayTextController =TextEditingController();
-  var passwordController = TextEditingController();
+
   late User user_current;
 
 
@@ -22,36 +19,17 @@ class AuthenticationManager extends GetxController with CacheManager {
   }
 
   void login(String? token) async {
-    isLogged.value = true;
     //Token is cached
     await saveToken(token);
-  }
+    fetchUser(token);
+    print(user_current.storeId);
+    isLogged.value = true;
 
-  void loginUser(User user){
-    AuthProvider().fetchLogin(user: user,
-      onSuccess: (data){
-      if(data!=null){
-        login(data.token);
-        fetchCurrentUser(data.token);
-      }
-    },
-    onError: (error) {
-      Get.defaultDialog(
-          middleText: '$error!',
-          textConfirm: 'OK',
-          confirmTextColor: Colors.white,
-          onConfirm: () {
-            Get.back();
-          });
-    }
-    );
   }
 
   void registerUser(User user){
-    print("${user.email}, ${user.password}, ${user.username}");
     AuthProvider().fetchRegister(user: user,
         onSuccess: (data){
-
           if(data!=null){
             login(data.token);
           }
@@ -66,16 +44,13 @@ class AuthenticationManager extends GetxController with CacheManager {
               });
         }
     );
-    Get.back();
   }
 
-  fetchCurrentUser(token){
+  Future<void> fetchUser(String? token ) async {
     AuthProvider().fetchCurrentUser(
         token: token,
-        onSuccess: (data){
-
-          if(data!=null){
-            login(data.token);
+        onSuccess: (data) {
+          if (data != null) {
             user_current = data;
             update();
           }
@@ -97,7 +72,7 @@ class AuthenticationManager extends GetxController with CacheManager {
   void checkLoginStatus() {
     final token = getToken();
     if (token != null) {
-      fetchCurrentUser(token);
+      fetchUser(token);
       isLogged.value = true;
     }
   }

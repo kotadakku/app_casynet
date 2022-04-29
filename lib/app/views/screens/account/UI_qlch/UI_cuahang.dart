@@ -1,9 +1,9 @@
 
+import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../account_login.dart';
 import 'Appbar.dart';
 import 'Bottommenu.dart';
 import 'UI_cacmenuch/UI_Bangdieukhien.dart';
@@ -27,7 +27,7 @@ class menucuahang extends StatelessWidget {
             icon: Icon(Icons.arrow_back_rounded),
             color: Colors.amberAccent,
             onPressed: () {
-              Get.to(AccountLoginPage());
+              Get.toNamed(Routes.ACCOUNT_BASE);
             },
           ),
         ),

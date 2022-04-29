@@ -1,5 +1,6 @@
 
 
+import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -32,22 +33,29 @@ class AccountDetailPage extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 20.h),
-                    child: Center(
-                        child: Stack(
-                          children: [
-                            ShadowOfDoubt(diameter: 100, origin: Offset(0,110),),
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: ExactAssetImage("assets/account/image_user.png"),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ShadowOfDoubt(diameter: 100, origin: Offset(0,110),),
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: kYellowColor, width: 2),
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child:  Stack(
+                            children: [
+                              Positioned.fill(
+                                child: ClipOval(
+                                  child: ImageNetworkLoading(image_url: controller.user_current.image.toString()),
                                 ),
-                                border: Border.all(color: kYellowColor, width: 2),
-                                color: Colors.white,
-                                shape: BoxShape.circle,
                               ),
-                              child: Align(
+
+                              Positioned(
+                                right: 0,
+                                bottom: 0,
                                 child: Container(
                                   width: 30,
                                   height: 30,
@@ -60,12 +68,16 @@ class AccountDetailPage extends StatelessWidget {
                                     backgroundColor: kYellowColor,
                                   ),
                                 ),
-                                alignment: Alignment.bottomRight,
-                              ),
-                            ),
-                          ],
+                              )
 
-                        )),
+                            ],
+                          )
+                        ),
+
+
+                      ],
+
+                    )
                   ),
                   Divider(
                     indent: 10.h,
@@ -84,7 +96,7 @@ class AccountDetailPage extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text(controller.user_current.username.toString()),
+                                Text('${controller.user_current.lastname.toString()} ${controller.user_current.firstname.toString()}'),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                                   child: Icon(
@@ -150,7 +162,7 @@ class AccountDetailPage extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  "Thêm",
+                                  controller.user_current.phone == null ? "Thêm": controller.user_current.phone.toString(),
                                   style: TextStyle(color: kTextLink),
                                 ),
                                 Padding(
@@ -207,7 +219,7 @@ class AccountDetailPage extends StatelessWidget {
                             Text("Giới tính"),
                             Row(
                               children: [
-                                Text("Nữ"),
+                                Text(controller.user_current.gender != null ? (controller.user_current.gender == 1 ? "Nam": 'Nữ'): "Chưa có thông tin"),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                                   child: Icon(
@@ -234,10 +246,12 @@ class AccountDetailPage extends StatelessWidget {
                             GestureDetector(
                               child: Row(
                                 children: [
+                                controller.user_current.birthday == null ?
+
                                   Obx(()=>Text(
                                     date_birthday.value == "" ? "Thiết lập ngay" :date_birthday.value,
                                     style: TextStyle(color: kTextColor),
-                                  ),),
+                                  ),): Text(controller.user_current.birthday.toString()),
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                                     child: Icon(

@@ -1,10 +1,11 @@
 
+import 'package:app_casynet/app/controller/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import '../../../controller/auth/authentication_manager.dart';
-import '../../../data/model/user.dart';
-import '../../screens/theme/app_colors.dart';
+
+import '../../../../data/model/user.dart';
+import '../../theme/app_colors.dart';
 
 
 class SignInWidget extends StatelessWidget {
@@ -12,10 +13,8 @@ class SignInWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationManager controller = Get.find();
+    AuthController authController = Get.find();
     User user = User();
-
-    var _emailController = TextEditingController();
 
     return ListView(
       children: [
@@ -23,7 +22,7 @@ class SignInWidget extends StatelessWidget {
           children: [
             Form(
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: controller.formSignInKey,
+              key: authController.formSignInKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: Column(
@@ -43,6 +42,7 @@ class SignInWidget extends StatelessWidget {
                         return "Không tồn tại tài khoản";
                         }*/
                       },
+                        initialValue: '0961670608',
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
@@ -71,6 +71,7 @@ class SignInWidget extends StatelessWidget {
                     TextFormField(
                         textAlignVertical: TextAlignVertical.center,
                         obscureText: true,
+                        initialValue: '123456',
 
                         onSaved: (value){
                           user.password = value;
@@ -115,15 +116,26 @@ class SignInWidget extends StatelessWidget {
                     SizedBox(height: 30,),
                     ElevatedButton(
 
-                      onPressed: () {
-
-
-                        controller.formSignInKey.currentState?.save();
-                        print(user.email);
-                        print(user.password);
-                        controller.loginUser(user);
+                      onPressed: () async  {
+                        authController.formSignInKey.currentState?.save();
+                        await authController.loginUser(user);
                         print(user.toJsonLogin());
+
+
                         Get.back();
+                        Get.snackbar("", "Đăng nhập thành công",
+                            duration: 2.seconds,
+                            // it could be any reasonable time, but I set it lo-o-ong
+                            snackPosition: SnackPosition.BOTTOM,
+                            snackStyle: SnackStyle.FLOATING,
+                            //*showProgressIndicator: true,*//
+                            isDismissible: true,
+                            backgroundColor: Colors.black26,
+
+                            colorText: Colors.white,
+                        );
+
+
                       },
                       style: ElevatedButton.styleFrom(
                           primary: kYellowColor,

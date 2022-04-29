@@ -9,12 +9,10 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   late final AuthenticationManager _authManager;
   late TabController controller;
 
-  final GlobalKey<FormState>loginFormKey = GlobalKey<FormState>();
-
-  late TextEditingController emailController, passwordController;
-  var email = '';
-  var password = '';
-
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formRegisterKey = GlobalKey<FormState>();
+  late TextEditingController emailController, passwordController, birthDayTextController;
 
   @override
   void onInit() {
@@ -24,7 +22,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
     controller = TabController(length:2, vsync: this, initialIndex: index);
     emailController = TextEditingController();
     passwordController = TextEditingController();
-
+    birthDayTextController = TextEditingController();
   }
 
 
@@ -32,6 +30,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
+    birthDayTextController.dispose();
   }
 
   String?  validateEmail(String value){
@@ -48,11 +47,11 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   }
 
   Future<void> loginUser(User user) async {
-    AuthProvider().fetchLogin(user: user,
+     await AuthProvider().fetchLogin(user: user,
         onSuccess: (data){
-          print(data);
+        print(data);
           if(data!=null){
-            _authManager.login(data.token);
+            _authManager.login(data);
           }
           else {
             /// Show user a dialog about the error response
@@ -79,11 +78,12 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   }
 
   Future<void> registerUser(User user) async {
-    AuthProvider().fetchRegister(user: user,
+    await AuthProvider().fetchRegister(user: user,
         onSuccess: (data){
 
           if(data!=null){
             _authManager.login(data.token);
+            Get.back();
           }
           else {
             /// Show user a dialog about the error response

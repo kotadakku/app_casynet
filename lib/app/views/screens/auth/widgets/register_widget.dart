@@ -1,13 +1,14 @@
+import 'package:app_casynet/app/controller/auth/auth_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../controller/auth/authentication_manager.dart';
-import '../../../data/model/user.dart';
+import '../../../../controller/auth/authentication_manager.dart';
+import '../../../../data/model/user.dart';
 
-import '../../screens/theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 class RegisterWidget extends StatelessWidget {
   const RegisterWidget({Key? key}) : super(key: key);
@@ -19,11 +20,12 @@ class RegisterWidget extends StatelessWidget {
     var _isCheckboxAccept = true.obs;
 
     AuthenticationManager controller = Get.find();
+    AuthController authController = Get.find();
     User user = User();
     return  Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Form(
-        key: controller.formRegisterKey,
+        key: authController.formRegisterKey,
         child: ListView(
           children: [
             Column(children: [
@@ -175,7 +177,7 @@ class RegisterWidget extends StatelessWidget {
               // TextField mật khẩu
               TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: controller.passwordController,
+                controller: authController.passwordController,
                   textAlignVertical: TextAlignVertical.center,
                   onSaved: (value) {
                     user.password = value;
@@ -234,7 +236,7 @@ class RegisterWidget extends StatelessWidget {
                     }
                     /*if (value.length < ) {
                       return "Bạn cần nhập nhiều hơn 8 ký tự";
-                    }*/if(value != controller.passwordController.text){
+                    }*/if(value != authController.passwordController.text){
                       return "Mật khẩu không trùng khớp";
                     }
                   },
@@ -274,7 +276,7 @@ class RegisterWidget extends StatelessWidget {
                   textAlignVertical: TextAlignVertical.center,
                   cursorColor: kYellowColor,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: controller.birthDayTextController,
+                  controller: authController.birthDayTextController,
                   onSaved: (value) {
                     user.birthday = value;
                   },
@@ -291,7 +293,7 @@ class RegisterWidget extends StatelessWidget {
                       firstDate: DateTime(1900),
                       lastDate: DateTime.now(),
                     ).then((value){
-                      controller.birthDayTextController.text =DateFormat("yyyy/MM/dd").format(value!);
+                      authController.birthDayTextController.text =DateFormat("yyyy/MM/dd").format(value!);
 
                     });
                   },
@@ -375,9 +377,9 @@ class RegisterWidget extends StatelessWidget {
               // Button tạo tài khoản
               ElevatedButton(
                 onPressed: () {
-                  user.gender = _isMale.value;
+                  user.gender = _isMale.value? 1:0;
                   user.receiveNotification = _isCheckboxAccept.value;
-                  controller.formRegisterKey.currentState?.save();
+                  authController.formRegisterKey.currentState?.save();
                   controller.registerUser(user);
                   print(user.toJsonRegister());
 

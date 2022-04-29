@@ -12,7 +12,7 @@ class EditAddressController extends GetxController{
   @override
   void onInit() {
     formStateKey = GlobalKey<FormState>();
-    address = Address.init(0,'', '', '', '', '', false);
+    address = Address();
   }
 
 

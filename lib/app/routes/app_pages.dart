@@ -4,10 +4,7 @@ import 'package:app_casynet/app/views/screens/search_screen.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'package:sqflite/sqflite.dart';
 import '../../main.dart';
-import '../bindings/account/account_page_bindings.dart';
 import '../bindings/account/casycoin_manager_bindings.dart';
 import '../bindings/account/edit_address_bindings.dart';
 import '../bindings/account/information_address.dart';
@@ -22,7 +19,6 @@ import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../bindings/products_bindings.dart';
 import '../views/screens/account/account_base.dart';
-import '../views/screens/account/account_login.dart';
 import '../views/screens/account/address/edit_address.dart';
 import '../views/screens/account/address/information_address.dart';
 import '../views/screens/account/address/new_address.dart';
@@ -120,12 +116,6 @@ class AppPages {
     GetPage(
       name: Routes.ACCOUNT_BASE,
       page: ()=>AccountBasePage(),
-      binding: AccountPageBindings(),
-    ),
-    GetPage(
-      name: Routes.ACCOUNT_BASE,
-      page: ()=>AccountLoginPage(),
-      binding: AccountPageBindings(),
     ),
     GetPage(
       name: Routes.PRODUCT_DETAIL,

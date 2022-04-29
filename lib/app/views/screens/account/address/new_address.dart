@@ -54,7 +54,7 @@ class NewAddress extends StatelessWidget {
                           child: TextFormField(
                             cursorColor: kTextColor_gray,
                             textAlign: TextAlign.end,
-                            onSaved: (value)=> controller.address.name = value!,
+                            onSaved: (value)=> controller.address.firstname = value!,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Nhập họ và tên",
@@ -251,7 +251,7 @@ class NewAddress extends StatelessWidget {
                           child: TextFormField(
                             cursorColor: kTextColor_gray,
                             textAlign: TextAlign.end,
-                            onSaved: (value)=> controller.address.detail_address = value!,
+                            onSaved: (value)=> controller.address.street[0] = value!,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Nhập địa chỉ cụ thể",
@@ -289,7 +289,7 @@ class NewAddress extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        controller.address.default_address = controller.switch_default.value;
+                        controller.address.default_shipping = controller.switch_default.value;
                         controller.formStateKey.currentState?.save();
                         controller.postAddress();
                       },
