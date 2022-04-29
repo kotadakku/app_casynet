@@ -28,7 +28,7 @@ class NewAddressController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     formStateKey = GlobalKey<FormState>();
-    address = Address.init(0, '', '', '', '', '', false);
+    address = Address();
     textProvinceCotroller = TextEditingController();
     textDistrictController = TextEditingController();
     textCommuneController = TextEditingController();

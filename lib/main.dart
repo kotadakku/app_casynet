@@ -12,7 +12,6 @@ import 'app/controller/bottom_nav_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/views/screens/Cart/cart.dart';
 import 'app/views/screens/account/account_base.dart';
-import 'app/views/screens/account/account_login.dart';
 import 'app/views/screens/detail_app.dart';
 import 'app/views/screens/home/home.dart';
 import 'app/views/screens/notfications.dart';
@@ -66,7 +65,6 @@ class MyApp extends StatelessWidget {
             errorStyle: TextStyle(
               color: kYellowColor,
             ),
-            contentPadding: EdgeInsets.symmetric(vertical: 0)
           )
           // textTheme:
 
@@ -97,7 +95,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationManager _authManager = Get.find();
+
 
     return WillPopScope(
       onWillPop:()=> _onWillPop(context),
@@ -124,9 +122,7 @@ class Home extends StatelessWidget {
                 HomePage(),
                 NotificationPage(),
                 Cart(),
-                Obx(() {
-                  return _authManager.isLogged.value ? AccountLoginPage() : AccountBasePage();
-                }),
+                AccountBasePage(),
                 DetailAppPage(),
               ],
             ),

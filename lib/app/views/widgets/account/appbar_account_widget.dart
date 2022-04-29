@@ -96,7 +96,6 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
           ),
         ),
       ),
-      elevation: 10,
       actions: [
         Container(
           width: 40,

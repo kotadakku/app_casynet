@@ -13,7 +13,7 @@ class ApiRequest {
         headers: {
           'Authorization': token == null ? '' : 'Bearer $token'
         },
-        baseUrl: 'https://casynet-api.herokuapp.com/api',
+        baseUrl: '',
         // connectTimeout: 5000,
         // receiveTimeout: 5000,
       )
@@ -40,8 +40,8 @@ class ApiRequest {
     _dio().post(this.url, queryParameters: null, data: data).then((value){
       if(onSuccess != null) onSuccess(value.data);
     }).catchError((error){
-      // final errorMessage = DioExceptions.fromDioError(error).toString();
-      if(onError != null ) onError(error);
+      final errorMessage = DioExceptions.fromDioError(error).toString();
+      if(onError != null ) onError(errorMessage);
     });;
   }
 
@@ -106,7 +106,7 @@ class DioExceptions implements Exception {
   String _handleError(int? statusCode, dynamic error) {
     switch (statusCode) {
       case 400:
-        return error["error"];
+        return '400 ${error["message"]}';
       case 404:
         return error["message"];
       case 500:

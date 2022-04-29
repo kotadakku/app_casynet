@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,7 +18,6 @@ class InformationAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var c1 = Get.find<InformationAddressController>();
     return Scaffold(
       appBar: AppBarAccountWidget(),
       body: SingleChildScrollView(
@@ -37,25 +37,25 @@ class InformationAddress extends StatelessWidget {
               Divider(
                 indent: 10.h,
               ),
-              GetBuilder<InformationAddressController>(
-                init: InformationAddressController(),
+              GetBuilder<AuthenticationManager>(
+                init: AuthenticationManager(),
                 builder:  (c)=> NotificationListener<ScrollEndNotification>(
                     onNotification: (scrollEnd) {
                       final metrics = scrollEnd.metrics;
                       if (metrics.atEdge) {
                         bool isTop = metrics.pixels == 0;
                         if (isTop) {
-                          c.updateAddress();
+                          // c.updateAddress();
                         } else {
                           print('At the bottom');
                         }
                       }
                       return true;
                     },
-                    child: ListView.separated(
+                    child: c.user_current.addresses.isEmpty ? Text("Chưa có địa chỉ nào") : ListView.separated(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: c.addressList.length,
+                        itemCount: c.user_current.addresses.length,
                         separatorBuilder: (context, index) => Container(height: 10.h, color: kBackgroundColor, ),
                         itemBuilder: (context, index) =>  Padding(
                             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
@@ -65,27 +65,27 @@ class InformationAddress extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(c.addressList[index].name,
+                                    Text(c.user_current.addresses[index].lastname.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold
                                       ),
                                     ),
                                     GestureDetector(
                                       onTap: (){
-                                        Get.toNamed(Routes.ACCOUNT_ADDRESS_EDIT, arguments: c.addressList[index]);
+                                        Get.toNamed(Routes.ACCOUNT_ADDRESS_EDIT, arguments: c.user_current.addresses[index]);
                                       },
                                       child: SvgPicture.asset("assets/account/edit.svg", width: 15, color: kTextColor,),
                                     )
                                   ],
                                 ),
                                 SizedBox(height: 2.h,),
-                                Text(c.addressList[index].phone,
+                                Text(c.user_current.addresses[index].phone.toString(),
                                   style: TextStyle(
                                       color: kTextColor
                                   ),
                                 ),
                                 SizedBox(height: 2.h,),
-                                Text(c.addressList[index].detail_address,
+                                Text(c.user_current.addresses[index].street.toString(),
                                   style: TextStyle(
                                       color: kTextColor
                                   ),
@@ -93,10 +93,11 @@ class InformationAddress extends StatelessWidget {
                                 SizedBox(height: 2.h,),
                                 Row(
                                   children: [
-                                    Text(c.addressList[index].default_address ? "[ bỏ mặc định ]" : "[ mặc định ]",
+                                    Text(c.user_current.addresses[index].default_shipping ? "[ bỏ mặc định ]" : "[ mặc định ]",
                                       style: TextStyle(
                                           color: kYellowColor
                                       ),),
+
                                     Text("[ Địa chỉ lấy hàng ]",
                                       style: TextStyle(
                                           color: kTextLink

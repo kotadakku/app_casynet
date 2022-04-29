@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/auth/register_widget.dart';
-import '../../widgets/auth/signin_widget.dart';
+import 'widgets/register_widget.dart';
 import '../theme/app_colors.dart';
+import 'widgets/signin_widget.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);

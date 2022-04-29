@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +30,7 @@ class EditAddress extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10), child: Row(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h), child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Sửa địa chỉ mới",
@@ -64,9 +65,9 @@ class EditAddress extends StatelessWidget {
                           ),
                           Expanded(
                               child: TextFormField(
-                                initialValue: address.name,
+                                initialValue: address.lastname,
                                 cursorColor: kTextColor_gray,
-                                onSaved: (value)=> controller.address.name = value!,
+                                onSaved: (value)=> controller.address.firstname = value!,
                                 textAlign: TextAlign.end,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -244,10 +245,10 @@ class EditAddress extends StatelessWidget {
                           ),
                           Expanded(
                               child: TextFormField(
-                                initialValue: address.detail_address,
+                                initialValue: address.street[0],
                                 cursorColor: kTextColor_gray,
                                 textAlign: TextAlign.end,
-                                onSaved: (value)=> controller.address.detail_address= value!,
+                                onSaved: (value)=> controller.address.lastname= value!,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Nhập địa chỉ cụ thể",
@@ -284,7 +285,7 @@ class EditAddress extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            controller.address.default_address = controller.switch_default.value;
+                            controller.address.default_shipping = controller.switch_default.value;
                             controller.formStateKey.currentState?.save();
                             controller.updateAddress(address.id);
                           },
