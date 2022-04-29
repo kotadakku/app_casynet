@@ -1,4 +1,4 @@
-import 'package:app_casynet/app/controller/account/search_controller.dart';
+import 'package:app_casynet/app/controller/home/search_controller.dart';
 import 'package:app_casynet/app/controller/home/banner_controller.dart';
 import 'package:get/get.dart';
 

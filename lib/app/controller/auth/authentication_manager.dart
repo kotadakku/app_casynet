@@ -16,6 +16,7 @@ class AuthenticationManager extends GetxController with CacheManager {
   late User user_current;
 
 
+
   void logOut() {
     isLogged.value = false;
     removeToken();

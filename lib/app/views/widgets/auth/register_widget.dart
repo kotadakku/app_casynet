@@ -14,13 +14,12 @@ class RegisterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var _isMale = true.obs;
     var _isCheckboxAccept = true.obs;
 
     AuthenticationManager controller = Get.find();
     User user = User();
-    return  Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Form(
         key: controller.formRegisterKey,
@@ -72,7 +71,7 @@ class RegisterWidget extends StatelessWidget {
                       width: 15,
                       child: Center(
                           child:
-                          Text("*", style: TextStyle(color: Colors.red))),
+                              Text("*", style: TextStyle(color: Colors.red))),
                     ),
                   )),
 
@@ -120,7 +119,7 @@ class RegisterWidget extends StatelessWidget {
                         width: 15,
                         child: Center(
                             child:
-                            Text("*", style: TextStyle(color: Colors.red))),
+                                Text("*", style: TextStyle(color: Colors.red))),
                       ))),
               SizedBox(
                 height: 10,
@@ -167,7 +166,7 @@ class RegisterWidget extends StatelessWidget {
                         width: 15,
                         child: Center(
                             child:
-                            Text("*", style: TextStyle(color: Colors.red))),
+                                Text("*", style: TextStyle(color: Colors.red))),
                       ))),
               SizedBox(
                 height: 10,
@@ -175,7 +174,7 @@ class RegisterWidget extends StatelessWidget {
               // TextField mật khẩu
               TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: controller.passwordController,
+                  controller: controller.passwordController,
                   textAlignVertical: TextAlignVertical.center,
                   onSaved: (value) {
                     user.password = value;
@@ -183,10 +182,12 @@ class RegisterWidget extends StatelessWidget {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Bạn cần nhập mật khẩu";
-                    }if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}').hasMatch(value)){
+                    }
+                    if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}')
+                        .hasMatch(value)) {
                       return "Mật khẩu ít nhất 8 ký tự, trong đó có ít nhất một chữ hoa, số, ký tự đặc biệt, Ex: ngocson_jp@yahoo.co.jp";
                     }
-                  //(?=.*?[!@#\><*~])
+                    //(?=.*?[!@#\><*~])
                   },
                   obscureText: true,
                   cursorColor: kYellowColor,
@@ -216,7 +217,7 @@ class RegisterWidget extends StatelessWidget {
                         width: 15,
                         child: Center(
                             child:
-                            Text("*", style: TextStyle(color: Colors.red))),
+                                Text("*", style: TextStyle(color: Colors.red))),
                       ))),
               SizedBox(
                 height: 10,
@@ -229,12 +230,13 @@ class RegisterWidget extends StatelessWidget {
                   cursorColor: kYellowColor,
                   onSaved: (value) {},
                   validator: (value) {
-                    if (value!.isEmpty ) {
+                    if (value!.isEmpty) {
                       return "Bạn cần nhập xác nhận mật khẩu";
                     }
                     /*if (value.length < ) {
                       return "Bạn cần nhập nhiều hơn 8 ký tự";
-                    }*/if(value != controller.passwordController.text){
+                    }*/
+                    if (value != controller.passwordController.text) {
                       return "Mật khẩu không trùng khớp";
                     }
                   },
@@ -264,7 +266,7 @@ class RegisterWidget extends StatelessWidget {
                         width: 15,
                         child: Center(
                             child:
-                            Text("*", style: TextStyle(color: Colors.red))),
+                                Text("*", style: TextStyle(color: Colors.red))),
                       ))),
               SizedBox(
                 height: 10,
@@ -278,21 +280,21 @@ class RegisterWidget extends StatelessWidget {
                   onSaved: (value) {
                     user.birthday = value;
                   },
-                  validator: (value){
-                    if(value!.isEmpty){
+                  validator: (value) {
+                    if (value!.isEmpty) {
                       return "Bạn không được để trống ngày sinh, Ex: 1990/10/20";
                     }
                   },
                   readOnly: true,
-                  onTap: (){
+                  onTap: () {
                     showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate: DateTime(1900),
                       lastDate: DateTime.now(),
-                    ).then((value){
-                      controller.birthDayTextController.text =DateFormat("yyyy/MM/dd").format(value!);
-
+                    ).then((value) {
+                      controller.birthDayTextController.text =
+                          DateFormat("yyyy/MM/dd").format(value!);
                     });
                   },
                   decoration: InputDecoration(
@@ -313,8 +315,7 @@ class RegisterWidget extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: IconButton(
                           color: kTextColor,
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           icon: Icon(
                             Icons.calendar_today_rounded,
                           )),
@@ -352,7 +353,7 @@ class RegisterWidget extends StatelessWidget {
               Row(
                 children: [
                   Obx(
-                        () => Checkbox(
+                    () => Checkbox(
                         activeColor: kYellowColor,
                         value: _isCheckboxAccept.value,
                         onChanged: (value) {
@@ -378,9 +379,36 @@ class RegisterWidget extends StatelessWidget {
                   user.gender = _isMale.value;
                   user.receiveNotification = _isCheckboxAccept.value;
                   controller.formRegisterKey.currentState?.save();
-                  controller.registerUser(user);
-                  print(user.toJsonRegister());
-
+                  if (controller.formRegisterKey.currentState?.validate() == false) {
+                    controller.registerUser(user);
+                    print(user.toJsonRegister());
+                    /*Get.snackbar("Bạn chưa nhập đầy đủ thông tin", "",
+                        duration: 20.seconds,
+                        // it could be any reasonable time, but I set it lo-o-ong
+                        snackPosition: SnackPosition.BOTTOM,
+                        *//*showProgressIndicator: true,*//*
+                        isDismissible: true,
+                        backgroundColor: Colors.black26.withOpacity(0.1),
+                        colorText: Colors.white,
+                        mainButton: TextButton(
+                            onPressed: (){Get.close(10);}, child: const Text("Close")));*/
+                    // Get.back();
+                  }if (controller.formSignInKey.currentState?.validate() ==
+                      false) {
+                    controller.registerUser(user);
+                    print(user.toJsonRegister());
+                    /*Get.snackbar("Đăng ký thành công", "",
+                        duration: 10.seconds,
+                        // it could be any reasonable time, but I set it lo-o-ong
+                        snackPosition: SnackPosition.BOTTOM,
+                        *//*showProgressIndicator: true,*//*
+                        isDismissible: true,
+                        backgroundColor: Colors.black26.withOpacity(0.1),
+                        colorText: Colors.white,
+                        mainButton: TextButton(
+                            onPressed: (){Get.back();}, child: const Text("Close")));*/
+                    Get.back();
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                     primary: kYellowColor,
@@ -410,7 +438,7 @@ class RegisterWidget extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                      'Khi bạn nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo ',
+                          'Khi bạn nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo ',
                       style: new TextStyle(color: Colors.black),
                     ),
                     TextSpan(
