@@ -11,6 +11,7 @@ class Danhmucsanpham {
     anhdanhmuc = json['Anhdanhmuc'];
   }
 
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Iddanhmuc'] = this.iddanhmuc;
@@ -18,4 +19,5 @@ class Danhmucsanpham {
     data['Anhdanhmuc'] = this.anhdanhmuc;
     return data;
   }
+
 }

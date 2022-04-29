@@ -17,7 +17,7 @@ class ApiRequest {
         // connectTimeout: 5000,
         // receiveTimeout: 5000,
       )
-    );
+    )..interceptors.add(LoggingInterceptors());
 
   }
 
@@ -162,8 +162,10 @@ class DioInterceptor extends Interceptor{
 
 class LoggingInterceptors extends Interceptor {
 
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    // options.path = options.baseUrl+options.path;
     print(
         "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ) + (options.path)}");
 

@@ -249,7 +249,7 @@ class ItemBookWidget extends StatelessWidget {
                   children: [
                     FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
                     SizedBox(width: 3,),
-                    Text("${ product.store?.khoangcachtoicuahang ==null ? '0.0' : product.store?.khoangcachtoicuahang} km",
+                    Text("${ product.store?.khoangcachtoicuahang == null ? '0.0' : product.store?.khoangcachtoicuahang} km",
                       style: TextStyle(
                           fontSize: 12.sp
                       ),

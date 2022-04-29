@@ -1,4 +1,6 @@
 
+import 'package:app_casynet/app/controller/home/category_home_controller.dart';
+import 'package:app_casynet/app/data/model/category_home.dart';
 import 'package:app_casynet/app/views/screens/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +14,7 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // CategoryHome categoryHome;
     List<Widget> danhmuc = [
       ItemCategoryWidget(image_url: "assets/home/category/ruaxethaydau.png", title: "Rửa xe, thay dầu"),
       ItemCategoryWidget(image_url: "assets/home/category/suachuaxe.png", title: "Sửa chữa xe"),
@@ -35,14 +38,18 @@ class CategoryWidget extends StatelessWidget {
               builder: (context, constraints) {
 
                   int device = constraints.maxWidth>=780 ? 5 : 3;
-                  return GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio: (80/(ScreenUtil().screenWidth/device)),
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.all(0.0),
-
-                    shrinkWrap: true,
-                    children: danhmuc,
+                  return GetBuilder<CategoryHomeController>(
+                    init: CategoryHomeController(),
+                    builder: ((controller){
+                      return GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: (80/(ScreenUtil().screenWidth/device)),
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.all(0.0),
+                        shrinkWrap: true,
+                        children: controller.categoryHomeList.map((e) => ItemCategoryWidget(image_url: "assets/home/category/ruaxethaydau.png", title: "Rửa xe, thay dầu"),).toList(),
+                      );
+                    }),
                   );
               }
             ),
@@ -56,12 +63,14 @@ class CategoryWidget extends StatelessWidget {
 
 
 class ItemCategoryWidget extends StatelessWidget {
+
   final String image_url;
   final String title;
-  const ItemCategoryWidget({Key? key, required this.image_url, required this.title}) : super(key: key);
+  ItemCategoryWidget({Key? key,required this.image_url, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    CategoryHome categoryHome;
     return
       GestureDetector(
         behavior: HitTestBehavior.translucent,
