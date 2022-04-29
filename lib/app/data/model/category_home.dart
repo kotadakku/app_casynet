@@ -1,5 +1,5 @@
 class CategoryHome {
-  String? iddanhmuc;
+  int? iddanhmuc;
   String? tendanhmuc;
   String? anhdanhmuc;
 
@@ -11,7 +11,7 @@ class CategoryHome {
     if(json['custom_attributes']!=null){
       json['custom_attributes'].forEach((value){
         if(value['attribute_code']=='map_icon'){
-          anhdanhmuc = value['value'];
+          anhdanhmuc = 'https://client.casynet.com/pub/media/catalog/category/'+ value['value'];
         }
       });
     }

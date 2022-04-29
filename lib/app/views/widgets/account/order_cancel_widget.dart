@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../screens/theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 class OrderCancelWidget extends StatelessWidget {
   final List<String> name_stores;

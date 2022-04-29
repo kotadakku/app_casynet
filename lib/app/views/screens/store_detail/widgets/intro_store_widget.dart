@@ -10,8 +10,8 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/detail_store_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../home/widgets/reservation_home_widget.dart';
-import '../../theme/app_colors.dart';
-import '../../theme/app_sizes.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/app_sizes.dart';
 import '../../../widgets/loading_overlay.dart';
 import 'gift_store_widget.dart';
 

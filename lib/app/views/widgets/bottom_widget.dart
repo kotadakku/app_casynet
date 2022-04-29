@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../screens/theme/app_colors.dart';
-import '../screens/theme/app_sizes.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_sizes.dart';
 
 class BottomWidget extends StatelessWidget {
   const BottomWidget({Key? key}) : super(key: key);

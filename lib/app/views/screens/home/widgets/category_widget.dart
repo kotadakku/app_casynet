@@ -1,13 +1,14 @@
 
 import 'package:app_casynet/app/controller/home/category_home_controller.dart';
 import 'package:app_casynet/app/data/model/category_home.dart';
-import 'package:app_casynet/app/views/screens/theme/app_colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../routes/app_pages.dart';
-import '../../theme/textTheme.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/textTheme.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class CategoryWidget extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         padding: EdgeInsets.all(0.0),
                         shrinkWrap: true,
-                        children: controller.categoryHomeList.map((e) => ItemCategoryWidget(image_url: "assets/home/category/ruaxethaydau.png", title: "Rửa xe, thay dầu"),).toList(),
+                        children: controller.categoryHomeList.map((e) => ItemCategoryWidget(image_url: e.anhdanhmuc.toString(), title: e.tendanhmuc.toString()),).toList(),
                       );
                     }),
                   );
@@ -78,14 +79,16 @@ class ItemCategoryWidget extends StatelessWidget {
           Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
         },
         child: Container(
+
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Image.asset(image_url, width: 50, height: 50,),
+              Image.network(image_url, width: 50, height: 50,),
               Text(title),
             ],
           ),
           decoration: BoxDecoration(
+              color: Colors.amber,
             border: Border.all(
               color: AppColors.kBackgroundColor
             )

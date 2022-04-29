@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_sizes.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/app_sizes.dart';
 
 class InformationProductWidget extends StatelessWidget {
   const InformationProductWidget({Key? key}) : super(key: key);

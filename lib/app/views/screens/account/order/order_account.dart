@@ -9,7 +9,7 @@ import '../../../../controller/account/order_account_controller.dart';
 import '../../../widgets/account/appbar_account_widget.dart';
 import '../../../widgets/account/order_all_widget.dart';
 import '../../../widgets/account/order_cancel_widget.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 class OrderAccountPage extends StatelessWidget{
   var _tabx = Get.find<OrderAccountController>();

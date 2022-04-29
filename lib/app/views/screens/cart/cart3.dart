@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
-import '../../widgets/detail_product/top_detail_product_widget.dart';
+import '../product_detail/widgets/top_detail_product_widget.dart';
 
 class Cart3 extends StatelessWidget {
   @override

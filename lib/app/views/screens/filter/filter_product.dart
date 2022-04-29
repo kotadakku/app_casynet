@@ -9,7 +9,7 @@ import '../../widgets/filter/bottom_button.dart';
 import '../../widgets/filter/district_product_widget.dart';
 import '../../widgets/filter/origin_product_widget.dart';
 import '../../widgets/filter/price_product_widget.dart';
-import '../theme/app_sizes.dart';
+import '../../theme/app_sizes.dart';
 
 class FilterProductPage extends StatelessWidget {
   const FilterProductPage({Key? key}) : super(key: key);

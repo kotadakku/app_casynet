@@ -1,13 +1,13 @@
 
-import 'package:app_casynet/app/views/screens/benefit/widget/step_benefit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../widgets/account/appbar_account_widget.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_sizes.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
+import 'widgets/step_benefit.dart';
 
 
 

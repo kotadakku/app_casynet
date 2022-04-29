@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../routes/app_pages.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 class CategoryBottomWidget extends StatelessWidget {
   const CategoryBottomWidget({Key? key}) : super(key: key);

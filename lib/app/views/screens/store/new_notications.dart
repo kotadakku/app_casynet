@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 class AddNotication extends StatelessWidget {
   const AddNotication({Key? key}) : super(key: key);

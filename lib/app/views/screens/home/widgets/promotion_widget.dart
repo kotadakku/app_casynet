@@ -1,7 +1,6 @@
 
 import 'package:app_casynet/app/views/screens/home/widgets/reservation_home_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/store_widget.dart';
-import 'package:app_casynet/app/views/screens/theme/textTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/home/datcho_controller.dart';
 import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
+import '../../../theme/textTheme.dart';
 import '../../../widgets/loading_overlay.dart';
 
 class PromotionWidget extends StatelessWidget {

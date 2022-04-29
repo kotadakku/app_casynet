@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import '../../../../controller/detail_store_controller.dart';
 import '../../../../routes/app_pages.dart';
 
-import '../../theme/app_colors.dart';
-import '../../theme/app_sizes.dart';
+import '../../../theme/app_colors.dart';
+import '../../../theme/app_sizes.dart';
 
 class InformationStoreWidget extends StatelessWidget {
   const InformationStoreWidget({Key? key}) : super(key: key);

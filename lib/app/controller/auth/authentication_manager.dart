@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../data/model/user.dart';
 import '../../data/provider/auth_provider.dart';
+import '../../routes/app_pages.dart';
 import 'cache_manager.dart';
 
 
@@ -23,9 +24,7 @@ class AuthenticationManager extends GetxController with CacheManager {
     //Token is cached
     await saveToken(token);
     fetchUser(token);
-    print(user_current.storeId);
     isLogged.value = true;
-
   }
 
   void registerUser(User user){
@@ -58,13 +57,7 @@ class AuthenticationManager extends GetxController with CacheManager {
         },
         onError: (error) {
           print(error);
-          // Get.defaultDialog(
-          //     middleText: '$error!',
-          //     textConfirm: 'OK',
-          //     confirmTextColor: Colors.white,
-          //     onConfirm: () {
-          //       Get.back();
-          //     });
+          logOut();
         }
     );
   }
@@ -72,9 +65,11 @@ class AuthenticationManager extends GetxController with CacheManager {
 
   void checkLoginStatus() {
     final token = getToken();
+    print(token);
     if (token != null) {
       fetchUser(token);
       isLogged.value = true;
     }
+    print(isLogged.value);
   }
 }

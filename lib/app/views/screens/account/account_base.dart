@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 
 import '../../../controller/auth/authentication_manager.dart';
 import '../../../routes/app_pages.dart';
+import '../../theme/app_colors.dart';
 import '../../widgets/account/appbar_account_widget.dart';
 import '../../widgets/account/menu_account_widget.dart';
 import '../../widgets/account/profile_account_widget.dart';
 import '../store/mystore.dart';
-import '../theme/app_colors.dart';
 
 
 class AccountBasePage extends StatelessWidget {

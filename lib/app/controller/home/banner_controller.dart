@@ -19,19 +19,19 @@ class BannerController extends GetxController{
   }
 
   void _autoPageView(){
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-      if (current_banner.value < _homeController.listBanners.length-1) {
-        current_banner.value++;
-      } else {
-        current_banner.value = 0;
-      }
-
-      pageController.animateToPage(
-        current_banner.value,
-        duration: Duration(milliseconds: 1000),
-        curve: Curves.fastOutSlowIn,
-      );
-    });
+    // _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+    //   if (current_banner.value < _homeController.listBanners.length-1) {
+    //     current_banner.value++;
+    //   } else {
+    //     current_banner.value = 0;
+    //   }
+    //
+    //   pageController.animateToPage(
+    //     current_banner.value,
+    //     duration: Duration(milliseconds: 1000),
+    //     curve: Curves.fastOutSlowIn,
+    //   );
+    // });
   }
 
   void swippingPageView(details){

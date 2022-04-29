@@ -24,7 +24,7 @@ class CategoryHomeController extends GetxController{
       update();
     },onError: (error){
       loadingCategoryHome = false;
-      print(error);
+      print("Load categories" + error);
       update();
     });
   }

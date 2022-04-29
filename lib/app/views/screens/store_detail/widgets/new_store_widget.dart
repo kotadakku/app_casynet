@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 import 'gift_store_widget.dart';
 
 class NewsStoreWidget extends StatelessWidget {

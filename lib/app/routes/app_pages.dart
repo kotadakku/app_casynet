@@ -1,6 +1,6 @@
 
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
-import 'package:app_casynet/app/views/screens/search_screen.dart';
+import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -32,11 +32,11 @@ import '../views/screens/account/order/order_account.dart';
 import '../views/screens/account/seen_product.dart';
 import '../views/screens/account/wallet_voucher.dart';
 import '../views/screens/auth/auth.dart';
-import '../views/screens/detail_product.dart';
-import '../views/screens/details_store.dart';
+import '../views/screens/detail_store/details_store.dart';
 import '../views/screens/filter/filter_product.dart';
 import '../views/screens/filter/filter_product_2.dart';
 import '../views/screens/filter/filter_product_map.dart';
+import '../views/screens/product_detail/detail_product.dart';
 import '../views/screens/products.dart';
 
 part './app_routes.dart';

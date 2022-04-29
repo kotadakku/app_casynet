@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import '../../../../controller/auth/authentication_manager.dart';
 import '../../../../data/model/user.dart';
 
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 class RegisterWidget extends StatelessWidget {
   const RegisterWidget({Key? key}) : super(key: key);

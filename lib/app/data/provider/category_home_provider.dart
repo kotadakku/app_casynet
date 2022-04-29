@@ -14,10 +14,12 @@ class CategoryHomeProvider {
           'searchCriteria[filterGroups][0][filters][0][field]': 'level',
           'searchCriteria[filterGroups][0][filters][0][value]': '3',
           'searchCriteriafilterGroups[filters][0][condition_type]': 'eq',
-        }).get(
+        },
+      token: '08jan0alx9ia7u257bccor8bsjz5jtsj'
+    ).get(
         beforeSend: () => {if (beforeSend != null) beforeSend()},
         onSuccess: (data) {
-          onSuccess((data["reservations"] as List).map((postJson) {
+          onSuccess((data["items"] as List).map((postJson) {
             return CategoryHome.fromJson(postJson);
           }).toList());
         },

@@ -9,7 +9,7 @@ import '../../../../controller/home/search_controller.dart';
 import '../../../../controller/bottom_nav_controller.dart';
 import '../../../../controller/home/home_controller.dart';
 import '../../../../routes/app_pages.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
 

@@ -1,11 +1,11 @@
 
-
-import 'package:app_casynet/app/views/screens/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../controller/map_store_controller.dart';
+import '../../../controller/map_store_controller.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 
 class StoreMapPage extends StatelessWidget {

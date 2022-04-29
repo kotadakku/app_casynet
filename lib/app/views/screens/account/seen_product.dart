@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../widgets/account/appbar_account_widget.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_sizes.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_sizes.dart';
 
 
 

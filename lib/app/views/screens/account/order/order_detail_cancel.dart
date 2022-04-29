@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/account/appbar_account_widget.dart';
 import '../../../widgets/account/order_cancel_widget.dart';
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 
 class OrderDetailCancel extends StatelessWidget {
