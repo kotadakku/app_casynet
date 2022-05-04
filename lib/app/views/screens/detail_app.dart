@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../controller/detail_app_controller.dart';
@@ -25,22 +26,17 @@ class DetailAppPage extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width,
               color: kBackgroundColor,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 15.h),
               child: Row(
                 children: [
                   SizedBox(
                       width: 30,
-                      child: GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: kTextColor_gray,
-                          size: sizeIcon.height,
-                        ),
-                      )),
+                      child: Icon(
+                        Icons.help,
+                        color: Colors.blue,
+                        size: sizeIcon.height,
+                      ),
+                  ),
                   Text(
                     "Thông tin cần thiết",
                     style:
