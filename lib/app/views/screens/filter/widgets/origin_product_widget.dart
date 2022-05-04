@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/filter_product_controller.dart';
-import '../../theme/app_colors.dart';
+import '../../../../controller/filter_product_controller.dart';
+import '../../../theme/app_colors.dart';
 
 class OriginProductWidget extends StatelessWidget {
   const OriginProductWidget({Key? key}) : super(key: key);

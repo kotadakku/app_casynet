@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/account/edit_address_controller.dart';
-import '../../../widgets/account/appbar_account_widget.dart';
+import '../widgets/appbar_account_widget.dart';
 import '../../../theme/app_colors.dart';
 
 

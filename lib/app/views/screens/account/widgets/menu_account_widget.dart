@@ -4,10 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../controller/bottom_nav_controller.dart';
-import '../../../routes/app_pages.dart';
-import '../../screens/account/UI_qlch/UI_cuahang.dart';
-import '../../theme/app_colors.dart';
+import '../../../../controller/bottom_nav_controller.dart';
+import '../../../../routes/app_pages.dart';
+import '../UI_qlch/UI_cuahang.dart';
+import '../../../theme/app_colors.dart';
 
 
 class MenuAccountWidget extends StatelessWidget {

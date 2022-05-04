@@ -4,7 +4,7 @@ import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../theme/app_colors.dart';
+import '../../../theme/app_colors.dart';
 
 class ProfileAccountWidget extends StatelessWidget {
   const ProfileAccountWidget({Key? key}) : super(key: key);

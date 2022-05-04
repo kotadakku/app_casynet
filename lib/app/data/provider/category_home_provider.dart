@@ -15,7 +15,7 @@ class CategoryHomeProvider {
           'searchCriteria[filterGroups][0][filters][0][value]': '3',
           'searchCriteriafilterGroups[filters][0][condition_type]': 'eq',
         },
-      token: '08jan0alx9ia7u257bccor8bsjz5jtsj'
+      token: '5vp6o09roq7j1rfqduogrxiiroes8j4q'
     ).get(
         beforeSend: () => {if (beforeSend != null) beforeSend()},
         onSuccess: (data) {

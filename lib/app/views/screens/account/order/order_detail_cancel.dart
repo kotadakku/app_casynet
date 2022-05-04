@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../widgets/account/appbar_account_widget.dart';
-import '../../../widgets/account/order_cancel_widget.dart';
+import '../widgets/appbar_account_widget.dart';
+import '../widgets/order_cancel_widget.dart';
 import '../../../theme/app_colors.dart';
 
 

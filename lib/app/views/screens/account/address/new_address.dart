@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../controller/account/new_address_controller.dart';
 import '../../../../routes/app_pages.dart';
-import '../../../widgets/account/appbar_account_widget.dart';
+import '../widgets/appbar_account_widget.dart';
 import '../../../theme/app_colors.dart';
 import 'select_region.dart';
 

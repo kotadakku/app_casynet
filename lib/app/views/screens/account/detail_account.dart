@@ -11,8 +11,8 @@ import 'package:intl/intl.dart';
 
 import '../../../controller/auth/authentication_manager.dart';
 import '../../../routes/app_pages.dart';
-import '../../widgets/account/appbar_account_widget.dart';
-import '../../widgets/account/profile_account_widget.dart';
+import 'widgets/appbar_account_widget.dart';
+import 'widgets/profile_account_widget.dart';
 import '../../theme/app_colors.dart';
 
 class AccountDetailPage extends StatelessWidget {

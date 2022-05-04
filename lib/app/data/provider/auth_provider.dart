@@ -12,7 +12,7 @@ class AuthProvider {
     onSuccess(data)?,
     onError(error)?,
     beforePost()?}) {
-    ApiRequest(url: 'https://client.casynet.com/rest/V1/integration/admin/token').post(
+    ApiRequest(url: 'https://client.casynet.com/rest/V1/integration/customer/token').post(
         data: user.toJsonLogin(),
         onSuccess: (data){
           onSuccess!(data);

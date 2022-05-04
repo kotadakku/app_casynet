@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../controller/filter_product_controller.dart';
-import '../../theme/app_colors.dart';
+import '../../../../controller/filter_product_controller.dart';
+import '../../../theme/app_colors.dart';
 
 
 class DistrictProductWidget extends StatelessWidget {

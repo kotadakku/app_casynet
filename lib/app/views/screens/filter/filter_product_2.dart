@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../../widgets/account/appbar_account_widget.dart';
-import '../../widgets/filter/attribute_product_widget.dart';
-import '../../widgets/filter/bottom_button.dart';
-import '../../widgets/filter/category_product.dart';
-import '../../widgets/filter/display_product.dart';
-import '../../widgets/filter/district_product_widget.dart';
+import '../account/widgets/appbar_account_widget.dart';
+import 'widgets/attribute_product_widget.dart';
+import 'widgets/bottom_button.dart';
+import 'widgets/category_product.dart';
+import 'widgets/display_product.dart';
+import 'widgets/district_product_widget.dart';
 import '../../theme/app_sizes.dart';
 
 class FilterProductPage2 extends StatelessWidget {

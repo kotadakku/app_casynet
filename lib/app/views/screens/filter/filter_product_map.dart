@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../controller/filter_map_controller.dart';
-import '../../widgets/account/appbar_account_widget.dart';
+import '../account/widgets/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
 

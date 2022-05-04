@@ -8,7 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/account/information_address_controller.dart';
 import '../../../../routes/app_pages.dart';
-import '../../../widgets/account/appbar_account_widget.dart';
+import '../widgets/appbar_account_widget.dart';
 import '../../../theme/app_colors.dart';
 
 

@@ -4,8 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/home/home_controller.dart';
-import '../../theme/app_colors.dart';
+import '../../../../controller/account/new_address_controller.dart';
+import '../../../../controller/home/home_controller.dart';
+import '../../../../controller/home/search_controller.dart';
+import '../../../../routes/app_pages.dart';
+import '../../../theme/app_colors.dart';
 
 class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget {
 
@@ -16,21 +19,28 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
 
   @override
   Widget build(BuildContext context) {
+    SearchController searchController = Get.find();
+    NewAddressController regioncontroller = Get.find<NewAddressController>();
+
     return AppBar(
       backgroundColor: Colors.white,
       leading: Container(
         padding: EdgeInsets.only(left: 5.0.w),
           child: SvgPicture.asset(
             "assets/home/icon_top_home.svg",
-            width: 30,
+            width: 40,
           )
       ),
-      leadingWidth: 40,
+      leadingWidth: 50,
       title: Container(
         height: 40,
         child:  TextField(
           textAlignVertical: TextAlignVertical.center,
           cursorColor: kYellowColor,
+          readOnly: true,
+          onTap: (){
+            Get.toNamed(Routes.SEARCH);
+          },
           style: TextStyle(
               fontSize: 15,
               color: kTextColor_gray
@@ -65,32 +75,45 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
                   )
               ),),
 
-              suffixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0.h),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    VerticalDivider(
-                      width: 10,
-                      thickness: 1,
-                      indent: 5,
-                      endIndent: 5,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(width: 2.0.w,),
-                    SvgPicture.asset(
-                        "assets/home/icon_location.svg",
-                        width: 14),
-                    SizedBox(width: 5.0.w,),
-                    const Text(
-                      "Hà Nội",
-                      style: TextStyle(
-                        color: kTextColor_gray,
-                        fontSize: 13
+              suffixIcon: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: (){
+                  var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                    "title": "Chọn tỉnh/ thành phố", "regions": regioncontroller.provinces
+                  });
+                  if(data != null){
+                    data.then((value){
+                      searchController.setLocation(value['name']);
+                    });
+                  }
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      VerticalDivider(
+                        width: 10,
+                        thickness: 1,
+                        indent: 5,
+                        endIndent: 5,
+                        color: Colors.grey,
                       ),
-                    ),
-                    SizedBox(width: 5.0.w,),
-                  ],
+                      SizedBox(width: 2.0.w,),
+                      SvgPicture.asset(
+                          "assets/home/icon_location.svg",
+                          width: 14),
+                      SizedBox(width: 5.0.w,),
+                      const Text(
+                        "Hà Nội",
+                        style: TextStyle(
+                            color: kTextColor_gray,
+                            fontSize: 13
+                        ),
+                      ),
+                      SizedBox(width: 5.0.w,),
+                    ],
+                  ),
                 ),
               )
           ),

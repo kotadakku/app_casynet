@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '../../widgets/account/appbar_account_widget.dart';
+import '../account/widgets/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 import 'widgets/step_benefit.dart';
 

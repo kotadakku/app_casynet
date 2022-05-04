@@ -21,7 +21,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.find<HomeController>();
+
     NewAddressController regioncontroller = Get.find<NewAddressController>();
     SearchController searchController = Get.find();
     return AppBar(
@@ -33,13 +33,14 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
           Get.offNamed(Routes.HOME);
         },
         child: Container(
+          padding: EdgeInsets.only(left: 5.0.w),
             child: SvgPicture.asset(
               "assets/home/icon_top_home.svg",
               width: 40,
             )
         ),
       ),
-      leadingWidth: 40,
+      leadingWidth: 50,
       title: Container(
         height: 40,
         child:  TextField(
@@ -48,7 +49,6 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
             Get.toNamed(Routes.SEARCH);
           },
 
-          onChanged: (value) => controller.onChangeSearchText(value),
           textAlignVertical: TextAlignVertical.center,
           cursorColor: kTextColor,
           decoration: InputDecoration(
@@ -72,6 +72,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
               ),
               hintText: 'Search Casynet',
               suffixIcon: GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: (){
                   var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
                     "title": "Chọn tỉnh/ thành phố", "regions": regioncontroller.provinces

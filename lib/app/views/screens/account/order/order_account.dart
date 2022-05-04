@@ -6,9 +6,9 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/account/order_account_controller.dart';
 
-import '../../../widgets/account/appbar_account_widget.dart';
-import '../../../widgets/account/order_all_widget.dart';
-import '../../../widgets/account/order_cancel_widget.dart';
+import '../widgets/appbar_account_widget.dart';
+import '../widgets/order_all_widget.dart';
+import '../widgets/order_cancel_widget.dart';
 import '../../../theme/app_colors.dart';
 
 class OrderAccountPage extends StatelessWidget{
