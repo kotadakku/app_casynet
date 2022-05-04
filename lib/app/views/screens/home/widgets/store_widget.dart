@@ -142,7 +142,8 @@ class StoreWidget extends StatelessWidget {
           GetBuilder<CuaHangController>(
             init: CuaHangController(),
             builder: (controller) {
-              return LoadingOverlay(
+              if(controller.cuahangList.isEmpty) return Text("Không có cửa hàng để hiển thị");
+              else return LoadingOverlay(
                 isLoading: controller.isLoadStore,
                 shimmer: ItemCuaHangShimmer(),
                 child: Container(

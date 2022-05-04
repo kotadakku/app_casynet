@@ -22,47 +22,50 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FilterDistrictController controller = Get.put(FilterDistrictController());
 
     return Scaffold(
       appBar: AppBarHomeWidget(),
-      body: SingleChildScrollView(
-        physics: RangeMaintainingScrollPhysics(),
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                // Banner
-                BannerHomeWidget(),
-                // Khuyến mãi
-                TopSaleWidget(),
-                SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
+      body: RefreshIndicator(
+        onRefresh: () async {
+        },
+        child: SingleChildScrollView(
+            physics: RangeMaintainingScrollPhysics(),
+            child: Container(
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  // Banner
+                  BannerHomeWidget(),
+                  // Khuyến mãi
+                  TopSaleWidget(),
+                  SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
 
-                SizedBox(height: 10.h),
-                //Danh mục
-                CategoryWidget(),
+                  SizedBox(height: 10.h),
+                  //Danh mục
+                  CategoryWidget(),
 
-                SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
+                  SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
 
-                //Cửa hàng
-                StoreWidget(),
-                SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
-                // Đặt chỗ
-                ReservationWidget(),
-                // Khuyến mãi
-                SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
-                PromotionWidget(),
-                SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
-                RecommendWidget(),
-                // Danh mục
-                CategoryBottomWidget(),
+                  //Cửa hàng
+                  StoreWidget(),
+                  SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+                  // Đặt chỗ
+                  ReservationWidget(),
+                  // Khuyến mãi
+                  SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+                  PromotionWidget(),
+                  SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+                  RecommendWidget(),
+                  // Danh mục
+                  CategoryBottomWidget(),
 
-                BottomWidget(),
-              ],
-            ),
-          )
+                  BottomWidget(),
+                ],
+              ),
+            )
+        ),
       )
     ) ;
   }

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../../controller/auth/authentication_manager.dart';
 import '../../../../controller/bottom_nav_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../UI_qlch/UI_cuahang.dart';
@@ -15,12 +16,12 @@ class MenuAccountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationManager _authManager = Get.find();
     final List<String> _menus = [
       "Thông tin tài khoản",
       "Địa chỉ",
       "Tin nhắn",
       "Đơn hàng",
-      "Thông báo",
       "Ví Voucher",
       "Quản lý tích điểm",
       "Sản phẩm yêu thích",
@@ -34,48 +35,52 @@ class MenuAccountWidget extends StatelessWidget {
       switch (e) {
         case "Thông tin tài khoản":
           icon = FontAwesomeIcons.user;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav=() { Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: [12]);};
           break;
         case "Địa chỉ":
           icon = FontAwesomeIcons.mapLocation;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav=() { Get.toNamed(Routes.ACCOUNT_ADDRESS);};
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);} :
           nav=() { Get.toNamed(Routes.MESSAGES,  arguments: [12]);};
           break;
         case "Đơn hàng":
           icon = FontAwesomeIcons.bagShopping;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);} :
           nav=() { Get.toNamed(Routes.ACCOUNT_ORDER, arguments: [12]);};
-          break;
-        case "Thông báo":
-          icon = FontAwesomeIcons.bell;
-          nav=() {
-            Get.put(BottomNavController()).tabIndex.value = 1;
-          };
           break;
         case "Ví Voucher":
           icon = FontAwesomeIcons.wallet;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav=() {Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER,  arguments: [12]);};
           break;
         case "Quản lý tích điểm":
           icon = FontAwesomeIcons.bitcoin;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav =(){Get.toNamed(Routes.ACCOUNT_CASYCOIN,  arguments: [12]);};
           break;
         case "Sản phẩm yêu thích":
           icon = FontAwesomeIcons.heart;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav =(){Get.toNamed(Routes.PRODUCTS_FAVOURITE,  arguments: [12]);};
           break;
         case "Cửa hàng theo dõi":
           icon = FontAwesomeIcons.store;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav =(){Get.toNamed(Routes.STORE_FOLLOWED,  arguments: [12]);};
           break;
         case "Sản phẩm đã xem":
           icon = FontAwesomeIcons.eye;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav =(){Get.toNamed(Routes.PRODUCTS_SEEN, arguments: [12] );};
           break;
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;
+          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
           nav =(){Get.to(menucuahang());};
           break;
       }
