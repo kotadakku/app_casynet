@@ -1,11 +1,12 @@
 
 import 'dart:convert';
 
-import 'package:app_casynet/app/controller/home/banner_controller.dart';
+import 'package:app_casynet/app/controller/home/banner_page_view_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../../controller/home/fetch_banner_controller.dart';
 import '../../../../controller/home/home_controller.dart';
 
 class BannerHomeWidget extends StatelessWidget {
@@ -16,8 +17,8 @@ class BannerHomeWidget extends StatelessWidget {
     BannerController bannerController = Get.find();
     return SizedBox(
         height: ScreenUtil().screenWidth/1125*410,
-        child: GetBuilder<HomeController>(
-          init: HomeController(),
+        child: GetBuilder<FetchBannerController>(
+          init: FetchBannerController(),
           builder: (controller){
             return Stack(
               children: [
@@ -32,7 +33,9 @@ class BannerHomeWidget extends StatelessWidget {
                     itemBuilder: (context, index){
                       if(controller.listBanners.isNotEmpty)
                         return Image.memory(base64.decode(controller.listBanners[index].image), fit: BoxFit.fitWidth);
-                      else return CircularProgressIndicator();
+                      else return Center(
+                        child: CircularProgressIndicator(),
+                      );
                     }
                 ),
                 Positioned.fill(

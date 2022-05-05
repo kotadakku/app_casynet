@@ -59,7 +59,9 @@ dependencies:
   get_storage:
   geocoding:
   geolocator:
-  firebase_core: ^1.15.0
+
+  flutter_localizations: # Add this line
+    sdk: flutter
 
 
 

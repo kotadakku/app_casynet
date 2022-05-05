@@ -47,19 +47,19 @@ class PromotionWidget extends StatelessWidget {
                           ),),
                         SizedBox(width: 15,),
                         Text(
-                          "Đặt chỗ".toUpperCase(),
+                          'promotion'.tr.toUpperCase(),
                           style: AppTextTheme.titleProduct
                         )
                       ],
                     ),
                     GestureDetector(
                       onTap: (){
-                        _view_more("Đặt chỗ");
+                        _view_more('promotion'.tr);
                       },
                       child: Row(
                         children: [
                           Text(
-                            "Xem thêm",
+                            'more'.tr,
                             style: TextStyle(
                               color: Color(0xffB7BAC1),
                             ),
@@ -113,7 +113,7 @@ class PromotionWidget extends StatelessWidget {
                       SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
                       SizedBox(width: 5,),
                       Text(
-                        "Lọc",
+                        'filter'.tr,
                         style: TextStyle(
                           color: Color(0xffB7BAC1),
                         ),

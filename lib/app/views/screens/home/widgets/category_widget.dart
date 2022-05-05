@@ -1,6 +1,8 @@
 
 import 'package:app_casynet/app/controller/home/category_home_controller.dart';
 import 'package:app_casynet/app/data/model/category_home.dart';
+import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
+import 'package:app_casynet/app/views/widgets/shimmer_loading.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +31,7 @@ class CategoryWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 15.0.h ),
-          child: Text("DANH MỤC",
+          child: Text('category'.tr.toUpperCase(),
             style: AppTextTheme.categories,
           ),
         ),
@@ -41,13 +43,17 @@ class CategoryWidget extends StatelessWidget {
                   return GetBuilder<CategoryHomeController>(
                     init: CategoryHomeController(),
                     builder: ((controller){
-                      return GridView.count(
-                        crossAxisCount: 2,
-                        childAspectRatio: (80/(ScreenUtil().screenWidth/device)),
-                        scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.all(0.0),
-                        shrinkWrap: true,
-                        children: controller.categoryHomeList.map((e) => ItemCategoryWidget(image_url: e.anhdanhmuc.toString(), title: e.tendanhmuc.toString()),).toList(),
+                      return LoadingOverlay(isLoading: controller.loadingCategoryHome,
+                        shimmer: CategoryShimer(),
+                        child: controller.categoryHomeList.isEmpty ? Text("Không có thể loại để hiển thị"):
+                        GridView.count(
+                          crossAxisCount: 2,
+                          childAspectRatio: (80/(ScreenUtil().screenWidth/device)),
+                          scrollDirection: Axis.horizontal,
+                          padding: EdgeInsets.all(0.0),
+                          shrinkWrap: true,
+                          children: controller.categoryHomeList.map((e) => ItemCategoryWidget(image_url: e.anhdanhmuc.toString(), title: e.tendanhmuc.toString()),).toList(),
+                        )
                       );
                     }),
                   );
@@ -70,7 +76,6 @@ class ItemCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CategoryHome categoryHome;
     return
       GestureDetector(
         behavior: HitTestBehavior.translucent,
@@ -78,7 +83,6 @@ class ItemCategoryWidget extends StatelessWidget {
           Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
         },
         child: Container(
-
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -96,3 +100,53 @@ class ItemCategoryWidget extends StatelessWidget {
       ) ;
   }
 }
+
+
+class CategoryShimer extends StatelessWidget {
+  const CategoryShimer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: 160,
+        child: Center(
+          child: LayoutBuilder(
+              builder: (context, constraints) {
+                int device = constraints.maxWidth>=780 ? 5 : 3;
+                return GridView.count(
+                  crossAxisCount: 2,
+                  childAspectRatio: (80/(ScreenUtil().screenWidth/device)),
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.all(0.0),
+                  shrinkWrap: true,
+                  children: List.generate(6, (index) => Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ShimmerLoading(isLoading: true, child: Container(
+                        
+                        height: 50,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(5.0)
+                        ),
+                      )),
+                      SizedBox(height: 10,),
+                      ShimmerLoading(isLoading: true, child: Container(
+                        height: 10,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(5.0)
+                        ),
+                      )),
+
+                    ],
+                  ),)
+                );
+              }
+          ),
+        )
+    );
+  }
+}
+

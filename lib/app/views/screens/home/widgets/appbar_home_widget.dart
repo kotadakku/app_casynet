@@ -1,13 +1,13 @@
 
+import 'package:app_casynet/app/views/widgets/button_language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/account/new_address_controller.dart';
-import '../../../../controller/home/search_controller.dart';
 import '../../../../controller/bottom_nav_controller.dart';
-import '../../../../controller/home/home_controller.dart';
+import '../../../../controller/home/search_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 
@@ -21,7 +21,6 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-
     NewAddressController regioncontroller = Get.find<NewAddressController>();
     SearchController searchController = Get.find();
     return AppBar(
@@ -70,7 +69,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
                   )
 
               ),
-              hintText: 'Search Casynet',
+              hintText: 'search_hint'.tr,
               suffixIcon: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: (){
@@ -116,34 +115,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        Container(
-            width: 40,
-            margin: EdgeInsets.only(right: 5.0.w, top: 10.0, bottom: 10.0),
-            child: GetBuilder<HomeController>(
-              init: HomeController(),
-              builder: (controller){
-                return TextButton(
-                  onPressed: () {
-                    controller.setIsVN();
-                  },
-                  child: Text(controller.languageToString(),
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13.sp
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(
-                        color: AppColors.borderGray_0_5,
-
-                      )
-                  ),
-                );
-              },
-            )
-        )
+        ButtonLanguage()
       ],
     );
   }

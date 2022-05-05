@@ -49,19 +49,19 @@ class ReservationWidget extends StatelessWidget {
                           ),),
                         SizedBox(width: 15,),
                         Text(
-                         "Khuyến mãi".toUpperCase(),
+                          'reservation'.tr.toUpperCase(),
                           style: AppTextTheme.titleProduct,
                         )
                       ],
                     ),
                     GestureDetector(
                       onTap: (){
-                        _view_more("Khuyến mãi");
+                        _view_more('reservation'.tr);
                       },
                       child: Row(
                         children: [
                           Text(
-                            "Xem thêm",
+                           'more'.tr,
                             style: TextStyle(
                               color: Color(0xffB7BAC1),
                             ),
@@ -116,7 +116,7 @@ class ReservationWidget extends StatelessWidget {
                       SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
                       SizedBox(width: 5,),
                       Text(
-                        "Lọc",
+                        'filter'.tr,
                         style: TextStyle(
                           color: Color(0xffB7BAC1),
                         ),

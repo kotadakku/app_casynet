@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -56,7 +55,7 @@ class Splash extends StatelessWidget {
                           bottom: -15,
                           left: -30,
                           child: SvgPicture.asset("assets/splash/path1481.svg")
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -74,21 +73,5 @@ class Splash extends StatelessWidget {
         }
       },
     );
-
-
-
   }
-
-  // Future<Timer> initialization() async {
-    //   Future<void> initializeSettings() async {
-    //     _authmanager.checkLoginStatus();
-    //
-    //     //Simulate other services for 3 seconds
-    //     await Future.delayed(Duration(seconds: 3));
-    //   }
-    //   return  await Timer(Duration(seconds: 4),() => Get.off(()=>,
-    //     transition: Transition.fadeIn,
-    //     duration: Duration(milliseconds: 1000)
-    //   ));
-    // }
 }

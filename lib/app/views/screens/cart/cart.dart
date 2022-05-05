@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/bottom_nav_controller.dart';
+import '../../widgets/appbar_cart.dart';
 import '../product_detail/widgets/top_detail_product_widget.dart';
 import 'cart2.dart';
 import 'itemCart.dart';
@@ -16,14 +17,9 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 5,
-        backgroundColor: Colors.white,
-        flexibleSpace: const TopDetailProductWidget(),
-      ),
+      appBar: AppBarCartWidget(),
       body: Material(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,

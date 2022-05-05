@@ -5,17 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'app/bindings/home_bindings.dart';
 import 'app/bindings/main_bindings.dart';
-import 'app/controller/auth/authentication_manager.dart';
 import 'app/controller/bottom_nav_controller.dart';
 import 'app/routes/app_pages.dart';
+import 'app/utlis/languages/localization_service.dart';
 import 'app/views/screens/Cart/cart.dart';
 import 'app/views/screens/account/account_base.dart';
 import 'app/views/screens/detail_app.dart';
 import 'app/views/screens/home/home.dart';
 import 'app/views/screens/notfications.dart';
 import 'app/views/screens/splash/splash.dart';
+import 'app/views/screens/splash/splash_1.dart';
 import 'app/views/theme/app_colors.dart';
 import 'app/views/widgets/bottom_navigator.dart';
 
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
             ),
             titleTextStyle: TextStyle(
                 color: Colors.black,
-                fontSize: 19.r,
+                fontSize: 19.sp,
                 fontWeight: FontWeight.bold
             ),
             iconTheme: IconThemeData(
@@ -70,19 +70,22 @@ class MyApp extends StatelessWidget {
 
         ),
         builder: (context, widget) {
-          ScreenUtil.setContext(context);
+          Get.put<ScaffoldMessengerState>(ScaffoldMessenger.of(context));
+          // ScreenUtil.setContext(context);
           return MediaQuery(
+
             //Setting font does not change with system font size
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
             child: widget!,
           );
         },
+        locale: LocalizationService.locale,
+        fallbackLocale: LocalizationService.fallbackLocale,
+        translations: LocalizationService(),
         initialRoute: '/',
         initialBinding: MainBindings(),
         getPages:  AppPages.routes ,
-        home: MaterialApp(
-          home: Splash(),
-        ),
+        home: Splash_1(),
       )
     );
   }
@@ -103,30 +106,23 @@ class Home extends StatelessWidget {
         behavior: HitTestBehavior.translucent,
         onPanDown: (value) {
           FocusScopeNode currentFocus = FocusScope.of(context);
-
           if (!currentFocus.hasPrimaryFocus) {
             currentFocus.unfocus();
           }
         },
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          bottomNavigationBar: BottomNavigator(),
+          body:Obx(()=>IndexedStack(
+            index: c.tabIndex.value,
+            children: [
+              HomePage(),
+              NotificationPage(),
+              Cart(),
+              AccountBasePage(),
+              DetailAppPage(),
+            ],
           ),
-          home: Scaffold(
-            backgroundColor: Colors.white,
-            bottomNavigationBar: BottomNavigator(),
-            body:Obx(()=>IndexedStack(
-              index: c.tabIndex.value,
-              children: [
-                HomePage(),
-                NotificationPage(),
-                Cart(),
-                AccountBasePage(),
-                DetailAppPage(),
-              ],
-            ),
-            ),
           ),
         ),
       )
