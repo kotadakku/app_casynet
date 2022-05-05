@@ -33,7 +33,9 @@ class BannerHomeWidget extends StatelessWidget {
                     itemBuilder: (context, index){
                       if(controller.listBanners.isNotEmpty)
                         return Image.memory(base64.decode(controller.listBanners[index].image), fit: BoxFit.fitWidth);
-                      else return CircularProgressIndicator();
+                      else return Center(
+                        child: CircularProgressIndicator(),
+                      );
                     }
                 ),
                 Positioned.fill(

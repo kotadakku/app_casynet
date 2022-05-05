@@ -1,3 +1,4 @@
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/banner_slider.dart';
@@ -21,7 +22,6 @@ class FetchBannerController extends GetxController{
       if(value?.length == 0){
         getBannerAPI();
       }else{
-        print("<Home Controller> Load from db");
         value?.forEach((element) {
           listBanners.add(BannerSlider(
             id: element['id'],
@@ -35,24 +35,21 @@ class FetchBannerController extends GetxController{
 
   }
 
-  void getBannerAPI(){
+  Future<void> getBannerAPI() async {
     isLoading = true;
+    listBanners.clear();
+    BannerDatabaseHelper.instance.clear();
+    BannerProvider().getBanners(onSuccess: (banners) async {
+      for (var banner in banners) {
+        var base64 = await ImageNetworkToBase64(url: banner.image).getHttp();
+        BannerDatabaseHelper.instance.insert(BannerSlider(image: base64));
+        listBanners.add(BannerSlider(image: base64));
 
-    print("<Home Controller> Load from api $isLoading");
-    BannerProvider().getBanners(onSuccess: (banners){
-      listBanners.clear();
-      BannerDatabaseHelper.instance.clear();
-
-      banners.forEach((banner){
-        ImageNetworkToBase64(url: banner.image).getHttp().then((base64) {
-          BannerDatabaseHelper.instance.insert(BannerSlider(image: base64));
-          listBanners.add(BannerSlider(image: base64));
-        });
-      });
+        update();
+      }
       isLoading = false;
-      print("<Home COntroller>  Success $isLoading");
       update();
-    },
+      },
         beforeSend: (){},
         onError: (error){
           print("Error " + error.toString());

@@ -12,6 +12,5 @@ class HomeBindings extends Bindings{
 
     Get.lazyPut(() => RadioController());
     Get.put(SearchController());
-
   }
 }

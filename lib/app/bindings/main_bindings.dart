@@ -7,6 +7,7 @@ import '../controller/home/cuahang_controller.dart';
 import '../controller/detail_app_controller.dart';
 import '../controller/home/datcho_controller.dart';
 import '../controller/home/fetch_banner_controller.dart';
+import '../controller/home/fetch_topsales_controller.dart';
 import '../controller/home/home_controller.dart';
 
 class MainBindings extends Bindings {
@@ -23,5 +24,6 @@ class MainBindings extends Bindings {
     Get.put(DatChoController());
     Get.put(AuthenticationManager());
     Get.put(FetchBannerController());
+    Get.put(FetchTopSalesController());
   }
 }

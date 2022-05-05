@@ -6,7 +6,6 @@ import '../../data/model/category_home.dart';
 
 class CategoryHomeController extends GetxController{
   List<CategoryHome> categoryHomeList = [];
-  var isCategoryHome = true;
   var loadingCategoryHome =true;
 
   @override
@@ -24,7 +23,6 @@ class CategoryHomeController extends GetxController{
       update();
     },onError: (error){
       loadingCategoryHome = false;
-      print("Load categories" + error);
       update();
     });
   }

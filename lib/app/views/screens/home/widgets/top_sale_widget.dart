@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:app_casynet/app/controller/home/fetch_topsales_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -20,8 +21,8 @@ class TopSaleWidget extends StatelessWidget {
       child: Container(
           height: 100,
           padding: EdgeInsets.symmetric(vertical: 10.0.h),
-          child: GetBuilder<HomeController>(
-              init: HomeController(),
+          child: GetBuilder<FetchTopSalesController>(
+              init: FetchTopSalesController(),
               builder: (controller){
                 return LoadingOverlay(
                     isLoading: controller.isLoading,
