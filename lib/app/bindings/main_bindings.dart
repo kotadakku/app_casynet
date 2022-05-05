@@ -2,10 +2,11 @@ import 'package:get/get.dart';
 import '../controller/account/information_address_controller.dart';
 import '../controller/account/new_address_controller.dart';
 import '../controller/auth/authentication_manager.dart';
-import '../controller/home/banner_controller.dart';
+import '../controller/home/banner_page_view_controller.dart';
 import '../controller/home/cuahang_controller.dart';
 import '../controller/detail_app_controller.dart';
 import '../controller/home/datcho_controller.dart';
+import '../controller/home/fetch_banner_controller.dart';
 import '../controller/home/home_controller.dart';
 
 class MainBindings extends Bindings {
@@ -21,5 +22,6 @@ class MainBindings extends Bindings {
     Get.put(DetailAppController());
     Get.put(DatChoController());
     Get.put(AuthenticationManager());
+    Get.put(FetchBannerController());
   }
 }

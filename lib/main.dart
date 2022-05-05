@@ -15,6 +15,7 @@ import 'app/views/screens/detail_app.dart';
 import 'app/views/screens/home/home.dart';
 import 'app/views/screens/notfications.dart';
 import 'app/views/screens/splash/splash.dart';
+import 'app/views/screens/splash/splash_1.dart';
 import 'app/views/theme/app_colors.dart';
 import 'app/views/widgets/bottom_navigator.dart';
 
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
 
         ),
         builder: (context, widget) {
+          Get.put<ScaffoldMessengerState>(ScaffoldMessenger.of(context));
           // ScreenUtil.setContext(context);
           return MediaQuery(
 
@@ -83,7 +85,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         initialBinding: MainBindings(),
         getPages:  AppPages.routes ,
-        home: Splash(),
+        home: Splash_1(),
       )
     );
   }
@@ -104,7 +106,6 @@ class Home extends StatelessWidget {
         behavior: HitTestBehavior.translucent,
         onPanDown: (value) {
           FocusScopeNode currentFocus = FocusScope.of(context);
-
           if (!currentFocus.hasPrimaryFocus) {
             currentFocus.unfocus();
           }

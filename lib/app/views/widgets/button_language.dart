@@ -26,39 +26,33 @@ class _ButtonLanguageState extends State<ButtonLanguage> {
     return Container(
         width: 40,
         margin: EdgeInsets.only(right: 5.0.w, top: 10.0, bottom: 10.0),
-        child: GetBuilder<HomeController>(
-          init: HomeController(),
-          builder: (controller){
-            return TextButton(
-              onPressed: (){
-                if(controller.isVN){
-                  setState(() => _selectedLang = 'en');
-                  LocalizationService.changeLocale('en');
-                  controller.setIsVN();
-                }
-                else {
-                  setState(() => _selectedLang = 'vi');
-                  LocalizationService.changeLocale('vi');
-                  controller.setIsVN();
-                };
+        child: TextButton(
+          onPressed: (){
+            if(_selectedLang == 'vi'){
+              setState(() => _selectedLang = 'en');
+              LocalizationService.changeLocale('en');
 
-              },
-              child: Text(_selectedLang.toUpperCase(),
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 13.sp
-                ),
-              ),
-              style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  side: BorderSide(
-                    color: AppColors.borderGray_0_5,
+            }
+            else {
+              setState(() => _selectedLang = 'vi');
+              LocalizationService.changeLocale('vi');
+            };
 
-                  )
-              ),
-            );
           },
+          child: Text(_selectedLang.toUpperCase(),
+            style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+                fontSize: 13.sp
+            ),
+          ),
+          style: TextButton.styleFrom(
+              primary: Colors.white,
+              side: BorderSide(
+                color: AppColors.borderGray_0_5,
+
+              )
+          ),
         )
     );
   }

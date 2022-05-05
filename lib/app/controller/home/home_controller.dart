@@ -13,11 +13,10 @@ import '../../utlis/base64.dart';
 
 class HomeController extends GetxController{
 
-  var listBanners = [];
-  List<Sales> listSales = [];
-  var isLoading = true;
-  var isLoadingSales = true;
 
+
+  var isLoading = true;
+  List<Sales> listSales = [];
   late String search_text = "";
   late bool _isVN = true;
 
@@ -25,7 +24,7 @@ class HomeController extends GetxController{
 
   @override
   void onInit() {
-    _getBannerDB();
+
     _getTopSaleBD();
   }
 
@@ -35,55 +34,10 @@ class HomeController extends GetxController{
     super.onReady();
   }
 
-  void _getBannerDB() {
-    isLoading = true;
-    BannerDatabaseHelper.instance.queryAllRows().then((value) {
-      if(value?.length == 0){
-        getBannerAPI();
-      }else{
-        print("<Home Controller> Load from db");
-        value?.forEach((element) {
-          listBanners.add(BannerSlider(
-            id: element['id'],
-            image: element['image'],
-          ));
-          isLoading = false;
-          update();
-        });
-      }
-    });
 
-  }
-
-  void getBannerAPI(){
-    isLoading = true;
-
-    print("<Home Controller> Load from api $isLoading");
-    BannerProvider().getBanners(onSuccess: (banners){
-      listBanners.clear();
-      BannerDatabaseHelper.instance.clear();
-
-      banners.forEach((banner){
-        ImageNetworkToBase64(url: banner.image).getHttp().then((base64) {
-          BannerDatabaseHelper.instance.insert(BannerSlider(image: base64));
-          listBanners.add(BannerSlider(image: base64));
-        });
-      });
-      isLoading = false;
-      print("<Home COntroller>  Success $isLoading");
-      update();
-    },
-        beforeSend: (){},
-        onError: (error){
-          print("Error " + error.toString());
-          isLoading = false;
-          update();
-        }
-    );
-  }
 
   void _getTopSaleBD(){
-    isLoadingSales = true;
+    isLoading = true;
     TopSaleDatabaseHelper.instance.queryAllRows().then((value) {
       if(value?.length == 0){
         getSalesAPI();
@@ -95,14 +49,14 @@ class HomeController extends GetxController{
               title: element['title'],
               image: element['image']
           ));
-          isLoadingSales = false;
+          isLoading = false;
           update();
         });
       }
     });
   }
   void getSalesAPI() {
-    isLoadingSales = true;
+    isLoading = true;
     print("<Home Controller> Load from api Top Sales");
     SalesProvider().getSales(onSuccess: (sales){
       listSales.clear();
@@ -114,7 +68,7 @@ class HomeController extends GetxController{
           listSales.add(Sales(image: base64, title: sale.title));
         });
       });
-      isLoadingSales = false;
+      isLoading = false;
       update();
     },
         beforeSend: (){},

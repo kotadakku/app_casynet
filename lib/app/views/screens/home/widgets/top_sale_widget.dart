@@ -24,7 +24,7 @@ class TopSaleWidget extends StatelessWidget {
               init: HomeController(),
               builder: (controller){
                 return LoadingOverlay(
-                    isLoading: controller.isLoadingSales,
+                    isLoading: controller.isLoading,
                     shimmer: PromotionBlurWidget(),
                     child: Center(
                       child: ListView.builder(

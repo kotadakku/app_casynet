@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/auth/authentication_manager.dart';
 import '../../../routes/app_pages.dart';
 
 class Splash_1 extends StatefulWidget {
@@ -13,6 +14,7 @@ class Splash_1 extends StatefulWidget {
 }
 
 class _Splash_1State extends State<Splash_1> {
+  final AuthenticationManager _authmanager = Get.put(AuthenticationManager());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,9 +35,12 @@ class _Splash_1State extends State<Splash_1> {
   @override
   void initState() {
     initialization();
+    _authmanager.checkLoginStatus();
   }
 
   Future<Timer> initialization() async {
+
+
     return await Timer(Duration(seconds: 1),() => Get.offNamed(Routes.HOME
     ));
   }

@@ -33,7 +33,6 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-
                   // Banner
                   BannerHomeWidget(),
                   // Khuyến mãi

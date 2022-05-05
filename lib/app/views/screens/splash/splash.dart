@@ -73,21 +73,5 @@ class Splash extends StatelessWidget {
         }
       },
     );
-
-
-
   }
-
-  // Future<Timer> initialization() async {
-    //   Future<void> initializeSettings() async {
-    //     _authmanager.checkLoginStatus();
-    //
-    //     //Simulate other services for 3 seconds
-    //     await Future.delayed(Duration(seconds: 3));
-    //   }
-    //   return  await Timer(Duration(seconds: 4),() => Get.off(()=>,
-    //     transition: Transition.fadeIn,
-    //     duration: Duration(milliseconds: 1000)
-    //   ));
-    // }
 }

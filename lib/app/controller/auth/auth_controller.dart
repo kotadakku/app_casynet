@@ -10,6 +10,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   late final AuthenticationManager _authManager;
   late TabController controller;
   var sigin_loading = false.obs;
+  final ScaffoldMessengerState scaffoldMessenger = Get.find<ScaffoldMessengerState>();
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
@@ -56,6 +57,9 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
             _authManager.login(data);
             sigin_loading.value = false;
             Get.offNamed(Routes.HOME);
+            scaffoldMessenger.showSnackBar(
+              const SnackBar(content: Text('Đăng nhập thành công'), duration: Duration(seconds: 1)),
+            );
           }
           else {
             /// Show user a dialog about the error response
@@ -76,7 +80,11 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
               confirmTextColor: Colors.white,
               onConfirm: () {
                 Get.back();
-              });
+            });
+          scaffoldMessenger.showSnackBar(
+            const SnackBar(content: Text('Đăng nhập thất bại')),
+          );
+          sigin_loading.value = false;
         }
     );
   }
