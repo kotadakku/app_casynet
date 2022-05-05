@@ -48,19 +48,19 @@ class RecommendWidget extends StatelessWidget {
                           ),),
                         SizedBox(width: 15,),
                         Text(
-                            "Gợi ý".toUpperCase(),
+                            'recommed'.tr.toUpperCase(),
                             style: AppTextTheme.titleProduct
                         )
                       ],
                     ),
                     GestureDetector(
                       onTap: (){
-                        _view_more("Gợi ý");
+                        _view_more('recommed'.tr);
                       },
                       child: Row(
                         children: [
                           Text(
-                            "Xem thêm",
+                            'more'.tr,
                             style: TextStyle(
                               color: Color(0xffB7BAC1),
                             ),

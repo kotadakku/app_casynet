@@ -29,7 +29,7 @@ class CategoryWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 15.0.h ),
-          child: Text("DANH MỤC",
+          child: Text('category'.tr.toUpperCase(),
             style: AppTextTheme.categories,
           ),
         ),

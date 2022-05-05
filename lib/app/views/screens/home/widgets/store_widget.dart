@@ -47,7 +47,7 @@ class StoreWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Cửa hàng".toUpperCase(),
+                        'store'.tr.toUpperCase(),
                         style: TextStyle(
                             color: Color(0xffDFB400),
                             fontSize: 18.sp,
@@ -58,7 +58,7 @@ class StoreWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Xem thêm",
+                        'more'.tr,
                         style: TextStyle(
                           color: Color(0xffB7BAC1),
                         ),
@@ -125,7 +125,7 @@ class StoreWidget extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        "Lọc",
+                        'filter'.tr,
                         style: TextStyle(
                           color: Color(0xffB7BAC1),
                         ),

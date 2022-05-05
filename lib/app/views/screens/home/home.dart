@@ -5,15 +5,12 @@ import 'package:app_casynet/app/views/screens/home/widgets/category_bottom_widge
 import 'package:app_casynet/app/views/screens/home/widgets/category_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/promotion_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/recommend_widget.dart';
-import 'package:app_casynet/app/views/screens/home/widgets/top_sale_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/reservation_home_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/store_widget.dart';
+import 'package:app_casynet/app/views/screens/home/widgets/top_sale_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-import '../../../controller/filter_product_controller.dart';
 import '../../widgets/bottom_widget.dart';
 
 
@@ -36,6 +33,7 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
+
                   // Banner
                   BannerHomeWidget(),
                   // Khuyến mãi
