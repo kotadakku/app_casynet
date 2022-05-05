@@ -9,11 +9,13 @@ import 'cart2.dart';
 import 'itemCart.dart';
 
 class Cart extends StatelessWidget {
+  const Cart({Key? key}) : super(key: key);
+
 
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -30,8 +32,8 @@ class Cart extends StatelessWidget {
 
                 //giỏ hang của bạn
                 Container(
-                  alignment: Alignment(0, 0),
-                  color: Color.fromARGB(255, 241, 243, 253),
+                  alignment: const Alignment(0, 0),
+                  color: const Color.fromARGB(255, 241, 243, 253),
                   height: 50.h,
                   padding: EdgeInsets.only(left: 5.w),
                   child: Row(
@@ -39,14 +41,14 @@ class Cart extends StatelessWidget {
                       GetBuilder<BottomNavController>(
                           init: BottomNavController(),builder: (controller)=>InkWell(
                         splashColor: Colors.blue,
-                        child: Icon(Icons.arrow_back),/*Center(child: ),*/
+                        child: const Icon(Icons.arrow_back),/*Center(child: ),*/
                         onTap: (){
                           controller.changeTabIndex(0);
                         },
                       ),),
                       const Text(
                         "Giỏ Hàng Của Bạn ",
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.black,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -57,27 +59,27 @@ class Cart extends StatelessWidget {
                 ),
 
                 ListView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   children: [
-                    Container(
-                      child: ListView.separated(
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          return ItemCart();
-                        },
-                        separatorBuilder: (context, index) {
-                          return Divider(
-                            height: 30.h,
-                            thickness: 0.5,
-                          );
-                        },
-                        padding: EdgeInsets.all(0.1.h),
-                        itemCount: 2,
-                        shrinkWrap: true,
-                      ),
+
+                    ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        return Text(""); /*ItemCart(
+                        );*/
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          height: 30.h,
+                          thickness: 0.5,
+                        );
+                      },
+                      padding: EdgeInsets.all(0.1.h),
+                      itemCount: 2,
+                      shrinkWrap: true,
                     ),
                     Row(
                       children: [
@@ -99,7 +101,7 @@ class Cart extends StatelessWidget {
                                 ),
                                 Container(
                                   alignment: AlignmentDirectional.center,
-                                  child: Text(
+                                  child: const Text(
                                     "SALE",
                                     style: TextStyle(
                                         color: Color.fromARGB(193, 193, 115, 10),
@@ -115,7 +117,7 @@ class Cart extends StatelessWidget {
                           child: Container(
                             height: 50,
                             alignment: AlignmentDirectional.centerStart,
-                            child: TextField(
+                            child: const TextField(
                               keyboardType: TextInputType.text,
                               textAlign: TextAlign.left,
                               decoration: InputDecoration(
@@ -125,19 +127,19 @@ class Cart extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 2.0,
                         ),
                         Expanded(
                             flex: 1,
                             child: Container(
-                              margin: EdgeInsets.only(right: 2.0),
+                              margin: const EdgeInsets.only(right: 2.0),
                               height: 50,
                               child: TextButton(
                                 style: TextButton.styleFrom(
-                                  padding: EdgeInsets.all(2.5),
+                                  padding: const EdgeInsets.all(2.5),
                                   backgroundColor:
-                                  Color.fromARGB(255, 4, 119, 233),
+                                  const Color.fromARGB(255, 4, 119, 233),
                                   primary: Colors.white,
                                   textStyle: const TextStyle(fontSize: 15),
                                 ),
@@ -160,8 +162,8 @@ class Cart extends StatelessWidget {
                                 flex: 1,
                                 child: Container(
                                   height: 40.0,
-                                  margin: EdgeInsets.only(left: 5.0,top: 10.0),
-                                  child: Text(
+                                  margin: const EdgeInsets.only(left: 5.0,top: 10.0),
+                                  child: const Text(
                                     "Thành tiền: ",
                                     style: TextStyle(
                                         color: Color.fromARGB(255, 149, 156, 175),
@@ -178,8 +180,8 @@ class Cart extends StatelessWidget {
                                   children: [
                                     Container(
                                       height: 40.0,
-                                      margin: EdgeInsets.only(top: 5.0),
-                                      child: Text(
+                                      margin: const EdgeInsets.only(top: 5.0),
+                                      child: const Text(
                                         "10.000.000 đ ",
                                         style: TextStyle(
                                             color: Color.fromARGB(255, 255, 69, 69),
@@ -198,8 +200,8 @@ class Cart extends StatelessWidget {
                           children: [
                             Container(
                               height: 20,
-                              margin: EdgeInsets.only(right: 5.0),
-                              child: Text(
+                              margin: const EdgeInsets.only(right: 5.0),
+                              child: const Text(
                                 "(Đã bao gồm VAT nếu có) ",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 149, 156, 175),
@@ -217,15 +219,15 @@ class Cart extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          margin: EdgeInsets.all(5.0),
+                          margin: const EdgeInsets.all(5.0),
                           height: 50,
                           child: TextButton(
 
                             style: TextButton.styleFrom(
 
-                              padding: EdgeInsets.only(left: 80,right: 80),
+                              padding: const EdgeInsets.only(left: 80,right: 80),
                               backgroundColor:
-                              Color.fromARGB(255, 223, 180, 0),
+                              const Color.fromARGB(255, 223, 180, 0),
                               primary: Colors.white,
                               textStyle: const TextStyle(fontSize: 20),
                             ),

@@ -37,7 +37,6 @@ class CategoryWidget extends StatelessWidget {
           child: Center(
             child: LayoutBuilder(
               builder: (context, constraints) {
-
                   int device = constraints.maxWidth>=780 ? 5 : 3;
                   return GetBuilder<CategoryHomeController>(
                     init: CategoryHomeController(),

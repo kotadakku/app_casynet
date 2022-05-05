@@ -1,5 +1,6 @@
-
+import 'package:app_casynet/app/controller/home/category_home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -12,11 +13,29 @@ class CategoryBottomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kBackgroundColor,
-      padding: EdgeInsets.symmetric(vertical: 10),
-      child: Align(
-        alignment: Alignment.center,
-        child: Wrap(
+        color: kBackgroundColor,
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Align(
+          alignment: Alignment.center,
+          child: LayoutBuilder(builder: (context, constraints) {
+            return GetBuilder<CategoryHomeController>(
+                init: CategoryHomeController(),
+                builder: ((controller) {
+                  return Wrap(
+                    runSpacing: 10,
+                    spacing: 10,
+                    children: controller.categoryHomeList
+                        .map(
+                          (e) => CategoryItemBottom(
+                              images_url: e.anhdanhmuc.toString(),
+                              name: e.tendanhmuc.toString()),
+                        )
+                        .toList(),
+                  );
+                }));
+          }),
+        )
+        /*Wrap(
             runSpacing: 10,
             spacing: 10,
             children: [
@@ -38,9 +57,8 @@ class CategoryBottomWidget extends StatelessWidget {
               CategoryItemBottom(
                   images_url: "assets/home/category/bt_lopacquy.svg",
                   name: "Lốp và ác quy xe"),
-            ]),
-      ),
-    );
+            ]),*/
+        );
   }
 }
 
@@ -55,49 +73,51 @@ class CategoryItemBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: LayoutBuilder(
-          builder: (context, constraint){
-              var width = constraint.maxWidth>785 ? (constraint.maxWidth / 3 - 20) :  (constraint.maxWidth / 2 - 15);
-              return Container(
-                  width: width,
-                  height: 42,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(width: 1, color: kYellowColor)),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Stack(
-                            children: [
-                              SvgPicture.asset(
-                                "assets/home/category/left_bottom.svg",
-                                height: 40,
-                              ),
-                              Positioned(
-                                  left: 10,
-                                  top: 10,
-                                  child: SvgPicture.asset(images_url, height: 16))
-                            ],
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          FittedBox(
-                            child: Text(
-                              name,
-                              style: TextStyle(color: kTextColor_gray, fontSize: 12),
-                            ),
-                          )
-
-                        ],
+      child: LayoutBuilder(builder: (context, constraint) {
+        var width = constraint.maxWidth > 785
+            ? (constraint.maxWidth / 3 - 20)
+            : (constraint.maxWidth / 2 - 15);
+        return Container(
+            width: width,
+            height: 42,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5.0),
+                border: Border.all(width: 1, color: kYellowColor)),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          child: SvgPicture.asset(
+                          "assets/home/category/left_bottom.svg",
+                          height: 40,
+                          // fit: BoxFit.cover,
+                        ),),
+                        Positioned(
+                            left: 10,
+                            top: 10,
+                            child: Image.network(images_url, height: 16))
+                      ],
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    FittedBox(
+                      child: Text(
+                        name,
+                        style: TextStyle(color: kTextColor_gray, fontSize: 12),
                       ),
-                    ],
-                  ));
-          }),
-      onTap: (){
-        Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, 12] );
+                    )
+                  ],
+                ),
+              ],
+            ));
+      }),
+      onTap: () {
+        Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, 12]);
       },
     );
   }

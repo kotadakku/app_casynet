@@ -1,15 +1,25 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'checkbox_controller.dart';
 
-
 class ItemCart extends StatelessWidget {
-  const ItemCart({Key? key}) : super(key: key);
-
+  final String nameStore;
+  final String nameProduct;
+  final int discount; // giá ưu đãi
+  // final int oldPrice; // giá cũ
+  final String imageProduct;
+  // final int qty; // số lượng
+  const ItemCart(
+      {Key? key,
+      required this.nameStore,
+      required this.imageProduct,
+      required this.nameProduct,
+      required this.discount,
+      /*required this.oldPrice,*/
+      /*required this.qty*/})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +28,7 @@ class ItemCart extends StatelessWidget {
     final tencuahang = [].obs;
     final tensanpham = [].obs;
 
-
     final CheckBoxController checkBoxController = Get.put(CheckBoxController());
-
 
     return Material(
       child: Column(
@@ -32,33 +40,34 @@ class ItemCart extends StatelessWidget {
             height: 50,
             padding: const EdgeInsets.only(left: 5.0),
             child: Row(
-              children:  [
-                Obx(() =>Checkbox(
-                  activeColor: Color.fromARGB(255, 223, 180, 0),
-                  value: checkBoxController.checkBoolTenCuaHang.value,
-                  onChanged: (value) {
-                    checkBoxController.checkBoolTenCuaHang.value = !checkBoxController.checkBoolTenCuaHang.value;
-                  },
-                ),),
-                
+              children: [
+                Obx(
+                  () => Checkbox(
+                    activeColor: const Color.fromARGB(255, 223, 180, 0),
+                    value: checkBoxController.checkBoolTenCuaHang.value,
+                    onChanged: (value) {
+                      checkBoxController.checkBoolTenCuaHang.value =
+                          !checkBoxController.checkBoolTenCuaHang.value;
+                    },
+                  ),
+                ),
                 Text(
                   // allchecked.tencuahang,
-                  "Tên cửa hàng",
-                  style: TextStyle(
+                  nameStore,
+                  style: const TextStyle(
                     color: Colors.lightBlue,
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
               ],
             ),
           ),
           const SizedBox(height: 0.5),
 //quà tặng cửa hàng
           Container(
-            alignment: Alignment(0, 0),
-            color: Color.fromARGB(255, 255, 255, 255),
+            alignment: const Alignment(0, 0),
+            color: const Color.fromARGB(255, 255, 255, 255),
             height: 50,
             padding: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
             child: Row(
@@ -71,7 +80,7 @@ class ItemCart extends StatelessWidget {
                       width: 20,
                       height: 20,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5.0,
                     ),
                     Text(
@@ -89,7 +98,7 @@ class ItemCart extends StatelessWidget {
                   children: [
                     Image.asset('assets/cart/icon_coin.png',
                         width: 20, height: 20),
-                    SizedBox(
+                    const SizedBox(
                       width: 5.0,
                     ),
                     RichText(
@@ -106,15 +115,6 @@ class ItemCart extends StatelessWidget {
                                     fontWeight: FontWeight.bold))
                           ]),
                     ),
-                    /*Text(
-                    "Bạn Có 20000 Casycoin",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0.sp,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),*/
-                    /*Padding(padding: EdgeInsets.only(right: 5.0))*/
                   ],
                 )
                 /*Expanded(
@@ -122,7 +122,7 @@ class ItemCart extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 0.5),
+          const SizedBox(height: 0.5),
 // list sản phẩm
           Container(
             alignment: Alignment.center,
@@ -146,55 +146,62 @@ class ItemCart extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 10,),
+                        margin: const EdgeInsets.only(
+                          left: 10,
+                        ),
                         width: 15.w,
                         height: 15.h,
-                        child: Obx(() =>Checkbox(
-                          activeColor: Color.fromARGB(255, 223, 180, 0),
-                          value: checkBoxController.checkBoolTenSanPham.value,
-                          onChanged: (value) {
-                            checkBoxController.checkBoolTenSanPham.value = !checkBoxController.checkBoolTenSanPham.value;
-                          },
-                        ),),
+                        child: Obx(
+                          () => Checkbox(
+                            activeColor: const Color.fromARGB(255, 223, 180, 0),
+                            value: checkBoxController.checkBoolTenSanPham.value,
+                            onChanged: (value) {
+                              checkBoxController.checkBoolTenSanPham.value =
+                                  !checkBoxController.checkBoolTenSanPham.value;
+                            },
+                          ),
+                        ),
                       ),
                       Container(
                         height: 90,
                         // margin: const EdgeInsets.only(left: 5.0),
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: Image.asset(
-                          "assets/cart/img_rectangle.png",
+                        child: Image.network(
+                          imageProduct,
                           width: 90,
                           height: 90,
                         ),
                       ),
-                      Expanded(child: Column(
+                      Expanded(
+                          child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget> [
+                        children: <Widget>[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                height: 25 .h,
+                                height: 25.h,
                                 width: 150.w,
                                 child: Text(
-                                "Máy rửa xe Cortex - CTR aaaaaaaaaaaaaa",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 13.0.sp,
-                                  color: Colors.black87,
+                                  nameProduct,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 13.0.sp,
+                                    color: Colors.black87,
+                                  ),
                                 ),
-                              ),),
+                              ),
                               Container(
                                 height: 25.h,
-                                child:
-                              Text(
-                                "1.290.000 đ",
-                                style: TextStyle(
-                                    fontSize: 13.0.sp,
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w500),
-                              ),)
+                                child: Text(
+                                  discount.toString(),
+                                  style: TextStyle(
+                                      fontSize: 13.0.sp,
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              )
                             ],
                           ),
                           Row(
@@ -202,11 +209,27 @@ class ItemCart extends StatelessWidget {
                             children: [
                               Container(
                                 height: 20.h,
-                                child: Text("Phân loại hàng" ,style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w300,fontSize: 12.sp),),),
+                                child: Text(
+                                  "Phân loại hàng",
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 12.sp),
+                                ),
+                              ),
                               Container(
                                 height: 20.w,
-                                child: Text("1.390.000 đ", style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w300,fontSize: 12.sp,decoration: TextDecoration.lineThrough),),)
-                            ],),
+                                child: Text(
+                                  "1.390.000 đ",
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 12.sp,
+                                      decoration: TextDecoration.lineThrough),
+                                ),
+                              )
+                            ],
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -217,7 +240,8 @@ class ItemCart extends StatelessWidget {
                                     // alignment: Alignment(0.0, 0.0),
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                            width: 0.5.w, color: Colors.lightBlue)),
+                                            width: 0.5.w,
+                                            color: Colors.lightBlue)),
                                     height: 30.h,
                                     width: 30.w,
                                     child: Material(
@@ -234,20 +258,21 @@ class ItemCart extends StatelessWidget {
                                             ));
                                           } else {
                                             soluong--;
-                                            mycontroller.text = soluong.toString();
+                                            mycontroller.text =
+                                                soluong.toString();
                                           }
                                         },
                                         child: SizedBox(
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: const [
-                                                Icon(
-                                                  Icons.remove,
-                                                  size: 20,
-                                                ),
-
-                                              ],
-                                            )),
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: const [
+                                            Icon(
+                                              Icons.remove,
+                                              size: 20,
+                                            ),
+                                          ],
+                                        )),
                                       ),
                                     ),
                                   ),
@@ -288,17 +313,17 @@ class ItemCart extends StatelessWidget {
                                 ),
                               ),*/
                                   Container(
-                                    decoration:  BoxDecoration(
-                                        border: Border.all(width: 0.5.w, color: Colors.lightBlue)
-
-                                    ),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 0.5.w,
+                                            color: Colors.lightBlue)),
                                     width: 40.w,
                                     height: 30.h,
                                     child: Obx(
-                                          () => TextField(
+                                      () => TextField(
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          hintText:  soluong.toString(),
+                                          hintText: soluong.toString(),
                                           // prefixText: "1",
                                           counterText: "",
                                           border: InputBorder.none,
@@ -319,7 +344,8 @@ class ItemCart extends StatelessWidget {
                                     width: 30.w,
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                            width: 0.5.w, color: Colors.lightBlue)),
+                                            width: 0.5.w,
+                                            color: Colors.lightBlue)),
                                     height: 30.h,
                                     child: Material(
                                       color: Colors.white,
@@ -341,20 +367,20 @@ class ItemCart extends StatelessWidget {
                                         },
                                         child: SizedBox(
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: const [
-                                                Icon(
-                                                  Icons.add,
-                                                  size: 20,
-                                                ),
-
-                                              ],
-                                            )),
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: const [
+                                            Icon(
+                                              Icons.add,
+                                              size: 20,
+                                            ),
+                                          ],
+                                        )),
                                       ),
                                     ),
                                   ),
-
-                                ],),
+                                ],
+                              ),
 
                               /*btn xóa*/
                               Container(
@@ -370,17 +396,17 @@ class ItemCart extends StatelessWidget {
                                     },
                                     child: SizedBox(
                                         child: Row(
-                                          children: const [
-                                            Icon(
-                                              Icons.delete,
-                                              size: 15,
-                                            ),
-                                            Text(
-                                              "Xóa",
-                                              style: TextStyle(fontSize: 10),
-                                            )
-                                          ],
-                                        )),
+                                      children: const [
+                                        Icon(
+                                          Icons.delete,
+                                          size: 15,
+                                        ),
+                                        Text(
+                                          "Xóa",
+                                          style: TextStyle(fontSize: 10),
+                                        )
+                                      ],
+                                    )),
                                   ),
                                 ),
                               ),
@@ -399,17 +425,17 @@ class ItemCart extends StatelessWidget {
                                     },
                                     child: SizedBox(
                                         child: Row(
-                                          children: const [
-                                            Icon(
-                                              Icons.edit,
-                                              size: 15,
-                                            ),
-                                            Text(
-                                              "Ghi chú",
-                                              style: TextStyle(fontSize: 10),
-                                            )
-                                          ],
-                                        )),
+                                      children: const [
+                                        Icon(
+                                          Icons.edit,
+                                          size: 15,
+                                        ),
+                                        Text(
+                                          "Ghi chú",
+                                          style: TextStyle(fontSize: 10),
+                                        )
+                                      ],
+                                    )),
                                   ),
                                 ),
                               ),

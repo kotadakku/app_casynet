@@ -1,5 +1,5 @@
-import 'dart:convert';
-class ItemProducInCart {
+
+class ItemProductInCart {
   // API thiếu tên cửa hàng
   String? _image;// ảnh sản phẩm => API thiếu
   int? _itemId;// id sản phẩm
@@ -11,7 +11,7 @@ class ItemProducInCart {
   String? _productType;// phân loại hàng
   String? _quoteId;
 
-  ItemProducInCart(
+  ItemProductInCart(
       {String? image,
         int? itemId,
         String? sku,
@@ -22,27 +22,28 @@ class ItemProducInCart {
         String? productType,
         String? quoteId}) {
     if (image != null){
-      this._image = image;
+      _image = image;
     }
     if (itemId != null) {
-      this._itemId = itemId;
+      _itemId = itemId;
     }
     if (sku != null) {
-      this._sku = sku;
+      _sku = sku;
     }
     if (qty != null) {
-      this._qty = qty;
+      _qty = qty;
     }
     if (name != null) {
-      this._name = name;
+      _name = name;
     }
     if (price != null) {
-      this._discount = price;
-    }if (oldPrice != null) {
-      this._oldPrice = oldPrice;
+      _discount = price;
+    }
+    if (oldPrice != null) {
+      _oldPrice = oldPrice;
     }
     if (productType != null) {
-      this._productType = productType;
+      _productType = productType;
     }
     if (quoteId != null) {
       this._quoteId = quoteId;
@@ -69,7 +70,7 @@ class ItemProducInCart {
   String? get quoteId => _quoteId;
   set quoteId(String? quoteId) => _quoteId = quoteId;
 
-  ItemProducInCart.fromJson(Map<String, dynamic> json) {
+  ItemProductInCart.fromJson(Map<String, dynamic> json) {
     _image = json[''];
     _itemId = json['item_id'];
     _sku = json['sku'];

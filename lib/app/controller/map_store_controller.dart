@@ -15,6 +15,7 @@ class MapStoreController extends GetxController{
   @override
   void onInit() {
     super.onInit();
+    _getLocation();
 
   }
 
