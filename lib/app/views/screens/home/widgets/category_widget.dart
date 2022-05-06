@@ -1,5 +1,7 @@
 
-import 'package:app_casynet/app/controller/home/category_home_controller.dart';
+import 'dart:convert';
+
+import 'package:app_casynet/app/controller/home/fetch_category_controller.dart';
 import 'package:app_casynet/app/data/model/category_home.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:app_casynet/app/views/widgets/shimmer_loading.dart';
@@ -18,15 +20,7 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // CategoryHome categoryHome;
-    List<Widget> danhmuc = [
-      ItemCategoryWidget(image_url: "assets/home/category/ruaxethaydau.png", title: "Rửa xe, thay dầu"),
-      ItemCategoryWidget(image_url: "assets/home/category/suachuaxe.png", title: "Sửa chữa xe"),
-      ItemCategoryWidget(image_url: "assets/home/category/dochoiphukien.png", title: "Đồ chơi, phụ kiện"),
-      ItemCategoryWidget(image_url: "assets/home/category/muabanxe.png", title: "Mua bán xe"),
-      ItemCategoryWidget(image_url: "assets/home/category/chamsocxe.png", title: "Chăm sóc xe"),
-      ItemCategoryWidget(image_url: "assets/home/category/lopacquy.png", title: "Lốp và ác quy xe"),
-      ItemCategoryWidget(image_url: "assets/home/category/chamsocxe.png", title: "Chăm sóc xe"),
-    ];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -43,7 +37,7 @@ class CategoryWidget extends StatelessWidget {
                   return GetBuilder<CategoryHomeController>(
                     init: CategoryHomeController(),
                     builder: ((controller){
-                      return LoadingOverlay(isLoading: controller.loadingCategoryHome,
+                      return LoadingOverlay(isLoading: controller.isLoading,
                         shimmer: CategoryShimer(),
                         child: controller.categoryHomeList.isEmpty ? Text("Không có thể loại để hiển thị"):
                         GridView.count(
@@ -86,7 +80,7 @@ class ItemCategoryWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Image.network(image_url, width: 50, height: 50,),
+              Image.memory(base64.decode(image_url), width: 50, height: 50,),
               Text(title),
             ],
           ),

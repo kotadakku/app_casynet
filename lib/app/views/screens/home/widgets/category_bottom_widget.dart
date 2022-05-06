@@ -1,4 +1,6 @@
-import 'package:app_casynet/app/controller/home/category_home_controller.dart';
+import 'dart:convert';
+
+import 'package:app_casynet/app/controller/home/fetch_category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -99,7 +101,7 @@ class CategoryItemBottom extends StatelessWidget {
                         Positioned(
                             left: 10,
                             top: 10,
-                            child: Image.network(images_url, height: 16))
+                            child: Image.memory(base64.decode(images_url), width: 16, height: 16,)),
                       ],
                     ),
                     SizedBox(

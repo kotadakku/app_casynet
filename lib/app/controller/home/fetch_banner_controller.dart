@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../data/model/banner_slider.dart';
 import '../../data/provider/banner_api_provider.dart';
-import '../../data/provider/user_db_provider.dart';
+import '../../data/provider/db/banner_db_provider.dart';
 import '../../utlis/base64.dart';
 
 class FetchBannerController extends GetxController{

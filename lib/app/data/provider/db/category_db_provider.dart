@@ -1,20 +1,24 @@
 import 'dart:async';
-import 'package:sqflite/sqflite.dart';
+
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
-import '../model/banner_slider.dart';
+import '../../model/category_home.dart';
 
-class BannerDatabaseHelper{
-  static final String _databaseName = "banner.db";
+
+
+class CategoryDatabaseHelper{
+  static final String _databaseName = "category.db";
 
   static final _databaseVersion = 1;
-  static final String table = 'banner';
+  static final String table = 'category';
   static final String columnId = 'id';
   static final String columnImage = 'image';
+  static final String columnTitle = 'title';
 
-  BannerDatabaseHelper._privateContructor();
+  CategoryDatabaseHelper._privateContructor();
 
-  static final BannerDatabaseHelper instance = BannerDatabaseHelper._privateContructor();
+  static final CategoryDatabaseHelper instance = CategoryDatabaseHelper._privateContructor();
 
   static Database? _database;
 
@@ -34,15 +38,16 @@ class BannerDatabaseHelper{
   static FutureOr<void> _onCreate(Database db, int version) async {
     await db.execute(''' CREATE TABLE $table (
             $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
+            $columnTitle TEXT NOT NULL,
             $columnImage TEXT NOT NULL
           )
     ''');
   }
 
 
-  Future<int?> insert(BannerSlider banner) async {
+  Future<int?> insert(CategoryHome category) async {
     Database? db = await instance.database;
-    var res = await db?.insert(table, banner.toJson());
+    var res = await db?.insert(table, category.toJson());
     return res;
   }
 

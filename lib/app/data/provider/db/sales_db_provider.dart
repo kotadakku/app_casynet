@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-import '../model/sales.dart';
+import '../../model/sales.dart';
 
 
 
 class TopSaleDatabaseHelper{
-  static final String _databaseName = ".db";
+  static final String _databaseName = "sales.db";
 
   static final _databaseVersion = 1;
   static final String table = 'top_sale';
