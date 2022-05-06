@@ -6,15 +6,16 @@ import 'package:get/get.dart';
 import '../model/item_product_in_cart.dart';
 
 class ItemProductInCartMeProvider {
-  AuthenticationManager controller = Get.find();
+
   void fetchItemProductInCartMeList({Function()? beforeSend,
-  required Function(List<ItemProductInCart> itemProductInCart) onSuccess,
-  Function(dynamic error)? onError
+    required Function(List<ItemProductInCart> itemProductInCart) onSuccess,
+    Function(dynamic error)? onError,
+    String? token
   }){
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: "8tdkjzy2yx3xbq8e75ksuj488geg9ezd",
+        token: token,
     ).get(
     beforeSend:()=>{if(beforeSend != null) beforeSend()},
     onSuccess: (data){
@@ -32,7 +33,6 @@ class ItemProductInCartMeProvider {
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: controller.user_current.token,
     ).post(
     beforePost: () => {if(beforePost != null) beforePost},
     onSuccess: (data){onSuccess!(ItemProductInCart.fromJson(json.decode(data)));},
@@ -49,7 +49,6 @@ class ItemProductInCartMeProvider {
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: controller.user_current.token,
     ).put(
     beforePut: ()=> {if(beforePut != null) beforePut()},
     onSuccess: (data){onSuccess!(ItemProductInCart.fromJson(json.decode(data))); },
@@ -66,7 +65,6 @@ class ItemProductInCartMeProvider {
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: controller.user_current.token,
     ).delete(
       beforeDelete: ()=>{if(beforeDelete != null) beforeDelete()},
       onSuccess: (data){print(data);},
