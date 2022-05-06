@@ -1,6 +1,7 @@
 
 class ItemProductInCart {
   // API thiếu tên cửa hàng
+  /*String? */
   String? _image;// ảnh sản phẩm => API thiếu
   int? _itemId;// id sản phẩm
   String? _sku;

@@ -1,9 +1,12 @@
 
 import 'dart:convert';
+import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:app_casynet/app/utlis/http_service.dart';
+import 'package:get/get.dart';
 import '../model/item_product_in_cart.dart';
 
-class ItemProductInCartMeProvider{
+class ItemProductInCartMeProvider {
+  AuthenticationManager controller = Get.find();
   void fetchItemProductInCartMeList({Function()? beforeSend,
   required Function(List<ItemProductInCart> itemProductInCart) onSuccess,
   Function(dynamic error)? onError
@@ -11,11 +14,11 @@ class ItemProductInCartMeProvider{
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: 'iawm31z1d6mmbkgz6usmiftx33tj2i0e'
+        token: "8tdkjzy2yx3xbq8e75ksuj488geg9ezd",
     ).get(
     beforeSend:()=>{if(beforeSend != null) beforeSend()},
     onSuccess: (data){
-      onSuccess((json.decode(data) as List).map((postJson) => ItemProductInCart.fromJson(postJson)).toList());
+      onSuccess((data as List ).map((postJson) => ItemProductInCart.fromJson(postJson)).toList());
     },
     onError: (error) => {if(onError != null) onError(error)}
     );
@@ -29,7 +32,7 @@ class ItemProductInCartMeProvider{
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: 'iawm31z1d6mmbkgz6usmiftx33tj2i0e'
+        token: controller.user_current.token,
     ).post(
     beforePost: () => {if(beforePost != null) beforePost},
     onSuccess: (data){onSuccess!(ItemProductInCart.fromJson(json.decode(data)));},
@@ -46,7 +49,8 @@ class ItemProductInCartMeProvider{
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: 'iawm31z1d6mmbkgz6usmiftx33tj2i0e').put(
+        token: controller.user_current.token,
+    ).put(
     beforePut: ()=> {if(beforePut != null) beforePut()},
     onSuccess: (data){onSuccess!(ItemProductInCart.fromJson(json.decode(data))); },
     onError: (error) => {if(onError != null) onError(error)},
@@ -62,7 +66,7 @@ class ItemProductInCartMeProvider{
     ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
         data: null,
-        token: 'iawm31z1d6mmbkgz6usmiftx33tj2i0e'
+        token: controller.user_current.token,
     ).delete(
       beforeDelete: ()=>{if(beforeDelete != null) beforeDelete()},
       onSuccess: (data){print(data);},

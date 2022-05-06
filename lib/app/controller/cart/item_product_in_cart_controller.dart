@@ -22,7 +22,7 @@ class ItemProductInCartMeController extends GetxController{
       update();},
       onError: (error){
       loadingItemProductInCart = false;
-      print("Load ItemProductInCart" + error);
+      print("Load ItemProductInCart (tai bi loi): " + error);
       update();
       }
     );
