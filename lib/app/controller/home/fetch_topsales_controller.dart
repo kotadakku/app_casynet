@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 
 import '../../data/model/sales.dart';
+import '../../data/provider/db/sales_db_provider.dart';
 import '../../data/provider/sales_api_provider.dart';
-import '../../data/provider/sales_db_provider.dart';
 import '../../utlis/base64.dart';
 
 class FetchTopSalesController extends GetxController{
   var isLoading = true;
+  var isLoadingComplete = true;
   List<Sales> listSales = [];
 
 
@@ -26,6 +27,7 @@ class FetchTopSalesController extends GetxController{
 
   void _getTopSaleBD(){
     isLoading = true;
+    isLoadingComplete = true;
     TopSaleDatabaseHelper.instance.queryAllRows().then((value) {
       if(value?.length == 0){
         getSalesAPI();
@@ -37,6 +39,7 @@ class FetchTopSalesController extends GetxController{
               image: element['image']
           ));
           isLoading = false;
+          isLoadingComplete = false;
           update();
         });
       }
@@ -44,6 +47,7 @@ class FetchTopSalesController extends GetxController{
   }
   Future<void> getSalesAPI() async {
     isLoading = true;
+    isLoadingComplete = true;
     SalesProvider().getSales(onSuccess: (sales) async {
       listSales.clear();
       TopSaleDatabaseHelper.instance.clear();
@@ -52,16 +56,18 @@ class FetchTopSalesController extends GetxController{
         var base64 = await ImageNetworkToBase64(url: sale.image).getHttp();
         TopSaleDatabaseHelper.instance.insert(Sales(image: base64, title: sale.title));
         listSales.add(Sales(image: base64, title: sale.title));
+        isLoading = false;
         update();
 
       }
-      isLoading = false;
+      isLoadingComplete = false;
       update();
     },
         beforeSend: (){},
         onError: (error){
           print("Error " + error.toString());
           isLoading = false;
+          isLoadingComplete = false;
           update();
         }
     );

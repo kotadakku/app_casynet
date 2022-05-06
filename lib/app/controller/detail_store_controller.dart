@@ -19,7 +19,7 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
   var isLoading = true;
   late List<DatCho> products = [];
 
-  late CuaHang store;
+  late CuaHang store = CuaHang();
 
   @override
   void onInit() {

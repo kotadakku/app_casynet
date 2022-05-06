@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
           if(_fetchBannerController.isLoading == false){
             await _fetchBannerController.getBannerAPI();
           }
-          if(_fetchTopSalesController.isLoading == false){
+          if(_fetchTopSalesController.isLoadingComplete == false){
             await _fetchTopSalesController.getSalesAPI();
           }
 

@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="37.333" height="38" viewBox="0 0 37.333 38">
-  <g id="Group_540" data-name="Group 540" transform="translate(-321.333 -1509.333)">
-    <path id="ic_shopping_cart_24px" d="M12.2,32.4a3.8,3.8,0,1,0,3.733,3.8A3.762,3.762,0,0,0,12.2,32.4ZM1,2V5.8H4.733l6.72,14.421-2.52,4.655A3.725,3.725,0,0,0,8.467,26.7,3.778,3.778,0,0,0,12.2,30.5H34.6V26.7H12.984a.466.466,0,0,1-.467-.475L12.573,26l1.68-3.1H28.16a3.706,3.706,0,0,0,3.267-1.957L38.109,8.612A1.914,1.914,0,0,0,36.466,5.8H8.859L7.1,2H1ZM30.866,32.4A3.8,3.8,0,1,0,34.6,36.2,3.762,3.762,0,0,0,30.866,32.4Z" transform="translate(320.333 1507.333)" fill="#717a94"/>
-    <text id="_" data-name="$" transform="translate(338 1527)" fill="#fff" font-size="16" font-family="OpenSans-Bold, Open Sans" font-weight="700"><tspan x="0" y="0">$</tspan></text>
-  </g>
-</svg>

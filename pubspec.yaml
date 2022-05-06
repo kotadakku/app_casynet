@@ -176,17 +176,7 @@ flutter:
     - assets/background_2.svg
     - assets/notification/noti_1.png
     - assets/filter/image83.png
-    - assets/detail_product/product_1.png
-    - assets/detail_product/coin.svg
-    - assets/detail_product/gift.svg
-    - assets/detail_product/phone-volume.svg
-    - assets/detail_product/cart.svg
-    - assets/detail_product/cart2.svg
-    - assets/detail_product/ic_perm_phone.svg
-    - assets/detail_product/ic_alarm.svg
-    - assets/detail_product/calendar-alt.svg
-    - assets/detail_product/back_sale.svg
-    - assets/detail_product/message.svg
+    - assets/product_detail/
     - assets/benefit/image.png
     - assets/detail_store/anhCuaHang.png
     - assets/detail_store/background.png
