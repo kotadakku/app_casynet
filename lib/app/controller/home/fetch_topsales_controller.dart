@@ -7,7 +7,7 @@ import '../../utlis/base64.dart';
 
 class FetchTopSalesController extends GetxController{
   var isLoading = true;
-  var isLoadingComplete = true;
+  var isLoadingComplete = false;
   List<Sales> listSales = [];
 
 

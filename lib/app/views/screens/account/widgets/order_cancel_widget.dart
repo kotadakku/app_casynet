@@ -125,7 +125,7 @@ class OrderItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: ExactAssetImage(
-                            "assets/detail_product/product_1.png"))),
+                            "assets/product_detail/product_1.png"))),
               ),
               SizedBox(
                 width: 10,

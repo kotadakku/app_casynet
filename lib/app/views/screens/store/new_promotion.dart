@@ -77,7 +77,7 @@ class NewPromotionPage extends StatelessWidget {
                 height: 25,
                 width: 25,
                 padding: EdgeInsets.all(5.0),
-                child: SvgPicture.asset("assets/detail_product/gift.svg"),
+                child: SvgPicture.asset("assets/product_detail/gift.svg"),
               ),
               Text("Mã quà tặng"),
               Expanded(child: TextField(

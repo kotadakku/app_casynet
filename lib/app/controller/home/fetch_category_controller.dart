@@ -19,15 +19,16 @@ class CategoryHomeController extends GetxController{
 
   void _getCategoryDB() {
     isLoading = true;
+    print('<Load Category> Load DB');
     CategoryDatabaseHelper.instance.queryAllRows().then((value) {
       if(value?.length == 0){
         getCategoryAPI();
       }else{
         value?.forEach((element) {
           categoryHomeList.add(CategoryHome(
-            iddanhmuc: element['id'],
-            anhdanhmuc: element['title'],
-            tendanhmuc: element['image']
+            iddanhmuc: element['iddanhmuc'],
+            anhdanhmuc: element['anhdanhmuc'],
+            tendanhmuc: element['tendanhmuc']
           ));
           isLoading = false;
           isLoadingComplete = false;
@@ -41,6 +42,7 @@ class CategoryHomeController extends GetxController{
   Future<void> getCategoryAPI() async {
     isLoading = true;
     isLoadingComplete = true;
+    print('<Load Category> Load DB');
     CategoryHomeProvider().fetchCategoryHomeList(onSuccess: (categories) async {
       categoryHomeList.clear();
       CategoryDatabaseHelper.instance.clear();

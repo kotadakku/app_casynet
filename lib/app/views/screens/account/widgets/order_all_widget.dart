@@ -41,7 +41,7 @@ class OrderAllWidget extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: ExactAssetImage("assets/detail_product/product_1.png")
+                      image: ExactAssetImage("assets/product_detail/product_1.png")
                   )
               ),
             ),

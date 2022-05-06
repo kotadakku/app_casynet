@@ -127,7 +127,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
             width: 30,
             padding: EdgeInsets.all(2.0),
             child: SvgPicture.asset(
-                "assets/detail_product/message.svg"),
+                "assets/product_detail/message.svg"),
           ),
         ),
         GestureDetector(
@@ -140,7 +140,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
             width: 30,
             padding: EdgeInsets.all(2.0),
             child:
-            SvgPicture.asset("assets/detail_product/cart.svg"),
+            SvgPicture.asset("assets/product_detail/cart.svg"),
           ),
         ),
         PopupMenuButton(

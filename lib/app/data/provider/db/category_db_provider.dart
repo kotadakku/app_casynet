@@ -12,9 +12,9 @@ class CategoryDatabaseHelper{
 
   static final _databaseVersion = 1;
   static final String table = 'category';
-  static final String columnId = 'id';
-  static final String columnImage = 'image';
-  static final String columnTitle = 'title';
+  static final String columnId = 'iddanhmuc';
+  static final String columnImage = 'anhdanhmuc';
+  static final String columnTitle = 'tendanhmuc';
 
   CategoryDatabaseHelper._privateContructor();
 
@@ -53,7 +53,7 @@ class CategoryDatabaseHelper{
 
   Future<List<Map<String, dynamic>>?> queryAllRows() async {
     Database? db = await instance.database;
-    var res = await db?.query(table, orderBy: "$columnId DESC");
+    var res = await db?.query(table, orderBy: "$columnId");
     return res;
   }
 
