@@ -52,6 +52,7 @@ class AuthenticationManager extends GetxController with CacheManager {
         onSuccess: (data) {
           if (data != null) {
             user_current = data;
+            user_current.token = token;
             update();
           }
         },

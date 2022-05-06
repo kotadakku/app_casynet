@@ -1,4 +1,4 @@
-
+import 'package:app_casynet/app/controller/cart/item_product_in_cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,10 +13,8 @@ class Cart extends StatelessWidget {
   const Cart({Key? key}) : super(key: key);
 
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarCartWidget(),
@@ -35,13 +33,15 @@ class Cart extends StatelessWidget {
                   child: Row(
                     children: [
                       GetBuilder<BottomNavController>(
-                          init: BottomNavController(),builder: (controller)=>InkWell(
-                        splashColor: Colors.blue,
-                        child: const Icon(Icons.arrow_back),/*Center(child: ),*/
-                        onTap: (){
-                          controller.changeTabIndex(0);
-                        },
-                      ),),
+                        init: BottomNavController(), builder: (controller) =>
+                          InkWell(
+                            splashColor: Colors.blue,
+                            child: const Icon(
+                                Icons.arrow_back), /*Center(child: ),*/
+                            onTap: () {
+                              controller.changeTabIndex(0);
+                            },
+                          ),),
                       const Text(
                         "Giỏ Hàng Của Bạn ",
                         style: TextStyle(
@@ -59,24 +59,45 @@ class Cart extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   children: [
+                    GetBuilder<ItemProductInCartMeController>(
+                        init: ItemProductInCartMeController(),
+                        builder: ((controller) {
+                          return ListView(
+                            shrinkWrap: true,
+                            children: [
+                              ...controller.itemProductInCartList
+                                  .map(
+                                      (e) => ItemCart(
+                                  nameStore: e.name.toString(),
+                                  imageProduct: "https://i0.wp.com/fluttertutorial.in/wp-content/uploads/2022/04/Dart-Interview-Questions.png?resize=100%2C70&ssl=1",
+                                  nameProduct: e.name.toString(),
+                                  discount: e.price?? 0)).toList()
+                            ],
+                          );
+                          /*ListView.separated(
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              return ItemCart(
+                                nameStore: toString(),
+                                nameProduct: toString(),
+                                imageProduct: toString(),
+                                discount: 1,
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return Divider(
+                                height: 30.h,
+                                thickness: 0.5,
+                              );
+                            },
+                            padding: EdgeInsets.all(0.1.h),
+                            itemCount: 2,
+                            shrinkWrap: true,
+                          );*/
+                        })),
 
-                    ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        return Text(""); /*ItemCart(
-                        );*/
-                      },
-                      separatorBuilder: (context, index) {
-                        return Divider(
-                          height: 30.h,
-                          thickness: 0.5,
-                        );
-                      },
-                      padding: EdgeInsets.all(0.1.h),
-                      itemCount: 2,
-                      shrinkWrap: true,
-                    ),
+
                     Row(
                       children: [
                         Expanded(
@@ -100,7 +121,8 @@ class Cart extends StatelessWidget {
                                   child: const Text(
                                     "SALE",
                                     style: TextStyle(
-                                        color: Color.fromARGB(193, 193, 115, 10),
+                                        color: Color.fromARGB(
+                                            193, 193, 115, 10),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 )
@@ -158,11 +180,13 @@ class Cart extends StatelessWidget {
                                 flex: 1,
                                 child: Container(
                                   height: 40.0,
-                                  margin: const EdgeInsets.only(left: 5.0,top: 10.0),
+                                  margin: const EdgeInsets.only(
+                                      left: 5.0, top: 10.0),
                                   child: const Text(
                                     "Thành tiền: ",
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 149, 156, 175),
+                                        color: Color.fromARGB(
+                                            255, 149, 156, 175),
                                         fontWeight: FontWeight.w400,
                                         fontSize: 18
                                     ),
@@ -180,7 +204,8 @@ class Cart extends StatelessWidget {
                                       child: const Text(
                                         "10.000.000 đ ",
                                         style: TextStyle(
-                                            color: Color.fromARGB(255, 255, 69, 69),
+                                            color: Color.fromARGB(
+                                                255, 255, 69, 69),
                                             fontWeight: FontWeight.w400,
                                             fontSize: 20
                                         ),
@@ -221,7 +246,8 @@ class Cart extends StatelessWidget {
 
                             style: TextButton.styleFrom(
 
-                              padding: const EdgeInsets.only(left: 80,right: 80),
+                              padding: const EdgeInsets.only(
+                                  left: 80, right: 80),
                               backgroundColor:
                               const Color.fromARGB(255, 223, 180, 0),
                               primary: Colors.white,
@@ -229,7 +255,6 @@ class Cart extends StatelessWidget {
                             ),
                             // sự kiện chuyển màn
                             onPressed: () {
-
                               Get.to(Cart2());
                             },
                             child: const Text(
