@@ -1,98 +1,46 @@
 
-class ItemProductInCart {
+class ProductCart {
   // API thiếu tên cửa hàng
   /*String? */
-  String? _image;// ảnh sản phẩm => API thiếu
-  int? _itemId;// id sản phẩm
-  String? _sku;
-  int? _qty;
-  String? _name;// tên sản phẩm
-  int? _discount; // giá ưu đãi
-  int? _oldPrice;// giá cũ => API thiếu
-  String? _productType;// phân loại hàng
-  String? _quoteId;
+  int? p_id;
+  String? p_sku;
+  String? p_image;
+  String? p_name;
+  String? s_name;
+  int? discount_price;
+  int? price;
+  int? quantity;
+  int? cartId;
 
-  ItemProductInCart(
-      {String? image,
-        int? itemId,
-        String? sku,
-        int? qty,
-        String? name,
-        int? price,// giá ưu đãi
-        int? oldPrice,
-        String? productType,
-        String? quoteId}) {
-    if (image != null){
-      _image = image;
-    }
-    if (itemId != null) {
-      _itemId = itemId;
-    }
-    if (sku != null) {
-      _sku = sku;
-    }
-    if (qty != null) {
-      _qty = qty;
-    }
-    if (name != null) {
-      _name = name;
-    }
-    if (price != null) {
-      _discount = price;
-    }
-    if (oldPrice != null) {
-      _oldPrice = oldPrice;
-    }
-    if (productType != null) {
-      _productType = productType;
-    }
-    if (quoteId != null) {
-      this._quoteId = quoteId;
-    }
-  }
+  ProductCart({this.p_id, this.p_sku,
+    this.p_image, this.p_name, this.s_name,
+    this.discount_price, this.price, this.quantity,
+    this.cartId
+  });
 
-
-  String? get image => _image;
-  set image(String? image) => _image = image;
-  int? get itemId => _itemId;
-  set itemId(int? itemId) => _itemId = itemId;
-  String? get sku => _sku;
-  set sku(String? sku) => _sku = sku;
-  int? get qty => _qty;
-  set qty(int? qty) => _qty = qty;
-  String? get name => _name;
-  set name(String? name) => _name = name;
-  int? get price => _discount;
-  set price(int? price) => _discount = price;
-  int? get oldPrice => _oldPrice;
-  set oldPrice(int? oldPrice) => _oldPrice = oldPrice;
-  String? get productType => _productType;
-  set productType(String? productType) => _productType = productType;
-  String? get quoteId => _quoteId;
-  set quoteId(String? quoteId) => _quoteId = quoteId;
-
-  ItemProductInCart.fromJson(Map<String, dynamic> json) {
-    _image = json[''];
-    _itemId = json['item_id'];
-    _sku = json['sku'];
-    _qty = json['qty'];
-    _name = json['name'];
-    _discount = json['price'];// giá ưu đãi
-    _oldPrice = json[''];// giá cũ
-    _productType = json['product_type'];
-    _quoteId = json['quote_id'];
+  ProductCart.fromJson(Map<String, dynamic> json) {
+    p_id = json['item_id'];
+    p_sku = json['sku'];
+    p_image = json[''];
+    p_name = json['name'];
+    s_name = json[''];
+    price = json['price'];
+    discount_price = json[''];
+    quantity = json['qty'];
+    cartId = json['quote_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['item_id'] = this._itemId;
-    data['sku'] = this._sku;
-    data['qty'] = this._qty;
-    data['name'] = this._name;
-    data['price'] = this._discount;// giá ưu đãi
-
-    data['product_type'] = this._productType;
-    data['quote_id'] = this._quoteId;
+    data['p_id'] = this.p_id;
+    data['p_sku'] = this.p_sku;
+    data['p_name'] = this.p_name;
+    data['p_image'] = this.p_image;
+    data['s_name'] = this.s_name;
+    data['discount_price'] = this.discount_price;
+    data['price'] = this.price;
+    data['quantity'] = this.quantity;
+    data['cartId'] = this.cartId;
     return data;
   }
 }

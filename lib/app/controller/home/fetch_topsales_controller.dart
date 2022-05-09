@@ -42,6 +42,8 @@ class FetchTopSalesController extends GetxController{
           isLoadingComplete = false;
           update();
         });
+        isLoadingComplete = false;
+        update();
       }
     });
   }

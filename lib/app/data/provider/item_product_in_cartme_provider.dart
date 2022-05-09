@@ -5,10 +5,10 @@ import 'package:app_casynet/app/utlis/http_service.dart';
 import 'package:get/get.dart';
 import '../model/item_product_in_cart.dart';
 
-class ItemProductInCartMeProvider {
+class ProductCartMeProvider {
 
-  void fetchItemProductInCartMeList({Function()? beforeSend,
-    required Function(List<ItemProductInCart> itemProductInCart) onSuccess,
+  void fetchProductCartMeList({Function()? beforeSend,
+    required Function(List<ProductCart> ProductCart) onSuccess,
     Function(dynamic error)? onError,
     String? token
   }){
@@ -19,14 +19,14 @@ class ItemProductInCartMeProvider {
     ).get(
     beforeSend:()=>{if(beforeSend != null) beforeSend()},
     onSuccess: (data){
-      onSuccess((data as List ).map((postJson) => ItemProductInCart.fromJson(postJson)).toList());
+      onSuccess((data as List ).map((postJson) => ProductCart.fromJson(postJson)).toList());
     },
     onError: (error) => {if(onError != null) onError(error)}
     );
   }
-  void createItemProductInCartMe(
+  void createProductCartMe(
       {Function()? beforePost,
-        required Function(ItemProductInCart posts)? onSuccess,
+        required Function(ProductCart posts)? onSuccess,
         Function(dynamic error)? onError,
         required Map<String, dynamic> data,
       }){
@@ -35,13 +35,13 @@ class ItemProductInCartMeProvider {
         data: null,
     ).post(
     beforePost: () => {if(beforePost != null) beforePost},
-    onSuccess: (data){onSuccess!(ItemProductInCart.fromJson(json.decode(data)));},
+    onSuccess: (data){onSuccess!(ProductCart.fromJson(json.decode(data)));},
     onError: (error) =>{if(onError != null) onError(error)},
     data: data);
   }
-  void updateItemProductInCartMe(
+  void updateProductCartMe(
       {Function()? beforePut,
-        required Function(ItemProductInCart posts)? onSuccess,
+        required Function(ProductCart posts)? onSuccess,
         Function(dynamic error)? onError,
         required Map<String, dynamic> data,
         required int id
@@ -51,14 +51,14 @@ class ItemProductInCartMeProvider {
         data: null,
     ).put(
     beforePut: ()=> {if(beforePut != null) beforePut()},
-    onSuccess: (data){onSuccess!(ItemProductInCart.fromJson(json.decode(data))); },
+    onSuccess: (data){onSuccess!(ProductCart.fromJson(json.decode(data))); },
     onError: (error) => {if(onError != null) onError(error)},
     data: data);
   }
 
-  void deleteItemProductInCartMe(
+  void deleteProductCartMe(
   {Function()? beforeDelete,
-  required Function(ItemProductInCart posts)? onSuccess,
+  required Function(ProductCart posts)? onSuccess,
   Function(dynamic error)? onError,
   required int id
   }){

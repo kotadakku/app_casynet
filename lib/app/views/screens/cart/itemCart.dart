@@ -2,33 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/cart/item_product_in_cart_controller.dart';
+import '../../../data/model/item_product_in_cart.dart';
 import 'checkbox_controller.dart';
 
 class ItemCart extends StatelessWidget {
   final String nameStore;
-  final String nameProduct;
-  final int discount; // giá ưu đãi
-  // final int oldPrice; // giá cũ
-  final String imageProduct;
+  final List<ProductCart> itemCartStore;
   // final int qty; // số lượng
   const ItemCart(
       {Key? key,
       required this.nameStore,
-      required this.imageProduct,
-      required this.nameProduct,
-      required this.discount,
-      /*required this.oldPrice,*/
-      /*required this.qty*/})
+      required this.itemCartStore})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController mycontroller = TextEditingController();
-    var soluong = 0.obs;
-    final tencuahang = [].obs;
-    final tensanpham = [].obs;
 
     final CheckBoxController checkBoxController = Get.put(CheckBoxController());
+    ProductCartMeController _productCartController = Get.find();
 
     return Material(
       child: Column(
@@ -44,7 +36,7 @@ class ItemCart extends StatelessWidget {
                 Obx(
                   () => Checkbox(
                     activeColor: const Color.fromARGB(255, 223, 180, 0),
-                    value: checkBoxController.checkBoolTenCuaHang.value,
+                    value:  checkBoxController.checkBoolTenCuaHang.value,
                     onChanged: (value) {
                       checkBoxController.checkBoolTenCuaHang.value =
                           !checkBoxController.checkBoolTenCuaHang.value;
@@ -140,36 +132,43 @@ class ItemCart extends StatelessWidget {
                 },
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: itemCartStore.length,
                 itemBuilder: (context, index) {
+                  _productCartController.controllers.add(TextEditingController(
+                      text:itemCartStore[index].quantity.toString(),
+                  ));
+                  _productCartController.controllers[index].text = itemCartStore[index].quantity.toString();
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          left: 10,
-                        ),
-                        width: 15.w,
-                        height: 15.h,
+                      SizedBox(
+                        width: 20.w,
+                        height: 20.h,
                         child: Obx(
+
                           () => Checkbox(
                             activeColor: const Color.fromARGB(255, 223, 180, 0),
-                            value: checkBoxController.checkBoolTenSanPham.value,
+                            value: _productCartController.checkBoxProduct.contains(itemCartStore[index].p_id),
                             onChanged: (value) {
-                              checkBoxController.checkBoolTenSanPham.value =
-                                  !checkBoxController.checkBoolTenSanPham.value;
+                              if(_productCartController.checkBoxProduct.contains(itemCartStore[index].p_id)) {
+                                _productCartController.checkBoxProduct.remove(
+                                    itemCartStore[index].p_id);
+                              }else _productCartController.checkBoxProduct.add(itemCartStore[index].p_id);
+                              print(_productCartController.checkBoxProduct.length);
                             },
                           ),
                         ),
                       ),
                       Container(
                         height: 90,
+                        width: 90,
                         // margin: const EdgeInsets.only(left: 5.0),
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),
                         child: Image.network(
-                          imageProduct,
+                          itemCartStore[index].p_image??"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png",
                           width: 90,
                           height: 90,
+                          fit: BoxFit.fitHeight,
                         ),
                       ),
                       Expanded(
@@ -183,7 +182,7 @@ class ItemCart extends StatelessWidget {
                                 height: 25.h,
                                 width: 150.w,
                                 child: Text(
-                                  nameProduct,
+                                  itemCartStore[index].p_name??"Không có thông tin",
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -195,7 +194,7 @@ class ItemCart extends StatelessWidget {
                               Container(
                                 height: 25.h,
                                 child: Text(
-                                  discount.toString(),
+                                  itemCartStore[index].price.toString(),
                                   style: TextStyle(
                                       fontSize: 13.0.sp,
                                       color: Colors.red,
@@ -227,7 +226,7 @@ class ItemCart extends StatelessWidget {
                                       fontSize: 12.sp,
                                       decoration: TextDecoration.lineThrough),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Row(
@@ -250,16 +249,15 @@ class ItemCart extends StatelessWidget {
                                         splashColor: const Color.fromARGB(
                                             255, 227, 227, 227),
                                         onTap: () {
-                                          if (soluong <= 0) {
+                                          if (int.parse(_productCartController.controllers[index].text) <= 0) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(const SnackBar(
                                               content: Text(
                                                   "số lượng đã tối thiểu, phải lớn hơn 0"),
                                             ));
                                           } else {
-                                            soluong--;
-                                            mycontroller.text =
-                                                soluong.toString();
+                                            _productCartController.updateQuantity((int.parse( _productCartController.controllers[index].text) -1),itemCartStore[index].p_id );
+                                            _productCartController.controllers[index].text = (int.parse( _productCartController.controllers[index].text) -1).toString();
                                           }
                                         },
                                         child: SizedBox(
@@ -319,26 +317,36 @@ class ItemCart extends StatelessWidget {
                                             color: Colors.lightBlue)),
                                     width: 40.w,
                                     height: 30.h,
-                                    child: Obx(
-                                      () => TextField(
-                                        textAlign: TextAlign.center,
-                                        decoration: InputDecoration(
-                                          hintText: soluong.toString(),
-                                          // prefixText: "1",
-                                          counterText: "",
-                                          border: InputBorder.none,
-                                          contentPadding: const EdgeInsets.only(
-                                              top: 8, bottom: 10),
-                                        ),
-                                        keyboardType: TextInputType.number,
-                                        maxLength: 2,
-                                        maxLines: 1,
-                                        controller: mycontroller,
-                                        onChanged: (t) {
-                                          soluong.value = int.parse(t);
-                                        },
+                                    child: TextField(
+                                      onTap: (){
+                                        _productCartController.controllers[index].selection = TextSelection.fromPosition(TextPosition(offset: _productCartController.controllers[index].text.length));
+                                      },
+
+
+                                      controller:  _productCartController.controllers[index],
+                                      textAlign: TextAlign.center,
+
+                                      decoration: InputDecoration(
+                                        // prefixText: "1",
+                                        counterText: "",
+                                        isDense: true,
+                                        
+                                        hintText: "",
+                                        
+                                        border: InputBorder.none,
+                                        contentPadding: EdgeInsets.all(5.0)
+
                                       ),
-                                    ),
+                                      keyboardType: TextInputType.number,
+                                      maxLines: 1,
+                                      onSubmitted: (t){
+                                        if(t.length != 0 && t!=null) {
+                                          print(t.length);
+                                          _productCartController.updateQuantity(int.parse(t), itemCartStore[index].p_id);
+                                        }
+                                        else _productCartController.controllers[index].text = itemCartStore[index].quantity.toString();
+                                      },
+                                    )
                                   ),
                                   Container(
                                     width: 30.w,
@@ -353,17 +361,8 @@ class ItemCart extends StatelessWidget {
                                         splashColor: const Color.fromARGB(
                                             255, 227, 227, 227),
                                         onTap: () {
-                                          if (soluong < 99) {
-                                            soluong++;
-                                            mycontroller.text =
-                                                soluong.toString();
-                                          } else {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(const SnackBar(
-                                              content: Text(
-                                                  "số lượng đã tối đa, phải nhỏ hơn 100"),
-                                            ));
-                                          }
+                                          _productCartController.updateQuantity((int.parse( _productCartController.controllers[index].text) +1),itemCartStore[index].p_id);
+                                          _productCartController.controllers[index].text = (int.parse( _productCartController.controllers[index].text) +1).toString();
                                         },
                                         child: SizedBox(
                                             child: Row(

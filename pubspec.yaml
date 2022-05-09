@@ -59,6 +59,7 @@ dependencies:
   get_storage:
   geocoding:
   geolocator:
+  grouped_list:
 
   flutter_localizations: # Add this line
     sdk: flutter

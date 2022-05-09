@@ -41,12 +41,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          accentColor: Colors.transparent,
           appBarTheme: AppBarTheme(
             color: Colors.white,
             systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarBrightness: Brightness.light,
-              statusBarColor: Colors.white
+              statusBarBrightness: Brightness.dark,
             ),
             titleTextStyle: TextStyle(
                 color: Colors.black,
@@ -102,30 +100,21 @@ class Home extends StatelessWidget {
 
     return WillPopScope(
       onWillPop:()=> _onWillPop(context),
-      child: GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onPanDown: (value) {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          bottomNavigationBar: BottomNavigator(),
-          body:Obx(()=>IndexedStack(
-            index: c.tabIndex.value,
-            children: [
-              HomePage(),
-              NotificationPage(),
-              Cart(),
-              AccountBasePage(),
-              DetailAppPage(),
-            ],
-          ),
-          ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        bottomNavigationBar: BottomNavigator(),
+        body:Obx(()=>IndexedStack(
+          index: c.tabIndex.value,
+          children: [
+            HomePage(),
+            NotificationPage(),
+            Cart(),
+            AccountBasePage(),
+            DetailAppPage(),
+          ],
         ),
-      )
+        ),
+      ),
     ) ;
   }
   Future<bool> _onWillPop(BuildContext context) async {

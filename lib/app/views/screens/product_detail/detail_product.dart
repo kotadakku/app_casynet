@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/cart/item_product_in_cart_controller.dart';
+import '../../../data/model/item_product_in_cart.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/appbar_cart.dart';
@@ -23,6 +25,7 @@ class DetailProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductCartMeController _productCartController = Get.find();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -68,7 +71,24 @@ class DetailProductPage extends StatelessWidget {
             Container(
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: kYellowColor),
-                  onPressed: () {},
+                  onPressed: () {
+                    _productCartController.insertProductCart(
+                      ProductCart(
+                        p_id: 2,
+                        p_sku: "no name",
+                        p_name: "LTHT",
+                        s_name: "Babaas",
+                        discount_price: 12312,
+                        p_image: "sffd",
+                        quantity: 1,
+                        price: 32423,
+                        cartId: 13
+                      )
+                    );
+
+
+
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [Icon(Icons.add), Text("Đặt hàng")],
