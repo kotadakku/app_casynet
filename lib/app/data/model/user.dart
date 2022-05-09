@@ -14,13 +14,49 @@ class User{
   int? storeId;
   String? birthday;
   String? image;
-  String? created_at;
+  String? created_at;// ngày tạo tài khoản
   bool? receiveNotification;
   List<Address> addresses = [];
   int? follow_seller;
 
-  User({this.email, this.password, this.id, this.token, this.username, this.phone, this.gender, this.birthday, this.image, this.receiveNotification});
 
+  User({
+      this.id,
+      this.email,
+      this.password,
+      this.token,
+      this.username,
+      this.firstname,
+      this.lastname,
+      this.phone,
+      this.gender,
+      this.storeId,
+      this.birthday,
+      this.image,
+      this.created_at,
+      this.receiveNotification,
+
+      this.follow_seller});
+
+  Map<String, dynamic> toJsonUserDb(){
+    return {
+      'id': this.id,
+      'email': this.email,
+      'password': this.password,
+      'username': this.username,
+      'firstname': this.firstname,
+      'lastname': this.lastname,
+      'phone': this.phone,
+      'gender': this.gender,
+      'storeId': this.storeId,
+      'birthday': this.birthday,
+      'image': this.image,
+      'createAt': this.created_at,
+      'receiveNotification': this.receiveNotification,
+      'addresses': this.addresses,
+      'followSeller': this.addresses,
+    };
+  }
   Map<String, dynamic> toJsonRegister(){
     return {
       'email': this.email,

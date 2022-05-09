@@ -274,42 +274,7 @@ class ItemCart extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  /*Container(
-                                alignment: const Alignment(0, 0),
-                                // padding: const EdgeInsets.all(1.0),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1, color: Colors.lightBlue)),
-                                width: 35,
-                                child: InkWell(
-                                  splashColor: const Color.fromARGB(
-                                      255, 188, 195, 216),
-                                  // splashColor: Colors.blue,
-                                  onTap: () {
-                                    if (soluong <= 0) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(const SnackBar(
-                                        content: Text(
-                                            "số lượng đã tối thiểu, phải lớn hơn 0"),
-                                      ));
-                                    } else {
-                                      soluong--;
-                                      mycontroller.text = soluong.toString();
-                                    }
-                                  },
-                                  child: Container(
-                                    width: 50,
-                                    height: 25,
-                                    alignment: Alignment.center,
-                                    child: const Text(
-                                      "-",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ),
-                                ),
-                              ),*/
+
                                   Container(
                                     decoration: BoxDecoration(
                                         border: Border.all(
