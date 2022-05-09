@@ -1,6 +1,5 @@
 import 'package:app_casynet/app/data/model/user.dart';
 import 'package:app_casynet/app/data/provider/auth_provider.dart';
-import 'package:app_casynet/app/data/provider/db/banner_db_provider.dart';
 import 'package:app_casynet/app/data/provider/db/user_db_provider.dart';
 import 'package:app_casynet/app/utlis/base64.dart';
 import 'package:get/get.dart';
@@ -21,6 +20,7 @@ class UserDatabaseController extends GetxController{
     listUser.clear();
     UserDatabaseHelperProvider.instance.queryAllRows().then((value) {
       if(value?.length == 0){
+        print("Get api db: -- " +value.toString() + "--");
         UserDatabaseHelperProvider.instance.clear();
         AuthProvider().fetchCurrentUser(onSuccess: (users) async{
          for (var user in users){

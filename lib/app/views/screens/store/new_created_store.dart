@@ -1,11 +1,12 @@
 
 import 'package:app_casynet/app/views/screens/store/short_description.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NewCreatedStore extends StatelessWidget {
+  const NewCreatedStore({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,11 +21,11 @@ class NewCreatedStore extends StatelessWidget {
                   children: [
                     Container(
                       alignment: Alignment.center,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                       height: 50,
                       child: const Text(
                         "Tạo mới cửa hàng",
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.black,
                           fontSize: 20.0,
                           fontWeight: FontWeight.w400,
@@ -37,7 +38,7 @@ class NewCreatedStore extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           height: 150,
-                          color: Color.fromARGB(255, 241, 222, 144),
+                          color: const Color.fromARGB(255, 241, 222, 144),
                           child: Align(
                             alignment: Alignment.center,
                             child: Container(
