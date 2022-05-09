@@ -21,6 +21,7 @@ class ItemCart extends StatelessWidget {
 
     final CheckBoxController checkBoxController = Get.put(CheckBoxController());
     ProductCartMeController _productCartController = Get.find();
+    
 
     return Material(
       child: Column(
@@ -134,8 +135,7 @@ class ItemCart extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: itemCartStore.length,
                 itemBuilder: (context, index) {
-                  _productCartController.controllers.add(TextEditingController(
-                      text:itemCartStore[index].quantity.toString(),
+                  _productCartController.controllers.add(TextEditingController(text:itemCartStore[index].quantity.toString(),
                   ));
                   _productCartController.controllers[index].text = itemCartStore[index].quantity.toString();
                   return Row(
@@ -356,7 +356,7 @@ class ItemCart extends StatelessWidget {
                                     splashColor: const Color.fromARGB(
                                         255, 227, 227, 227),
                                     onTap: () {
-                                      print("Xóa");
+                                      _productCartController.deleteRow(itemCartStore[index].p_id);
                                     },
                                     child: SizedBox(
                                         child: Row(

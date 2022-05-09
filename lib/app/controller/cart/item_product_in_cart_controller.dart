@@ -21,6 +21,16 @@ class ProductCartMeController extends GetxController with CacheManager {
   @override
   void onInit() {
     _authenticationManager.isLogged ==true? updateAPI(): getCartDB();
+    getCartDB();
+
+    print(productCartList.length);
+  }
+
+  void deleteRow(int? id ){
+
+    CartDatabaseHelper.instance.deleteRow(id);
+    getCartDB();
+    update();
   }
 
   void insertProductCart(ProductCart productCart) {
@@ -42,6 +52,7 @@ class ProductCartMeController extends GetxController with CacheManager {
 
 
   }
+
   void updateQuantity(int qty,int? id){
     if(id !=null){
 
@@ -95,9 +106,9 @@ class ProductCartMeController extends GetxController with CacheManager {
         update();
       });
       cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
-      print(cartsByStore['Babaas'][0].quantity);
       isLoadingComplete = false;
       update();
     });
   }
+
 }

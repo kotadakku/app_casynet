@@ -10,13 +10,12 @@ import 'cache_manager.dart';
 
 class AuthenticationManager extends GetxController with CacheManager {
   final isLogged = false.obs;
-
   late User user_current = User();
-
 
 
   void logOut() {
     isLogged.value = false;
+
     removeToken();
   }
 

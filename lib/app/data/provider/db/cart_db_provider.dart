@@ -103,5 +103,19 @@ class CartDatabaseHelper{
     // show the results: print all rows in the db
     print(await db?.query(table));
   }
+<<<<<<< HEAD
   
+=======
+
+  Future<void> deleteRow(int? id) async{
+
+    Database? db = await instance.database;
+
+    int? deleteRow = await db?.rawDelete('''
+      DELETE FROM $table
+      WHERE $columnProductId = ${id}
+    ''');
+  }
+
+>>>>>>> bf809aa62cb64969f988d34f32d1a76994856df2
 }

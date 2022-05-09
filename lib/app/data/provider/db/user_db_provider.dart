@@ -9,6 +9,7 @@ class UserDatabaseHelperProvider {
   static final String _databaseName = "user.db";
 
   static final _databaseVersion = 1;
+
   static final String table = "user";
   static final String columnId = "id";
   static final String columnEmail = "email";
@@ -69,12 +70,14 @@ class UserDatabaseHelperProvider {
   Future<int?> insert(User user) async {
     Database? db = await instance.database;
     var res = await db?.insert(table, user.toJsonUserDb());
+    print("result insert : --  $res " + " --");
     return res;
   }
 
   Future<List<Map<String, dynamic>>?> queryAllRows() async{
     Database? db = await instance.database;
     var res = await db?.query(table, orderBy: "$columnId DESC");
+    print("result query : --  $res " + " --");
     return res;
   }
 
