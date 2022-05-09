@@ -21,7 +21,6 @@ class ProductCartMeController extends GetxController with CacheManager {
   @override
   void onInit() {
     _authenticationManager.isLogged ==true? updateAPI(): getCartDB();
-    getCartDB();
 
     print(productCartList.length);
   }
