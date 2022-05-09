@@ -65,11 +65,6 @@ class UserDatabaseController extends GetxController{
         );
       }
     });
-
-
-
-
-
   }
 }
 

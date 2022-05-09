@@ -47,19 +47,28 @@ class AuthenticationManager extends GetxController with CacheManager {
   }
 
   Future<void> fetchUser(String? token ) async {
-    AuthProvider().fetchCurrentUser(
-        token: token,
-        onSuccess: (data) {
-          if (data != null) {
-            user_current = data;
-            update();
+    final user = getUsers();
+    if(user != null){
+      print("<AUTH> GET DB");
+      user_current = user;
+    }
+    else{
+      print("<AUTH> GET API");
+      AuthProvider().fetchCurrentUser(
+          token: token,
+          onSuccess: (data) {
+            if (data != null) {
+              user_current = User.successLogin(data);
+              saveUsers(data);
+              update();
+            }
+          },
+          onError: (error) {
+            print(error);
+            logOut();
           }
-        },
-        onError: (error) {
-          print(error);
-          logOut();
-        }
-    );
+      );
+    }
   }
 
 

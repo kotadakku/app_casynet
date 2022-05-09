@@ -27,7 +27,7 @@ class ProductCart {
     price = json['price'];
     discount_price = json[''];
     quantity = json['qty'];
-    cartId = json['quote_id'];
+    cartId = int.parse(json['quote_id']);
   }
 
   Map<String, dynamic> toJson() {

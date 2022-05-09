@@ -86,8 +86,6 @@ class DetailProductPage extends StatelessWidget {
                       )
                     );
 
-
-
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

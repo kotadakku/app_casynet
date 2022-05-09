@@ -53,7 +53,6 @@ class User{
       'image': this.image,
       'createAt': this.created_at,
       'receiveNotification': this.receiveNotification,
-      'addresses': this.addresses,
       'followSeller': this.addresses,
     };
   }

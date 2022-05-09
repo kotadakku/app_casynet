@@ -48,15 +48,16 @@ class Cart extends StatelessWidget {
           Expanded(child: GetBuilder<ProductCartMeController>(
               init: ProductCartMeController(),
               builder: ((controller) {
-                return ListView(
+
+                return  controller.cartsByStore !=null ? ListView(
                   shrinkWrap: true,
                   children: [
                     ...controller.cartsByStore.entries.map((e)=>ItemCart(
                       nameStore: e.key.toString(),
                       itemCartStore: e.value ,
-                    )).toList(),
-                  ],
-                );
+                    )).toList()
+                  ]
+                ): Text("Không có sản phẩm nào để hiển thị");
                 /*ListView.separated(
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.vertical,

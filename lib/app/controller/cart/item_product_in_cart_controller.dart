@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:collection/collection.dart";
 import '../../data/provider/db/cart_db_provider.dart';
+import '../auth/authentication_manager.dart';
 import '../auth/cache_manager.dart';
 
 class ProductCartMeController extends GetxController with CacheManager {
@@ -15,14 +16,11 @@ class ProductCartMeController extends GetxController with CacheManager {
   var isLoadingComplete = true;
   List<TextEditingController> controllers = [];
   var checkBoxProduct = [].obs;
+  AuthenticationManager _authenticationManager = Get.find();
 
   @override
   void onInit() {
-    updateAPI();
-    getCartDB();
-    print(productCartList.length);
-
-
+    _authenticationManager.isLogged ==true? updateAPI(): getCartDB();
   }
 
   void insertProductCart(ProductCart productCart) {
@@ -44,9 +42,6 @@ class ProductCartMeController extends GetxController with CacheManager {
 
 
   }
-
-
-
   void updateQuantity(int qty,int? id){
     if(id !=null){
 
@@ -65,7 +60,7 @@ class ProductCartMeController extends GetxController with CacheManager {
         token: token,
         onSuccess: (data) {
           productCartList.addAll(data);
-
+          cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
           isLoading = false;
           update();
         },
