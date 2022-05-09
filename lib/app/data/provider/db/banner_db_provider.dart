@@ -45,7 +45,7 @@ class BannerDatabaseHelper{
     var res = await db?.insert(table, banner.toJson());
     return res;
   }
-
+// select * orderBy
   Future<List<Map<String, dynamic>>?> queryAllRows() async {
     Database? db = await instance.database;
     var res = await db?.query(table, orderBy: "$columnId DESC");
