@@ -25,7 +25,7 @@ class BottomWidget extends StatelessWidget {
             SizedBox(height: 20,),
             Image.asset("assets/home/dadangky.png", width: 200,),
             SizedBox(height: 20,),
-            Text('Công ty cổ phần đầu tư Bác Thủ Đô',
+            Text('Công ty cổ phần đầu tư Bắc Thủ Đô',
               style: TextStyle(
                   fontWeight: FontWeight.bold
               ),
