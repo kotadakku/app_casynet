@@ -13,17 +13,21 @@ mixin CacheManager {
 
   Future<void> saveUsers(jsonUser) async {
     final box = GetStorage();
-    await box.write('user', jsonEncode(jsonUser));
+    await box.write(CacheManagerKey.USER.toString(), jsonEncode(jsonUser));
   }
 
   User? getUsers() {
     final box = GetStorage();
-    var result = box.read('user');
+    var result = box.read(CacheManagerKey.USER.toString());
     User user = User();
     if (result != null) {
       user = User.successLogin(jsonDecode(result));
       return user;
     }
+  }
+  Future<void> removeUser() async {
+    final box = GetStorage();
+    await box.remove(CacheManagerKey.USER.toString());
   }
 
   String? getToken() {
@@ -38,4 +42,4 @@ mixin CacheManager {
   }
 }
 
-enum CacheManagerKey { TOKEN }
+enum CacheManagerKey { TOKEN, USER }

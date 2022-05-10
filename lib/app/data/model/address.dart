@@ -10,6 +10,14 @@
   bool default_shipping = false;
   bool default_billing = false;
 
+  Address._(this.id,
+  this.firstname,
+  this.lastname,
+  this.phone,
+  this.province,
+  this.district,
+  this.default_shipping,
+  this.default_billing);
 
   Address({this.id,
     this.firstname,

@@ -32,6 +32,7 @@ import '../views/screens/account/order/order_account.dart';
 import '../views/screens/account/seen_product.dart';
 import '../views/screens/account/wallet_voucher.dart';
 import '../views/screens/auth/auth.dart';
+import '../views/screens/cart/checkout_page.dart';
 import '../views/screens/detail_store/details_store.dart';
 import '../views/screens/filter/filter_product.dart';
 import '../views/screens/filter/filter_product_2.dart';
@@ -66,6 +67,7 @@ class AppPages {
       page: ()=> AuthPage(),
       binding: AuthBindings(),
     ),
+    GetPage(name: Routes.CHECKOUT, page: ()=>CheckoutPage()),
     GetPage(name: Routes.ACCOUNT_DETAIL, page: ()=> AccountDetailPage()),
     GetPage(name: Routes.ACCOUNT_ORDER,
       page: ()=>OrderAccountPage(),

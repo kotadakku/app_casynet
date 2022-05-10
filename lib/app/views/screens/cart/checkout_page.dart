@@ -1,14 +1,14 @@
 
+import 'package:app_casynet/app/views/widgets/appbar_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/item_selection_controller.dart';
-import '../product_detail/widgets/top_detail_product_widget.dart';
-import 'cart3.dart';
+import 'checkout_success.dart';
 
-class Cart2 extends StatelessWidget {
-  Cart2({Key? key}) : super(key: key);
+class CheckoutPage extends StatelessWidget {
+  CheckoutPage({Key? key}) : super(key: key);
   static const IconData map = IconData(0xe3c8, fontFamily: 'MaterialIcons');
 
   // int _valuePayment = 0;
@@ -22,12 +22,12 @@ class Cart2 extends StatelessWidget {
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
+          appBar: AppBarCartWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              const TopDetailProductWidget(),
 // Thông tin giao hàng
               Container(
                 margin: const EdgeInsets.only( top: 1.0),

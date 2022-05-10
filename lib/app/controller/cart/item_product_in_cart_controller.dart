@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:collection/collection.dart";
 import '../../data/provider/db/cart_db_provider.dart';
-import '../auth/authentication_manager.dart';
 import '../auth/cache_manager.dart';
 
 class ProductCartMeController extends GetxController with CacheManager {
@@ -14,19 +13,16 @@ class ProductCartMeController extends GetxController with CacheManager {
   var cartsByStore ;
   var isLoading = true;
   var isLoadingComplete = true;
+  var sumCart = 0.obs;
+  var countCart = 0.obs;
   List<TextEditingController> controllers = [];
-  var checkBoxProduct = [].obs;
-  AuthenticationManager _authenticationManager = Get.find();
+  RxList checkBoxProduct = [].obs;
 
   @override
   void onInit() {
-    _authenticationManager.isLogged ==true? updateAPI(): getCartDB();
-
-    print(productCartList.length);
   }
 
   void deleteRow(int? id ){
-
     CartDatabaseHelper.instance.deleteRow(id);
     getCartDB();
     update();
@@ -37,7 +33,6 @@ class ProductCartMeController extends GetxController with CacheManager {
     CartDatabaseHelper.instance.checkExists(productCart.p_id).then((value){
       print('Item Product $value');
       if(value){
-
         CartDatabaseHelper.instance.addQuantity(productCart.p_id).then((value){
           getCartDB();
         });
@@ -62,8 +57,11 @@ class ProductCartMeController extends GetxController with CacheManager {
   }
 
   void updateAPI() {
+    print("<GET PRODUCT API>");
+    controllers.clear();
     productCartList.clear();
     isLoading = true;
+    controllers.clear();
     final token = getToken();
 
     ProductCartMeProvider().fetchProductCartMeList(
@@ -71,6 +69,8 @@ class ProductCartMeController extends GetxController with CacheManager {
         onSuccess: (data) {
           productCartList.addAll(data);
           cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
+          calsumCart();
+          countCart.value = productCartList.length;
           isLoading = false;
           update();
         },
@@ -83,9 +83,11 @@ class ProductCartMeController extends GetxController with CacheManager {
   }
 
   void getCartDB() {
+    print("<GET PRODUCT DB>");
     isLoading = true;
     isLoadingComplete = true;
     productCartList.clear();
+    controllers.clear();
 
     CartDatabaseHelper.instance.queryAllRows().then((value) {
       value?.forEach((element) {
@@ -105,9 +107,26 @@ class ProductCartMeController extends GetxController with CacheManager {
         update();
       });
       cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
+      calsumCart();
+      countCart.value = productCartList.length;
       isLoadingComplete = false;
       update();
     });
   }
 
+  void calsumCart(){
+
+    if(cartsByStore !=null){
+      sumCart.value =0;
+      cartsByStore.entries.forEach((e){
+        (e.value as List).forEach((cart){
+          if(checkBoxProduct.contains(cart.p_id)){
+            sumCart += int.parse(cart.quantity.toString()) * int.parse(cart.price.toString());
+          }
+        }
+        );
+      });
+    }
+    print('<SUM> $sumCart');
+  }
 }

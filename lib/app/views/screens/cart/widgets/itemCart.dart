@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/cart/item_product_in_cart_controller.dart';
-import '../../../data/model/item_product_in_cart.dart';
-import 'checkbox_controller.dart';
+import '../../../../controller/cart/item_product_in_cart_controller.dart';
+import '../../../../data/model/item_product_in_cart.dart';
 
 class ItemCart extends StatelessWidget {
   final String nameStore;
@@ -18,8 +17,6 @@ class ItemCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final CheckBoxController checkBoxController = Get.put(CheckBoxController());
     ProductCartMeController _productCartController = Get.find();
     
 
@@ -34,16 +31,16 @@ class ItemCart extends StatelessWidget {
             padding: const EdgeInsets.only(left: 5.0),
             child: Row(
               children: [
-                Obx(
-                  () => Checkbox(
-                    activeColor: const Color.fromARGB(255, 223, 180, 0),
-                    value:  checkBoxController.checkBoolTenCuaHang.value,
-                    onChanged: (value) {
-                      checkBoxController.checkBoolTenCuaHang.value =
-                          !checkBoxController.checkBoolTenCuaHang.value;
-                    },
-                  ),
-                ),
+                // Obx(
+                //   () => Checkbox(
+                //     activeColor: const Color.fromARGB(255, 223, 180, 0),
+                //     value:  checkBoxController.checkBoolTenCuaHang.value,
+                //     onChanged: (value) {
+                //       checkBoxController.checkBoolTenCuaHang.value =
+                //           !checkBoxController.checkBoolTenCuaHang.value;
+                //     },
+                //   ),
+                // ),
                 Text(
                   // allchecked.tencuahang,
                   nameStore,
@@ -148,13 +145,16 @@ class ItemCart extends StatelessWidget {
 
                           () => Checkbox(
                             activeColor: const Color.fromARGB(255, 223, 180, 0),
-                            value: _productCartController.checkBoxProduct.contains(itemCartStore[index].p_id),
+                            value: _productCartController.checkBoxProduct.value.contains(itemCartStore[index].p_id),
                             onChanged: (value) {
-                              if(_productCartController.checkBoxProduct.contains(itemCartStore[index].p_id)) {
+                              if(_productCartController.checkBoxProduct.value.contains(itemCartStore[index].p_id)) {
                                 _productCartController.checkBoxProduct.remove(
                                     itemCartStore[index].p_id);
-                              }else _productCartController.checkBoxProduct.add(itemCartStore[index].p_id);
-                              print(_productCartController.checkBoxProduct.length);
+                                _productCartController.calsumCart();
+                              }else {
+                                _productCartController.checkBoxProduct.add(itemCartStore[index].p_id);
+                                _productCartController.calsumCart();
+                              }
                             },
                           ),
                         ),

@@ -2,23 +2,19 @@
 import 'package:app_casynet/app/views/screens/detail_store/store_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/detail_store_controller.dart';
-import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
 import '../../widgets/appbar_cart.dart';
+import '../../widgets/image_network_loading.dart';
 import 'widgets/aq_store_widget.dart';
 import 'widgets/intro_store_widget.dart';
 import 'widgets/new_store_widget.dart';
 import 'widgets/product_store.dart';
 import 'widgets/profile_store.dart';
 import 'widgets/vote_store_widget.dart';
-import '../../widgets/image_network_loading.dart';
-import '../product_detail/widgets/top_detail_product_widget.dart';
 
 
 class DetailsStorePage extends StatelessWidget {
