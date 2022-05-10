@@ -57,4 +57,7 @@
       'default_shipping': default_shipping,
     };
   }
+  String address(){
+    return this.street[0]+ ", " + this.district.toString()+ ", " + this.province.toString();
+  }
 }

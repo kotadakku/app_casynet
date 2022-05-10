@@ -30,7 +30,7 @@ class Cart3 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "Thông tin giao hàng",
+                            "Đặt hàng thành công",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15.0,

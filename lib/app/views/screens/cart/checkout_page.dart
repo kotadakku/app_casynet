@@ -1,4 +1,4 @@
-
+import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:app_casynet/app/views/widgets/appbar_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,14 +15,12 @@ class CheckoutPage extends StatelessWidget {
   ItemSelectionController itemSelectionController =
       Get.put(ItemSelectionController());
 
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
-          appBar: AppBarCartWidget(),
+      appBar: AppBarCartWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -30,7 +28,7 @@ class CheckoutPage extends StatelessWidget {
             children: [
 // Thông tin giao hàng
               Container(
-                margin: const EdgeInsets.only( top: 1.0),
+                margin: const EdgeInsets.only(top: 1.0),
                 alignment: const Alignment(0, 0),
                 color: const Color.fromARGB(255, 241, 243, 253),
                 height: 50,
@@ -110,55 +108,66 @@ class CheckoutPage extends StatelessWidget {
                 child: Column(
                   children: [
 //Thông tin khách hàng
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Nguyễn Thị Bích",
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromARGB(255, 34, 34, 34)),
-                          )
-                        ],
-                      ),
-                    ),
-// Số điện thoại khách hàng
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Icon(Icons.call),
-                          Text(
-                            "0986650333",
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w300,
-                                color: Color.fromARGB(255, 102, 102, 102)),
-                          )
-                        ],
+                    GetBuilder<AuthenticationManager>(
+                      init: AuthenticationManager(),
+                      builder: (c) => Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              c.user_current.lastname.toString(),
+                              style: const TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromARGB(255, 34, 34, 34)),
+                            )
+                          ],
+                        ),
                       ),
                     ),
 
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Icon(Icons.location_on),
-                          Expanded(
-                            child: Text(
-                              "34 Vũ Phạm Hàm, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội",
-                              style: TextStyle(
+// Số điện thoại khách hàng
+                    GetBuilder<AuthenticationManager>(
+                      init: AuthenticationManager(),
+                      builder: (c) => Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.call),
+                            Text(
+                              c.user_current.phone.toString(),
+                              style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w300,
                                   color: Color.fromARGB(255, 102, 102, 102)),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    GetBuilder<AuthenticationManager>(
+                      init: AuthenticationManager(),
+                      builder: (c) => Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.location_on),
+                            Expanded(
+                              child: Text(
+                                '${c.user_current.addresses.where((element) => element.default_shipping == true).first.address()}',
+                                /*"34 Vũ Phạm Hàm, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội",*/
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w300,
+                                    color: Color.fromARGB(255, 102, 102, 102)),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -212,7 +221,6 @@ class CheckoutPage extends StatelessWidget {
                 color: const Color.fromARGB(255, 255, 255, 255),
                 padding: const EdgeInsets.only(left: 5.0),
                 height: 90,
-
               ),
               SizedBox(
                 height: 10,
@@ -262,44 +270,46 @@ class CheckoutPage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-
                 children: [
                   ListTile(
-                    title: const Text("Tiền mặt khi nhận hàng"),
-                    subtitle: const Text("Thu phí hộ: Miễn Phí"),
-                    leading: Obx(()=>Radio(
-                      groupValue: itemSelectionController.selectedItem.value,
-                      onChanged: (value) {
-                        itemSelectionController.onChangeItem(value);
-                      },
-                      value: "tienMat",
-                    ),)
-                  ),
+                      title: const Text("Tiền mặt khi nhận hàng"),
+                      subtitle: const Text("Thu phí hộ: Miễn Phí"),
+                      leading: Obx(
+                        () => Radio(
+                          groupValue:
+                              itemSelectionController.selectedItem.value,
+                          onChanged: (value) {
+                            itemSelectionController.onChangeItem(value);
+                          },
+                          value: "tienMat",
+                        ),
+                      )),
                   ListTile(
-                    title: const Text("Ví SenPay"),
-                    subtitle: Container(
-                      child: Row(
-                        children: const [
-                          Text("Liên kết:",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 127, 170, 212),
-                                  fontSize: 13)),
-                          Expanded(
-                            child: Text(
-                                "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
+                      title: const Text("Ví SenPay"),
+                      subtitle: Container(
+                        child: Row(
+                          children: const [
+                            Text("Liên kết:",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 10)),
-                          ),
-
-                        ],
+                                    color: Color.fromARGB(255, 127, 170, 212),
+                                    fontSize: 13)),
+                            Expanded(
+                              child: Text(
+                                  "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 10)),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    leading: Obx(()=> Radio(
-                      groupValue: itemSelectionController.selectedItem.value,
-                      onChanged: (value) {itemSelectionController.onChangeItem(value);},
-                      value: "viSenPay",
-                    ))
-                  ),
+                      leading: Obx(() => Radio(
+                            groupValue:
+                                itemSelectionController.selectedItem.value,
+                            onChanged: (value) {
+                              itemSelectionController.onChangeItem(value);
+                            },
+                            value: "viSenPay",
+                          ))),
                   ListTile(
                       title: const Text("Ngân hàng liên kết trực tiếp"),
                       subtitle: Container(
@@ -308,29 +318,33 @@ class CheckoutPage extends StatelessWidget {
                             Text("Liên kết:",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 127, 170, 212),
-                                fontSize: 13)),
-                            Expanded(child: Text(
-                                "Ví SenPay để trải nghiệm thanh toán nhanh qua ngân hàng liên kết trực tiếp",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 10))),
+                                    fontSize: 13)),
+                            Expanded(
+                                child: Text(
+                                    "Ví SenPay để trải nghiệm thanh toán nhanh qua ngân hàng liên kết trực tiếp",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 10))),
                           ],
                         ),
                       ),
-                      leading: Obx(()=> Radio(
-                        groupValue: itemSelectionController.selectedItem.value,
-                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
-                        value: "nganHangLienKet",
-                      ))
-                  ),
+                      leading: Obx(() => Radio(
+                            groupValue:
+                                itemSelectionController.selectedItem.value,
+                            onChanged: (value) {
+                              itemSelectionController.onChangeItem(value);
+                            },
+                            value: "nganHangLienKet",
+                          ))),
                   ListTile(
                       title: const Text("Thẻ ATM đã đăng ký Internet Banking"),
-
-                      leading: Obx(()=> Radio(
-                        groupValue: itemSelectionController.selectedItem.value,
-                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
-                        value: "theATM",
-                      ))
-                  ),
+                      leading: Obx(() => Radio(
+                            groupValue:
+                                itemSelectionController.selectedItem.value,
+                            onChanged: (value) {
+                              itemSelectionController.onChangeItem(value);
+                            },
+                            value: "theATM",
+                          ))),
                   ListTile(
                       title: const Text("Thẻ tín dụng/Thẻ ghi nợ"),
                       // subtitle: Container(
@@ -346,12 +360,14 @@ class CheckoutPage extends StatelessWidget {
                       //     ],
                       //   ),
                       // ),
-                      leading: Obx(()=> Radio(
-                        groupValue: itemSelectionController.selectedItem.value,
-                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
-                        value: "theTinDung",
-                      ))
-                  ),
+                      leading: Obx(() => Radio(
+                            groupValue:
+                                itemSelectionController.selectedItem.value,
+                            onChanged: (value) {
+                              itemSelectionController.onChangeItem(value);
+                            },
+                            value: "theTinDung",
+                          ))),
                   ListTile(
                       title: const Text("Chuyển Khoản"),
                       // subtitle: Container(
@@ -367,18 +383,19 @@ class CheckoutPage extends StatelessWidget {
                       //     ],
                       //   ),
                       // ),
-                      leading: Obx(()=> Radio(
-                        groupValue: itemSelectionController.selectedItem.value,
-                        onChanged: (value) {itemSelectionController.onChangeItem(value);},
-                        value: "chuyenKhoan",
-                      ))
-                  ),
+                      leading: Obx(() => Radio(
+                            groupValue:
+                                itemSelectionController.selectedItem.value,
+                            onChanged: (value) {
+                              itemSelectionController.onChangeItem(value);
+                            },
+                            value: "chuyenKhoan",
+                          ))),
                 ],
               ),
 //Thông tin xuất hóa đơn
               Container(
                 height: 50.h,
-
                 child: Row(
                   children: const [Text("Thông tin xuất hóa đơn")],
                 ),
@@ -441,7 +458,8 @@ class CheckoutPage extends StatelessWidget {
                         child: TextButton(
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(2.5),
-                            backgroundColor: const Color.fromARGB(255, 4, 119, 233),
+                            backgroundColor:
+                                const Color.fromARGB(255, 4, 119, 233),
                             primary: Colors.white,
                             textStyle: const TextStyle(fontSize: 15),
                           ),
