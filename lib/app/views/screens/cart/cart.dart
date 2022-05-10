@@ -6,9 +6,7 @@ import 'package:app_casynet/app/views/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../widgets/appbar_cart.dart';
-import 'checkout_page.dart';
 import 'widgets/itemCart.dart';
 
 class Cart extends StatelessWidget {
@@ -53,6 +51,7 @@ class Cart extends StatelessWidget {
               builder: ((controller) {
 
                 return  controller.cartsByStore !=null ? ListView(
+                  physics: ClampingScrollPhysics(),
                   shrinkWrap: true,
                   children: [
                     ...controller.cartsByStore.entries.map((e)=>ItemCart(
