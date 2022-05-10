@@ -1,10 +1,10 @@
 
+import 'package:app_casynet/app/views/widgets/appbar_cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
-import '../product_detail/widgets/top_detail_product_widget.dart';
 
 class Cart3 extends StatelessWidget {
   @override
@@ -12,13 +12,13 @@ class Cart3 extends StatelessWidget {
     // TODO: implement build
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBarCartWidget(),
         body: SafeArea(
           child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Center(
                 child: Column(
                   children: [
-                    TopDetailProductWidget(),
 // Thông tin giao hàng
                     Container(
                       margin: EdgeInsets.only(top: 1.0),

@@ -16,7 +16,6 @@ import 'widgets/information_product_widget.dart';
 import 'widgets/information_store_widget.dart';
 import 'widgets/revervation_product.dart';
 import 'widgets/tags_product_widget.dart';
-import 'widgets/top_detail_product_widget.dart';
 import 'widgets/vote_product_widget.dart';
 
 

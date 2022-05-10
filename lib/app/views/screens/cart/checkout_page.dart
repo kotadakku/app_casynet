@@ -1,10 +1,10 @@
 
+import 'package:app_casynet/app/views/widgets/appbar_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/item_selection_controller.dart';
-import '../product_detail/widgets/top_detail_product_widget.dart';
 import 'checkout_success.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -22,12 +22,12 @@ class CheckoutPage extends StatelessWidget {
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
+          appBar: AppBarCartWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              const TopDetailProductWidget(),
 // Thông tin giao hàng
               Container(
                 margin: const EdgeInsets.only( top: 1.0),

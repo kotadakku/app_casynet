@@ -24,9 +24,9 @@ class MainBindings extends Bindings {
     Get.put(CuaHangController());
     Get.put(DetailAppController());
     Get.put(DatChoController());
-
-    Get.put(AuthenticationManager());
     Get.put(ProductCartMeController());
+    Get.put(AuthenticationManager());
+
     Get.put(FetchBannerController());
     Get.put(FetchTopSalesController());
 

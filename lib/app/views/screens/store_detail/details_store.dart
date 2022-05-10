@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../../../controller/detail_store_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_sizes.dart';
-import '../product_detail/widgets/top_detail_product_widget.dart';
 import 'widgets/aq_store_widget.dart';
 import 'widgets/intro_store_widget.dart';
 import 'widgets/new_store_widget.dart';
@@ -42,7 +41,6 @@ class DetailsStorePage extends StatelessWidget {
               width: 20,
             )
         ),
-        title: TopDetailProductWidget(),
         actions: [
           GestureDetector(
             behavior: HitTestBehavior.translucent,

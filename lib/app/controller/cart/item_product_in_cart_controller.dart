@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:collection/collection.dart";
 import '../../data/provider/db/cart_db_provider.dart';
-import '../auth/authentication_manager.dart';
 import '../auth/cache_manager.dart';
 
 class ProductCartMeController extends GetxController with CacheManager {
@@ -15,13 +14,12 @@ class ProductCartMeController extends GetxController with CacheManager {
   var isLoading = true;
   var isLoadingComplete = true;
   var sumCart = 0.obs;
+  var countCart = 0.obs;
   List<TextEditingController> controllers = [];
   RxList checkBoxProduct = [].obs;
-  AuthenticationManager _authenticationManager = Get.find();
 
   @override
   void onInit() {
-    _authenticationManager.isLogged == true ? updateAPI(): getCartDB();
   }
 
   void deleteRow(int? id ){
@@ -60,8 +58,10 @@ class ProductCartMeController extends GetxController with CacheManager {
 
   void updateAPI() {
     print("<GET PRODUCT API>");
+    controllers.clear();
     productCartList.clear();
     isLoading = true;
+    controllers.clear();
     final token = getToken();
 
     ProductCartMeProvider().fetchProductCartMeList(
@@ -70,6 +70,7 @@ class ProductCartMeController extends GetxController with CacheManager {
           productCartList.addAll(data);
           cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
           calsumCart();
+          countCart.value = productCartList.length;
           isLoading = false;
           update();
         },
@@ -86,6 +87,7 @@ class ProductCartMeController extends GetxController with CacheManager {
     isLoading = true;
     isLoadingComplete = true;
     productCartList.clear();
+    controllers.clear();
 
     CartDatabaseHelper.instance.queryAllRows().then((value) {
       value?.forEach((element) {
@@ -106,6 +108,7 @@ class ProductCartMeController extends GetxController with CacheManager {
       });
       cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
       calsumCart();
+      countCart.value = productCartList.length;
       isLoadingComplete = false;
       update();
     });
