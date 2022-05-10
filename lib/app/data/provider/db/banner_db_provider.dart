@@ -8,7 +8,9 @@ class BannerDatabaseHelper{
   static final String _databaseName = "banner.db";
 
   static final _databaseVersion = 1;
+
   static final String table = 'banner';
+
   static final String columnId = 'id';
   static final String columnImage = 'image';
 

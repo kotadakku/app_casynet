@@ -11,6 +11,7 @@ class UserDatabaseHelperProvider {
   static final _databaseVersion = 1;
 
   static final String table = "user";
+
   static final String columnId = "id";
   static final String columnEmail = "email";
   static final String columnPassword = "password";

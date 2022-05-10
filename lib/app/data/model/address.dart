@@ -1,4 +1,4 @@
-class Address {
+ class Address {
   int? id;
   String? firstname;
   String? lastname;
