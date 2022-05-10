@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 
 import '../../../controller/cart/item_selection_controller.dart';
 import '../product_detail/widgets/top_detail_product_widget.dart';
-import 'cart3.dart';
+import 'checkout_success.dart';
 
-class Cart2 extends StatelessWidget {
-  Cart2({Key? key}) : super(key: key);
+class CheckoutPage extends StatelessWidget {
+  CheckoutPage({Key? key}) : super(key: key);
   static const IconData map = IconData(0xe3c8, fontFamily: 'MaterialIcons');
 
   // int _valuePayment = 0;

@@ -1,12 +1,15 @@
+import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:app_casynet/app/controller/cart/item_product_in_cart_controller.dart';
+import 'package:app_casynet/app/routes/app_pages.dart';
+import 'package:app_casynet/app/utlis/int_to_price.dart';
 import 'package:app_casynet/app/views/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/appbar_cart.dart';
-import 'cart2.dart';
-import 'itemCart.dart';
+import 'checkout_page.dart';
+import 'widgets/itemCart.dart';
 
 class Cart extends StatelessWidget {
   const Cart({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductCartMeController _productCartCOntroller = Get.find();
+    AuthenticationManager _authenticationManager = Get.find();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarCartWidget(),
@@ -367,59 +371,45 @@ class Cart extends StatelessWidget {
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                height: 40.0,
-                                margin:
-                                const EdgeInsets.only(left: 5.0, top: 10.0),
-                                child: const Text(
-                                  "Thành tiền: ",
+                      Padding(padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: const Text(
+                                "Thành tiền: ",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 149, 156, 175),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16),
+                              ),
+                            ),
+                            Container(
+                                child: Obx(()=>Text(
+                                  '${IntToPrice(_productCartCOntroller.sumCart.value).intToPrice()} đ',
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 149, 156, 175),
+                                      color:
+                                      Color.fromARGB(255, 255, 69, 69),
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 1,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    height: 40.0,
-                                    margin: const EdgeInsets.only(top: 10.0),
-                                    child: Obx(()=>Text(
-                                      _productCartCOntroller.sumCart.value.toString(),
-                                      style: TextStyle(
-                                          color:
-                                          Color.fromARGB(255, 255, 69, 69),
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16),
-                                    ),)
-                                  )
-                                ],
-                              )),
-                        ],
+                                ),)
+                            )
+                          ],
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(right: 5.0),
-                            child: const Text(
-                              "(Đã bao gồm VAT nếu có) ",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 149, 156, 175),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 13),
-                            ),
-                          )
-                        ],
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          child: const Text(
+                            "(Đã bao gồm VAT nếu có) ",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 149, 156, 175),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 13),
+                          ),
+                        ),
                       )
+
                     ],
                   ),
 // button tiến hành đặt hàng
@@ -439,7 +429,7 @@ class Cart extends StatelessWidget {
                           ),
                           // sự kiện chuyển màn
                           onPressed: () {
-                            Get.to(Cart2());
+                            _authenticationManager.isLogged == true? Get.toNamed(Routes.CHECKOUT): Get.toNamed(Routes.AUTH);
                           },
                           child: const Text(
                             'Tiến hành đặt hàng',

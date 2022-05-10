@@ -19,7 +19,7 @@ abstract class Routes{
   static const ACCOUNT_CASYCOIN = '/account/casycoin';
   static const ACCOUNT_CHANGE_PASS = '/account/change_password';
   static const SELECT_REGION = '/select_region';
-
+  static const CHECKOUT = '/checkout';
   static const PRODUCT_DETAIL= '/product';
   static const PRODUCTS_BY_CATEGORY = '/products';
 
