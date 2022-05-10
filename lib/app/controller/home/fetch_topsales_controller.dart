@@ -1,7 +1,7 @@
+import 'package:app_casynet/app/data/provider/db/config_db.dart';
 import 'package:get/get.dart';
-
 import '../../data/model/sales.dart';
-import '../../data/provider/db/sales_db_provider.dart';
+import '../../data/provider/db/db_provider.dart';
 import '../../data/provider/sales_api_provider.dart';
 import '../../utlis/base64.dart';
 
@@ -28,7 +28,7 @@ class FetchTopSalesController extends GetxController{
   void _getTopSaleBD(){
     isLoading = true;
     isLoadingComplete = true;
-    TopSaleDatabaseHelper.instance.queryAllRows().then((value) {
+    DatabaseHelper.instance.getAlls(DBConfig.TABLE_SALE, DBConfig.COLUMN_SALE_ID).then((value) {
       if(value?.length == 0){
         getSalesAPI();
       }else{
@@ -52,11 +52,11 @@ class FetchTopSalesController extends GetxController{
     isLoadingComplete = true;
     SalesProvider().getSales(onSuccess: (sales) async {
       listSales.clear();
-      TopSaleDatabaseHelper.instance.clear();
+      DatabaseHelper.instance.clear(DBConfig.TABLE_SALE);
 
       for( var sale in sales){
         var base64 = await ImageNetworkToBase64(url: sale.image).getHttp();
-        TopSaleDatabaseHelper.instance.insert(Sales(image: base64, title: sale.title));
+        DatabaseHelper.instance.insert(DBConfig.TABLE_SALE, Sales(image: base64, title: sale.title).toJson());
         listSales.add(Sales(image: base64, title: sale.title));
         isLoading = false;
         update();

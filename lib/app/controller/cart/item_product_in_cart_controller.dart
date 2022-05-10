@@ -1,11 +1,12 @@
 
 import 'package:app_casynet/app/data/model/item_product_in_cart.dart';
+import 'package:app_casynet/app/data/provider/db/config_db.dart';
 import 'package:app_casynet/app/data/provider/item_product_in_cartme_provider.dart';
 import 'package:app_casynet/app/views/screens/cart/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:collection/collection.dart";
-import '../../data/provider/db/cart_db_provider.dart';
+import '../../data/provider/db/db_provider.dart';
 import '../auth/cache_manager.dart';
 
 class ProductCartMeController extends GetxController with CacheManager {
@@ -20,25 +21,30 @@ class ProductCartMeController extends GetxController with CacheManager {
 
   @override
   void onInit() {
+    getCartDB();
   }
 
   void deleteRow(int? id ){
-    CartDatabaseHelper.instance.deleteRow(id);
+    DatabaseHelper.instance.deleteRow(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, id);
     getCartDB();
     update();
   }
 
   void insertProductCart(ProductCart productCart) {
 
-    CartDatabaseHelper.instance.checkExists(productCart.p_id).then((value){
-      print('Item Product $value');
+    DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){
+      print("<DB> row exist $value");
       if(value){
-        CartDatabaseHelper.instance.addQuantity(productCart.p_id).then((value){
+        DatabaseHelper.instance.addQuantity(DBConfig.TABLE_CART,
+            DBConfig.CART_COLUMN_P_ID,
+            DBConfig.CART_COLUMN_QUANTITY,
+            productCart.p_id,).then((value){
           getCartDB();
         });
       }
       else{
-        CartDatabaseHelper.instance.insert(productCart).then((value){
+        print("DB Insert to Cart");
+        DatabaseHelper.instance.insert(DBConfig.TABLE_CART, productCart.toJson()).then((value){
           getCartDB();
         });
       }
@@ -50,7 +56,10 @@ class ProductCartMeController extends GetxController with CacheManager {
   void updateQuantity(int qty,int? id){
     if(id !=null){
 
-      CartDatabaseHelper.instance.updateQuantity(qty, id);
+      DatabaseHelper.instance.updateQuantity(DBConfig.TABLE_CART,
+        DBConfig.CART_COLUMN_P_ID,
+        DBConfig.CART_COLUMN_QUANTITY,
+        id, qty);
       productCartList.where((element) => element.p_id == id).first.quantity = qty;
       update();
     }
@@ -89,7 +98,7 @@ class ProductCartMeController extends GetxController with CacheManager {
     productCartList.clear();
     controllers.clear();
 
-    CartDatabaseHelper.instance.queryAllRows().then((value) {
+    DatabaseHelper.instance.getAlls(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID).then((value) {
       value?.forEach((element) {
         productCartList.add(ProductCart(
           p_id: element['p_id'],

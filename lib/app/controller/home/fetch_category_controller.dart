@@ -1,9 +1,9 @@
 
 import 'package:app_casynet/app/data/provider/category_home_provider.dart';
+import 'package:app_casynet/app/data/provider/db/config_db.dart';
 import 'package:get/get.dart';
-
 import '../../data/model/category_home.dart';
-import '../../data/provider/db/category_db_provider.dart';
+import '../../data/provider/db/db_provider.dart';
 import '../../utlis/base64.dart';
 
 class CategoryHomeController extends GetxController{
@@ -20,7 +20,7 @@ class CategoryHomeController extends GetxController{
   void _getCategoryDB() {
     isLoading = true;
     print('<Load Category> Load DB');
-    CategoryDatabaseHelper.instance.queryAllRows().then((value) {
+    DatabaseHelper.instance.getAlls(DBConfig.TABLE_CATEGORY, DBConfig.COLUMN_CATEGORY_ID).then((value) {
       if(value?.length == 0){
         getCategoryAPI();
       }else{
@@ -45,11 +45,11 @@ class CategoryHomeController extends GetxController{
     print('<Load Category> Load DB');
     CategoryHomeProvider().fetchCategoryHomeList(onSuccess: (categories) async {
       categoryHomeList.clear();
-      CategoryDatabaseHelper.instance.clear();
+      DatabaseHelper.instance.clear(DBConfig.TABLE_CATEGORY);
 
       for( var category in categories){
         var base64 = await ImageNetworkToBase64(url: category.anhdanhmuc.toString()).getHttp();
-        CategoryDatabaseHelper.instance.insert(CategoryHome(anhdanhmuc: base64, tendanhmuc: category.tendanhmuc));
+        DatabaseHelper.instance.insert(DBConfig.TABLE_CATEGORY, CategoryHome(anhdanhmuc: base64, tendanhmuc: category.tendanhmuc).toJson());
         categoryHomeList.add(CategoryHome(anhdanhmuc: base64, tendanhmuc: category.tendanhmuc));
         isLoading = false;
         update();

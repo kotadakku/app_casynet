@@ -51,8 +51,6 @@ class AuthenticationManager extends GetxController with CacheManager {
     if(user != null){
       print("<AUTH> GET DB");
       user_current = user;
-      _productCartMeController.getCartDB();
-      print(user_current.firstname);
     }
     else{
       print("<AUTH> GET API");
