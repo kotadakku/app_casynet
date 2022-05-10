@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/cart/item_product_in_cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,7 @@ import 'cache_manager.dart';
 class AuthenticationManager extends GetxController with CacheManager {
   final isLogged = false.obs;
   late User user_current = User();
+  ProductCartMeController _productCartMeController = Get.find();
 
 
   void logOut() {
@@ -47,9 +49,11 @@ class AuthenticationManager extends GetxController with CacheManager {
 
   Future<void> fetchUser(String? token ) async {
     final user = getUsers();
+    _productCartMeController.updateAPI();
     if(user != null){
       print("<AUTH> GET DB");
       user_current = user;
+      print(user_current.firstname);
     }
     else{
       print("<AUTH> GET API");
@@ -73,7 +77,6 @@ class AuthenticationManager extends GetxController with CacheManager {
 
   void checkLoginStatus() {
     final token = getToken();
-    print(token);
     if (token != null) {
       fetchUser(token);
       isLogged.value = true;

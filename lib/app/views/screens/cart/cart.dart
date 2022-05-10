@@ -1,11 +1,9 @@
 import 'package:app_casynet/app/controller/cart/item_product_in_cart_controller.dart';
 import 'package:app_casynet/app/views/theme/app_colors.dart';
-import "package:collection/collection.dart";
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../data/model/item_product_in_cart.dart';
+
 import '../../widgets/appbar_cart.dart';
 import 'cart2.dart';
 import 'itemCart.dart';
@@ -15,6 +13,7 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductCartMeController _productCartCOntroller = Get.find();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarCartWidget(),
@@ -393,14 +392,14 @@ class Cart extends StatelessWidget {
                                   Container(
                                     height: 40.0,
                                     margin: const EdgeInsets.only(top: 10.0),
-                                    child: const Text(
-                                      "10.000.000 đ ",
+                                    child: Obx(()=>Text(
+                                      _productCartCOntroller.sumCart.value.toString(),
                                       style: TextStyle(
                                           color:
                                           Color.fromARGB(255, 255, 69, 69),
                                           fontWeight: FontWeight.w400,
                                           fontSize: 16),
-                                    ),
+                                    ),)
                                   )
                                 ],
                               )),

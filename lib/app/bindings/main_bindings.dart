@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../controller/account/information_address_controller.dart';
 import '../controller/account/new_address_controller.dart';
 import '../controller/auth/authentication_manager.dart';
+import '../controller/cart/item_product_in_cart_controller.dart';
 import '../controller/home/banner_page_view_controller.dart';
 import '../controller/home/cuahang_controller.dart';
 import '../controller/detail_app_controller.dart';
@@ -13,6 +14,7 @@ import '../controller/home/home_controller.dart';
 class MainBindings extends Bindings {
   @override
   void dependencies() {
+
     Get.put(HomeController());
     Get.lazyPut(() => BannerController());
     Get.lazyPut(() => DetailAppController(), fenix: true );
@@ -22,8 +24,11 @@ class MainBindings extends Bindings {
     Get.put(CuaHangController());
     Get.put(DetailAppController());
     Get.put(DatChoController());
+
     Get.put(AuthenticationManager());
+    Get.put(ProductCartMeController());
     Get.put(FetchBannerController());
     Get.put(FetchTopSalesController());
+
   }
 }

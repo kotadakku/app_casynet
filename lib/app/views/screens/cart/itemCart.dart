@@ -148,13 +148,16 @@ class ItemCart extends StatelessWidget {
 
                           () => Checkbox(
                             activeColor: const Color.fromARGB(255, 223, 180, 0),
-                            value: _productCartController.checkBoxProduct.contains(itemCartStore[index].p_id),
+                            value: _productCartController.checkBoxProduct.value.contains(itemCartStore[index].p_id),
                             onChanged: (value) {
-                              if(_productCartController.checkBoxProduct.contains(itemCartStore[index].p_id)) {
+                              if(_productCartController.checkBoxProduct.value.contains(itemCartStore[index].p_id)) {
                                 _productCartController.checkBoxProduct.remove(
                                     itemCartStore[index].p_id);
-                              }else _productCartController.checkBoxProduct.add(itemCartStore[index].p_id);
-                              print(_productCartController.checkBoxProduct.length);
+                                _productCartController.calsumCart();
+                              }else {
+                                _productCartController.checkBoxProduct.add(itemCartStore[index].p_id);
+                                _productCartController.calsumCart();
+                              }
                             },
                           ),
                         ),
