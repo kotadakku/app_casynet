@@ -98,17 +98,17 @@ class NotificationPage extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index){
                       return Container(
-                        color: controller.notificationList[index].isSeen! ? AppColors.kBackgroundColor : Colors.blue,
+                        color: controller.notificationList[index].isSeen ? AppColors.kBackgroundColor : Colors.blue,
                         margin: EdgeInsets.only(top: 5.0.h),
                         padding: EdgeInsets.symmetric(vertical: 10.h),
                         child: ListTile(
-                          leading: Image.network(controller.notificationList[index].imageUrl??controller.notificationList[index].dataImageUrl!),
-                          title: Text(controller.notificationList[index].body??controller.notificationList[index].body!),
+                          leading: Image.network(controller.notificationList[index].dataImageUrl??controller.notificationList[index].imageUrl!),
+                          title: Text(controller.notificationList[index].dataBody??controller.notificationList[index].body!),
                           subtitle: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(controller.notificationList[index].title??controller.notificationList[index].dataTitle!),
+                              Text(controller.notificationList[index].dataTitle??controller.notificationList[index].title!),
                               Text(controller.notificationList[index].timeReceive.toString())
                             ],
                           ),
