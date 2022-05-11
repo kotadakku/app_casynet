@@ -8,7 +8,8 @@ import 'package:overlay_support/overlay_support.dart';
 
 import '../../controller/bottom_nav_controller.dart';
 class NotificationService extends GetxController{
-  final List<NotificationModel> notificationList = [];
+  var notificationList = [];
+  var isLoading = true;
 
   late final FirebaseMessaging _messaging;
   late var totalNotificationCounter = 0;
@@ -18,24 +19,7 @@ class NotificationService extends GetxController{
   void onInit() {
 
     // get all db sqlite
-    DatabaseHelper.instance.getAlls(DBConfig.TABLE_NOTIFICATION, DBConfig.NOTI_COLUMN_TIMERECEIVE).then((value) {
-      if(value?.length == 0){
-
-      }
-      else{
-        value?.forEach((element) {
-          print(element[DBConfig.NOTI_COLUMN_TITLE]);
-          notificationList.add(NotificationModel(
-              dataTitle: element[DBConfig.NOTI_COLUMN_TITLE],
-              dataBody: element[DBConfig.NOTI_COLUMN_BODY],
-              imageUrl: element[DBConfig.NOTI_COLUMN_IMAGE_URL],
-              isSeen: element[DBConfig.NOTI_COLUMN_ISSEEN],
-              timeReceive: element[DBConfig.NOTI_COLUMN_TIMERECEIVE]
-          ));
-        });
-        update();
-      }
-    });
+    getNotifications();
 
 
    // sự kiện lắng nghe
@@ -123,6 +107,31 @@ class NotificationService extends GetxController{
     totalNotificationCounter = 0;
     notificationList.where((element) => element.isSeen==false).forEach((e) => notificationList[notificationList.indexOf(e)].isSeen =true);
     update();
+  }
+
+  void getNotifications() {
+    isLoading = true;
+    DatabaseHelper.instance.getAlls(DBConfig.TABLE_NOTIFICATION, DBConfig.NOTI_COLUMN_TIMERECEIVE).then((value) {
+      if(value?.length != 0){
+        value?.forEach((element) {
+          print('<FETCH DB${element[DBConfig.NOTI_COLUMN_TITLE]}>');
+          notificationList.add(NotificationModel(
+              dataTitle: element[DBConfig.NOTI_COLUMN_TITLE],
+              dataBody: element[DBConfig.NOTI_COLUMN_BODY],
+              imageUrl: element[DBConfig.NOTI_COLUMN_IMAGE_URL],
+              isSeen: element[DBConfig.NOTI_COLUMN_ISSEEN] == 'true' ? true: false,
+              timeReceive:  DateTime.parse(element[DBConfig.NOTI_COLUMN_TIMERECEIVE])
+          ));
+          print('<FETCH DB${notificationList.length}>');
+        });
+
+      }
+
+    });
+    print('<FETCH DB${notificationList.length}>');
+    isLoading = false;
+    update();
+
   }
 
 

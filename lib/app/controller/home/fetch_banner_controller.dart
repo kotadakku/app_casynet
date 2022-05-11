@@ -32,7 +32,6 @@ class FetchBannerController extends GetxController{
         });
       }
     });
-
   }
 
   Future<void> getBannerAPI() async {
