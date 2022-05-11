@@ -428,7 +428,9 @@ class Cart extends StatelessWidget {
                           ),
                           // sự kiện chuyển màn
                           onPressed: () {
-                            _authenticationManager.isLogged == true? Get.toNamed(Routes.CHECKOUT): Get.toNamed(Routes.AUTH);
+                            (_authenticationManager.isLogged.value || _authenticationManager.user_current == null) ? Get.toNamed(Routes.CHECKOUT)
+                            : Get.toNamed(Routes.AUTH, arguments: 0);
+                            // _authenticationManager.isLogged == true? Get.toNamed(Routes.CHECKOUT): Get.toNamed(Routes.AUTH);
                           },
                           child: const Text(
                             'Tiến hành đặt hàng',

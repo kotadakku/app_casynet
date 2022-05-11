@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/banner/banner_provider.dart';
 import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/appbar_home_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/banner_widget.dart';
@@ -50,6 +51,30 @@ class HomePage extends StatelessWidget {
                 children: [
                   // Banner
                   BannerHomeWidget(),
+
+                  // test
+                  Container(
+                    height: 50.0.h,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        OutlinedButton(onPressed: (){
+                          BannerDatabaseHelper.instance.getAll().then((value) {
+                            if(value?.length == 0){
+                              BannerDatabaseHelper.instance.insert();
+                            }
+
+                          });
+
+
+                        }, child: Text("Select")),
+                        OutlinedButton(onPressed: (){}, child: Text("Insert")),
+                        OutlinedButton(onPressed: (){}, child: Text("update")),
+                        OutlinedButton(onPressed: (){}, child: Text("delete")),
+                      ],
+                    ),
+                  ),
                   // Khuyến mãi
                   TopSaleWidget(),
                   SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),

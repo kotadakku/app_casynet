@@ -1,5 +1,4 @@
 import 'package:app_casynet/app/data/provider/db/config_db.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/banner_slider.dart';
