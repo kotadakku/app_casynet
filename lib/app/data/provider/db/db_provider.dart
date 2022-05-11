@@ -55,6 +55,15 @@ class DatabaseHelper{
             ${DBConfig.CART_COLUMN_CART_ID} INTEGER NOT NULL  
           )
     ''');
+
+    db.execute('''CREATE TABLE ${DBConfig.TABLE_NOTIFICATION}(
+      ${DBConfig.NOTI_COLUMN_ID} INTEGER PRIMARY KEY UNIQUE,
+      ${DBConfig.NOTI_COLUMN_TITLE} TEXT NULL,
+      ${DBConfig.NOTI_COLUMN_BODY} TEXT NULL,
+      ${DBConfig.NOTI_COLUMN_IMAGE_URL} TEXT NULL,
+      ${DBConfig.NOTI_COLUMN_ISSEEN} TEXT NULL,
+      ${DBConfig.NOTI_COLUMN_TIMERECEIVE} TEXT NULL
+    )''');
   }
 
 

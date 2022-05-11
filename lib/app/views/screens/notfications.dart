@@ -109,7 +109,7 @@ class NotificationPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(controller.notificationList[index].title??controller.notificationList[index].dataTitle!),
-                              Text(controller.notificationList[index].timeReveice.toString())
+                              Text(controller.notificationList[index].timeReceive.toString())
                             ],
                           ),
                         ),

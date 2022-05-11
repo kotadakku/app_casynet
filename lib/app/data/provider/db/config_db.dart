@@ -28,4 +28,13 @@ class DBConfig{
   static final String CART_COLUMN_QUANTITY = 'quantity';
   static final String CART_COLUMN_CART_ID = 'cartId';
 
+  static final String TABLE_NOTIFICATION = 'notification';
+  static final String NOTI_COLUMN_ID = 'id';
+  static final String NOTI_COLUMN_TITLE = 'title';
+  static final String NOTI_COLUMN_BODY = 'body';
+  static final String NOTI_COLUMN_IMAGE_URL = 'imageurl';
+  static final String NOTI_COLUMN_ISSEEN = 'isseen';
+  static final String NOTI_COLUMN_TIMERECEIVE = 'timereceive';
+
+
 }
