@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "122983813069",
+    "project_id": "notifications-flutter-100cd",
+    "storage_bucket": "notifications-flutter-100cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122983813069:android:8595b3dec985f91897be84",
+        "android_client_info": {
+          "package_name": "com.example.app_casynet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122983813069-9e6u0jsjr0e3l6soqgul0jkecmvm1bj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBokJorOeMqZJrE0NTQShL3BSPHXwyNP4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122983813069-9e6u0jsjr0e3l6soqgul0jkecmvm1bj2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "122983813069-siu3jd6tqb92iaua4jsiad3olct393vk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.NotificationModels"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122983813069:android:84d67b3335d47c2297be84",
+        "android_client_info": {
+          "package_name": "com.example.push_notifications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122983813069-9e6u0jsjr0e3l6soqgul0jkecmvm1bj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBokJorOeMqZJrE0NTQShL3BSPHXwyNP4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122983813069-9e6u0jsjr0e3l6soqgul0jkecmvm1bj2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "122983813069-siu3jd6tqb92iaua4jsiad3olct393vk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.NotificationModels"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

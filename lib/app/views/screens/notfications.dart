@@ -1,6 +1,10 @@
 
+import 'package:app_casynet/app/views/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../../data/service/notication_service.dart';
 import 'home/widgets/appbar_home_widget.dart';
 
 
@@ -79,16 +83,42 @@ class NotificationPage extends StatelessWidget {
                 ),
               )
           ),
+
+
           // Danh sách thông báo
-          Expanded(child: ListView.builder(
-              itemCount: 4,
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemBuilder: (context, index){
-                return Padding(padding: EdgeInsets.symmetric(vertical: 10), child: _menus[index]);
+          Expanded(
+            child: GetBuilder<NotificationService>(
+              init: NotificationService(),
+              builder: (controller){
+
+                return controller.notificationList.length <=0? Text("Không có thông báo để hiển thị"): ListView.builder(
+                    itemCount: controller.notificationList.length,
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index){
+                      return Container(
+                        color: controller.notificationList[index].isSeen! ? AppColors.kBackgroundColor : Colors.blue,
+                        margin: EdgeInsets.only(top: 5.0.h),
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                        child: ListTile(
+                          leading: Image.network(controller.notificationList[index].imageUrl??controller.notificationList[index].dataImageUrl!),
+                          title: Text(controller.notificationList[index].body??controller.notificationList[index].body!),
+                          subtitle: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(controller.notificationList[index].title??controller.notificationList[index].dataTitle!),
+                              Text(controller.notificationList[index].timeReveice.toString())
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                );
               }
-          ))
+            )
+          )
         ],
       ),
     );

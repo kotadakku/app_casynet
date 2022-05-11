@@ -60,6 +60,9 @@ dependencies:
   geocoding:
   geolocator:
   grouped_list:
+  firebase_core:
+  firebase_messaging:
+  overlay_support:
 
   flutter_localizations: # Add this line
     sdk: flutter

@@ -22,8 +22,6 @@ class ConnectivityService extends GetxService {
         if (isShowingDialog) {
           Get.back();
           isShowingDialog = false;
-
-
         }
       }
     });

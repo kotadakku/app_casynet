@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/data/service/notication_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -28,58 +29,37 @@ class BottomNavigator extends StatelessWidget {
               icon: Stack(
                 children: <Widget>[
                   Icon(Icons.notifications_none, color: kTextColor, size: 35,),
-                  Positioned(
-                    right: 0,
-                    child: new Container(
-                      padding: EdgeInsets.all(1),
-                      decoration: new BoxDecoration(
-                        color: kYellowColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      constraints: BoxConstraints(
-                        minWidth: 18,
-                        minHeight: 18,
-                      ),
-                      child: new Text(
-                        '10',
-                        style: new TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                  GetBuilder<NotificationService>(
+                      init: NotificationService(),
+                      builder: (controller){
+                        return controller.totalNotificationCounter==0 ? SizedBox(): Positioned(
+                          right: 0,
+                          child: new Container(
+                            padding: EdgeInsets.all(1),
+                            decoration: new BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: kYellowColor),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            constraints: BoxConstraints(
+                              minWidth: 18,
+                              minHeight: 18,
+                            ),
+                            child: new Text(
+                              controller.totalNotificationCounter.toString(),
+                              style: new TextStyle(
+                                color: kYellowColor,
+                                fontSize: 13,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
                   )
                 ],
               ),
-              activeIcon: Stack(
-                children: <Widget>[
-                  Icon(Icons.notifications, color: kYellowColor, size: 35,),
-                  Positioned(
-                    right: 0,
-                    child: new Container(
-                      padding: EdgeInsets.all(1),
-                      decoration: new BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: kYellowColor),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      constraints: BoxConstraints(
-                        minWidth: 18,
-                        minHeight: 18,
-                      ),
-                      child: new Text(
-                        '10',
-                        style: new TextStyle(
-                          color: kYellowColor,
-                          fontSize: 13,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  )
-                ],
-              ),
+              activeIcon: Icon(Icons.notifications, color: kYellowColor, size: 35,),
               label: "Notications"
           ),
           BottomNavigationBarItem(
