@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 
-class Cart3 extends StatelessWidget {
+class CheckOutSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

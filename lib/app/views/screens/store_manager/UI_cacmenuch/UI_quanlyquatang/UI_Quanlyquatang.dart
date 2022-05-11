@@ -3,10 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../routes/app_pages.dart';
 import '../../UI_cuahang.dart';
 import 'UI_Themquatang.dart';
 
-class quanlyquatang extends StatelessWidget {
+class QuanLyQuaTang extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,20 +37,11 @@ class quanlyquatang extends StatelessWidget {
                 color: Colors.amber,
                 child: Text("Thêm +"),
                 onPressed: () {
-                  Get.to(themquatang());
+                  Get.toNamed(Routes.STORE_MANAGER_ADD_GIFT);
                 },
               ),
             ),
           ],
-        ),
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.amberAccent,
-            onPressed: () {
-              Get.back();
-            },
-          ),
         ),
       ),
       body: Container(

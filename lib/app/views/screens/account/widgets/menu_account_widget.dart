@@ -5,10 +5,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/auth/authentication_manager.dart';
-import '../../../../controller/bottom_nav_controller.dart';
 import '../../../../routes/app_pages.dart';
-import '../UI_qlch/UI_cuahang.dart';
 import '../../../theme/app_colors.dart';
+import '../../store_manager/UI_cuahang.dart';
 
 
 class MenuAccountWidget extends StatelessWidget {
@@ -81,7 +80,7 @@ class MenuAccountWidget extends StatelessWidget {
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;
           (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav =(){Get.to(menucuahang());};
+          nav =(){Get.toNamed(Routes.STORE_MANAGER);};
           break;
       }
       return GestureDetector(

@@ -1,6 +1,21 @@
 
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
+import 'package:app_casynet/app/views/screens/detail_store/widgets/new_store_widget.dart';
 import 'package:app_casynet/app/views/screens/home/search_screen.dart';
+import 'package:app_casynet/app/views/screens/store/mystore.dart';
+import 'package:app_casynet/app/views/screens/store/news.dart';
+import 'package:app_casynet/app/views/screens/store/notications_customer.dart';
+import 'package:app_casynet/app/views/screens/store/quan_ly_doanh_thu.dart';
+import 'package:app_casynet/app/views/screens/store/quan_ly_don_hang.dart';
+import 'package:app_casynet/app/views/screens/store/rate_store_page.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Dichvusanpham.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_ThemSPDV.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlydonhang/UI_chitietdonhang.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlyquatang/UI_Quanlyquatang.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlyquatang/UI_Themquatang.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlythongbao/UI_Quanlythongbao.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlythongbao/UI_Themthongbao.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cuahang.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -39,6 +54,12 @@ import '../views/screens/filter/filter_product_2.dart';
 import '../views/screens/filter/filter_product_map.dart';
 import '../views/screens/product_detail/detail_product.dart';
 import '../views/screens/products.dart';
+import '../views/screens/store/data_store_page.dart';
+import '../views/screens/store/gift_store_page.dart';
+import '../views/screens/store/question_answer.dart';
+import '../views/screens/store/sanpham_dichvu.dart';
+import '../views/screens/store/setting_notications.dart';
+import '../views/screens/store_manager/UI_cacmenuch/UI_Bangdieukhien.dart';
 
 part './app_routes.dart';
 
@@ -139,6 +160,86 @@ class AppPages {
     GetPage(
       name: Routes.MESSAGES,
       page: ()=> AllMessageAccount(),
+    ),
+    GetPage(
+        name: Routes.MY_STORE_REVENUE,
+        page: ()=> QuanLyDoanhThu()
+    ),
+    GetPage(
+      name: Routes.MY_STORE,
+      page: ()=> MyStorePage()
+    ),
+    GetPage(
+      name: Routes.MY_STORE_PRODUCT,
+      page: ()=>SanPhamDichVu()
+    ),
+    GetPage(
+      name: Routes.MY_STORE_GIFT,
+      page: ()=> GiftStorePage(),
+    ),
+    GetPage(
+      name: Routes.MY_STORE_NOTI,
+      page: ()=> NotificationCustomer()
+    ),
+    GetPage(
+      name: Routes.MY_STORE_RATE,
+      page: ()=>RateStorePage(),
+    ),
+    GetPage(
+      name: Routes.MY_STORE_QA,
+      page: ()=> QuestionAnswer()
+    ),
+    GetPage(
+      name: Routes.MY_STORE_SETTINGS,
+      page: ()=>SettingNotications()
+    ),
+    GetPage(
+      name:Routes.MY_STORE_DATA,
+      page: ()=> DataStorePage(),
+    ),
+    GetPage(
+      name: Routes.MY_STORE_NEWS,
+      page: ()=> News(),
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER,
+      page: () => MenuCuahang(),
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_CONTROL,
+      page: () => BangDieuKhien()
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_INFO,
+      page: () => ChiTietDonHang(),
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_ORDERS,
+      page: ()=> QuanLyDonHang()
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_PRODUCTS,
+      page: ()=> DichVuSanPham(),
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_ADD_PRODUCT,
+      page: () => Themspdv()
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_GIFTS,
+      page: ()=> QuanLyQuaTang(),
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_ADD_GIFT,
+      page: ()=> ThemQuaTang(),
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_NOTIS,
+      page: ()=>QuanLyThongBao()
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_ADD_NOTI,
+      page: () => ThemThongBao(),
     )
   ];
 

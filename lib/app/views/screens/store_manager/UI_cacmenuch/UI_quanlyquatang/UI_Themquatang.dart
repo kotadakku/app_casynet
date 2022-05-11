@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
 
-class themquatang extends StatelessWidget {
+class ThemQuaTang extends StatelessWidget {
   var statusht = false.obs;
   var statusgmkh = false.obs;
   var textht = "không".obs;

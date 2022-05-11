@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../routes/app_pages.dart';
 import 'UI_Themthongbao.dart';
 
-class quanlythongbao extends StatelessWidget {
+class QuanLyThongBao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,20 +27,11 @@ class quanlythongbao extends StatelessWidget {
                 color: Colors.amber,
                 child: Text("Thêm +"),
                 onPressed: () {
-                  Get.to(themthongbao());
+                  Get.toNamed(Routes.STORE_MANAGER_ADD_NOTI);
                 },
               ),
             ),
           ],
-        ),
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.amberAccent,
-            onPressed: () {
-              Get.back();
-            },
-          ),
         ),
       ),
       body: Container(

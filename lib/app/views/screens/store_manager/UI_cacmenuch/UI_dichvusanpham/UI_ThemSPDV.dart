@@ -1,30 +1,30 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../../data/model/Danhmucsanpham.dart';
-import '../../../../../../data/model/Sanpham.dart';
-import '../../../../../../data/model/Xuatxu.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:video_player/video_player.dart';
+
+import '../../../../../data/model/Danhmucsanpham.dart';
+import '../../../../../data/model/Sanpham.dart';
+import '../../../../../data/model/Xuatxu.dart';
 import '../../CheckInternet.dart';
 import 'UI_Chondanhmuc.dart';
 import 'UI_Chonloaisanpham.dart';
 import 'UI_Chonxuatxu.dart';
-import 'UI_Dichvusanpham.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
-import 'package:video_player/video_player.dart';
 import 'danhmuc.dart';
 
-class themspdv extends StatefulWidget {
+class Themspdv extends StatefulWidget {
   @override
-  State<themspdv> createState() => _themspdvState();
+  State<Themspdv> createState() => _ThemspdvState();
 }
 
 final getdms = Get.put(getdanhmuc());
 
-class _themspdvState extends State<themspdv> {
+class _ThemspdvState extends State<Themspdv> {
   var _date = new DateTime.now().obs;
   final clsp = Get.put(chonloaisp());
   final GetXuatxu = Get.put(getxuatxu());
@@ -65,15 +65,6 @@ class _themspdvState extends State<themspdv> {
         title: Text(
           "Thêm Dịch vụ/ Sản phẩm",
           style: TextStyle(color: Colors.black),
-        ),
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.amberAccent,
-            onPressed: () {
-              Get.to(dichvusanpham());
-            },
-          ),
         ),
       ),
       body: themspdvs(context),

@@ -4,16 +4,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import '../../Appbar.dart';
+import '../../../../../routes/app_pages.dart';
+import '../../widgets/Appbar.dart';
 import '../../UI_cuahang.dart';
 import 'UI_ThemSPDV.dart';
 
-class dichvusanpham extends StatefulWidget {
+class DichVuSanPham extends StatefulWidget {
   @override
-  State<dichvusanpham> createState() => _dichvusanphamState();
+  State<DichVuSanPham> createState() => _DichVuSanPhamState();
 }
 
-class _dichvusanphamState extends State<dichvusanpham>
+class _DichVuSanPhamState extends State<DichVuSanPham>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -73,20 +74,11 @@ class _dichvusanphamState extends State<dichvusanpham>
                     getdms.nothing[i].checkdanhmuc = false;
                   }
 
-                  Get.to(themspdv());
+                  Get.toNamed(Routes.STORE_MANAGER_ADD_PRODUCT);
                 },
               ),
             ),
           ],
-        ),
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.amberAccent,
-            onPressed: () {
-              Get.to(menucuahang());
-            },
-          ),
         ),
       ),
       body: Obx(

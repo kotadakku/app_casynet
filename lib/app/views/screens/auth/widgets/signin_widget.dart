@@ -69,43 +69,51 @@ class SignInWidget extends StatelessWidget {
                         )
                     ),
                     SizedBox(height: 20,),
-                    TextFormField(
-                        textAlignVertical: TextAlignVertical.center,
-                        obscureText: true,
-                        initialValue: '123456',
-
-                        onSaved: (value){
-                          user.password = value;
-                        },
-                        validator: (value){
-                          if(value!.isEmpty){
-                            return "Bạn chưa nhập mật khẩu";
-                          }/*if(){
-                            return "Bạn nhập chưa đúng mật khẩu";
-                          }*/
-                        },
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kYellowColor, width: 2.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kTextColor, width: 2.0),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50.0)
-                          ),
-                          hintStyle: const TextStyle(
-                              fontSize: 15
-                          ),
-                          hintText: 'Mật khẩu',
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                            child: Icon(Icons.lock, color: kYellowColor,),
-                          ),
-                        )
+                    Obx(()=>TextFormField(
+                      textAlignVertical: TextAlignVertical.center,
+                      obscureText: authController.isObscurePassword.value,
+                      initialValue: '123456',
+  
+                      onSaved: (value){
+                        user.password = value;
+                      },
+                      validator: (value){
+                        if(value!.isEmpty){
+                          return "Bạn chưa nhập mật khẩu";
+                        }/*if(){
+                              return "Bạn nhập chưa đúng mật khẩu";
+                            }*/
+                      },
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                          borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                          borderSide: BorderSide(color: kTextColor, width: 2.0),
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.0)
+                        ),
+                        hintStyle: const TextStyle(
+                            fontSize: 15
+                        ),
+                        hintText: 'Mật khẩu',
+                        suffixIcon: GestureDetector(
+                          child: authController.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
+                          Icon(Icons.visibility_outlined, color: kYellowColor,), onTap: (){
+                          authController.changeObscurePassword(!authController.isObscurePassword.value);
+                        },),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Icon(Icons.lock, color: kYellowColor,),
+                        ),
+                      )
+                      ),
                     ),
+                    
+                    
                     SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

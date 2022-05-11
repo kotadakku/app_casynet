@@ -59,6 +59,7 @@ class ChangePasswordAccount extends StatelessWidget {
                                   c.changeObscurePassword(!c.isObscurePassword.value);
                                 },
                               ),
+
                               hintText: "Nhập mật khẩu",
                               hintStyle: TextStyle(
                                   color: kTextColor

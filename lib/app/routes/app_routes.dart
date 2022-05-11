@@ -20,6 +20,7 @@ abstract class Routes{
   static const ACCOUNT_CHANGE_PASS = '/account/change_password';
   static const SELECT_REGION = '/select_region';
   static const CHECKOUT = '/checkout';
+  static const CHECKOUT_SUCCESS = '/checkout/success';
   static const PRODUCT_DETAIL= '/product';
   static const PRODUCTS_BY_CATEGORY = '/products';
 
@@ -28,5 +29,29 @@ abstract class Routes{
   static const AUTH = '/auth';
 
   static const SEARCH = '/search';
+
+  static const MY_STORE = '/my_store';
+  static const MY_STORE_PRODUCT = '/my_store/product';
+  static const MY_STORE_REVENUE= '/my_store/revenue';
+  static const MY_STORE_GIFT = '/my_store/gift';
+  static const MY_STORE_NOTI = '/my_store/noti';
+  static const MY_STORE_RATE = '/my_store/rate';
+  static const MY_STORE_QA = '/my_store/qa';
+  static const MY_STORE_SETTINGS = '/my_store/settings';
+  static const MY_STORE_DATA = '/my_store/data';
+  static const MY_STORE_NEWS = '/my_store/news';
+
+  static const STORE_MANAGER = '/manager_store';
+  static const STORE_MANAGER_CONTROL = '/manager_store/control';
+  static const STORE_MANAGER_INFO =  '/manager_store/info';
+  static const STORE_MANAGER_INFO_ORDER = '/manager_store/info_order';
+  static const STORE_MANAGER_ORDERS = '/manager_store/orders';
+  static const STORE_MANAGER_PRODUCTS = '/manager_store/products';
+  static const STORE_MANAGER_ADD_PRODUCT = '/manager_store/add_product';
+  static const STORE_MANAGER_GIFTS = '/manager_store/gifts';
+  static const STORE_MANAGER_ADD_GIFT = '/manager_store/add_gift';
+  static const STORE_MANAGER_NOTIS = '/managrt_store/notis';
+  static const STORE_MANAGER_ADD_NOTI = '/managrt_store/add_noti';
+
 
 }

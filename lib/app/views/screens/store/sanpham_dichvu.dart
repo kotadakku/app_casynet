@@ -16,8 +16,6 @@ class SanPhamDichVu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateTimeRangeController QLDTController =
-        Get.put(DateTimeRangeController());
 
     RxBool isImageHide = false.obs;
     // TODO: implement build

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../Appbar.dart';
-import '../Bottommenu.dart';
+import '../widgets/Appbar.dart';
+import '../widgets/Bottommenu.dart';
 import '../UI_cuahang.dart';
 
-class thongtincuahang extends StatelessWidget {
+class ThongTinCuaHang extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final widthdt = MediaQuery.of(context).size.width;
@@ -17,15 +17,6 @@ class thongtincuahang extends StatelessWidget {
         title: Text(
           "Thông tin cửa hàng",
           style: TextStyle(color: Colors.amber),
-        ),
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.amberAccent,
-            onPressed: () {
-              Get.to(menucuahang());
-            },
-          ),
         ),
       ),
       body: Center(

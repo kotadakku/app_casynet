@@ -175,7 +175,7 @@ class RegisterWidget extends StatelessWidget {
                 height: 10,
               ),
               // TextField mật khẩu
-              TextFormField(
+              Obx(()=>TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: authController.passwordController,
                   textAlignVertical: TextAlignVertical.center,
@@ -190,7 +190,7 @@ class RegisterWidget extends StatelessWidget {
                     }
                     //(?=.*?[!@#\><*~])
                   },
-                  obscureText: true,
+                  obscureText: authController.isRegisterObscurePassword.value,
                   cursorColor: kYellowColor,
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -213,13 +213,26 @@ class RegisterWidget extends StatelessWidget {
                           color: kTextColor,
                         ),
                       ),
-                      suffixIcon: SizedBox(
-                        height: 15,
-                        width: 15,
-                        child: Center(
-                            child:
-                            Text("*", style: TextStyle(color: Colors.red))),
-                      ))),
+                      suffixIcon: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          GestureDetector(
+                            child: authController.isRegisterObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
+                            Icon(Icons.visibility_outlined, color: kYellowColor,), onTap: (){
+                            authController.changeRegisterObscurePassword(!authController.isRegisterObscurePassword.value);
+                          },),
+                          SizedBox(
+                            height: 15,
+                            width: 15,
+                            child: Center(
+                                child:
+                                Text("*", style: TextStyle(color: Colors.red))),
+                          )
+                        ],
+                      )
+                  )
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),

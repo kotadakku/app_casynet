@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../Bottommenu.dart';
+import '../../../../../routes/app_pages.dart';
+import '../../widgets/Bottommenu.dart';
 import '../../UI_cuahang.dart';
 import 'UI_chitietdonhang.dart';
 
 var xemthem = 10.obs;
 var x = "".obs;
 
-class doiduyet extends StatelessWidget {
+class QuanLyDonHang extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final widthdt = MediaQuery.of(context).size.width;
@@ -25,15 +26,6 @@ class doiduyet extends StatelessWidget {
         title: Text(
           "Quản lý đơn hàng",
           style: TextStyle(color: Colors.amber),
-        ),
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.amberAccent,
-            onPressed: () {
-              Get.to(menucuahang());
-            },
-          ),
         ),
       ),
       body: Container(
@@ -348,7 +340,7 @@ class doiduyet extends StatelessWidget {
                           ],
                         ),
                         onPressed: () {
-                          Get.to(chitietdonhang());
+                          Get.toNamed(Routes.STORE_MANAGER_INFO_ORDER);
                         },
                       ),
                     ],

@@ -10,6 +10,10 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   late final AuthenticationManager _authManager;
   late TabController controller;
   var sigin_loading = false.obs;
+
+  var isObscurePassword = true.obs;
+  var isRegisterObscurePassword = true.obs;
+  var isRegisterObscureConfirmPassword = true.obs;
   final ScaffoldMessengerState scaffoldMessenger = Get.find<ScaffoldMessengerState>();
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
@@ -119,5 +123,8 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
         }
     );
   }
+
+  changeObscurePassword(value) => isObscurePassword.value = value;
+  changeRegisterObscurePassword(value) => isRegisterObscurePassword.value = value;
 
 }

@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import '../Appbar.dart';
-import '../Bottommenu.dart';
-import '../UI_cuahang.dart';
 
-class bangdieukhien extends StatelessWidget {
+import '../widgets/Appbar.dart';
+
+class BangDieuKhien extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var heightdon = 540.obs;
@@ -19,15 +17,6 @@ class bangdieukhien extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Appbars(),
-        leading: Container(
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.amberAccent,
-            onPressed: () {
-              Get.to(menucuahang());
-            },
-          ),
-        ),
       ),
       body: Container(
         child: SingleChildScrollView(

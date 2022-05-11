@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/item_selection_controller.dart';
+import '../../../routes/app_pages.dart';
 import 'checkout_success.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -546,7 +547,7 @@ class CheckoutPage extends StatelessWidget {
                         textStyle: const TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        Get.to(Cart3());
+                        Get.toNamed(Routes.CHECKOUT_SUCCESS);
                       },
                       child: const Text(
                         'Tiến hành đặt hàng',

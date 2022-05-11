@@ -4,17 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'Appbar.dart';
-import 'Bottommenu.dart';
+import 'widgets/Appbar.dart';
+import 'widgets/Bottommenu.dart';
 import 'UI_cacmenuch/UI_Bangdieukhien.dart';
 import 'UI_cacmenuch/UI_Thongtincuahang.dart';
 import 'UI_cacmenuch/UI_dichvusanpham/UI_Dichvusanpham.dart';
-import 'UI_cacmenuch/UI_quanlydonhang/UI_doiduyet.dart';
+import 'UI_cacmenuch/UI_quanlydonhang/UI_qldonhang.dart';
 import 'UI_cacmenuch/UI_quanlyquatang/UI_Quanlyquatang.dart';
 import 'UI_cacmenuch/UI_quanlythongbao/UI_Quanlythongbao.dart';
 
-class menucuahang extends StatelessWidget {
-  const menucuahang({Key? key}) : super(key: key);
+class MenuCuahang extends StatelessWidget {
+  const MenuCuahang({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ class menucuahang extends StatelessWidget {
                   ),
                   onPressed: () {
                     // Navigator.of(context).push(MaterialPageRoute(builder: (context) => bangdieukhien(ii: 1,)));
-                    Get.to(bangdieukhien());
+                    Get.toNamed(Routes.STORE_MANAGER_CONTROL);
                   },
                 ),
               ),
@@ -127,7 +127,7 @@ class menucuahang extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Get.to(thongtincuahang());
+                    Get.toNamed(Routes.STORE_MANAGER_INFO);
                   },
                 ),
               ),
@@ -153,7 +153,7 @@ class menucuahang extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Get.to(doiduyet());
+                    Get.toNamed(Routes.STORE_MANAGER_ORDERS);
                   },
                 ),
               ),
@@ -181,7 +181,7 @@ class menucuahang extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Get.to(dichvusanpham());
+                    Get.toNamed(Routes.STORE_MANAGER_PRODUCTS);
                   },
                 ),
               ),
@@ -210,7 +210,7 @@ class menucuahang extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Get.to(quanlyquatang());
+                    Get.toNamed(Routes.STORE_MANAGER_GIFTS);
                   },
                 ),
               ),
@@ -239,7 +239,7 @@ class menucuahang extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Get.to(quanlythongbao());
+                    Get.toNamed(Routes.STORE_MANAGER_NOTIS);
                   },
                 ),
               ),

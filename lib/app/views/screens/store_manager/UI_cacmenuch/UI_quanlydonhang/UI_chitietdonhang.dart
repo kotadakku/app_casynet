@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class chitietdonhang extends StatelessWidget {
-  const chitietdonhang({Key? key}) : super(key: key);
+class ChiTietDonHang extends StatelessWidget {
+  const ChiTietDonHang({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

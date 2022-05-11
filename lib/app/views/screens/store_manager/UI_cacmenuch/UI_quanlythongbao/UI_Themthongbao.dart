@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 
-class themthongbao extends StatelessWidget {
+class ThemThongBao extends StatelessWidget {
   var statusgmkh = false.obs;
   var textgmkh = "Không".obs;
 
