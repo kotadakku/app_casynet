@@ -1,5 +1,5 @@
 
-import 'package:app_casynet/app/banner/banner_provider.dart';
+// import 'package:app_casynet/app/banner/banner_provider.dart';
 import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/appbar_home_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/banner_widget.dart';
