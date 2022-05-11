@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                   BannerHomeWidget(),
 
                   // test
-                  Container(
+                  /*Container(
                     height: 50.0.h,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
                         OutlinedButton(onPressed: (){}, child: Text("delete")),
                       ],
                     ),
-                  ),
+                  ),*/
                   // Khuyến mãi
                   TopSaleWidget(),
                   SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
