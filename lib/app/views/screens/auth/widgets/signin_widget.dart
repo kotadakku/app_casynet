@@ -61,7 +61,7 @@ class SignInWidget extends StatelessWidget {
                           hintStyle: const TextStyle(
                               fontSize: 15
                           ),
-                          hintText: 'Họ và tên',
+                          hintText: 'Email/SDT',
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(Icons.perm_identity, color: kYellowColor,),

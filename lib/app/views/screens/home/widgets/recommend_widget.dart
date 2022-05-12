@@ -48,7 +48,7 @@ class RecommendWidget extends StatelessWidget {
                           ),),
                         SizedBox(width: 15,),
                         Text(
-                            'recommed'.tr.toUpperCase(),
+                            'recommend'.tr.toUpperCase(),
                             style: AppTextTheme.titleProduct
                         )
                       ],

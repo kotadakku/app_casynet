@@ -60,6 +60,7 @@ import '../views/screens/store/question_answer.dart';
 import '../views/screens/store/sanpham_dichvu.dart';
 import '../views/screens/store/setting_notications.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Bangdieukhien.dart';
+import '../views/screens/store_manager/UI_cacmenuch/UI_Thongtincuahang.dart';
 
 part './app_routes.dart';
 
@@ -211,6 +212,10 @@ class AppPages {
     ),
     GetPage(
       name: Routes.STORE_MANAGER_INFO,
+      page: () => ThongTinCuaHang(),
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_INFO_ORDER,
       page: () => ChiTietDonHang(),
     ),
     GetPage(
