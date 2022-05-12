@@ -35,6 +35,18 @@ class NotificationService extends GetxController{
     checkForInitialMessage();
     updateTotalNotication();
   }
+
+  void deleteNotificationItem(int index,int? id){
+
+    // NotificationModel notification = NotificationModel.fromJson(json)
+
+    DatabaseHelper.instance.deleteRow(DBConfig.TABLE_NOTIFICATION, DBConfig.NOTI_COLUMN_ID , id).then((value) {
+      notificationList.removeAt(index);
+    });
+    print('<FETCH DB ${notificationList.length}>');
+
+  }
+
   void registerNotification() async {
     _messaging = FirebaseMessaging.instance;
 
@@ -49,8 +61,6 @@ class NotificationService extends GetxController{
       print("User granted the permission");
 
       FirebaseMessaging.onMessage.listen((message) {
-
-
         NotificationModel notification = NotificationModel.fromJson(message);
 
         // DatabaseHelper.instance.
@@ -60,8 +70,6 @@ class NotificationService extends GetxController{
         });
 
         // ham get
-
-
         updateTotalNotication();
 
         if(_bottomNavController.tabIndex == 1) updateSeenNotification();
@@ -116,13 +124,14 @@ class NotificationService extends GetxController{
         value?.forEach((element) {
           print('<FETCH DB${element[DBConfig.NOTI_COLUMN_TITLE]}>');
           notificationList.add(NotificationModel(
+              dataId: element[DBConfig.NOTI_COLUMN_ID].toString(),
               dataTitle: element[DBConfig.NOTI_COLUMN_TITLE],
               dataBody: element[DBConfig.NOTI_COLUMN_BODY],
               imageUrl: element[DBConfig.NOTI_COLUMN_IMAGE_URL],
               isSeen: element[DBConfig.NOTI_COLUMN_ISSEEN] == 'true' ? true: false,
               timeReceive:  DateTime.parse(element[DBConfig.NOTI_COLUMN_TIMERECEIVE])
           ));
-          print('<FETCH DB${notificationList.length}>');
+          print('<FETCH DB ${notificationList.length}>');
         });
 
       }
