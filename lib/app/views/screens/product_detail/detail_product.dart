@@ -77,7 +77,18 @@ class DetailProductPage extends StatelessWidget {
                             quantity: 1,
                             price: 32423,
                             cartId: 13));
-                        _showAlertDialog(context);
+
+                        final snackBar = SnackBar(
+                          content: Text("Thêm thành công"),
+                          action: SnackBarAction(
+                            label: "Kiểm tra",
+                            onPressed: () {
+                              Get.put(BottomNavController()).tabIndex.value = 2;
+                              Get.toNamed(Routes.HOME);
+                            },
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +99,11 @@ class DetailProductPage extends StatelessWidget {
             )));
   }
 
-  _showAlertDialog(BuildContext context) => showDialog(
+
+
+
+
+/*showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext bc) {
@@ -114,10 +129,10 @@ class DetailProductPage extends StatelessWidget {
 
                 ),
 
-
               ],
             )
           ],
         );
-      });
+      });*/
 }
+
