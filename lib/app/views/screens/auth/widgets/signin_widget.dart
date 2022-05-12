@@ -43,7 +43,7 @@ class SignInWidget extends StatelessWidget {
                         return "Không tồn tại tài khoản";
                         }*/
                         },
-                        initialValue: '0961670608',
+                        initialValue: 'Thanhdut1505@gmail.com',
                         textAlignVertical: TextAlignVertical.center,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -124,10 +124,10 @@ class SignInWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 30,),
                     ElevatedButton(
-
                       onPressed: (){
                         authController.formSignInKey.currentState?.save();
                         authController.loginUser(user);
+                        FocusManager.instance.primaryFocus!.unfocus();
                       },
                       style: ElevatedButton.styleFrom(
                           primary: kYellowColor,
