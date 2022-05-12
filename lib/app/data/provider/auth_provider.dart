@@ -36,13 +36,13 @@ class AuthProvider {
     );
   }
 
-  void fetchCurrentUser({
+  Future<void> fetchCurrentUser({
     String? token,
     required onSuccess(data),
     onError(error)?,
     beforePost()?
-  }) {
-    ApiRequest(url: 'https://client.casynet.com/rest/default/V1/customers/me', token: token).get(
+  }) async {
+     await ApiRequest(url: 'https://client.casynet.com/rest/default/V1/customers/me', token: token).get(
         onSuccess: (data){
           onSuccess(data);
         },

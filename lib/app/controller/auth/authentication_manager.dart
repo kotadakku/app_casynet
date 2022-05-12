@@ -17,10 +17,10 @@ class AuthenticationManager extends GetxController with CacheManager {
     removeToken();
   }
 
-  void login(String? token) async {
+  Future<void> login(String? token) async {
     //Token is cached
     await saveToken(token);
-    fetchUser(token);
+    await fetchUser(token);
     isLogged.value = true;
   }
 
@@ -53,11 +53,11 @@ class AuthenticationManager extends GetxController with CacheManager {
     else{
       print("<AUTH> GET API");
       _productCartMeController.updateAPI();
-      AuthProvider().fetchCurrentUser(
+       await AuthProvider().fetchCurrentUser(
           token: token,
-          onSuccess: (data) {
+          onSuccess: (data) async {
             if (data != null) {
-              user_current = User.successLogin(data);
+              user_current = await  User.successLogin(data);
               saveUsers(data);
               update();
             }

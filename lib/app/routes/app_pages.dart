@@ -1,6 +1,5 @@
 
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
-import 'package:app_casynet/app/views/screens/detail_store/widgets/new_store_widget.dart';
 import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:app_casynet/app/views/screens/store/mystore.dart';
 import 'package:app_casynet/app/views/screens/store/news.dart';
@@ -19,6 +18,7 @@ import 'package:app_casynet/app/views/screens/store_manager/UI_cuahang.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+
 import '../../main.dart';
 import '../bindings/account/casycoin_manager_bindings.dart';
 import '../bindings/account/edit_address_bindings.dart';

@@ -56,9 +56,9 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   void loginUser(User user) {
       sigin_loading.value = true;
      AuthProvider().fetchLogin(user: user,
-        onSuccess: (data){
+        onSuccess: (data) async {
           if(data!=null){
-            _authManager.login(data);
+            await _authManager.login(data);
             sigin_loading.value = false;
             Get.offNamed(Routes.HOME);
             scaffoldMessenger.showSnackBar(
@@ -95,10 +95,9 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
 
   Future<void> registerUser(User user) async {
     await AuthProvider().fetchRegister(user: user,
-        onSuccess: (data){
-
+        onSuccess: (data) async {
           if(data!=null){
-            _authManager.login(data.token);
+            await _authManager.login(data.token);
             Get.back();
           }
           else {

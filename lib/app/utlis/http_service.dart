@@ -22,11 +22,11 @@ class ApiRequest {
 
   }
 
-  void get({Function()? beforeSend,
+  Future<void> get({Function()? beforeSend,
     Function(dynamic data)? onSuccess,
     Function(dynamic error)? onError,
-  }){
-    _dio().get(this.url, queryParameters: data).then((res){
+  }) async {
+    await _dio().get(this.url, queryParameters: data).then((res){
       if(onSuccess != null) onSuccess(res.data);
     }).catchError((error){
       // final errorMessage = DioExceptions.fromDioError(error).toString();
@@ -34,13 +34,13 @@ class ApiRequest {
     });
 
   }
-  void post( {Function()? beforePost,
+  Future<void> post( {Function()? beforePost,
     Function(dynamic data)? onSuccess,
     Function(dynamic error)? onError,
     required Map<String, dynamic> data,
-  }){
+  }) async {
     print(this.url);
-    _dio().post(this.url, queryParameters: null, data: data).then((value){
+    await _dio().post(this.url, queryParameters: null, data: data).then((value){
       if(onSuccess != null) onSuccess(value.data);
     }).catchError((error){
       final errorMessage = DioExceptions.fromDioError(error).toString();
