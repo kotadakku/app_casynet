@@ -45,14 +45,14 @@ class DatabaseHelper{
     ''');
     db.execute(''' CREATE TABLE ${DBConfig.TABLE_CART} (
             ${DBConfig.CART_COLUMN_P_ID} INTEGER PRIMARY KEY UNIQUE,
-            ${DBConfig.CART_COLUMN_P_SKU} TEXT NOT NULL,
-            ${DBConfig.CART_COLUMN_P_IMAGE} TEXT NOT NULL,
-            ${DBConfig.CART_COLUMN_P_NAME} TEXT NOT NULL,
-            ${DBConfig.CART_COLUMN_PRICE} INTEGER NOT NULL,
-            ${DBConfig.CART_COLUMN_DIS_PRICE} INTEGER NOT NULL,
-            ${DBConfig.CART_COLUMN_S_NAME} TEXT NOT NULL,
-            ${DBConfig.CART_COLUMN_QUANTITY} INTEGER NOT NULL,
-            ${DBConfig.CART_COLUMN_CART_ID} INTEGER NOT NULL  
+            ${DBConfig.CART_COLUMN_P_SKU} TEXT,
+            ${DBConfig.CART_COLUMN_P_IMAGE} TEXT,
+            ${DBConfig.CART_COLUMN_P_NAME} TEXT,
+            ${DBConfig.CART_COLUMN_PRICE} INTEGER,
+            ${DBConfig.CART_COLUMN_DIS_PRICE} INTEGER,
+            ${DBConfig.CART_COLUMN_S_NAME} TEXT,
+            ${DBConfig.CART_COLUMN_QUANTITY} INTEGER,
+            ${DBConfig.CART_COLUMN_CART_ID} INTEGER  
           )
     ''');
 
@@ -103,11 +103,11 @@ class DatabaseHelper{
         [newValue, id]);
   }
 
-  Future<void> addQuantity(String tableName,String columnId, String columnUpdate, int? id) async{
+  Future<void> addQuantity(String tableName,String columnId, String columnUpdate, int? addQuantity, int? id) async{
     Database? db = await instance.database;
     await db?.rawUpdate('''
             UPDATE $tableName
-            SET $columnUpdate = $columnUpdate + 1 
+            SET $columnUpdate = $columnUpdate + $addQuantity
             WHERE $columnId = $id
             ''',);
   }

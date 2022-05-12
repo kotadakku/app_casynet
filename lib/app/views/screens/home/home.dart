@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../banner/banner_provider.dart';
+// import '../../../banner/banner_provider.dart';
 import '../../../controller/home/fetch_banner_controller.dart';
 import '../../../controller/home/fetch_topsales_controller.dart';
 import '../../widgets/bottom_widget.dart';
