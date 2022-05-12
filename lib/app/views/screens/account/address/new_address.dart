@@ -1,14 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../controller/account/new_address_controller.dart';
 import '../../../../routes/app_pages.dart';
-import '../widgets/appbar_account_widget.dart';
 import '../../../theme/app_colors.dart';
-import 'select_region.dart';
+import '../widgets/appbar_account_widget.dart';
 
 
 
@@ -168,7 +166,7 @@ class NewAddress extends StatelessWidget {
                     readOnly: true,
                     onTap: (){
                       var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
-                        "title": "Chọn tỉnh/ thành phố", "regions":  controller.districts
+                        "title": "Chọn Quận/Huyện phố", "regions":  controller.districts
                       });
 
                       if(data!=null){

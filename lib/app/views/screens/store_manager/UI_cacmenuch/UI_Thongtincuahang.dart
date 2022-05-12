@@ -1,15 +1,19 @@
+import 'package:app_casynet/app/controller/store/new_address_store_controller.dart';
+import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../widgets/Appbar.dart';
-import '../widgets/Bottommenu.dart';
-import '../UI_cuahang.dart';
 
 class ThongTinCuaHang extends StatelessWidget {
+  const ThongTinCuaHang({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+
     final widthdt = MediaQuery.of(context).size.width;
     final heightdt = MediaQuery.of(context).size.height;
+
+    NewAddressShopController controller = Get.put(NewAddressShopController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -90,7 +94,9 @@ class ThongTinCuaHang extends StatelessWidget {
                           Icon(Icons.navigate_next),
                         ],
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+
+                      },
                     )),
                 Container(
                   height: 50,
@@ -117,7 +123,9 @@ class ThongTinCuaHang extends StatelessWidget {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                         ),
                       ),
                       Container(
@@ -140,7 +148,9 @@ class ThongTinCuaHang extends StatelessWidget {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                         ),
                       ),
                     ],
@@ -156,13 +166,53 @@ class ThongTinCuaHang extends StatelessWidget {
                         Expanded(
                           child: Text("Địa chỉ", style: TextStyle(fontSize: 15)),
                         ),
-                        Text("Chọn Tỉnh/Thành phố",
-                            style: TextStyle(fontSize: 15)),
+                        Obx(()=> Text(controller.provinceShop.value == "" ? "Chọn Tỉnh/Thành phố" : controller.provinceShop.value,
+                            style: TextStyle(fontSize: 15)),),
                         Icon(Icons.navigate_next),
                       ],
                     ),
                     onPressed: () {
+                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                        "title": "Chọn tỉnh/ thành phố", "regions": controller.provinceShops
+                      });
+                      if(data != null){
+                        data.then((value) {
+                          controller.provinceShop.value = value['name'];
+                          controller.updateDistrictShop(value['id']);
+                          controller.districtShop.value == " " ;
+                          controller.communeShop.value == " " ;
+                        });
+                      }
+                    },
+                  ),
 
+                ),
+                Container(
+                  height: 50,
+                  child: RaisedButton(
+
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text("Quận/Huyện", style: TextStyle(fontSize: 15)),
+                        ),
+                        Obx(()=>Text(controller.districtShop.value == "" ? "Chọn Quận/Huyện" : controller.districtShop.value,
+                            style: TextStyle(fontSize: 15)),),
+                        Icon(Icons.navigate_next),
+                      ],
+                    ),
+                    onPressed: () {
+                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                        "title": "Chọn Quận/Huyện", "regions": controller.districtShops
+                      });
+                      if(data != null){
+                        data.then((value) {
+                          controller.districtShop.value = value['name'];
+                          controller.updateCommuneShop(value['id']);
+                          controller.communeShop.value == " ";
+                        });
+                      }
                     },
                   ),
 
@@ -174,15 +224,23 @@ class ThongTinCuaHang extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text("Quận/Huyện", style: TextStyle(fontSize: 15)),
+                          child: Text("Xã/Phường", style: TextStyle(fontSize: 15)),
                         ),
-                        Text("Chọn Quận/Huyện",
-                            style: TextStyle(fontSize: 15)),
+                        Obx(()=> Text(controller.communeShop.value == "" ? "Chọn Xã/Phường" : controller.communeShop.value,
+                            style: TextStyle(fontSize: 15)),),
                         Icon(Icons.navigate_next),
                       ],
                     ),
                     onPressed: () {
-
+                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                        "title": "Chọn Xã/Phường", "regions": controller.communeShops
+                      });
+                      if(data != null){
+                        data.then((value) {
+                          controller.communeShop.value = value['name'];
+                          controller.updateCommuneShop(value['id']);
+                        });
+                      }
                     },
                   ),
 
