@@ -38,6 +38,7 @@ class ProductCartMeController extends GetxController with CacheManager {
         DatabaseHelper.instance.addQuantity(DBConfig.TABLE_CART,
             DBConfig.CART_COLUMN_P_ID,
             DBConfig.CART_COLUMN_QUANTITY,
+            productCart.quantity,
             productCart.p_id,).then((value){
           getCartDB();
         });
@@ -55,7 +56,6 @@ class ProductCartMeController extends GetxController with CacheManager {
 
   void updateQuantity(int qty,int? id){
     if(id !=null){
-
       DatabaseHelper.instance.updateQuantity(DBConfig.TABLE_CART,
         DBConfig.CART_COLUMN_P_ID,
         DBConfig.CART_COLUMN_QUANTITY,
@@ -65,18 +65,16 @@ class ProductCartMeController extends GetxController with CacheManager {
     }
   }
 
-  void updateAPI() {
+  void updateAPI(String token) {
     print("<GET PRODUCT API>");
-    controllers.clear();
-    productCartList.clear();
     isLoading = true;
-    controllers.clear();
-    final token = getToken();
 
     ProductCartMeProvider().fetchProductCartMeList(
         token: token,
         onSuccess: (data) {
-          productCartList.addAll(data);
+          data.forEach((element) {
+            insertProductCart(element);
+          });
           cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
           calsumCart();
           countCart.value = productCartList.length;
@@ -91,14 +89,13 @@ class ProductCartMeController extends GetxController with CacheManager {
     );
   }
 
-  void getCartDB() {
+  void getCartDB() async {
     print("<GET PRODUCT DB>");
     isLoading = true;
     isLoadingComplete = true;
-    productCartList.clear();
-    controllers.clear();
-
     DatabaseHelper.instance.getAlls(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID).then((value) {
+      productCartList.clear();
+      controllers.clear();
       value?.forEach((element) {
         productCartList.add(ProductCart(
           p_id: element['p_id'],
@@ -124,7 +121,6 @@ class ProductCartMeController extends GetxController with CacheManager {
   }
 
   void calsumCart(){
-
     if(cartsByStore !=null){
       sumCart.value =0;
       cartsByStore.entries.forEach((e){
@@ -137,5 +133,15 @@ class ProductCartMeController extends GetxController with CacheManager {
       });
     }
     print('<SUM> $sumCart');
+  }
+
+  void clearCart(){
+    productCartList.clear();
+    controllers.clear();
+    cartsByStore.clear();
+    DatabaseHelper.instance.clear(DBConfig.TABLE_CART);
+    countCart.value =0;
+    calsumCart();
+    update();
   }
 }

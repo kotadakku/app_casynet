@@ -132,9 +132,7 @@ class ItemCart extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: itemCartStore.length,
                 itemBuilder: (context, index) {
-                  _productCartController.controllers.add(TextEditingController(text:itemCartStore[index].quantity.toString(),
-                  ));
-                  _productCartController.controllers[index].text = itemCartStore[index].quantity.toString();
+                  _productCartController.controllers.add(TextEditingController(text:itemCartStore[index].quantity.toString(),));
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

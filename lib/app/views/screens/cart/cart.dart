@@ -53,12 +53,10 @@ class Cart extends StatelessWidget {
                 return  controller.cartsByStore !=null ? ListView(
                   physics: ClampingScrollPhysics(),
                   shrinkWrap: true,
-                  children: [
-                    ...controller.cartsByStore.entries.map((e)=>ItemCart(
-                      nameStore: e.key.toString(),
-                      itemCartStore: e.value ,
-                    )).toList()
-                  ]
+                  children: controller.cartsByStore.entries.map<Widget>((e)=>ItemCart(
+                    nameStore: e.key.toString(),
+                    itemCartStore: e.value ,
+                  )).toList()
                 ): Text("Không có sản phẩm nào để hiển thị");
                 /*ListView.separated(
                             physics: const BouncingScrollPhysics(),
