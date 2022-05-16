@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../data/model/cuahang.dart';
 import '../data/model/datcho.dart';
 import '../data/provider/cuahang_provider.dart';
-import '../data/model/Sanpham.dart';
 
 class DetailStoreController extends GetxController with GetSingleTickerProviderStateMixin  {
 

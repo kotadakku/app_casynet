@@ -6,9 +6,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import '../../../../controller/home/api/reservation_controller.dart';
 import '../../../../controller/home/datcho_controller.dart';
 import '../../../../controller/home/radio_controller.dart';
 import '../../../../data/model/datcho.dart';
+import '../../../../data/model/product.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/textTheme.dart';
 import '../../../widgets/loading_overlay.dart';
@@ -17,6 +19,7 @@ import '../../../theme/app_sizes.dart';
 
 class ReservationWidget extends StatelessWidget {
   ReservationWidget({Key? key}) : super(key: key);
+  ReservationController _ReservationController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -131,30 +134,22 @@ class ReservationWidget extends StatelessWidget {
 
               ],
             ),
-            GetBuilder<DatChoController>(
-                init: DatChoController(),
-                builder: ((controller) {
-                  return LoadingOverlay(
-                    isLoading: controller.loadingDatcho,
-                    shimmer: ItemCuaHangShimmer(),
-                    child: Padding(padding: EdgeInsets.only(bottom: 15.h),
-                        child: controller.datchoList.isEmpty ?
-                          Text("Không có sẳn phẩm nào để hiển thi") :
-                          Wrap(
-                          spacing: 5.0.w,
-                          runSpacing: 10.0,
-                          children: controller.datchoList.map((e) => GestureDetector(
-                            child: ItemBookWidget(
-                              product: e
-                            ),
-                            onTap: (){
-                              Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 },);
-                            },
-                          )).toList(),
-                        )
-                    )
-                  );
-                }))
+            _ReservationController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
+                child: state.isEmpty ?
+                Text("Không có sẳn phẩm nào để hiển thi") :
+                Wrap(
+                  spacing: 5.0.w,
+                  runSpacing: 10.0,
+                  children: (state as List).map((e) => GestureDetector(
+                    child: ItemProductWidget(
+                        product: e
+                    ),
+                    onTap: (){
+                      Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 },);
+                    },
+                  )).toList(),
+                )
+            ))
           ],
         ),
       ),
@@ -169,10 +164,10 @@ class ReservationWidget extends StatelessWidget {
   }
 }
 
-class ItemBookWidget extends StatelessWidget {
-  DatCho product;
+class ItemProductWidget extends StatelessWidget {
+  Product product;
 
-  ItemBookWidget({
+  ItemProductWidget({
     Key? key, required this.product
   }) : super(key: key);
 
@@ -194,38 +189,38 @@ class ItemBookWidget extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.network(product.hinhanhsanpham.toString(),
+                  Image.network(product.imageUrl.toString(),
                       fit: BoxFit.fill),
-                  if(product.diemthuongcasycoin != null) Positioned(
+                  if(product.coinPoint != null) Positioned(
                       right: 5,
                       top: 5,
-                      child: ItemAddPoint(color: Colors.red, width: 50, point: product.diemthuongcasycoin)
+                      child: ItemAddPoint(color: Colors.red, width: 50, point: product.coinPoint)
                   ),
-                  if(product.phantramgiamgia != null) Positioned(
+                  if(product.coinPoint != null) Positioned(
                       top: 5,
                       left: 5,
-                      child: ItemSale(color: kYellowColor, width: 40, sale: product.phantramgiamgia)
+                      child: ItemSale(color: kYellowColor, width: 40, sale: product.coinPoint)
                   )
                 ],
                 // Image.asset("")
               ),
             ),
             SizedBox(height: 10.0.h,),
-            Text(product.tensanpham.toString(),
+            Text(product.name.toString(),
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 10.0.h,),
             Row(
               children: [
                 Text(
-                  product.giasanpham == null ? "Liên hệ" : product.giasanpham.toString(),
+                  product.officialPrice == null ? "Liên hệ" : product.officialPrice.toString(),
                   style: TextStyle(
                       fontWeight: FontWeight.bold
                   ),
                 ),
                 SizedBox(width: 5.w,),
                 Text(
-                  product.giauudai == null ? "" : product.giauudai.toString(),
+                  product.price == null ? "" : product.price.toString(),
                   style: TextStyle(
                       fontSize: 13.sp,
                       decoration: TextDecoration.lineThrough
