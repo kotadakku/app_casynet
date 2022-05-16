@@ -104,7 +104,7 @@ class SearchNews extends StatelessWidget {
                 ),
                 maxLength: 400,
                 maxLines: null,
-                // controller: tensanpham,
+                // controller: name,
                 onChanged: (value) {
 
                 },

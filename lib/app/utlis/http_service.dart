@@ -13,7 +13,7 @@ class ApiRequest {
         headers: {
           'Authorization': token == null ? '' : 'Bearer $token'
         },
-        baseUrl: 'https://casynet-api.herokuapp.com/api',
+        baseUrl: 'https://client.casynet.com',
         // connectTimeout: 5000,
         // receiveTimeout: 5000,
       )
@@ -27,19 +27,21 @@ class ApiRequest {
     Function(dynamic error)? onError,
   }) async {
     await _dio().get(this.url, queryParameters: data).then((res){
+      if(beforeSend != null) beforeSend();
       if(onSuccess != null) onSuccess(res.data);
     }).catchError((error){
       // final errorMessage = DioExceptions.fromDioError(error).toString();
       if(onError != null) onError(error.toString());
     });
-
   }
+
+
   Future<void> post( {Function()? beforePost,
     Function(dynamic data)? onSuccess,
     Function(dynamic error)? onError,
     required Map<String, dynamic> data,
   }) async {
-    print(this.url);
+    if(beforePost != null) beforePost();
     await _dio().post(this.url, queryParameters: null, data: data).then((value){
       if(onSuccess != null) onSuccess(value.data);
     }).catchError((error){
@@ -88,7 +90,7 @@ class DioExceptions implements Exception {
         message = "Connection timeout with API server";
         break;
       case DioErrorType.other:
-        message = "Connection to API server failed due to internet connection";
+        message = "Vui lòng kiểm tra kết nối Internet";
         break;
       case DioErrorType.receiveTimeout:
         message = "Receive timeout in connection with API server";
@@ -108,6 +110,8 @@ class DioExceptions implements Exception {
 
   String _handleError(int? statusCode, dynamic error) {
     switch (statusCode) {
+      case 401:
+        return '${error["message"]}';
       case 400:
         return '400 ${error["message"]}';
       case 404:
@@ -115,7 +119,7 @@ class DioExceptions implements Exception {
       case 500:
         return 'Internal server error';
       default:
-        return 'Oops something went wrong';
+        return 'Hệ thống bị lỗi. vui lòng thử lại sau!';
     }
   }
   @override
@@ -190,14 +194,46 @@ class LoggingInterceptors extends Interceptor {
   }
 
   @override
-  void onError(DioError dioError, ErrorInterceptorHandler handler) {
+  void onError(DioError dioError, ErrorInterceptorHandler handler) async {
     // print(
     //     "<-- ${dioError.message} ${(dioError.response?.requestOptions != null ? (dioError.response?.requestOptions.baseUrl! + dioError.response?.requestOptions.path!) : 'URL')}");
     print(
         "${dioError.response != null ? dioError.response?.data : 'Unknown Error'}");
     print("<-- End error");
-    return super.onError(dioError, handler);
 
+    // if(dioError.response?.statusCode == 401){
+    //   if(dioError.response?.data['message'] == 'The consumer isn\'t authorized to access %resources.'){
+    //     await ApiRequest(url: '${dioError.response?.requestOptions.baseUrl}/rest/V1/integration/admin/token').post(data: {
+    //     "username": "admin",
+    //     "password": "admin12345",
+    //     }, onSuccess: (value) async {
+    //       if(value != null) {
+    //         dioError.requestOptions.headers['Authorization'] = value;
+    //         final opts = Options(
+    //           method: dioError.requestOptions.method,
+    //           headers: dioError.requestOptions.headers
+    //         );
+    //         // var cloneReq = await Dio().request(dioError.requestOptions.path,
+    //         //   options: opts,
+    //         //   data: dioError.requestOptions.data,
+    //         //   queryParameters: dioError.requestOptions.queryParameters
+    //         // );
+    //         Dio dio = Dio();
+    //         await dio.get(dioError.requestOptions.path, options: opts, queryParameters: dioError.requestOptions.queryParameters)
+    //             .then((value) async {
+    //               print(value);
+    //               return handler.resolve(value);
+    //         }
+    //         ).catchError((error) => print(error));
+    //       }
+    //     },
+    //     onError: (error){
+    //       print(error['message']);
+    //     }
+    //     );
+    //   }
+    // }
+    return super.onError(dioError, handler);
   }
 
   @override

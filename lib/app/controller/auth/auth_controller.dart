@@ -58,7 +58,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
      AuthProvider().fetchLogin(user: user,
         onSuccess: (data) async {
           if(data!=null){
-            await _authManager.login(data);
+            await _authManager.login(data, user);
             sigin_loading.value = false;
             Get.offNamed(Routes.HOME);
             scaffoldMessenger.showSnackBar(
@@ -69,8 +69,8 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
             /// Show user a dialog about the error response
             print('User not found!');
             Get.defaultDialog(
-                middleText: 'User not found!',
-                textConfirm: 'OK',
+                middleText: 'Không tìm thấy người dùng!',
+                textConfirm: 'Xác nhận',
                 confirmTextColor: Colors.white,
                 onConfirm: () {
                   Get.back();
@@ -79,15 +79,13 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
         },
         onError: (error) {
           Get.defaultDialog(
+              title: 'Thông báo',
               middleText: '$error!',
-              textConfirm: 'OK',
+              textConfirm: 'Xác nhận',
               confirmTextColor: Colors.white,
               onConfirm: () {
                 Get.back();
             });
-          scaffoldMessenger.showSnackBar(
-            const SnackBar(content: Text('Đăng nhập thất bại')),
-          );
           sigin_loading.value = false;
         }
     );
@@ -97,18 +95,19 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
     await AuthProvider().fetchRegister(user: user,
         onSuccess: (data) async {
           if(data!=null){
-            await _authManager.login(data.token);
+            await _authManager.login(data.token, user);
             Get.back();
           }
           else {
             /// Show user a dialog about the error response
             Get.defaultDialog(
-                middleText: 'Register Error',
-                textConfirm: 'OK',
-                confirmTextColor: Colors.white,
-                onConfirm: () {
-                  Get.back();
-                });
+              middleText: 'Register Error',
+              textConfirm: 'OK',
+              confirmTextColor: Colors.white,
+              onConfirm: () {
+                Get.back();
+              }
+            );
           }
         },
         onError: (error) {

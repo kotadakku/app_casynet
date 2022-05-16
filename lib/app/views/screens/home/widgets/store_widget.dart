@@ -6,20 +6,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../../controller/home/api/seller_controller.dart';
 import '../../../../controller/home/cuahang_controller.dart';
 import '../../../../controller/home/radio_controller.dart';
-import '../../../../data/model/cuahang.dart';
+import '../../../../data/model/seller.dart';
 import '../../../../routes/app_pages.dart';
-import '../../../widgets/image_network_loading.dart';
-import '../../../widgets/loading_overlay.dart';
-import '../../../widgets/shimmer_loading.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
+import '../../../widgets/image_network_loading.dart';
+import '../../../widgets/shimmer_loading.dart';
 
 /* */
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
-
+  SellerController _sellerController = Get.find();
   @override
   Widget build(BuildContext context) {
     RadioController controller = Get.find();
@@ -138,28 +138,21 @@ class StoreWidget extends StatelessWidget {
             ),
           ),
 
-
-          GetBuilder<CuaHangController>(
-            init: CuaHangController(),
-            builder: (controller) {
-              return LoadingOverlay(
-                isLoading: controller.isLoadStore,
-                shimmer: ItemCuaHangShimmer(),
-                child: Container(
-                  padding: EdgeInsets.only(bottom: 20.0.h),
-                  child: controller.cuahangList.isEmpty ? Text("Không có cửa hàng để hiển thị")
+          _sellerController.obx((state) =>
+              Container(
+                padding: EdgeInsets.only(bottom: 20.0.h),
+                child: state.isEmpty ? Text("Không có cửa hàng để hiển thị")
                     : Wrap(
-                      spacing: 5.0.w,
-                      runSpacing: 10.0,
-                      children: controller.cuahangList.map((e) =>
-                          ItemCuaHangWidget(
-                            store: e,
-                          ))
-                          .toList()),
-                ),
-              );
-            }
-          )
+                    spacing: 5.0.w,
+                    runSpacing: 10.0,
+                    children: (state as List) .map((e) =>
+                        ItemCuaHangWidget(
+                          store: e,
+                        ))
+                        .toList()),
+              ),
+            onLoading: ItemCuaHangShimmer(),
+          ),
         ],
       ),
     );
@@ -167,7 +160,7 @@ class StoreWidget extends StatelessWidget {
 }
 
 class ItemCuaHangWidget extends StatelessWidget {
- final CuaHang store;
+ final Seller store;
 
   const ItemCuaHangWidget({
     Key? key,
@@ -194,7 +187,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                   height: 120.w,
                   width:  (1/divide).sw - 7.5.w,
                   child: ImageNetworkLoading(
-                    image_url: store.anhsanpham.toString(),
+                    image_url: store.imageUrl.toString(),
                     fit: BoxFit.fill,
                   ),
                 )
@@ -215,7 +208,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                       SizedBox(
                         width: 2,
                       ),
-                      Text(this.store.slthich == null ? '0': store.slthich.toString(), style: TextStyle(fontSize: 13))
+                      Text(this.store.likeQty == null ? '0': store.likeQty.toString(), style: TextStyle(fontSize: 13))
                     ],
                   ),
                   Row(
@@ -228,13 +221,13 @@ class ItemCuaHangWidget extends StatelessWidget {
                       SizedBox(
                         width: 2,
                       ),
-                      Text(store.slbinhluan == null ? '0' : store.slbinhluan.toString(),
+                      Text(store.commentQty == null ? '0' : store.commentQty.toString(),
                           style: TextStyle(fontSize: 13))
                     ],
                   ),
                   Row(
                     children: [
-                      Text(store.slchiase == null ? '0.0' : store.slchiase.toString(),
+                      Text(store.rate == null ? '0.0' : store.rate.toString(),
                           style: TextStyle(fontSize: 15)
                       ),
                       SizedBox(
@@ -265,7 +258,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                       FocusScope.of(context).unfocus();
                     },
                     child: Text(
-                      store.tencuahang.toString(),
+                      store.name.toString(),
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 15.sp
@@ -276,7 +269,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                 GestureDetector(
 
                   onTap: (){
-                    controller.callPhone(store.sodienthoai.toString());
+                    controller.callPhone(store.phone.toString());
                   },
                   child: Container(
                     padding: EdgeInsets.all(5.0),
@@ -309,8 +302,8 @@ class ItemCuaHangWidget extends StatelessWidget {
                       ),
                       Expanded(
                           child: Text(
-                          store.diachicuahang == null? 'Chưa có thông tin' :
-                            store.diachicuahang.toString(),
+                          store.address == null? 'Chưa có thông tin' :
+                            store.address.toString(),
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(fontSize: 12.sp),
                           ))
@@ -328,7 +321,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                       width: 3,
                     ),
                     Text(
-                      "${store.khoangcachtoicuahang == null? 0.0: store.khoangcachtoicuahang} km",
+                      "${store.distance == null? 0.0: store.distance} km",
                       style: TextStyle(fontSize: 12.sp),
                     )
                   ],

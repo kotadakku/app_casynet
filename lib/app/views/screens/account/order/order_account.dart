@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/account/fetch_order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -61,15 +62,11 @@ class OrderAccountPage extends StatelessWidget{
                   Expanded(child: TabBarView(
                     controller: _tabx.controller,
                     children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (context, index) =>
-                            OrderAllWidget(
-                              name_product: "Máy rửa xe Catorex - CTR",
-                              name_store: "Garage Minh Thức",
-                            ),
+                      OrderAllWidget(
+                        name_product: "Máy rửa xe Catorex - CTR",
+                        name_store: "Garage Minh Thức",
                       ),
+
                       OrderCancelWidget(name_stores: ["Garage Minh Thức", "Siêu thị anh ninh"],),
                       OrderCancelWidget(name_stores: ["Garage Minh Thức", "Siêu thị anh ninh"],),
 

@@ -1,6 +1,6 @@
-
-import 'package:app_casynet/app/data/service/notication_service.dart';
 import 'package:get/get.dart';
+
+import '../utlis/service/notication_service.dart';
 
 class BottomNavController extends GetxController{
   var tabIndex = 0.obs;

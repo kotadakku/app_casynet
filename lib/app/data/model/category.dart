@@ -1,11 +1,13 @@
-class CategoryHome {
+import 'package:app_casynet/app/config/config_db.dart';
+
+class Category {
   int? id;
   String? name;
   String? imageUrl;
 
-  CategoryHome({this.id, this.name, this.imageUrl});
+  Category({this.id, this.name, this.imageUrl});
 
-  CategoryHome.fromJson(Map<String, dynamic> json) {
+  Category.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     if(json['custom_attributes']!=null){
@@ -21,9 +23,9 @@ class CategoryHome {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['imageUrl'] = this.imageUrl;
+    data[DBConfig.CATEGORY_COLUMN_ID] = this.id;
+    data[DBConfig.CATEGORY_COLUMN_TITLE] = this.name;
+    data[DBConfig.CATEGORY_COLUMN_IMAGE] = this.imageUrl;
     return data;
   }
 

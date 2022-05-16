@@ -1,7 +1,7 @@
 import 'package:app_casynet/data.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import '../provider/db/config_db.dart';
+import '../../config/config_db.dart';
 
 class NotificationModel{
   String? title;

@@ -1,10 +1,8 @@
 
-import 'dart:convert';
-
-import 'package:app_casynet/app/controller/home/fetch_topsales_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../../controller/home/api/top_sale_controller.dart';
 import '../../../../controller/home/home_controller.dart';
 import '../../../widgets/image_network_loading.dart';
 import '../../../widgets/loading_overlay.dart';
@@ -12,7 +10,8 @@ import '../../../widgets/shimmer_loading.dart';
 
 
 class TopSaleWidget extends StatelessWidget {
-  const TopSaleWidget({Key? key}) : super(key: key);
+  TopSaleWidget({Key? key}) : super(key: key);
+  TopSaleController _saleController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -21,31 +20,23 @@ class TopSaleWidget extends StatelessWidget {
       child: Container(
           height: 100,
           padding: EdgeInsets.symmetric(vertical: 10.0.h),
-          child: GetBuilder<FetchTopSalesController>(
-              init: FetchTopSalesController(),
-              builder: (controller){
-                return LoadingOverlay(
-                    isLoading: controller.isLoading,
-                    shimmer: PromotionBlurWidget(),
-                    child: Center(
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          physics: ClampingScrollPhysics(),
-                          itemCount: controller.listSales.length,
-                          itemBuilder: (context, index){
-                            if(controller.listSales.length ==0){
-                              return Text("Không có dữ liệu");
-                            }
-                            else{
-                              return CardItem(image_url: controller.listSales[index].image, title: controller.listSales[index].title);
-                            }
-                          },
-                      ),
-                    )
-                );
+          child: _saleController.obx((state) => ListView.builder(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
+            itemCount: state.length,
+            itemBuilder: (context, index){
+              if(state.length ==0){
+                return Text("Không có dữ liệu");
               }
-          )),
+              else{
+                return CardItem(image_url: state[index].image, title: state[index].title);
+              }
+            },
+          ),
+            onLoading: PromotionBlurWidget(),
+
+          ) ),
     );
   }
 }
@@ -68,7 +59,9 @@ class CardItem extends StatelessWidget {
              SizedBox(
                height: 50,
                width: 50,
-               child: Image.memory(base64.decode(image_url)),
+               child: ImageNetworkLoading(
+                 image_url: image_url,
+               ),
              ),
 
              SizedBox(height: 10,),

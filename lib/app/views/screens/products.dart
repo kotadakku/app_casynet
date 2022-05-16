@@ -102,7 +102,7 @@ class ProductsPage extends StatelessWidget {
                   spacing: 10.0,
                   runSpacing: 10.0,
                   children: [
-                    // ItemBookWidget(
+                    // ItemProductWidget(
                     //     book_image: "assets/home/book/image.png",
                     //     distance: 4.5,
                     //     price: "1.290.000đ",
@@ -110,7 +110,7 @@ class ProductsPage extends StatelessWidget {
                     //     book_name: "Máy rửa xe Catorex - CTR",
                     //     book_category: "Điện máy Đỗ Dũng"
                     // ),
-                    // ItemBookWidget(
+                    // ItemProductWidget(
                     //     book_image: "assets/home/store/cuahang1.png",
                     //     distance: 4.5,
                     //     price: "1.290.000đ",
@@ -118,7 +118,7 @@ class ProductsPage extends StatelessWidget {
                     //     book_name: "Máy rửa xe Catorex - CTR",
                     //     book_category: "Điện máy Đỗ Dũng"
                     // ),
-                    // ItemBookWidget(
+                    // ItemProductWidget(
                     //     book_image: "assets/home/book/image.png",
                     //     distance: 4.5,
                     //     price: "1.290.000đ",
@@ -126,7 +126,7 @@ class ProductsPage extends StatelessWidget {
                     //     book_name: "Máy rửa xe Catorex - CTR",
                     //     book_category: "Điện máy Đỗ Dũng"
                     // ),
-                    // ItemBookWidget(
+                    // ItemProductWidget(
                     //     book_image: "assets/home/store/cuahang1.png",
                     //     distance: 4.5,
                     //     price: "1.290.000đ",

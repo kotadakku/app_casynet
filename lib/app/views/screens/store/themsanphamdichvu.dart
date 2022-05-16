@@ -275,7 +275,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                             ),
                             maxLength: 120,
                             maxLines: 2,
-                            // controller: tensanpham,
+                            // controller: name,
                             onChanged: (value) {
                               countTenSP.value = value.length;
                             },
@@ -315,7 +315,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                             ),
                             maxLength: 400,
                             maxLines: null,
-                            // controller: tensanpham,
+                            // controller: name,
                             onChanged: (value) {
                               countMoTaSP.value = value.length;
                             },

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../controller/detail_store_controller.dart';
+import '../../../../controller/store_detail/detail_store_controller.dart';
 import '../../../../data/model/cuahang.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';

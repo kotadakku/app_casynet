@@ -69,4 +69,11 @@ class DatCho {
     data['phantramgiamgia'] = this.phantramgiamgia;
     return data;
   }
+
+  DatCho.fromJsonApi(json){
+    idsanpham = json['product_id'];
+    tensanpham = json['name'];
+    giasanpham = json['original_price'];
+    giauudai = json['price'];
+  }
 }

@@ -69,14 +69,15 @@ class DetailProductPage extends StatelessWidget {
                       onPressed: () {
                         _productCartController.insertProductCart(ProductCart(
                             p_id: 2,
-                            p_sku: "no name",
+                            p_sku: "mi-kim-chi",
                             p_name: "LTHT",
                             s_name: "Babaas",
                             discount_price: 12312,
                             p_image: "sffd",
                             quantity: 1,
                             price: 32423,
-                            cartId: 13));
+                            cartId: 6227));
+
 
                         final snackBar = SnackBar(
                           content: Text("Thêm thành công"),

@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class CuaHang {
   String? idcuahang;
-  String? loaixe;
+  String? isCar;
   String? slthich;
   String? slbinhluan;
   String? slchiase;
@@ -20,7 +20,7 @@ class CuaHang {
 
   CuaHang.init(
       this.idcuahang,
-      this.loaixe,
+      this.isCar,
       this.slthich,
       this.slbinhluan,
       this.slchiase,
@@ -32,7 +32,7 @@ class CuaHang {
 
   CuaHang(
       {this.idcuahang,
-        this.loaixe,
+        this.isCar,
         this.slthich,
         this.slbinhluan,
         this.slchiase,
@@ -61,7 +61,7 @@ class CuaHang {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['idcuahang'] = this.idcuahang;
-    data['loaixe'] = this.loaixe;
+    data['isCar'] = this.isCar;
     data['slthich'] = this.slthich;
     data['slbinhluan'] = this.slbinhluan;
     data['slchiase'] = this.slchiase;

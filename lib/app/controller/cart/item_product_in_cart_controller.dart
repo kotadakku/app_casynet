@@ -1,11 +1,9 @@
 
 import 'package:app_casynet/app/data/model/item_product_in_cart.dart';
-import 'package:app_casynet/app/data/provider/db/config_db.dart';
+import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/provider/item_product_in_cartme_provider.dart';
-import 'package:app_casynet/app/views/screens/cart/cart.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import "package:collection/collection.dart";
+import 'package:get/get.dart';
 import '../../data/provider/db/db_provider.dart';
 import '../auth/cache_manager.dart';
 
@@ -16,7 +14,6 @@ class ProductCartMeController extends GetxController with CacheManager {
   var isLoadingComplete = true;
   var sumCart = 0.obs;
   var countCart = 0.obs;
-  List<TextEditingController> controllers = [];
   RxList checkBoxProduct = [].obs;
 
   @override
@@ -30,7 +27,7 @@ class ProductCartMeController extends GetxController with CacheManager {
     update();
   }
 
-  void insertProductCart(ProductCart productCart) {
+  void insertProductCart(ProductCart productCart)  {
 
     DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){
       print("<DB> row exist $value");
@@ -40,12 +37,14 @@ class ProductCartMeController extends GetxController with CacheManager {
             DBConfig.CART_COLUMN_QUANTITY,
             productCart.quantity,
             productCart.p_id,).then((value){
+          updateAPI(productCart);
           getCartDB();
         });
       }
       else{
         print("DB Insert to Cart");
         DatabaseHelper.instance.insert(DBConfig.TABLE_CART, productCart.toJson()).then((value){
+          updateAPI(productCart);
           getCartDB();
         });
       }
@@ -54,7 +53,10 @@ class ProductCartMeController extends GetxController with CacheManager {
 
   }
 
-  void updateQuantity(int qty,int? id){
+  Future<void> updateQuantity(int qty, ProductCart productCart) async {
+    print('<Home> $qty');
+    int? id = productCart.p_id;
+    await updateAPI(productCart);
     if(id !=null){
       DatabaseHelper.instance.updateQuantity(DBConfig.TABLE_CART,
         DBConfig.CART_COLUMN_P_ID,
@@ -65,7 +67,7 @@ class ProductCartMeController extends GetxController with CacheManager {
     }
   }
 
-  void updateAPI(String token) {
+  void getCartAPI(String token) {
     print("<GET PRODUCT API>");
     isLoading = true;
 
@@ -89,13 +91,38 @@ class ProductCartMeController extends GetxController with CacheManager {
     );
   }
 
+  Future<void> updateAPI(ProductCart productCart) async {
+    final token = await getToken();
+    print('<TOKEN> $token');
+    if(productCart.cartId == null){
+      ProductCartMeProvider().activeCart(
+        token: token,
+        onSuccess: (cartId){
+          productCart.cartId = cartId;
+          ProductCartMeProvider().createProductCartMe(
+              token: token,
+              onSuccess: (data){
+
+        }, data: productCart.toJsonPost(1));
+      },
+      onError: (error) => print(error),
+      );
+    }
+    else{
+      await ProductCartMeProvider().createProductCartMe(
+          token: token,
+          onSuccess: (data){
+
+      }, data: productCart.toJsonPost(1));
+    }
+  }
+
   void getCartDB() async {
     print("<GET PRODUCT DB>");
     isLoading = true;
     isLoadingComplete = true;
     DatabaseHelper.instance.getAlls(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID).then((value) {
       productCartList.clear();
-      controllers.clear();
       value?.forEach((element) {
         productCartList.add(ProductCart(
           p_id: element['p_id'],
@@ -137,7 +164,6 @@ class ProductCartMeController extends GetxController with CacheManager {
 
   void clearCart(){
     productCartList.clear();
-    controllers.clear();
     cartsByStore.clear();
     DatabaseHelper.instance.clear(DBConfig.TABLE_CART);
     countCart.value =0;

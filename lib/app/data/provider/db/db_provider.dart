@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'config_db.dart';
+import '../../../config/config_db.dart';
 
 class DatabaseHelper{
 
@@ -27,20 +27,20 @@ class DatabaseHelper{
 
   static FutureOr<void> _onCreate(Database db, int version) async {
     db.execute(''' CREATE TABLE ${DBConfig.TABLE_BANNER} (
-            ${DBConfig.COLUMN_BANNER_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-            ${DBConfig.COLUMN_BANNER_IMAGE} TEXT NOT NULL
+            ${DBConfig.BANNER_COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+            ${DBConfig.BANNER_COLUMN_IMAGE} TEXT NOT NULL
           )
     ''');
     db.execute(''' CREATE TABLE ${DBConfig.TABLE_SALE} (
-            ${DBConfig.COLUMN_SALE_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-            ${DBConfig.COLUMB_SALE_TITLE} TEXT NOT NULL,
-            ${DBConfig.COLUMN_SALE_IMAGE} TEXT NOT NULL
+            ${DBConfig.SALE_COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+            ${DBConfig.SALE_COLUMB_TITLE} TEXT NOT NULL,
+            ${DBConfig.SALE_COLUMN_IMAGE} TEXT NOT NULL
           )
     ''');
     db.execute(''' CREATE TABLE ${DBConfig.TABLE_CATEGORY} (
-            ${DBConfig.COLUMN_CATEGORY_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-            ${DBConfig.COLUMN_CATEGORY_TITLE} TEXT NOT NULL,
-            ${DBConfig.COLUMN_CATEGORY_IMAGE} TEXT NOT NULL
+            ${DBConfig.CATEGORY_COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+            ${DBConfig.CATEGORY_COLUMN_TITLE} TEXT NOT NULL,
+            ${DBConfig.CATEGORY_COLUMN_IMAGE} TEXT NOT NULL
           )
     ''');
     db.execute(''' CREATE TABLE ${DBConfig.TABLE_CART} (
@@ -95,7 +95,7 @@ class DatabaseHelper{
   Future<void> updateQuantity(String tableName,String columnId, String columnUpdate, int id, int newValue) async{
 
     Database? db = await instance.database;
-    await db?.rawUpdate('''
+    var res = await db?.rawUpdate('''
             UPDATE $tableName
             SET $columnUpdate = ? 
             WHERE $columnId = ?
@@ -103,8 +103,13 @@ class DatabaseHelper{
         [newValue, id]);
   }
 
-  Future<void> addQuantity(String tableName,String columnId, String columnUpdate, int? addQuantity, int? id) async{
+  Future<void> addQuantity(String tableName,String columnId, String columnUpdate, int? addQuantity, int? id) async {
     Database? db = await instance.database;
+    print('''
+            UPDATE $tableName
+            SET $columnUpdate = $columnUpdate + $addQuantity
+            WHERE $columnId = $id
+            ''');
     await db?.rawUpdate('''
             UPDATE $tableName
             SET $columnUpdate = $columnUpdate + $addQuantity

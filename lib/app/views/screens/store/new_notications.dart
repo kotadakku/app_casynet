@@ -63,7 +63,7 @@ class AddNotication extends StatelessWidget {
                       )),
                   maxLength: 120,
                   maxLines: 2,
-                  // controller: tensanpham,
+                  // controller: name,
                   onChanged: (value) {},
                 )),
             Container(
@@ -103,7 +103,7 @@ class AddNotication extends StatelessWidget {
                   ),
                   maxLength: 400,
                   maxLines: null,
-                  // controller: tensanpham,
+                  // controller: name,
                   onChanged: (value) {},
                 )),
             Container(

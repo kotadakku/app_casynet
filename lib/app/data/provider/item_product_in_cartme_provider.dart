@@ -24,21 +24,41 @@ class ProductCartMeProvider {
     onError: (error) => {if(onError != null) onError(error)}
     );
   }
-  void createProductCartMe(
-      {Function()? beforePost,
+  Future<void> createProductCartMe(
+      {
+        Function()? beforePost,
         required Function(ProductCart posts)? onSuccess,
         Function(dynamic error)? onError,
         required Map<String, dynamic> data,
-      }){
-    ApiRequest(
+        String? token,
+      }) async {
+    await ApiRequest(
         url: 'https://client.casynet.com/rest/V1/carts/mine/items',
-        data: null,
+        data: data,
+      token: token,
     ).post(
     beforePost: () => {if(beforePost != null) beforePost},
-    onSuccess: (data){onSuccess!(ProductCart.fromJson(json.decode(data)));},
     onError: (error) =>{if(onError != null) onError(error)},
     data: data);
   }
+  void activeCart({Function()? beforeSend,
+    required Function(int data) onSuccess,
+    Function(dynamic error)? onError,
+    String? token
+  }){
+    ApiRequest(
+      url: 'https://client.casynet.com/rest/V1/carts/mine',
+      data: null,
+      token: token,
+    ).get(
+        beforeSend:()=>{if(beforeSend != null) beforeSend()},
+        onSuccess: (data){
+          onSuccess(data);
+        },
+        onError: (error) => {if(onError != null) onError(error)}
+    );
+  }
+
   void updateProductCartMe(
       {Function()? beforePut,
         required Function(ProductCart posts)? onSuccess,

@@ -1,17 +1,16 @@
-import 'dart:convert';
-
-import 'package:app_casynet/app/controller/home/fetch_category_controller.dart';
+import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+
+import '../../../../controller/home/api/category_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 
 class CategoryBottomWidget extends StatelessWidget {
-  const CategoryBottomWidget({Key? key}) : super(key: key);
-
+  CategoryBottomWidget({Key? key}) : super(key: key);
+  CategoryController _fetchDataController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,21 +19,16 @@ class CategoryBottomWidget extends StatelessWidget {
         child: Align(
           alignment: Alignment.center,
           child: LayoutBuilder(builder: (context, constraints) {
-            return GetBuilder<CategoryHomeController>(
-                init: CategoryHomeController(),
-                builder: ((controller) {
-                  return Wrap(
-                    runSpacing: 10,
-                    spacing: 10,
-                    children: controller.categoryHomeList
-                        .map(
-                          (e) => CategoryItemBottom(
-                              images_url: e.anhdanhmuc.toString(),
-                              name: e.tendanhmuc.toString()),
-                        )
-                        .toList(),
-                  );
-                }));
+            return _fetchDataController.obx((state) => Wrap(
+              runSpacing: 10,
+              spacing: 10,
+              children: (state as List)
+                  .map(
+                    (e) => CategoryItemBottom(
+                    images_url: e.imageUrl.toString(),
+                    name: e.name.toString()),
+              ).toList(),
+            ));
           }),
         )
         /*Wrap(
@@ -101,7 +95,8 @@ class CategoryItemBottom extends StatelessWidget {
                         Positioned(
                             left: 10,
                             top: 10,
-                            child: Image.memory(base64.decode(images_url), width: 16, height: 16,)),
+                            child: ImageNetworkLoading(image_url:images_url,  width: 16, height: 16,)
+                        )
                       ],
                     ),
                     SizedBox(

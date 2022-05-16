@@ -2,8 +2,7 @@ import 'package:app_casynet/app/views/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../data/service/notication_service.dart';
+import '../../utlis/service/notication_service.dart';
 import 'home/widgets/appbar_home_widget.dart';
 
 class NotificationPage extends StatelessWidget {

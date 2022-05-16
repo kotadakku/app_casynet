@@ -1,3 +1,5 @@
+import 'package:app_casynet/app/config/config_db.dart';
+
 class Sales{
   int? id;
   String title;
@@ -16,9 +18,9 @@ class Sales{
 
   Map<String, Object?> toJson() {
     return {
-      'id': id,
-      'title': title,
-      'image': image,
+      DBConfig.SALE_COLUMN_ID: id,
+      DBConfig.SALE_COLUMB_TITLE: title,
+      DBConfig.SALE_COLUMN_IMAGE: image,
     };
   }
 }

@@ -4,18 +4,18 @@ class DBConfig{
   static final DATABASE_VERSION = 1;
 
   static final String TABLE_BANNER = 'banner';
-  static final String COLUMN_BANNER_ID = 'id';
-  static final String COLUMN_BANNER_IMAGE = 'image';
+  static final String BANNER_COLUMN_ID = 'id';
+  static final String BANNER_COLUMN_IMAGE = 'image';
 
   static final String TABLE_SALE = 'sale';
-  static final String COLUMN_SALE_ID = 'id';
-  static final String COLUMN_SALE_IMAGE = 'image';
-  static final String COLUMB_SALE_TITLE = 'title';
+  static final String SALE_COLUMN_ID = 'id';
+  static final String SALE_COLUMN_IMAGE = 'image';
+  static final String SALE_COLUMB_TITLE = 'title';
 
   static final String TABLE_CATEGORY = 'category';
-  static final String COLUMN_CATEGORY_ID = 'iddanhmuc';
-  static final String COLUMN_CATEGORY_IMAGE = 'anhdanhmuc';
-  static final String COLUMN_CATEGORY_TITLE = 'tendanhmuc';
+  static final String CATEGORY_COLUMN_ID = 'id';
+  static final String CATEGORY_COLUMN_IMAGE = 'imageUrl';
+  static final String CATEGORY_COLUMN_TITLE = 'name';
 
   static final String TABLE_CART = 'cart';
   static final String CART_COLUMN_P_ID = 'p_id';
@@ -35,6 +35,4 @@ class DBConfig{
   static final String NOTI_COLUMN_IMAGE_URL = 'imageurl';
   static final String NOTI_COLUMN_ISSEEN = 'isseen';
   static final String NOTI_COLUMN_TIMERECEIVE = 'timereceive';
-
-
 }

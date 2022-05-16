@@ -43,4 +43,14 @@ class ProductCart {
     data['cartId'] = this.cartId;
     return data;
   }
+  Map<String, dynamic> toJsonPost(int qty) {
+    return {
+      "cartItem": {
+        "sku": this.p_sku,
+        "qty": qty,
+        "quote_id": this.cartId,
+      }
+    };
+  }
+
 }

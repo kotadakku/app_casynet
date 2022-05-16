@@ -1,9 +1,9 @@
 
-import 'package:app_casynet/app/data/service/notication_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import '../../controller/bottom_nav_controller.dart';
+import '../../utlis/service/notication_service.dart';
 import '../theme/app_colors.dart';
 
 class BottomNavigator extends StatelessWidget {

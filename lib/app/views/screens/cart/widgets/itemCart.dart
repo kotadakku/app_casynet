@@ -132,7 +132,7 @@ class ItemCart extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: itemCartStore.length,
                 itemBuilder: (context, index) {
-                  _productCartController.controllers.add(TextEditingController(text:itemCartStore[index].quantity.toString(),));
+                  TextEditingController textController = TextEditingController(text:itemCartStore[index].quantity.toString(),);
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -246,16 +246,16 @@ class ItemCart extends StatelessWidget {
                                       child: InkWell(
                                         splashColor: const Color.fromARGB(
                                             255, 227, 227, 227),
-                                        onTap: () {
-                                          if (int.parse(_productCartController.controllers[index].text) <= 0) {
+                                        onTap: (){
+                                          if (int.parse(textController.text) <= 0) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(const SnackBar(
                                               content: Text(
                                                   "số lượng đã tối thiểu, phải lớn hơn 0"),
                                             ));
                                           } else {
-                                            _productCartController.updateQuantity((int.parse( _productCartController.controllers[index].text) -1),itemCartStore[index].p_id );
-                                            _productCartController.controllers[index].text = (int.parse( _productCartController.controllers[index].text) -1).toString();
+                                            _productCartController.updateQuantity((int.parse(textController.text) -1),itemCartStore[index]);
+                                            textController.text = (int.parse(textController.text) -1).toString();
                                           }
                                         },
                                         child: SizedBox(
@@ -282,11 +282,11 @@ class ItemCart extends StatelessWidget {
                                     height: 30.h,
                                     child: TextField(
                                       onTap: (){
-                                        _productCartController.controllers[index].selection = TextSelection.fromPosition(TextPosition(offset: _productCartController.controllers[index].text.length));
+                                        textController.selection = TextSelection.fromPosition(TextPosition(offset: textController.text.length));
                                       },
 
 
-                                      controller:  _productCartController.controllers[index],
+                                      controller:  textController,
                                       textAlign: TextAlign.center,
 
                                       decoration: InputDecoration(
@@ -305,9 +305,9 @@ class ItemCart extends StatelessWidget {
                                       onSubmitted: (t){
                                         if(t.length != 0 && t!=null) {
                                           print(t.length);
-                                          _productCartController.updateQuantity(int.parse(t), itemCartStore[index].p_id);
+                                          _productCartController.updateQuantity(int.parse(t), itemCartStore[index]);
                                         }
-                                        else _productCartController.controllers[index].text = itemCartStore[index].quantity.toString();
+                                        else textController.text = itemCartStore[index].quantity.toString();
                                       },
                                     )
                                   ),
@@ -323,9 +323,10 @@ class ItemCart extends StatelessWidget {
                                       child: InkWell(
                                         splashColor: const Color.fromARGB(
                                             255, 227, 227, 227),
-                                        onTap: () {
-                                          _productCartController.updateQuantity((int.parse( _productCartController.controllers[index].text) +1),itemCartStore[index].p_id);
-                                          _productCartController.controllers[index].text = (int.parse( _productCartController.controllers[index].text) +1).toString();
+                                        onTap: () async {
+                                          textController.text = (int.parse( textController.text) +1).toString();
+                                          await _productCartController.updateQuantity((int.parse( textController.text) +1),itemCartStore[index]);
+
                                         },
                                         child: SizedBox(
                                             child: Row(

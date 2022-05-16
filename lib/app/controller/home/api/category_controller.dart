@@ -3,12 +3,12 @@ import 'package:app_casynet/app/config/config_db.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/model/category.dart';
-import '../../data/provider/db/db_provider.dart';
-import '../../data/repo/home_repo.dart';
+import '../../../data/model/category.dart';
+import '../../../data/provider/db/db_provider.dart';
+import '../../../data/repo/home_repo.dart';
 
 
-class CategoryHomeController extends GetxController with StateMixin{
+class CategoryController extends GetxController with StateMixin{
   final _categoriesList = <Category>[].obs;
 
   @override

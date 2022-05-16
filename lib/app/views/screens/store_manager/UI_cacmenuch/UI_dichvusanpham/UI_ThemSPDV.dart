@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../../data/model/Danhmucsanpham.dart';
+import '../../../../../data/model/category.dart';
 import '../../../../../data/model/Sanpham.dart';
 import '../../../../../data/model/Xuatxu.dart';
 import '../../CheckInternet.dart';
@@ -28,13 +28,13 @@ class _ThemspdvState extends State<Themspdv> {
   var _date = new DateTime.now().obs;
   final clsp = Get.put(chonloaisp());
   final GetXuatxu = Get.put(getxuatxu());
-  final tensanpham = TextEditingController();
+  final name = TextEditingController();
   final motasanpham = TextEditingController();
   final soluongnhapkho = TextEditingController();
   final soluongconlai = TextEditingController();
   final gia = TextEditingController();
   final giakhuyenmai = TextEditingController();
-  var demtensanpham = 0.obs;
+  var demname = 0.obs;
   var demmotasanpham = 0.obs;
   var status = false.obs;
   var statushtsp = false.obs;
@@ -381,7 +381,7 @@ class _ThemspdvState extends State<Themspdv> {
                             ),
                           ),
                           Container(
-                            child: Text(demtensanpham.toString() + "/120"),
+                            child: Text(demname.toString() + "/120"),
                           ),
                         ],
                       ),
@@ -396,9 +396,9 @@ class _ThemspdvState extends State<Themspdv> {
                         ),
                         maxLength: 120,
                         maxLines: 2,
-                        controller: tensanpham,
+                        controller: name,
                         onChanged: (text) {
-                          demtensanpham.value = text.length;
+                          demname.value = text.length;
                         },
                       ),
                     ),
@@ -924,7 +924,7 @@ class _ThemspdvState extends State<Themspdv> {
                             var array = [];
                             var c = Sanpham.s(
                                 "vbn",
-                                tensanpham.text,
+                                name.text,
                                 motasanpham.text,
                                 soluongnhapkho.text,
                                 gia.text,
@@ -984,18 +984,18 @@ class getdanhmuc extends GetxController {
   var getdanhmuctid = [].obs;
   var dem = 0.obs;
   var nothing = [].obs;
-  Future<List<Danhmucsanpham>> fetchDanhmuc() async {
+  Future<List<Category>> fetchDanhmuc() async {
     final response = await http.get(Uri.parse(
         "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
     List<dynamic> list = json.decode(response.body);
-    List<Danhmucsanpham> pp = [];
+    List<Category> pp = [];
 
-    pp = list.map((e) => Danhmucsanpham.fromJson(e)).toList();
+    pp = list.map((e) => Category.fromJson(e)).toList();
     if (getdms.nothing.length == 0) {
       for (int i = 0; i < pp.length; i++) {
         getdms.nothing.add(danhmuc(
-            title: pp[i].tendanhmuc.toString(),
-            id: int.parse(pp[i].iddanhmuc.toString())));
+            title: pp[i].imageUrl.toString(),
+            id: int.parse(pp[i].id.toString())));
       }
     }
     danhmucsp.value = pp;

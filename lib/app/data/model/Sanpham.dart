@@ -1,6 +1,6 @@
 class Sanpham {
   String? masanpham;
-  String? tensanpham;
+  String? name;
   String? motasanpham;
   String? soluongnhapkho;
   String? gia;
@@ -14,12 +14,12 @@ class Sanpham {
   String? hienthisanpham;
   String? hienthiotrangchinh;
   String? tencuahang;
-  String? hinhanhsanpham;
+  String? imageUrl;
   late bool checkBoxSanPham;
   late bool checkBoxTenCuaHang;
 
   Sanpham.a({this.masanpham,
-    this.tensanpham,
+    this.name,
     // this.motasanpham,
     // this.soluongnhapkho,
     this.gia,
@@ -33,13 +33,13 @@ class Sanpham {
     // this.hienthisanpham,
     // this.hienthiotrangchinh,
     this.tencuahang,
-    this.hinhanhsanpham,
+    this.imageUrl,
     this.checkBoxSanPham = false,
     this.checkBoxTenCuaHang = false,
 
   });
   Sanpham.s(this.masanpham,
-      this.tensanpham,
+      this.name,
       this.motasanpham,
       this.soluongnhapkho,
       this.gia,
@@ -55,7 +55,7 @@ class Sanpham {
 
   Sanpham(
       {this.masanpham,
-        this.tensanpham,
+        this.name,
         this.motasanpham,
         this.soluongnhapkho,
         this.gia,
@@ -69,11 +69,11 @@ class Sanpham {
         this.hienthisanpham,
         this.hienthiotrangchinh,
         this.tencuahang,
-        this.hinhanhsanpham});
+        this.imageUrl});
 
   Sanpham.fromJson(Map<String, dynamic> json) {
     masanpham = json['Masanpham'];
-    tensanpham = json['Tensanpham'];
+    name = json['name'];
     motasanpham = json['Motasanpham'];
     soluongnhapkho = json['Soluongnhapkho'];
     gia = json['Gia'];
@@ -87,13 +87,13 @@ class Sanpham {
     hienthisanpham = json['Hienthisanpham'];
     hienthiotrangchinh = json['Hienthiotrangchinh'];
     tencuahang = json['tencuahang'];
-    hinhanhsanpham = json['hinhanhsanpham'];
+    imageUrl = json['imageUrl'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Masanpham'] = this.masanpham;
-    data['Tensanpham'] = this.tensanpham;
+    data['name'] = this.name;
     data['Motasanpham'] = this.motasanpham;
     data['Soluongnhapkho'] = this.soluongnhapkho;
     data['Gia'] = this.gia;
@@ -107,7 +107,7 @@ class Sanpham {
     data['Hienthisanpham'] = this.hienthisanpham;
     data['Hienthiotrangchinh'] = this.hienthiotrangchinh;
     data['tencuahang'] = this.tencuahang;
-    data['hinhanhsanpham'] = this.hinhanhsanpham;
+    data['imageUrl'] = this.imageUrl;
     return data;
   }
 }
@@ -116,7 +116,7 @@ class Sanpham {
 /*
 class Sanpham {
   String? masanpham;
-  String? tensanpham;
+  String? name;
   String? motasanpham;
   String? soluongnhapkho;
   String? gia;
@@ -131,7 +131,7 @@ class Sanpham {
   String? hienthiotrangchinh;
 
   Sanpham.s(this.masanpham,
-      this.tensanpham,
+      this.name,
       this.motasanpham,
       this.soluongnhapkho,
       this.gia,
@@ -147,7 +147,7 @@ class Sanpham {
 
   Sanpham(
       {this.masanpham,
-        this.tensanpham,
+        this.name,
         this.motasanpham,
         this.soluongnhapkho,
         this.gia,
@@ -163,7 +163,7 @@ class Sanpham {
 
   Sanpham.fromJson(Map<String, dynamic> json) {
     masanpham = json['Masanpham'];
-    tensanpham = json['Tensanpham'];
+    name = json['name'];
     motasanpham = json['Motasanpham'];
     soluongnhapkho = json['Soluongnhapkho'];
     gia = json['Gia'];
@@ -181,7 +181,7 @@ class Sanpham {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Masanpham'] = this.masanpham;
-    data['Tensanpham'] = this.tensanpham;
+    data['name'] = this.name;
     data['Motasanpham'] = this.motasanpham;
     data['Soluongnhapkho'] = this.soluongnhapkho;
     data['Gia'] = this.gia;

@@ -1,63 +1,59 @@
 
-import 'dart:convert';
-
 import 'package:app_casynet/app/controller/home/banner_page_view_controller.dart';
+import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controller/home/fetch_banner_controller.dart';
-import '../../../../controller/home/home_controller.dart';
+import '../../../../controller/home/api/banner_controller.dart';
 
 class BannerHomeWidget extends StatelessWidget {
   BannerHomeWidget({Key? key}) : super(key: key);
+  FetchBannerController _fetchBannerController = Get.find();
+  BannerController _bannerController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    BannerController bannerController = Get.find();
+
     return SizedBox(
         height: ScreenUtil().screenWidth/1125*410,
-        child: GetBuilder<FetchBannerController>(
-          init: FetchBannerController(),
-          builder: (controller){
-            return Stack(
-              children: [
-                PageView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: controller.listBanners.length,
-                    controller: bannerController.pageController,
-                    pageSnapping: true,
-                    onPageChanged: (index){
-                      bannerController.current_banner.value = index;
-                    },
-                    itemBuilder: (context, index){
-                      if(controller.listBanners.isNotEmpty)
-                        return Image.memory(base64.decode(controller.listBanners[index].image), fit: BoxFit.fitWidth);
-                      else return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                ),
-                Positioned.fill(
-                    child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child:
-                          Obx(()=>Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: indicators(bannerController.current_banner.value, controller.listBanners.length)
-                          ))
-                    )
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  onPanEnd: (details) {
-                    bannerController.swippingPageView(details);
-                  },
+        child: _fetchBannerController.obx((state) => Stack(
+          children: [
+            PageView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: state.length,
+                controller: _bannerController.pageController,
+                pageSnapping: true,
+                onPageChanged: (index){
+                  _bannerController.current_banner.value = index;
+                },
+                itemBuilder: (context, index){
+                  if(state.isNotEmpty)
+                    return ImageNetworkLoading(image_url: state[index].image, fit: BoxFit.fitWidth);
+                  else return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+            ),
+            Positioned.fill(
+                child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child:
+                    Obx(()=>Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: indicators(_bannerController.current_banner.value, state.length)
+                    ))
                 )
-              ],
-            );
-        })
+            ),
+            GestureDetector(
+              onTap: () {},
+              onPanEnd: (details) {
+                _bannerController.swippingPageView(details);
+              },
+            )
+          ],
+        ))
     );
   }
   List<Widget> indicators(curPage, numPage){

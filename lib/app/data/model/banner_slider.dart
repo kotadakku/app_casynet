@@ -1,3 +1,5 @@
+import 'package:app_casynet/app/config/config_db.dart';
+
 class BannerSlider{
   int? id;
   String image;
@@ -13,7 +15,7 @@ class BannerSlider{
   }
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "image": image
+    DBConfig.BANNER_COLUMN_ID : id,
+    DBConfig.BANNER_COLUMN_IMAGE : image
   };
 }
