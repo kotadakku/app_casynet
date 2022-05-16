@@ -13,7 +13,7 @@ class ApiRequest {
         headers: {
           'Authorization': token == null ? '' : 'Bearer $token'
         },
-        baseUrl: 'https://casynet-api.herokuapp.com/api',
+        baseUrl: '',/*https://casynet-api.herokuapp.com/api*/
         // connectTimeout: 5000,
         // receiveTimeout: 5000,
       )
@@ -34,6 +34,8 @@ class ApiRequest {
     });
 
   }
+
+
   Future<void> post( {Function()? beforePost,
     Function(dynamic data)? onSuccess,
     Function(dynamic error)? onError,
@@ -54,7 +56,7 @@ class ApiRequest {
     required Map<String, dynamic> data,
 
   }){
-    _dio().post(this.url, queryParameters: null, data: data).then((value){
+    _dio().put(this.url, queryParameters: null, data: data).then((value){
       if(onSuccess != null) onSuccess(value.data);
     }).catchError((error){
       final errorMessage = DioExceptions.fromDioError(error).toString();

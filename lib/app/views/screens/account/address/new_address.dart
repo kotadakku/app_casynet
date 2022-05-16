@@ -1,4 +1,8 @@
 
+import 'package:app_casynet/app/controller/auth/auth_controller.dart';
+import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+import 'package:app_casynet/app/data/model/address.dart';
+import 'package:app_casynet/app/data/model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +20,13 @@ class NewAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    AuthenticationManager authController = Get.find();
+    // AuthController authControllerToken = Get.find();
     NewAddressController controller = Get.find<NewAddressController>();
+
+    Address address = Address();
+    User user = User();
+
     return Material(
       color: Colors.white,
       child: Scaffold(
@@ -53,7 +63,16 @@ class NewAddress extends StatelessWidget {
                           child: TextFormField(
                             cursorColor: kTextColor_gray,
                             textAlign: TextAlign.end,
-                            onSaved: (value)=> controller.address.firstname = value!,
+                            onSaved: (value)
+                              {
+                                if(value != null){
+                                  List<String> val = value.split(" ",);
+                                  address.firstname = val[0];
+                                  val.removeAt(0);
+                                  address.lastname = val.join(" ");
+                                };
+                              },
+                              /*=> controller.address.firstname = value!,*/
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Nhập họ và tên",
@@ -82,7 +101,10 @@ class NewAddress extends StatelessWidget {
                             textAlign: TextAlign.end,
                             autovalidateMode: AutovalidateMode.onUserInteraction,
                             keyboardType: TextInputType.phone,
-                            onSaved: (value) => controller.address.phone = value!,
+                            onSaved: (value) /*=> controller.address.phone = value!*/
+                              {
+                                address.phone = value;
+                              },
                             cursorColor: kTextColor_gray,
                             validator: (value){
                               if (value!.isEmpty) {
@@ -134,7 +156,10 @@ class NewAddress extends StatelessWidget {
                             },
                             controller: controller.textProvinceCotroller,
                             textAlign: TextAlign.end,
-                            onSaved: (value)=> controller.address.province = value!,
+                            onSaved: (value)/*=> controller.address.province = value!*/
+                              {
+                                address.province = value;// tỉnh thành phố
+                              },
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
@@ -180,7 +205,10 @@ class NewAddress extends StatelessWidget {
 
                     controller: controller.textDistrictController,
                     textAlign: TextAlign.end,
-                    onSaved: (value) => controller.address.district = value!,
+                    onSaved: (value) /*=> controller.address.district = value!*/
+                    {
+                      address.district = value;
+                    },
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(vertical: 15.0),
@@ -210,6 +238,9 @@ class NewAddress extends StatelessWidget {
                       Expanded(
                           child: TextFormField(
                             readOnly: true,
+                            onSaved: (value){
+                              // address.
+                            },
                             onTap: (){
                               var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
                                 "title": "Chọn xã/ phường", "regions":  controller.communes
@@ -223,6 +254,7 @@ class NewAddress extends StatelessWidget {
                             textAlign: TextAlign.end,
                             controller: controller.textCommuneController,
                             cursorColor: kTextColor_gray,
+
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
@@ -252,7 +284,10 @@ class NewAddress extends StatelessWidget {
                           child: TextFormField(
                             cursorColor: kTextColor_gray,
                             textAlign: TextAlign.end,
-                            onSaved: (value)=> controller.address.street[0] = value!,
+                            onSaved: (value)/*=> controller.address.street[0] = value!*/
+                            {
+                              address.street.add(value!);
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Nhập địa chỉ cụ thể",
@@ -278,7 +313,7 @@ class NewAddress extends StatelessWidget {
                           )
                       ),
                       Obx(()=>Switch(value: controller.switch_default.value, onChanged: (value) {
-                        controller.switch_default.value = value;
+                        address.default_shipping = value;
                       }))
                     ],
                   ),
@@ -290,9 +325,14 @@ class NewAddress extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        controller.address.default_shipping = controller.switch_default.value;
+                        // controller.address.default_shipping = controller.switch_default.value;
+                        // controller.formStateKey.currentState?.save();
+                        // controller.postAddress();
+                        address.email = authController.user_current.email;
                         controller.formStateKey.currentState?.save();
-                        controller.postAddress();
+
+                        controller.postAddress(address);
+                        print(address.toJsonAddress());
                       },
                       child: Text("Lưu địa chỉ"),
                       style: ElevatedButton.styleFrom(

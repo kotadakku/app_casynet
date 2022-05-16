@@ -38,7 +38,13 @@ class RegisterWidget extends StatelessWidget {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   cursorColor: kYellowColor,
                   onSaved: (value) {
-                    user.username = value;
+                    if(value != null){
+                      List<String> val = value.split(" ",);
+                      user.firstname = val[0];
+                      val.removeAt(0);
+                      user.lastname = val.join(" ");
+                    };
+
                   },
                   validator: (value) {
                     if (value == null) {
@@ -306,7 +312,7 @@ class RegisterWidget extends StatelessWidget {
                       firstDate: DateTime(1900),
                       lastDate: DateTime.now(),
                     ).then((value){
-                      authController.birthDayTextController.text =DateFormat("yyyy/MM/dd").format(value!);
+                      authController.birthDayTextController.text = DateFormat("yyyy/MM/dd").format(value!);
 
                     });
                   },

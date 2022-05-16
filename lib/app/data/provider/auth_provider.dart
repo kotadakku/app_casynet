@@ -12,7 +12,8 @@ class AuthProvider {
     onSuccess(data)?,
     onError(error)?,
     beforePost()?}) {
-    ApiRequest(url: 'https://client.casynet.com/rest/V1/integration/customer/token').post(
+    ApiRequest(url: 'https://client.casynet.com/rest/V1/integration/customer/token')
+        .post(
         data: user.toJsonLogin(),
         onSuccess: (data){
           onSuccess!(data);
@@ -24,13 +25,14 @@ class AuthProvider {
   fetchRegister({required User user,
     onSuccess(data)?,
     onError(error)?,
-    beforePost()?}
-      ){
-    ApiRequest(url: 'https://casynet-api.herokuapp.com/api/register').post(
+    beforePost()?})
+  {
+    ApiRequest(url: 'https://client.casynet.com/rest/V1/customers/')
+        .post(
         data: user.toJsonRegister(),
         onSuccess: (data){
           print(data);
-          onSuccess!(User.successRegister(json.decode(data)));
+          onSuccess!(User.successLogin(json.decode(data)));
         },
         onError: (error) => onError!(error)
     );
@@ -42,7 +44,8 @@ class AuthProvider {
     onError(error)?,
     beforePost()?
   }) async {
-     await ApiRequest(url: 'https://client.casynet.com/rest/default/V1/customers/me', token: token).get(
+     await ApiRequest(url: 'https://client.casynet.com/rest/default/V1/customers/me', token: token)
+         .get(
         onSuccess: (data){
           onSuccess(data);
         },
@@ -50,4 +53,6 @@ class AuthProvider {
     );
 
   }
+
+
 }

@@ -2,7 +2,10 @@ import 'package:app_casynet/app/controller/store/new_address_store_controller.da
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ThongTinCuaHang extends StatelessWidget {
   const ThongTinCuaHang({Key? key}) : super(key: key);
@@ -11,22 +14,20 @@ class ThongTinCuaHang extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final widthdt = MediaQuery.of(context).size.width;
-    final heightdt = MediaQuery.of(context).size.height;
 
     NewAddressShopController controller = Get.put(NewAddressShopController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Thông tin cửa hàng",
-          style: TextStyle(color: Colors.amber),
         ),
       ),
-      body: Center(
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            color: Color.fromARGB(255, 241, 243, 253),
+            color: Colors.white,
             child: ListView(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -36,10 +37,9 @@ class ThongTinCuaHang extends StatelessWidget {
                       "https://xemaynghean.com/wp-content/uploads/2019/03/50272791_137653880484230_7970165378053570560_n-1024x554.jpg"),
                 ),
                 Container(
+                  padding: EdgeInsets.only(left: 10.0.w,right: 10.0.w),
                   height: 50,
-                  child: RaisedButton(
-                    padding: new EdgeInsets.only(left: 10, right: 10),
-                    color: Colors.white,
+                  child: InkWell(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
@@ -55,14 +55,13 @@ class ThongTinCuaHang extends StatelessWidget {
                         Icon(Icons.navigate_next),
                       ],
                     ),
-                    onPressed: () {},
+                    onTap: () {},
                   ),
                 ),
                 Container(
+                    padding: EdgeInsets.only(left: 10.0.w,right: 10.0.w),
                     height: 50,
-                    child: RaisedButton(
-                      padding: new EdgeInsets.only(left: 10, right: 10),
-                      color: Colors.white,
+                    child: InkWell(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
@@ -75,13 +74,12 @@ class ThongTinCuaHang extends StatelessWidget {
                           Icon(Icons.navigate_next),
                         ],
                       ),
-                      onPressed: () {},
+                      onTap: () {},
                     )),
                 Container(
+                    padding: EdgeInsets.only(left: 10.0.w,right: 10.0.w),
                     height: 50,
-                    child: RaisedButton(
-                      padding: new EdgeInsets.only(left: 10, right: 10),
-                      color: Colors.white,
+                    child: InkWell(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
@@ -94,73 +92,95 @@ class ThongTinCuaHang extends StatelessWidget {
                           Icon(Icons.navigate_next),
                         ],
                       ),
-                      onPressed: () {
+                      onTap: () {
 
                       },
                     )),
-                Container(
+                /*SizedBox(
                   height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: widthdt/2,
-                        child: RaisedButton(
-                          color: Colors.white,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(child: Text("Giờ mở", style: TextStyle(fontSize: 15)),),
-                              Text("08:00", style: TextStyle(fontSize: 15)),
-                              Container(
-                                child: ImageIcon(
-                                  AssetImage("assets/Icon/icon_dongho.png"),
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
+                  child:
+                ),*/
 
-                          },
-                        ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: widthdt/2,
-                        child: RaisedButton(
-                          color: Colors.white,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child:Text("Giờ đóng", style: TextStyle(fontSize: 15)),
-                              ),
-
-                              Text("21:00", style: TextStyle(fontSize: 15)),
-                              ImageIcon(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 10.0.w),
+                      height: 50,
+                      width: widthdt/2-1.0.w,
+                      color: Colors.white,
+                      child: InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(child: Text("Giờ mở", style: TextStyle(fontSize: 15)),),
+                            Obx(() => Text(controller.open_hours.value == "" ? "08:00" : controller.open_hours.value, style: TextStyle(fontSize: 15)),),
+                            Container(
+                              child: ImageIcon(
                                 AssetImage("assets/Icon/icon_dongho.png"),
                                 color: Colors.blue,
                               ),
-                            ],
-                          ),
-                          onPressed: () {
-
-                          },
+                            ),
+                          ],
                         ),
+                        onTap: () {
+                          DatePicker.showTimePicker(
+                            context,
+                            showTitleActions: true,
+                            onConfirm: (s){
+                              controller.open_hours.value = DateFormat('HH:mm').format(s).toString();
+                            },
+                            currentTime: DateTime.now(),
+                            locale: LocaleType.vi
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(right: 10.0.w),
+                      height: 50,
+                      width: widthdt/2 -1.0.w,
+                      color: Colors.white,
+                      child: InkWell(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child:Text("Giờ đóng", style: TextStyle(fontSize: 15)),
+                            ),
+
+                            Obx(() => Text(controller.closer_hours.value == "" ? "20:00" : controller.closer_hours.value, style: TextStyle(fontSize: 15)),),
+                            ImageIcon(
+                              AssetImage("assets/Icon/icon_dongho.png"),
+                              color: Colors.blue,
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          DatePicker.showTimePicker(
+                              context,
+                              showTitleActions: true,
+                              onConfirm: (s){
+                                controller.closer_hours.value = DateFormat('HH:mm').format(s).toString();
+                              },
+                              currentTime: DateTime.now(),
+                              locale: LocaleType.vi
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                   margin: new EdgeInsets.only(top: 10),
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.white,
+                  child: InkWell(
                     child: Row(
                       children: [
                         Expanded(
@@ -171,7 +191,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Icon(Icons.navigate_next),
                       ],
                     ),
-                    onPressed: () {
+                    onTap: () {
                       var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
                         "title": "Chọn tỉnh/ thành phố", "regions": controller.provinceShops
                       });
@@ -187,11 +207,9 @@ class ThongTinCuaHang extends StatelessWidget {
                   ),
 
                 ),
-                Container(
+                SizedBox(
                   height: 50,
-                  child: RaisedButton(
-
-                    color: Colors.white,
+                  child: InkWell(
                     child: Row(
                       children: [
                         Expanded(
@@ -202,7 +220,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Icon(Icons.navigate_next),
                       ],
                     ),
-                    onPressed: () {
+                    onTap: () {
                       var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
                         "title": "Chọn Quận/Huyện", "regions": controller.districtShops
                       });
@@ -218,9 +236,9 @@ class ThongTinCuaHang extends StatelessWidget {
 
                 ),
                 Container(
+                  padding: EdgeInsets.only(left: 10.0.w,right: 10.0.w),
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.white,
+                  child: InkWell(
                     child: Row(
                       children: [
                         Expanded(
@@ -231,7 +249,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Icon(Icons.navigate_next),
                       ],
                     ),
-                    onPressed: () {
+                    onTap: () {
                       var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
                         "title": "Chọn Xã/Phường", "regions": controller.communeShops
                       });
@@ -246,9 +264,9 @@ class ThongTinCuaHang extends StatelessWidget {
 
                 ),
                 Container(
+                  padding: EdgeInsets.only(left: 10.0.w,right: 10.0.w),
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.white,
+                  child: InkWell(
                     child: Row(
                       children: [
                         Expanded(
@@ -266,7 +284,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Icon(Icons.navigate_next),
                       ],
                     ),
-                    onPressed: () {
+                    onTap: () {
 
                     },
                   ),
@@ -278,16 +296,16 @@ class ThongTinCuaHang extends StatelessWidget {
                   child: Image.network("https://media-cdn-v2.laodong.vn/Storage/newsportal/2018/11/29/643923/Screen-Shot-2018-11-.png"),
                 ),
                 Container(
+                  padding: EdgeInsets.only(left: 10.0.w,right: 10.0.w),
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.white,
+                  child: InkWell(
                     child: Row(
                       children: [
                         Expanded(
                           child: Text("Danh mục ngành nghề chính", style: TextStyle(fontSize: 15)),
                         ),
-                        RaisedButton(
-                          color: Colors.red,
+                        ElevatedButton(
+                          /*color: Colors.red,*/
                           child: Text("Mua bán xe",style: TextStyle(color: Colors.white),),
                           onPressed: () {
 
@@ -295,7 +313,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onPressed: () {
+                    onTap: () {
 
                     },
                   ),
@@ -318,7 +336,7 @@ class ThongTinCuaHang extends StatelessWidget {
                   ),
 
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   child: RaisedButton(
                     color: Colors.white,
@@ -384,7 +402,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     },
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   child: RaisedButton(
                     color: Colors.white,
@@ -408,7 +426,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     },
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   child: RaisedButton(
                     color: Colors.white,

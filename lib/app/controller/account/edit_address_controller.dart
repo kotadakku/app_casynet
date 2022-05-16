@@ -15,10 +15,7 @@ class EditAddressController extends GetxController{
     address = Address();
   }
 
-
-
   void updateAddress(int id){
-
     AddressProvider().updateAddress(
         onSuccess: (data){
           print("Success ${data.toJson()}");
@@ -26,7 +23,8 @@ class EditAddressController extends GetxController{
         onError: (error){
           print(error);
         },
-        data: address.toJson(), id: id);
+        data: address.toJson(),
+        id: id);
   }
   void deleteAddress(int id){
     print(id);
