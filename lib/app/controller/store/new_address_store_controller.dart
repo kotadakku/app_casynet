@@ -9,6 +9,9 @@ class NewAddressShopController extends GetxController{
   late var formStateKer;
   late Address addressShop;
 
+  RxString open_hours = "".obs;
+  RxString closer_hours = "".obs;
+
   RxList provinceShops = [].obs;
   RxList districtShops = [].obs;
   RxList communeShops = [].obs;

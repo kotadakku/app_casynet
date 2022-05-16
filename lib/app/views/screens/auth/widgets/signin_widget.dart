@@ -43,7 +43,7 @@ class SignInWidget extends StatelessWidget {
                         return "Không tồn tại tài khoản";
                         }*/
                         },
-                        initialValue: 'Thanhdut1505@gmail.com',
+                        initialValue: '0376488863@casynet.gmail.com',
                         textAlignVertical: TextAlignVertical.center,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(

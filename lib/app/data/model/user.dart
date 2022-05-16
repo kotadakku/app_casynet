@@ -15,7 +15,7 @@ class User{
   String? birthday;
   String? image;
   String? created_at;// ngày tạo tài khoản
-  bool? receiveNotification;
+  bool? receiveNotification; //nhận thông báo
   List<Address> addresses = [];
   int? follow_seller;
 
@@ -38,6 +38,8 @@ class User{
 
       this.follow_seller});
 
+
+
   Map<String, dynamic> toJsonUserDb(){
     return {
       'id': this.id,
@@ -56,15 +58,22 @@ class User{
       'followSeller': this.addresses,
     };
   }
+
+
+
   Map<String, dynamic> toJsonRegister(){
     return {
-      'email': this.email,
+      'customer':{
+        'lastname': this.lastname,
+        'firstname': this.firstname,
+        'email': this.email,
+        'store_id': 1,
+        'website_id': 1,
+        'dob': this.birthday,// ngày sinh
+        'gender': this.gender
+      },
       'password': this.password,
-      'username': this.username,
-      'phone': this.phone,
-      'birthday': this.birthday,
-      'gender': this.gender,
-      'receiveNotification': this.receiveNotification,
+
     };
   }
 
@@ -82,6 +91,7 @@ class User{
     );
   }
 
+  // để làm gì
   User.successLogin(Map<String, dynamic> json){
     print(json);
     token = json['token'];
@@ -93,7 +103,6 @@ class User{
     if(json['custom_attributes'] !=null){
       json['custom_attributes'].forEach((v) {
         if(v['attribute_code'] == 'phone_number'){
-
           phone = v['value'];
         };
       if(v['attribute_code'] == 'avatar'){
@@ -105,9 +114,9 @@ class User{
       });
     }
     gender = json['gender'];
-    birthday = json['dob'];
+    birthday = json['dob']; // ngày sinh
     storeId = json['store_id'];
-    created_at = json['created_at'];
+    created_at = json['created_at']; // ngày tạo
     if (json['addresses'] != null) {
       addresses = [];
       json['addresses'].forEach((v) {

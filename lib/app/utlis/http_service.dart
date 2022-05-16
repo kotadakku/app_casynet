@@ -56,7 +56,7 @@ class ApiRequest {
     required Map<String, dynamic> data,
 
   }){
-    _dio().post(this.url, queryParameters: null, data: data).then((value){
+    _dio().put(this.url, queryParameters: null, data: data).then((value){
       if(onSuccess != null) onSuccess(value.data);
     }).catchError((error){
       final errorMessage = DioExceptions.fromDioError(error).toString();

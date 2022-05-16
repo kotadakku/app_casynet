@@ -1,11 +1,18 @@
 
+import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
 import '../../../data.dart';
 import '../../data/model/address.dart';
 import '../../data/provider/address_api_provider.dart';
+import '../auth/cache_manager.dart';
+
 
 class NewAddressController extends GetxController{
+  late final AuthenticationManager _authManager;
   var switch_default = true.obs;
   late var formStateKey;
   late Address address;
@@ -27,6 +34,7 @@ class NewAddressController extends GetxController{
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    _authManager = Get.put(AuthenticationManager());
     formStateKey = GlobalKey<FormState>();
     address = Address();
     textProvinceCotroller = TextEditingController();
@@ -39,15 +47,30 @@ class NewAddressController extends GetxController{
     );
   }
 
-  void postAddress(){
+  void postAddress(Address address){
     AddressProvider().createAddress(
-      onSuccess: (data){
+      token: GetStorage().read(CacheManagerKey.TOKEN.toString()),
+      onSuccess: (data) async{
+        if(data != null){
+          // await _authManager.login();
+          // await _authManager.login(data.decode);
+          // Get.back();
+        }
         print("Success ${data.toJson()}");
       },
       onError: (error){
+        Get.defaultDialog(
+          middleText: '$error',
+          textConfirm: 'Ok',
+          confirmTextColor: Colors.white,
+          onConfirm: (){
+            Get.back();
+          }
+        );
         print(error);
       },
-      data: address.toJson());
+      data: address.toJson(),
+      address: address);
   }
 
   void updateDistrict(String idProvince){

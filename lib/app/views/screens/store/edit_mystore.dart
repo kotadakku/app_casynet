@@ -207,10 +207,6 @@ class EditMyStore extends StatelessWidget {
                               onTap: () {
                                 DatePicker.showTimePicker(context,
                                     showTitleActions: true,
-                                    // onChanged: (s) {
-                                    //   open_hours.value = DateFormat('HH-mm').format(s).toString();
-                                    //   print(open_hours);
-                                    // },
                                     onConfirm: (s) {
                                       open_hours.value =
                                           DateFormat('HH:mm').format(s).toString();
