@@ -53,7 +53,9 @@ class BannerHomeWidget extends StatelessWidget {
               },
             )
           ],
-        ))
+        )
+        )
+
     );
   }
   List<Widget> indicators(curPage, numPage){

@@ -1,9 +1,11 @@
-import 'datcho.dart';
+
+
+import 'package:app_casynet/app/data/model/product.dart';
 
 class Order{
   int? idStore;
   String? nameStore;
-  List<DatCho>? products = [];
+  List<Product>? products = [];
 
   Order({this.idStore, this.nameStore, this.products});
 
@@ -12,7 +14,7 @@ class Order{
     nameStore = json['store_name'];
     if(json['items'] != null){
       (json['items'] as List).forEach((element) {
-        products?.add(DatCho.fromJsonApi(element));
+        products?.add(Product.fromJsonApi(element));
       });
     }
   }

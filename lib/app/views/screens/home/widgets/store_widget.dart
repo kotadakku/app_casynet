@@ -16,7 +16,7 @@ import '../../../theme/app_sizes.dart';
 import '../../../widgets/image_network_loading.dart';
 import '../../../widgets/shimmer_loading.dart';
 
-/* */
+
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
   SellerController _sellerController = Get.find();

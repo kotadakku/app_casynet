@@ -3,7 +3,6 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/cuahang.dart';
-import '../../data/model/datcho.dart';
 
 class DetailStoreController extends GetxController with GetSingleTickerProviderStateMixin  {
 
@@ -15,7 +14,6 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
   late TabController controller;
   RxBool isLive = true.obs;
   var isLoading = true;
-  late List<DatCho> products = [];
 
   late CuaHang store = CuaHang();
 

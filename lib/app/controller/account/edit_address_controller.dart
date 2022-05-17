@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/address.dart';
-import '../../data/provider/address_api_provider.dart';
 
 class EditAddressController extends GetxController{
   var switch_default = true.obs;
@@ -16,21 +15,21 @@ class EditAddressController extends GetxController{
   }
 
   void updateAddress(int id){
-    AddressProvider().updateAddress(
-        onSuccess: (data){
-          print("Success ${data.toJson()}");
-        },
-        onError: (error){
-          print(error);
-        },
-        data: address.toJson(),
-        id: id);
+    // AddressProvider().updateAddress(
+    //     onSuccess: (data){
+    //       print("Success ${data.toJson()}");
+    //     },
+    //     onError: (error){
+    //       print(error);
+    //     },
+    //     data: address.toJson(),
+    //     id: id);
   }
   void deleteAddress(int id){
-    print(id);
-   AddressProvider().deleteAddress(onSuccess: (data){
-     print(data);
-   }, id: id
-   );
-  }
+  //   print(id);
+  //  AddressProvider().deleteAddress(onSuccess: (data){
+  //    print(data);
+  //  }, id: id
+  //  );
+   }
 }

@@ -1,14 +1,12 @@
 
 import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+import 'package:app_casynet/app/data/repo/home_repo.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-
 import '../../../data.dart';
 import '../../data/model/address.dart';
-import '../../data/provider/address_api_provider.dart';
-import '../auth/cache_manager.dart';
 
 
 class NewAddressController extends GetxController{
@@ -47,30 +45,29 @@ class NewAddressController extends GetxController{
     );
   }
 
-  void postAddress(Address address){
-    AddressProvider().createAddress(
-      token: GetStorage().read(CacheManagerKey.TOKEN.toString()),
-      onSuccess: (data) async{
-        if(data != null){
-          // await _authManager.login();
-          // await _authManager.login(data.decode);
-          // Get.back();
-        }
-        print("Success ${data.toJson()}");
-      },
-      onError: (error){
-        Get.defaultDialog(
-          middleText: '$error',
-          textConfirm: 'Ok',
-          confirmTextColor: Colors.white,
-          onConfirm: (){
-            Get.back();
+  void createAddress(Address new_address) async {
+    try{
+      final result = await HomePageRepo().updateAddress(
+        data: address.toJsonAddress(),
+        options: Options(
+          headers: {
+
           }
-        );
-        print(error);
-      },
-      data: address.toJson(),
-      address: address);
+        )
+      );
+      if(result != null){
+        if(result.isSuccess){
+          Address  address = result.objects ?? new_address;
+        }
+      }
+      else{
+
+      }
+
+    }catch(error){
+      Get.snackbar("Thông báo", "error:: $error",
+          backgroundColor: Colors.black.withOpacity(0.3));
+    }
   }
 
   void updateDistrict(String idProvince){

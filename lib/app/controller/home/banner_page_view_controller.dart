@@ -24,11 +24,11 @@ class BannerController extends GetxController{
       } else {
         current_banner.value = 0;
       }
-      pageController.animateToPage(
-        current_banner.value,
-        duration: Duration(milliseconds: 1000),
-        curve: Curves.fastOutSlowIn,
-      );
+      // pageController.animateToPage(
+      //   current_banner.value,
+      //   duration: Duration(milliseconds: 1000),
+      //   curve: Curves.fastOutSlowIn,
+      // );
     });
   }
 

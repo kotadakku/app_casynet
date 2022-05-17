@@ -1,14 +1,17 @@
 
-import 'package:app_casynet/app/data/model/item_product_in_cart.dart';
+import 'package:app_casynet/app/data/model/product_cart.dart';
 import 'package:app_casynet/app/config/config_db.dart';
-import 'package:app_casynet/app/data/provider/item_product_in_cartme_provider.dart';
 import "package:collection/collection.dart";
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/provider/db/db_provider.dart';
+import '../../data/repo/account_repo.dart';
 import '../auth/cache_manager.dart';
 
-class ProductCartMeController extends GetxController with CacheManager {
+class ProductCartMeController extends GetxController with CacheManager, StateMixin {
   List<ProductCart> productCartList = [];
+  final _productsCartList = <ProductCart>[].obs;
   var cartsByStore ;
   var isLoading = true;
   var isLoadingComplete = true;
@@ -49,8 +52,6 @@ class ProductCartMeController extends GetxController with CacheManager {
         });
       }
     });
-
-
   }
 
   Future<void> updateQuantity(int qty, ProductCart productCart) async {
@@ -67,53 +68,84 @@ class ProductCartMeController extends GetxController with CacheManager {
     }
   }
 
-  void getCartAPI(String token) {
+  Future<void> getCartAPI(String token) async {
     print("<GET PRODUCT API>");
-    isLoading = true;
+    change(_productsCartList, status: RxStatus.loading());
+    try{
+      final result = await AccountRepo().getProductsCart(
+        options: Options(
+          headers: {
 
-    ProductCartMeProvider().fetchProductCartMeList(
-        token: token,
-        onSuccess: (data) {
-          data.forEach((element) {
-            insertProductCart(element);
-          });
-          cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
-          calsumCart();
-          countCart.value = productCartList.length;
-          isLoading = false;
-          update();
-        },
-        onError: (error) {
-          isLoading = false;
-          print("Load ProductCart (tai bi loi): " + error);
-          update();
+          }
+        )
+      );
+      if(result != null){
+        if(result.isSuccess){
+          _productsCartList.value = result.listObjects ?? [];
+          if(_productsCartList.isEmpty){
+            change(_productsCartList, status: RxStatus.empty());
+          }
+          change(_productsCartList, status: RxStatus.success());
+
         }
-    );
+        else{
+          Get.snackbar("Thông báo", result.msg.toString(),
+              backgroundColor: Colors.black.withOpacity(0.3));
+          change(_productsCartList, status: RxStatus.error());
+        }
+      }
+    } catch(error) {
+      Get.snackbar("Thông báo", "error:: $error",
+          backgroundColor: Colors.black.withOpacity(0.3));
+      change(_productsCartList, status: RxStatus.error());
+    }
   }
 
   Future<void> updateAPI(ProductCart productCart) async {
     final token = await getToken();
-    print('<TOKEN> $token');
-    if(productCart.cartId == null){
-      ProductCartMeProvider().activeCart(
-        token: token,
-        onSuccess: (cartId){
-          productCart.cartId = cartId;
-          ProductCartMeProvider().createProductCartMe(
-              token: token,
-              onSuccess: (data){
 
-        }, data: productCart.toJsonPost(1));
-      },
-      onError: (error) => print(error),
-      );
+    if(productCart.cartId == null){
+      try{
+        final result = await AccountRepo().getCartId(
+          options: Options(
+            headers: {
+
+            }
+          )
+        );
+        if(result.isSuccess){
+          productCart.cartId = result.objects;
+          updateAPI(productCart);
+        }
+      }catch(error){
+        Get.snackbar("Thông báo", "error:: $error",
+            backgroundColor: Colors.black.withOpacity(0.3));
+      }
     }
     else{
-      await ProductCartMeProvider().createProductCartMe(
-          token: token,
-          onSuccess: (data){
+      try{
+        final result = await AccountRepo().addProductCart(
+            options: Options(
+                headers: {
 
-      }, data: productCart.toJsonPost(1));
+                }
+            )
+        );
+        if(result != null){
+          if(result.isSuccess){
+
+          }else{
+            Get.snackbar("Thông báo", result.msg.toString(),
+                backgroundColor: Colors.black.withOpacity(0.3));
+          }
+        }
+
+
+      }
+      catch(error){
+        Get.snackbar("Thông báo", "error:: $error",
+            backgroundColor: Colors.black.withOpacity(0.3));
+      }
     }
   }
 

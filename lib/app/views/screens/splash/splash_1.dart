@@ -39,8 +39,6 @@ class _Splash_1State extends State<Splash_1> {
   }
 
   Future<Timer> initialization() async {
-
-
     return await Timer(Duration(seconds: 1),() => Get.offNamed(Routes.HOME
     ));
   }

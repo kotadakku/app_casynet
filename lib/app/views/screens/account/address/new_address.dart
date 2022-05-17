@@ -331,7 +331,7 @@ class NewAddress extends StatelessWidget {
                         address.email = authController.user_current.email;
                         controller.formStateKey.currentState?.save();
 
-                        controller.postAddress(address);
+                        controller.createAddress(address);
                         print(address.toJsonAddress());
                       },
                       child: Text("Lưu địa chỉ"),

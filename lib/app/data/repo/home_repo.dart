@@ -1,8 +1,10 @@
 
 import 'dart:convert';
 
+import 'package:app_casynet/app/data/model/address.dart';
 import 'package:app_casynet/app/data/model/banner_slider.dart';
 import 'package:app_casynet/app/data/model/sales.dart';
+import 'package:app_casynet/data.dart';
 import 'package:dio/dio.dart';
 
 import '../../config/api_params.dart';
@@ -11,12 +13,13 @@ import '../model/product.dart';
 import '../model/responses.dart';
 import '../../config/api_config.dart';
 import '../model/seller.dart';
+import '../model/user.dart';
 import '../provider/api/api_provider.dart';
 import '../provider/api/exceptions.dart';
 
 class HomePageRepo{
 
-  Future<Resonses<BannerSlider>> getBanners() async {
+  Future<Responses<BannerSlider>> getBanners() async {
     try{
       final response = await ApiRequest().get(
         path: ApiConfig.banners
@@ -25,15 +28,15 @@ class HomePageRepo{
         List<BannerSlider> banners = List<BannerSlider>.from(
             (response.data['banners'] as List).map((e) => BannerSlider.fromJson(e))
         );
-        return Resonses<BannerSlider>(isSuccess: true, listObjects: banners);
+        return Responses<BannerSlider>(isSuccess: true, listObjects: banners);
       }
-      return Resonses<BannerSlider>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<BannerSlider>(statusCode: CODE_RESPONSE_NULL, msg: "");
     }catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Resonses<BannerSlider>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<BannerSlider>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Resonses<Category>> getCategories() async {
+  Future<Responses<Category>> getCategories() async {
 
     try {
       final response = await ApiRequest().get(
@@ -52,16 +55,16 @@ class HomePageRepo{
         List<Category> categories = List<Category>.from(
             (response.data["items"] as List).map((e) => Category.fromJson(e)));
 
-        return Resonses<Category>(isSuccess: true, listObjects: categories);
+        return Responses<Category>(isSuccess: true, listObjects: categories);
       }
 
-      return Resonses<Category>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<Category>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch (error) {
       final errorMessage = DioExceptions.fromDioError(error);
-      return Resonses<Category>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<Category>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Resonses<Product>> getProducts() async {
+  Future<Responses<Product>> getProducts() async {
     try{
       final response = await ApiRequest().get(
           path: ApiConfig.banners,
@@ -70,15 +73,15 @@ class HomePageRepo{
         List<Product> products = List<Product>.from(
             (response.data['reservations'] as List).map((e) => Product.fromJson(e))
         );
-        return Resonses<Product>(isSuccess: true, listObjects: products);
+        return Responses<Product>(isSuccess: true, listObjects: products);
       }
-      return Resonses<Product>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<Product>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch (error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Resonses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Resonses<Sales>> getSales() async {
+  Future<Responses<Sales>> getSales() async {
     try{
       final response = await ApiRequest().get(
         path: "https://coaxial-typewriter.000webhostapp.com/Server/sale.php");
@@ -86,15 +89,15 @@ class HomePageRepo{
         List<Sales> sales = List<Sales>.from(
             (json.decode(response.data) as List).map((e) => Sales.fromJson(e))
         );
-        return Resonses<Sales>(isSuccess: true, listObjects: sales);
+        return Responses<Sales>(isSuccess: true, listObjects: sales);
       }
-      return Resonses<Sales>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<Sales>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Resonses<Sales>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<Sales>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Resonses<Seller>> getSellers() async {
+  Future<Responses<Seller>> getSellers() async {
     try{
       final response = await ApiRequest().get(
         path: "https://casynet-api.herokuapp.com/api?isCar=1",
@@ -103,32 +106,30 @@ class HomePageRepo{
         List<Seller> sellers = List<Seller>.from(
             (response.data['stores'] as List).map((e) => Seller.fromJson(e))
         );
-        return Resonses<Seller>(isSuccess: true, listObjects: sellers);
+        return Responses<Seller>(isSuccess: true, listObjects: sellers);
       }
-      return Resonses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Resonses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-
-  Future<Resonses<Seller>> getSeller(int id) async {
+  Future<Responses<Seller>> getSeller(int id) async {
     try{
       final response = await ApiRequest().get(
         path: "https://casynet-api.herokuapp.com/api/store/$id",
       );
       if(response != null){
         Seller seller = Seller.fromJson(response.data);
-        return Resonses<Seller>(isSuccess: true, objects: seller);
+        return Responses<Seller>(isSuccess: true, objects: seller);
       }
-      return Resonses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Resonses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-
-  Future<Resonses<Product>> getProductsSeller(int id) async {
+  Future<Responses<Product>> getProductsSeller(int id) async {
     try{
       final response = await ApiRequest().get(
         path: "https://casynet-api.herokuapp.com/api/products",
@@ -140,12 +141,78 @@ class HomePageRepo{
         List<Product> products = List<Product>.from(
             (response.data as List).map((e) => Seller.fromJson(e))
         );
-        return Resonses<Product>(isSuccess: true, listObjects: products);
+        return Responses<Product>(isSuccess: true, listObjects: products);
       }
-      return Resonses<Product>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<Product>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Resonses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+  Future<Responses<String>> getTokenUser(data) async {
+    try{
+      final response = await ApiRequest().post(
+        path: ApiConfig.baseUrl + '/rest/V1/integration/customer/token',
+        data: data
+      );
+      if(response != null){
+        String token = response.data;
+        return Responses<String>(isSuccess: true, objects: token);
+      }
+      return Responses<String>(statusCode: CODE_RESPONSE_NULL, msg: "");
+    } catch (error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<String>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+  Future<Responses<User>> getUser(Options options) async {
+    try{
+      final response = await ApiRequest().get(
+        path: ApiConfig.baseUrl + '/rest/default/V1/customers/me',
+        options: options
+      );
+      if(response != null){
+        User user = User.successLogin(response.data);
+        return Responses<User>(isSuccess: true, objects: user);
+      }
+      return Responses<User>(statusCode: CODE_RESPONSE_NULL, msg: "");
+    } catch (error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<User>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+  Future<Responses<User>> createUser(data) async {
+    try{
+      final response = await ApiRequest().post(
+        path: ApiConfig.baseUrl + '/rest/V1/customers/',
+        data: data
+      );
+      if(response != null){
+        User user = User.successLogin(response.data);
+        return Responses<User>(isSuccess: true, objects: user);
+      }
+      return Responses<User>(statusCode: CODE_RESPONSE_NULL, msg: "");
+
+    } catch (error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<User>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+  Future<Responses<Address>> updateAddress({data, Options? options}) async{
+    try{
+      final response = await ApiRequest().put(
+        path: ApiConfig.baseUrl + '/rest/V1/customers/me',
+        data: data,
+        options: options
+      );
+      if(response != null){
+        Address address = Address.fromJson(response.data);
+        return Responses<Address>(isSuccess: true, objects: address);
+      }
+      return Responses<Address>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    } catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Address>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
 }

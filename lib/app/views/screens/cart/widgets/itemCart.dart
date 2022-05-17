@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/cart/item_product_in_cart_controller.dart';
-import '../../../../data/model/item_product_in_cart.dart';
+import '../../../../data/model/product_cart.dart';
 
 class ItemCart extends StatelessWidget {
   final String nameStore;

@@ -1,15 +1,15 @@
 import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/user.dart';
-import '../../data/provider/auth_provider.dart';
-import '../../routes/app_pages.dart';
 
 class AuthController extends GetxController with GetSingleTickerProviderStateMixin {
   late final AuthenticationManager _authManager;
   late TabController controller;
   var sigin_loading = false.obs;
+  var register_loading = false.obs;
 
   var isObscurePassword = true.obs;
   var isRegisterObscurePassword = true.obs;
@@ -53,73 +53,96 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
     loginFormKey.currentState!.save();
   }
 
-  void loginUser(User user) {
+  Future<void> loginUser(User user) async {
       sigin_loading.value = true;
-     AuthProvider().fetchLogin(user: user,
-        onSuccess: (data) async {
-          if(data!=null){
-            await _authManager.login(data, user);
+      try{
+        final result = await HomePageRepo().getTokenUser(
+          user.toJsonLogin(),
+        );
+        if(result != null){
+          if(result.isSuccess){
+            await _authManager.login(result.objects , user);
             sigin_loading.value = false;
-            Get.offNamed(Routes.HOME);
+            Get.back();
             scaffoldMessenger.showSnackBar(
               const SnackBar(content: Text('Đăng nhập thành công'), duration: Duration(seconds: 1)),
             );
           }
           else {
-            /// Show user a dialog about the error response
-            print('User not found!');
             Get.defaultDialog(
-                middleText: 'Không tìm thấy người dùng!',
+                title: 'Thông báo',
+                middleText: '${result.msg}!',
                 textConfirm: 'Xác nhận',
                 confirmTextColor: Colors.white,
                 onConfirm: () {
                   Get.back();
-                });
+                }
+            );
+            sigin_loading.value = false;
           }
-        },
-        onError: (error) {
-          Get.defaultDialog(
-              title: 'Thông báo',
-              middleText: '$error!',
-              textConfirm: 'Xác nhận',
-              confirmTextColor: Colors.white,
-              onConfirm: () {
-                Get.back();
-            });
-          sigin_loading.value = false;
         }
-    );
+      }
+      catch(error){
+        print(error);
+      }
   }
 
   Future<void> registerUser(User user) async {
-    await AuthProvider().fetchRegister(user: user,
-        onSuccess: (data) async {
-          if(data!=null){
-            await _authManager.login(data.token, user);
-            Get.back();
-          }
-          else {
-            /// Show user a dialog about the error response
-            Get.defaultDialog(
-              middleText: 'Register Error',
+    register_loading.value = false;
+    try{
+      final result = await HomePageRepo().createUser(user.toJsonRegister());
+      if(result != null){
+        if(result.isSuccess){
+          await loginUser(user);
+          register_loading.value = true;
+          Get.back();
+          scaffoldMessenger.showSnackBar(
+            const SnackBar(content: Text('Đăng ký thành công!'), duration: Duration(seconds: 1)),
+          );
+        } else{
+          register_loading.value = true;
+          Get.defaultDialog(
+              middleText: 'Đăng ký thất bại',
+              title:  '${result.msg}',
               textConfirm: 'OK',
               confirmTextColor: Colors.white,
               onConfirm: () {
                 Get.back();
               }
-            );
-          }
-        },
-        onError: (error) {
-          Get.defaultDialog(
-              middleText: '$error!',
-              textConfirm: 'OK',
-              confirmTextColor: Colors.white,
-              onConfirm: () {
-                Get.back();
-              });
+          );
         }
-    );
+      }
+    }catch(error){
+      print(error);
+    }
+    // await AuthProvider().fetchRegister(user: user,
+    //     onSuccess: (data) async {
+    //       if(data!=null){
+    //         await _authManager.login(data.token, user);
+    //         Get.back();
+    //       }
+    //       else {
+    //         /// Show user a dialog about the error response
+    //         Get.defaultDialog(
+    //           middleText: 'Register Error',
+    //           textConfirm: 'OK',
+    //           confirmTextColor: Colors.white,
+    //           onConfirm: () {
+    //             Get.back();
+    //           }
+    //         );
+    //       }
+    //     },
+    //     onError: (error) {
+    //       Get.defaultDialog(
+    //           middleText: '$error!',
+    //           textConfirm: 'OK',
+    //           confirmTextColor: Colors.white,
+    //           onConfirm: () {
+    //             Get.back();
+    //           });
+    //     }
+    // );
   }
 
   changeObscurePassword(value) => isObscurePassword.value = value;
