@@ -62,7 +62,7 @@ class IntroStoreWidget extends StatelessWidget {
                       )
                   ),
                   Text("Điện thoại  "),
-                  Text(controller.store.sodienthoai.toString(),
+                  Text(controller.store.phone.toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -82,7 +82,7 @@ class IntroStoreWidget extends StatelessWidget {
                       )
                   ),
 
-                  Expanded(child: Text(controller.store.diachicuahang.toString()),)
+                  Expanded(child: Text(controller.store.distance.toString()),)
                 ],
               ),
               //Thống kê
@@ -201,7 +201,7 @@ class IntroStoreWidget extends StatelessWidget {
                         Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
                         Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
                         SizedBox(width: 10),
-                        Text(controller.store.slchiase.toString(),
+                        Text(controller.store.rate.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold
                           ),

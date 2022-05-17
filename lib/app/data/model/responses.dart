@@ -1,9 +1,9 @@
-class Resonses<T>{
+class Responses<T>{
   bool isSuccess;
   int? statusCode;
   String? msg;
   List<T>? listObjects;
   T? objects;
 
-  Resonses({this.isSuccess = false, this.statusCode, this.msg, this.listObjects, this.objects});
+  Responses({this.isSuccess = false, this.statusCode, this.msg, this.listObjects, this.objects});
 }

@@ -13,7 +13,7 @@ class ApiRequest{
         )
     )..interceptors.add(LoggingInterceptors());
   }
-  Future<Response> get({required String path, Map<String, dynamic>? queryParameters, Options? options }) async {
+  Future<Response> get({required String path, Map<String, dynamic>? queryParameters, Options? options, data }) async {
     var response =  await _dio().get(path, queryParameters: queryParameters, options: options);
     return response;
   }

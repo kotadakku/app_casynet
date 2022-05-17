@@ -103,16 +103,21 @@ class DatabaseHelper{
         [newValue, id]);
   }
 
-  Future<void> addQuantity(String tableName,String columnId, String columnUpdate, int? addQuantity, int? id) async {
+  Future<void> incrementQuantity(String tableName,String columnId, String columnUpdate, int? id) async {
     Database? db = await instance.database;
-    print('''
-            UPDATE $tableName
-            SET $columnUpdate = $columnUpdate + $addQuantity
-            WHERE $columnId = $id
-            ''');
+
     await db?.rawUpdate('''
             UPDATE $tableName
-            SET $columnUpdate = $columnUpdate + $addQuantity
+            SET $columnUpdate = $columnUpdate + 1
+            WHERE $columnId = $id
+            ''',);
+  }
+  Future<void> decrementQuantity(String tableName,String columnId, String columnUpdate, int? id) async {
+    Database? db = await instance.database;
+
+    await db?.rawUpdate('''
+            UPDATE $tableName
+            SET $columnUpdate = $columnUpdate - 1
             WHERE $columnId = $id
             ''',);
   }

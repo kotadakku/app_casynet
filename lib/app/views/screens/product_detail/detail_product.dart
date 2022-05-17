@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/item_product_in_cart_controller.dart';
-import '../../../data/model/item_product_in_cart.dart';
+import '../../../data/model/product_cart.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/appbar_cart.dart';
@@ -22,7 +22,7 @@ class DetailProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductCartMeController _productCartController = Get.find();
+    ProductCartController _productCartController = Get.find();
     return SafeArea(
         child: Scaffold(
             backgroundColor: Colors.white,
@@ -67,7 +67,7 @@ class DetailProductPage extends StatelessWidget {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: kYellowColor),
                       onPressed: () {
-                        _productCartController.insertProductCart(ProductCart(
+                        _productCartController.incrementProductCartDB(ProductCart(
                             p_id: 2,
                             p_sku: "mi-kim-chi",
                             p_name: "LTHT",

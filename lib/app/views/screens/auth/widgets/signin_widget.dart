@@ -124,10 +124,11 @@ class SignInWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 30,),
                     ElevatedButton(
-                      onPressed: (){
+                      onPressed: () async {
                         authController.formSignInKey.currentState?.save();
-                        authController.loginUser(user);
                         FocusManager.instance.primaryFocus!.unfocus();
+                        await authController.loginUser(user);
+
                       },
                       style: ElevatedButton.styleFrom(
                           primary: kYellowColor,

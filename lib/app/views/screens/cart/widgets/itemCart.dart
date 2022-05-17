@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/cart/item_product_in_cart_controller.dart';
-import '../../../../data/model/item_product_in_cart.dart';
+import '../../../../data/model/product_cart.dart';
 
 class ItemCart extends StatelessWidget {
   final String nameStore;
@@ -17,7 +17,7 @@ class ItemCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductCartMeController _productCartController = Get.find();
+    ProductCartController _productCartController = Get.find();
     
 
     return Material(
@@ -148,10 +148,10 @@ class ItemCart extends StatelessWidget {
                               if(_productCartController.checkBoxProduct.value.contains(itemCartStore[index].p_id)) {
                                 _productCartController.checkBoxProduct.remove(
                                     itemCartStore[index].p_id);
-                                _productCartController.calsumCart();
+                                _productCartController.calsumPrice();
                               }else {
                                 _productCartController.checkBoxProduct.add(itemCartStore[index].p_id);
-                                _productCartController.calsumCart();
+                                _productCartController.calsumPrice();
                               }
                             },
                           ),

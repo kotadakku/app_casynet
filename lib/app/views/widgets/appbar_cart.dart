@@ -19,7 +19,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
   // You can set it to kToolbarHeight to get the default appBar height.
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-  ProductCartMeController _productCartController = Get.find();
+  ProductCartController _productCartController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -152,31 +152,25 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                         child: SvgPicture.asset("assets/product_detail/cart.svg"),
                       )
                     ),
-
-                    GetBuilder<ProductCartMeController>(builder:(controller){
-                      return _productCartController.countCart.value > 0 ?
-
-                      Positioned(
-                          right: 0,
-                          child: Container(
-                            height: 13,
-                            width: 13,
-                            child: Center(
-                                child: Text('${_productCartController.countCart}',style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10
-                                ),
-                                ),
+                    Obx(()=>_productCartController.countCart.value > 0 ?
+                    Positioned(
+                        right: 0,
+                        child: Container(
+                          height: 15,
+                          width: 15,
+                          child: Center(
+                            child: Text('${_productCartController.countCart}',style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10
                             ),
-                            decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(10.0)
                             ),
-                          )
-                      ) : Container();
-                    })
-
-
+                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(10.0)
+                          ),
+                        )
+                    ) : Container()),
                   ],
                 )
             ),

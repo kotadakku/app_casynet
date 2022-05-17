@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/home/api/reservation_controller.dart';
 import '../../../../controller/home/radio_controller.dart';
-import '../../../../data/model/datcho.dart';
 import '../../../../data/model/product.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/textTheme.dart';
@@ -231,7 +230,7 @@ class ItemProductWidget extends StatelessWidget {
             product.store == null ? Text('Chưa có thông tin') : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(child: Text( product.store?.tencuahang ==null ? 'Chưa có thông tin' : product.store!.tencuahang.toString(),
+                Expanded(child: Text( product.store?.name ==null ? 'Chưa có thông tin' : product.store!.name.toString(),
                   style: TextStyle(
                     fontSize: 12,
 
@@ -243,7 +242,7 @@ class ItemProductWidget extends StatelessWidget {
                   children: [
                     FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
                     SizedBox(width: 3,),
-                    Text("${ product.store?.khoangcachtoicuahang == null ? '0.0' : product.store?.khoangcachtoicuahang} km",
+                    Text("${ product.store?.distance == null ? '0.0' : product.store?.distance} km",
                       style: TextStyle(
                           fontSize: 12.sp
                       ),

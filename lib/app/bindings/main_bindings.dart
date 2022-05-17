@@ -25,7 +25,7 @@ class MainBindings extends Bindings {
     Get.put(NewAddressController());
     // Get.put(ConnectivityService());
     Get.put(DetailAppController());
-    Get.put(ProductCartMeController());
+    Get.put(ProductCartController());
     Get.put(CategoryController());
     Get.put(SellerController());
     Get.put(ReservationController());
