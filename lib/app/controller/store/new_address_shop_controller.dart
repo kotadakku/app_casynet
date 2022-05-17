@@ -4,6 +4,8 @@ import 'package:app_casynet/data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_pages.dart';
+
 class NewAddressShopController extends GetxController{
 
   late var formStateKer;
@@ -38,7 +40,9 @@ class NewAddressShopController extends GetxController{
 
   void updateDistrictShop(String idProvince){
     districtShops.clear();
+    districtShop.value = "";
     communeShops.clear();
+    communeShop.value = "";
     (data['district'] as List).forEach((e) {
       if(e["idProvince"] == idProvince)
         districtShops.add({'id': e['idDistrict'], 'name': e['name'].toString()});
@@ -47,6 +51,7 @@ class NewAddressShopController extends GetxController{
 
   void updateCommuneShop(String idDistrict){
     // communeShops.clear();
+    communeShop.value = "";
 
     (data['commune'] as List).forEach((e){
       if(e["idDistrict"] == idDistrict)
