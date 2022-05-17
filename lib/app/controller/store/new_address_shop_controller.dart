@@ -4,11 +4,9 @@ import 'package:app_casynet/data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../routes/app_pages.dart';
-
 class NewAddressShopController extends GetxController{
 
-  late var formStateKer;
+  late var formStateKeyShop;
   late Address addressShop;
 
   RxString open_hours = "".obs;
@@ -26,7 +24,7 @@ class NewAddressShopController extends GetxController{
   void onInit() {
     super.onInit();
 
-    formStateKer = GlobalKey<FormState>();
+    formStateKeyShop = GlobalKey<FormState>();
     addressShop = Address();
 
     (data['province'] as List).forEach((e) {
