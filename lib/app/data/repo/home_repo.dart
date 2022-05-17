@@ -198,7 +198,7 @@ class HomePageRepo{
       return Responses<User>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Responses<Address>> updateAddress({data, Options? options}) async{
+  Future<Responses<User>> updateAddress({data, Options? options}) async{
     try{
       final response = await ApiRequest().put(
         path: ApiConfig.baseUrl + '/rest/V1/customers/me',
@@ -206,13 +206,13 @@ class HomePageRepo{
         options: options
       );
       if(response != null){
-        Address address = Address.fromJson(response.data);
-        return Responses<Address>(isSuccess: true, objects: address);
+        User user = User.successLogin(response.data);
+        return Responses<User>(isSuccess: true, objects: user);
       }
-      return Responses<Address>(statusCode: CODE_RESPONSE_NULL, msg: '');
+      return Responses<User>(statusCode: CODE_RESPONSE_NULL, msg: '');
     } catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Responses<Address>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<User>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
 }

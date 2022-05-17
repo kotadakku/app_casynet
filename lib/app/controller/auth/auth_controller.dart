@@ -115,34 +115,6 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
     }catch(error){
       print(error);
     }
-    // await AuthProvider().fetchRegister(user: user,
-    //     onSuccess: (data) async {
-    //       if(data!=null){
-    //         await _authManager.login(data.token, user);
-    //         Get.back();
-    //       }
-    //       else {
-    //         /// Show user a dialog about the error response
-    //         Get.defaultDialog(
-    //           middleText: 'Register Error',
-    //           textConfirm: 'OK',
-    //           confirmTextColor: Colors.white,
-    //           onConfirm: () {
-    //             Get.back();
-    //           }
-    //         );
-    //       }
-    //     },
-    //     onError: (error) {
-    //       Get.defaultDialog(
-    //           middleText: '$error!',
-    //           textConfirm: 'OK',
-    //           confirmTextColor: Colors.white,
-    //           onConfirm: () {
-    //             Get.back();
-    //           });
-    //     }
-    // );
   }
 
   changeObscurePassword(value) => isObscurePassword.value = value;

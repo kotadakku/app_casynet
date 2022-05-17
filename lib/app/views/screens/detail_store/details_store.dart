@@ -42,7 +42,7 @@ class DetailsStorePage extends StatelessWidget {
                             Container(
                               height: 150,
                               child: ImageNetworkLoading(
-                                image_url: controller.store.anhsanpham.toString(),
+                                image_url: controller.store.imageUrl.toString(),
                                 fit: BoxFit.fill,
                               )
                             ),
@@ -97,7 +97,7 @@ class DetailsStorePage extends StatelessWidget {
                             child: ElevatedButton(
                                 onPressed: () {
 
-                                    Get.to(StoreMapPage(), arguments: {"name": controller.store.tencuahang, "address": controller.store.diachicuahang});
+                                    Get.to(StoreMapPage(), arguments: {"name": controller.store.name, "address": controller.store.address});
 
                                 },
                                 style: ElevatedButton.styleFrom(

@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+import 'package:app_casynet/app/controller/auth/cache_manager.dart';
 import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,9 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data.dart';
 import '../../data/model/address.dart';
+import '../../data/model/user.dart';
 
 
-class NewAddressController extends GetxController{
+class NewAddressController extends GetxController with CacheManager{
   late final AuthenticationManager _authManager;
   var switch_default = true.obs;
   late var formStateKey;
@@ -47,23 +49,23 @@ class NewAddressController extends GetxController{
 
   void createAddress(Address new_address) async {
     try{
+      String? token = await getToken();
       final result = await HomePageRepo().updateAddress(
-        data: address.toJsonAddress(),
+        data: new_address.toJsonAddress(),
         options: Options(
           headers: {
-
+            'Authorization' : 'Bearer $token'
           }
         )
       );
       if(result != null){
         if(result.isSuccess){
-          Address  address = result.objects ?? new_address;
+          _authManager.user_current = result.objects ?? User();
+        }
+        else{
+          Get.snackbar("Thông báo", "${result.msg}");
         }
       }
-      else{
-
-      }
-
     }catch(error){
       Get.snackbar("Thông báo", "error:: $error",
           backgroundColor: Colors.black.withOpacity(0.3));

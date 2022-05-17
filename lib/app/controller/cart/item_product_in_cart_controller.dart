@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/provider/db/db_provider.dart';
 import '../../data/repo/account_repo.dart';
+import '../auth/authentication_manager.dart';
 import '../auth/cache_manager.dart';
 
-class ProductCartMeController extends GetxController with CacheManager, StateMixin {
-  List<ProductCart> productCartList = [];
+class ProductCartController extends GetxController with CacheManager, StateMixin {
   final _productsCartList = <ProductCart>[].obs;
-  var cartsByStore ;
+  var cartsByStore = {}.obs;
   var isLoading = true;
   var isLoadingComplete = true;
-  var sumCart = 0.obs;
+  var sumPriceValue = 0.obs;
   var countCart = 0.obs;
   RxList checkBoxProduct = [].obs;
 
@@ -23,99 +23,126 @@ class ProductCartMeController extends GetxController with CacheManager, StateMix
   void onInit() {
     getCartDB();
   }
-
   void deleteRow(int? id ){
     DatabaseHelper.instance.deleteRow(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, id);
     getCartDB();
     update();
   }
 
-  void insertProductCart(ProductCart productCart)  {
-
+  void incrementProductCartDB(ProductCart productCart)  {
+    AuthenticationManager _autheticationManager = Get.find();
     DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){
       print("<DB> row exist $value");
       if(value){
-        DatabaseHelper.instance.addQuantity(DBConfig.TABLE_CART,
+        DatabaseHelper.instance.incrementQuantity(DBConfig.TABLE_CART,
             DBConfig.CART_COLUMN_P_ID,
             DBConfig.CART_COLUMN_QUANTITY,
-            productCart.quantity,
             productCart.p_id,).then((value){
-          updateAPI(productCart);
+          if(_autheticationManager.isLogged== true) updateCartAPI(productCart, 1);
           getCartDB();
         });
       }
       else{
         print("DB Insert to Cart");
         DatabaseHelper.instance.insert(DBConfig.TABLE_CART, productCart.toJson()).then((value){
-          updateAPI(productCart);
           getCartDB();
         });
       }
     });
   }
+  void decrementProductCartDB(ProductCart productCart)  {
+    DatabaseHelper.instance.decrementQuantity(DBConfig.TABLE_CART,
+      DBConfig.CART_COLUMN_P_ID,
+      DBConfig.CART_COLUMN_QUANTITY,
+      productCart.p_id,).then((value){
+      getCartDB();
+    });
+  }
 
   Future<void> updateQuantity(int qty, ProductCart productCart) async {
-    print('<Home> $qty');
     int? id = productCart.p_id;
-    await updateAPI(productCart);
+
     if(id !=null){
       DatabaseHelper.instance.updateQuantity(DBConfig.TABLE_CART,
         DBConfig.CART_COLUMN_P_ID,
         DBConfig.CART_COLUMN_QUANTITY,
         id, qty);
-      productCartList.where((element) => element.p_id == id).first.quantity = qty;
-      update();
+      _productsCartList.where((element) => element.p_id == id).first.quantity = qty;
     }
   }
-
   Future<void> getCartAPI(String token) async {
     print("<GET PRODUCT API>");
-    change(_productsCartList, status: RxStatus.loading());
+    change(cartsByStore, status: RxStatus.loading());
     try{
       final result = await AccountRepo().getProductsCart(
         options: Options(
           headers: {
-
+            'Authorization' : 'Bearer $token'
           }
         )
       );
       if(result != null){
         if(result.isSuccess){
           _productsCartList.value = result.listObjects ?? [];
-          if(_productsCartList.isEmpty){
-            change(_productsCartList, status: RxStatus.empty());
+          if(cartsByStore.isEmpty){
+            change(cartsByStore, status: RxStatus.empty());
           }
-          change(_productsCartList, status: RxStatus.success());
+          _productsCartList.forEach((element) {
+            saveProductCartDB(element);
+          });
+          getCartDB();
+          cartsByStore.value = groupBy(_productsCartList, (ProductCart obj) => obj.s_name);
+          calsumPrice();
+          change(cartsByStore, status: RxStatus.success());
 
         }
         else{
           Get.snackbar("Thông báo", result.msg.toString(),
               backgroundColor: Colors.black.withOpacity(0.3));
-          change(_productsCartList, status: RxStatus.error());
+          change(cartsByStore, status: RxStatus.error());
         }
       }
     } catch(error) {
       Get.snackbar("Thông báo", "error:: $error",
           backgroundColor: Colors.black.withOpacity(0.3));
-      change(_productsCartList, status: RxStatus.error());
+      change(cartsByStore, status: RxStatus.error());
     }
   }
-
-  Future<void> updateAPI(ProductCart productCart) async {
+  void saveProductCartDB(ProductCart productCart)  {
+    DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){
+      print("<DB> row exist $value");
+      if(value){
+        DatabaseHelper.instance.incrementQuantity(DBConfig.TABLE_CART,
+          DBConfig.CART_COLUMN_P_ID,
+          DBConfig.CART_COLUMN_QUANTITY,
+          productCart.p_id,).then((value){
+        });
+        getCartDB();
+      }
+      else{
+        print("DB Insert to Cart");
+        DatabaseHelper.instance.insert(DBConfig.TABLE_CART, productCart.toJson()).then((value){
+         getCartDB();
+        });
+      }
+    });
+  }
+  Future<void> updateCartAPI(ProductCart productCart, int qty) async {
     final token = await getToken();
 
     if(productCart.cartId == null){
       try{
         final result = await AccountRepo().getCartId(
           options: Options(
-            headers: {
-
-            }
+              headers: {
+                'Authorization' : 'Bearer $token'
+              }
           )
         );
         if(result.isSuccess){
           productCart.cartId = result.objects;
-          updateAPI(productCart);
+          updateCartAPI(productCart, qty);
+          return ;
         }
       }catch(error){
         Get.snackbar("Thông báo", "error:: $error",
@@ -125,10 +152,11 @@ class ProductCartMeController extends GetxController with CacheManager, StateMix
     else{
       try{
         final result = await AccountRepo().addProductCart(
+          data: productCart.toJsonPost(qty),
             options: Options(
-                headers: {
-
-                }
+              headers: {
+                'Authorization' : 'Bearer $token'
+              }
             )
         );
         if(result != null){
@@ -148,15 +176,13 @@ class ProductCartMeController extends GetxController with CacheManager, StateMix
       }
     }
   }
-
   void getCartDB() async {
     print("<GET PRODUCT DB>");
-    isLoading = true;
-    isLoadingComplete = true;
+    change(cartsByStore, status: RxStatus.loading());
     DatabaseHelper.instance.getAlls(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID).then((value) {
-      productCartList.clear();
+      _productsCartList.clear();
       value?.forEach((element) {
-        productCartList.add(ProductCart(
+        _productsCartList.add(ProductCart(
           p_id: element['p_id'],
           p_sku: element['p_sku'],
           p_name: element['p_name'],
@@ -167,39 +193,32 @@ class ProductCartMeController extends GetxController with CacheManager, StateMix
           s_name: element['s_name'],
           cartId: element['cartId'],
         ));
-        isLoading = false;
-        isLoadingComplete = false;
-        update();
       });
-      cartsByStore = groupBy(productCartList, (ProductCart obj) => obj.s_name);
-      calsumCart();
-      countCart.value = productCartList.length;
-      isLoadingComplete = false;
-      update();
+      cartsByStore.value = groupBy(_productsCartList, (ProductCart obj) => obj.s_name);
+      calsumPrice();
+      change(cartsByStore, status: RxStatus.success());
     });
   }
-
-  void calsumCart(){
+  void calsumPrice(){
     if(cartsByStore !=null){
-      sumCart.value =0;
+      sumPriceValue.value =0;
+      countCart.value = 0;
       cartsByStore.entries.forEach((e){
         (e.value as List).forEach((cart){
+          countCart += int.parse(cart.quantity.toString());
           if(checkBoxProduct.contains(cart.p_id)){
-            sumCart += int.parse(cart.quantity.toString()) * int.parse(cart.price.toString());
+            sumPriceValue += int.parse(cart.quantity.toString()) * int.parse(cart.price.toString());
           }
         }
         );
       });
     }
-    print('<SUM> $sumCart');
   }
-
   void clearCart(){
-    productCartList.clear();
+    _productsCartList.clear();
     cartsByStore.clear();
     DatabaseHelper.instance.clear(DBConfig.TABLE_CART);
-    countCart.value =0;
-    calsumCart();
+    calsumPrice();
     update();
   }
 }

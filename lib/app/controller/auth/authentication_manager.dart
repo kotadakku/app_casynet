@@ -12,14 +12,14 @@ import 'cache_manager.dart';
 class AuthenticationManager extends GetxController with CacheManager {
   final isLogged = false.obs;
   late User user_current = User();
-  ProductCartMeController _productCartMeController = Get.put(
-      ProductCartMeController());
+  ProductCartController _ProductCartController = Get.put(
+      ProductCartController());
 
   void logOut() {
     isLogged.value = false;
     removeUser();
     removeToken();
-    _productCartMeController.clearCart();
+    _ProductCartController.clearCart();
   }
 
   Future<void> login(String? token, User user) async {
@@ -27,6 +27,7 @@ class AuthenticationManager extends GetxController with CacheManager {
       saveToken(token);
       saveInfoLogin(user.toJsonLogin());
       await fetchUserAPI(token);
+      _ProductCartController.getCartAPI(token);
       isLogged.value = true;
     }
   }
@@ -58,7 +59,8 @@ class AuthenticationManager extends GetxController with CacheManager {
       user_current = user;
     }
     else {
-      await fetchUserAPI(token);
+      fetchUserAPI(token);
+      _ProductCartController.getCartAPI(token);
     }
   }
   void checkLoginStatus() {

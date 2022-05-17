@@ -22,7 +22,7 @@ class DetailProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductCartMeController _productCartController = Get.find();
+    ProductCartController _productCartController = Get.find();
     return SafeArea(
         child: Scaffold(
             backgroundColor: Colors.white,
@@ -67,7 +67,7 @@ class DetailProductPage extends StatelessWidget {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: kYellowColor),
                       onPressed: () {
-                        _productCartController.insertProductCart(ProductCart(
+                        _productCartController.incrementProductCartDB(ProductCart(
                             p_id: 2,
                             p_sku: "mi-kim-chi",
                             p_name: "LTHT",

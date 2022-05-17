@@ -1,5 +1,4 @@
-import 'cuahang.dart';
-
+import 'package:app_casynet/app/data/model/seller.dart';
 
 class Product {
   int? id;
@@ -13,7 +12,7 @@ class Product {
   int? commentQty;
   double? rate;
   int? coinPoint;
-  CuaHang? store;
+  Seller? store;
 
 
   Product(
@@ -40,9 +39,9 @@ class Product {
     commentQty = json["comment"];
     rate = json["vote"];
     coinPoint = json["point"];
-    store = CuaHang(
-        tencuahang: json["store"]["name"].toString(),
-        khoangcachtoicuahang: json["store"]["distance"].toString()
+    store = Seller(
+        name: json["store"]["name"].toString(),
+        distance: json["store"]["distance"].toString()
     );
   }
 
