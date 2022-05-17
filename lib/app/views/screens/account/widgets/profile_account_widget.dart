@@ -1,10 +1,11 @@
-import 'dart:math' as math;
+
 import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/app_colors.dart';
+import '../../../widgets/shadow_of_doubt.dart';
 
 class ProfileAccountWidget extends StatelessWidget {
   const ProfileAccountWidget({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class ProfileAccountWidget extends StatelessWidget {
             ],
           ),),
         // Tên
-        title: Text('${controller.user_current.lastname.toString()} ${controller.user_current.firstname.toString()}',
+        title: Text('${controller.user_current.lastname?? "user_312312"} ${controller.user_current.firstname??''}',
           style: TextStyle(
               color: kYellowColor,
               fontWeight: FontWeight.bold
@@ -58,7 +59,7 @@ class ProfileAccountWidget extends StatelessWidget {
               ),
             ),
             // Ngày tham gia
-            Text("Thành viên từ: ${controller.user_current.created_at}",
+            Text("Thành viên từ: ${controller.user_current.created_at?? '__/__/20__'}",
               style: TextStyle(
                   color: kTextColor_gray
               ),
@@ -70,56 +71,4 @@ class ProfileAccountWidget extends StatelessWidget {
   }
 }
 
-class SphereOfDestiny extends StatelessWidget {
-  const SphereOfDestiny({
-    Key? key,
-    required this.diameter, required this.lightSource
-  }) : super(key: key);
-
-  final double diameter;
-  final Offset lightSource;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: diameter,
-      height: diameter,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        shape: BoxShape.circle,
-        gradient: RadialGradient(
-          colors: const [Colors.grey, Colors.black],
-          center: Alignment(lightSource.dx, lightSource.dy),
-
-        ),
-
-      ),
-    );
-  }
-}
-
-class  ShadowOfDoubt extends StatelessWidget {
-  final double diameter;
-  final Offset origin;
-  const ShadowOfDoubt({Key? key, required this.diameter, required this.origin}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform(
-        transform: Matrix4.identity()..rotateX(math.pi / 2.2),
-        origin: origin,
-        child: Container(
-          width: diameter,
-          height: diameter,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: RadialGradient(
-              colors: const [Colors.grey, Colors.white],
-
-            ),
-          ),
-        )
-    );
-  }
-}
 

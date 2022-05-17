@@ -11,6 +11,7 @@ import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/textTheme.dart';
 import '../../../widgets/loading_overlay.dart';
+import '../../../widgets/shimmer/seller_shimmer.dart';
 
 class PromotionWidget extends StatelessWidget {
 
@@ -145,7 +146,7 @@ class PromotionWidget extends StatelessWidget {
                   )).toList(),
                 ),
               ),
-              onLoading: ItemCuaHangShimmer()
+              onLoading: ItemSellerShimmer()
             )
           ],
         ),
