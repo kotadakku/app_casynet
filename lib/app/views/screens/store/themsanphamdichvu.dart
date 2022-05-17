@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../controller/CuaHangCuaToi/hinh_thuc_selection_controller.dart';
+import '../../../controller/store/choose_category_controller.dart';
 import '../../../controller/store/imagepicker_controller.dart';
 import '../../theme/app_colors.dart';
 import 'chon_danh_muc.dart';
@@ -18,28 +18,24 @@ class ThemSanPhamDichVu extends StatelessWidget {
 
   ThemSanPhamDichVu({Key? key}) : super(key: key);
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     var checkHienThiSanPham = false.obs;
     var checkSanPhamNoiBat = false.obs;
     var countTenSP = 0.obs;
     var countMoTaSP = 0.obs;
-    final ChonDanhMucController controller = Get.put(ChonDanhMucController());
+    final ChooseCategoryController controller =
+        Get.put(ChooseCategoryController());
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
             Icons.arrow_back,
-
           ),
         ),
         title: const Text(
@@ -70,7 +66,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Obx(
-                      () => ListView(
+                  () => ListView(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
@@ -80,8 +76,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           child: Wrap(
                             children: [
                               for (int i = 0;
-                              i < imgController.imageAndVideoPicker.length;
-                              i++)
+                                  i < imgController.imageAndVideoPicker.length;
+                                  i++)
                                 Stack(
                                   overflow: Overflow.visible,
                                   children: [
@@ -91,12 +87,21 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                         margin: EdgeInsets.only(
                                             bottom: 5.h, left: 5.w, top: 5.h),
                                         color: Colors.red,
-                                        child: imgController.imageAndVideoPicker[i].path.toString().endsWith(".jpg")? Image.file(
-                                          imgController.imageAndVideoPicker[i],
-                                          // width: 100,
-                                          fit: BoxFit.cover,
-                                        ): VideoPlayer(VideoPlayerController.file(imgController.imageAndVideoPicker[i],))
-                                    ),
+                                        child: imgController
+                                                .imageAndVideoPicker[i].path
+                                                .toString()
+                                                .endsWith(".jpg")
+                                            ? Image.file(
+                                                imgController
+                                                    .imageAndVideoPicker[i],
+                                                // width: 100,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : VideoPlayer(
+                                                VideoPlayerController.file(
+                                                imgController
+                                                    .imageAndVideoPicker[i],
+                                              ))),
                                     Positioned(
                                       width: 30.w,
                                       height: 30.h,
@@ -109,13 +114,14 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                           // Button color
                                           child: InkWell(
                                             onTap: () {
-                                              imgController.imageAndVideoPicker.removeAt(i);
+                                              imgController.imageAndVideoPicker
+                                                  .removeAt(i);
                                             },
                                             child: const SizedBox(
                                                 child: Icon(
-                                                  Icons.close,
-                                                  size: 10,
-                                                )),
+                                              Icons.close,
+                                              size: 10,
+                                            )),
                                           ),
                                         ),
                                       ),
@@ -134,8 +140,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     ),
                                   ),
                                   child: const Text("Thêm ảnh/ video",
-                                      maxLines: 2,
-                                      textAlign: TextAlign.center),
+                                      maxLines: 2, textAlign: TextAlign.center),
                                   onPressed: () {
                                     _tripEditModalBottomSheet(context);
                                     /*x.value = x.value + " ";
@@ -205,39 +210,37 @@ class ThemSanPhamDichVu extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            width:
-                            MediaQuery.of(context).size.width / 2 - 10.w,
+                            width: MediaQuery.of(context).size.width / 2 - 10.w,
                             height: 50.h,
                             margin: EdgeInsets.only(left: 10.w),
                             child: Row(
                               children: [
                                 Obx(() => Radio(
-                                  groupValue:
-                                  htSelecttion.selectedItem.value,
-                                  onChanged: (value) {
-                                    htSelecttion.onChangeItem(value);
-                                  },
-                                  value: 'datMua',
-                                )),
+                                      groupValue:
+                                          htSelecttion.selectedItem.value,
+                                      onChanged: (value) {
+                                        htSelecttion.onChangeItem(value);
+                                      },
+                                      value: 'datMua',
+                                    )),
                                 const Text("Đặt mua"),
                               ],
                             ),
                           ),
                           Container(
-                            width:
-                            MediaQuery.of(context).size.width / 2 - 10.w,
+                            width: MediaQuery.of(context).size.width / 2 - 10.w,
                             height: 50.h,
                             margin: EdgeInsets.only(right: 10.w),
                             child: Row(
                               children: [
                                 Obx(() => Radio(
-                                  groupValue:
-                                  htSelecttion.selectedItem.value,
-                                  onChanged: (value) {
-                                    htSelecttion.onChangeItem(value);
-                                  },
-                                  value: 'datCho',
-                                )),
+                                      groupValue:
+                                          htSelecttion.selectedItem.value,
+                                      onChanged: (value) {
+                                        htSelecttion.onChangeItem(value);
+                                      },
+                                      value: 'datCho',
+                                    )),
                                 const Text("Đặt chỗ"),
                               ],
                             ),
@@ -271,8 +274,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 hintStyle: TextStyle(color: kTextColor),
                                 counterText: "",
                                 border: InputBorder.none,
-                                suffixIcon: Icon(Icons.edit_outlined,color: kTextColor,)
-                            ),
+                                suffixIcon: Icon(
+                                  Icons.edit_outlined,
+                                  color: kTextColor,
+                                )),
                             maxLength: 120,
                             maxLines: 2,
                             // controller: name,
@@ -311,7 +316,10 @@ class ThemSanPhamDichVu extends StatelessWidget {
                               hintStyle: TextStyle(color: kTextColor),
                               counterText: "",
                               border: InputBorder.none,
-                              suffixIcon: Icon(Icons.edit_outlined, color: kTextColor,),
+                              suffixIcon: Icon(
+                                Icons.edit_outlined,
+                                color: kTextColor,
+                              ),
                             ),
                             maxLength: 400,
                             maxLines: null,
@@ -356,34 +364,39 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         height: 1.h,
                       ),
                       Container(
-                          margin:
-                          EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: InkWell(
-                            splashColor: const Color.fromARGB(255, 188, 195, 216),
+                            splashColor:
+                                const Color.fromARGB(255, 188, 195, 216),
                             onTap: () {},
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: const [
-                                        Text("Giá",
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 127, 141, 171)))
-                                      ],
-                                    )),
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: const [
+                                    Text("Giá",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 127, 141, 171)))
+                                  ],
+                                )),
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: const [
-                                        Text("Thiết lập giá",style: TextStyle(color: kTextColor),),
-                                        Icon(Icons.navigate_next,color: kTextColor,),
-                                      ],
-                                    ))
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: const [
+                                    Text(
+                                      "Thiết lập giá",
+                                      style: TextStyle(color: kTextColor),
+                                    ),
+                                    Icon(
+                                      Icons.navigate_next,
+                                      color: kTextColor,
+                                    ),
+                                  ],
+                                ))
                               ],
                             ),
                           )),
@@ -422,34 +435,33 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         height: 1.h,
                       ),
                       Container(
-                          margin:
-                          EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: InkWell(
-                            splashColor: const Color.fromARGB(255, 188, 195, 216),
+                            splashColor:
+                                const Color.fromARGB(255, 188, 195, 216),
                             onTap: () {},
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: const [
-                                        Text("Tình trạng kho hàng",
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 127, 141, 171)))
-                                      ],
-                                    )),
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: const [
+                                    Text("Tình trạng kho hàng",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 127, 141, 171)))
+                                  ],
+                                )),
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: const [
-                                        Text("Còn hàng"),
-                                        Icon(Icons.navigate_next),
-                                      ],
-                                    ))
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: const [
+                                    Text("Còn hàng"),
+                                    Icon(Icons.navigate_next),
+                                  ],
+                                ))
                               ],
                             ),
                           )),
@@ -457,34 +469,33 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         height: 1.h,
                       ),
                       Container(
-                          margin:
-                          EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: InkWell(
-                            splashColor: const Color.fromARGB(255, 188, 195, 216),
+                            splashColor:
+                                const Color.fromARGB(255, 188, 195, 216),
                             onTap: () {},
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: const [
-                                        Text("Hiển thị",
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 127, 141, 171)))
-                                      ],
-                                    )),
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: const [
+                                    Text("Hiển thị",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 127, 141, 171)))
+                                  ],
+                                )),
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: const [
-                                        Text("Danh mục, tìm kiếm"),
-                                        Icon(Icons.navigate_next),
-                                      ],
-                                    ))
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: const [
+                                    Text("Danh mục, tìm kiếm"),
+                                    Icon(Icons.navigate_next),
+                                  ],
+                                ))
                               ],
                             ),
                           )),
@@ -492,36 +503,38 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         height: 1.h,
                       ),
                       Container(
-                          margin:
-                          EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: InkWell(
-                            splashColor: const Color.fromARGB(255, 188, 195, 216),
+                            splashColor:
+                                const Color.fromARGB(255, 188, 195, 216),
                             onTap: () {
                               Get.to(const ChonDanhMuc());
                             },
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: const [
-                                        Text("Danh mục",
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 127, 141, 171)))
-                                      ],
-                                    )),
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: const [
+                                    Text("Danh mục",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 127, 141, 171)))
+                                  ],
+                                )),
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(controller.chonDanhmuc.toString(), style: TextStyle(color: kTextColor),),
-                                        const Icon(Icons.navigate_next),
-                                      ],
-                                    ))
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      controller.chonDanhmuc.toString(),
+                                      style: TextStyle(color: kTextColor),
+                                    ),
+                                    const Icon(Icons.navigate_next),
+                                  ],
+                                ))
                               ],
                             ),
                           )),
@@ -529,34 +542,36 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         height: 1.h,
                       ),
                       Container(
-                          margin:
-                          EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: InkWell(
-                            splashColor: const Color.fromARGB(255, 188, 195, 216),
+                            splashColor:
+                                const Color.fromARGB(255, 188, 195, 216),
                             onTap: () {},
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: const [
-                                        Text("Thương hiệu",
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 127, 141, 171)))
-                                      ],
-                                    )),
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: const [
+                                    Text("Thương hiệu",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 127, 141, 171)))
+                                  ],
+                                )),
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: const [
-                                        Text("Chọn thương hiệu",style: TextStyle(color: kTextColor),),
-                                        Icon(Icons.navigate_next),
-                                      ],
-                                    ))
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: const [
+                                    Text(
+                                      "Chọn thương hiệu",
+                                      style: TextStyle(color: kTextColor),
+                                    ),
+                                    Icon(Icons.navigate_next),
+                                  ],
+                                ))
                               ],
                             ),
                           )),
@@ -720,15 +735,14 @@ class ThemSanPhamDichVu extends StatelessWidget {
               children: [
                 Column(
                   children: [
-
                     Container(
                       height: MediaQuery.of(context).size.height * .30.h,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      margin:
-                          EdgeInsets.only(left: 5.0.w, bottom: 5.0.h, right: 5.0.w),
+                      margin: EdgeInsets.only(
+                          left: 5.0.w, bottom: 5.0.h, right: 5.0.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -757,7 +771,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                               // padding: const EdgeInsets.only(top: 15, bottom: 15, left: 5.0,right: 5.0),
                               child: InkWell(
                                   onTap: () {
-                                    imgController.getImageCamera(ImageSource.camera);
+                                    imgController
+                                        .getImageCamera(ImageSource.camera);
                                   },
                                   // splashColor: Colors.black26,
                                   splashColor:
@@ -811,8 +826,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                     // imgController.getImage(ImageSource.gallery);
 
                                     imgController.getImage(ImageSource.gallery);
-                                    print(imgController.imageAndVideoPicker.length);
-
+                                    print(imgController
+                                        .imageAndVideoPicker.length);
                                   },
                                   // splashColor: Colors.black26,
                                   splashColor:
@@ -866,8 +881,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                        margin:
-                            const EdgeInsets.only(left: 5.0, bottom: 5.0, right: 5.0),
+                        margin: const EdgeInsets.only(
+                            left: 5.0, bottom: 5.0, right: 5.0),
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 15, left: 5.0, right: 5.0),
                         child: InkWell(
@@ -875,7 +890,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                               Get.back();
                             },
                             // splashColor: Colors.black26,
-                            splashColor: const Color.fromARGB(255, 188, 195, 216),
+                            splashColor:
+                                const Color.fromARGB(255, 188, 195, 216),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
@@ -895,9 +911,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
         });
   }
 }
-class ChonDanhMucController extends GetxController{
+/*class ChonDanhMucController extends GetxController{
   var chonDanhmuc = "Lựa chọn".obs;
 
-
-}
-
+}*/

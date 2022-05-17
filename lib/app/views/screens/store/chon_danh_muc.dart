@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/store/choose_category_controller.dart';
 import 'themsanphamdichvu.dart';
 
 class ChonDanhMuc extends StatelessWidget {
@@ -10,26 +11,15 @@ class ChonDanhMuc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var chonDanhMuc = "".obs;
-    final ChonDanhMucController controller = Get.put(ChonDanhMucController());
+    final ChooseCategoryController controller = Get.put(ChooseCategoryController());
 
     return  Scaffold(
       appBar: AppBar(
-        leading: InkWell(
-          onTap: (){
-            Get.back();
-          },
-          child: Icon(
-            Icons.arrow_back,
-          ),
-        ),
-
         title: Text(
           "Chọn danh mục",
           // style: TextStyle(fontSize: 17, color: Colors.black),
         ),
         actions:  [
-
         ],
       ),
       body: SafeArea(

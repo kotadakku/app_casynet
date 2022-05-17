@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class NewAddressShopController extends GetxController{
 
-  late var formStateKer;
+  late var formStateKeyShop;
   late Address addressShop;
 
   RxString open_hours = "".obs;
@@ -24,7 +24,7 @@ class NewAddressShopController extends GetxController{
   void onInit() {
     super.onInit();
 
-    formStateKer = GlobalKey<FormState>();
+    formStateKeyShop = GlobalKey<FormState>();
     addressShop = Address();
 
     (data['province'] as List).forEach((e) {
@@ -38,7 +38,9 @@ class NewAddressShopController extends GetxController{
 
   void updateDistrictShop(String idProvince){
     districtShops.clear();
+    districtShop.value = "";
     communeShops.clear();
+    communeShop.value = "";
     (data['district'] as List).forEach((e) {
       if(e["idProvince"] == idProvince)
         districtShops.add({'id': e['idDistrict'], 'name': e['name'].toString()});
@@ -47,6 +49,7 @@ class NewAddressShopController extends GetxController{
 
   void updateCommuneShop(String idDistrict){
     // communeShops.clear();
+    communeShop.value = "";
 
     (data['commune'] as List).forEach((e){
       if(e["idDistrict"] == idDistrict)
