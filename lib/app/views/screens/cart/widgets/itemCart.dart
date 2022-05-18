@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/cart/item_product_in_cart_controller.dart';
+import '../../../../controller/cart/api/product_cart_controller.dart';
 import '../../../../data/model/product_cart.dart';
 
 class ItemCart extends StatelessWidget {

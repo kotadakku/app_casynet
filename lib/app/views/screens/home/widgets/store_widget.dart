@@ -137,7 +137,6 @@ class StoreWidget extends StatelessWidget {
               ],
             ),
           ),
-<<<<<<< HEAD
           controller.isCarStore.value == true
               ? _sellerController.obx(
                   (state) => Container(
@@ -181,7 +180,6 @@ class StoreWidget extends StatelessWidget {
                       )
                   /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
                   ),
-=======
 
           _sellerController.obx((state) =>
               Container(
@@ -198,14 +196,12 @@ class StoreWidget extends StatelessWidget {
               ),
             onLoading: ItemSellerShimmer(),
           ),
->>>>>>> 037af36771cc74bddfab0120172d373643282e0f
         ],
       ),
     );
   }
 }
 
-<<<<<<< HEAD
 class ItemCuaHangWidget extends StatelessWidget {
   final Seller store;
 
@@ -450,9 +446,3 @@ class ItemCuaHangShimmer extends StatelessWidget {
     );
   }
 }
-=======
-
-
-
-
->>>>>>> 037af36771cc74bddfab0120172d373643282e0f

@@ -2,7 +2,7 @@ import 'package:app_casynet/app/controller/bottom_nav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/cart/item_product_in_cart_controller.dart';
+import '../../../controller/cart/api/product_cart_controller.dart';
 import '../../../data/model/product_cart.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';

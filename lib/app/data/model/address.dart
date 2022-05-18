@@ -71,20 +71,22 @@ class Address {
 
   Address.fromJson(Map<String, dynamic> json) {
 
-    id = json['id'];
-    firstname = json['firstname'];
-    lastname = json['lastname'];
-    phone = json['telephone'];
-    province = json['region']['region'];
-    district = json['city'];
+    this.id = json['id'];
+    this.firstname = json['firstname'];
+    this.lastname = json['lastname'];
+    this.phone = json['telephone'];
+    this.province = json['region']['region'];
+    this.district = json['city'];
     if (json['street'] != null) {
       json['street'].forEach((value) {
         street = [];
         street.add(value);
       });
     }
-    default_billing = json['default_billing'] ?? false;
-    default_shipping = json['default_shipping'] ?? false;
+    this.regionId = json['region']['region_id'];
+    this.countryId = json['country_id'];
+    this.default_billing = json['default_billing'] ?? false;
+    this.default_shipping = json['default_shipping'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -136,5 +138,14 @@ class Address {
         this.district.toString() +
         ", " +
         this.province.toString();
+  }
+
+  Map<String, dynamic> toJsonShipping() {
+    return {
+      "address": {
+        "country_id": this.countryId,
+        "same_as_billing": 1
+      }
+    };
   }
 }
