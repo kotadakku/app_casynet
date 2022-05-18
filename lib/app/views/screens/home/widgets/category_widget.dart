@@ -9,6 +9,8 @@ import '../../../../controller/home/api/category_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/textTheme.dart';
+import '../../../widgets/shimmer/category_shimmer.dart';
+import 'items/category_item.dart';
 
 class CategoryWidget extends StatelessWidget {
   CategoryWidget({Key? key}) : super(key: key);
@@ -16,8 +18,6 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -58,90 +58,6 @@ class CategoryWidget extends StatelessWidget {
 }
 
 
-class ItemCategoryWidget extends StatelessWidget {
-
-  final String image_url;
-  final String title;
-  ItemCategoryWidget({Key? key,required this.image_url, required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return
-      GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onTap: (){
-          Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
-        },
-        child: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ImageNetworkLoading(image_url: image_url, width: 50, height: 50,),
-              Text(title),
-            ],
-          ),
-          decoration: BoxDecoration(
-              color: Colors.amber,
-            border: Border.all(
-              color: AppColors.kBackgroundColor
-            )
-          ),
-        ),
-      ) ;
-  }
-}
 
 
-class CategoryShimer extends StatelessWidget {
-  const CategoryShimer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: 160,
-        child: Center(
-          child: Stack(
-            children: [
-              LayoutBuilder(
-                  builder: (context, constraints) {
-                    int device = constraints.maxWidth>=780 ? 5 : 3;
-                    return GridView.count(
-                        crossAxisCount: 2,
-                        childAspectRatio: (80/(ScreenUtil().screenWidth/device)),
-                        scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.all(0.0),
-                        shrinkWrap: true,
-                        children: List.generate(6, (index) => Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            ShimmerLoading(isLoading: true, child: Container(
-
-                              height: 50,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(5.0)
-                              ),
-                            )),
-                            SizedBox(height: 10,),
-                            ShimmerLoading(isLoading: true, child: Container(
-                              height: 10,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(5.0)
-                              ),
-                            )),
-
-                          ],
-                        ),)
-                    );
-                  }
-              ),
-              CircularProgressIndicator(),
-            ],
-          ),
-        )
-    );
-  }
-}
 

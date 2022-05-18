@@ -1,6 +1,6 @@
 
 // import 'package:app_casynet/app/banner/banner_provider.dart';
-import 'package:app_casynet/app/views/screens/home/widgets/appbar_home_widget.dart';
+import 'package:app_casynet/app/views/widgets/appbar/appbar_home_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/banner_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/category_bottom_widget.dart';
 import 'package:app_casynet/app/views/screens/home/widgets/category_widget.dart';
@@ -35,66 +35,63 @@ class HomePage extends StatelessWidget {
 
         },
         child: SingleChildScrollView(
-            physics: RangeMaintainingScrollPhysics(),
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  // Banner
-                  BannerHomeWidget(),
+          physics: RangeMaintainingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              // Banner
+              BannerHomeWidget(),
 
-                  // test
-                  /*Container(
-                    height: 50.0.h,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        OutlinedButton(onPressed: (){
-                          BannerDatabaseHelper.instance.getAll().then((value) {
-                            if(value?.length == 0){
-                              BannerDatabaseHelper.instance.insert();
-                            }
+              // test
+              /*Container(
+                  height: 50.0.h,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      OutlinedButton(onPressed: (){
+                        BannerDatabaseHelper.instance.getAll().then((value) {
+                          if(value?.length == 0){
+                            BannerDatabaseHelper.instance.insert();
+                          }
 
-                          });
+                        });
 
 
-                        }, child: Text("Select")),
-                        OutlinedButton(onPressed: (){}, child: Text("Insert")),
-                        OutlinedButton(onPressed: (){}, child: Text("update")),
-                        OutlinedButton(onPressed: (){}, child: Text("delete")),
-                      ],
-                    ),
-                  ),*/
-                  // Khuyến mãi
-                  TopSaleWidget(),
-                  SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
+                      }, child: Text("Select")),
+                      OutlinedButton(onPressed: (){}, child: Text("Insert")),
+                      OutlinedButton(onPressed: (){}, child: Text("update")),
+                      OutlinedButton(onPressed: (){}, child: Text("delete")),
+                    ],
+                  ),
+                ),*/
+              // Khuyến mãi
+              TopSaleWidget(),
+              SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
 
-                  SizedBox(height: 10.h),
-                  //Danh mục
-                  CategoryWidget(),
+              SizedBox(height: 10.h),
+              //Danh mục
+              CategoryWidget(),
 
-                  SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
+              SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
 
-                  //Cửa hàng
-                  StoreWidget(),
-                  SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
-                  // Đặt chỗ
-                  ReservationWidget(),
-                  // Khuyến mãi
-                  SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
-                  PromotionWidget(),
-                  SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
-                  RecommendWidget(),
-                  // Danh mục
-                  CategoryBottomWidget(),
+              //Cửa hàng
+              StoreWidget(),
+              SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+              // Đặt chỗ
+              ReservationWidget(),
+              // Khuyến mãi
+              SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+              PromotionWidget(),
+              SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+              RecommendWidget(),
+              // Danh mục
+              CategoryBottomWidget(),
 
-                  BottomWidget(),
-                ],
-              ),
-            )
+              BottomWidget(),
+            ],
+          ),
         ),
       )
     ) ;

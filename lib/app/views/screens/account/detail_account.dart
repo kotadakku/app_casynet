@@ -11,9 +11,9 @@ import 'package:intl/intl.dart';
 
 import '../../../controller/auth/authentication_manager.dart';
 import '../../../routes/app_pages.dart';
-import 'widgets/appbar_account_widget.dart';
-import 'widgets/profile_account_widget.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/shadow_of_doubt.dart';
+import 'widgets/appbar_account_widget.dart';
 
 class AccountDetailPage extends StatelessWidget {
   const AccountDetailPage({Key? key}) : super(key: key);

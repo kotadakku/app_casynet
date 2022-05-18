@@ -13,7 +13,9 @@ import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 import '../../../widgets/image_network_loading.dart';
+import '../../../widgets/shimmer/seller_shimmer.dart';
 import '../../../widgets/shimmer_loading.dart';
+import 'items/seller_item.dart';
 
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
@@ -135,6 +137,7 @@ class StoreWidget extends StatelessWidget {
               ],
             ),
           ),
+<<<<<<< HEAD
           controller.isCarStore.value == true
               ? _sellerController.obx(
                   (state) => Container(
@@ -178,12 +181,31 @@ class StoreWidget extends StatelessWidget {
                       )
                   /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
                   ),
+=======
+
+          _sellerController.obx((state) =>
+              Container(
+                padding: EdgeInsets.only(bottom: 20.0.h),
+                child: state.isEmpty ? Text("Không có cửa hàng để hiển thị")
+                    : Wrap(
+                    spacing: 5.0.w,
+                    runSpacing: 10.0,
+                    children: (state as List) .map((e) =>
+                        ItemSellerWidget(
+                          store: e,
+                        ))
+                        .toList()),
+              ),
+            onLoading: ItemSellerShimmer(),
+          ),
+>>>>>>> 037af36771cc74bddfab0120172d373643282e0f
         ],
       ),
     );
   }
 }
 
+<<<<<<< HEAD
 class ItemCuaHangWidget extends StatelessWidget {
   final Seller store;
 
@@ -428,3 +450,9 @@ class ItemCuaHangShimmer extends StatelessWidget {
     );
   }
 }
+=======
+
+
+
+
+>>>>>>> 037af36771cc74bddfab0120172d373643282e0f

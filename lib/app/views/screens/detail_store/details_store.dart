@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../controller/store_detail/detail_store_controller.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
-import '../../widgets/appbar_cart.dart';
+import '../../widgets/appbar/appbar_cart.dart';
 import '../../widgets/image_network_loading.dart';
 import 'widgets/aq_store_widget.dart';
 import 'widgets/intro_store_widget.dart';

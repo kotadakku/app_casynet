@@ -8,7 +8,7 @@ import '../theme/app_colors.dart';
 import '../theme/app_sizes.dart';
 import 'benefit/benefit_owner.dart';
 import 'benefit/benefit_store.dart';
-import 'home/widgets/appbar_home_widget.dart';
+import '../widgets/appbar/appbar_home_widget.dart';
 
 class DetailAppPage extends StatelessWidget {
   const DetailAppPage({Key? key}) : super(key: key);

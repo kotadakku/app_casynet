@@ -3,6 +3,7 @@ import 'package:app_casynet/app/controller/home/banner_page_view_controller.dart
 import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controller/home/api/banner_controller.dart';
@@ -29,7 +30,15 @@ class BannerHomeWidget extends StatelessWidget {
                 },
                 itemBuilder: (context, index){
                   if(state.isNotEmpty)
-                    return ImageNetworkLoading(image_url: state[index].image, fit: BoxFit.fitWidth);
+                    // return ImageNetworkLoading(image_url: state[index].image, fit: BoxFit.fitWidth);
+                    return Html(
+                      data: """
+                        <img class="owl-lazy" alt="Slide Image" data-src="https://client.casynet.com/pub/media/wysiwyg/slideshow/home-8/item-1.jpg" src="https://client.casynet.com/pub/media/wysiwyg/slideshow/home-8/item-1.jpg" style="opacity: 1;">
+                      """,
+                      // Styling with CSS (not real CSS)
+                      style: {
+                      },
+                    );
                   else return Center(
                     child: CircularProgressIndicator(),
                   );
