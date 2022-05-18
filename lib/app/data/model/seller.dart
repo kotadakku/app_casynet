@@ -1,15 +1,15 @@
 
 
 class Seller {
-  String? id;
+  int? id;
   String? isCar;
-  String? likeQty;
-  String? commentQty;
-  String? rate;
+  int? likeQty;
+  int? commentQty;
+  double? rate;
   String? name;
   String? phone;
   String? address;
-  String? distance;
+  double? distance;
   String? imageUrl;
   String? time_open;
   String? time_close;
@@ -42,19 +42,21 @@ class Seller {
         this.imageUrl});
 
   Seller.fromJson(Map<String, dynamic> data) {
-    id = data['id'].toString();
-    likeQty = data['liked'].toString();
-    commentQty = data['comment'].toString();
-    rate = data['vote'].toString();
-    name = data['name'].toString();
-    phone = data['phone'].toString();
-    address = data['address'].toString();
-    distance = data['distance'].toString();
-    imageUrl = "https://casynet-api.herokuapp.com"+data['images'][0]['image'];
-    time_open = data['time_open'].toString();
+    print(data);
+    id = int.parse(data['id']);
+    name = data['name'];
+    likeQty = data['like'];
+    commentQty = data['comment'];
+    rate = double.parse(data['vote'].toString());
+    imageUrl = data['images'];
+    address = data['address'];
+    distance = data['distance'];
+    phone = data['phone'];
+    // likeQty = data['liked'].toString();
+    /*time_open = data['time_open'].toString();
     time_close = data['time_close'].toString();
     intro_store = data['intro_store'].toString();
-    product_count = data['product_count'].toString();
+    product_count = data['product_count'].toString();*/
   }
 
   Map<String, dynamic> toJson() {

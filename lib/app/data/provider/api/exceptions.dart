@@ -28,7 +28,7 @@ class DioExceptions implements Exception {
       }
     }
     else{
-      message = dioError;
+      message = dioError.toString();
     }
   }
 

@@ -2,22 +2,30 @@
 import 'package:app_casynet/app/data/model/seller.dart';
 import 'package:get/get.dart';
 
-import '../../../data/model/product.dart';
 import '../../../data/repo/home_repo.dart';
 
 
 class SellerController extends GetxController with StateMixin{
   final _sellerList = <Seller>[].obs;
 
+
+
+
   @override
   void onInit() {
-    getSellersAPI();
+    getSellersAPI(pageSize: '12',cat: '');
   }
 
-  Future<void> getSellersAPI() async {
+
+  Future<void> getSellersAPI({required String pageSize, required String cat }) async {
     change(_sellerList, status: RxStatus.loading());
     try {
-      final result = await HomePageRepo().getSellers();
+      final result = await HomePageRepo().getSellers(
+        queryParameters: {
+          'pageSize': pageSize,
+          'cat': cat,
+        }
+      );
       if (result != null) {
         if (result.isSuccess) {
           _sellerList.value = result.listObjects ?? [];
@@ -40,6 +48,6 @@ class SellerController extends GetxController with StateMixin{
       print(e);
       change(_sellerList, status: RxStatus.error());
     }
-
   }
+
 }

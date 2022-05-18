@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,10 +15,10 @@ import '../../../theme/app_sizes.dart';
 import '../../../widgets/image_network_loading.dart';
 import '../../../widgets/shimmer_loading.dart';
 
-
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
   SellerController _sellerController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     RadioController controller = Get.find();
@@ -70,7 +69,6 @@ class StoreWidget extends StatelessWidget {
                           width: 6.0,
                         ),
                       )
-
                     ],
                   )
                 ],
@@ -84,29 +82,31 @@ class StoreWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Obx(()=>Row(
-                      children: [
-                        Radio(
-                            value: true,
-                            groupValue: controller.isCarStore.value,
-                            onChanged: (value) {
-                              controller.updateIsCarStore();
-                            },
-                            activeColor: Color(0xffDFB400)),
-                        Text("Ô tô"),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Radio(
-                            value: false,
-                            groupValue: controller.isCarStore.value,
-                            onChanged: (value) {
-                              controller.updateIsCarStore();
-                            },
-                            activeColor: Color(0xffDFB400)),
-                        Text("Xe máy")
-                      ],
-                    ))
+                    Obx(() => Row(
+                          children: [
+                            Radio(
+                                value: true,
+                                groupValue: controller.isCarStore.value,
+                                onChanged: (value) {
+                                  controller.updateIsCarStore();
+                                  _sellerController.getSellersAPI(pageSize: '12',cat: '');
+                                },
+                                activeColor: Color(0xffDFB400)),
+                            Text("Ô tô"),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Radio(
+                                value: false,
+                                groupValue: controller.isCarStore.value,
+                                onChanged: (value) {
+                                  controller.updateIsCarStore();
+                                  _sellerController.getSellersAPI(pageSize: '12',cat: '11');
+                                },
+                                activeColor: Color(0xffDFB400)),
+                            Text("Xe máy")
+                          ],
+                        ))
                   ],
                 ),
                 GestureDetector(
@@ -114,7 +114,6 @@ class StoreWidget extends StatelessWidget {
                   onTap: () {
                     Get.toNamed(Routes.FILTER_MAP);
                   },
-
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -133,26 +132,52 @@ class StoreWidget extends StatelessWidget {
                     ],
                   ),
                 )
-
               ],
             ),
           ),
-
-          _sellerController.obx((state) =>
-              Container(
-                padding: EdgeInsets.only(bottom: 20.0.h),
-                child: state.isEmpty ? Text("Không có cửa hàng để hiển thị")
-                    : Wrap(
-                    spacing: 5.0.w,
-                    runSpacing: 10.0,
-                    children: (state as List) .map((e) =>
-                        ItemCuaHangWidget(
-                          store: e,
-                        ))
-                        .toList()),
-              ),
-            onLoading: ItemCuaHangShimmer(),
-          ),
+          controller.isCarStore.value == true
+              ? _sellerController.obx(
+                  (state) => Container(
+                        padding: EdgeInsets.only(bottom: 20.0.h),
+                        child: state.isEmpty
+                            ? Text("Không có cửa hàng để hiển thị")
+                            : Wrap(
+                                spacing: 5.0.w,
+                                runSpacing: 10.0,
+                                children: (state as List)
+                                    .map((e) => ItemCuaHangWidget(
+                                          store: e,
+                                        ))
+                                    .toList()),
+                      ),
+                  onLoading: ItemCuaHangShimmer(),
+                  onError: (error) => InkWell(
+                        onTap: () {},
+                        child: Text("Tải lại"),
+                      )
+                  /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+                  )
+              : _sellerController.obx(
+                  (state) => Container(
+                        padding: EdgeInsets.only(bottom: 20.0.h),
+                        child: state.isEmpty
+                            ? Text("Không có cửa hàng để hiển thị")
+                            : Wrap(
+                                spacing: 5.0.w,
+                                runSpacing: 10.0,
+                                children: (state as List)
+                                    .map((e) => ItemCuaHangWidget(
+                                          store: e,
+                                        ))
+                                    .toList()),
+                      ),
+                  onLoading: ItemCuaHangShimmer(),
+                  onError: (error) => InkWell(
+                        onTap: () {},
+                        child: Text("Tải lại"),
+                      )
+                  /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+                  ),
         ],
       ),
     );
@@ -160,38 +185,35 @@ class StoreWidget extends StatelessWidget {
 }
 
 class ItemCuaHangWidget extends StatelessWidget {
- final Seller store;
+  final Seller store;
 
-  const ItemCuaHangWidget({
-    Key? key,
-    required this.store
-  }) : super(key: key);
+  const ItemCuaHangWidget({Key? key, required this.store}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     CuaHangController controller = Get.put(CuaHangController());
     return LayoutBuilder(builder: (context, constraints) {
-      var divide = constraints.maxWidth > 785? 3: 2;
+      var divide = constraints.maxWidth > 785 ? 3 : 2;
       return Container(
-        width:  (1/divide).sw - 7.5.w,
+        width: (1 / divide).sw - 7.5.w,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
                 onTap: () {
-                  if (store != null) Get.toNamed(
-                      Routes.STORE_DETAIL, arguments: { 'store': store});
+                  if (store != null)
+                    Get.toNamed(Routes.STORE_DETAIL,
+                        arguments: {'store': store});
                   FocusScope.of(context).unfocus();
                 },
                 child: Container(
                   height: 120.w,
-                  width:  (1/divide).sw - 7.5.w,
+                  width: (1 / divide).sw - 7.5.w,
                   child: ImageNetworkLoading(
                     image_url: store.imageUrl.toString(),
                     fit: BoxFit.fill,
                   ),
-                )
-            ),
+                )),
             Container(
               padding: EdgeInsets.all(5.0),
               color: Color(0xffEFF1FC),
@@ -208,7 +230,11 @@ class ItemCuaHangWidget extends StatelessWidget {
                       SizedBox(
                         width: 2,
                       ),
-                      Text(this.store.likeQty == null ? '0': store.likeQty.toString(), style: TextStyle(fontSize: 13))
+                      Text(
+                          this.store.likeQty == null
+                              ? '0'
+                              : store.likeQty.toString(),
+                          style: TextStyle(fontSize: 13))
                     ],
                   ),
                   Row(
@@ -221,19 +247,20 @@ class ItemCuaHangWidget extends StatelessWidget {
                       SizedBox(
                         width: 2,
                       ),
-                      Text(store.commentQty == null ? '0' : store.commentQty.toString(),
+                      Text(
+                          store.commentQty == null
+                              ? '0'
+                              : store.commentQty.toString(),
                           style: TextStyle(fontSize: 13))
                     ],
                   ),
                   Row(
                     children: [
                       Text(store.rate == null ? '0.0' : store.rate.toString(),
-                          style: TextStyle(fontSize: 15)
-                      ),
+                          style: TextStyle(fontSize: 15)),
                       SizedBox(
                         width: 2,
                       ),
-
                       Icon(
                         Icons.star_outlined,
                         color: kTextColor_gray,
@@ -253,22 +280,20 @@ class ItemCuaHangWidget extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      if (store != null) Get.toNamed(
-                          Routes.STORE_DETAIL, arguments: { 'store': store});
+                      if (store != null)
+                        Get.toNamed(Routes.STORE_DETAIL,
+                            arguments: {'store': store});
                       FocusScope.of(context).unfocus();
                     },
                     child: Text(
                       store.name.toString(),
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 15.sp
-                      ),
+                      style: TextStyle(fontSize: 15.sp),
                     ),
                   ),
                 ),
                 GestureDetector(
-
-                  onTap: (){
+                  onTap: () {
                     controller.callPhone(store.phone.toString());
                   },
                   child: Container(
@@ -302,11 +327,12 @@ class ItemCuaHangWidget extends StatelessWidget {
                       ),
                       Expanded(
                           child: Text(
-                          store.address == null? 'Chưa có thông tin' :
-                            store.address.toString(),
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 12.sp),
-                          ))
+                        store.address == null
+                            ? 'Chưa có thông tin'
+                            : store.address.toString(),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 12.sp),
+                      ))
                     ],
                   ),
                 ),
@@ -321,7 +347,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                       width: 3,
                     ),
                     Text(
-                      "${store.distance == null? 0.0: store.distance} km",
+                      "${store.distance == null ? 0.0 : store.distance} km",
                       style: TextStyle(fontSize: 12.sp),
                     )
                   ],
@@ -344,58 +370,61 @@ class ItemCuaHangShimmer extends StatelessWidget {
       child: Wrap(
           spacing: 5.0.w,
           runSpacing: 10.0,
-          children:  List.generate(12, (index) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ShimmerLoading(isLoading: true,
-                child: Container(
-                  height: 120.w,
-                  width:  0.5.sw - 7.5.w,
-                  margin: EdgeInsets.only(bottom: 5.h),
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-              ),
-              ShimmerLoading(isLoading: true,
-                child: Container(
-                  height: 12,
-                  margin: EdgeInsets.only(bottom: 5.h),
-                  width:  0.5.sw - 7.5.w,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-              ),
-              ShimmerLoading(isLoading: true,
-                child: Container(
-                  height: 12,
-                  margin: EdgeInsets.only(bottom: 5.h),
-                  width:  0.2.sw - 7.5.w,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-              ),
-              ShimmerLoading(isLoading: true,
-                child: Container(
-                  height: 12,
-                  margin: EdgeInsets.only(bottom: 5.h),
-                  width:  0.3.sw - 7.5.w,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-              ),
-            ],
-          )
-          )
-      ),
+          children: List.generate(
+              12,
+              (index) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ShimmerLoading(
+                        isLoading: true,
+                        child: Container(
+                          height: 120.w,
+                          width: 0.5.sw - 7.5.w,
+                          margin: EdgeInsets.only(bottom: 5.h),
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                        ),
+                      ),
+                      ShimmerLoading(
+                        isLoading: true,
+                        child: Container(
+                          height: 12,
+                          margin: EdgeInsets.only(bottom: 5.h),
+                          width: 0.5.sw - 7.5.w,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                        ),
+                      ),
+                      ShimmerLoading(
+                        isLoading: true,
+                        child: Container(
+                          height: 12,
+                          margin: EdgeInsets.only(bottom: 5.h),
+                          width: 0.2.sw - 7.5.w,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                        ),
+                      ),
+                      ShimmerLoading(
+                        isLoading: true,
+                        child: Container(
+                          height: 12,
+                          margin: EdgeInsets.only(bottom: 5.h),
+                          width: 0.3.sw - 7.5.w,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))),
     );
   }
 }
-

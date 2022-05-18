@@ -97,14 +97,16 @@ class HomePageRepo{
       return Responses<Sales>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Responses<Seller>> getSellers() async {
+
+  Future<Responses<Seller>> getSellers({Map<String, dynamic>?  queryParameters}) async {
     try{
       final response = await ApiRequest().get(
-        path: "https://casynet-api.herokuapp.com/api?isCar=1",
+        path: ApiConfig.baseUrl + "/rest/V1/SellerHomePage",
+        queryParameters: queryParameters
       );
       if(response != null){
         List<Seller> sellers = List<Seller>.from(
-            (response.data['stores'] as List).map((e) => Seller.fromJson(e))
+            (response.data as List).map((e) => Seller.fromJson(e))
         );
         return Responses<Seller>(isSuccess: true, listObjects: sellers);
       }
@@ -114,10 +116,11 @@ class HomePageRepo{
       return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
   Future<Responses<Seller>> getSeller(int id) async {
     try{
       final response = await ApiRequest().get(
-        path: "https://casynet-api.herokuapp.com/api/store/$id",
+        path: ApiConfig.baseUrl + "/rest/V1/SellerHomePage",
       );
       if(response != null){
         Seller seller = Seller.fromJson(response.data);

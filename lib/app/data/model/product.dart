@@ -41,7 +41,7 @@ class Product {
     coinPoint = json["point"];
     store = Seller(
         name: json["store"]["name"].toString(),
-        distance: json["store"]["distance"].toString()
+        distance: json["store"]["distance"]
     );
   }
 
