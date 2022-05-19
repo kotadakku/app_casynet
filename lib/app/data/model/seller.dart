@@ -41,6 +41,7 @@ class Seller {
         this.distance,
         this.imageUrl});
 
+  // json trả về và gán vào UI
   Seller.fromJson(Map<String, dynamic> data) {
     print(data);
     id = int.parse(data['id']);

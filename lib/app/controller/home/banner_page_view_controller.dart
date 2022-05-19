@@ -19,7 +19,7 @@ class BannerController extends GetxController{
 
   void _autoPageView(){
     _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-      if (current_banner.value < Get.put(FetchBannerController()).bannersList.length-1) {
+      if (current_banner.value < Get.put(FetchBannerController()).bannerSliderNewList.length-1) {
         current_banner.value++;
       } else {
         current_banner.value = 0;
@@ -34,7 +34,7 @@ class BannerController extends GetxController{
 
   void swippingPageView(details){
     if (details.velocity.pixelsPerSecond.dx > 0) {
-      if(current_banner.value < Get.put(FetchBannerController()).bannersList.length -1)
+      if(current_banner.value < Get.put(FetchBannerController()).bannerSliderNewList.length -1)
         current_banner.value++;
       else current_banner.value = 0;
       pageController.animateToPage(
@@ -48,7 +48,7 @@ class BannerController extends GetxController{
     if (details.velocity.pixelsPerSecond.dx < 0) {
       if(current_banner.value > 0)
         current_banner.value--;
-      else current_banner.value = Get.put(FetchBannerController()).bannersList.length -1;
+      else current_banner.value = Get.put(FetchBannerController()).bannerSliderNewList.length -1;
       pageController.animateToPage(
         current_banner.value,
         duration: Duration(milliseconds: 500),

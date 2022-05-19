@@ -1,23 +1,40 @@
 
 import 'dart:convert';
 
-import 'package:app_casynet/app/data/model/address.dart';
 import 'package:app_casynet/app/data/model/banner_slider.dart';
+import 'package:app_casynet/app/data/model/banner_slider_new.dart';
 import 'package:app_casynet/app/data/model/sales.dart';
-import 'package:app_casynet/data.dart';
 import 'package:dio/dio.dart';
 
+import '../../config/api_config.dart';
 import '../../config/api_params.dart';
 import '../model/category.dart';
 import '../model/product.dart';
 import '../model/responses.dart';
-import '../../config/api_config.dart';
 import '../model/seller.dart';
 import '../model/user.dart';
 import '../provider/api/api_provider.dart';
 import '../provider/api/exceptions.dart';
 
 class HomePageRepo{
+
+  // new
+  Future<Responses<BannerSliderNew>?> getBannerSliderNews() async{
+    try{
+      final responses = await ApiRequest().get(
+          path: ApiConfig.banners
+      );
+      if(responses != null){
+        List<BannerSliderNew> banners = List<BannerSliderNew>.from(
+            (responses.data['banner'.replaceAll("\\","").split(">")] as List).map((e) => BannerSliderNew.fromJson)
+        );
+        return Responses<BannerSliderNew>(isSuccess: true, listObjects: banners);
+      }
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<BannerSliderNew>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
 
   Future<Responses<BannerSlider>> getBanners() async {
     try{
