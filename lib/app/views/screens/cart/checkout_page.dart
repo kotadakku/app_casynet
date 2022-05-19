@@ -1,26 +1,25 @@
 import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+import 'package:app_casynet/app/controller/cart/api/payment_method_controller.dart';
+import 'package:app_casynet/app/controller/cart/checkout_controller.dart';
 import 'package:app_casynet/app/views/widgets/appbar/appbar_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../../controller/cart/item_selection_controller.dart';
+import '../../../controller/cart/api/shipping_method_controller.dart';
 import '../../../routes/app_pages.dart';
-import 'checkout_success.dart';
 
 class CheckoutPage extends StatelessWidget {
   CheckoutPage({Key? key}) : super(key: key);
   static const IconData map = IconData(0xe3c8, fontFamily: 'MaterialIcons');
 
-  // int _valuePayment = 0;
-  ItemSelectionController itemSelectionController =
-      Get.put(ItemSelectionController());
+  CheckoutController _checkoutController = Get.find();
+  ShippingMethodController _shippingMethodController = Get.find();
+  PaymentMethodController _paymentMethodController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBarCartWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -58,39 +57,39 @@ class CheckoutPage extends StatelessWidget {
                   children: [
                     Expanded(
                         child: Row(
-                      children: [
-                        const Icon(
-                          map,
-                          size: 30,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 5.0),
-                          child: const Text(
-                            "Địa chỉ nhận hàng",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        )
-                      ],
-                    )),
+                          children: [
+                            const Icon(
+                              map,
+                              size: 30,
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 5.0),
+                              child: const Text(
+                                "Địa chỉ nhận hàng",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            )
+                          ],
+                        )),
                     Expanded(
                         child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
 //button thay đổi
-                        TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              "Thay đổi",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(255, 0, 85, 170)),
-                            ))
-                      ],
-                    ))
+                            TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "Thay đổi",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color.fromARGB(255, 0, 85, 170)),
+                                ))
+                          ],
+                        ))
                   ],
                 ),
               ),
@@ -109,66 +108,57 @@ class CheckoutPage extends StatelessWidget {
                 child: Column(
                   children: [
 //Thông tin khách hàng
-                    GetBuilder<AuthenticationManager>(
-                      init: AuthenticationManager(),
-                      builder: (c) => Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              c.user_current.lastname.toString(),
-                              style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(255, 34, 34, 34)),
-                            )
-                          ],
-                        ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            _checkoutController.address_default.lastname?? '',
+                            style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 34, 34, 34)),
+                          )
+                        ],
                       ),
                     ),
 
 // Số điện thoại khách hàng
-                    GetBuilder<AuthenticationManager>(
-                      init: AuthenticationManager(),
-                      builder: (c) => Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(Icons.call),
-                            Text(
-                              c.user_current.phone.toString(),
-                              style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w300,
-                                  color: Color.fromARGB(255, 102, 102, 102)),
-                            )
-                          ],
-                        ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.call),
+                          Text(
+                            _checkoutController.address_default.phone??'',
+                            style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w300,
+                                color: Color.fromARGB(255, 102, 102, 102)),
+                          )
+                        ],
                       ),
                     ),
 
-                    GetBuilder<AuthenticationManager>(
-                      init: AuthenticationManager(),
-                      builder: (c) => Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(Icons.location_on),
-                            Expanded(
-                              child: Text(
-                                '${c.user_current.addresses.where((element) => element.default_shipping == true).first.address()}',
-                                /*"34 Vũ Phạm Hàm, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội",*/
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w300,
-                                    color: Color.fromARGB(255, 102, 102, 102)),
-                              ),
-                            )
-                          ],
-                        ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.location_on),
+                          Expanded(
+                            child: Text(
+                              '${_checkoutController.address_default.street[0]}',
+                              /*"34 Vũ Phạm Hàm, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội",*/
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w300,
+                                  color: Color.fromARGB(255, 102, 102, 102)),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ],
@@ -190,26 +180,44 @@ class CheckoutPage extends StatelessWidget {
                   children: [
                     Expanded(
                         child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/cart/icon_giaohang.png",
-                          width: 30,
-                          height: 30,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 5.0),
-                          child: const Text(
-                            "Phương thức vận chuyển",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        )
-                      ],
-                    )),
+                          children: [
+                            Image.asset(
+                              "assets/cart/icon_giaohang.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 5.0),
+                              child: const Text(
+                                "Phương thức vận chuyển",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            )
+                          ],
+                        )),
                   ],
                 ),
+              ),
+              _shippingMethodController.obx((state) =>
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                    itemCount: state.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index){
+                      return RadioListTile<String>(
+                        value: state[index].carrierCode,
+                        groupValue: _checkoutController.selectShippingMethod.value,
+                        onChanged: (value){
+                            _checkoutController.onChangeSelectShipping(state[index]);
+                        },
+                        title: Text('${state[index].carrierTitle}'),
+                      );
+                    }
+                ),
+                onLoading: CircularProgressIndicator(),
               ),
               SizedBox(
                 height: 3,
@@ -217,12 +225,12 @@ class CheckoutPage extends StatelessWidget {
                   color: const Color.fromARGB(255, 242, 245, 253),
                 ),
               ),
-              Container(
-                alignment: const Alignment(0, 0),
-                color: const Color.fromARGB(255, 255, 255, 255),
-                padding: const EdgeInsets.only(left: 5.0),
-                height: 90,
-              ),
+              // Container(
+              //   alignment: const Alignment(0, 0),
+              //   color: const Color.fromARGB(255, 255, 255, 255),
+              //   padding: const EdgeInsets.only(left: 5.0),
+              //   height: 90,
+              // ),
               SizedBox(
                 height: 10,
                 child: Container(
@@ -239,24 +247,24 @@ class CheckoutPage extends StatelessWidget {
                   children: [
                     Expanded(
                         child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/cart/icon_payment1.png",
-                          width: 30,
-                          height: 30,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 5.0),
-                          child: const Text(
-                            "Phương thức thanh toán",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        )
-                      ],
-                    )),
+                          children: [
+                            Image.asset(
+                              "assets/cart/icon_payment1.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 5.0),
+                              child: const Text(
+                                "Phương thức thanh toán",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            )
+                          ],
+                        )),
                   ],
                 ),
               ),
@@ -267,132 +275,24 @@ class CheckoutPage extends StatelessWidget {
                 ),
               ),
 //Phương thức thanh toán
-              ListView(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                children: [
-                  ListTile(
-                      title: const Text("Tiền mặt khi nhận hàng"),
-                      subtitle: const Text("Thu phí hộ: Miễn Phí"),
-                      leading: Obx(
-                        () => Radio(
-                          groupValue:
-                              itemSelectionController.selectedItem.value,
+              _paymentMethodController.obx((state) =>
+                  ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: state.length,
+                    itemBuilder: (context, index){
+                      return RadioListTile<String>(
+                          title: Text("${state[index].title}"),
+                          subtitle: const Text("Thu phí hộ: Miễn Phí"),
                           onChanged: (value) {
-                            itemSelectionController.onChangeItem(value);
+                            _checkoutController.onChangeItem(state[index]);
                           },
-                          value: "tienMat",
-                        ),
-                      )),
-                  ListTile(
-                      title: const Text("Ví SenPay"),
-                      subtitle: Container(
-                        child: Row(
-                          children: const [
-                            Text("Liên kết:",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 127, 170, 212),
-                                    fontSize: 13)),
-                            Expanded(
-                              child: Text(
-                                  "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 10)),
-                            ),
-                          ],
-                        ),
-                      ),
-                      leading: Obx(() => Radio(
-                            groupValue:
-                                itemSelectionController.selectedItem.value,
-                            onChanged: (value) {
-                              itemSelectionController.onChangeItem(value);
-                            },
-                            value: "viSenPay",
-                          ))),
-                  ListTile(
-                      title: const Text("Ngân hàng liên kết trực tiếp"),
-                      subtitle: Container(
-                        child: Row(
-                          children: const [
-                            Text("Liên kết:",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 127, 170, 212),
-                                    fontSize: 13)),
-                            Expanded(
-                                child: Text(
-                                    "Ví SenPay để trải nghiệm thanh toán nhanh qua ngân hàng liên kết trực tiếp",
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 10))),
-                          ],
-                        ),
-                      ),
-                      leading: Obx(() => Radio(
-                            groupValue:
-                                itemSelectionController.selectedItem.value,
-                            onChanged: (value) {
-                              itemSelectionController.onChangeItem(value);
-                            },
-                            value: "nganHangLienKet",
-                          ))),
-                  ListTile(
-                      title: const Text("Thẻ ATM đã đăng ký Internet Banking"),
-                      leading: Obx(() => Radio(
-                            groupValue:
-                                itemSelectionController.selectedItem.value,
-                            onChanged: (value) {
-                              itemSelectionController.onChangeItem(value);
-                            },
-                            value: "theATM",
-                          ))),
-                  ListTile(
-                      title: const Text("Thẻ tín dụng/Thẻ ghi nợ"),
-                      // subtitle: Container(
-                      //   child: Row(
-                      //     children: [
-                      //       Text("Liên kết:",
-                      //           style: TextStyle(
-                      //               color: Color.fromARGB(255, 127, 170, 212))),
-                      //       Text(
-                      //           "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
-                      //           style: TextStyle(
-                      //               color: Colors.black))
-                      //     ],
-                      //   ),
-                      // ),
-                      leading: Obx(() => Radio(
-                            groupValue:
-                                itemSelectionController.selectedItem.value,
-                            onChanged: (value) {
-                              itemSelectionController.onChangeItem(value);
-                            },
-                            value: "theTinDung",
-                          ))),
-                  ListTile(
-                      title: const Text("Chuyển Khoản"),
-                      // subtitle: Container(
-                      //   child: Row(
-                      //     children: [
-                      //       Text("Liên kết:",
-                      //           style: TextStyle(
-                      //               color: Color.fromARGB(255, 127, 170, 212))),
-                      //       Text(
-                      //           "Ví SenPay để thanh toán nhanh hơn và nhận các ưu đãi hoàn tiền",
-                      //           style: TextStyle(
-                      //               color: Colors.black))
-                      //     ],
-                      //   ),
-                      // ),
-                      leading: Obx(() => Radio(
-                            groupValue:
-                                itemSelectionController.selectedItem.value,
-                            onChanged: (value) {
-                              itemSelectionController.onChangeItem(value);
-                            },
-                            value: "chuyenKhoan",
-                          ))),
-                ],
+                          value: state[index].code,
+                          groupValue: _checkoutController.selectPayment.value,
+                      );
+                    },
+                  ),
               ),
 //Thông tin xuất hóa đơn
               Container(
@@ -460,7 +360,7 @@ class CheckoutPage extends StatelessWidget {
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(2.5),
                             backgroundColor:
-                                const Color.fromARGB(255, 4, 119, 233),
+                            const Color.fromARGB(255, 4, 119, 233),
                             primary: Colors.white,
                             textStyle: const TextStyle(fontSize: 15),
                           ),
@@ -563,6 +463,6 @@ class CheckoutPage extends StatelessWidget {
           ),
         ),
       ),
-    ));
+    );
   }
 }

@@ -1,15 +1,17 @@
 
-import 'package:app_casynet/app/controller/cart/item_product_in_cart_controller.dart';
+import 'dart:convert';
+
+import 'package:app_casynet/app/controller/cart/api/product_cart_controller.dart';
 import 'package:app_casynet/app/data/provider/api/api_provider.dart';
+import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/model/user.dart';
-import 'cache_manager.dart';
 
 
-class AuthenticationManager extends GetxController with CacheManager {
+class AuthenticationManager extends GetxController {
   final isLogged = false.obs;
   late User user_current = User();
   ProductCartController _ProductCartController = Get.put(
@@ -17,18 +19,24 @@ class AuthenticationManager extends GetxController with CacheManager {
 
   void logOut() {
     isLogged.value = false;
-    removeUser();
-    removeToken();
+    GetStorageProvider().delete(key: CacheManagerKey.TOKEN.toString());
+    GetStorageProvider().delete(key: CacheManagerKey.USER.toString());
+    GetStorageProvider().delete(key: CacheManagerKey.USER_LOGIN.toString());
     _ProductCartController.clearCart();
   }
 
   Future<void> login(String? token, User user) async {
     if (token != null) {
-      saveToken(token);
-      saveInfoLogin(user.toJsonLogin());
+      await GetStorageProvider().save(
+          key: CacheManagerKey.TOKEN.toString(),
+          value: token);
+      await GetStorageProvider().save(
+        key: CacheManagerKey.USER_LOGIN.toString(),
+        value: json.encode(user.toJsonLogin())
+      );
       await fetchUserAPI(token);
-      _ProductCartController.getCartAPI(token);
       isLogged.value = true;
+      _ProductCartController.getCartAPI(token);
     }
   }
 
@@ -42,7 +50,6 @@ class AuthenticationManager extends GetxController with CacheManager {
     if (result != null) {
       if (result.isSuccess && result.objects != null) {
         user_current = result.objects!;
-        saveUsers(user_current.toJsonUserDb());
       }
       else {
         print(result.msg);
@@ -52,19 +59,20 @@ class AuthenticationManager extends GetxController with CacheManager {
   }
 
   Future<void> getDataUser(String token) async {
-    final user = getUsers();
+    final stringUser = await GetStorageProvider().get(key: CacheManagerKey.USER.toString());
 
-    if (user != null) {
+
+    if (stringUser != null) {
       print("<AUTH> GET DB");
-      user_current = user;
+      user_current = User.successLogin(json.decode(stringUser));
     }
     else {
       fetchUserAPI(token);
       _ProductCartController.getCartAPI(token);
     }
   }
-  void checkLoginStatus() {
-    final token = getToken();
+  void checkLoginStatus() async {
+    final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
 
     if (token != null) {
       getDataUser(token);

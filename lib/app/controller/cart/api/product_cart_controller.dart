@@ -1,20 +1,20 @@
 
 import 'package:app_casynet/app/data/model/product_cart.dart';
 import 'package:app_casynet/app/config/config_db.dart';
+import 'package:app_casynet/app/data/repo/cart_repo.dart';
 import "package:collection/collection.dart";
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
-import '../../data/provider/db/db_provider.dart';
-import '../../data/repo/account_repo.dart';
-import '../auth/authentication_manager.dart';
-import '../auth/cache_manager.dart';
+import '../../../data/provider/db_provider.dart';
+import '../../../data/provider/get_storage_provider.dart';
+import '../../../data/repo/account_repo.dart';
+import '../../auth/authentication_manager.dart';
 
-class ProductCartController extends GetxController with CacheManager, StateMixin {
+class ProductCartController extends GetxController with StateMixin {
   final _productsCartList = <ProductCart>[].obs;
   var cartsByStore = {}.obs;
-  var isLoading = true;
-  var isLoadingComplete = true;
   var sumPriceValue = 0.obs;
   var countCart = 0.obs;
   RxList checkBoxProduct = [].obs;
@@ -23,10 +23,24 @@ class ProductCartController extends GetxController with CacheManager, StateMixin
   void onInit() {
     getCartDB();
   }
-  void deleteRow(int? id ){
-    DatabaseHelper.instance.deleteRow(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, id);
-    getCartDB();
-    update();
+  void deleteRow(int? id ) {
+    Get.defaultDialog(
+        title: 'Thông báo',
+        middleText: 'Bạn chắc chắn xóa sản phẩm này!',
+        textCancel: "Bỏ",
+        textConfirm: 'Đồng ý',
+        confirmTextColor: Colors.white,
+        onConfirm: () async {
+          Get.back();
+          change(cartsByStore, status: RxStatus.loading());
+          await deleteItemCartAPI(id);
+          DatabaseHelper.instance.deleteRow(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, id);
+          getCartDB();
+        },
+        onCancel: (){
+          Get.back();
+        }
+    );
   }
 
   void incrementProductCartDB(ProductCart productCart)  {
@@ -38,7 +52,7 @@ class ProductCartController extends GetxController with CacheManager, StateMixin
             DBConfig.CART_COLUMN_P_ID,
             DBConfig.CART_COLUMN_QUANTITY,
             productCart.p_id,).then((value){
-          if(_autheticationManager.isLogged== true) updateCartAPI(productCart, 1);
+          if(_autheticationManager.isLogged== true) addItemCartAPI(productCart, 1);
           getCartDB();
         });
       }
@@ -97,38 +111,20 @@ class ProductCartController extends GetxController with CacheManager, StateMixin
 
         }
         else{
-          Get.snackbar("Thông báo", result.msg.toString(),
-              backgroundColor: Colors.black.withOpacity(0.3));
+          // Get.snackbar("Thông báo", result.msg.toString(),
+          //     backgroundColor: Colors.black.withOpacity(0.3));
           change(cartsByStore, status: RxStatus.error());
         }
       }
     } catch(error) {
-      Get.snackbar("Thông báo", "error:: $error",
-          backgroundColor: Colors.black.withOpacity(0.3));
+      // Get.snackbar("Thông báo", "error:: $error",
+      //     backgroundColor: Colors.black.withOpacity(0.3));
       change(cartsByStore, status: RxStatus.error());
     }
   }
-  void saveProductCartDB(ProductCart productCart)  {
-    DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){
-      print("<DB> row exist $value");
-      if(value){
-        DatabaseHelper.instance.incrementQuantity(DBConfig.TABLE_CART,
-          DBConfig.CART_COLUMN_P_ID,
-          DBConfig.CART_COLUMN_QUANTITY,
-          productCart.p_id,).then((value){
-        });
-        getCartDB();
-      }
-      else{
-        print("DB Insert to Cart");
-        DatabaseHelper.instance.insert(DBConfig.TABLE_CART, productCart.toJson()).then((value){
-         getCartDB();
-        });
-      }
-    });
-  }
-  Future<void> updateCartAPI(ProductCart productCart, int qty) async {
-    final token = await getToken();
+
+  Future<void> addItemCartAPI(ProductCart productCart, int qty) async {
+    final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
 
     if(productCart.cartId == null){
       try{
@@ -141,7 +137,7 @@ class ProductCartController extends GetxController with CacheManager, StateMixin
         );
         if(result.isSuccess){
           productCart.cartId = result.objects;
-          updateCartAPI(productCart, qty);
+          addItemCartAPI(productCart, qty);
           return ;
         }
       }catch(error){
@@ -171,10 +167,54 @@ class ProductCartController extends GetxController with CacheManager, StateMixin
 
       }
       catch(error){
-        Get.snackbar("Thông báo", "error:: $error",
-            backgroundColor: Colors.black.withOpacity(0.3));
+        // Get.snackbar("Thông báo", "error:: $error",
+        //     backgroundColor: Colors.black.withOpacity(0.3));
+        print('<ADD ITEM CART> $error');
       }
     }
+  }
+
+  Future<void> updateItemCartAPI(ProductCart productCart) async {
+    int? item_id = productCart.item_id;
+    final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
+    if(item_id!= null){
+      try{
+        final result = await CartRepo().updateItemCart(
+            item_id: item_id,
+          options: Options(
+              headers: {
+                'Authorization':'Bearer $token'
+              }
+          )
+        );
+        if(result.isSuccess){
+
+        }
+      } catch(error){
+        print('<UPDATE ITEM CART> $error');
+      }
+    }
+  }
+  Future<bool> deleteItemCartAPI(int? id) async {
+    final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
+    if(id != null){
+      try{
+        final result = await CartRepo().deleteItemCart(item_id: id,
+          options: Options(
+            headers: {
+              'Authorization':'Bearer $token'
+            }
+          )
+        );
+        if(result.isSuccess){
+          return true;
+        }
+        return false;
+      } catch(error) {
+        print('<DELETE ITEM CART> $error');
+      }
+    }
+    return false;
   }
   void getCartDB() async {
     print("<GET PRODUCT DB>");
@@ -183,20 +223,40 @@ class ProductCartController extends GetxController with CacheManager, StateMixin
       _productsCartList.clear();
       value?.forEach((element) {
         _productsCartList.add(ProductCart(
-          p_id: element['p_id'],
-          p_sku: element['p_sku'],
-          p_name: element['p_name'],
-          p_image: element['p_image'],
-          price: element['price'],
-          discount_price: element['discount_price'],
-          quantity: element['quantity'],
-          s_name: element['s_name'],
-          cartId: element['cartId'],
+          p_id: element[DBConfig.CART_COLUMN_P_ID],
+          item_id: element[DBConfig.CART_COLUMN_ITEM_ID],
+          p_sku: element[DBConfig.CART_COLUMN_P_SKU],
+          p_name: element[DBConfig.CART_COLUMN_P_NAME],
+          p_image: element[DBConfig.CART_COLUMN_P_IMAGE],
+          price: element[DBConfig.CART_COLUMN_PRICE],
+          discount_price: element[DBConfig.CART_COLUMN_DIS_PRICE],
+          quantity: element[DBConfig.CART_COLUMN_QUANTITY],
+          s_name: element[DBConfig.CART_COLUMN_S_NAME],
+          cartId: element[DBConfig.CART_COLUMN_CART_ID],
         ));
       });
       cartsByStore.value = groupBy(_productsCartList, (ProductCart obj) => obj.s_name);
       calsumPrice();
       change(cartsByStore, status: RxStatus.success());
+    });
+  }
+  void saveProductCartDB(ProductCart productCart)  {
+    DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){
+      print("<DB> row exist $value");
+      if(value){
+        DatabaseHelper.instance.incrementQuantity(DBConfig.TABLE_CART,
+          DBConfig.CART_COLUMN_P_ID,
+          DBConfig.CART_COLUMN_QUANTITY,
+          productCart.p_id,).then((value){
+        });
+        getCartDB();
+      }
+      else{
+        print("DB Insert to Cart");
+        DatabaseHelper.instance.insert(DBConfig.TABLE_CART, productCart.toJson()).then((value){
+          getCartDB();
+        });
+      }
     });
   }
   void calsumPrice(){

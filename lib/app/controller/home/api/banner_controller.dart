@@ -3,7 +3,7 @@ import 'package:app_casynet/app/data/model/banner_slider_new.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/banner_slider.dart';
-import '../../../data/provider/db/db_provider.dart';
+import '../../../data/provider/db_provider.dart';
 import '../../../data/repo/home_repo.dart';
 
 class FetchBannerController extends GetxController with StateMixin{

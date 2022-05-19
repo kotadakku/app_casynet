@@ -1,5 +1,5 @@
 import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
-import 'package:app_casynet/app/controller/cart/item_product_in_cart_controller.dart';
+import 'package:app_casynet/app/controller/cart/api/product_cart_controller.dart';
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:app_casynet/app/utlis/int_to_price.dart';
 import 'package:app_casynet/app/views/theme/app_colors.dart';
@@ -57,7 +57,9 @@ class Cart extends StatelessWidget {
                     itemCartStore: e.value ,
                   )).toList()
               ),
-              onLoading: CircularProgressIndicator(),
+              onLoading: Center(
+                child: CircularProgressIndicator(),
+              )
             )
           ),
           Material(
@@ -201,11 +203,17 @@ class Cart extends StatelessWidget {
                           ),
                           // sự kiện chuyển màn
                           onPressed: () {
-                            (_authenticationManager.isLogged.value || _authenticationManager.user_current == null) ? Get.toNamed(Routes.CHECKOUT)
-                            : Get.toNamed(Routes.AUTH, arguments: 0);
-                            // _authenticationManager.isLogged == true? Get.toNamed(Routes.CHECKOUT): Get.toNamed(Routes.AUTH);
+                            if(!_authenticationManager.isLogged.value || _authenticationManager.user_current.id == null){
+                              Get.toNamed(Routes.AUTH, arguments: 0);
+                              return;
+                            }
+                            if(_productCartCOntroller.checkBoxProduct.length <= 0){
+                              print("error");
+                              Get.snackbar("Thông báo", "Vui lòng chọn ít nhất một sản phẩm để tiếp tục",);
+                            }
+                            else Get.toNamed(Routes.CHECKOUT);
                           },
-                          child: const Text(
+                          child: Text(
                             'Tiến hành đặt hàng',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,

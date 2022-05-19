@@ -18,6 +18,7 @@ class DBConfig{
   static final String CATEGORY_COLUMN_TITLE = 'name';
 
   static final String TABLE_CART = 'cart';
+  static final String CART_COLUMN_ITEM_ID = 'item_id';
   static final String CART_COLUMN_P_ID = 'p_id';
   static final String CART_COLUMN_P_SKU = 'p_sku';
   static final String CART_COLUMN_P_IMAGE = 'p_image';

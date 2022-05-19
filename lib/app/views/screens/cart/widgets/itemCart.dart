@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/cart/item_product_in_cart_controller.dart';
+import '../../../../controller/cart/api/product_cart_controller.dart';
 import '../../../../data/model/product_cart.dart';
 
 class ItemCart extends StatelessWidget {
@@ -247,12 +247,8 @@ class ItemCart extends StatelessWidget {
                                         splashColor: const Color.fromARGB(
                                             255, 227, 227, 227),
                                         onTap: (){
-                                          if (int.parse(textController.text) <= 0) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(const SnackBar(
-                                              content: Text(
-                                                  "số lượng đã tối thiểu, phải lớn hơn 0"),
-                                            ));
+                                          if (int.parse(textController.text) <= 1) {
+                                            _productCartController.deleteRow(itemCartStore[index].item_id);
                                           } else {
                                             _productCartController.updateQuantity((int.parse(textController.text) -1),itemCartStore[index]);
                                             textController.text = (int.parse(textController.text) -1).toString();
@@ -355,7 +351,7 @@ class ItemCart extends StatelessWidget {
                                     splashColor: const Color.fromARGB(
                                         255, 227, 227, 227),
                                     onTap: () {
-                                      _productCartController.deleteRow(itemCartStore[index].p_id);
+                                      _productCartController.deleteRow(itemCartStore[index].item_id);
                                     },
                                     child: SizedBox(
                                         child: Row(

@@ -1,8 +1,11 @@
 
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
 class ProductCart {
   // API thiếu tên cửa hàng
   /*String? */
   int? p_id;
+  int? item_id;
   String? p_sku;
   String? p_image;
   String? p_name;
@@ -12,13 +15,14 @@ class ProductCart {
   int? quantity;
   int? cartId;
 
-  ProductCart({this.p_id, this.p_sku,
+  ProductCart({this.p_id,this.item_id, this.p_sku,
     this.p_image, this.p_name, this.s_name,
     this.discount_price, this.price, this.quantity,
     this.cartId
   });
 
   ProductCart.fromJson(Map<String, dynamic> json) {
+    item_id = json['item_id'];
     p_id = json['item_id'];
     p_sku = json['sku'];
     p_image = json[''];
@@ -33,6 +37,7 @@ class ProductCart {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['p_id'] = this.p_id;
+    data['item_id'] = this.item_id;
     data['p_sku'] = this.p_sku;
     data['p_name'] = this.p_name;
     data['p_image'] = this.p_image;

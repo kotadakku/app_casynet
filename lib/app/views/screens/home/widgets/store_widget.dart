@@ -174,11 +174,32 @@ class StoreWidget extends StatelessWidget {
                                     .toList()),
                       ),
                   onLoading: ItemCuaHangShimmer(),
-                  onError: (error) => InkWell(
-                        onTap: () {},
+                  onEmpty: SizedBox(
+                    height: 100,
+                    child: Column(
+                      children: [
+                        Text("Tải dữ liệu thất bại!!"),
+                        InkWell(
+                          onTap: () {
+                            print('Tải lại');
+                          },
+                          child: Text("Tải lại"),
+                        )
+                      ],
+                    ),
+                  ),
+                  onError: (error) => Column(
+                    children: [
+                      Text('$error'),
+                      InkWell(
+                        onTap: () {
+                          print('Tải lại');
+                        },
                         child: Text("Tải lại"),
                       )
-                  /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+                      /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+                    ],
+                  )
                   ),
 
           _sellerController.obx((state) =>
@@ -447,4 +468,3 @@ class ItemCuaHangShimmer extends StatelessWidget {
     );
   }
 }
-

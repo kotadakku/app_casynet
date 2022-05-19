@@ -15,6 +15,7 @@ import '../model/seller.dart';
 import '../model/user.dart';
 import '../provider/api/api_provider.dart';
 import '../provider/api/exceptions.dart';
+import '../provider/get_storage_provider.dart';
 
 class HomePageRepo{
 
@@ -22,7 +23,7 @@ class HomePageRepo{
   Future<Responses<BannerSliderNew>?> getBannerSliderNews() async{
     try{
       final responses = await ApiRequest().get(
-          path: ApiConfig.banners
+          path: ApiConfig.bannernews
       );
       if(responses != null){
         List<BannerSliderNew> banners = List<BannerSliderNew>.from(
@@ -39,7 +40,7 @@ class HomePageRepo{
   Future<Responses<BannerSlider>> getBanners() async {
     try{
       final response = await ApiRequest().get(
-        path: ApiConfig.banners
+        path: ApiConfig.bannernews
       );
       if(response != null){
         List<BannerSlider> banners = List<BannerSlider>.from(
@@ -54,7 +55,7 @@ class HomePageRepo{
     }
   }
   Future<Responses<Category>> getCategories() async {
-
+    final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     try {
       final response = await ApiRequest().get(
           path: ApiConfig.baseUrl + ApiConfig.categories,
@@ -64,7 +65,7 @@ class HomePageRepo{
             'searchCriteriafilterGroups[filters][0][condition_type]': 'eq',
           },
           options: Options(
-              headers: {'Authorization': 'Bearer 2ws27cp7dodd1l4hzop7aaqulbbaog45'}
+              headers: {'Authorization': 'Bearer $token_admin'}
           )
       );
 
@@ -84,7 +85,7 @@ class HomePageRepo{
   Future<Responses<Product>> getProducts() async {
     try{
       final response = await ApiRequest().get(
-          path: ApiConfig.banners,
+          path: ApiConfig.bannernews,
       );
       if(response != null){
         List<Product> products = List<Product>.from(
@@ -192,6 +193,7 @@ class HomePageRepo{
         options: options
       );
       if(response != null){
+        await GetStorageProvider().save(key: CacheManagerKey.USER.toString(), value: json.encode(response.data));
         User user = User.successLogin(response.data);
         return Responses<User>(isSuccess: true, objects: user);
       }

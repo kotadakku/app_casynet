@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/category.dart';
-import '../../../data/provider/db/db_provider.dart';
+import '../../../data/provider/db_provider.dart';
 import '../../../data/repo/home_repo.dart';
 
 

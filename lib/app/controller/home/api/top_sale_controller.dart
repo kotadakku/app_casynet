@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import '../../../config/config_db.dart';
 import '../../../data/model/sales.dart';
-import '../../../data/provider/db/db_provider.dart';
+import '../../../data/provider/db_provider.dart';
 import '../../../data/repo/home_repo.dart';
 
 class TopSaleController extends GetxController with StateMixin {

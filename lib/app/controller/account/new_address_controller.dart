@@ -1,6 +1,6 @@
 
 import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
-import 'package:app_casynet/app/controller/auth/cache_manager.dart';
+import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +11,7 @@ import '../../data/model/address.dart';
 import '../../data/model/user.dart';
 
 
-class NewAddressController extends GetxController with CacheManager{
+class NewAddressController extends GetxController {
   late final AuthenticationManager _authManager;
   var switch_default = true.obs;
   late var formStateKey;
@@ -49,7 +49,7 @@ class NewAddressController extends GetxController with CacheManager{
 
   void createAddress(Address new_address) async {
     try{
-      String? token = await getToken();
+      String? token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
       final result = await HomePageRepo().updateAddress(
         data: new_address.toJsonAddress(),
         options: Options(

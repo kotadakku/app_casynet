@@ -48,7 +48,9 @@ class CategoryShimer extends StatelessWidget {
                     );
                   }
               ),
-              CircularProgressIndicator(),
+              Center(
+                child: CircularProgressIndicator(),
+              )
             ],
           ),
         )

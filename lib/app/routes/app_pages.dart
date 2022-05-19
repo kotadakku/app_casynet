@@ -27,6 +27,7 @@ import '../bindings/account/new_address_bindings.dart';
 import '../bindings/account/order_account_bindings.dart';
 import '../bindings/account/wallet_voucher_bindings.dart';
 import '../bindings/auth_bindings.dart';
+import '../bindings/cart_binding.dart';
 import '../bindings/change_password_bindings.dart';
 import '../bindings/detail_product_bindings.dart';
 import '../bindings/detail_store_bindings.dart';
@@ -69,7 +70,10 @@ class AppPages {
   static final routes =[
     GetPage(name: Routes.HOME,
         page: () => Home(),
-        binding: HomeBindings()
+        bindings: [
+          HomeBindings(),
+          CartBinding(),
+        ]
     ),
     GetPage(
       name: Routes.SEARCH,
@@ -89,7 +93,9 @@ class AppPages {
       page: ()=> AuthPage(),
       binding: AuthBindings(),
     ),
-    GetPage(name: Routes.CHECKOUT, page: ()=>CheckoutPage()),
+    GetPage(name: Routes.CHECKOUT,
+      page: ()=>CheckoutPage(),
+    ),
     GetPage(name: Routes.ACCOUNT_DETAIL, page: ()=> AccountDetailPage()),
     GetPage(name: Routes.ACCOUNT_ORDER,
       page: ()=>OrderAccountPage(),
