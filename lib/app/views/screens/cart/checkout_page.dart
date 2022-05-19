@@ -108,68 +108,59 @@ class CheckoutPage extends StatelessWidget {
                 child: Column(
                   children: [
 //Thông tin khách hàng
-                    GetBuilder<AuthenticationManager>(
-                      init: AuthenticationManager(),
-                      builder: (c) => Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              _checkoutController.address_default.lastname?? '',
-                              style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(255, 34, 34, 34)),
-                            )
-                          ],
-                        ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            _checkoutController.address_default.lastname?? '',
+                            style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 34, 34, 34)),
+                          )
+                        ],
                       ),
                     ),
 
 // Số điện thoại khách hàng
-                    GetBuilder<AuthenticationManager>(
-                      init: AuthenticationManager(),
-                      builder: (c) => Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(Icons.call),
-                            Text(
-                              _checkoutController.address_default.phone??'',
-                              style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w300,
-                                  color: Color.fromARGB(255, 102, 102, 102)),
-                            )
-                          ],
-                        ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.call),
+                          Text(
+                            _checkoutController.address_default.phone??'',
+                            style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w300,
+                                color: Color.fromARGB(255, 102, 102, 102)),
+                          )
+                        ],
                       ),
                     ),
 
-                    // GetBuilder<AuthenticationManager>(
-                    //   init: AuthenticationManager(),
-                    //   builder: (c) => Expanded(
-                    //     flex: 1,
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.start,
-                    //       children: [
-                    //         Icon(Icons.location_on),
-                    //         Expanded(
-                    //           child: Text(
-                    //             '${c.user_current.addresses.where((element) => element.default_shipping == true).first.address()}',
-                    //             /*"34 Vũ Phạm Hàm, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội",*/
-                    //             style: TextStyle(
-                    //                 fontSize: 13,
-                    //                 fontWeight: FontWeight.w300,
-                    //                 color: Color.fromARGB(255, 102, 102, 102)),
-                    //           ),
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.location_on),
+                          Expanded(
+                            child: Text(
+                              '${_checkoutController.address_default.street[0]}',
+                              /*"34 Vũ Phạm Hàm, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội",*/
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w300,
+                                  color: Color.fromARGB(255, 102, 102, 102)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

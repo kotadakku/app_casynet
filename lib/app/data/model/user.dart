@@ -59,8 +59,6 @@ class User{
     };
   }
 
-
-
   Map<String, dynamic> toJsonRegister(){
     return {
       'customer':{

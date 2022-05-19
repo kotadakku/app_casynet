@@ -1,6 +1,6 @@
 import 'package:app_casynet/app/data/model/notification.dart';
 import 'package:app_casynet/app/config/config_db.dart';
-import 'package:app_casynet/app/data/provider/db/db_provider.dart';
+import 'package:app_casynet/app/data/provider/db_provider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

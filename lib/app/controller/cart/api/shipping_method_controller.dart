@@ -1,4 +1,3 @@
-import 'package:app_casynet/app/controller/auth/cache_manager.dart';
 import 'package:app_casynet/app/controller/cart/api/payment_method_controller.dart';
 import 'package:app_casynet/app/data/model/checkout/shipping_method.dart';
 import 'package:dio/dio.dart';
@@ -6,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/address.dart';
+import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/cart_repo.dart';
 import '../checkout_controller.dart';
 
-class ShippingMethodController extends GetxController with StateMixin, CacheManager{
+class ShippingMethodController extends GetxController with StateMixin{
   final _shippingMethodList = <ShippingMethod>[].obs;
 
   @override
@@ -26,7 +26,7 @@ class ShippingMethodController extends GetxController with StateMixin, CacheMana
   }
 
   Future<void> getShippingMethod(Address address) async {
-    final token = await getToken();
+    final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
     CheckoutController checkoutController = Get.find();
     PaymentMethodController paymentMethodController = Get.find();
     change(_shippingMethodList, status: RxStatus.loading());

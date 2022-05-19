@@ -57,7 +57,9 @@ class Cart extends StatelessWidget {
                     itemCartStore: e.value ,
                   )).toList()
               ),
-              onLoading: CircularProgressIndicator(),
+              onLoading: Center(
+                child: CircularProgressIndicator(),
+              )
             )
           ),
           Material(

@@ -16,6 +16,7 @@ import '../model/seller.dart';
 import '../model/user.dart';
 import '../provider/api/api_provider.dart';
 import '../provider/api/exceptions.dart';
+import '../provider/get_storage_provider.dart';
 
 class HomePageRepo{
 
@@ -175,6 +176,7 @@ class HomePageRepo{
         options: options
       );
       if(response != null){
+        await GetStorageProvider().save(key: CacheManagerKey.USER.toString(), value: json.encode(response.data));
         User user = User.successLogin(response.data);
         return Responses<User>(isSuccess: true, objects: user);
       }

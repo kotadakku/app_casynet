@@ -1,7 +1,6 @@
-import 'package:app_casynet/app/controller/auth/cache_manager.dart';
-import 'package:app_casynet/app/controller/cart/api/shipping_method_controller.dart';
 import 'package:app_casynet/app/data/model/checkout/payment_method.dart';
 import 'package:app_casynet/app/data/model/checkout/shipping_method.dart';
+import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../data/repo/cart_repo.dart';
 import '../checkout_controller.dart';
 
-class PaymentMethodController extends GetxController with StateMixin, CacheManager{
+class PaymentMethodController extends GetxController with StateMixin{
   final _paymentMethodList = <PaymentMethod>[].obs;
 
 
@@ -20,7 +19,7 @@ class PaymentMethodController extends GetxController with StateMixin, CacheManag
   }
 
   Future<void> getPaymentMethod(ShippingMethod shippingMethod, String? countryId) async {
-    final token = await getToken();
+    final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
     CheckoutController checkoutController = Get.find();
     change(_paymentMethodList, status: RxStatus.loading());
     if(countryId != null && shippingMethod.methodCode != null){

@@ -7,7 +7,6 @@ class Address {
   String? email;
 
   int? websiteId;
-  List<Address> addresses = [];
   String? region; // Tỉnh/ thành phố
   String? regionCode;
   int? regionId;
