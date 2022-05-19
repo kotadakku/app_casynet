@@ -14,22 +14,32 @@ class BannerController extends GetxController{
 
   @override
   void onReady() {
-    _autoPageView();
+    // TODO: implement onReady
+    autoPageView();
   }
 
-  void _autoPageView(){
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-      if (current_banner.value < Get.put(FetchBannerController()).bannerSliderNewList.length-1) {
-        current_banner.value++;
-      } else {
-        current_banner.value = 0;
-      }
-      // pageController.animateToPage(
-      //   current_banner.value,
-      //   duration: Duration(milliseconds: 1000),
-      //   curve: Curves.fastOutSlowIn,
-      // );
-    });
+
+  void autoPageView(){
+    FetchBannerController fetchBannerController = Get.find();
+
+      _timer = Timer.periodic(
+        Duration(seconds: 3), (Timer timer) {
+          if (current_banner.value < fetchBannerController.bannerSliderNewList.length-1) {
+            current_banner.value++;
+          } else {
+            current_banner.value = 0;
+          }
+          if(fetchBannerController.bannerSliderNewList.length >=2){
+            pageController.animateToPage(
+              current_banner.value,
+              duration: Duration(milliseconds: 1000),
+              curve: Curves.fastOutSlowIn,
+            );
+          }
+        }
+      );
+
+
   }
 
   void swippingPageView(details){
@@ -43,7 +53,6 @@ class BannerController extends GetxController{
         curve: Curves.fastOutSlowIn,
       );
     }
-
     // Swiping in left direction.
     if (details.velocity.pixelsPerSecond.dx < 0) {
       if(current_banner.value > 0)

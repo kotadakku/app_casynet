@@ -34,7 +34,7 @@ class DatabaseHelper{
     ''');
     db.execute(''' CREATE TABLE ${DBConfig.TABLE_SALE} (
             ${DBConfig.SALE_COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-            ${DBConfig.SALE_COLUMB_TITLE} TEXT NOT NULL,
+            ${DBConfig.SALE_COLUMN_TITLE} TEXT NOT NULL,
             ${DBConfig.SALE_COLUMN_IMAGE} TEXT NOT NULL
           )
     ''');

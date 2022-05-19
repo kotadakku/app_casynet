@@ -10,7 +10,7 @@ class DBConfig{
   static final String TABLE_SALE = 'sale';
   static final String SALE_COLUMN_ID = 'id';
   static final String SALE_COLUMN_IMAGE = 'image';
-  static final String SALE_COLUMB_TITLE = 'title';
+  static final String SALE_COLUMN_TITLE = 'title';
 
   static final String TABLE_CATEGORY = 'category';
   static final String CATEGORY_COLUMN_ID = 'id';

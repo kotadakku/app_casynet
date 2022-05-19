@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/account/api/order_controller.dart';
+import '../../../../controller/account/order_account_controller.dart';
 import '../../../../data/model/product.dart';
 import '../../../theme/app_colors.dart';
 
 class OrderCancelWidget extends StatelessWidget {
   final List<String> name_stores;
   OrderController _orderController = Get.find();
+  OrderAccountController _orderAccountController = Get.find();
   OrderCancelWidget({Key? key, required this.name_stores})
       : super(key: key);
 
@@ -17,96 +19,105 @@ class OrderCancelWidget extends StatelessWidget {
     return _orderController.obx((state) => ListView.builder(
       scrollDirection: Axis.vertical,
       physics: BouncingScrollPhysics(),
-      itemCount: state.length,
+      controller: _orderAccountController.scrollController,
+      itemCount: state.length+1,
       shrinkWrap: true,
-      itemBuilder: (context, index) => ListView(
-          physics: NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          children: [
-            Container(
-                width: double.infinity,
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 15, top: 5, bottom: 5),
-                child: Row(
-                  children: [
-                    Text(
-                      state[index].nameStore.toString(),
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: kTextLink),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Icon(
-                      Icons.message_outlined,
-                      color: kYellowColor,
-                    )
-                  ],
-                )),
-            Divider(),
-            ListView.builder(
+      itemBuilder: (context, index){
+        if(index < state.length)
+          return  ListView(
               physics: NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: state[index].products?.length,
-              itemBuilder: (context, i) => OrderItem(
-                name_product: "Máy rửa xe Catorex - CTR",
-                product: state.value[index].products[i],
-              ),
-            ),
-            Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Thành tiền",
-                      style: TextStyle(color: kTextColor_gray),
-                    ),
-                    Text(
-                      "1.655.001",
-                      style: TextStyle(
-                          color: Colors.red, fontWeight: FontWeight.bold),
-                    )
-                  ],
-                )),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                      child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Chi tiết đơn này",
-                            style: TextStyle(color: kYellowColor),
-                          ),
-                          style:
-                          ElevatedButton.styleFrom(primary: Colors.white))),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Mua lần nữa",
-                          style: TextStyle(),
+              children: [
+                Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    padding: EdgeInsets.only(left: 15, top: 5, bottom: 5),
+                    child: Row(
+                      children: [
+                        Text(
+                          state[index].nameStore.toString(),
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: kTextLink),
                         ),
-                        style: ElevatedButton.styleFrom(primary: kYellowColor),
-                      ))
-                ],
-              ),
-            ),
-            Container(
-              height: 10,
-              color: kBackgroundColor,
-            )
-          ]),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.message_outlined,
+                          color: kYellowColor,
+                        )
+                      ],
+                    )),
+                Divider(),
+                ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: state[index].products?.length,
+                    itemBuilder: (context, i){
+                      return  OrderItem(
+                        name_product: "Máy rửa xe Catorex - CTR",
+                        product: state.value[index].products[i],
+                      );
+                    }
+                ),
+                Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Thành tiền",
+                          style: TextStyle(color: kTextColor_gray),
+                        ),
+                        Text(
+                          "1.655.001",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                          child: ElevatedButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Chi tiết đơn này",
+                                style: TextStyle(color: kYellowColor),
+                              ),
+                              style:
+                              ElevatedButton.styleFrom(primary: Colors.white))),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Mua lần nữa",
+                              style: TextStyle(),
+                            ),
+                            style: ElevatedButton.styleFrom(primary: kYellowColor),
+                          ))
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 10,
+                  color: kBackgroundColor,
+                )
+              ]);
+        else return Center(
+          child: CircularProgressIndicator(),
+        );
+      }
     ));
   }
 }
@@ -143,7 +154,9 @@ class OrderItem extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(product.name.toString()),
+                          Expanded(child: Text(product.name.toString(),
+                            overflow: TextOverflow.ellipsis,
+                          ),),
                           Text(
                             product.price.toString(),
                             style: TextStyle(

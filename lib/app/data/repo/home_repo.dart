@@ -18,19 +18,27 @@ import '../provider/api/exceptions.dart';
 import '../provider/get_storage_provider.dart';
 
 class HomePageRepo{
-
   // new
   Future<Responses<BannerSliderNew>?> getBannerSliderNews() async{
     try{
-      final responses = await ApiRequest().get(
-          path: ApiConfig.bannernews
+      final response = await ApiRequest().get(
+          path: ApiConfig.baseUrl + ApiConfig.bannerNews
       );
-      if(responses != null){
+      if(response != null){
+        String html = response.data[0]['banner'];
+        List<String> htmlList = html.replaceAll("\\","").split(">");
+        
         List<BannerSliderNew> banners = List<BannerSliderNew>.from(
-            (responses.data['banner'.replaceAll("\\","").split(">")] as List).map((e) => BannerSliderNew.fromJson)
+          htmlList.map((e) => BannerSliderNew(htmlTag: e+">"))
         );
+        banners.removeLast();
+        
+        // List<BannerSliderNew> banners = List<BannerSliderNew>.from(
+        //     (responses.data['banner'.replaceAll("\\","").split(">")] as List).map((e) => BannerSliderNew.fromJson)
+        // );
         return Responses<BannerSliderNew>(isSuccess: true, listObjects: banners);
       }
+      return Responses<BannerSliderNew>(statusCode: CODE_RESPONSE_NULL, msg: '');
     }catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
       return Responses<BannerSliderNew>(statusCode: CODE_ERROR, msg: errorMessage.toString());
@@ -40,7 +48,7 @@ class HomePageRepo{
   Future<Responses<BannerSlider>> getBanners() async {
     try{
       final response = await ApiRequest().get(
-        path: ApiConfig.bannernews
+        path: ApiConfig.banners
       );
       if(response != null){
         List<BannerSlider> banners = List<BannerSlider>.from(
@@ -85,7 +93,7 @@ class HomePageRepo{
   Future<Responses<Product>> getProducts() async {
     try{
       final response = await ApiRequest().get(
-          path: ApiConfig.bannernews,
+          path: ApiConfig.banners,
       );
       if(response != null){
         List<Product> products = List<Product>.from(

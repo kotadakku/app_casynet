@@ -8,8 +8,8 @@ class ApiRequest{
     return Dio(
         BaseOptions(
           baseUrl: ApiConfig.baseUrl,
-          connectTimeout: 100000,
-          receiveTimeout: 10000,
+          // connectTimeout: 100000,
+          // receiveTimeout: 10000,
         )
     )..interceptors.add(LoggingInterceptors());
   }

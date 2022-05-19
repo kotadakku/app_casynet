@@ -33,7 +33,7 @@ class CategoryWidget extends StatelessWidget {
                   int device = constraints.maxWidth>=780 ? 5 : 3;
                   return  _fetchDataController.obx((state) =>
                       GridView.builder(
-                        physics: ClampingScrollPhysics(),
+                        physics: BouncingScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                             maxCrossAxisExtent: constraints.maxHeight/2,
                             childAspectRatio: 80/(ScreenUtil().screenWidth/device),

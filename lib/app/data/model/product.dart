@@ -63,7 +63,7 @@ class Product {
   Product.fromJsonApi(json){
     id = json['product_id'];
     name = json['name'];
-    officialPrice = json['original_price'];
-    price = json['price'];
+    officialPrice = json['original_price'].round();
+    price = json['price'].round();
   }
 }

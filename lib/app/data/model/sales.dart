@@ -19,7 +19,7 @@ class Sales{
   Map<String, Object?> toJson() {
     return {
       DBConfig.SALE_COLUMN_ID: id,
-      DBConfig.SALE_COLUMB_TITLE: title,
+      DBConfig.SALE_COLUMN_TITLE: title,
       DBConfig.SALE_COLUMN_IMAGE: image,
     };
   }

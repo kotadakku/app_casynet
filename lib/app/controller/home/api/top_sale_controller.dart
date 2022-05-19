@@ -10,7 +10,6 @@ class TopSaleController extends GetxController with StateMixin {
   @override
   void onInit() {
     _getTopSaleDB();
-    getTopSaleAPI();
   }
 
   void _getTopSaleDB() {
@@ -22,9 +21,9 @@ class TopSaleController extends GetxController with StateMixin {
       }else{
         value?.forEach((element) {
           _topSaleList.add(Sales(
-              id: element[DBConfig.CATEGORY_COLUMN_ID],
-              title: element[DBConfig.CATEGORY_COLUMN_IMAGE],
-              image: element[DBConfig.CATEGORY_COLUMN_TITLE]
+              id: element[DBConfig.SALE_COLUMN_ID],
+              title: element[DBConfig.SALE_COLUMN_TITLE],
+              image: element[DBConfig.SALE_COLUMN_IMAGE]
           )
         );
         });

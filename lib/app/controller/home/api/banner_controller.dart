@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../data/model/banner_slider.dart';
 import '../../../data/provider/db_provider.dart';
 import '../../../data/repo/home_repo.dart';
+import '../banner_page_view_controller.dart';
 
 class FetchBannerController extends GetxController with StateMixin{
   // final bannersList = <BannerSlider>[].obs;
@@ -13,7 +14,8 @@ class FetchBannerController extends GetxController with StateMixin{
   void onInit() {
     getBannerAPI();
   }
-  // void _getBannersDB(){
+
+   // void _getBannersDB(){
   //   change(bannersList, status: RxStatus.loading());
   //   DatabaseHelper.instance.getAlls(DBConfig.TABLE_BANNER, DBConfig.BANNER_COLUMN_ID).then((value) {
   //     if(value?.length == 0){

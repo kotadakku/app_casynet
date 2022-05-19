@@ -32,11 +32,15 @@ class BannerHomeWidget extends StatelessWidget {
                   if(state.isNotEmpty)
                     // return ImageNetworkLoading(image_url: state[index].image, fit: BoxFit.fitWidth);
                     return Html(
-                      data: """
-                        <img class="owl-lazy" alt="Slide Image" data-src="https://client.casynet.com/pub/media/wysiwyg/slideshow/home-8/item-1.jpg" src="https://client.casynet.com/pub/media/wysiwyg/slideshow/home-8/item-1.jpg" style="opacity: 1;">
-                      """,
+                      data: state[index].htmlTag,
                       // Styling with CSS (not real CSS)
                       style: {
+                        'img': Style(
+                            height: ScreenUtil().screenWidth/1125*410,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(0.0),
+                          margin: EdgeInsets.all(0.0),
+                        ),
                       },
                     );
                   else return Center(
