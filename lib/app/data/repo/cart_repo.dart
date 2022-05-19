@@ -1,6 +1,7 @@
 import 'package:app_casynet/app/config/api_params.dart';
 import 'package:app_casynet/app/data/model/checkout/payment_method.dart';
 import 'package:app_casynet/app/data/model/checkout/shipping_method.dart';
+import 'package:app_casynet/app/data/model/product_cart.dart';
 import 'package:app_casynet/app/data/model/responses.dart';
 import 'package:app_casynet/app/data/provider/api/api_provider.dart';
 import 'package:dio/dio.dart';
@@ -46,6 +47,41 @@ class CartRepo{
     }catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
       return Responses<PaymentMethod>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<ProductCart>> updateItemCart({data, required int item_id, Options? options}) async{
+    try{
+      final response = await ApiRequest().put(
+        path: ApiConfig.baseUrl + ApiConfig.itemCart + item_id.toString(),
+        data: data,
+        options: options,
+      );
+      if(response!= null){
+        ProductCart productCart = ProductCart.fromJson(response.data);
+        return Responses<ProductCart>(isSuccess: true, objects: productCart);
+      }
+      return Responses<ProductCart>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    } catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<ProductCart>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<bool>> deleteItemCart({required int item_id, Options? options}) async {
+    try{
+      final response = await ApiRequest().delete(
+        path: ApiConfig.baseUrl + ApiConfig.itemCart + item_id.toString(),
+        options: options
+      );
+      if(response!= null){
+        return Responses<bool>(isSuccess: true, objects: response.data);
+      }
+      return Responses<bool>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }
+    catch (error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<bool>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
 }

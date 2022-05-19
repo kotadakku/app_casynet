@@ -38,7 +38,7 @@ class HomePageRepo{
     }
   }
   Future<Responses<Category>> getCategories() async {
-
+    final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     try {
       final response = await ApiRequest().get(
           path: ApiConfig.baseUrl + ApiConfig.categories,
@@ -48,7 +48,7 @@ class HomePageRepo{
             'searchCriteriafilterGroups[filters][0][condition_type]': 'eq',
           },
           options: Options(
-              headers: {'Authorization': 'Bearer 2ws27cp7dodd1l4hzop7aaqulbbaog45'}
+              headers: {'Authorization': 'Bearer $token_admin'}
           )
       );
 

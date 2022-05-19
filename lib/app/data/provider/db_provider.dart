@@ -45,7 +45,8 @@ class DatabaseHelper{
           )
     ''');
     db.execute(''' CREATE TABLE ${DBConfig.TABLE_CART} (
-            ${DBConfig.CART_COLUMN_P_ID} INTEGER PRIMARY KEY UNIQUE,
+            ${DBConfig.CART_COLUMN_ITEM_ID} INTEGER PRIMARY KEY UNIQUE,
+            ${DBConfig.CART_COLUMN_P_ID} INTEGER,
             ${DBConfig.CART_COLUMN_P_SKU} TEXT,
             ${DBConfig.CART_COLUMN_P_IMAGE} TEXT,
             ${DBConfig.CART_COLUMN_P_NAME} TEXT,

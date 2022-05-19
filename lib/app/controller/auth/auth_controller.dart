@@ -69,6 +69,8 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
             );
           }
           else {
+            sigin_loading.value = false;
+            sigin_loading.value = false;
             Get.defaultDialog(
                 title: 'Thông báo',
                 middleText: '${result.msg}!',
@@ -78,12 +80,21 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
                   Get.back();
                 }
             );
-            sigin_loading.value = false;
+
           }
         }
       }
       catch(error){
-        print(error);
+        sigin_loading.value = false;
+        Get.defaultDialog(
+            title: 'Thông báo',
+            middleText: '${error}!',
+            textConfirm: 'Xác nhận',
+            confirmTextColor: Colors.white,
+            onConfirm: () {
+              Get.back();
+            }
+        );
       }
   }
 

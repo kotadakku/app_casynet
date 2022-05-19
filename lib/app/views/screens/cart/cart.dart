@@ -203,11 +203,17 @@ class Cart extends StatelessWidget {
                           ),
                           // sự kiện chuyển màn
                           onPressed: () {
-                            (_authenticationManager.isLogged.value || _authenticationManager.user_current == null) ? Get.toNamed(Routes.CHECKOUT)
-                            : Get.toNamed(Routes.AUTH, arguments: 0);
-                            // _authenticationManager.isLogged == true? Get.toNamed(Routes.CHECKOUT): Get.toNamed(Routes.AUTH);
+                            if(!_authenticationManager.isLogged.value || _authenticationManager.user_current.id == null){
+                              Get.toNamed(Routes.AUTH, arguments: 0);
+                              return;
+                            }
+                            if(_productCartCOntroller.checkBoxProduct.length <= 0){
+                              print("error");
+                              Get.snackbar("Thông báo", "Vui lòng chọn ít nhất một sản phẩm để tiếp tục",);
+                            }
+                            else Get.toNamed(Routes.CHECKOUT);
                           },
-                          child: const Text(
+                          child: Text(
                             'Tiến hành đặt hàng',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
