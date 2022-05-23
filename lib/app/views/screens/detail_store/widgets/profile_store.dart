@@ -8,17 +8,17 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/store_detail/detail_store_controller.dart';
 import '../../../../data/model/seller.dart';
 import '../../../../routes/app_pages.dart';
+import '../../../../utlis/followed_convert.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 import '../../../widgets/image_network_loading.dart';
 
 class ProfileStoreWidget extends StatelessWidget {
-  Seller store = Get.arguments['store'];
-  ProfileStoreWidget({Key? key}) : super(key: key);
+  final DetailStoreController controller;
+  ProfileStoreWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DetailStoreController controller = Get.find<DetailStoreController>();
     return Container(
         height: 120,
         width: 1.sw,
@@ -44,7 +44,7 @@ class ProfileStoreWidget extends StatelessWidget {
                 child: CircleAvatar(
                     child: ClipOval(
                       child: ImageNetworkLoading(
-                        image_url: store.imageUrl.toString(),
+                        image_url: controller.store.value.avatar_image.toString(),
                         width: 80.0,
                         height: 80.0,
                         fit: BoxFit.fill,
@@ -64,7 +64,7 @@ class ProfileStoreWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        store.name.toString(),
+                        controller.store.value.name.toString(),
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -73,7 +73,7 @@ class ProfileStoreWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "bulary 12019",
+                            controller.store.value.owner_shop??'',
                             style: TextStyle(color: kYellowColor),
                           ),
                           SizedBox(
@@ -103,7 +103,7 @@ class ProfileStoreWidget extends StatelessWidget {
                             size: sizeIcon.width,
                           ),
                           Text(
-                            "1.2k người theo dõi",
+                            "${FollowedConvert().followedConvert(controller.store.value.followed)} người theo dõi",
                             style: TextStyle(color: kTextColor_gray),
                           )
                         ],

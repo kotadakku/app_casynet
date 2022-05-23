@@ -2,17 +2,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../controller/detail_product_controller.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 
 class InformationProductWidget extends StatelessWidget {
-  const InformationProductWidget({Key? key}) : super(key: key);
+  DetailProductController controller;
+  InformationProductWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +24,20 @@ class InformationProductWidget extends StatelessWidget {
     TextEditingController date_controller = TextEditingController();
     TextEditingController hours_controller = TextEditingController();
     TextEditingController note_controller = TextEditingController();
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10,),
-          Text("Máy rửa xe BOSS 2300w thế hệ mới new 2019",
+          Text(controller.product.value.name?? 'Chưa có thông tin',
             style: Theme.of(context).textTheme.titleMedium
           ),
           SizedBox(height: 10,),
           Row(
             children: [
-              Text("1.400.000 ",
+              Text("${controller.product.value.officialPrice ?? 'Liên hệ'}",
               style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,
@@ -40,7 +45,7 @@ class InformationProductWidget extends StatelessWidget {
               ),
               ),
               SizedBox(width: 5,),
-              Text("1.800.000",
+              Text('${controller.product.value.price ?? ''}',
                 textAlign: TextAlign.end,
                 style: TextStyle(
                   color: kTextColor_gray,
@@ -48,7 +53,7 @@ class InformationProductWidget extends StatelessWidget {
                   decoration: TextDecoration.lineThrough
                 ),
               ),
-              Text("  -17%", style: TextStyle(
+              Text('       ${controller.product.value.saleoff ?? ''}',style: TextStyle(
                 color: kTextColor_gray,
                 fontSize: 13,
               ),)
@@ -65,13 +70,19 @@ class InformationProductWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                    Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                    Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
+                    RatingBarIndicator(
+                      rating: controller.product.value.rate??0.0,
+                      unratedColor: Colors.amber.withOpacity(0.2),
+                      itemBuilder: (context, index) => const Icon(
+                        Icons.star_outlined,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 18.0,
+                      direction: Axis.horizontal,
+                    ),
                     SizedBox(width: 5,),
-                    Text("4.5", style: TextStyle(
+                    Text('${controller.product.value.rate}', style: TextStyle(
                         color: kTextColor_gray
                     ),)
                   ],
@@ -86,7 +97,7 @@ class InformationProductWidget extends StatelessWidget {
                       style: TextStyle(
                         color: kTextColor_gray
                     ),),
-                    Text("3",
+                    Text("${controller.product.value.badReport ?? 0}",
                       style: TextStyle(
                         color: kTextColor_gray,
                         fontWeight: FontWeight.bold
@@ -101,7 +112,7 @@ class InformationProductWidget extends StatelessWidget {
                       margin: EdgeInsets.all(5.0),
                       child: SvgPicture.asset("assets/product_detail/cart2.svg", width: sizeIcon.width,),
                     ),
-                    Text("10 ",
+                    Text("${controller.product.value.sold ?? 0} ",
                         style: TextStyle(
                         color: kTextColor_gray,
                         fontWeight: FontWeight.bold
@@ -196,7 +207,7 @@ class InformationProductWidget extends StatelessWidget {
               SvgPicture.asset("assets/product_detail/coin.svg", width: sizeIcon.width),
               SizedBox(width: 5,),
               Text("Mua hàng và tích "),
-              Text("800 ", style: TextStyle(
+              Text('${controller.product.value.coinPoint ?? 0}', style: TextStyle(
                 color: kYellowColor,
                 fontWeight: FontWeight.bold
               ),),
@@ -444,23 +455,18 @@ class InformationProductWidget extends StatelessWidget {
                             elevation: 0,
                             primary: Colors.white,
                             onPrimary: kYellowColor,
-                            side: BorderSide(color: kYellowColor),
+                            side: const BorderSide(color: kYellowColor),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ),
                           onPressed: () {
-                            print("Call");
-                            launch("tel://0973647367");
+                            Get.toNamed(Routes.CONTACT);
                           },
                         ),
                       ),),
                     ],
                   ),
-
                 ],
               )
-
-
-
             ),
           )
         ],

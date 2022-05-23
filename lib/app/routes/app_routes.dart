@@ -24,6 +24,8 @@ abstract class Routes{
   static const PRODUCT_DETAIL= '/product';
   static const PRODUCTS_BY_CATEGORY = '/products';
 
+  static const CONTACT = '/contact';
+
   static const STORE_DETAIL = '/store';
   static const MESSAGES = '/messages';
   static const AUTH = '/auth';

@@ -1,17 +1,16 @@
 
 import 'package:app_casynet/app/controller/home/api/reservation_controller.dart';
-import 'package:app_casynet/app/views/screens/home/widgets/reservation_widget.dart';
-import 'package:app_casynet/app/views/screens/home/widgets/store_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+
 import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/textTheme.dart';
-import '../../../widgets/loading_overlay.dart';
 import '../../../widgets/shimmer/seller_shimmer.dart';
+import 'items/product_item.dart';
 
 class PromotionWidget extends StatelessWidget {
 
@@ -136,14 +135,9 @@ class PromotionWidget extends StatelessWidget {
                 Wrap(
                   spacing: 5.0.w,
                   runSpacing: 10.0,
-                  children: (state as List).map((e) => GestureDetector(
-                    child: ItemProductWidget(
-                        product: e
-                    ),
-                    onTap: (){
-                      Get.toNamed(Routes.PRODUCT_DETAIL, arguments: { 'product_id': 12 },);
-                    },
-                  )).toList(),
+                  children: (state as List).map((e) => ItemProductWidget(
+                      product: e
+                  ),).toList(),
                 ),
               ),
               onLoading: ItemSellerShimmer()

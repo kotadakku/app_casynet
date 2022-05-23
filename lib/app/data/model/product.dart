@@ -12,7 +12,12 @@ class Product {
   int? commentQty;
   double? rate;
   int? coinPoint;
+  int? saleoff;
+  int? sold;
+  int? badReport;
+  String? detailProduct;
   Seller? store;
+
 
 
   Product(
@@ -30,6 +35,30 @@ class Product {
       });
 
   Product.fromJson(Map<String, dynamic> json) {
+    id = int.parse(json['id'].toString());
+    sku = json['sku'];
+    name = json["name"].toString();
+    imageUrl = json['images'][0];
+    price = double.parse(json[ "price"]).round();
+    officialPrice = json["discount_price"];
+    likeQty = json["liked"];
+    commentQty = json["comment"];
+    rate = json["vote"].toDouble();
+    coinPoint = json["casy_coin"];
+    sold = json['sold'];
+    detailProduct = json['detail_product'];
+    store = Seller(
+      name: json["store"]["name"].toString(),
+      distance: json["store"]["distance"],
+      phone: json['store']['phone'],
+      owner_shop: json['store']['owner_shop'],
+      total_product: json['store']['count_product'],
+      totalTransaction: int.parse(json['store']['total_transaction']),
+      rateFeedback: json['store']['rate_feedback']
+    );
+  }
+
+  Product.fromJson1(Map<String, dynamic> json) {
     id = int.parse(json['id'].toString());
     name = json["name"].toString();
     imageUrl = "https://casynet-api.herokuapp.com"+json['images'][0]['image'];;

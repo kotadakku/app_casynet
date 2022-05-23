@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
+import 'package:app_casynet/app/views/screens/contact.dart';
 import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:app_casynet/app/views/screens/store/mystore.dart';
 import 'package:app_casynet/app/views/screens/store/news.dart';
@@ -163,6 +164,10 @@ class AppPages {
       name: Routes.STORE_DETAIL,
       page: () => DetailsStorePage(),
       binding: DetailStoreBindings(),
+    ),
+    GetPage(
+      name: Routes.CONTACT,
+      page: () => ContactPage(),
     ),
     GetPage(
       name: Routes.MESSAGES,

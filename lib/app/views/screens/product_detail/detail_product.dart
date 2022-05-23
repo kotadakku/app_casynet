@@ -1,4 +1,6 @@
 import 'package:app_casynet/app/controller/bottom_nav_controller.dart';
+import 'package:app_casynet/app/controller/detail_product_controller.dart';
+import 'package:app_casynet/app/views/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +20,8 @@ import 'widgets/tags_product_widget.dart';
 import 'widgets/vote_product_widget.dart';
 
 class DetailProductPage extends StatelessWidget {
-  const DetailProductPage({Key? key}) : super(key: key);
+  final DetailProductController _detailProductController = Get.find<DetailProductController>();
+  DetailProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +30,20 @@ class DetailProductPage extends StatelessWidget {
         child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBarCartWidget(),
-            body: Column(
+            body: Obx(()=>_detailProductController.isLoading.value ?
+              LoadingScreen():
+              Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        ImageProductWidget(),
-                        InformationProductWidget(),
-                        RevervationProductWidget(),
-                        InformationStoreWidget(),
-                        DetailProductWidget(),
+                        ImageProductWidget(controller: _detailProductController,),
+                        InformationProductWidget(controller: _detailProductController,),
+                        RevervationProductWidget(controller: _detailProductController,),
+                        InformationStoreWidget(controller: _detailProductController,),
+                        DetailProductWidget(controller: _detailProductController,),
                         Container(
                           height: 10,
                           color: kBackgroundColor,
@@ -97,7 +102,10 @@ class DetailProductPage extends StatelessWidget {
                       )),
                 ),
               ],
-            )));
+            )
+            )
+        )
+    );
   }
 
 

@@ -64,6 +64,8 @@ dependencies:
   firebase_messaging:
   overlay_support:
   flutter_html:
+  flutter_spinkit:
+  flutter_rating_bar:
 
   flutter_localizations: # Add this line
     sdk: flutter

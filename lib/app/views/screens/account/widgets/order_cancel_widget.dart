@@ -8,10 +8,9 @@ import '../../../../data/model/product.dart';
 import '../../../theme/app_colors.dart';
 
 class OrderCancelWidget extends StatelessWidget {
-  final List<String> name_stores;
   OrderController _orderController = Get.find();
   OrderAccountController _orderAccountController = Get.find();
-  OrderCancelWidget({Key? key, required this.name_stores})
+  OrderCancelWidget({Key? key})
       : super(key: key);
 
   @override

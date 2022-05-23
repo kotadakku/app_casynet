@@ -15,12 +15,13 @@ class MapStoreController extends GetxController{
   @override
   void onInit() {
     super.onInit();
+  }
+  @override
+  void onReady(){
     _getLocation();
-
   }
 
   _getLocation() async {
-
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) async {
         _currentPosition = position;
@@ -71,13 +72,33 @@ class MapStoreController extends GetxController{
     isLoading = false;
     update();
   }
+  void getLocationLatLon(String address, String name, double lat, double lon) async {
+    String destinationCoordinatesString = '($lat, $lon)';
+    // Start Location Marker
 
-  void add(){
+    print(destinationCoordinatesString);
+    Marker destinationMarker = Marker(
+      markerId: MarkerId(destinationCoordinatesString),
+      position: LatLng(lat, lon),
+      infoWindow: InfoWindow(
+        title: name,
+        snippet: address,
+      ),
+      icon: BitmapDescriptor.defaultMarker,
+    );
+    markers.add(destinationMarker);
+
     googleMap.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-            target: LatLng(markers.elementAt(1).position.latitude, markers.elementAt(1).position.longitude), zoom: 15.0),
+          target: LatLng(lat, lon),
+          zoom: 15.0,
+        ),
       ),
     );
+    isLoading = false;
+    update();
   }
+
+
 }

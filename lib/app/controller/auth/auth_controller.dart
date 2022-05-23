@@ -70,7 +70,6 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
           }
           else {
             sigin_loading.value = false;
-            sigin_loading.value = false;
             Get.defaultDialog(
                 title: 'Thông báo',
                 middleText: '${result.msg}!',

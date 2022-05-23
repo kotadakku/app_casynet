@@ -32,7 +32,6 @@ class ProductCartController extends GetxController with StateMixin {
         confirmTextColor: Colors.white,
         onConfirm: () async {
           Get.back();
-          change(cartsByStore, status: RxStatus.loading());
           await deleteItemCartAPI(id);
           DatabaseHelper.instance.deleteRow(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, id);
           getCartDB();
@@ -216,6 +215,7 @@ class ProductCartController extends GetxController with StateMixin {
     }
     return false;
   }
+
   void getCartDB() async {
     print("<GET PRODUCT DB>");
     change(cartsByStore, status: RxStatus.loading());
@@ -239,6 +239,7 @@ class ProductCartController extends GetxController with StateMixin {
       calsumPrice();
       change(cartsByStore, status: RxStatus.success());
     });
+    change(cartsByStore, status: RxStatus.success());
   }
   void saveProductCartDB(ProductCart productCart)  {
     DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){

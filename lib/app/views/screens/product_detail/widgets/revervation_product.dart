@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/detail_product_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -9,7 +10,8 @@ import 'package:intl/intl.dart';
 import '../../../theme/app_colors.dart';
 
 class RevervationProductWidget extends StatelessWidget {
-  const RevervationProductWidget({Key? key}) : super(key: key);
+  DetailProductController controller;
+  RevervationProductWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -293,7 +295,7 @@ class RevervationProductWidget extends StatelessWidget {
               SvgPicture.asset("assets/product_detail/phone-volume.svg", height: 20),
               SizedBox(width: 5,),
               Text("Hoặc gọi tới: "),
-              Text("0962.68.87.68" , style: TextStyle(
+              Text('${controller.product.value.store?.phone?? 'Chưa có thông tin'}' , style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold
               ),)

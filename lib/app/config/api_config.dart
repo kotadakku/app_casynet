@@ -10,5 +10,6 @@ class ApiConfig {
 
   static const banners = 'https://casynet-api.herokuapp.com/api/';
   static const itemCart = '/rest/V1/carts/mine/items/';
+  static const product = '/pub/media/api_json/Product Detail Json/';
 
 }

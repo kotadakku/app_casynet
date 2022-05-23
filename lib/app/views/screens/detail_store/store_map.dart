@@ -19,6 +19,8 @@ class StoreMapPage extends StatelessWidget {
     );
     String store_name = Get.arguments['name'];
     String store_address = Get.arguments['address'];
+    double lat = Get.arguments['lat'];
+    double lon = Get.arguments['lon'];
 
     return SafeArea(
       child: Scaffold(
@@ -55,7 +57,11 @@ class StoreMapPage extends StatelessWidget {
                     onMapCreated: (GoogleMapController controller) {
                       c.controller.complete(controller);
                       c.googleMap = controller;
-                      c.getStoreLocation(store_address, store_name);
+                      if(lat != null && lon != null){
+                        c.getLocationLatLon(store_address, store_name, lat, lon);
+                      }
+                      else c.getStoreLocation(store_address, store_name);
+
                     },
                   ),
                   Positioned(

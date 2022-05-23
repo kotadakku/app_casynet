@@ -11,7 +11,8 @@ import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 
 class ImageProductWidget extends StatelessWidget {
-  ImageProductWidget({Key? key}) : super(key: key);
+  DetailProductController controller;
+  ImageProductWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ImageProductWidget extends StatelessWidget {
                 controller: _pageController,
                 itemCount: banner_urls.length,
                 onPageChanged: (value){
-                  Get.find<DetailProductController>().current.value = value;
+                  controller.current.value = value;
                 },
                 itemBuilder: (context, index){
 

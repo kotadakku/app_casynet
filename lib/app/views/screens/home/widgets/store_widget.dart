@@ -250,7 +250,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                   height: 120.w,
                   width: (1 / divide).sw - 7.5.w,
                   child: ImageNetworkLoading(
-                    image_url: store.imageUrl.toString(),
+                    image_url: store.avatar_image.toString(),
                     fit: BoxFit.fill,
                   ),
                 )),
