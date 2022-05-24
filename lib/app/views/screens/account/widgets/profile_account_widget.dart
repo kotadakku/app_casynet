@@ -42,7 +42,7 @@ class ProfileAccountWidget extends StatelessWidget {
             ],
           ),),
         // Tên
-        title: Text('${controller.user_current.lastname?? "user_312312"} ${controller.user_current.firstname??''}',
+        title: Text('${controller.user_current.firstname?? "user_312312"} ${controller.user_current.lastname??''}',
           style: TextStyle(
               color: kYellowColor,
               fontWeight: FontWeight.bold

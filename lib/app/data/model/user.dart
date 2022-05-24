@@ -68,7 +68,13 @@ class User{
         'store_id': 1,
         'website_id': 1,
         'dob': this.birthday,// ngày sinh
-        'gender': this.gender
+        'gender': this.gender,
+        'custom_attributes':[
+          {
+            "attribute_code": "phone_number",
+            "value": this.phone
+          }
+        ]
       },
       'password': this.password,
 

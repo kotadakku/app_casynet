@@ -34,53 +34,92 @@ class MenuAccountWidget extends StatelessWidget {
       switch (e) {
         case "Thông tin tài khoản":
           icon = FontAwesomeIcons.user;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav=() { Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: [12]);};
+          nav = (){
+            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            else Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: [12]); };
           break;
         case "Địa chỉ":
           icon = FontAwesomeIcons.mapLocation;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav=() { Get.toNamed(Routes.ACCOUNT_ADDRESS);};
+          nav = (){
+            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            else Get.toNamed(Routes.ACCOUNT_ADDRESS);
+          };
           break;
         case "Tin nhắn":
           icon = FontAwesomeIcons.message;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);} :
-          nav=() { Get.toNamed(Routes.MESSAGES,  arguments: [12]);};
+          nav = (){
+            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            else  Get.toNamed(Routes.MESSAGES,  arguments: [12]);
+
+          };
           break;
         case "Đơn hàng":
           icon = FontAwesomeIcons.bagShopping;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);} :
-          nav=() { Get.toNamed(Routes.ACCOUNT_ORDER, arguments: [12]);};
+          nav = () {
+            if (!_authManager.isLogged.value ||
+                _authManager.user_current.id == null)
+              Get.toNamed(Routes.AUTH, arguments: 0);
+            else
+              Get.toNamed(Routes.ACCOUNT_ORDER, arguments: [12]);
+          };
           break;
         case "Ví Voucher":
           icon = FontAwesomeIcons.wallet;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav=() {Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER,  arguments: [12]);};
+          nav = () {
+            if (!_authManager.isLogged.value ||
+                _authManager.user_current.id == null)
+              Get.toNamed(Routes.AUTH, arguments: 0);
+            else
+              Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER, arguments: [12]);
+          };
           break;
         case "Quản lý tích điểm":
           icon = FontAwesomeIcons.bitcoin;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav =(){Get.toNamed(Routes.ACCOUNT_CASYCOIN,  arguments: [12]);};
+          nav = () {
+            if (!_authManager.isLogged.value ||
+                _authManager.user_current.id == null)
+              Get.toNamed(Routes.AUTH, arguments: 0);
+            else
+              Get.toNamed(Routes.ACCOUNT_CASYCOIN, arguments: [12]);
+          };
           break;
         case "Sản phẩm yêu thích":
           icon = FontAwesomeIcons.heart;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav =(){Get.toNamed(Routes.PRODUCTS_FAVOURITE,  arguments: [12]);};
+          nav = () {
+            if (!_authManager.isLogged.value ||
+                _authManager.user_current.id == null)
+              Get.toNamed(Routes.AUTH, arguments: 0);
+            else
+              Get.toNamed(Routes.PRODUCTS_FAVOURITE, arguments: [12]);
+          };
           break;
         case "Cửa hàng theo dõi":
           icon = FontAwesomeIcons.store;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav =(){Get.toNamed(Routes.STORE_FOLLOWED,  arguments: [12]);};
+          nav = () {
+            if (!_authManager.isLogged.value ||
+                _authManager.user_current.id == null)
+              Get.toNamed(Routes.AUTH, arguments: 0);
+            else
+              Get.toNamed(Routes.STORE_FOLLOWED, arguments: [12]);
+          };
           break;
         case "Sản phẩm đã xem":
           icon = FontAwesomeIcons.eye;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav =(){Get.toNamed(Routes.PRODUCTS_SEEN, arguments: [12] );};
+          nav = () {
+            if (!_authManager.isLogged.value ||
+                _authManager.user_current.id == null)
+              Get.toNamed(Routes.AUTH, arguments: 0);
+            else
+              Get.toNamed(Routes.PRODUCTS_SEEN, arguments: [12]);
+          };
           break;
         case "Quản lý cửa hàng":
           icon = FontAwesomeIcons.shopware;
-          (!_authManager.isLogged.value || _authManager.user_current == null) ? nav=() { Get.toNamed(Routes.AUTH, arguments: 0);}:
-          nav =(){Get.toNamed(Routes.STORE_MANAGER);};
+          nav = (){
+            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            else Get.toNamed(Routes.STORE_MANAGER);
+
+          };
           break;
       }
       return GestureDetector(
@@ -120,8 +159,10 @@ class MenuAccountWidget extends StatelessWidget {
             ],
           ),
         ),
-        onTap: nav,
-      ) ;
+        onTap: (){
+          nav();
+        },
+      );
     }).toList();
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.0),
