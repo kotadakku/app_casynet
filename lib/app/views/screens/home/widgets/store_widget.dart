@@ -91,7 +91,7 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(pageSize: '12',cat: '');
+                                  _sellerController.getSellersAPI(pageSize: '12',cat: '11');
                                 },
                                 activeColor: Color(0xffDFB400)),
                             Text("Ô tô"),
@@ -103,7 +103,7 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(pageSize: '12',cat: '11');
+                                  _sellerController.getSellersAPI(pageSize: '12',cat: '12');
                                 },
                                 activeColor: Color(0xffDFB400)),
                             Text("Xe máy")

@@ -146,9 +146,10 @@ class RegisterWidget extends StatelessWidget {
                           return "Bạn cần nhập số điện thoại";
                         }
                         if (!RegExp(r"^0[0-9]{9}$").hasMatch(value)) {
-                          return "Không có khoảng trắng, cần 10 số";
+                          return "Số điện thoại không hợp lệ";
                         }
                       },
+                      keyboardType: TextInputType.phone,
                       cursorColor: kYellowColor,
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -192,7 +193,7 @@ class RegisterWidget extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Bạn cần nhập mật khẩu";
-                        }if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}').hasMatch(value)){
+                        }if(!RegExp(r'^(?!.* )(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,32}').hasMatch(value)){
                           return "Mật khẩu ít nhất 8 ký tự, trong đó có ít nhất một chữ hoa, số, ký tự đặc biệt, Ex: ngocson_jp@yahoo.co.jp";
                         }
                         //(?=.*?[!@#\><*~])
