@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/account/api/order_controller.dart';
 import '../../../../controller/account/order_account_controller.dart';
 import '../../../../data/model/product.dart';
 import '../../../theme/app_colors.dart';
+import 'order_cancel_widget.dart';
+import 'order_canceled_widget.dart';
 
 class OrderCompleteWidget extends StatelessWidget {
 
@@ -21,7 +24,6 @@ class OrderCompleteWidget extends StatelessWidget {
     ):ListView.builder(
         scrollDirection: Axis.vertical,
         physics: BouncingScrollPhysics(),
-        controller: _orderAccountController.scrollCompleteController,
         itemCount: _orderController.orderCompleteList.length+1,
         shrinkWrap: true,
         itemBuilder: (context, index){
@@ -34,7 +36,7 @@ class OrderCompleteWidget extends StatelessWidget {
                   Container(
                       width: double.infinity,
                       color: Colors.white,
-                      padding: EdgeInsets.only(left: 15, top: 5, bottom: 5),
+                      padding: EdgeInsets.only(left: 10.w, top: 5, bottom: 5, right: 10.w),
                       child: Row(
                         children: [
                           Text(
@@ -42,15 +44,17 @@ class OrderCompleteWidget extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: kTextLink),
+                                color: kTextLink
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(
-                            width: 20,
+                            width: 10,
                           ),
                           Icon(
-                            Icons.message_outlined,
+                            CupertinoIcons.chat_bubble_2,
                             color: kYellowColor,
-                          )
+                          ),
                         ],
                       )),
                   Divider(),
@@ -61,7 +65,6 @@ class OrderCompleteWidget extends StatelessWidget {
                       itemCount: _orderController.orderCompleteList[index].products?.length,
                       itemBuilder: (context, i){
                         return  OrderItem(
-                          name_product: "Máy rửa xe Catorex - CTR",
                           product: _orderController.orderCompleteList.value[index].products![i],
                         );
                       }
@@ -116,84 +119,37 @@ class OrderCompleteWidget extends StatelessWidget {
                     color: kBackgroundColor,
                   )
                 ]);
-          else return Center(
-            child: CircularProgressIndicator(),
-          );
+          else return Obx(()=>_orderAccountController.isLoadingComplete.value ?
+          SizedBox(
+            height: 50,
+            child: Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+          ):
+          GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            child: SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Xem thêm", style: TextStyle(
+                      color: kYellowColor
+                  ),),
+                  Container(
+                    margin: EdgeInsets.all(5.0),
+                    child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor, size: 15,),
+                  )
+                ],
+              ),
+            ),
+            onTap: (){
+              _orderAccountController.loadMoreComplete();
+            },
+          ));
         }
     )
-    );
-  }
-}
-
-class OrderItem extends StatelessWidget {
-  final String name_product;
-  final Product product;
-
-  const OrderItem({Key? key, required this.name_product, required this.product}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            children: [
-              Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: ExactAssetImage(
-                            "assets/product_detail/product_1.png"))),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(child: Text(product.name.toString(),
-                            overflow: TextOverflow.ellipsis,
-                          ),),
-                          Text(
-                            product.price.toString(),
-                            style: TextStyle(
-                                color: Colors.red, fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Phân loại hàng: ngocbich",
-                            style: TextStyle(color: kTextColor, fontSize: 12),
-                          ),
-                          Text(
-                            product.officialPrice.toString(),
-                            style: TextStyle(
-                                decoration: TextDecoration.lineThrough,
-                                color: kTextColor,
-                                fontSize: 12),
-                          )
-                        ],
-                      ),
-                      Text(
-                        "x1",
-                        style: TextStyle(color: kTextColor, fontSize: 12),
-                      )
-                    ],
-                  ))
-            ],
-          ),
-        ),
-        Divider(),
-      ],
     );
   }
 }

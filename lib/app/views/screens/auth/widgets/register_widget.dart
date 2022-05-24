@@ -92,6 +92,7 @@ class RegisterWidget extends StatelessWidget {
                   TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      focusNode: authController.focusNodeEmail,
                       onSaved: (value) {
                         user.email = value;
                       },
@@ -99,6 +100,7 @@ class RegisterWidget extends StatelessWidget {
                         if (value!.isEmpty ||
                             !RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
+
                           return "Bạn chưa nhập đúng định dạng, Ex: a@gmail.com";
                         }
                       },
@@ -138,6 +140,7 @@ class RegisterWidget extends StatelessWidget {
                   TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      focusNode: authController.focusNodePhone,
                       onSaved: (value) {
                         user.phone = value;
                       },
@@ -254,7 +257,11 @@ class RegisterWidget extends StatelessWidget {
                       validator: (value) {
                         /*if (value.length < ) {
                       return "Bạn cần nhập nhiều hơn 8 ký tự";
-                    }*/if(value != authController.passwordController.text){
+
+                    }*/if (value!.isEmpty) {
+                          return "Bạn cần nhập mật khẩu";
+                        }
+                        if(value != authController.passwordController.text){
                           return "Mật khẩu không trùng khớp";
                         }
                       },

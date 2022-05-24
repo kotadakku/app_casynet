@@ -96,7 +96,7 @@ class AccountDetailPage extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text('${controller.user_current.lastname.toString()} ${controller.user_current.firstname.toString()}'),
+                                Text('${controller.user_current.firstname?? "user_312312"} ${controller.user_current.lastname??''}'),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                                   child: Icon(

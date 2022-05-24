@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               // Banner
+
               BannerHomeWidget(),
 
               // test

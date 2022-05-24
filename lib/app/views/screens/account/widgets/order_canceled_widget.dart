@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/account/api/order_controller.dart';
@@ -22,7 +23,6 @@ class OrderCanceledWidget extends StatelessWidget {
       Obx(()=>ListView.builder(
           scrollDirection: Axis.vertical,
           physics: BouncingScrollPhysics(),
-          controller: _orderAccountController.scrollCancelController,
           itemCount: _orderController.orderCanceledList.value.length+1,
           shrinkWrap: true,
           itemBuilder: (context, index){
@@ -35,7 +35,7 @@ class OrderCanceledWidget extends StatelessWidget {
                     Container(
                         width: double.infinity,
                         color: Colors.white,
-                        padding: EdgeInsets.only(left: 15, top: 5, bottom: 5),
+                        padding: EdgeInsets.only(left: 10.w, top: 5, bottom: 5, right: 10.w),
                         child: Row(
                           children: [
                             Text(
@@ -43,15 +43,24 @@ class OrderCanceledWidget extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
-                                  color: kTextLink),
+                                  color: kTextLink
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 10,
                             ),
                             Icon(
-                              Icons.message_outlined,
+                              CupertinoIcons.chat_bubble_2,
                               color: kYellowColor,
-                            )
+                            ),
+                            Spacer(),
+                            Text('ĐÃ HỦY',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
                           ],
                         )),
                     Divider(),
@@ -62,7 +71,6 @@ class OrderCanceledWidget extends StatelessWidget {
                         itemCount: _orderController.orderCanceledList[index].products?.length,
                         itemBuilder: (context, i){
                           return  OrderItem(
-                            name_product: "Máy rửa xe Catorex - CTR",
                             product: _orderController.orderCanceledList.value[index].products![i],
                           );
                         }
@@ -118,9 +126,35 @@ class OrderCanceledWidget extends StatelessWidget {
                       color: kBackgroundColor,
                     )
                   ]);
-            else return Center(
-              child: CircularProgressIndicator(),
-            );
+            else return Obx(()=>_orderAccountController.isLoadingCancel.value ?
+            SizedBox(
+              height: 50,
+              child: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            ):
+            GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              child: SizedBox(
+                height: 50,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Xem thêm", style: TextStyle(
+                        color: kYellowColor
+                    ),),
+                    Container(
+                      margin: EdgeInsets.all(5.0),
+                      child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor, size: 15,),
+                    )
+                  ],
+                ),
+              ),
+              onTap: (){
+                _orderAccountController.loadMoreCancel();
+              },
+            ));
           }
       )
       )
@@ -129,10 +163,9 @@ class OrderCanceledWidget extends StatelessWidget {
 }
 
 class OrderItem extends StatelessWidget {
-  final String name_product;
   final Product product;
 
-  const OrderItem({Key? key, required this.name_product, required this.product}) : super(key: key);
+  const OrderItem({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

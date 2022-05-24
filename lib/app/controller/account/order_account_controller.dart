@@ -8,12 +8,9 @@ class OrderAccountController extends GetxController with GetSingleTickerProvider
     "Tất cả", "Đặt mua", "Đã hủy"
   ];
   late TabController controller;
-  late ScrollController scrollController;
-  late ScrollController scrollCancelController;
-  late ScrollController scrollCompleteController;
-  bool isLoadingAll = false;
-  bool isLoadingCancel = false;
-  bool isLoadingComplete = false;
+  final isLoadingAll = false.obs;
+  final isLoadingCancel = false.obs;
+  final isLoadingComplete = false.obs;
   int _page = 1;
   int _pageCancel = 1;
   int _pageComplete = 1;
@@ -22,9 +19,6 @@ class OrderAccountController extends GetxController with GetSingleTickerProvider
   void onInit() {
     super.onInit();
     controller = TabController(vsync: this, length: listTabs.length);
-    scrollController = ScrollController()..addListener(_loadMoreAll);
-    scrollCancelController = ScrollController()..addListener(_loadMoreCancel);
-    scrollCompleteController = ScrollController()..addListener(_loadMoreComplete);
   }
 
 
@@ -33,40 +27,33 @@ class OrderAccountController extends GetxController with GetSingleTickerProvider
     controller.dispose();
     super.onClose();
   }
-  void _loadMoreAll() async {
+  void loadMoreAll() async {
 
     OrderController orderController = Get.find();
-    if(scrollController.position.maxScrollExtent == scrollController.offset){
-
-      if(!isLoadingAll){
-        isLoadingAll = true;
-        _page += 1;
-        await orderController.getOrdersAllApi(currentPage: _page, pageSize: 20);
-        isLoadingAll = false;
-      }
+    if(!isLoadingAll.value){
+      isLoadingAll.value = true;
+      _page += 1;
+      await orderController.getOrdersAllApi(currentPage: _page, pageSize: 20);
+      isLoadingAll.value = false;
     }
   }
-  void _loadMoreCancel() async {
+  void loadMoreCancel() async {
 
     OrderController orderController = Get.find();
-    if(scrollCancelController.position.maxScrollExtent == scrollCancelController.offset){
-      if(!isLoadingCancel){
-        isLoadingCancel = true;
-        _pageCancel += 1;
-        await orderController.getOrdersCanceledApi(currentPage: _pageCancel, pageSize: 20);
-        isLoadingCancel = false;
-      }
+    if(!isLoadingCancel.value){
+      isLoadingCancel.value = true;
+      _pageCancel += 1;
+      await orderController.getOrdersCanceledApi(currentPage: _pageCancel, pageSize: 20);
+      isLoadingCancel.value = false;
     }
   }
-  void _loadMoreComplete() async {
+  void loadMoreComplete() async {
     OrderController orderController = Get.find();
-    if(scrollCompleteController.position.maxScrollExtent == scrollCompleteController.offset){
-      if(!isLoadingComplete){
-        isLoadingComplete = true;
-        _pageComplete += 1;
-        await orderController.getOrdersCompleteApi(currentPage: _pageComplete, pageSize: 20);
-        isLoadingComplete = false;
-      }
+    if(!isLoadingComplete.value){
+      isLoadingComplete.value = true;
+      _pageComplete += 1;
+      await orderController.getOrdersCompleteApi(currentPage: _pageComplete, pageSize: 20);
+      isLoadingComplete.value = false;
     }
   }
 }

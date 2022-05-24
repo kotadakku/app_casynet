@@ -25,56 +25,50 @@ class OrderAccountPage extends StatelessWidget{
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBarAccountWidget(),
-        body: SingleChildScrollView(
-            physics: NeverScrollableScrollPhysics(),
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.w, top: 15.h),
-                    child: Text("Đơn hàng của Tôi",
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 10.w, top: 15.h),
+              child: Text("Đơn hàng của Tôi",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+            Divider(
+              height: 20.h,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white
+              ),
+              child: TabBar(
+                  controller: _tabx.controller,
+                  indicatorColor: kYellowColor,
+                  unselectedLabelColor: kTextColor,
+                  labelColor: kYellowColor,
+                  tabs: _tabx.listTabs.map((e) => Tab(
+                    child: Text(e,
                       style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
                       ),
                     ),
-                  ),
-                  Divider(
-                    height: 20.h,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white
-                    ),
-                    child: TabBar(
-                        controller: _tabx.controller,
-                        indicatorColor: kYellowColor,
-                        unselectedLabelColor: kTextColor,
-                        labelColor: kYellowColor,
-                        tabs: _tabx.listTabs.map((e) => Tab(
-                          child: Text(e,
-                            style: TextStyle(
-                            ),
-                          ),
-                        )).toList()
-                    ),
-                  ),
-                  Expanded(child: TabBarView(
-                    controller: _tabx.controller,
-                    children: [
-
-                      OrderCancelWidget(),
-                      OrderCompleteWidget(),
-                      OrderCanceledWidget(),
-                    ],
-                  ),
-                  )
-                ],
+                  )).toList()
               ),
+            ),
+            Expanded(child: TabBarView(
+              controller: _tabx.controller,
+              children: [
+
+                OrderCancelWidget(),
+                OrderCompleteWidget(),
+                OrderCanceledWidget(),
+              ],
+            ),
             )
+          ],
         ),
       ),
     );

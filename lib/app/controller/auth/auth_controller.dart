@@ -20,6 +20,9 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
   GlobalKey<FormState> formRegisterKey = GlobalKey<FormState>();
   late TextEditingController emailController, passwordController, birthDayTextController;
+  final focusNodeEmail = FocusNode();
+  final focusNodePhone = FocusNode();
+
 
   @override
   void onInit() {
@@ -103,9 +106,11 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
       final result = await HomePageRepo().createUser(user.toJsonRegister());
       if(result != null){
         if(result.isSuccess){
-          await loginUser(user);
           register_loading.value = false;
-          Get.back();
+          controller.animateTo(0,
+            duration: Duration(seconds: 1),
+            curve: Curves.easeInBack
+          );
           scaffoldMessenger.showSnackBar(
             const SnackBar(content: Text('Đăng ký thành công!'), duration: Duration(seconds: 1)),
           );
@@ -117,6 +122,12 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
               confirmTextColor: Colors.white,
               onConfirm: () {
                 Get.back();
+                if(result.msg == 'Số điện thoại đã được đăng ký'){
+                  focusNodePhone.requestFocus();
+                }
+                if(result.msg == 'Email này đã tồn tại!'){
+                  focusNodeEmail.requestFocus();
+                }
                 register_loading.value = false;
               }
           );
