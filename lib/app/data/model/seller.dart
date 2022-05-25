@@ -59,7 +59,7 @@ class Seller {
     rate = double.parse(data['vote'].toString());
     avatar_image = data['avatar_image'] ?? data['images'];
     address = data['address'];
-    distance = data['distance'];
+    distance =  double.parse(data['distance']);
     phone = data['phone'];
     if(data['lat'] != null) lat = double.parse(data['lat']);
     if(data['lng'] != null) lon = double.parse(data['lng']??'');

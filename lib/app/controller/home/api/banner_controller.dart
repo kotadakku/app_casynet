@@ -1,11 +1,7 @@
-import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/model/banner_slider_new.dart';
 import 'package:get/get.dart';
 
-import '../../../data/model/banner_slider.dart';
-import '../../../data/provider/db_provider.dart';
 import '../../../data/repo/home_repo.dart';
-import '../banner_page_view_controller.dart';
 
 class FetchBannerController extends GetxController with StateMixin{
   // final bannersList = <BannerSlider>[].obs;

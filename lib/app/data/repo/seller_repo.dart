@@ -1,3 +1,7 @@
+
+import 'package:app_casynet/app/data/model/responses.dart';
+import 'package:app_casynet/app/data/model/seller.dart';
+
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';
 import '../model/responses.dart';
@@ -40,4 +44,5 @@ class SellerRepo{
       return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
 }
