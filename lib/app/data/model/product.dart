@@ -5,6 +5,7 @@ class Product {
   int? isCar;
   String? sku;
   String? name;
+  String? thumbnail;
   String? imageUrl;
   int? price;
   int? officialPrice;
@@ -17,6 +18,8 @@ class Product {
   int? badReport;
   String? detailProduct;
   Seller? store;
+  String? description;
+  List<String> images = [];
 
 
 
@@ -59,19 +62,43 @@ class Product {
   }
 
   Product.fromJson1(Map<String, dynamic> json) {
-    id = int.parse(json['id'].toString());
-    name = json["name"].toString();
-    imageUrl = "https://casynet-api.herokuapp.com"+json['images'][0]['image'];;
-    price = json[ "price"];
-    officialPrice = json["discount_price"];
-    likeQty = json["liked"];
-    commentQty = json["comment"];
-    rate = json["vote"];
-    coinPoint = json["point"];
-    store = Seller(
-        name: json["store"]["name"].toString(),
-        distance: json["store"]["distance"]
-    );
+    id = json['id'];
+    sku = json['sku'];
+    name = json["name"];
+    if(json['price'] != null) officialPrice = double.parse(json['price'].toString()).round();
+    if(json['media_gallery_entries']!= null){
+      json['media_gallery_entries'].forEach((v) {
+        if(v['attribute_code'] == 'phone_number'){
+          images.add(v['file']);
+        }
+      });
+    }
+    if(json['custom_attributes']!=null){
+      json['custom_attributes'].forEach((v){
+        if(v['attribute_code'] == 'description'){
+          description = v['value'];
+        }
+        if(v['attribute_code'] == 'thumbnail'){
+          thumbnail = "https://client.casynet.com/pub/media/catalog/product"+ v['value'];
+        }
+        if(v['attribute_code'] == 'special_price'){
+          price = double.parse(v['value'].toString()).round();
+        }
+
+      });
+    }
+
+    // imageUrl = "https://client.casynet.com/pub/media/catalog/product"+json['images'][0]['image'];;
+
+    // officialPrice = json["discount_price"];
+    // likeQty = json["liked"];
+    // commentQty = json["comment"];
+    // rate = json["vote"];
+    // coinPoint = json["point"];
+    // store = Seller(
+    //     name: json["store"]["name"].toString(),
+    //     distance: json["store"]["distance"]
+    // );
   }
 
   Map<String, dynamic> toJson() {

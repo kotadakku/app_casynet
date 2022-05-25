@@ -1,23 +1,25 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../controller/home/products_controller.dart';
 import '../../routes/app_pages.dart';
+import '../theme/app_colors.dart';
 import '../widgets/bottom_widget.dart';
 import 'home/widgets/category_bottom_widget.dart';
+import 'home/widgets/items/product_item.dart';
+import 'home/widgets/store_widget.dart';
 
 
 class ProductsPage extends StatelessWidget {
-  const ProductsPage({Key? key}) : super(key: key);
+  ProductsPage({Key? key}) : super(key: key);
+  ProductsController _productsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    var c = Get.find<ProductsController>();
-    var category = Get.arguments[0].toString();
+
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -42,7 +44,7 @@ class ProductsPage extends StatelessWidget {
                           ),),
                           SizedBox(width: 15,),
                           Text(
-                            category,
+                            _productsController.category_name,
                             style: TextStyle(
                                 color: Color(0xffDFB400),
                                 fontSize: 18,
@@ -80,61 +82,69 @@ class ProductsPage extends StatelessWidget {
                   children: [
                     Radio(
                         value: true,
-                        groupValue: c.isCar.value,
+                        groupValue: _productsController.isCar.value,
                         onChanged: (value){
-                          c.isCar.value = !c.isCar.value;
+                          _productsController.isCar.value = !_productsController.isCar.value;
                         },
                         activeColor: Color(0xffDFB400)),
                     Text("Ô tô"),
                     SizedBox(width: 20,),
                     Radio(
                         value: false,
-                        groupValue: c.isCar.value,
+                        groupValue: _productsController.isCar.value,
                         onChanged: (value){
-                          c.isCar.value = !c.isCar.value;
+                          _productsController.isCar.value = !_productsController.isCar.value;
                         },
                         activeColor: Color(0xffDFB400)
                     ),
                     Text("Xe máy")
                   ],
                 ),),
-                Wrap(
-                  spacing: 10.0,
-                  runSpacing: 10.0,
-                  children: [
-                    // ItemProductWidget(
-                    //     book_image: "assets/home/book/image.png",
-                    //     distance: 4.5,
-                    //     price: "1.290.000đ",
-                    //     price_discount: "1.390.000đ",
-                    //     book_name: "Máy rửa xe Catorex - CTR",
-                    //     book_category: "Điện máy Đỗ Dũng"
-                    // ),
-                    // ItemProductWidget(
-                    //     book_image: "assets/home/store/cuahang1.png",
-                    //     distance: 4.5,
-                    //     price: "1.290.000đ",
-                    //     price_discount: "1.390.000đ",
-                    //     book_name: "Máy rửa xe Catorex - CTR",
-                    //     book_category: "Điện máy Đỗ Dũng"
-                    // ),
-                    // ItemProductWidget(
-                    //     book_image: "assets/home/book/image.png",
-                    //     distance: 4.5,
-                    //     price: "1.290.000đ",
-                    //     price_discount: "1.390.000đ",
-                    //     book_name: "Máy rửa xe Catorex - CTR",
-                    //     book_category: "Điện máy Đỗ Dũng"
-                    // ),
-                    // ItemProductWidget(
-                    //     book_image: "assets/home/store/cuahang1.png",
-                    //     distance: 4.5,
-                    //     price: "1.290.000đ",
-                    //     price_discount: "1.390.000đ",
-                    //     book_name: "Máy rửa xe Catorex - CTR",
-                    //     book_category: "Điện máy Đỗ Dũng"
-                    // ),
-                  ],
+                _productsController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
+                    child: state.isEmpty ?
+                    Text("Không có sẳn phẩm nào để hiển thi") :
+                    Wrap(
+                      spacing: 5.0.w,
+                      runSpacing: 10.0,
+                      children: (state as List).map((e) =>
+                        ItemProductWidget(
+                          product: e
+                        )
+                      ).toList()
+                    )
+                ),
+                  onLoading: ItemCuaHangShimmer(),
+                  onEmpty: Text('Không có sản phẩm nào để hiển thị'),
+                ),
+                Obx(()=>_productsController.haveNextPage.value ? _productsController.isLoading.value ?
+                SizedBox(
+                  height: 50,
+                  child: Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
+                ):
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  child: SizedBox(
+                    height: 50,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Xem thêm", style: TextStyle(
+                            color: kYellowColor
+                        ),),
+                        Container(
+                          margin: EdgeInsets.all(5.0),
+                          child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor, size: 15,),
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: (){
+                    _productsController.loadMoreProducts();
+                  },
+                ) : Container()
                 ),
                 SizedBox(height: 20,),
                 CategoryBottomWidget(),

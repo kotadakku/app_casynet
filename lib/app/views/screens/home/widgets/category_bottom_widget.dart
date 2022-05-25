@@ -23,6 +23,7 @@ class CategoryBottomWidget extends StatelessWidget {
               children: (state as List)
                   .map(
                     (e) => CategoryItemBottom(
+                    id: e.id,
                     images_url: e.imageUrl.toString(),
                     name: e.name.toString()),
               ).toList(),

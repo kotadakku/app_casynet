@@ -9,9 +9,10 @@ import '../../../../widgets/image_network_loading.dart';
 class CategoryItemBottom extends StatelessWidget {
   final String images_url;
   final String name;
+  final int id;
 
   const CategoryItemBottom(
-      {Key? key, required this.images_url, required this.name})
+      {Key? key, required this.images_url, required this.name, required this.id})
       : super(key: key);
 
   @override
@@ -62,7 +63,7 @@ class CategoryItemBottom extends StatelessWidget {
             ));
       }),
       onTap: () {
-        Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, 12]);
+        Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, id]);
       },
     );
   }

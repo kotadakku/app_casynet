@@ -1,10 +1,12 @@
 
 import 'package:app_casynet/app/config/config_db.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/category.dart';
 import '../../../data/provider/db_provider.dart';
+import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/home_repo.dart';
 
 
@@ -38,8 +40,18 @@ class CategoryController extends GetxController with StateMixin{
   }
   Future<void> getCategoriesAPI() async {
     change(_categoriesList, status: RxStatus.loading());
+    final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     try {
-      final result = await  HomePageRepo().getCategories();
+      final result = await  HomePageRepo().getCategories(
+        options: Options(
+            headers: {'Authorization': 'Bearer $token_admin'}
+        ),
+        queryParameters: {
+          'searchCriteria[filterGroups][0][filters][0][field]': 'level',
+          'searchCriteria[filterGroups][0][filters][0][value]': '3',
+          'searchCriteriafilterGroups[filters][0][condition_type]': 'eq',
+        }
+      );
       if (result != null) {
         if (result.isSuccess) {
           _categoriesList.value = result.listObjects ?? [];
@@ -59,14 +71,14 @@ class CategoryController extends GetxController with StateMixin{
             );
           }
         } else {
-          Get.snackbar("Thông báo", result.msg.toString(),
-            backgroundColor: Colors.black.withOpacity(0.3));
+          // Get.snackbar("Thông báo", result.msg.toString(),
+          //   backgroundColor: Colors.black.withOpacity(0.3));
           change(_categoriesList, status: RxStatus.error());
         }
       }
     } catch (e) {
-      Get.snackbar("Thông báo", "error:: $e",
-        backgroundColor: Colors.black.withOpacity(0.3));
+      // Get.snackbar("Thông báo", "error:: $e",
+      //   backgroundColor: Colors.black.withOpacity(0.3));
       change(_categoriesList, status: RxStatus.error());
     }
 

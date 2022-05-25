@@ -44,7 +44,7 @@ class ItemProductWidget extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.network(product.imageUrl.toString(),
+                    Image.network(product.thumbnail.toString(),
                         fit: BoxFit.fill),
                     if(product.coinPoint != null) Positioned(
                         right: 5,
@@ -68,7 +68,7 @@ class ItemProductWidget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    product.officialPrice == null ? "Liên hệ" : product.officialPrice.toString(),
+                    '${(product.price == null && product.officialPrice == null) ?  "Liên hệ" : product.price??product.officialPrice}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold
                     ),
@@ -119,7 +119,7 @@ class ItemProductWidget extends StatelessWidget {
                       children: [
                         FaIcon(FontAwesomeIcons.solidThumbsUp, color: kTextColor_gray, size: IconSize.iconSize,),
                         SizedBox(width: 2.0,),
-                        Text("33",
+                        Text('${product.likeQty ?? 0}',
                             style: TextStyle(
                                 fontSize: 15.sp
                             )
@@ -130,7 +130,7 @@ class ItemProductWidget extends StatelessWidget {
                       children: [
                         FaIcon(FontAwesomeIcons.comment, color: kTextColor_gray, size: IconSize.iconSize,),
                         SizedBox(width: 2.0,),
-                        Text("33",
+                        Text('${product.commentQty ?? 0}',
                             style: TextStyle(
                                 fontSize: 15.sp
                             )
@@ -140,7 +140,7 @@ class ItemProductWidget extends StatelessWidget {
                     Row(
                       children: [
 
-                        Text("4.3",
+                        Text('${product.rate ?? 0.0}',
                           style: TextStyle(
                               fontSize: 15.sp
                           ),

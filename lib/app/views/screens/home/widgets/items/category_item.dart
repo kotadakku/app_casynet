@@ -9,7 +9,8 @@ class ItemCategoryWidget extends StatelessWidget {
 
   final String image_url;
   final String title;
-  ItemCategoryWidget({Key? key,required this.image_url, required this.title}) : super(key: key);
+  final int id;
+  ItemCategoryWidget({Key? key,required this.image_url, required this.title, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class ItemCategoryWidget extends StatelessWidget {
       GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: (){
-          Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
+          Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id]);
         },
         child: Container(
           child: Column(

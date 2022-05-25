@@ -12,7 +12,8 @@ import 'widgets/district_product_widget.dart';
 import '../../theme/app_sizes.dart';
 
 class FilterProductPage2 extends StatelessWidget {
-  const FilterProductPage2({Key? key}) : super(key: key);
+  final controller;
+  const FilterProductPage2({Key? key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class FilterProductPage2 extends StatelessWidget {
               DistrictProductWidget(),
               Container(height: 10,color: Color(0xffF1F3FD),),
               //Bottom Button
-              BottomButtonWidget(),
+              BottomButtonWidget(controller : controller),
             ],
           ),
         ),

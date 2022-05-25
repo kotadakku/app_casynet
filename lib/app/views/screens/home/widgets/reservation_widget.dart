@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/views/screens/home/widgets/store_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -53,7 +54,7 @@ class ReservationWidget extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: (){
-                        _view_more('reservation'.tr);
+                        _view_more('reservation'.tr, 31);
                       },
                       child: Row(
                         children: [
@@ -138,18 +139,23 @@ class ReservationWidget extends StatelessWidget {
                       product: e
                   ),).toList(),
                 )
-            ))
+            ),
+              onLoading: ItemCuaHangShimmer(),
+              onEmpty: Text('Không có sản phẩm nào để hiển thị'),
+            ),
           ],
         ),
       ),
     );
   }
   void _filter_product() {
-    Get.toNamed(Routes.FILTER_PRODUCT);
+    Get.toNamed(Routes.FILTER_PRODUCT, arguments: {
+      'controller': _ReservationController
+    });
   }
 
-  void _view_more(title) {
-    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
+  void _view_more(title, id) {
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id ]);
   }
 }
 
@@ -192,8 +198,6 @@ class ItemSale extends StatelessWidget {
             child: SvgPicture.asset("assets/home/rect_sale.svg", height: 5, color: color,
             ),
           ),
-
-
         ],
       ),
     );

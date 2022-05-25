@@ -16,6 +16,7 @@ class FilterProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.arguments['controller'];
     return Scaffold(
       appBar: AppBarAccountWidget(),
       body: SingleChildScrollView(
@@ -73,7 +74,7 @@ class FilterProductPage extends StatelessWidget {
               height: 10,
             ),
             //Bottom Button
-            BottomButtonWidget(),
+            BottomButtonWidget(controller: controller,),
           ],
         ),
       ),

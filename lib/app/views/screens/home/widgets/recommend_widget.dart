@@ -1,11 +1,11 @@
 
-import 'package:app_casynet/app/controller/home/api/reservation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../../controller/home/api/recommend_controller.dart';
 import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/textTheme.dart';
@@ -15,7 +15,7 @@ import 'items/product_item.dart';
 class RecommendWidget extends StatelessWidget {
 
   RecommendWidget({Key? key}) : super(key: key);
-  ReservationController _ReservationController = Get.find();
+  RecommendController _recommendController = Get.find();
   @override
   Widget build(BuildContext context) {
     RadioController controller = Get.find();
@@ -54,7 +54,7 @@ class RecommendWidget extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: (){
-                        _view_more('recommed'.tr);
+                        _view_more('recommed'.tr, 32);
                       },
                       child: Row(
                         children: [
@@ -128,7 +128,7 @@ class RecommendWidget extends StatelessWidget {
 
               ],
             ),
-            _ReservationController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
+            _recommendController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
                 child: state.isEmpty ?
                 Text("Không có sẳn phẩm nào để hiển thi") :
                 Wrap(
@@ -150,8 +150,8 @@ class RecommendWidget extends StatelessWidget {
     Get.toNamed(Routes.FILTER_PRODUCT);
   }
 
-  void _view_more(title) {
-    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title]);
+  void _view_more(title, id) {
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id]);
   }
 }
 

@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/home/api/reservation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -7,7 +8,8 @@ import '../../../../controller/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 
 class BottomButtonWidget extends StatelessWidget {
-  const BottomButtonWidget({Key? key}) : super(key: key);
+  final controller;
+  const BottomButtonWidget({Key? key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +64,11 @@ class BottomButtonWidget extends StatelessWidget {
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                           ),
                           onPressed: () {
+                            if(controller is ReservationController){
+                              final min = Get.find<FilterPriceController>().price_min;
+                              final max = Get.find<FilterPriceController>().price_max;
+                              (controller as ReservationController).getReservationProductsAPI(minPrice: min.value, maxPrice: max.value);
+                            }
                             Get.back();
                           },
                         ),

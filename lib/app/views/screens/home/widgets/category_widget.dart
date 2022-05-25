@@ -43,7 +43,7 @@ class CategoryWidget extends StatelessWidget {
                         padding: EdgeInsets.all(0.0),
                         shrinkWrap: true,
                         itemCount: state.length,
-                        itemBuilder: (context, index)=>ItemCategoryWidget(image_url: state[index].imageUrl.toString(), title: state[index].name.toString()),
+                        itemBuilder: (context, index)=>ItemCategoryWidget(image_url: state[index].imageUrl.toString(), title: state[index].name.toString(), id: state[index].id),
                       ),
                     onLoading: CategoryShimer(),
                   );

@@ -47,8 +47,6 @@ class FilterAttrController extends GetxController with GetSingleTickerProviderSt
     attr.value = "Mới nhất";
   }
 
-
-
   @override
   void onInit() {
 
@@ -191,7 +189,7 @@ class FilterPriceController extends GetxController with GetSingleTickerProviderS
       price_max_error.value = "Vui lòng nhập số";
     }
     else{
-      price_min.value = int.parse(value);
+      price_max.value = int.parse(value);
       price_max_error.value = "";
     }
   }

@@ -62,19 +62,13 @@ class HomePageRepo{
       return Responses<BannerSlider>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Responses<Category>> getCategories() async {
-    final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
+  Future<Responses<Category>> getCategories({Options? options, Map<String, dynamic>? queryParameters}) async {
+
     try {
       final response = await ApiRequest().get(
           path: ApiConfig.baseUrl + ApiConfig.categories,
-          queryParameters: {
-            'searchCriteria[filterGroups][0][filters][0][field]': 'level',
-            'searchCriteria[filterGroups][0][filters][0][value]': '3',
-            'searchCriteriafilterGroups[filters][0][condition_type]': 'eq',
-          },
-          options: Options(
-              headers: {'Authorization': 'Bearer $token_admin'}
-          )
+          queryParameters: queryParameters,
+          options: options
       );
 
       if (response != null) {
@@ -90,14 +84,16 @@ class HomePageRepo{
       return Responses<Category>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-  Future<Responses<Product>> getProducts() async {
+  Future<Responses<Product>> getProducts({Options? options, Map<String, dynamic>? queryParameters}) async {
     try{
       final response = await ApiRequest().get(
-          path: ApiConfig.banners,
+        path: ApiConfig.baseUrl + ApiConfig.products,
+        options: options,
+        queryParameters: queryParameters
       );
       if(response != null){
         List<Product> products = List<Product>.from(
-            (response.data['reservations'] as List).map((e) => Product.fromJson1(e))
+            (response.data['items'] as List).map((e) => Product.fromJson1(e))
         );
         return Responses<Product>(isSuccess: true, listObjects: products);
       }

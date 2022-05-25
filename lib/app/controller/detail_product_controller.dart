@@ -31,7 +31,11 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
   getParameter(){
     if(Get.arguments['product'] !=null){
       product.value = Get.arguments['product'];
-      getDetailProductAPI();
+      final sku = product.value.sku;
+      if(sku != null){
+        getDetailProductAPI();
+      }
+
     }
   }
 
@@ -57,9 +61,8 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
         }
       }
     } catch (e) {
-      Get.snackbar("Thông báo", "error:: $e",
-          backgroundColor: Colors.black.withOpacity(0.3));
-      print(e);
+      // Get.snackbar("Thông báo", "error:: $e",
+      //     backgroundColor: Colors.black.withOpacity(0.3));
       isLoading.value = false;
     }
   }
