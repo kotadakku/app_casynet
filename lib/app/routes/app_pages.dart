@@ -34,6 +34,7 @@ import '../bindings/detail_store_bindings.dart';
 import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../bindings/products_bindings.dart';
+import '../bindings/stores_bindings.dart';
 import '../views/screens/account/account_base.dart';
 import '../views/screens/account/address/edit_address.dart';
 import '../views/screens/account/address/information_address.dart';
@@ -62,6 +63,7 @@ import '../views/screens/store/sanpham_dichvu.dart';
 import '../views/screens/store/setting_notications.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Bangdieukhien.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Thongtincuahang.dart';
+import '../views/screens/stores.dart';
 
 part './app_routes.dart';
 
@@ -139,6 +141,11 @@ class AppPages {
       name: Routes.PRODUCTS_BY_CATEGORY,
       page:()=> ProductsPage(),
       binding:ProductsBindings(),
+    ),
+    GetPage(
+      name: Routes.STORE_HOME_MORE,
+      page: ()=> StoreHomeMore(),
+      binding:StoresBindings(),
     ),
     GetPage(name: Routes.SELECT_REGION,
       page: ()=>SelectRegionPage()

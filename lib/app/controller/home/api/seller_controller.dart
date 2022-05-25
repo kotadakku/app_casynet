@@ -9,19 +9,26 @@ import '../../../data/repo/home_repo.dart';
 class SellerController extends GetxController with StateMixin{
   final _sellerList = <Seller>[].obs;
 
+  late int pageNumber =1;
+  late int pageSizeNumber =12;
+  late int type_filter_number;
+
   @override
   void onInit() {
-    getSellersAPI(pageSize: '12',cat: '');
+    getSellersAPI(first_load: true,pageSize: 12,curPage: 1, type_filter: 'null');
   }
 
 
-  Future<void> getSellersAPI({required String pageSize, required String cat }) async {
-    change(_sellerList, status: RxStatus.loading());
+  Future<void> getSellersAPI({bool first_load = false, required int pageSize, required int curPage,required String type_filter }) async {
+    if(first_load) change(_sellerList, status: RxStatus.loading());
     try {
       final result = await HomePageRepo().getSellers(
         queryParameters: {
+          'lat': 21.0012507,  // lat user
+          'lng': 105.7938183, // long user
           'pageSize': pageSize,
-          'cat': cat,
+          'curPage': curPage,
+          'type_filter': type_filter
         }
       );
       if (result != null) {
@@ -47,5 +54,7 @@ class SellerController extends GetxController with StateMixin{
       change(_sellerList, status: RxStatus.empty());
     }
   }
+
+
 
 }

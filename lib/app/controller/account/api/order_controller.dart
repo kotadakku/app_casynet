@@ -1,7 +1,6 @@
 import 'package:app_casynet/app/data/model/order.dart';
 import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:app_casynet/app/data/repo/account_repo.dart';
-import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -45,6 +45,8 @@ class HomePageRepo{
     }
   }
 
+  // Future<Responses<Sales>?> getLoadMoreStore()async{}
+
   Future<Responses<BannerSlider>> getBanners() async {
     try{
       final response = await ApiRequest().get(
@@ -124,7 +126,7 @@ class HomePageRepo{
     }
   }
 
-  Future<Responses<Seller>> getSellers({Map<String, dynamic>?  queryParameters}) async {
+  Future<Responses<Seller>> getSellers({data,Map<String, dynamic>?  queryParameters}) async {
     try{
       final response = await ApiRequest().get(
         path: ApiConfig.baseUrl + "/rest/V1/SellerHomePage",
@@ -142,6 +144,27 @@ class HomePageRepo{
       return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
+  Future<Responses<Seller>> getSellersLoadMore({data,Map<String,
+      dynamic>?  queryParameters}) async {
+    try{
+      final response = await ApiRequest().get(
+          path: ApiConfig.baseUrl + "/rest/V1/SellerHomePage",
+          queryParameters: queryParameters
+      );
+      if(response != null){
+        List<Seller> sellersLoadMore = List<Seller>.from(
+            (response.data as List).map((e) => Seller.fromJson(e))
+        );
+        return Responses<Seller>(isSuccess: true, listObjects: sellersLoadMore);
+      }
+      return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
+    } catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
 
   Future<Responses<Seller>> getSeller(int id) async {
     try{

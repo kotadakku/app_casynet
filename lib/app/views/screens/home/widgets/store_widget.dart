@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/views/theme/textTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,29 +50,31 @@ class StoreWidget extends StatelessWidget {
                       ),
                       Text(
                         'store'.tr.toUpperCase(),
-                        style: TextStyle(
-                            color: Color(0xffDFB400),
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold),
+                        style: AppTextTheme.titleProduct,
                       )
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'more'.tr,
-                        style: TextStyle(
-                          color: Color(0xffB7BAC1),
+                  GestureDetector(
+                    onTap: () {
+                      _view_more('store'.tr);
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          'more'.tr,
+                          style: TextStyle(
+                            color: Color(0xffB7BAC1),
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10.0, right: 10.0.w),
-                        child: SvgPicture.asset(
-                          "assets/home/store/icon_xemthem.svg",
-                          width: 6.0,
-                        ),
-                      )
-                    ],
+                        Container(
+                          padding: EdgeInsets.only(left: 10.0, right: 10.0.w),
+                          child: SvgPicture.asset(
+                            "assets/home/store/icon_xemthem.svg",
+                            width: 6.0,
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -91,7 +94,8 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(pageSize: '12',cat: '');
+                                  _sellerController.getSellersAPI(
+                                      first_load: true,pageSize: 12,curPage: 1, type_filter: '5');
                                 },
                                 activeColor: Color(0xffDFB400)),
                             Text("Ô tô"),
@@ -103,7 +107,8 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(pageSize: '12',cat: '11');
+                                  _sellerController.getSellersAPI(
+                                      first_load: true,pageSize: 12,curPage: 1, type_filter: '6');
                                 },
                                 activeColor: Color(0xffDFB400)),
                             Text("Xe máy")
@@ -111,6 +116,7 @@ class StoreWidget extends StatelessWidget {
                         ))
                   ],
                 ),
+
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
@@ -137,7 +143,7 @@ class StoreWidget extends StatelessWidget {
               ],
             ),
           ),
-          controller.isCarStore.value == true
+          /*controller.isCarStore.value == true
               ? _sellerController.obx(
                   (state) => Container(
                         padding: EdgeInsets.only(bottom: 20.0.h),
@@ -157,7 +163,9 @@ class StoreWidget extends StatelessWidget {
                         onTap: () {},
                         child: Text("Tải lại"),
                       )
-                  /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+                  */
+          /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+          /*
                   )
               : _sellerController.obx(
                   (state) => Container(
@@ -189,38 +197,81 @@ class StoreWidget extends StatelessWidget {
                     ),
                   ),
                   onError: (error) => Column(
-                    children: [
-                      Text('$error'),
-                      InkWell(
-                        onTap: () {
-                          print('Tải lại');
-                        },
-                        child: Text("Tải lại"),
-                      )
-                      /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
-                    ],
-                  )
-                  ),
-
-          _sellerController.obx((state) =>
-              Container(
+                        children: [
+                          Text('$error'),
+                          InkWell(
+                            onTap: () {
+                              print('Tải lại');
+                            },
+                            child: Text("Tải lại"),
+                          )
+                          *//*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*//*
+                        ],
+                      )),*/
+          _sellerController.obx(
+                  (state) => Container(
                 padding: EdgeInsets.only(bottom: 20.0.h),
-                child: state.isEmpty ? Text("Không có cửa hàng để hiển thị")
+                child: state.isEmpty
+                    ? Text("Không có cửa hàng để hiển thị")
                     : Wrap(
                     spacing: 5.0.w,
                     runSpacing: 10.0,
-                    children: (state as List) .map((e) =>
-                        ItemSellerWidget(
-                          store: e,
-                        ))
+                    children: (state as List)
+                        .map((e) => ItemCuaHangWidget(
+                      store: e,
+                    ))
                         .toList()),
               ),
+              onLoading: ItemCuaHangShimmer(),
+              onEmpty: SizedBox(
+                height: 100,
+                child: Column(
+                  children: [
+                    Text("Tải dữ liệu thất bại!!"),
+                    InkWell(
+                      onTap: () {
+                        print('Tải lại');
+                      },
+                      child: Text("Tải lại"),
+                    )
+                  ],
+                ),
+              ),
+              onError: (error) => Column(
+                children: [
+                  Text('$error'),
+                  InkWell(
+                    onTap: () {
+                      print('Tải lại');
+                    },
+                    child: Text("Tải lại"),
+                  )
+                  /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+                ],
+              )),
+          /*_sellerController.obx(
+            (state) => Container(
+              padding: EdgeInsets.only(bottom: 20.0.h),
+              child: state.isEmpty
+                  ? Text("Không có cửa hàng để hiển thị")
+                  : Wrap(
+                      spacing: 5.0.w,
+                      runSpacing: 10.0,
+                      children: (state as List)
+                          .map((e) => ItemSellerWidget(
+                                store: e,
+                              ))
+                          .toList()),
+            ),
             onLoading: ItemSellerShimmer(),
-          ),
-
+          ),*/
         ],
       ),
     );
+  }
+
+  void _view_more(title) {
+    Get.toNamed(Routes.STORE_HOME_MORE, arguments: [title]);
   }
 }
 

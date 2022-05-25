@@ -51,7 +51,7 @@ class Seller {
     rate = double.parse(data['vote'].toString());
     imageUrl = data['images'];
     address = data['address'];
-    distance = data['distance'];
+    distance =  double.parse(data['distance']);
     phone = data['phone'];
     // likeQty = data['liked'].toString();
     /*time_open = data['time_open'].toString();
