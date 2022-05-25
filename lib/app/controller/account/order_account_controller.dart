@@ -8,15 +8,17 @@ class OrderAccountController extends GetxController with GetSingleTickerProvider
     "Tất cả", "Đặt mua", "Đã hủy"
   ];
   late TabController controller;
-  late ScrollController scrollController;
+  final isLoadingAll = false.obs;
+  final isLoadingCancel = false.obs;
+  final isLoadingComplete = false.obs;
   int _page = 1;
-  bool isLoading = false;
+  int _pageCancel = 1;
+  int _pageComplete = 1;
 
   @override
   void onInit() {
     super.onInit();
     controller = TabController(vsync: this, length: listTabs.length);
-    scrollController = ScrollController()..addListener(_loadMore);
   }
 
 
@@ -25,15 +27,33 @@ class OrderAccountController extends GetxController with GetSingleTickerProvider
     controller.dispose();
     super.onClose();
   }
-  void _loadMore() async {
-    if(!isLoading){
-      OrderController orderController = Get.find();
-      if(scrollController.position.maxScrollExtent == scrollController.offset){
-        isLoading = true;
-        _page += 1;
-        await orderController.getOrdersApi(status: 'pending', currentPage: _page, pageSize: 20);
-        isLoading = false;
-      }
+  void loadMoreAll() async {
+
+    OrderController orderController = Get.find();
+    if(!isLoadingAll.value){
+      isLoadingAll.value = true;
+      _page += 1;
+      await orderController.getOrdersAllApi(currentPage: _page, pageSize: 20);
+      isLoadingAll.value = false;
+    }
+  }
+  void loadMoreCancel() async {
+
+    OrderController orderController = Get.find();
+    if(!isLoadingCancel.value){
+      isLoadingCancel.value = true;
+      _pageCancel += 1;
+      await orderController.getOrdersCanceledApi(currentPage: _pageCancel, pageSize: 20);
+      isLoadingCancel.value = false;
+    }
+  }
+  void loadMoreComplete() async {
+    OrderController orderController = Get.find();
+    if(!isLoadingComplete.value){
+      isLoadingComplete.value = true;
+      _pageComplete += 1;
+      await orderController.getOrdersCompleteApi(currentPage: _pageComplete, pageSize: 20);
+      isLoadingComplete.value = false;
     }
   }
 }

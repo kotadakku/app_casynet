@@ -14,9 +14,7 @@ import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 import '../../../widgets/image_network_loading.dart';
-import '../../../widgets/shimmer/seller_shimmer.dart';
 import '../../../widgets/shimmer_loading.dart';
-import 'items/seller_item.dart';
 
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
@@ -96,6 +94,7 @@ class StoreWidget extends StatelessWidget {
                                   controller.updateIsCarStore();
                                   _sellerController.getSellersAPI(
                                       first_load: true,pageSize: 12,curPage: 1, type_filter: '5');
+                                  // _sellerController.getSellersAPI(pageSize: '12',cat: '11');
                                 },
                                 activeColor: Color(0xffDFB400)),
                             Text("Ô tô"),
@@ -109,6 +108,7 @@ class StoreWidget extends StatelessWidget {
                                   controller.updateIsCarStore();
                                   _sellerController.getSellersAPI(
                                       first_load: true,pageSize: 12,curPage: 1, type_filter: '6');
+                                  // _sellerController.getSellersAPI(pageSize: '12',cat: '12', type_filter: '');
                                 },
                                 activeColor: Color(0xffDFB400)),
                             Text("Xe máy")
@@ -301,7 +301,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                   height: 120.w,
                   width: (1 / divide).sw - 7.5.w,
                   child: ImageNetworkLoading(
-                    image_url: store.imageUrl.toString(),
+                    image_url: store.avatar_image.toString(),
                     fit: BoxFit.fill,
                   ),
                 )),

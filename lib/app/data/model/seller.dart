@@ -3,61 +3,74 @@
 class Seller {
   int? id;
   String? isCar;
-  int? likeQty;
-  int? commentQty;
-  double? rate;
   String? name;
   String? phone;
   String? address;
   double? distance;
-  String? imageUrl;
+  int? likeQty;
+  int? commentQty;
+  double? rate;
+  int? followed;
+  String? avatar_image;
+  String? background_image;
   String? time_open;
   String? time_close;
   String? intro_store;
-  String? product_count;
+  double? lat;
+  double? lon;
+  int? bad_message;
+  int? total_product;
+  String? participation_time;
+  String? owner_shop;
+  int? rateFeedback;
+  int? totalTransaction;
 
-
-  Seller.init(
-      this.id,
-      this.isCar,
-      this.likeQty,
-      this.commentQty,
-      this.rate,
-      this.name,
-      this.phone,
-      this.address,
-      this.distance,
-      this.imageUrl);
 
   Seller(
-      {this.id,
-        this.isCar,
-        this.likeQty,
-        this.commentQty,
-        this.rate,
-        this.name,
-        this.phone,
-        this.address,
-        this.distance,
-        this.imageUrl});
-
-  // json trả về và gán vào UI
+  {this.id,
+    this.isCar,
+    this.name,
+    this.phone,
+    this.address,
+    this.distance,
+    this.likeQty,
+    this.commentQty,
+    this.rate,
+    this.followed,
+    this.avatar_image,
+    this.background_image,
+    this.time_open,
+    this.time_close,
+    this.intro_store,
+    this.lat,
+    this.lon,
+    this.bad_message,
+    this.total_product,
+    this.participation_time,
+    this.owner_shop,
+    this.rateFeedback,
+    this.totalTransaction
+  }); // json trả về và gán vào UI
   Seller.fromJson(Map<String, dynamic> data) {
-    print(data);
     id = int.parse(data['id']);
     name = data['name'];
     likeQty = data['like'];
     commentQty = data['comment'];
     rate = double.parse(data['vote'].toString());
-    imageUrl = data['images'];
+    avatar_image = data['avatar_image'] ?? data['images'];
     address = data['address'];
     distance =  double.parse(data['distance']);
     phone = data['phone'];
-    // likeQty = data['liked'].toString();
-    /*time_open = data['time_open'].toString();
-    time_close = data['time_close'].toString();
-    intro_store = data['intro_store'].toString();
-    product_count = data['product_count'].toString();*/
+    if(data['lat'] != null) lat = double.parse(data['lat']);
+    if(data['lng'] != null) lon = double.parse(data['lng']??'');
+    time_open = data['open_time'];
+    time_close = data['close_time'];
+    total_product = data['total_product'];
+    bad_message = data['bad_message'];
+    intro_store = data['intro_store'];
+    participation_time = data['participation_time'];
+    owner_shop = data['owner_shop'];
+    followed = data['followed'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,7 +84,7 @@ class Seller {
     data['phone'] = this.phone;
     data['address'] = this.address;
     data['distance'] = this.distance;
-    data['imageUrl'] = this.imageUrl;
+    data['imageUrl'] = this.avatar_image;
     return data;
   }
 }

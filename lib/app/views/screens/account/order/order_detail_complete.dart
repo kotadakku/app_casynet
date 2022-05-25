@@ -6,8 +6,8 @@ import '../widgets/order_cancel_widget.dart';
 import '../../../theme/app_colors.dart';
 
 
-class OrderDetailCancel extends StatelessWidget {
-  const OrderDetailCancel({Key? key}) : super(key: key);
+class OrderDetailComplete extends StatelessWidget {
+  const OrderDetailComplete({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

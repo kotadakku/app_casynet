@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../controller/detail_product_controller.dart';
 import '../../../../controller/store_detail/detail_store_controller.dart';
 import '../../../../routes/app_pages.dart';
 
@@ -11,11 +12,11 @@ import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 
 class InformationStoreWidget extends StatelessWidget {
-  const InformationStoreWidget({Key? key}) : super(key: key);
+  DetailProductController controller;
+  InformationStoreWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DetailStoreController controller = Get.put(DetailStoreController());
     return Column(
       children: [
         Divider(height: 20,),
@@ -24,11 +25,13 @@ class InformationStoreWidget extends StatelessWidget {
             leading: CircleAvatar(
               child: Text("123"),
             ),
-            title: Text("CÔNG TY TNHH Ô TÔ MỸ ĐÌNH THC"),
+            title: Text('${controller.product.value.store?.name ?? 'Chưa có thông tin'}'),
             subtitle: Row(
               children: [
-                Text("bulary 12019", style: TextStyle(
-                    color: kYellowColor
+                Text('${controller.product.value.store?.owner_shop ?? 'Chưa có thông tin'}',
+                  style: TextStyle(
+                    color: kYellowColor,
+                    fontSize: 12.sp
                 ),),
                 SizedBox(width: 10,),
                 Row(
@@ -45,7 +48,7 @@ class InformationStoreWidget extends StatelessWidget {
                     Text("Hoạt động cách đây 3 giờ trước",
                       style: TextStyle(
                           color: kTextColor,
-                          fontSize: 12
+                          fontSize: 12.sp
                       ),
                     )
                   ],
@@ -64,7 +67,7 @@ class InformationStoreWidget extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text("2000", style: TextStyle(
+                      Text('${controller.product.value.store?.total_product ?? '0'}', style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
                       ),)
@@ -78,7 +81,7 @@ class InformationStoreWidget extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text("75%", style: TextStyle(
+                      Text("${controller.product.value.store?.rateFeedback ?? '0'}%", style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
                       ),)
@@ -92,7 +95,7 @@ class InformationStoreWidget extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text("145", style: TextStyle(
+                      Text("${controller.product.value.store?.totalTransaction ?? '0'}", style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
                       ),)
@@ -158,7 +161,11 @@ class InformationStoreWidget extends StatelessWidget {
 
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                   ), onPressed: () {
-                    Get.toNamed(Routes.STORE_DETAIL);
+                    Get.toNamed(Routes.STORE_DETAIL,
+                      arguments: {
+                        'store': controller.product.value.store
+                      }
+                    );
                 },
                 ),
               ),),

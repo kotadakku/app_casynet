@@ -92,6 +92,7 @@ class RegisterWidget extends StatelessWidget {
                   TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      focusNode: authController.focusNodeEmail,
                       onSaved: (value) {
                         user.email = value;
                       },
@@ -99,6 +100,7 @@ class RegisterWidget extends StatelessWidget {
                         if (value!.isEmpty ||
                             !RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
+
                           return "Bạn chưa nhập đúng định dạng, Ex: a@gmail.com";
                         }
                       },
@@ -138,6 +140,7 @@ class RegisterWidget extends StatelessWidget {
                   TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      focusNode: authController.focusNodePhone,
                       onSaved: (value) {
                         user.phone = value;
                       },
@@ -146,9 +149,10 @@ class RegisterWidget extends StatelessWidget {
                           return "Bạn cần nhập số điện thoại";
                         }
                         if (!RegExp(r"^0[0-9]{9}$").hasMatch(value)) {
-                          return "Không có khoảng trắng, cần 10 số";
+                          return "Số điện thoại không hợp lệ";
                         }
                       },
+                      keyboardType: TextInputType.phone,
                       cursorColor: kYellowColor,
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -192,7 +196,7 @@ class RegisterWidget extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Bạn cần nhập mật khẩu";
-                        }if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}').hasMatch(value)){
+                        }if(!RegExp(r'^(?!.* )(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,32}').hasMatch(value)){
                           return "Mật khẩu ít nhất 8 ký tự, trong đó có ít nhất một chữ hoa, số, ký tự đặc biệt, Ex: ngocson_jp@yahoo.co.jp";
                         }
                         //(?=.*?[!@#\><*~])
@@ -251,12 +255,13 @@ class RegisterWidget extends StatelessWidget {
                       cursorColor: kYellowColor,
                       onSaved: (value) {},
                       validator: (value) {
-                        if (value!.isEmpty ) {
-                          return "Bạn cần nhập xác nhận mật khẩu";
-                        }
                         /*if (value.length < ) {
                       return "Bạn cần nhập nhiều hơn 8 ký tự";
-                    }*/if(value != authController.passwordController.text){
+
+                    }*/if (value!.isEmpty) {
+                          return "Bạn cần nhập mật khẩu";
+                        }
+                        if(value != authController.passwordController.text){
                           return "Mật khẩu không trùng khớp";
                         }
                       },
@@ -301,17 +306,15 @@ class RegisterWidget extends StatelessWidget {
                         user.birthday = value;
                       },
                       validator: (value){
-                        if(value!.isEmpty){
-                          return "Bạn không được để trống ngày sinh, Ex: 1990/10/20";
-                        }
+                        
                       },
                       readOnly: true,
                       onTap: (){
                         showDatePicker(
                           context: context,
-                          initialDate: DateTime.now(),
+                          initialDate: DateTime.now().subtract(Duration(days:1)),
                           firstDate: DateTime(1900),
-                          lastDate: DateTime.now(),
+                          lastDate: DateTime.now().subtract(Duration(days:1)),
                         ).then((value){
                           authController.birthDayTextController.text = DateFormat("yyyy/MM/dd").format(value!);
 
@@ -399,9 +402,25 @@ class RegisterWidget extends StatelessWidget {
                     onPressed: () async {
                       user.gender = _isMale.value? 1:0;
                       user.receiveNotification = _isCheckboxAccept.value;
+
                       authController.formRegisterKey.currentState?.save();
                       FocusManager.instance.primaryFocus!.unfocus();
-                      await authController.registerUser(user);
+                      if(authController.formRegisterKey.currentState!.validate()){
+                        await authController.registerUser(user);
+                      }
+                      else {
+                        Get.defaultDialog(
+                            middleText: 'Vui lòng nhập đầy đủ thông tin',
+                            title:  'Thông báo',
+                            textConfirm: 'OK',
+                            confirmTextColor: Colors.white,
+                            onConfirm: () {
+                              Get.back();
+                            }
+                        );
+                      }
+
+
                     },
                     style: ElevatedButton.styleFrom(
                         primary: kYellowColor,

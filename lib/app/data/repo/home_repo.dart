@@ -99,7 +99,7 @@ class HomePageRepo{
       );
       if(response != null){
         List<Product> products = List<Product>.from(
-            (response.data['reservations'] as List).map((e) => Product.fromJson(e))
+            (response.data['reservations'] as List).map((e) => Product.fromJson1(e))
         );
         return Responses<Product>(isSuccess: true, listObjects: products);
       }
@@ -125,6 +125,7 @@ class HomePageRepo{
       return Responses<Sales>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
 
   Future<Responses<Seller>> getSellers({data,Map<String, dynamic>?  queryParameters}) async {
     try{
@@ -181,6 +182,7 @@ class HomePageRepo{
       return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
   Future<Responses<Product>> getProductsSeller(int id) async {
     try{
       final response = await ApiRequest().get(

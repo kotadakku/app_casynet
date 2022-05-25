@@ -3,7 +3,7 @@ import 'package:app_casynet/app/data/model/seller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/repo/home_repo.dart';
+import '../../../data/repo/seller_repo.dart';
 
 
 class SellerController extends GetxController with StateMixin{
@@ -22,7 +22,7 @@ class SellerController extends GetxController with StateMixin{
   Future<void> getSellersAPI({bool first_load = false, required int pageSize, required int curPage,required String type_filter }) async {
     if(first_load) change(_sellerList, status: RxStatus.loading());
     try {
-      final result = await HomePageRepo().getSellers(
+      final result = await SellerRepo().getSellers(
         queryParameters: {
           'lat': 21.0012507,  // lat user
           'lng': 105.7938183, // long user
