@@ -18,6 +18,7 @@ class CategoryItemBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       child: LayoutBuilder(builder: (context, constraint) {
         var width = constraint.maxWidth > 785
             ? (constraint.maxWidth / 3 - 20)

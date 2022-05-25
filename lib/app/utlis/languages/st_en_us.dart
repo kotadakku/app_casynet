@@ -4,7 +4,7 @@ const Map<String, String> vi = {
   'filter': 'Lọc',
   'more': 'Xem thêm',
   'category': "Danh mục",
-  'reservation': "Khuyến mãi",
-  'promotion': 'Đặt chỗ',
+  'reservation': "Đặt chỗ",
+  'promotion': 'Khuyến mãi',
   'recommend': 'Gợi ý',
 };

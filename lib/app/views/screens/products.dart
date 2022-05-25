@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/views/widgets/appbar/appbar_home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +22,7 @@ class ProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBarHomeWidget(),
       body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -44,7 +46,7 @@ class ProductsPage extends StatelessWidget {
                           ),),
                           SizedBox(width: 15,),
                           Text(
-                            _productsController.category_name,
+                            _productsController.category_name.tr,
                             style: TextStyle(
                                 color: Color(0xffDFB400),
                                 fontSize: 18,
@@ -60,7 +62,7 @@ class ProductsPage extends StatelessWidget {
                             SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
                             SizedBox(width: 5,),
                             Text(
-                              " Bộ lọc",
+                              "filter".tr,
                               style: TextStyle(
                                 color: Color(0xffB7BAC1),
                               ),

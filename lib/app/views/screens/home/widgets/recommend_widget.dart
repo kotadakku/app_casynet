@@ -53,6 +53,7 @@ class RecommendWidget extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
+                      behavior: HitTestBehavior.translucent,
                       onTap: (){
                         _view_more('recommed'.tr, 32);
                       },

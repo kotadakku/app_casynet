@@ -53,6 +53,7 @@ class ReservationWidget extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
+                      behavior: HitTestBehavior.translucent,
                       onTap: (){
                         _view_more('reservation'.tr, 31);
                       },

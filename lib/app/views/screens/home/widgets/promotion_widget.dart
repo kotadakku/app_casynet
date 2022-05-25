@@ -54,6 +54,7 @@ class PromotionWidget extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
+                      behavior: HitTestBehavior.translucent,
                       onTap: (){
                         _view_more('promotion'.tr, 5);
                       },
