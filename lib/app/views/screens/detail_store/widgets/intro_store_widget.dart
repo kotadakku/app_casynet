@@ -10,6 +10,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/store_detail/detail_store_controller.dart';
 import '../../../../routes/app_pages.dart';
+import '../../home/widgets/items/product_item.dart';
 import '../../home/widgets/reservation_widget.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
@@ -319,26 +320,24 @@ class IntroStoreWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 10,),
 
-                // GetBuilder<DetailStoreController>(
-                //   init: DetailStoreController(),
-                //   builder: (controller){
-                //     if(controller.products.length >0) return Wrap(
-                //       spacing: 5.0.w,
-                //       runSpacing: 10.0,
-                //       children: controller.products.map((e) {
-                //         return GestureDetector(
-                //           child: ItemProductWidget(
-                //               product: e,
-                //           ),
-                //           onTap: (){
-                //             Get.toNamed(Routes.PRODUCT_DETAIL);
-                //           },
-                //         );
-                //       },).toList()
-                //     );
-                //     else return CircularProgressIndicator();
-                // }
-                // ),
+                Obx(()=>
+                    controller.isLoadingProduct.value ? Center(
+                      child: CircularProgressIndicator(),
+                    ) : Wrap(
+                        spacing: 5.0.w,
+                        runSpacing: 10.0,
+                        children: controller.productSellerList.map((e) {
+                          return GestureDetector(
+                            child: ItemProductWidget(
+                              product: e,
+                            ),
+                            onTap: (){
+                              Get.toNamed(Routes.PRODUCT_DETAIL);
+                            },
+                          );
+                        },).toList()
+                    )
+                ),
                 Material(
                   elevation: 1,
                   color: Colors.white,

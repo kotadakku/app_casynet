@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import '../../../config/api_config.dart';
 import '../get_storage_provider.dart';
@@ -35,18 +37,34 @@ class LoggingInterceptors extends Interceptor {
         "${dioError.response != null ? dioError.response?.data : 'Unknown Error'}");
     print("<-- End error");
     if(dioError.response?.statusCode == 401 && dioError.response?.data['message'] == 'The consumer isn\'t authorized to access %resources.'){
+      if(dioError.response?.data['parameters']['resources'] == 'self'){
+        String? user_login = await GetStorageProvider().get(key: CacheManagerKey.USER_LOGIN.toString());
+        if(user_login != null){
+          final response = await ApiRequest().post(
+              data: json.decode(user_login),
+              path: ApiConfig.baseUrl +'/rest/V1/integration/customer/token');
+          if (response.statusCode == 200) {
+            dioError.requestOptions.headers['Authorization'] = 'Bearer ${response.data}';
+            await GetStorageProvider().save(key: CacheManagerKey.TOKEN.toString(), value: response.data);
+            return handler.resolve(await _retry(dioError.requestOptions));
+          }
+        }
 
-      final response = await ApiRequest().post(
-          data: {
-            "username": "admin",
-            "password": "admin12345",
-          },
-          path: ApiConfig.baseUrl +'/rest/V1/integration/admin/token');
-      if (response.statusCode == 200) {
-        dioError.requestOptions.headers['Authorization'] = 'Bearer ${response.data}';
-        await GetStorageProvider().save(key: CacheManagerKey.TOKEN_ADMIN.toString(), value: response.data);
-        return handler.resolve(await _retry(dioError.requestOptions));
       }
+      else{
+        final response = await ApiRequest().post(
+            data: {
+              "username": "admin",
+              "password": "admin12345",
+            },
+            path: ApiConfig.baseUrl +'/rest/V1/integration/admin/token');
+        if (response.statusCode == 200) {
+          dioError.requestOptions.headers['Authorization'] = 'Bearer ${response.data}';
+          await GetStorageProvider().save(key: CacheManagerKey.TOKEN_ADMIN.toString(), value: response.data);
+          return handler.resolve(await _retry(dioError.requestOptions));
+        }
+      }
+
 
     }
     return handler.next(dioError);

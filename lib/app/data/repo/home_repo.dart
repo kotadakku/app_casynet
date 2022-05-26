@@ -179,26 +179,7 @@ class HomePageRepo{
     }
   }
 
-  Future<Responses<Product>> getProductsSeller(int id) async {
-    try{
-      final response = await ApiRequest().get(
-        path: "https://casynet-api.herokuapp.com/api/products",
-        queryParameters: {
-          'storeId': id,
-        }
-      );
-      if(response != null){
-        List<Product> products = List<Product>.from(
-            (response.data as List).map((e) => Seller.fromJson(e))
-        );
-        return Responses<Product>(isSuccess: true, listObjects: products);
-      }
-      return Responses<Product>(statusCode: CODE_RESPONSE_NULL, msg: "");
-    } catch(error){
-      final errorMessage = DioExceptions.fromDioError(error);
-      return Responses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
-    }
-  }
+
   Future<Responses<String>> getTokenUser(data) async {
     try{
       final response = await ApiRequest().post(

@@ -52,14 +52,14 @@ class Seller {
     this.totalTransaction
   }); // json trả về và gán vào UI
   Seller.fromJson(Map<String, dynamic> data) {
-    id = int.parse(data['id']);
+    id = int.parse(data['id'].toString());
     name = data['name'];
     likeQty = data['like'];
     commentQty = data['comment'];
     rate = double.parse(data['vote'].toString());
     avatar_image = data['avatar_image'] ?? data['images'];
     address = data['address'];
-    distance =  double.parse(data['distance']);
+    if(data['distance'] != null) distance =  double.parse(data['distance']);
     phone = data['phone'];
     if(data['lat'] != null) lat = double.parse(data['lat']);
     if(data['lng'] != null) lon = double.parse(data['lng']??'');

@@ -41,6 +41,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
     emailController.dispose();
     passwordController.dispose();
     birthDayTextController.dispose();
+    controller.dispose();
   }
 
   String?  validateEmail(String value){
