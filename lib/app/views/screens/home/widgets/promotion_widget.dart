@@ -150,7 +150,11 @@ class PromotionWidget extends StatelessWidget {
     );
   }
   void _filter_product() {
-    Get.toNamed(Routes.FILTER_PRODUCT);
+    Get.toNamed(Routes.FILTER_PRODUCT,
+        arguments: {
+          'controller': _promotionController
+        }
+    );
   }
 
   void _view_more(title, id) {

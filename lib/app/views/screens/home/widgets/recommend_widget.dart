@@ -148,7 +148,11 @@ class RecommendWidget extends StatelessWidget {
     );
   }
   void _filter_product() {
-    Get.toNamed(Routes.FILTER_PRODUCT);
+    Get.toNamed(Routes.FILTER_PRODUCT,
+        arguments: {
+          'controller': _recommendController
+        }
+    );
   }
 
   void _view_more(title, id) {

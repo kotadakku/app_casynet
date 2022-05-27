@@ -82,7 +82,7 @@ class InformationProductWidget extends StatelessWidget {
                       direction: Axis.horizontal,
                     ),
                     SizedBox(width: 5,),
-                    Text('${controller.product.value.rate}', style: TextStyle(
+                    Text('${controller.product.value.rate??0.0}', style: TextStyle(
                         color: kTextColor_gray
                     ),)
                   ],

@@ -1,4 +1,6 @@
 
+import 'package:app_casynet/app/controller/cart/api/product_cart_controller.dart';
+import 'package:app_casynet/app/controller/detail_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,13 +9,11 @@ import '../../../theme/app_colors.dart';
 
 
 class TagsProductWidget extends StatelessWidget {
-  const TagsProductWidget({Key? key}) : super(key: key);
+  final DetailProductController controller;
+  const TagsProductWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<String> _countrys = [
-      'Máy rửa xe', 'Máy Cắt Sắt', 'Thái Lan', 'Boss 2300w', 'Thế hệ mới' , "Bình xịt bọt tuyết ống"
-    ];
     return Column(
       children: [
 
@@ -36,7 +36,7 @@ class TagsProductWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
             child: Wrap(
               spacing: 5.0.w,
-              children: _countrys.map((e) => Row(
+              children: controller.product.value.tags.map((e) => Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(

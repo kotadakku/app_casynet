@@ -19,6 +19,8 @@ class Product {
   String? detailProduct;
   Seller? store;
   String? description;
+  int? requiredOptions;
+  List<String> tags = [];
   List<String> images = [];
 
 
@@ -43,18 +45,24 @@ class Product {
     name = json["name"].toString();
     imageUrl = json['images'][0];
     price = double.parse(json[ "price"]).round();
-    officialPrice = json["discount_price"];
+    officialPrice = double.parse(json["discount_price"]).round();
     likeQty = json["liked"];
     commentQty = json["comment"];
     rate = json["vote"].toDouble();
     coinPoint = json["casy_coin"];
     sold = json['sold'];
     detailProduct = json['detail_product'];
+    badReport = json['bad_report'];
+    if(json['tag'] != null){
+      for (var v in (json['tag'] as List)) {
+        tags.add(v);
+      }
+    }
     store = Seller(
       name: json["store"]["name"].toString(),
       distance: json["store"]["distance"],
       phone: json['store']['phone'],
-      owner_shop: json['store']['owner_shop'],
+      owner_shop: json['store']['shop_owner'],
       total_product: json['store']['count_product'],
       totalTransaction: int.parse(json['store']['total_transaction']),
       rateFeedback: json['store']['rate_feedback']
@@ -83,6 +91,9 @@ class Product {
         }
         if(v['attribute_code'] == 'special_price'){
           price = double.parse(v['value'].toString()).round();
+        }
+        if(v['attribute_code'] == 'required_options'){
+          requiredOptions = int.parse(v['value'].toString());
         }
 
       });

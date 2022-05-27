@@ -71,7 +71,11 @@ class ProductsPage extends StatelessWidget {
                           ],
                         ),
                         onTap: (){
-                          Get.toNamed(Routes.FILTER_PRODUCT);
+                          Get.toNamed(Routes.FILTER_PRODUCT,
+                              arguments: {
+                                'controller': _productsController
+                              }
+                          );
                         },
                       )
 

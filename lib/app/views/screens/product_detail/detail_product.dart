@@ -58,7 +58,7 @@ class DetailProductPage extends StatelessWidget {
                           height: 10,
                           color: kBackgroundColor,
                         ),
-                        TagsProductWidget(),
+                        TagsProductWidget(controller : _detailProductController),
                         Container(
                           height: 10,
                           color: kBackgroundColor,
@@ -72,33 +72,27 @@ class DetailProductPage extends StatelessWidget {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: kYellowColor),
                       onPressed: () {
-                        _productCartController.incrementProductCartDB(ProductCart(
-                            p_id: 2,
-                            p_sku: "mi-kim-chi",
-                            p_name: "LTHT",
-                            s_name: "Babaas",
-                            discount_price: 12312,
-                            p_image: "sffd",
-                            quantity: 1,
-                            price: 32423,
-                            cartId: 6227));
+                        if(_detailProductController.product.value.requiredOptions == 0){
+                          _productCartController.incrementProductCartDB(_detailProductController.product.value);
 
 
-                        final snackBar = SnackBar(
-                          content: Text("Thêm thành công"),
-                          action: SnackBarAction(
-                            label: "Kiểm tra",
-                            onPressed: () {
-                              Get.put(BottomNavController()).tabIndex.value = 2;
-                              Get.toNamed(Routes.HOME);
-                            },
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          final snackBar = SnackBar(
+                            content: Text("Thêm thành công"),
+                            action: SnackBarAction(
+                              label: "Kiểm tra",
+                              onPressed: () {
+                                Get.put(BottomNavController()).tabIndex.value = 2;
+                                Get.toNamed(Routes.HOME);
+                              },
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.add), Text("Đặt hàng")],
+                        children: [Icon(Icons.add), Text(_detailProductController.product.value.requiredOptions == 1 ? " Đặt hàng": "Thêm vào giỏ")],
                       )),
                 ),
               ],
