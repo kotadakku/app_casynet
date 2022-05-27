@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/views/widgets/shimmer/seller_shimmer.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,10 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/home/radio_controller.dart';
 import '../../../../controller/store_detail/detail_store_controller.dart';
 import '../../../../routes/app_pages.dart';
-import '../../../theme/textTheme.dart';
-import '../../home/widgets/items/product_item.dart';
-import '../../home/widgets/reservation_widget.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
-import '../../../widgets/loading_overlay.dart';
-import '../../home/widgets/store_widget.dart';
+import '../../../theme/textTheme.dart';
+import '../../home/widgets/items/product_item.dart';
 import 'gift_store_widget.dart';
 
 class IntroStoreWidget extends StatelessWidget {
@@ -461,7 +459,7 @@ class IntroStoreWidget extends StatelessWidget {
                                 )
                                 .toList(),
                           )),
-                onLoading: ItemCuaHangShimmer(),
+                onLoading: ItemSellerShimmer(),
                 onEmpty: Text('Không có sản phẩm nào để hiển thị'),
               )
             ],
