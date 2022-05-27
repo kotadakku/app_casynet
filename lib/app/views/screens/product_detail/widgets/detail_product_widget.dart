@@ -55,7 +55,7 @@ class DetailProductWidget extends StatelessWidget {
           duration: const Duration(microseconds: 500),
           height: isReadMore.value ? null : 100,
           child: Html(
-            data: controller.product.value.detailProduct,
+            data: controller.product.value.detailProduct ?? '<h1>Chưa có thông tin</h1>',
           ),
         ),),
         // SizeTransition(

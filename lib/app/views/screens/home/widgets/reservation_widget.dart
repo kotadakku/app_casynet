@@ -1,5 +1,5 @@
 
-import 'package:app_casynet/app/views/screens/home/widgets/store_widget.dart';
+import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +10,7 @@ import '../../../../controller/home/api/reservation_controller.dart';
 import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/textTheme.dart';
+import '../../../widgets/shimmer/seller_shimmer.dart';
 import 'items/product_item.dart';
 
 class ReservationWidget extends StatelessWidget {
@@ -130,20 +131,47 @@ class ReservationWidget extends StatelessWidget {
 
               ],
             ),
-            _ReservationController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
-                child: state.isEmpty ?
-                Text("Không có sẳn phẩm nào để hiển thi") :
-                Wrap(
-                  spacing: 5.0.w,
-                  runSpacing: 10.0,
-                  children: (state as List).map((e) => ItemProductWidget(
-                      product: e
-                  ),).toList(),
+            Obx(()=>
+              LoadingOverlay(
+                isLoading: _ReservationController.isLoadingDB.value,
+                shimmer: ItemSellerShimmer(),
+                child: Stack(
+                  children: [
+                    Padding(padding: EdgeInsets.only(bottom: 15.h),
+                        child: _ReservationController.error == ''?
+                        Wrap(
+                          spacing: 5.0.w,
+                          runSpacing: 10.0,
+                          children: (_ReservationController.reservationProductList as List).map((e) =>
+                              ItemProductWidget(
+                                product: e
+                              ),
+                          ).toList(),
+                        ): Column(
+                          children: [
+                            Text("${_ReservationController.error}"),
+                            ElevatedButton(
+                              child: Text('Thử lại'),
+                              onPressed: (){
+                                _ReservationController.getReservationProductsAPI();
+                              },
+                            )
+                          ],
+                        ),
+                    ),
+                    _ReservationController.isLoadingAPI.value ?
+                    Container(height: 160,
+                        color: Colors.grey.withOpacity(0.3),
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        )
+                    )
+                        : SizedBox()
+
+                  ],
                 )
-            ),
-              onLoading: ItemCuaHangShimmer(),
-              onEmpty: Text('Không có sản phẩm nào để hiển thị'),
-            ),
+              )
+            )
           ],
         ),
       ),

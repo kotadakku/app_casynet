@@ -9,7 +9,7 @@ class ItemCategoryWidget extends StatelessWidget {
 
   final String image_url;
   final String title;
-  final int id;
+  final int? id;
   ItemCategoryWidget({Key? key,required this.image_url, required this.title, required this.id}) : super(key: key);
 
   @override

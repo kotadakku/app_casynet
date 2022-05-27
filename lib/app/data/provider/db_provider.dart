@@ -66,8 +66,32 @@ class DatabaseHelper{
       ${DBConfig.NOTI_COLUMN_ISSEEN} TEXT NULL,
       ${DBConfig.NOTI_COLUMN_TIMERECEIVE} TEXT NULL
     )''');
+    db.execute('''  CREATE TABLE ${DBConfig.TABLE_SELLER}(
+      ${DBConfig.SELLER_ID} INTEGER PRIMARY KEY UNIQUE,
+      ${DBConfig.SELLER_NAME} TEXT,
+      ${DBConfig.SELLER_IMAGE} TEXT,
+      ${DBConfig.SELLER_ADDRESS} TEXT,
+      ${DBConfig.SELLER_LIKED} INTEGER,
+      ${DBConfig.SELLER_COMMENT} INTEGER,
+      ${DBConfig.SELLER_RATE} REAL,
+      ${DBConfig.SELLER_PHONE} TEXT
+     )
+    ''');
+    db.execute(''' CREATE TABLE ${DBConfig.TABLE_PRODUCT}(
+      ${DBConfig.PRODUCT_ID} INTEGER,
+      ${DBConfig.PRODUCT_NAME} TEXT,
+      ${DBConfig.PRODUCT_IMAGE} TEXT,
+      ${DBConfig.PRODUCT_LIKED} INTEGER,
+      ${DBConfig.PRODUCT_COMMENT} INTEGER,
+      ${DBConfig.PRODUCT_RATE} REAL,
+      ${DBConfig.PRODUCT_PRICE} INTEGER,
+      ${DBConfig.PRODUCT_OFF_PRICE} INTEGER,
+      ${DBConfig.PRODUCT_SELLER_NAME} TEXT,
+      ${DBConfig.PRODUCT_SELLER_PHONE} TEXT,
+      ${DBConfig.PRODUCT_CATEGORY_ID} INTEGER
+    )
+    ''');
   }
-
 
   Future<int?> insert(tableName, data) async {
     Database? db = await instance.database;
@@ -80,6 +104,19 @@ class DatabaseHelper{
     var res = await db?.query(tableName, orderBy: "$orderBy DESC");
     return res;
   }
+  Future<List<Map<String, dynamic>>?> filter(String tableName, String columnName, String columnValue) async {
+    Database? db = await instance.database;
+    var res = await db?.query(tableName,
+        where: '$columnName = $columnValue');
+    return res;
+  }
+  Future<void> deleteFilter(String tableName, String columnName, String columnValue) async {
+    Database? db = await instance.database;
+    await db?.delete(tableName,
+      where: '$columnName = $columnValue'
+    );
+  }
+
 
   Future<void> clear(tableName) async {
     Database? db = await instance.database;

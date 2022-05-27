@@ -33,7 +33,7 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
       product.value = Get.arguments['product'];
       final sku = product.value.sku;
       if(sku != null){
-        getDetailProductAPI();
+        getDetailProductAPI(sku: sku);
       }
 
     }

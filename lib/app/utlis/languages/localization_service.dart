@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:app_casynet/app/utlis/languages/st_en_us.dart';
-import 'package:app_casynet/app/utlis/languages/st_vi_vn.dart';
+import 'package:app_casynet/app/utlis/languages/st_vi.dart';
+import 'package:app_casynet/app/utlis/languages/st_en.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

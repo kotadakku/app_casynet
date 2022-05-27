@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -44,8 +45,10 @@ class ItemProductWidget extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.network(product.thumbnail.toString(),
-                        fit: BoxFit.fill),
+                    ImageNetworkLoading(
+                      image_url: product.thumbnail.toString(),
+                      fit: BoxFit.fill
+                    ),
                     if(product.coinPoint != null) Positioned(
                         right: 5,
                         top: 5,

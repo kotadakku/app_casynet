@@ -8,6 +8,7 @@ import '../../controller/home/stores_controller.dart';
 import '../../controller/load_more_data/seller_loadmore_controller.dart';
 import '../../routes/app_pages.dart';
 import '../widgets/bottom_widget.dart';
+import '../widgets/shimmer/seller_shimmer.dart';
 import 'home/widgets/category_bottom_widget.dart';
 import 'home/widgets/store_widget.dart';
 
@@ -84,7 +85,9 @@ class StoreHomeMore extends StatelessWidget {
                         ],
                       ),
                       onTap: () {
-                        Get.toNamed(Routes.FILTER_PRODUCT);
+                        Get.toNamed(Routes.FILTER_PRODUCT, arguments: {
+                          'controller': _sellerController
+                        });
                       },
                     ),
                   ],
@@ -149,7 +152,7 @@ class StoreHomeMore extends StatelessWidget {
                                   ))
                                       .toList()),
                             ),
-                            onLoading: ItemCuaHangShimmer(),
+                            onLoading: ItemSellerShimmer(),
                             onError: (error) => InkWell(
                               onTap: () {
                                 // _sellerController.getSellersLoadMoreAPI(pageSize: pageSize, curPage: curPage, type_filter: type_filter)
@@ -171,7 +174,7 @@ class StoreHomeMore extends StatelessWidget {
                                   ))
                                       .toList()),
                             ),
-                            onLoading: ItemCuaHangShimmer(),
+                            onLoading: ItemSellerShimmer(),
                             onEmpty: SizedBox(
                               height: 100,
                               child: Column(

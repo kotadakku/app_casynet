@@ -159,9 +159,6 @@ class AppPages {
       name: Routes.PRODUCT_DETAIL,
       page: () => DetailProductPage(),
       binding: DetailProductBindings(),
-      curve: Curves.easeOut,
-      transitionDuration: Duration(milliseconds: 500)
-
     ),
     GetPage(
       name: Routes.PRODUCTS_SEEN,

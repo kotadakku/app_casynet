@@ -1,5 +1,7 @@
 
 
+import 'package:app_casynet/app/config/config_db.dart';
+
 class Seller {
   int? id;
   String? isCar;
@@ -73,18 +75,17 @@ class Seller {
     followed = data['followed'];
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJsonDB() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['isCar'] = this.isCar;
-    data['likeQty'] = this.likeQty;
-    data['commentQty'] = this.commentQty;
-    data['rate'] = this.rate;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['address'] = this.address;
-    data['distance'] = this.distance;
-    data['imageUrl'] = this.avatar_image;
+    data[DBConfig.SELLER_ID] = this.id;
+    data[DBConfig.SELLER_NAME] = this.name;
+    data[DBConfig.SELLER_IMAGE] = this.avatar_image;
+    data[DBConfig.SELLER_LIKED] = this.likeQty;
+    data[DBConfig.SELLER_COMMENT] = this.commentQty;
+    data[DBConfig.SELLER_RATE] = this.rate;
+    data[DBConfig.SELLER_PHONE] = this.phone;
+    data[DBConfig.SELLER_ADDRESS] = this.address;
     return data;
   }
+
 }

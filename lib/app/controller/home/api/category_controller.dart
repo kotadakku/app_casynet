@@ -10,8 +10,10 @@ import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/home_repo.dart';
 
 
-class CategoryController extends GetxController with StateMixin{
-  final _categoriesList = <Category>[].obs;
+class CategoryController extends GetxController{
+  final categoriesList = <Category>[].obs;
+  final isLoadingAPI = false.obs;
+  final isLoadingDB = false.obs;
 
   @override
   void onInit() {
@@ -20,26 +22,28 @@ class CategoryController extends GetxController with StateMixin{
   }
 
   void _getCategoryDB() {
-    change(_categoriesList, status: RxStatus.loading());
-    print('<Load Category> Load DB');
+
+    isLoadingDB.value = true;
     DatabaseHelper.instance.getAlls(DBConfig.TABLE_CATEGORY, DBConfig.CATEGORY_COLUMN_ID).then((value) {
       if(value?.length == 0){
+        isLoadingDB.value = false;
         getCategoriesAPI();
       }else{
+        print('<Load Category> Load DB');
         value?.forEach((element) {
-          _categoriesList.add(Category(
+          categoriesList.add(Category(
             id: element[DBConfig.CATEGORY_COLUMN_ID],
             imageUrl: element[DBConfig.CATEGORY_COLUMN_IMAGE],
             name: element[DBConfig.CATEGORY_COLUMN_TITLE]
           ));
 
         });
+        isLoadingDB.value = false;
       }
     });
-    change(_categoriesList, status: RxStatus.success());
   }
   Future<void> getCategoriesAPI() async {
-    change(_categoriesList, status: RxStatus.loading());
+    isLoadingAPI.value = true;
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     try {
       final result = await  HomePageRepo().getCategories(
@@ -54,14 +58,10 @@ class CategoryController extends GetxController with StateMixin{
       );
       if (result != null) {
         if (result.isSuccess) {
-          _categoriesList.value = result.listObjects ?? [];
-          if(_categoriesList.isEmpty){
-            change(_categoriesList, status: RxStatus.empty());
-            return;
-          }
-          change(_categoriesList, status: RxStatus.success());
+          categoriesList.value = result.listObjects ?? [];
+          isLoadingAPI.value = false;
           DatabaseHelper.instance.clear(DBConfig.TABLE_CATEGORY);
-          for( var category in  _categoriesList){
+          for( var category in  categoriesList){
             DatabaseHelper.instance.insert(DBConfig.TABLE_CATEGORY,
                 Category(
                   id: category.id,
@@ -71,15 +71,17 @@ class CategoryController extends GetxController with StateMixin{
             );
           }
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
-          //   backgroundColor: Colors.black.withOpacity(0.3));
-          change(_categoriesList, status: RxStatus.error());
+          // scaffoldMessenger.showSnackBar(
+          //   SnackBar(content: Text(result.msg.toString()), duration: Duration(seconds: 1)),
+          // );
+          isLoadingAPI.value = false;
         }
       }
     } catch (e) {
-      // Get.snackbar("Thông báo", "error:: $e",
-      //   backgroundColor: Colors.black.withOpacity(0.3));
-      change(_categoriesList, status: RxStatus.error());
+      // scaffoldMessenger.showSnackBar(
+      //   SnackBar(content: Text(e.toString()), duration: Duration(seconds: 1)),
+      // );
+      isLoadingAPI.value = false;
     }
 
   }

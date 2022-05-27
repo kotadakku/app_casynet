@@ -2,23 +2,30 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
+import '../../../config/config_db.dart';
 import '../../../data/model/product.dart';
+import '../../../data/model/seller.dart';
+import '../../../data/provider/db_provider.dart';
 import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/home_repo.dart';
 
 
-class PromotionController extends GetxController with StateMixin{
-  final _promotionProductList = <Product>[].obs;
+class PromotionController extends GetxController{
+  final promotionProductList = <Product>[].obs;
+  final isLoadingAPI = false.obs;
+  final isLoadingDB = false.obs;
+  final error = "".obs;
 
   @override
   void onInit() {
+    getPromotionProductsDB();
     getPromotionProductsAPI();
   }
 
   Future<void> getPromotionProductsAPI() async {
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
+    isLoadingAPI.value = true;
 
-    change(_promotionProductList, status: RxStatus.loading());
     try {
       final result = await HomePageRepo().getProducts(
           options: Options(
@@ -34,26 +41,75 @@ class PromotionController extends GetxController with StateMixin{
       );
       if (result != null) {
         if (result.isSuccess) {
-          _promotionProductList.value = result.listObjects ?? [];
-          if(_promotionProductList.isEmpty){
-            change(_promotionProductList, status: RxStatus.empty());
+          promotionProductList.value = result.listObjects ?? [];
+          isLoadingAPI.value = false;
+          if(promotionProductList.isEmpty){
+            error.value = "Không có cửa hàng nào để hiển thị";
             return;
           }
-          change(_promotionProductList, status: RxStatus.success());
+          else{
+            DatabaseHelper.instance.deleteFilter(
+              DBConfig.TABLE_PRODUCT,
+              DBConfig.PRODUCT_CATEGORY_ID,
+              '5',
+            );
+            for( var product in  promotionProductList){
+              DatabaseHelper.instance.insert(DBConfig.TABLE_PRODUCT,
+                  product.toJsonDB(5)
+              );
+            }
+          }
 
         } else {
           // Get.snackbar("Thông báo", result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
+          isLoadingAPI.value = false;
+          error.value = "${result.msg.toString()}";
           print(result.msg.toString());
-          change(_promotionProductList, status: RxStatus.empty());
         }
       }
     } catch (e) {
       // Get.snackbar("Thông báo", "error:: $e",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
-      change(_promotionProductList, status: RxStatus.empty());
+      error.value = "Hệ thống đang có vấn đề!!";
+      isLoadingAPI.value = false;
     }
 
+  }
+
+  void getPromotionProductsDB() {
+    isLoadingDB.value = true;
+    DatabaseHelper.instance.filter(DBConfig.TABLE_PRODUCT, DBConfig.PRODUCT_CATEGORY_ID, '5').then((value){
+
+      if(value?.length ==0){
+        isLoadingDB.value = false;
+        getPromotionProductsAPI();
+      }
+      else{
+        print('<Load SELLER> Load DB');
+        value?.forEach((element) {
+          promotionProductList.add(
+              Product(
+                  id: element[DBConfig.PRODUCT_ID],
+                  name: element[DBConfig.PRODUCT_NAME],
+                  thumbnail: element[DBConfig.PRODUCT_IMAGE],
+                  price: element[DBConfig.PRODUCT_PRICE],
+                  officialPrice: element[DBConfig.PRODUCT_OFF_PRICE],
+                  likeQty: element[DBConfig.PRODUCT_LIKED],
+                  commentQty: element[DBConfig.PRODUCT_COMMENT],
+                  rate: element[DBConfig.PRODUCT_RATE],
+                  catId: element[DBConfig.PRODUCT_CATEGORY_ID],
+                  store: Seller(
+                    name: element[DBConfig.PRODUCT_SELLER_NAME],
+                    phone: element[DBConfig.PRODUCT_SELLER_PHONE],
+                  )
+              )
+          );
+
+        });
+        isLoadingDB.value = false;
+      }
+    });
   }
 }

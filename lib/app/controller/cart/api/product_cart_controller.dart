@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
+import '../../../data/model/product.dart';
 import '../../../data/provider/db_provider.dart';
 import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/account_repo.dart';
@@ -42,8 +43,19 @@ class ProductCartController extends GetxController with StateMixin {
     );
   }
 
-  void incrementProductCartDB(ProductCart productCart)  {
+  void incrementProductCartDB(Product product)  {
     AuthenticationManager _autheticationManager = Get.find();
+    ProductCart productCart = ProductCart(
+        p_id: product.id,
+        p_sku: product.sku,
+        p_name: product.name,
+        s_name: "Babaas",
+        discount_price: product.price,
+        p_image: product.thumbnail,
+        quantity: 1,
+        price: product.officialPrice,
+        cartId: 6227);
+
     DatabaseHelper.instance.checkExists(DBConfig.TABLE_CART, DBConfig.CART_COLUMN_P_ID, productCart.p_id ).then((value){
       print("<DB> row exist $value");
       if(value){
@@ -51,13 +63,16 @@ class ProductCartController extends GetxController with StateMixin {
             DBConfig.CART_COLUMN_P_ID,
             DBConfig.CART_COLUMN_QUANTITY,
             productCart.p_id,).then((value){
-          if(_autheticationManager.isLogged== true) addItemCartAPI(productCart, 1);
+          if(_autheticationManager.isLogged== true)
+            addItemCartAPI(productCart, 1);
           getCartDB();
         });
       }
       else{
         print("DB Insert to Cart");
         DatabaseHelper.instance.insert(DBConfig.TABLE_CART, productCart.toJson()).then((value){
+          if(_autheticationManager.isLogged== true)
+            addItemCartAPI(productCart, 1);
           getCartDB();
         });
       }

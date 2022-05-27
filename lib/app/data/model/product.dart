@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/model/seller.dart';
 
 class Product {
@@ -19,6 +20,9 @@ class Product {
   String? detailProduct;
   Seller? store;
   String? description;
+  int? requiredOptions;
+  int? catId;
+  List<String> tags = [];
   List<String> images = [];
 
 
@@ -34,6 +38,8 @@ class Product {
         this.commentQty,
         this.rate,
         this.coinPoint,
+        this.thumbnail,
+        this.catId,
         this.store
       });
 
@@ -43,18 +49,24 @@ class Product {
     name = json["name"].toString();
     imageUrl = json['images'][0];
     price = double.parse(json[ "price"]).round();
-    officialPrice = json["discount_price"];
+    officialPrice = double.parse(json["discount_price"]).round();
     likeQty = json["liked"];
     commentQty = json["comment"];
     rate = json["vote"].toDouble();
     coinPoint = json["casy_coin"];
     sold = json['sold'];
     detailProduct = json['detail_product'];
+    badReport = json['bad_report'];
+    if(json['tag'] != null){
+      for (var v in (json['tag'] as List)) {
+        tags.add(v);
+      }
+    }
     store = Seller(
       name: json["store"]["name"].toString(),
       distance: json["store"]["distance"],
       phone: json['store']['phone'],
-      owner_shop: json['store']['owner_shop'],
+      owner_shop: json['store']['shop_owner'],
       total_product: json['store']['count_product'],
       totalTransaction: int.parse(json['store']['total_transaction']),
       rateFeedback: json['store']['rate_feedback']
@@ -83,6 +95,9 @@ class Product {
         }
         if(v['attribute_code'] == 'special_price'){
           price = double.parse(v['value'].toString()).round();
+        }
+        if(v['attribute_code'] == 'required_options'){
+          requiredOptions = int.parse(v['value'].toString());
         }
 
       });
@@ -113,6 +128,21 @@ class Product {
     data['commentQty'] = this.commentQty;
     data['rate'] = this.rate;
     data['coinPoint'] = this.coinPoint;
+    return data;
+  }
+  Map<String, dynamic> toJsonDB(int catId) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data[DBConfig.PRODUCT_ID] = this.id;
+    data[DBConfig.PRODUCT_NAME] = this.name;
+    data[DBConfig.PRODUCT_IMAGE] = this.thumbnail;
+    data[DBConfig.PRODUCT_PRICE] = this.price;
+    data[DBConfig.PRODUCT_OFF_PRICE] = this.officialPrice;
+    data[DBConfig.PRODUCT_LIKED] = this.likeQty;
+    data[DBConfig.PRODUCT_COMMENT] = this.commentQty;
+    data[DBConfig.PRODUCT_RATE] = this.rate;
+    data[DBConfig.PRODUCT_SELLER_NAME] = this.store?.name;
+    data[DBConfig.PRODUCT_SELLER_PHONE] = this.store?.phone;
+    data[DBConfig.PRODUCT_CATEGORY_ID] = catId;
     return data;
   }
 
