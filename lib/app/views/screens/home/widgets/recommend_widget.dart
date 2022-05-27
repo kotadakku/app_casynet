@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -129,18 +130,43 @@ class RecommendWidget extends StatelessWidget {
 
               ],
             ),
-            _recommendController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
-                child: state.isEmpty ?
-                Text("Không có sẳn phẩm nào để hiển thi") :
-                Wrap(
-                  spacing: 5.0.w,
-                  runSpacing: 10.0,
-                  children: (state as List).map((e) => ItemProductWidget(
-                      product: e
-                  ),).toList(),
-                ),
-              ),
-              onLoading: ItemSellerShimmer(),
+            Obx(()=>LoadingOverlay(
+                isLoading: _recommendController.isLoadingDB.value,
+                shimmer: ItemSellerShimmer(),
+                child: Stack(
+                  children: [
+                    Padding(padding: EdgeInsets.only(bottom: 15.h),
+                      child: _recommendController.error == '' ?
+                      Wrap(
+                        spacing: 5.0.w,
+                        runSpacing: 10.0,
+                        children: (_recommendController.recommendProductList as List).map((e) => ItemProductWidget(
+                            product: e
+                        ),).toList(),
+                      ): Column(
+                        children: [
+                          Text("${_recommendController.error}"),
+                          ElevatedButton(
+                            child: Text('Thử lại'),
+                            onPressed: (){
+                              _recommendController.getRecommendProductsAPI();
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    _recommendController.isLoadingAPI.value ?
+                    Container(height: 160,
+                        color: Colors.grey.withOpacity(0.3),
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        )
+                    )
+                        : SizedBox()
+
+                  ],
+                )
+              )
             ),
           ],
         ),

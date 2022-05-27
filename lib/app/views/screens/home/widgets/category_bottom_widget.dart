@@ -17,10 +17,10 @@ class CategoryBottomWidget extends StatelessWidget {
         child: Align(
           alignment: Alignment.center,
           child: LayoutBuilder(builder: (context, constraints) {
-            return _fetchDataController.obx((state) => Wrap(
+            return Obx(()=>Wrap(
               runSpacing: 10,
               spacing: 10,
-              children: (state as List)
+              children: (_fetchDataController.categoriesList as List)
                   .map(
                     (e) => CategoryItemBottom(
                     id: e.id,

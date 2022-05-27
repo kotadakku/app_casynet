@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/controller/home/api/reservation_controller.dart';
+import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -130,19 +131,42 @@ class PromotionWidget extends StatelessWidget {
 
               ],
             ),
-            _promotionController.obx((state) =>
-              Padding(padding: EdgeInsets.only(bottom: 15.h),
-                child: state.isEmpty ?
-                Text("Không có sẳn phẩm nào để hiển thi") :
-                Wrap(
-                  spacing: 5.0.w,
-                  runSpacing: 10.0,
-                  children: (state as List).map((e) => ItemProductWidget(
-                      product: e
-                  ),).toList(),
-                ),
-              ),
-              onLoading: ItemSellerShimmer()
+            Obx(()=>LoadingOverlay(
+                isLoading: _promotionController.isLoadingDB.value,
+                shimmer: ItemSellerShimmer(),
+                child: Stack(
+                  children: [
+                    Padding(padding: EdgeInsets.only(bottom: 15.h),
+                      child: _promotionController.error == '' ?
+                      Wrap(
+                        spacing: 5.0.w,
+                        runSpacing: 10.0,
+                        children: (_promotionController.promotionProductList as List).map((e) => ItemProductWidget(
+                            product: e
+                        ),).toList(),
+                      ): Column(
+                        children: [
+                          Text("${_promotionController.error}"),
+                          ElevatedButton(
+                            child: Text('Thử lại'),
+                            onPressed: (){
+                              _promotionController.getPromotionProductsAPI();
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    _promotionController.isLoadingAPI.value ?
+                    Container(height: 160,
+                        color: Colors.grey.withOpacity(0.3),
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        )
+                    )
+                        : SizedBox()
+                  ],
+                )
+              )
             )
           ],
         ),

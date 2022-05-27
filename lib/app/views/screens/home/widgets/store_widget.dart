@@ -1,4 +1,6 @@
 import 'package:app_casynet/app/views/theme/textTheme.dart';
+import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
+import 'package:app_casynet/app/views/widgets/shimmer/seller_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -92,8 +94,7 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(
-                                      first_load: true,pageSize: 12,curPage: 1, type_filter: '5');
+                                  _sellerController.getSellersAPI(pageSize: 12,curPage: 1, type_filter: '5');
                                   // _sellerController.getSellersAPI(pageSize: '12',cat: '11');
                                 },
                                 activeColor: Color(0xffDFB400)),
@@ -106,8 +107,7 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(
-                                      first_load: true,pageSize: 12,curPage: 1, type_filter: '6');
+                                  _sellerController.getSellersAPI(pageSize: 12,curPage: 1, type_filter: '6');
                                   // _sellerController.getSellersAPI(pageSize: '12',cat: '12', type_filter: '');
                                 },
                                 activeColor: Color(0xffDFB400)),
@@ -143,128 +143,48 @@ class StoreWidget extends StatelessWidget {
               ],
             ),
           ),
-          /*controller.isCarStore.value == true
-              ? _sellerController.obx(
-                  (state) => Container(
-                        padding: EdgeInsets.only(bottom: 20.0.h),
-                        child: state.isEmpty
-                            ? Text("Không có cửa hàng để hiển thị")
-                            : Wrap(
-                                spacing: 5.0.w,
-                                runSpacing: 10.0,
-                                children: (state as List)
-                                    .map((e) => ItemCuaHangWidget(
-                                          store: e,
-                                        ))
-                                    .toList()),
-                      ),
-                  onLoading: ItemCuaHangShimmer(),
-                  onError: (error) => InkWell(
-                        onTap: () {},
-                        child: Text("Tải lại"),
-                      )
-                  */
-          /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
-          /*
-                  )
-              : _sellerController.obx(
-                  (state) => Container(
-                        padding: EdgeInsets.only(bottom: 20.0.h),
-                        child: state.isEmpty
-                            ? Text("Không có cửa hàng để hiển thị")
-                            : Wrap(
-                                spacing: 5.0.w,
-                                runSpacing: 10.0,
-                                children: (state as List)
-                                    .map((e) => ItemCuaHangWidget(
-                                          store: e,
-                                        ))
-                                    .toList()),
-                      ),
-                  onLoading: ItemCuaHangShimmer(),
-                  onEmpty: SizedBox(
-                    height: 100,
-                    child: Column(
-                      children: [
-                        Text("Tải dữ liệu thất bại!!"),
-                        InkWell(
-                          onTap: () {
-                            print('Tải lại');
-                          },
-                          child: Text("Tải lại"),
-                        )
-                      ],
-                    ),
-                  ),
-                  onError: (error) => Column(
-                        children: [
-                          Text('$error'),
-                          InkWell(
-                            onTap: () {
-                              print('Tải lại');
-                            },
-                            child: Text("Tải lại"),
-                          )
-                          *//*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*//*
-                        ],
-                      )),*/
-          _sellerController.obx(
-                  (state) => Container(
-                padding: EdgeInsets.only(bottom: 20.0.h),
-                child: state.isEmpty
-                    ? Text("Không có cửa hàng để hiển thị")
-                    : Wrap(
+          Obx(()=>
+            LoadingOverlay(
+              isLoading: _sellerController.isLoadingDB.value,
+              shimmer: ItemSellerShimmer(),
+              child: Container(
+              padding: EdgeInsets.only(bottom: 20.0.h),
+              child: Stack(
+                children: [
+                  _sellerController.error == "" ?
+                  Wrap(
                     spacing: 5.0.w,
                     runSpacing: 10.0,
-                    children: (state as List)
+                    children: (_sellerController.sellerList as List)
                         .map((e) => ItemCuaHangWidget(
                       store: e,
-                    ))
-                        .toList()),
-              ),
-              onLoading: ItemCuaHangShimmer(),
-              onEmpty: SizedBox(
-                height: 100,
-                child: Column(
-                  children: [
-                    Text("Tải dữ liệu thất bại!!"),
-                    InkWell(
-                      onTap: () {
-                        print('Tải lại');
-                      },
-                      child: Text("Tải lại"),
                     )
-                  ],
-                ),
-              ),
-              onError: (error) => Column(
-                children: [
-                  Text('$error'),
-                  InkWell(
-                    onTap: () {
-                      print('Tải lại');
-                    },
-                    child: Text("Tải lại"),
-                  )
-                  /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+                    ).toList()
+                  ): Column(
+                    children: [
+                      Text("${_sellerController.error}"),
+                      ElevatedButton(
+                        child: Text('Thử lại'),
+                        onPressed: (){
+                          _sellerController.getSellersAPI(pageSize: 12, curPage: 1);
+                        },
+                      )
+                    ],
+                  ),
+                  _sellerController.isLoadingAPI.value ?
+                  Positioned.fill(child: Container(
+                      color: Colors.grey.withOpacity(0.3),
+                      padding: EdgeInsets.only(top: 100),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: CircularProgressIndicator.adaptive(),
+                      )
+                  )): SizedBox()
                 ],
-              )),
-          /*_sellerController.obx(
-            (state) => Container(
-              padding: EdgeInsets.only(bottom: 20.0.h),
-              child: state.isEmpty
-                  ? Text("Không có cửa hàng để hiển thị")
-                  : Wrap(
-                      spacing: 5.0.w,
-                      runSpacing: 10.0,
-                      children: (state as List)
-                          .map((e) => ItemSellerWidget(
-                                store: e,
-                              ))
-                          .toList()),
-            ),
-            onLoading: ItemSellerShimmer(),
-          ),*/
+                )
+              )
+            )
+          )
         ],
       ),
     );
@@ -291,20 +211,21 @@ class ItemCuaHangWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-                onTap: () {
-                  if (store != null)
-                    Get.toNamed(Routes.STORE_DETAIL,
-                        arguments: {'store': store});
-                  FocusScope.of(context).unfocus();
-                },
-                child: Container(
-                  height: 120.w,
-                  width: (1 / divide).sw - 7.5.w,
-                  child: ImageNetworkLoading(
-                    image_url: store.avatar_image.toString(),
-                    fit: BoxFit.fill,
-                  ),
-                )),
+              onTap: () {
+                if (store != null)
+                  Get.toNamed(Routes.STORE_DETAIL,
+                      arguments: {'store': store});
+                FocusScope.of(context).unfocus();
+              },
+              child: Container(
+                height: 120.w,
+                width: (1 / divide).sw - 7.5.w,
+                child: ImageNetworkLoading(
+                  image_url: store.avatar_image.toString(),
+                  fit: BoxFit.fill,
+                ),
+              )
+            ),
             Container(
               padding: EdgeInsets.all(5.0),
               color: Color(0xffEFF1FC),
@@ -449,73 +370,5 @@ class ItemCuaHangWidget extends StatelessWidget {
         ),
       );
     });
-  }
-}
-
-class ItemCuaHangShimmer extends StatelessWidget {
-  const ItemCuaHangShimmer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Wrap(
-          spacing: 5.0.w,
-          runSpacing: 10.0,
-          children: List.generate(
-              12,
-              (index) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ShimmerLoading(
-                        isLoading: true,
-                        child: Container(
-                          height: 120.w,
-                          width: 0.5.sw - 7.5.w,
-                          margin: EdgeInsets.only(bottom: 5.h),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                        ),
-                      ),
-                      ShimmerLoading(
-                        isLoading: true,
-                        child: Container(
-                          height: 12,
-                          margin: EdgeInsets.only(bottom: 5.h),
-                          width: 0.5.sw - 7.5.w,
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                        ),
-                      ),
-                      ShimmerLoading(
-                        isLoading: true,
-                        child: Container(
-                          height: 12,
-                          margin: EdgeInsets.only(bottom: 5.h),
-                          width: 0.2.sw - 7.5.w,
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                        ),
-                      ),
-                      ShimmerLoading(
-                        isLoading: true,
-                        child: Container(
-                          height: 12,
-                          margin: EdgeInsets.only(bottom: 5.h),
-                          width: 0.3.sw - 7.5.w,
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ))),
-    );
   }
 }

@@ -1,26 +1,33 @@
 
+import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/model/seller.dart';
+import 'package:app_casynet/app/data/provider/db_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/repo/seller_repo.dart';
 
 
-class SellerController extends GetxController with StateMixin{
-  final _sellerList = <Seller>[].obs;
+class SellerController extends GetxController{
+  final sellerList = <Seller>[].obs;
+  // final ScaffoldMessengerState scaffoldMessenger = Get.find<ScaffoldMessengerState>();
+  final isLoadingAPI = false.obs;
+  final isLoadingDB = false.obs;
 
   late int pageNumber =1;
   late int pageSizeNumber =12;
-  late int type_filter_number;
+  final error = "".obs;
 
   @override
   void onInit() {
-    getSellersAPI(first_load: true,pageSize: 12,curPage: 1, type_filter: 'null');
+    _getSellerDB();
+    getSellersAPI(pageSize: 12,curPage: 1, type_filter: 'null');
   }
 
 
-  Future<void> getSellersAPI({bool first_load = false, required int pageSize, required int curPage,required String type_filter }) async {
-    if(first_load) change(_sellerList, status: RxStatus.loading());
+  Future<void> getSellersAPI({required int pageSize, required int curPage,String type_filter = 'null'}) async {
+    isLoadingAPI.value = true;
+    error.value = "";
     try {
       final result = await SellerRepo().getSellers(
         queryParameters: {
@@ -33,28 +40,64 @@ class SellerController extends GetxController with StateMixin{
       );
       if (result != null) {
         if (result.isSuccess) {
-          _sellerList.value = result.listObjects ?? [];
-          if(_sellerList.isEmpty){
-            change(_sellerList, status: RxStatus.empty());
+          sellerList.value = result.listObjects ?? [];
+          isLoadingAPI.value = false;
+          if(sellerList.length <=0){
+            error.value = "Không có cửa hàng nào để hiển thị";
             return;
           }
-          change(_sellerList, status: RxStatus.success());
+
+          DatabaseHelper.instance.clear(DBConfig.TABLE_SELLER);
+          for( var seller in  sellerList){
+            DatabaseHelper.instance.insert(DBConfig.TABLE_SELLER,
+             seller.toJsonDB()
+            );
+          }
 
         } else {
-          Get.snackbar("Thông báo", result.msg.toString(),
-              backgroundColor: Colors.black.withOpacity(0.3));
+          // Get.snackbar("Thông báo", result.msg.toString(),
+          //     backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
-          change(_sellerList, status: RxStatus.empty());
+          error.value = "${result.msg.toString()}";
+          isLoadingAPI.value = false;
         }
       }
     } catch (e) {
-      Get.snackbar("Thông báo", "error:: $e",
-          backgroundColor: Colors.black.withOpacity(0.3));
+      // Get.snackbar("Thông báo", "error:: $e",
+      //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
-      change(_sellerList, status: RxStatus.empty());
+      error.value = "Hệ thống đang có vấn đề!!";
+      isLoadingAPI.value = false;
     }
   }
 
+  void _getSellerDB() {
+    
+    isLoadingDB.value = true;
+    DatabaseHelper.instance.getAlls(DBConfig.TABLE_SELLER, DBConfig.SELLER_ID).then((value){
+      if(value?.length ==0){
+        isLoadingDB.value = false;
+        getSellersAPI(pageSize: 12,curPage: 1, type_filter: 'null');
+      }
+      else{
+        print('<Load SELLER> Load DB');
+        value?.forEach((element) {
+          sellerList.add(
+            Seller(
+              id: element[DBConfig.SELLER_ID],
+              name: element[DBConfig.SELLER_NAME],
+              phone: element[DBConfig.SELLER_PHONE],
+              avatar_image: element[DBConfig.SELLER_IMAGE],
+              address: element[DBConfig.SELLER_ADDRESS],
+              likeQty: element[DBConfig.SELLER_LIKED],
+              commentQty: element[DBConfig.SELLER_COMMENT],
+              rate: element[DBConfig.SELLER_RATE],
+            )
+          );
 
-
+        });
+        isLoadingDB.value = false;
+      }
+    });
+  }
 }

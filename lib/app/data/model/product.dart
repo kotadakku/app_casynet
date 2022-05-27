@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/model/seller.dart';
 
 class Product {
@@ -20,6 +21,7 @@ class Product {
   Seller? store;
   String? description;
   int? requiredOptions;
+  int? catId;
   List<String> tags = [];
   List<String> images = [];
 
@@ -36,6 +38,8 @@ class Product {
         this.commentQty,
         this.rate,
         this.coinPoint,
+        this.thumbnail,
+        this.catId,
         this.store
       });
 
@@ -124,6 +128,21 @@ class Product {
     data['commentQty'] = this.commentQty;
     data['rate'] = this.rate;
     data['coinPoint'] = this.coinPoint;
+    return data;
+  }
+  Map<String, dynamic> toJsonDB(int catId) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data[DBConfig.PRODUCT_ID] = this.id;
+    data[DBConfig.PRODUCT_NAME] = this.name;
+    data[DBConfig.PRODUCT_IMAGE] = this.thumbnail;
+    data[DBConfig.PRODUCT_PRICE] = this.price;
+    data[DBConfig.PRODUCT_OFF_PRICE] = this.officialPrice;
+    data[DBConfig.PRODUCT_LIKED] = this.likeQty;
+    data[DBConfig.PRODUCT_COMMENT] = this.commentQty;
+    data[DBConfig.PRODUCT_RATE] = this.rate;
+    data[DBConfig.PRODUCT_SELLER_NAME] = this.store?.name;
+    data[DBConfig.PRODUCT_SELLER_PHONE] = this.store?.phone;
+    data[DBConfig.PRODUCT_CATEGORY_ID] = catId;
     return data;
   }
 

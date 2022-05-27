@@ -9,6 +9,7 @@ import '../../controller/home/products_controller.dart';
 import '../../routes/app_pages.dart';
 import '../theme/app_colors.dart';
 import '../widgets/bottom_widget.dart';
+import '../widgets/shimmer/seller_shimmer.dart';
 import 'home/widgets/category_bottom_widget.dart';
 import 'home/widgets/items/product_item.dart';
 import 'home/widgets/store_widget.dart';
@@ -119,7 +120,7 @@ class ProductsPage extends StatelessWidget {
                       ).toList()
                     )
                 ),
-                  onLoading: ItemCuaHangShimmer(),
+                  onLoading: ItemSellerShimmer(),
                   onEmpty: Text('Không có sản phẩm nào để hiển thị'),
                 ),
                 Obx(()=>_productsController.haveNextPage.value ? _productsController.isLoading.value ?
