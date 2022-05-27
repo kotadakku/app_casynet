@@ -143,71 +143,7 @@ class StoreWidget extends StatelessWidget {
               ],
             ),
           ),
-          /*controller.isCarStore.value == true
-              ? _sellerController.obx(
-                  (state) => Container(
-                        padding: EdgeInsets.only(bottom: 20.0.h),
-                        child: state.isEmpty
-                            ? Text("Không có cửa hàng để hiển thị")
-                            : Wrap(
-                                spacing: 5.0.w,
-                                runSpacing: 10.0,
-                                children: (state as List)
-                                    .map((e) => ItemCuaHangWidget(
-                                          store: e,
-                                        ))
-                                    .toList()),
-                      ),
-                  onLoading: ItemCuaHangShimmer(),
-                  onError: (error) => InkWell(
-                        onTap: () {},
-                        child: Text("Tải lại"),
-                      )
-                  */
-          /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
-          /*
-                  )
-              : _sellerController.obx(
-                  (state) => Container(
-                        padding: EdgeInsets.only(bottom: 20.0.h),
-                        child: state.isEmpty
-                            ? Text("Không có cửa hàng để hiển thị")
-                            : Wrap(
-                                spacing: 5.0.w,
-                                runSpacing: 10.0,
-                                children: (state as List)
-                                    .map((e) => ItemCuaHangWidget(
-                                          store: e,
-                                        ))
-                                    .toList()),
-                      ),
-                  onLoading: ItemCuaHangShimmer(),
-                  onEmpty: SizedBox(
-                    height: 100,
-                    child: Column(
-                      children: [
-                        Text("Tải dữ liệu thất bại!!"),
-                        InkWell(
-                          onTap: () {
-                            print('Tải lại');
-                          },
-                          child: Text("Tải lại"),
-                        )
-                      ],
-                    ),
-                  ),
-                  onError: (error) => Column(
-                        children: [
-                          Text('$error'),
-                          InkWell(
-                            onTap: () {
-                              print('Tải lại');
-                            },
-                            child: Text("Tải lại"),
-                          )
-                          *//*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*//*
-                        ],
-                      )),*/
+
           _sellerController.obx(
                   (state) => Container(
                 padding: EdgeInsets.only(bottom: 20.0.h),
@@ -246,25 +182,9 @@ class StoreWidget extends StatelessWidget {
                     },
                     child: Text("Tải lại"),
                   )
-                  /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
                 ],
               )),
-          /*_sellerController.obx(
-            (state) => Container(
-              padding: EdgeInsets.only(bottom: 20.0.h),
-              child: state.isEmpty
-                  ? Text("Không có cửa hàng để hiển thị")
-                  : Wrap(
-                      spacing: 5.0.w,
-                      runSpacing: 10.0,
-                      children: (state as List)
-                          .map((e) => ItemSellerWidget(
-                                store: e,
-                              ))
-                          .toList()),
-            ),
-            onLoading: ItemSellerShimmer(),
-          ),*/
+
         ],
       ),
     );
@@ -438,7 +358,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                       width: 3,
                     ),
                     Text(
-                      "${store.distance == null ? 0.0 : store.distance} km",
+                      "${store.distance == null ? 0.0 : store.distance?.toStringAsFixed(1)} km",
                       style: TextStyle(fontSize: 12.sp),
                     )
                   ],
