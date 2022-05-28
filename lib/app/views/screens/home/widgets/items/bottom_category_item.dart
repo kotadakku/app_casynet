@@ -38,7 +38,7 @@ class CategoryItemBottom extends StatelessWidget {
                       children: [
                         Container(
                           child: SvgPicture.asset(
-                            "assets/home/category/left_bottom.svg",
+                            "assets/images/home/category/left_bottom.svg",
                             height: 40,
                             // fit: BoxFit.cover,
                           ),),

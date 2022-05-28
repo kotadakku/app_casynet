@@ -27,7 +27,7 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
       leading: Container(
         padding: EdgeInsets.only(left: 5.0.w),
           child: SvgPicture.asset(
-            "assets/home/icon_top_home.svg",
+            "assets/images/home/icon_top_home.svg",
             width: 40,
           )
       ),
@@ -101,7 +101,7 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
                       ),
                       SizedBox(width: 2.0.w,),
                       SvgPicture.asset(
-                          "assets/home/icon_location.svg",
+                          "assets/images/home/icon_location.svg",
                           width: 14),
                       SizedBox(width: 5.0.w,),
                       const Text(

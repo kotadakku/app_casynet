@@ -13,7 +13,7 @@ class NotificationPage extends StatelessWidget {
     List<Widget> _menus = [
       ListTile(
         // Ảnh thông báo
-        leading: Image.asset("assets/notification/noti_1.png"),
+        leading: Image.asset("assets/images/notification/noti_1.png"),
         // Tên thông báo
         title: Text("Casynet gui KH don hang #221635372"),
         // Chi tiết thông báo
@@ -24,7 +24,7 @@ class NotificationPage extends StatelessWidget {
         ),
       ),
       ListTile(
-        leading: Image.asset("assets/notification/noti_1.png"),
+        leading: Image.asset("assets/images/notification/noti_1.png"),
         title: Text("Casynet gui KH don hang #221635372"),
         subtitle: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +33,7 @@ class NotificationPage extends StatelessWidget {
         ),
       ),
       ListTile(
-        leading: Image.asset("assets/notification/noti_1.png"),
+        leading: Image.asset("assets/images/notification/noti_1.png"),
         title: Text("Casynet gui KH don hang #221635372"),
         subtitle: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -42,7 +42,7 @@ class NotificationPage extends StatelessWidget {
         ),
       ),
       ListTile(
-        leading: Image.asset("assets/notification/noti_1.png"),
+        leading: Image.asset("assets/images/notification/noti_1.png"),
         title: Text("Casynet gui KH don hang #221635372"),
         subtitle: Column(
           mainAxisAlignment: MainAxisAlignment.start,

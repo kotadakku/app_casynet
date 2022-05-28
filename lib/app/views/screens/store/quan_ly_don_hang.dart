@@ -35,7 +35,7 @@ class QuanLyDonHang extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    "assets/bottom_navi_icon/noti.svg",
+                    "assets/images/bottom_navi_icon/noti.svg",
                     width: 20,
                   ),
                 ],
@@ -53,7 +53,7 @@ class QuanLyDonHang extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   ImageIcon(
-                    AssetImage("assets/store/ic_question_circle.png"),
+                    AssetImage("assets/images/store/ic_question_circle.png"),
                     size: 20,
                   )
                 ],
@@ -119,7 +119,7 @@ class QuanLyDonHang extends StatelessWidget {
                                       MainAxisAlignment.start,
                                       children: [
                                         Image.asset(
-                                            "assets/store/img_donhang.png"),
+                                            "assets/images/store/img_donhang.png"),
                                         Text(
                                           "100 đơn",
                                           style: TextStyle(

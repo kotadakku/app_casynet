@@ -92,7 +92,7 @@ class QuanLyThongBao extends StatelessWidget {
                                         ),
                                       ),
                                       ImageIcon(AssetImage(
-                                          "assets/Icon/icon_butchi.png"),size: 20,),
+                                          "assets/images/Icon/icon_butchi.png"),size: 20,),
                                     ],
                                   ),
                                 ),
@@ -108,7 +108,7 @@ class QuanLyThongBao extends StatelessWidget {
                                                 Expanded(
                                                   child: Text("ID:01-303"),
                                                 ),
-                                                ImageIcon(AssetImage("assets/Icon/icon_dung2.png"),size: 18,color: Colors.green,),
+                                                ImageIcon(AssetImage("assets/images/Icon/icon_dung2.png"),size: 18,color: Colors.green,),
                                               ],
                                             ),
                                             Row(

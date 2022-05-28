@@ -240,7 +240,7 @@ class VoteProductWidget extends StatelessWidget {
                           child: Stack(
                               fit: StackFit.expand,
                               children: [
-                                Image.asset('assets/product_detail/product_1.png', fit: BoxFit.cover),
+                                Image.asset('assets/images/product_detail/product_1.png', fit: BoxFit.cover),
                                 Container(
                                   color: Colors.black.withOpacity(0.6),
                                   alignment: Alignment.center,
@@ -261,7 +261,7 @@ class VoteProductWidget extends StatelessWidget {
                     height: 0.25.sw-7.5,
                     margin: EdgeInsets.only(left: 5.0),
                     child: Image.asset(
-                        "assets/product_detail/product_1.png"
+                        "assets/images/product_detail/product_1.png"
                     ),
                   );
                 },

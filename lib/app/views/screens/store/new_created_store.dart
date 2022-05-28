@@ -46,7 +46,7 @@ class NewCreatedStore extends StatelessWidget {
 
                                   image: DecorationImage(
                                     image: ExactAssetImage(
-                                        "assets/store/img_mask_group_14.png"),
+                                        "assets/images/store/img_mask_group_14.png"),
                                   ),
                                   shape: BoxShape.circle),
                               width: 100,

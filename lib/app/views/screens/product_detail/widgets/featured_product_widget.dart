@@ -31,7 +31,7 @@ class FeaturedProductWidget extends StatelessWidget {
           runSpacing: 10.0.h,
           children: [
             // ItemProductWidget(
-            //     book_image: "assets/home/book/image.png",
+            //     book_image: "assets/images/home/book/image.png",
             //     distance: 4.5,
             //     price: "1.290.000đ",
             //     price_discount: "1.390.000đ",
@@ -39,7 +39,7 @@ class FeaturedProductWidget extends StatelessWidget {
             //     book_category: "Điện máy Đỗ Dũng"
             // ),
             // ItemProductWidget(
-            //     book_image: "assets/home/store/cuahang1.png",
+            //     book_image: "assets/images/home/store/cuahang1.png",
             //     distance: 4.5,
             //     price: "1.290.000đ",
             //     price_discount: "1.390.000đ",
@@ -47,7 +47,7 @@ class FeaturedProductWidget extends StatelessWidget {
             //     book_category: "Điện máy Đỗ Dũng"
             // ),
             // ItemProductWidget(
-            //     book_image: "assets/home/book/image.png",
+            //     book_image: "assets/images/home/book/image.png",
             //     distance: 4.5,
             //     price: "1.290.000đ",
             //     price_discount: "1.390.000đ",
@@ -55,7 +55,7 @@ class FeaturedProductWidget extends StatelessWidget {
             //     book_category: "Điện máy Đỗ Dũng"
             // ),
             // ItemProductWidget(
-            //     book_image: "assets/home/store/cuahang1.png",
+            //     book_image: "assets/images/home/store/cuahang1.png",
             //     distance: 4.5,
             //     price: "1.290.000đ",
             //     price_discount: "1.390.000đ",

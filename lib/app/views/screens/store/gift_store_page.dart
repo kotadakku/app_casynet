@@ -239,7 +239,7 @@ class GiftStorePage extends StatelessWidget {
                                         height: 25,
                                         width: 25,
                                         padding: EdgeInsets.all(5.0),
-                                        child: SvgPicture.asset("assets/product_detail/gift.svg"),
+                                        child: SvgPicture.asset("assets/images/product_detail/gift.svg"),
                                       ),
                                       Text("Mã quà tặng: 00000001",
                                         style: TextStyle(

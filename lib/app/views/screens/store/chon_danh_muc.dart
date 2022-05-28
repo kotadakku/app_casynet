@@ -47,7 +47,7 @@ class ChonDanhMuc extends StatelessWidget {
                           width: 30.0.w,
                           height: 30.0.h,
                           margin: EdgeInsets.only(right: 5.0.w),
-                          child: Image.asset("assets/store/ic_ruaxe.png"),
+                          child: Image.asset("assets/images/store/ic_ruaxe.png"),
                         ),
                         Text("Rửa xe, thay dầu",
                             style: TextStyle(
@@ -83,7 +83,7 @@ class ChonDanhMuc extends StatelessWidget {
                           height: 30.0.h,
                           margin: EdgeInsets.only(right: 5.0.w),
 
-                          child: Image.asset("assets/store/ic_suachua.png"),
+                          child: Image.asset("assets/images/store/ic_suachua.png"),
                         ),
                         const Text("Sửa chữa xe",
                             style:
@@ -118,7 +118,7 @@ class ChonDanhMuc extends StatelessWidget {
                           width: 30.0.w,
                           height: 30.0.h,
                           margin: EdgeInsets.only(right: 5.0.w),
-                          child: Image.asset("assets/store/ic_dochoi.png"),
+                          child: Image.asset("assets/images/store/ic_dochoi.png"),
                         ),
                         const Text("Đồ chơi, phụ kiện xe",
                             style:
@@ -153,7 +153,7 @@ class ChonDanhMuc extends StatelessWidget {
                           height: 30.0.h,
                           margin: EdgeInsets.only(right: 5.0.w),
 
-                          child: Image.asset("assets/store/ic_muabanxe.png"),
+                          child: Image.asset("assets/images/store/ic_muabanxe.png"),
                         ),
                         const Text("Mua bán xe",
                             style:
@@ -188,7 +188,7 @@ class ChonDanhMuc extends StatelessWidget {
                           width: 30.0.w,
                           height: 30.0.h,
                           margin: EdgeInsets.only(right: 5.0.w),
-                          child: Image.asset("assets/store/ic_chamsocxe.png"),
+                          child: Image.asset("assets/images/store/ic_chamsocxe.png"),
                         ),
                         const Text("Chăm sóc xe",
                             style:
@@ -224,7 +224,7 @@ class ChonDanhMuc extends StatelessWidget {
                           height: 30.0.h,
                           margin: EdgeInsets.only(right: 5.0.w),
 
-                          child: Image.asset("assets/store/ic_lop.png"),
+                          child: Image.asset("assets/images/store/ic_lop.png"),
                         ),
                         const Text("Lốp và ắc quy xe",
                             style:

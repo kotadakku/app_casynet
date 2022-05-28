@@ -521,7 +521,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(right: 20),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_butchi.png"),
+                              AssetImage("assets/images/Icon/icon_butchi.png"),
                             ),
                           ),
                         ],

@@ -22,7 +22,7 @@ class RateStorePage extends StatelessWidget {
           Container(
             height: 100.0.h,
             width: MediaQuery.of(context).size.width,
-            child: Image.asset("assets/store/img_background.png",fit: BoxFit.cover,),
+            child: Image.asset("assets/images/store/img_background.png",fit: BoxFit.cover,),
           ),
           Container(
             height: 55,
@@ -112,7 +112,7 @@ class RateStorePage extends StatelessWidget {
                                       MainAxisAlignment.start,
                                       children: [
                                         Image.asset(
-                                            "assets/store/img_donhang.png"),
+                                            "assets/images/store/img_donhang.png"),
                                         Text(
                                           "100 đơn",
                                           style: TextStyle(

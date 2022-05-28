@@ -147,7 +147,7 @@ class NotificationCustomer extends StatelessWidget {
                                           Container(
                                             child:
                                             Image.asset(
-                                              "assets/store/ic_trash.png",
+                                              "assets/images/store/ic_trash.png",
                                               color: kTextColor,
                                               width: 20,
                                               height: 20,
@@ -185,7 +185,7 @@ class NotificationCustomer extends StatelessWidget {
                                           Container(
                                             child:
                                             Image.asset(
-                                              "assets/store/ic_edit.png",
+                                              "assets/images/store/ic_edit.png",
                                               color: kTextColor,
                                               width: 20,
                                               height: 20,

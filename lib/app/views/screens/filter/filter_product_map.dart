@@ -71,7 +71,7 @@ class FilterProductMap extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
+                      SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),
                       SizedBox(width: 5,),
                       Text(
                         "Lọc",
@@ -115,7 +115,7 @@ class FilterProductMap extends StatelessWidget {
                     leading: CircleAvatar(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset("assets/account/image_user.png"),
+                          child: Image.asset("assets/images/account/image_user.png"),
                         )
                     ),
                     title: Text("Vị trí của tôi", style: TextStyle(
@@ -160,7 +160,7 @@ class FilterProductMap extends StatelessWidget {
                         leading: CircleAvatar(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
-                              child: Image.asset("assets/account/image_user.png"),
+                              child: Image.asset("assets/images/account/image_user.png"),
                             )
                         ),
                         title: Text("Gara Ô Tô Hà Nội Car Sevices"),

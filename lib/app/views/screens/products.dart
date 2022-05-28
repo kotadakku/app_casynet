@@ -60,7 +60,7 @@ class ProductsPage extends StatelessWidget {
                         behavior: HitTestBehavior.translucent,
                         child: Row(
                           children: [
-                            SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
+                            SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),
                             SizedBox(width: 5,),
                             Text(
                               "filter".tr,

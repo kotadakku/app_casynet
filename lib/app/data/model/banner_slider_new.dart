@@ -1,29 +1,21 @@
+import '../../config/config_db.dart';
 
-class BannerSliderNew {
-  // int? id;
+class BannerSlider {
+  int? id;
   String? htmlTag;
 
-  BannerSliderNew({this.htmlTag});
+  BannerSlider({this.id, required this.htmlTag});
 
-// List<String>? imageHtml = [];
+  factory BannerSlider.fromJson(Map<String, dynamic> json){
+    return BannerSlider(
+        id: json['id'],
+        htmlTag: json['image']
+    );
+  }
 
-  // BannerSliderNew.init( this.imageHtml);
-  // BannerSliderNew({this.imageHtml});
-  //
-  // Future<Map<String, dynamic>?> toJson() async {
-  //     return{
-  //     'banner': imageHtml,
-  //     };
-  // }
-  //
-  // // gán vào ui
-  //  BannerSliderNew.fromJson(Map<String, dynamic> data){
-  //   print(data);
-  //   if (data['banner'.replaceAll("\\", "replace").split(">")] != null){
-  //     data['banner'.replaceAll("\\", "replace").split(">")].forEach((value){
-  //       imageHtml = [];
-  //       imageHtml?.add(value);
-  //     });
-  //   }
-  // }
+  Map<String, dynamic> toJson() => {
+    // DBConfig.BANNER_COLUMN_ID : id,
+    DBConfig.BANNER_COLUMN_IMAGE : htmlTag
+  };
+
 }

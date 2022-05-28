@@ -41,7 +41,7 @@ class GiftStoreWidget extends StatelessWidget {
                   children: [
                     Expanded(flex: 2 ,child: Container(
                       padding: EdgeInsets.all(5.0) ,
-                      child: SvgPicture.asset("assets/detail_store/gift.svg", width: 30,),
+                      child: SvgPicture.asset("assets/images/detail_store/gift.svg", width: 30,),
                     )),
                     Expanded(flex: 5 ,child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,7 @@ class GiftStoreWidget extends StatelessWidget {
                       },
                       child: Stack(
                         children: [
-                          SvgPicture.asset("assets/detail_store/right.svg",),
+                          SvgPicture.asset("assets/images/detail_store/right.svg",),
                           Positioned.fill(
                               child: Align(
                                   alignment: Alignment.centerRight,
@@ -103,7 +103,7 @@ class GiftStoreWidget extends StatelessWidget {
                   children: [
                     Expanded(flex: 2 ,child: Container(
                       padding: EdgeInsets.all(5.0) ,
-                      child: SvgPicture.asset("assets/detail_store/gift.svg", width: 30,),
+                      child: SvgPicture.asset("assets/images/detail_store/gift.svg", width: 30,),
                     )),
                     Expanded(flex: 5 ,child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +123,7 @@ class GiftStoreWidget extends StatelessWidget {
                     Expanded(flex: 2, child: Stack(
                       children: [
                         GestureDetector(
-                          child: SvgPicture.asset("assets/detail_store/right.svg",),
+                          child: SvgPicture.asset("assets/images/detail_store/right.svg",),
                           onTap: (){
                             Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER);
                           },
@@ -159,7 +159,7 @@ class GiftStoreWidget extends StatelessWidget {
                   children: [
                     Expanded(flex: 2 ,child: Container(
                       padding: EdgeInsets.all(5.0) ,
-                      child: SvgPicture.asset("assets/detail_store/gift.svg", width: 30,),
+                      child: SvgPicture.asset("assets/images/detail_store/gift.svg", width: 30,),
                     )),
                     Expanded(flex: 5 ,child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,7 +179,7 @@ class GiftStoreWidget extends StatelessWidget {
                     Expanded(flex: 2, child: Stack(
                       children: [
                         GestureDetector(
-                          child: SvgPicture.asset("assets/detail_store/right.svg",),
+                          child: SvgPicture.asset("assets/images/detail_store/right.svg",),
                           onTap: (){
                             Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER);
                           },
@@ -215,7 +215,7 @@ class GiftStoreWidget extends StatelessWidget {
                   children: [
                     Expanded(flex: 2 ,child: Container(
                       padding: EdgeInsets.all(5.0) ,
-                      child: SvgPicture.asset("assets/detail_store/gift.svg", width: 30,),
+                      child: SvgPicture.asset("assets/images/detail_store/gift.svg", width: 30,),
                     )),
                     Expanded(flex: 5 ,child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,7 +235,7 @@ class GiftStoreWidget extends StatelessWidget {
                     Expanded(flex: 2, child: Stack(
                       children: [
                         GestureDetector(
-                          child: SvgPicture.asset("assets/detail_store/right.svg",),
+                          child: SvgPicture.asset("assets/images/detail_store/right.svg",),
                           onTap: (){
                             Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER);
                           },

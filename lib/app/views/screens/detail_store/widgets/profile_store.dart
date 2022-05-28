@@ -25,7 +25,7 @@ class ProfileStoreWidget extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: ExactAssetImage(
-                "assets/detail_store/background.png"),
+                "assets/images/detail_store/background.png"),
             fit: BoxFit.fill
           )
         ),

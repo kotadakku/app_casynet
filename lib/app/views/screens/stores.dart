@@ -67,7 +67,7 @@ class StoreHomeMore extends StatelessWidget {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "assets/home/store/icon_filter.svg",
+                            "assets/images/home/store/icon_filter.svg",
                             width: 15,
                           ),
                           SizedBox(

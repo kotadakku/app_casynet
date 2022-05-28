@@ -18,8 +18,8 @@ class ImageProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final _pageController = PageController(initialPage: 0);
     List<String> banner_urls = [
-      "assets/product_detail/product_1.png",
-      "assets/home/banner1.png"
+      "assets/images/product_detail/product_1.png",
+      "assets/images/home/banner1.png"
     ];
     return Container(
         height: 400,

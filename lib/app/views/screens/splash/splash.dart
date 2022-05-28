@@ -32,11 +32,11 @@ class Splash extends StatelessWidget {
                 Positioned(
                     left: -1.0,
                     top:  -10.0,
-                    child: SvgPicture.asset("assets/splash/path1484.svg",width: ScreenUtil().screenWidth, )
+                    child: SvgPicture.asset("assets/images/splash/path1484.svg",width: ScreenUtil().screenWidth, )
                 ),
                 Positioned(
                   child: Center(
-                    child: Image.asset("assets/splash/logo-while.png"),
+                    child: Image.asset("assets/images/splash/logo-while.png"),
                   ),
                 ),
                 Align(
@@ -45,16 +45,16 @@ class Splash extends StatelessWidget {
                     children: [
                       Positioned(
                           bottom:  -10.0,
-                          child: SvgPicture.asset("assets/splash/path1483.svg")
+                          child: SvgPicture.asset("assets/images/splash/path1483.svg")
                       ),
                       Positioned(
                         bottom: -10,
-                        child: SvgPicture.asset("assets/splash/path1482.svg"),
+                        child: SvgPicture.asset("assets/images/splash/path1482.svg"),
                       ),
                       Positioned(
                           bottom: -15,
                           left: -30,
-                          child: SvgPicture.asset("assets/splash/path1481.svg")
+                          child: SvgPicture.asset("assets/images/splash/path1481.svg")
                       ),
                     ],
                   ),

@@ -58,7 +58,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -96,7 +96,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -135,7 +135,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -173,7 +173,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -212,7 +212,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -250,7 +250,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -289,7 +289,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -327,7 +327,7 @@ class BangDieuKhien extends StatelessWidget {
                           Container(
                             margin: new EdgeInsets.only(left: 15),
                             child: ImageIcon(
-                              AssetImage("assets/Icon/icon_doanhso.png"),
+                              AssetImage("assets/images/Icon/icon_doanhso.png"),
                               size: 40,
                               color: Colors.blue,
                             ),
@@ -477,7 +477,7 @@ List<DataRow> _createRows(int x) {
         DataCell(Text('06/09/2021')),
         DataCell(Text('Ngọc Bích')),
         DataCell(Text('2.000.000')),
-        DataCell(ImageIcon(AssetImage("assets/Icon/icon_dung.png"),color: Colors.green,)),
+        DataCell(ImageIcon(AssetImage("assets/images/Icon/icon_dung.png"),color: Colors.green,)),
       ],
     );
     dr.add(oo);

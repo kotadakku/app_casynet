@@ -105,7 +105,7 @@ class CardChatItem extends StatelessWidget {
 
                 borderRadius: BorderRadius.circular(20.0),
                 image: DecorationImage(
-                  image: AssetImage("assets/account/image_user.png"),
+                  image: AssetImage("assets/images/account/image_user.png"),
                   fit: BoxFit.fill,
                 )
             ),

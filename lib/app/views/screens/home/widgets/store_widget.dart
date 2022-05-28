@@ -69,7 +69,7 @@ class StoreWidget extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.only(left: 10.0, right: 10.0.w),
                           child: SvgPicture.asset(
-                            "assets/home/store/icon_xemthem.svg",
+                            "assets/images/home/store/icon_xemthem.svg",
                             width: 6.0,
                           ),
                         )
@@ -125,7 +125,7 @@ class StoreWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "assets/home/store/icon_filter.svg",
+                        "assets/images/home/store/icon_filter.svg",
                         width: 15,
                       ),
                       SizedBox(
@@ -151,7 +151,7 @@ class StoreWidget extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 20.0.h),
               child: Stack(
                 children: [
-                  _sellerController.error == "" ?
+
                   Wrap(
                     spacing: 5.0.w,
                     runSpacing: 10.0,
@@ -160,16 +160,41 @@ class StoreWidget extends StatelessWidget {
                       store: e,
                     )
                     ).toList()
-                  ): Column(
-                    children: [
-                      Text("${_sellerController.error}"),
-                      ElevatedButton(
-                        child: Text('Thử lại'),
-                        onPressed: (){
-                          _sellerController.getSellersAPI(pageSize: 12, curPage: 1);
-                        },
+                  ),
+                  _sellerController.error == "" ?
+                      SizedBox()
+                    : Positioned.fill(
+                      child: Container(
+                        color: AppColors.kBackgroundColor.withOpacity(0.5),
+                        padding: EdgeInsets.only(top: 100),
+                        child: Column(
+                          children: [
+                            Text("${_sellerController.error}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ElevatedButton(
+                                  child: Text('Thử lại'),
+                                  onPressed: (){
+                                    _sellerController.getSellersAPI(pageSize: 12, curPage: 1);
+                                  },
+                                ),
+                                SizedBox(width: 10,),
+                                ElevatedButton(
+                                  child: Text('Bỏ qua'),
+                                  onPressed: (){
+                                    _sellerController.error.value = '';
+                                  },
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       )
-                    ],
                   ),
                   _sellerController.isLoadingAPI.value ?
                   Positioned.fill(child: Container(

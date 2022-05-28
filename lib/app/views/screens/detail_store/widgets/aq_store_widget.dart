@@ -41,7 +41,7 @@ class AQStoreWidget extends StatelessWidget {
                         Container(
                           width: 60,
                           height: 60,
-                          child: Image.asset("assets/product_detail/product_1.png"),
+                          child: Image.asset("assets/images/product_detail/product_1.png"),
                         ),
                         SizedBox(width: 10.w,),
 
@@ -153,7 +153,7 @@ class CardChatItem extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: DecorationImage(
-                  image: AssetImage("assets/account/image_user.png"),
+                  image: AssetImage("assets/images/account/image_user.png"),
                   fit: BoxFit.fill,
                 )
             ),

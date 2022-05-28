@@ -110,7 +110,7 @@ class InformationProductWidget extends StatelessWidget {
                       height: 20,
                       width: 20,
                       margin: EdgeInsets.all(5.0),
-                      child: SvgPicture.asset("assets/product_detail/cart2.svg", width: sizeIcon.width,),
+                      child: SvgPicture.asset("assets/images/product_detail/cart2.svg", width: sizeIcon.width,),
                     ),
                     Text("${controller.product.value.sold ?? 0} ",
                         style: TextStyle(
@@ -133,7 +133,7 @@ class InformationProductWidget extends StatelessWidget {
           SizedBox(height: 10,),
           Row(
             children: [
-              SvgPicture.asset("assets/product_detail/gift.svg", width: sizeIcon.width),
+              SvgPicture.asset("assets/images/product_detail/gift.svg", width: sizeIcon.width),
               SizedBox(width: 5,),
               Text("Quà tặng của của hàng: "),
               Container(
@@ -144,7 +144,7 @@ class InformationProductWidget extends StatelessWidget {
                   children: [
                     Container(
                       height: 20,
-                      child: SvgPicture.asset("assets/product_detail/back_sale.svg"),
+                      child: SvgPicture.asset("assets/images/product_detail/back_sale.svg"),
                     ),
                     Positioned.fill(
                         child: Center(
@@ -175,7 +175,7 @@ class InformationProductWidget extends StatelessWidget {
                   children: [
                     Container(
                       height: 20,
-                      child: SvgPicture.asset("assets/product_detail/back_sale.svg"),
+                      child: SvgPicture.asset("assets/images/product_detail/back_sale.svg"),
                     ),
                     Positioned.fill(
                         child: Center(
@@ -204,7 +204,7 @@ class InformationProductWidget extends StatelessWidget {
           SizedBox(height: 10,),
           Row(
             children: [
-              SvgPicture.asset("assets/product_detail/coin.svg", width: sizeIcon.width),
+              SvgPicture.asset("assets/images/product_detail/coin.svg", width: sizeIcon.width),
               SizedBox(width: 5,),
               Text("Mua hàng và tích "),
               Text('${controller.product.value.coinPoint ?? 0}', style: TextStyle(
@@ -287,7 +287,7 @@ class InformationProductWidget extends StatelessWidget {
                                           child: Container(
                                             padding: EdgeInsets.all(5.0),
                                             child: SvgPicture.asset(
-                                              'assets/product_detail/calendar-alt.svg',
+                                              'assets/images/product_detail/calendar-alt.svg',
                                               height: 14,
                                               color: kTextColor,
                                             )
@@ -347,7 +347,7 @@ class InformationProductWidget extends StatelessWidget {
                                         child: Container(
                                             padding: EdgeInsets.all(5.0),
                                             child: SvgPicture.asset(
-                                              'assets/product_detail/ic_alarm.svg',
+                                              'assets/images/product_detail/ic_alarm.svg',
                                               height: 14,
                                               color: kTextColor,
                                             )
@@ -441,7 +441,7 @@ class InformationProductWidget extends StatelessWidget {
                                 width: 20,
                                 height: 20,
                                 padding: EdgeInsets.all(3.0),
-                                child: SvgPicture.asset("assets/product_detail/ic_perm_phone.svg"),
+                                child: SvgPicture.asset("assets/images/product_detail/ic_perm_phone.svg"),
                               ),
                               SizedBox(width: 5,),
                               Text("Liên hệ",

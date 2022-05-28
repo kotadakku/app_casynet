@@ -58,7 +58,7 @@ class MenuCuahang extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: ExactAssetImage(
-                                        "assets/Icon/icon_xemay.png"),
+                                        "assets/images/Icon/icon_xemay.png"),
                                   ),
                                 ),
                                 width: 80,
@@ -82,7 +82,7 @@ class MenuCuahang extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(right: 10),
                           child: ImageIcon(
-                            AssetImage("assets/Icon/icon_dashboard.png"),
+                            AssetImage("assets/images/Icon/icon_dashboard.png"),
                             color: Colors.amber,
                           ),
                         ),
@@ -113,7 +113,7 @@ class MenuCuahang extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(right: 10),
                         child: ImageIcon(
-                          AssetImage("assets/Icon/icon_ttcuahang.png"),
+                          AssetImage("assets/images/Icon/icon_ttcuahang.png"),
                           color: Colors.deepOrangeAccent,
                         ),
                       ),
@@ -168,7 +168,7 @@ class MenuCuahang extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(right: 10),
                         child: ImageIcon(
-                          AssetImage("assets/Icon/icon_dvsp.png"),
+                          AssetImage("assets/images/Icon/icon_dvsp.png"),
                         ),
                       ),
                       Expanded(
@@ -196,7 +196,7 @@ class MenuCuahang extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(right: 10),
                         child: ImageIcon(
-                          AssetImage("assets/Icon/icon_quatang.png"),
+                          AssetImage("assets/images/Icon/icon_quatang.png"),
                           color: Colors.red,
                         ),
                       ),
@@ -225,7 +225,7 @@ class MenuCuahang extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(right: 10),
                         child: ImageIcon(
-                          AssetImage("assets/Icon/icon_thongbao.png"),
+                          AssetImage("assets/images/Icon/icon_thongbao.png"),
                           color: Colors.blue,
                         ),
                       ),
@@ -254,7 +254,7 @@ class MenuCuahang extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(right: 10),
                         child: ImageIcon(
-                          AssetImage("assets/Icon/icon_tintuc.png"),
+                          AssetImage("assets/images/Icon/icon_tintuc.png"),
                           color: Colors.blue,
                         ),
                       ),

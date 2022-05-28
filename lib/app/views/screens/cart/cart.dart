@@ -81,7 +81,7 @@ class Cart extends StatelessWidget {
                               Container(
                                 alignment: AlignmentDirectional.center,
                                 child: Image.asset(
-                                  "assets/cart/img_sale.png",
+                                  "assets/images/cart/img_sale.png",
                                   width: 70.h,
                                   height: 40.h,
                                 ),

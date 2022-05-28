@@ -49,7 +49,7 @@ class SeenProductPage extends StatelessWidget {
                       Container(
                         width: 60,
                         height: 60,
-                        child: Image.asset("assets/product_detail/product_1.png"),
+                        child: Image.asset("assets/images/product_detail/product_1.png"),
                       ),
                       Expanded(
                           child: Container(

@@ -42,7 +42,7 @@ class EditMyStore extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: ExactAssetImage(
-                                                "assets/store/img_mask_group_14.png"),
+                                                "assets/images/store/img_mask_group_14.png"),
                                           ),
                                           shape: BoxShape.circle),
                                       width: 100,

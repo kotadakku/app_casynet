@@ -116,7 +116,7 @@ class SanPhamDichVu extends StatelessWidget {
                                     MainAxisAlignment.end,
                                     children: [
                                       SvgPicture.asset(
-                                          "assets/store/ic_filter.svg",
+                                          "assets/images/store/ic_filter.svg",
                                           width: 30),
                                     ],
                                   ),
@@ -135,7 +135,7 @@ class SanPhamDichVu extends StatelessWidget {
                                               mainAxisAlignment:
                                               MainAxisAlignment.end,
                                               children: [
-                                                SvgPicture.asset("assets/store/ic_filter.svg", width: 30,),
+                                                SvgPicture.asset("assets/images/store/ic_filter.svg", width: 30,),
                                               ],
                                             ),
                                           ),*/
@@ -188,7 +188,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                         height: 200,
                                                         width: 250,
                                                         child: SvgPicture.asset(
-                                                          "assets/store/img_sanpham.svg",
+                                                          "assets/images/store/img_sanpham.svg",
                                                           fit: BoxFit.fill,
                                                         ),
                                                       ),
@@ -301,7 +301,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                   Container(
                                                                     child:
                                                                     Image.asset(
-                                                                      "assets/store/ic_eye_slash.png",
+                                                                      "assets/images/store/ic_eye_slash.png",
                                                                       color: kTextColor,
                                                                       width: 20,
                                                                       height: 20,
@@ -339,7 +339,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                   Container(
                                                                     child:
                                                                     Image.asset(
-                                                                      "assets/store/ic_trash.png",
+                                                                      "assets/images/store/ic_trash.png",
                                                                       color: kTextColor,
                                                                       width: 20,
                                                                       height: 20,
@@ -377,7 +377,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                   Container(
                                                                     child:
                                                                     Image.asset(
-                                                                      "assets/store/ic_edit.png",
+                                                                      "assets/images/store/ic_edit.png",
                                                                       color: kTextColor,
                                                                       width: 20,
                                                                       height: 20,
