@@ -94,7 +94,10 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(pageSize: 12,curPage: 1, type_filter: '5');
+                                  _sellerController.getSellersAPI(
+                                      pageSize: 12,
+                                      curPage: 1,
+                                      type_filter: '5');
                                   // _sellerController.getSellersAPI(pageSize: '12',cat: '11');
                                 },
                                 activeColor: Color(0xffDFB400)),
@@ -107,7 +110,10 @@ class StoreWidget extends StatelessWidget {
                                 groupValue: controller.isCarStore.value,
                                 onChanged: (value) {
                                   controller.updateIsCarStore();
-                                  _sellerController.getSellersAPI(pageSize: 12,curPage: 1, type_filter: '6');
+                                  _sellerController.getSellersAPI(
+                                      pageSize: 12,
+                                      curPage: 1,
+                                      type_filter: '6');
                                   // _sellerController.getSellersAPI(pageSize: '12',cat: '12', type_filter: '');
                                 },
                                 activeColor: Color(0xffDFB400)),
@@ -116,7 +122,6 @@ class StoreWidget extends StatelessWidget {
                         ))
                   ],
                 ),
-
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
@@ -143,8 +148,7 @@ class StoreWidget extends StatelessWidget {
               ],
             ),
           ),
-          Obx(()=>
-            LoadingOverlay(
+          Obx(() => LoadingOverlay(
               isLoading: _sellerController.isLoadingDB.value,
               shimmer: ItemSellerShimmer(),
               child: Container(
@@ -236,21 +240,20 @@ class ItemCuaHangWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: () {
-                if (store != null)
-                  Get.toNamed(Routes.STORE_DETAIL,
-                      arguments: {'store': store});
-                FocusScope.of(context).unfocus();
-              },
-              child: Container(
-                height: 120.w,
-                width: (1 / divide).sw - 7.5.w,
-                child: ImageNetworkLoading(
-                  image_url: store.avatar_image.toString(),
-                  fit: BoxFit.fill,
-                ),
-              )
-            ),
+                onTap: () {
+                  if (store != null)
+                    Get.toNamed(Routes.STORE_DETAIL,
+                        arguments: {'store': store});
+                  FocusScope.of(context).unfocus();
+                },
+                child: Container(
+                  height: 120.w,
+                  width: (1 / divide).sw - 7.5.w,
+                  child: ImageNetworkLoading(
+                    image_url: store.avatar_image.toString(),
+                    fit: BoxFit.fill,
+                  ),
+                )),
             Container(
               padding: EdgeInsets.all(5.0),
               color: Color(0xffEFF1FC),
@@ -384,7 +387,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                       width: 3,
                     ),
                     Text(
-                      "${store.distance == null ? 0.0 : store.distance} km",
+                      "${store.distance == null ? 0.0 : store.distance?.toStringAsFixed(1)} km",
                       style: TextStyle(fontSize: 12.sp),
                     )
                   ],

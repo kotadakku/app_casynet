@@ -22,8 +22,8 @@ class StoreHomeMore extends StatelessWidget {
     SellerLoadMoreController _sellerController = Get.find();
 
     var category = Get.arguments[0].toString();
-    int pageNumber = 1;
-    int pageSizeNumber = 12;
+    // int pageNumber ;
+    // int pageSizeNumber ;
 
     return Scaffold(
       body: SafeArea(
@@ -100,6 +100,33 @@ class StoreHomeMore extends StatelessWidget {
                 ),
               ),
 
+              Obx(()=>Row(
+                children: [
+                  Radio(
+                      value: true,
+                      groupValue: controllerLoadMore.isCar.value,
+                      onChanged: (value){
+                        controllerLoadMore.isCar.value =  !controllerLoadMore.isCar.value;
+                        _sellerController.getSellersLoadMoreAPI(first_load: true,pageSize: _sellerController.pageSizeNumber,curPage: _sellerController.pageNumber, type_filter: '5');
+                      },
+                      activeColor: Color(0xffDFB400)),
+                  Text("Ô tô"),
+                  SizedBox(width: 20,),
+                  Radio(
+                      value: false,
+                      groupValue: controllerLoadMore.isCar.value,
+                      onChanged: (value){
+                        controllerLoadMore.isCar.value = !controllerLoadMore.isCar.value;
+                        _sellerController.getSellersLoadMoreAPI(first_load: true,pageSize: _sellerController.pageSizeNumber,curPage: _sellerController.pageNumber, type_filter: '6');
+                      },
+                      activeColor: Color(0xffDFB400)
+                  ),
+                  Text("Xe máy")
+                ],
+              ),),
+              SizedBox(height: 10,child: Container(
+                color: Color(0xffF1F3FD),
+              ),),
               Container(
                 height: MediaQuery.of(context).size.height-250.h,
                 child: ListView(
@@ -107,33 +134,10 @@ class StoreHomeMore extends StatelessWidget {
                   children:[
                     Column(
                       children: [
-                        Obx(()=>Row(
-                          children: [
-                            Radio(
-                                value: true,
-                                groupValue: controllerLoadMore.isCar.value,
-                                onChanged: (value){
-                                  controllerLoadMore.isCar.value = !controllerLoadMore.isCar.value;
-                                  _sellerController.getSellersLoadMoreAPI(first_load: true,pageSize: pageSizeNumber,curPage: ++pageNumber, type_filter: '5');
-                                },
-                                activeColor: Color(0xffDFB400)),
-                            Text("Ô tô"),
-                            SizedBox(width: 20,),
-                            Radio(
-                                value: false,
-                                groupValue: controllerLoadMore.isCar.value,
-                                onChanged: (value){
-                                  controllerLoadMore.isCar.value = !controllerLoadMore.isCar.value;
-                                  _sellerController.getSellersLoadMoreAPI(first_load: true,pageSize: pageSizeNumber,curPage: ++pageNumber, type_filter: '6');
-                                },
-                                activeColor: Color(0xffDFB400)
-                            ),
-                            Text("Xe máy")
-                          ],
-                        ),),
-                        SizedBox(height: 20,),
 
-                        controllerLoadMore.isCar.value == true
+
+
+                        controllerLoadMore.isCar == true
                             ? _sellerController.obx(
                                 (state) => Container(
                               padding: EdgeInsets.only(bottom: 20.0.h),
@@ -150,13 +154,14 @@ class StoreHomeMore extends StatelessWidget {
                             ),
                             onLoading: ItemSellerShimmer(),
                             onError: (error) => InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                // _sellerController.getSellersLoadMoreAPI(pageSize: pageSize, curPage: curPage, type_filter: type_filter)
+                              },
                               child: Text("Tải lại"),
                             )
-                          /*ElevatedButton(onPressed: (){}, child: Text("Thử Lại"))*/
+
                         )
-                            : _sellerController.obx(
-                                (state) => Container(
+                            : _sellerController.obx((state) => Container(
                               padding: EdgeInsets.only(bottom: 20.0.h),
                               child: state.isEmpty
                                   ? Text("Không có cửa hàng để hiển thị")
@@ -196,8 +201,12 @@ class StoreHomeMore extends StatelessWidget {
                               ],
                             )
                         ),
+
                       ],
                     ),
+                    Center(
+                      child: CircularProgressIndicator(),
+                    )
 
                   ],
                 ),

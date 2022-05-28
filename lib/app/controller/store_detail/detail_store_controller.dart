@@ -8,16 +8,18 @@ import '../../data/model/seller.dart';
 import '../../data/provider/get_storage_provider.dart';
 import '../../data/repo/seller_repo.dart';
 
-class DetailStoreController extends GetxController with GetSingleTickerProviderStateMixin  {
+class DetailStoreController extends GetxController with GetSingleTickerProviderStateMixin, StateMixin  {
 
   final List<String> listTabs = [
     "Giới thiệu", "Sản phẩm (200)", "Tin tức", "Đánh giá", "Hỏi đáp"
   ];
   final productSellerList = <Product>[].obs;
+  final productFeaturedSellerList = <Product>[].obs;
   RxInt vote_selected = 5.obs;
   late TabController controller;
   var isLoading = true.obs;
   final isLoadingProduct = true.obs;
+  final isLoadingFeatured = true.obs;
   RxBool isLive = true.obs;
   RxBool followed = true.obs;
   final store = Seller().obs;
@@ -27,7 +29,8 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
     super.onInit();
     controller = TabController(vsync: this, length: listTabs.length);
     getParameter();
-    getProductSellerAPI(sellerId: 634);
+    getProductSellerAPI(sellerId: 630,category_id: 5,);
+    getProductFeaturedSellerAPI(sellerId: 630, category_id: 5, is_product_featured_number: 1);
   }
 
   @override
@@ -70,9 +73,12 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
     }
   }
 
-  Future<void> getProductSellerAPI({required int sellerId }) async {
+  // đặt chỗ
+  Future<void> getProductSellerAPI({required int sellerId, required int category_id,})
+  async {
     isLoadingProduct.value = true;
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
+    change(productSellerList, status: RxStatus.loading());
     try {
       final result = await HomePageRepo().getProducts(
           options: Options(
@@ -84,25 +90,87 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
             'searchCriteria[sortOrders][0][direction]': 'DESC',
             'searchCriteria[filterGroups][0][filters][0][field]': 'seller_id',
             'searchCriteria[filterGroups][0][filters][0][value]': '$sellerId',
+            'searchCriteria[filterGroups][2][filters][0][field]': 'category_id',
+            'searchCriteria[filterGroups][2][filters][0][value]': '$category_id',
           }
       );
       if (result != null) {
         if (result.isSuccess) {
           productSellerList.value = result.listObjects ?? [];
-          isLoadingProduct.value = false;
-
+          if(productSellerList.isEmpty){
+            change(productSellerList,status: RxStatus.empty());
+            return;
+          }
+          change(productSellerList,status: RxStatus.success());
+          // isLoadingProduct.value = false;
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
-          //     backgroundColor: Colors.black.withOpacity(0.3));
+          Get.snackbar("Thông báo", result.msg.toString(),
+              backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
-          isLoadingProduct.value = false;
+          change(productSellerList,status: RxStatus.empty());
+          // isLoadingProduct.value = false;
         }
       }
     } catch (e) {
       Get.snackbar("Thông báo", "error:: $e",
           backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
-      isLoadingProduct.value = false;
+      change(productSellerList,status: RxStatus.empty());
+      // isLoadingProduct.value = false;
     }
   }
+
+// nổi bật
+  Future<void> getProductFeaturedSellerAPI({
+    required int sellerId,
+    required int category_id,
+    required int is_product_featured_number
+  })
+  async {
+    isLoadingFeatured.value = true;
+    final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
+    change(productFeaturedSellerList, status: RxStatus.loading());
+    try {
+      final result = await HomePageRepo().getProducts(
+          options: Options(
+              headers: {'Authorization': 'Bearer $token_admin'}
+          ),
+          queryParameters: {
+            'searchCriteria[pageSize]': '12',
+            'searchCriteria[currentPage]': '1',
+            'searchCriteria[sortOrders][0][direction]': 'DESC',
+            'searchCriteria[filterGroups][0][filters][0][field]': 'seller_id',
+            'searchCriteria[filterGroups][0][filters][0][value]': '$sellerId',
+            'searchCriteria[filterGroups][2][filters][0][field]': 'category_id',
+            'searchCriteria[filterGroups][2][filters][0][value]': '$category_id',
+            'searchCriteria[filterGroups][1][filters][0][field]': 'is_product_featured',
+            'searchCriteria[filterGroups][1][filters][0][value]': '$is_product_featured_number',
+          }
+      );
+      if (result != null) {
+        if (result.isSuccess) {
+          productFeaturedSellerList.value = result.listObjects ?? [];
+          if(productFeaturedSellerList.isEmpty){
+            change(productFeaturedSellerList,status: RxStatus.empty());
+            return;
+          }
+          change(productFeaturedSellerList,status: RxStatus.success());
+          // isLoadingProduct.value = false;
+        } else {
+          Get.snackbar("Thông báo", result.msg.toString(),
+              backgroundColor: Colors.black.withOpacity(0.3));
+          print(result.msg.toString());
+          change(productFeaturedSellerList,status: RxStatus.empty());
+          // isLoadingProduct.value = false;
+        }
+      }
+    } catch (e) {
+      Get.snackbar("Thông báo", "error:: $e",
+          backgroundColor: Colors.black.withOpacity(0.3));
+      print(e);
+      change(productFeaturedSellerList,status: RxStatus.empty());
+      // isLoadingProduct.value = false;
+    }
+  }
+
 }
