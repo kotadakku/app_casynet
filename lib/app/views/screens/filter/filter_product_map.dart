@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../controller/filter_map_controller.dart';
+import '../../../controller/map_controller.dart';
 import '../account/widgets/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
@@ -17,6 +18,7 @@ class FilterProductMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _isCar = true.obs;
+    final sellers = Get.arguments[0];
 
 
     final CameraPosition _kGooglePlex = CameraPosition(
@@ -84,25 +86,25 @@ class FilterProductMap extends StatelessWidget {
                   )
                 ],
               ),
-
               Expanded(
-                child: GetBuilder<FilterMapController>(
-                  init: FilterMapController(),
-                  builder: (c){
+                child: GetBuilder<MapController>(
+                  init: MapController(),
+                  builder: (mapController){
                     return GoogleMap(
                       onLongPress: (position){
                         print("${position.latitude} ${position.longitude}");
                       },
                       mapType: MapType.terrain,
-                      initialCameraPosition: _kGooglePlex,
+                      initialCameraPosition: mapController.currentLocationCamera,
                       myLocationEnabled: true,
-                      markers: c.markers,
+                      markers: mapController.markers,
                       onCameraMove: (position){
 
                       },
                       onMapCreated: (GoogleMapController controller) {
-                        c.controller.complete(controller);
-                        c.googleMap = controller;
+                        mapController.controller.complete(controller);
+                        mapController.googleMapController = controller;
+                        mapController.getStoresLocation(sellers);
                       },
                     );
                   },

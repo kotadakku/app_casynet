@@ -125,7 +125,7 @@ class StoreWidget extends StatelessWidget {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
-                    Get.toNamed(Routes.FILTER_MAP);
+                    Get.toNamed(Routes.FILTER_MAP , arguments: [_sellerController.sellerList]);
                   },
                   child: Row(
                     children: [
