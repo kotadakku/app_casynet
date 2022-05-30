@@ -4,12 +4,22 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
+import 'package:geolocator/geolocator.dart';
+
 class FilterMapController extends GetxController{
   Completer<GoogleMapController> controller = Completer();
   late GoogleMapController googleMap;//contrller for Google map
   final Set<Marker> markers = new Set();
   LatLng showLocation = const LatLng(21.021269086008136, 105.83777770400047);
   late LatLng location_current;
+
+  late Position _currentPosition;
+  late String _currentAddress;
+
+  var latitudeUser;
+  var longitudeUser;
+
+
   @override
   void onInit() {
 
@@ -23,10 +33,12 @@ class FilterMapController extends GetxController{
 
     var location = new Location();
     location.onLocationChanged.listen((currentLocation) {
-      print("Location");
-      print(currentLocation.latitude);
-      print(currentLocation.longitude);
-      location_current = LatLng(currentLocation.latitude!, currentLocation.longitude!);
+      latitudeUser = currentLocation.latitude;
+      longitudeUser = currentLocation.longitude;
+      print("Location (user) : ");
+      print("latitude: " + latitudeUser.toString());
+      print("longitude: " + longitudeUser.toString());
+      location_current = LatLng(latitudeUser!, longitudeUser!);
     });
 
   }
