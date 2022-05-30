@@ -40,7 +40,7 @@ class MessageAccount_1 extends StatelessWidget {
                         children: [
                           Container(
                               child: SvgPicture.asset(
-                                "assets/home/icon_top_home.svg",
+                                "assets/images/home/icon_top_home.svg",
                                 width: 40,
                               )
                           ),
@@ -76,7 +76,7 @@ class MessageAccount_1 extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                        image: ExactAssetImage("assets/account/image_user.png")
+                                        image: ExactAssetImage("assets/images/account/image_user.png")
                                     )
                                 ),
                               ),

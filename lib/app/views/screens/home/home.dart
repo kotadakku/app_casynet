@@ -12,12 +12,14 @@ import 'package:app_casynet/app/views/screens/home/widgets/top_sale_widget.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../../../controller/home/home_controller.dart';
 import '../../widgets/bottom_widget.dart';
 
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key}) : super(key: key);
+  HomeController _homeController = Get.find();
   @override
   Widget build(BuildContext context) {
 
@@ -25,14 +27,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBarHomeWidget(),
       body: RefreshIndicator(
         onRefresh: () async {
-          // if(_fetchBannerController.isLoading == false){
-          //   await _fetchBannerController.getBannerAPI();
-          // }
-          // if(_fetchTopSalesController.isLoadingComplete == false){
-          //   await _fetchTopSalesController.getSalesAPI();
-          // }
-          //
-
+          _homeController.refreshAPI();
         },
         child: SingleChildScrollView(
           physics: RangeMaintainingScrollPhysics(),

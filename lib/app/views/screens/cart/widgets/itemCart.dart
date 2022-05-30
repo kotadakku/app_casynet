@@ -66,7 +66,7 @@ class ItemCart extends StatelessWidget {
                 Row(
                   children: [
                     Image.asset(
-                      "assets/cart/ic_gift.png",
+                      "assets/images/cart/ic_gift.png",
                       width: 20,
                       height: 20,
                     ),
@@ -86,7 +86,7 @@ class ItemCart extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Image.asset('assets/cart/icon_coin.png',
+                    Image.asset('assets/images/cart/icon_coin.png',
                         width: 20, height: 20),
                     const SizedBox(
                       width: 5.0,

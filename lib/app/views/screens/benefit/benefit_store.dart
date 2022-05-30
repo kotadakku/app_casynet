@@ -62,7 +62,7 @@ class BenefitStore extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30,),
-              Image.asset("assets/benefit/image.png"),
+              Image.asset("assets/images/benefit/image.png"),
               SizedBox(height: 10,),
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
@@ -95,7 +95,7 @@ class BenefitStore extends StatelessWidget {
               SizedBox(height: 30,),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                child: Image.asset("assets/benefit/image.png"),
+                child: Image.asset("assets/images/benefit/image.png"),
               ),
 
               Container(

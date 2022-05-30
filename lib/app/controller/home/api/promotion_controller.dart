@@ -25,7 +25,7 @@ class PromotionController extends GetxController{
   Future<void> getPromotionProductsAPI() async {
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     isLoadingAPI.value = true;
-
+    error.value = "";
     try {
       final result = await HomePageRepo().getProducts(
           options: Options(

@@ -25,6 +25,7 @@ class ReservationController extends GetxController{
   Future<void> getReservationProductsAPI({int minPrice=0, int maxPrice=9999999999}) async {
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     isLoadingAPI.value = true;
+    error.value = "";
     try {
       final result = await HomePageRepo().getProducts(
           options: Options(

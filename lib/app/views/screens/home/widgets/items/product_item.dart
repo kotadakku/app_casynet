@@ -178,7 +178,7 @@ class ItemAddPoint extends StatelessWidget {
           Stack(
             children: [
 
-              SvgPicture.asset("assets/home/sale.svg", height: 20, color: color,),
+              SvgPicture.asset("assets/images/home/sale.svg", height: 20, color: color,),
               Positioned.fill(
                   child: Center(
                     child: Text("+$point điểm",
@@ -194,7 +194,7 @@ class ItemAddPoint extends StatelessWidget {
           Positioned(
             bottom : 0.5,
             left: 4,
-            child: SvgPicture.asset("assets/home/rect_sale.svg", height: 5, color: color,
+            child: SvgPicture.asset("assets/images/home/rect_sale.svg", height: 5, color: color,
             ),
           ),
 

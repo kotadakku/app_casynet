@@ -241,7 +241,7 @@ class ThemQuaTang extends StatelessWidget {
                         Expanded(child: Text("Hiện thị")),
                         Obx(
                           () => ImageIcon(
-                            AssetImage("assets/Icon/icon_dung2.png"),
+                            AssetImage("assets/images/Icon/icon_dung2.png"),
                             size: 18,
                             color: colorht.value,
                           ),
@@ -300,7 +300,7 @@ class ThemQuaTang extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(left: 10),
                                 child: ImageIcon(
-                                    AssetImage("assets/Icon/icon_date.png")),
+                                    AssetImage("assets/images/Icon/icon_date.png")),
                               ),
                             ],
                           ),
@@ -347,7 +347,7 @@ class ThemQuaTang extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(left: 10),
                                 child: ImageIcon(
-                                    AssetImage("assets/Icon/icon_date.png")),
+                                    AssetImage("assets/images/Icon/icon_date.png")),
                               ),
                             ],
                           ),

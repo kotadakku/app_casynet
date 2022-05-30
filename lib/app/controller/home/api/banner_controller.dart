@@ -1,79 +1,75 @@
 import 'package:app_casynet/app/data/model/banner_slider_new.dart';
 import 'package:get/get.dart';
 
+import '../../../config/config_db.dart';
+import '../../../data/provider/db_provider.dart';
 import '../../../data/repo/home_repo.dart';
 
-class FetchBannerController extends GetxController with StateMixin{
+class FetchBannerController extends GetxController{
   // final bannersList = <BannerSlider>[].obs;
-  final bannerSliderNewList = <BannerSliderNew>[].obs;
+  final bannerSliderList = <BannerSlider>[].obs;
+  final isLoadingAPI = false.obs;
+  final isLoadingDB = false.obs;
+  final error = "".obs;
+
   @override
   void onInit() {
+    _getBannerDB();
     getBannerAPI();
   }
-
-   // void _getBannersDB(){
-  //   change(bannersList, status: RxStatus.loading());
-  //   DatabaseHelper.instance.getAlls(DBConfig.TABLE_BANNER, DBConfig.BANNER_COLUMN_ID).then((value) {
-  //     if(value?.length == 0){
-  //       getBannerAPI();
-  //     }else{
-  //       value?.forEach((element) {
-  //         bannersList.add(BannerSlider(
-  //           id: element[DBConfig.BANNER_COLUMN_ID],
-  //           image: element[DBConfig.BANNER_COLUMN_IMAGE],
-  //         ));
-  //       });
-  //     }
-  //   });
-  //   change(bannersList, status: RxStatus.success());
-  // }
   Future<void> getBannerAPI() async {
-    // change(bannersList, status: RxStatus.loading());
-    change(bannerSliderNewList, status: RxStatus.loading());
+    isLoadingAPI.value = true;
+    error.value = "";
     try {
-      final result = await  HomePageRepo().getBannerSliderNews();
+      final result = await  HomePageRepo().getBannerSlider();
       if (result != null) {
         if (result.isSuccess) {
           // bannersList.value = result.listObjects ?? [];
-          bannerSliderNewList.value = result.listObjects ?? [];
-          // if(bannersList.isEmpty){
-          //   change(bannersList, status: RxStatus.empty());
-          //   return;
-          // }
-
-          if(bannerSliderNewList.isEmpty){
-            change(bannerSliderNewList,status: RxStatus.empty());
+          bannerSliderList.value = result.listObjects ?? [];
+          isLoadingAPI.value = false;
+          if(bannerSliderList.length <=0){
+            error.value = "Không có cửa hàng nào để hiển thị";
+            return;
           }
-
-          // change(bannersList, status: RxStatus.success());
-          change(bannerSliderNewList,status: RxStatus.success());
-          /*DatabaseHelper.instance.clear(DBConfig.TABLE_CATEGORY);*/
-          // for( var banner in  bannersList){
-          //   DatabaseHelper.instance.insert(
-          //       DBConfig.TABLE_BANNER,
-          //       BannerSlider(id: banner.id,image: banner.image).toJson());
-          // }
-          /*for(var banner in bannerSliderNewList){
-            DatabaseHelper.instance.insert(
-                DBConfig.TABLE_BANNER,
-                BannerSliderNew(imageHtml: banner.imageHtml).toJson());
-          }*/
+          DatabaseHelper.instance.clear(DBConfig.TABLE_BANNER);
+          for( var banner in  bannerSliderList){
+            DatabaseHelper.instance.insert(DBConfig.TABLE_BANNER,
+                banner.toJson()
+            );
+          }
 
         } else {
           print(result.msg.toString());
-          // Get.snackbar("Thông báo", result.msg.toString(),
-          //     backgroundColor: Colors.black.withOpacity(0.3));
-
-          // change(bannersList, status: RxStatus.error());
-          change(bannerSliderNewList,status: RxStatus.error());
+          error.value = "${result.msg.toString()}";
+          isLoadingAPI.value = false;
         }
       }
     } catch (e) {
-      // Get.snackbar("Thông báo", "error:: $e",
-      //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
-      // change(bannersList, status: RxStatus.error());
-      change(bannerSliderNewList, status: RxStatus.error());
+      error.value = "Hệ thống đang có vấn đề!!";
+      isLoadingAPI.value = false;
     }
+  }
+
+  void _getBannerDB() {
+    isLoadingDB.value = true;
+    DatabaseHelper.instance.getAlls(DBConfig.TABLE_BANNER, DBConfig.BANNER_COLUMN_ID).then((value){
+      if(value?.length ==0){
+        isLoadingDB.value = false;
+        getBannerAPI();
+      }
+      else{
+        print('<Load SELLER> Load DB');
+        value?.forEach((element) {
+          bannerSliderList.add(
+              BannerSlider(
+                id: element[DBConfig.BANNER_COLUMN_ID],
+                htmlTag: element[DBConfig.BANNER_COLUMN_IMAGE],
+              )
+          );
+        });
+        isLoadingDB.value = false;
+      }
+    });
   }
 }

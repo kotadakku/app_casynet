@@ -35,7 +35,7 @@ class ImageNetworkLoading extends StatelessWidget {
           ],
         ),
       ),
-      errorWidget: (context, url, error) => Icon(Icons.error),
+      errorWidget: (context, url, error) => Image.asset("assets/images/image_holder.png"),
     );
   }
 }

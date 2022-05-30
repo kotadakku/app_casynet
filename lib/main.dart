@@ -53,55 +53,55 @@ class MyApp extends StatelessWidget {
       designSize: Size(392, 816),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context) =>  OverlaySupport(
-        child: GetMaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-              primarySwatch: Colors.blue,
-              appBarTheme: AppBarTheme(
-                color: Colors.white,
-                systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarBrightness: Brightness.dark,
-                ),
-                titleTextStyle: TextStyle(
+      builder: (context) => OverlaySupport(
+          child: GetMaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+                primarySwatch: Colors.blue,
+                appBarTheme: AppBarTheme(
+                  color: Colors.white,
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarBrightness: Brightness.dark,
+                  ),
+                  titleTextStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 19.sp,
+                      fontWeight: FontWeight.bold
+                  ),
+                  iconTheme: IconThemeData(
                     color: Colors.black,
-                    fontSize: 19.sp,
-                    fontWeight: FontWeight.bold
-                ),
-                iconTheme: IconThemeData(
-                  color: Colors.black,
-                ),
-                elevation: 1,
-                centerTitle: true,
-                shadowColor: kTextColor,
+                  ),
+                  elevation: 1,
+                  centerTitle: true,
+                  shadowColor: kTextColor,
 
-              ),
-              inputDecorationTheme: InputDecorationTheme(
-                errorStyle: TextStyle(
-                  color: kYellowColor,
                 ),
-              )
-            // textTheme:
+                inputDecorationTheme: InputDecorationTheme(
+                  errorStyle: TextStyle(
+                    color: kYellowColor,
+                  ),
+                )
+              // textTheme:
 
-          ),
-          builder: (context, widget) {
-            Get.put<ScaffoldMessengerState>(ScaffoldMessenger.of(context));
-            // ScreenUtil.setContext(context);
-            return MediaQuery(
+            ),
+            builder: (context, widget) {
+              Get.put<ScaffoldMessengerState>(ScaffoldMessenger.of(context));
+              // ScreenUtil.setContext(context);
+              return MediaQuery(
 
-              //Setting font does not change with system font size
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: widget!,
-            );
-          },
-          locale: LocalizationService.locale,
-          fallbackLocale: LocalizationService.fallbackLocale,
-          translations: LocalizationService(),
-          initialRoute: '/',
-          initialBinding: MainBindings(),
-          getPages:  AppPages.routes ,
-          home: Splash_1(),
-        )
+                //Setting font does not change with system font size
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: widget!,
+              );
+            },
+            locale: LocalizationService.locale,
+            fallbackLocale: LocalizationService.fallbackLocale,
+            translations: LocalizationService(),
+            initialRoute: '/',
+            initialBinding: MainBindings(),
+            getPages:  AppPages.routes ,
+            home: Splash_1(),
+          )
       )
     );
   }

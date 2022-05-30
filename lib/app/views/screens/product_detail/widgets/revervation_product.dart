@@ -154,7 +154,7 @@ class RevervationProductWidget extends StatelessWidget {
                             child: Container(
                                 padding: EdgeInsets.all(5.0),
                                 child: SvgPicture.asset(
-                                  'assets/product_detail/calendar-alt.svg',
+                                  'assets/images/product_detail/calendar-alt.svg',
                                   height: 14,
                                   color: kTextColor,
                                 )
@@ -213,7 +213,7 @@ class RevervationProductWidget extends StatelessWidget {
                           prefixIcon: Container(
                               padding: EdgeInsets.all(5.0),
                               child: SvgPicture.asset(
-                                'assets/product_detail/ic_alarm.svg',
+                                'assets/images/product_detail/ic_alarm.svg',
                                 height: 14,
                                 color: kTextColor,
                               )
@@ -292,7 +292,7 @@ class RevervationProductWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              SvgPicture.asset("assets/product_detail/phone-volume.svg", height: 20),
+              SvgPicture.asset("assets/images/product_detail/phone-volume.svg", height: 20),
               SizedBox(width: 5,),
               Text("Hoặc gọi tới: "),
               Text('${controller.product.value.store?.phone?? 'Chưa có thông tin'}' , style: TextStyle(

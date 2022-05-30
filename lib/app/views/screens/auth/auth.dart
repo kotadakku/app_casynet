@@ -33,17 +33,17 @@ class AuthPage extends StatelessWidget {
                           Positioned(
                               left: -15,
                               bottom: -20,
-                              child: SvgPicture.asset("assets/background.svg", width: 420,)
+                              child: SvgPicture.asset("assets/images/background.svg", width: 420,)
                           ),
                           Positioned(
                               left: -15,
                               bottom: -70,
-                              child: SvgPicture.asset("assets/background_2.svg", width: 420,)
+                              child: SvgPicture.asset("assets/images/background_2.svg", width: 420,)
                           ),
                           Positioned(
                             left: 50,
                             top: 70,
-                            child:  Image.asset("assets/splash/logo-while.png"),
+                            child:  Image.asset("assets/images/splash/logo-while.png"),
                           )
                         ],
                       ),

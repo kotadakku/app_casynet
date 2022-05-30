@@ -53,7 +53,7 @@ class Introduction extends StatelessWidget {
                     SizedBox(height: 30,),
                     Stack(
                       children: [
-                        Image.asset("assets/benefit/image.png"),
+                        Image.asset("assets/images/benefit/image.png"),
                         Positioned.fill(
                             child: Align(
                               alignment: Alignment.center,
@@ -76,7 +76,7 @@ class Introduction extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 30,),
-                    Image.asset("assets/benefit/image.png"),
+                    Image.asset("assets/images/benefit/image.png"),
                     SizedBox(height: 30,),
                     Text("Cơ sở dịch vụ (Cửa hàng):",
                       textAlign: TextAlign.center,
@@ -87,7 +87,7 @@ class Introduction extends StatelessWidget {
                     SizedBox(height: 30,),
                     StepBenefit(benefits: intro_stores),
                     SizedBox(height: 30,),
-                    Image.asset("assets/benefit/image.png"),
+                    Image.asset("assets/images/benefit/image.png"),
                     SizedBox(height: 30,),
                     Text("Chủ xe",
                       textAlign: TextAlign.center,

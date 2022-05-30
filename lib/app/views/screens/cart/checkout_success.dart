@@ -40,7 +40,7 @@ class CheckOutSuccess extends StatelessWidget {
                       ),
                     ),
                     Image.asset(
-                      "assets/cart/img_mask_group_18.png",
+                      "assets/images/cart/img_mask_group_18.png",
                       width: 150,
                       height: 150,
                     ),

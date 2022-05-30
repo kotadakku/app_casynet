@@ -181,7 +181,7 @@ class ContactPage extends StatelessWidget {
                 Expanded(child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: ExactAssetImage("assets/filter/image83.png")
+                      image: ExactAssetImage("assets/images/filter/image83.png")
                     )
                   ),
                 ))

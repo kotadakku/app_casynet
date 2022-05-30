@@ -22,11 +22,11 @@ class _Splash_1State extends State<Splash_1> {
       child: Stack(
         children: [
           Center(
-            child: Image.asset("assets/splash/logo-while.png"),
+            child: Image.asset("assets/images/splash/logo-while.png"),
           ),
           Align(
             alignment: Alignment.bottomLeft,
-            child: Image.asset("assets/splash/group_527.png"),
+            child: Image.asset("assets/images/splash/group_527.png"),
           )
         ],
       )

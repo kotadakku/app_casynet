@@ -72,7 +72,7 @@ class InformationAddress extends StatelessWidget {
                                       onTap: (){
                                         Get.toNamed(Routes.ACCOUNT_ADDRESS_EDIT, arguments: c.user_current.addresses[index]);
                                       },
-                                      child: SvgPicture.asset("assets/account/edit.svg", width: 15, color: kTextColor,),
+                                      child: SvgPicture.asset("assets/images/account/edit.svg", width: 15, color: kTextColor,),
                                     )
                                   ],
                                 ),

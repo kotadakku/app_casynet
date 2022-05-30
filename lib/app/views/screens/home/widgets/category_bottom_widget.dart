@@ -35,22 +35,22 @@ class CategoryBottomWidget extends StatelessWidget {
             spacing: 10,
             children: [
               CategoryItemBottom(
-                  images_url: "assets/home/category/bt_ruaxethaydau.svg",
+                  images_url: "assets/images/home/category/bt_ruaxethaydau.svg",
                   name: "Rửa xe thay dầu"),
               CategoryItemBottom(
-                  images_url: "assets/home/category/bt_suachuaxe.svg",
+                  images_url: "assets/images/home/category/bt_suachuaxe.svg",
                   name: "Sửa chữa xe"),
               CategoryItemBottom(
-                  images_url: "assets/home/category/bt_dochoiphukien.svg",
+                  images_url: "assets/images/home/category/bt_dochoiphukien.svg",
                   name: "Đồ chơi, phụ kiện xe"),
               CategoryItemBottom(
-                  images_url: "assets/home/category/bt_muabanxe.svg",
+                  images_url: "assets/images/home/category/bt_muabanxe.svg",
                   name: "Mua bán xe"),
               CategoryItemBottom(
-                  images_url: "assets/home/category/bt_chamsocxe.svg",
+                  images_url: "assets/images/home/category/bt_chamsocxe.svg",
                   name: "Chăm sóc xe"),
               CategoryItemBottom(
-                  images_url: "assets/home/category/bt_lopacquy.svg",
+                  images_url: "assets/images/home/category/bt_lopacquy.svg",
                   name: "Lốp và ác quy xe"),
             ]),*/
         );

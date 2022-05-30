@@ -21,7 +21,7 @@ class VoteStoreWidget extends StatelessWidget {
         children: [
           GiftStoreWidget(),
           SizedBox(height: 10,),
-          Image.asset("assets/detail_store/vote.png", fit: BoxFit.fitWidth),
+          Image.asset("assets/images/detail_store/vote.png", fit: BoxFit.fitWidth),
           Obx(()=>
               Wrap(
                 runSpacing: 0,
@@ -214,7 +214,7 @@ class CardChatItem extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: DecorationImage(
-                  image: AssetImage("assets/account/image_user.png"),
+                  image: AssetImage("assets/images/account/image_user.png"),
                   fit: BoxFit.fill,
                 )
             ),

@@ -56,7 +56,7 @@ class ProductStoreWidget extends StatelessWidget {
                     GestureDetector(
                       child: Row(
                         children: [
-                          SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
+                          SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),
                           SizedBox(width: 5,),
                           Text(
                             "Lọc",
@@ -80,7 +80,7 @@ class ProductStoreWidget extends StatelessWidget {
                   children: [
                     // GestureDetector(
                     //   child: ItemProductWidget(
-                    //       book_image: "assets/home/book/image.png",
+                    //       book_image: "assets/images/home/book/image.png",
                     //       distance: 4.5,
                     //       price: "1.290.000đ",
                     //       price_discount: "1.390.000đ",
@@ -92,7 +92,7 @@ class ProductStoreWidget extends StatelessWidget {
                     //   },
                     // ),
                     // ItemProductWidget(
-                    //     book_image: "assets/home/store/cuahang1.png",
+                    //     book_image: "assets/images/home/store/cuahang1.png",
                     //     distance: 4.5,
                     //     price: "1.290.000đ",
                     //     price_discount: "1.390.000đ",
@@ -100,7 +100,7 @@ class ProductStoreWidget extends StatelessWidget {
                     //     book_category: "Điện máy Đỗ Dũng"
                     // ),
                     // ItemProductWidget(
-                    //     book_image: "assets/home/book/image.png",
+                    //     book_image: "assets/images/home/book/image.png",
                     //     distance: 4.5,
                     //     price: "1.290.000đ",
                     //     price_discount: "1.390.000đ",
@@ -108,7 +108,7 @@ class ProductStoreWidget extends StatelessWidget {
                     //     book_category: "Điện máy Đỗ Dũng"
                     // ),
                     // ItemProductWidget(
-                    //     book_image: "assets/home/store/cuahang1.png",
+                    //     book_image: "assets/images/home/store/cuahang1.png",
                     //     distance: 4.5,
                     //     price: "1.290.000đ",
                     //     price_discount: "1.390.000đ",

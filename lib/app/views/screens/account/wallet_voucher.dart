@@ -113,18 +113,18 @@ class WalletVoucherPage extends StatelessWidget {
                                   child: Stack(
                                     children: [
                                       Image.asset(
-                                        "assets/account/right_background.png",
+                                        "assets/images/account/right_background.png",
                                         width: 100,
                                         height: 100,
                                       ),
                                       Positioned(
                                           left: 0,
                                           child: Image.asset(
-                                              "assets/account/background.png")),
+                                              "assets/images/account/background.png")),
                                       Positioned(
                                           right: -5,
                                           child: Image.asset(
-                                            "assets/account/right_background.png",
+                                            "assets/images/account/right_background.png",
                                             fit: BoxFit.fitHeight,
                                             height: 100,
                                           )),
@@ -241,18 +241,18 @@ class WalletVoucherPage extends StatelessWidget {
                                   child: Stack(
                                     children: [
                                       Image.asset(
-                                        "assets/account/right_background.png",
+                                        "assets/images/account/right_background.png",
                                         width: 100,
                                         height: 100,
                                       ),
                                       Positioned(
                                           left: 0,
                                           child: Image.asset(
-                                              "assets/account/background.png")),
+                                              "assets/images/account/background.png")),
                                       Positioned(
                                           right: -5,
                                           child: Image.asset(
-                                            "assets/account/right_background.png",
+                                            "assets/images/account/right_background.png",
                                             fit: BoxFit.fitHeight,
                                             height: 100,
                                           )),

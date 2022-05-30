@@ -25,6 +25,7 @@ class RecommendController extends GetxController{
   Future<void> getRecommendProductsAPI() async {
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     isLoadingAPI.value = true;
+    error.value = '';
     try {
       final result = await HomePageRepo().getProducts(
           options: Options(

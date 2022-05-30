@@ -19,7 +19,7 @@ class Location extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 SizedBox(height: 200),
-                Image.asset("assets/splash/logo.png", width: 300,),
+                Image.asset("assets/images/splash/logo.png", width: 300,),
                 SizedBox(height: 40,),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -35,13 +35,13 @@ class Location extends StatelessWidget {
                         prefixIcon: Padding(
                           padding: EdgeInsets.all(15.0),
                           child: SvgPicture.asset(
-                              "assets/home/icon_location.svg",
+                              "assets/images/home/icon_location.svg",
                               width: 15),
                         ),
                         suffixIcon: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 25.0),
                           child: SvgPicture.asset(
-                              "assets/arrow_down.svg",
+                              "assets/images/arrow_down.svg",
                               width: 14),
                         )
                     ),
@@ -49,7 +49,7 @@ class Location extends StatelessWidget {
                 ),
 
                 Spacer(),
-                Image.asset("assets/button_image_location.png"),
+                Image.asset("assets/images/home/button_image_location.png"),
                 SizedBox(height: 50,)
               ],
             )

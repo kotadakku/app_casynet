@@ -44,7 +44,7 @@ class _ThemspdvState extends State<Themspdv> {
   var textsthttc = "không".obs;
   var chon = "".obs;
   var cc="".obs;
-  var _controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4").obs;
+  var _controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/images/videos/butterfly.mp4").obs;
   late Future<void> _initializeVideoPlayerFuture;
   var playpause = false.obs;
   @override
@@ -568,7 +568,7 @@ class _ThemspdvState extends State<Themspdv> {
                             Container(
                               margin: EdgeInsets.only(left: 10),
                               child: ImageIcon(
-                                  AssetImage("assets/Icon/icon_date.png")),
+                                  AssetImage("assets/images/Icon/icon_date.png")),
                             ),
                           ],
                         ),

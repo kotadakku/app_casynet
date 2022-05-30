@@ -131,7 +131,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                       child:
                                           Text("Bảo hiểm vận chuyển hàng hóa")),
                                   ImageIcon(
-                                    AssetImage("assets/Icon/icon_butchi.png"),
+                                    AssetImage("assets/images/Icon/icon_butchi.png"),
                                     size: 20,
                                   ),
                                 ],

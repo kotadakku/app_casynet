@@ -1,7 +1,5 @@
 
 import 'dart:convert';
-
-import 'package:app_casynet/app/data/model/banner_slider.dart';
 import 'package:app_casynet/app/data/model/banner_slider_new.dart';
 import 'package:app_casynet/app/data/model/sales.dart';
 import 'package:dio/dio.dart';
@@ -19,7 +17,7 @@ import '../provider/get_storage_provider.dart';
 
 class HomePageRepo{
   // new
-  Future<Responses<BannerSliderNew>?> getBannerSliderNews() async{
+  Future<Responses<BannerSlider>?> getBannerSlider() async{
     try{
       final response = await ApiRequest().get(
           path: ApiConfig.baseUrl + ApiConfig.bannerNews
@@ -28,42 +26,21 @@ class HomePageRepo{
         String html = response.data[0]['banner'];
         List<String> htmlList = html.replaceAll("\\","").split(">");
         
-        List<BannerSliderNew> banners = List<BannerSliderNew>.from(
-          htmlList.map((e) => BannerSliderNew(htmlTag: e+">"))
+        List<BannerSlider> banners = List<BannerSlider>.from(
+          htmlList.map((e) => BannerSlider(htmlTag: e+">"))
         );
         banners.removeLast();
-        
-        // List<BannerSliderNew> banners = List<BannerSliderNew>.from(
-        //     (responses.data['banner'.replaceAll("\\","").split(">")] as List).map((e) => BannerSliderNew.fromJson)
-        // );
-        return Responses<BannerSliderNew>(isSuccess: true, listObjects: banners);
-      }
-      return Responses<BannerSliderNew>(statusCode: CODE_RESPONSE_NULL, msg: '');
-    }catch(error){
-      final errorMessage = DioExceptions.fromDioError(error);
-      return Responses<BannerSliderNew>(statusCode: CODE_ERROR, msg: errorMessage.toString());
-    }
-  }
-
-  // Future<Responses<Sales>?> getLoadMoreStore()async{}
-
-  Future<Responses<BannerSlider>> getBanners() async {
-    try{
-      final response = await ApiRequest().get(
-        path: ApiConfig.banners
-      );
-      if(response != null){
-        List<BannerSlider> banners = List<BannerSlider>.from(
-            (response.data['banners'] as List).map((e) => BannerSlider.fromJson(e))
-        );
         return Responses<BannerSlider>(isSuccess: true, listObjects: banners);
       }
-      return Responses<BannerSlider>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<BannerSlider>(statusCode: CODE_RESPONSE_NULL, msg: '');
     }catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
       return Responses<BannerSlider>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
+  // Future<Responses<Sales>?> getLoadMoreStore()async{}
+
   Future<Responses<Category>> getCategories({Options? options, Map<String, dynamic>? queryParameters}) async {
 
     try {

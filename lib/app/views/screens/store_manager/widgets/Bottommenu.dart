@@ -15,7 +15,7 @@ class Bottommenu extends StatelessWidget {
 
           BottomNavigationBarItem(
             icon: ImageIcon(
-              AssetImage("assets/Icon/icon_home.png"),
+              AssetImage("assets/images/Icon/icon_home.png"),
               color: Colors.amber,
             ),
             label: "Home",

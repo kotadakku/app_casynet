@@ -38,7 +38,7 @@ class CasycoinManagerPage extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Image.asset("assets/cart/icon_coin.png", width: 30,),
+                        Image.asset("assets/images/cart/icon_coin.png", width: 30,),
                         SizedBox(width: 5.0.w,),
                         Column(
                           children: [

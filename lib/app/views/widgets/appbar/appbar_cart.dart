@@ -38,7 +38,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
         child: Container(
             padding: EdgeInsets.only(left: 5.0.w),
             child: SvgPicture.asset(
-              "assets/home/icon_top_home.svg",
+              "assets/images/home/icon_top_home.svg",
               width: 40,
             )
         ),
@@ -100,7 +100,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                       ),
                       SizedBox(width: 2.0.w,),
                       SvgPicture.asset(
-                          "assets/home/icon_location.svg",
+                          "assets/images/home/icon_location.svg",
                           width: 14.sp),
                       SizedBox(width: 5.0.w,),
                       Obx(()=> Text(
@@ -130,7 +130,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
               width: 30,
               padding: EdgeInsets.only(left: 10.0),
               child: SvgPicture.asset(
-                  "assets/product_detail/message.svg"),
+                  "assets/images/product_detail/message.svg"),
             ),
           )
         ),
@@ -149,7 +149,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                       
                       child: Container(
                         margin: EdgeInsets.all(4.0),
-                        child: SvgPicture.asset("assets/product_detail/cart.svg"),
+                        child: SvgPicture.asset("assets/images/product_detail/cart.svg"),
                       )
                     ),
                     Obx(()=>_productCartController.countCart.value > 0 ?

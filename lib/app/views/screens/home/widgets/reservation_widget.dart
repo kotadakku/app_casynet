@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/home/api/reservation_controller.dart';
 import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
+import '../../../theme/app_colors.dart';
 import '../../../theme/textTheme.dart';
 import '../../../widgets/shimmer/seller_shimmer.dart';
 import 'items/product_item.dart';
@@ -69,7 +70,7 @@ class ReservationWidget extends StatelessWidget {
                           SizedBox(width: 5.0,),
                           Container(
                             padding: EdgeInsets.only(right: 10.0),
-                            child: SvgPicture.asset("assets/home/store/icon_xemthem.svg", width: 5,),
+                            child: SvgPicture.asset("assets/images/home/store/icon_xemthem.svg", width: 5,),
                           )
                         ],
                       ),
@@ -113,7 +114,7 @@ class ReservationWidget extends StatelessWidget {
                   behavior: HitTestBehavior.translucent,
                   child: Row(
                     children: [
-                      SvgPicture.asset("assets/home/store/icon_filter.svg", width: 15,),
+                      SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),
                       SizedBox(width: 5,),
                       Text(
                         'filter'.tr,
@@ -138,7 +139,7 @@ class ReservationWidget extends StatelessWidget {
                 child: Stack(
                   children: [
                     Padding(padding: EdgeInsets.only(bottom: 15.h),
-                        child: _ReservationController.error == ''?
+                        child:
                         Wrap(
                           spacing: 5.0.w,
                           runSpacing: 10.0,
@@ -147,26 +148,52 @@ class ReservationWidget extends StatelessWidget {
                                 product: e
                               ),
                           ).toList(),
-                        ): Column(
-                          children: [
-                            Text("${_ReservationController.error}"),
-                            ElevatedButton(
-                              child: Text('Thử lại'),
-                              onPressed: (){
-                                _ReservationController.getReservationProductsAPI();
-                              },
-                            )
-                          ],
-                        ),
+                        )
+                    ),
+                    _ReservationController.error == ''? SizedBox()
+                        : Positioned.fill(
+                        child: Container(
+                          color: AppColors.kBackgroundColor.withOpacity(0.5),
+                          padding: EdgeInsets.only(top: 100),
+                          child: Column(
+                            children: [
+                              Text("${_ReservationController.error}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ElevatedButton(
+                                    child: Text('Thử lại'),
+                                    onPressed: (){
+                                      _ReservationController.getReservationProductsAPI();
+                                    },
+                                  ),
+                                  SizedBox(width: 10,),
+                                  ElevatedButton(
+                                    child: Text('Bỏ qua'),
+                                    onPressed: (){
+                                      _ReservationController.error.value = '';
+                                    },
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        )
                     ),
                     _ReservationController.isLoadingAPI.value ?
-                    Container(height: 160,
-                        color: Colors.grey.withOpacity(0.3),
+                    Positioned.fill(
+                      child: Container(
+                        padding: EdgeInsets.only(top: 100),
+                        color: AppColors.kBackgroundColor.withOpacity(0.5),
                         child: Center(
                           child: CircularProgressIndicator(),
                         )
-                    )
-                        : SizedBox()
+                      )
+                    ) : SizedBox()
 
                   ],
                 )
@@ -206,7 +233,7 @@ class ItemSale extends StatelessWidget {
           borderRadius: BorderRadius.circular(3.0),
             child: Stack(
               children: [
-                SvgPicture.asset("assets/home/sale.svg", height: 20, fit: BoxFit.fitHeight, width: 25, color: color,),
+                SvgPicture.asset("assets/images/home/sale.svg", height: 20, fit: BoxFit.fitHeight, width: 25, color: color,),
                 Positioned.fill(
                     child: Center(
                       child: Text("-$sale %",
@@ -224,7 +251,7 @@ class ItemSale extends StatelessWidget {
           Positioned(
             bottom : 0.5,
             right: 4,
-            child: SvgPicture.asset("assets/home/rect_sale.svg", height: 5, color: color,
+            child: SvgPicture.asset("assets/images/home/rect_sale.svg", height: 5, color: color,
             ),
           ),
         ],

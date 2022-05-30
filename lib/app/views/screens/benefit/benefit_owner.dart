@@ -56,7 +56,7 @@ class BenefitOwner extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          Image.asset("assets/benefit/image.png"),
+          Image.asset("assets/images/benefit/image.png"),
           SizedBox(
             height: 10,
           ),
@@ -102,7 +102,7 @@ class BenefitOwner extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-            child: Image.asset("assets/benefit/image.png"),
+            child: Image.asset("assets/images/benefit/image.png"),
           ),
           Container(
             color: Color(0xffFFDD87),

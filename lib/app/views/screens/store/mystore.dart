@@ -45,7 +45,7 @@ class MyStorePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    "assets/bottom_navi_icon/noti.svg",
+                    "assets/images/bottom_navi_icon/noti.svg",
                     width: 20,
                   ),
                 ],
@@ -63,7 +63,7 @@ class MyStorePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   ImageIcon(
-                    AssetImage("assets/store/ic_question_circle.png"),
+                    AssetImage("assets/images/store/ic_question_circle.png"),
                     size: 20,
                   )
                 ],
@@ -89,7 +89,7 @@ class MyStorePage extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             height: 100,
                             child: Image.asset(
-                              "assets/store/img_74.png",
+                              "assets/images/store/img_74.png",
                               fit: BoxFit.cover,
                               width: MediaQuery.of(context).size.width,
                             ),
@@ -139,7 +139,7 @@ class MyStorePage extends StatelessWidget {
                             ),
                             image: const DecorationImage(
                               image: ExactAssetImage(
-                                  "assets/store/img_mask_group_14.png"),
+                                  "assets/images/store/img_mask_group_14.png"),
                               fit: BoxFit.cover,
                             )),
                       ),

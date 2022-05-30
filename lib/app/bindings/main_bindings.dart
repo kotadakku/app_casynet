@@ -2,6 +2,7 @@ import 'package:app_casynet/app/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/app/controller/home/api/promotion_controller.dart';
 import 'package:app_casynet/app/controller/home/api/recommend_controller.dart';
 import 'package:app_casynet/app/controller/home/api/seller_controller.dart';
+import 'package:app_casynet/app/controller/map_controller.dart';
 import 'package:get/get.dart';
 import '../controller/account/new_address_controller.dart';
 import '../controller/auth/authentication_manager.dart';
@@ -36,6 +37,7 @@ class MainBindings extends Bindings {
     Get.put(TopSaleController());
     Get.put(AuthenticationManager());
     Get.put(FetchBannerController());
+    Get.put(MapController());
     Get.put(NotificationService());
 
 

@@ -183,7 +183,7 @@ class SignInWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SvgPicture.asset("assets/account/fb.svg", height: 12,),
+                        SvgPicture.asset("assets/images/account/fb.svg", height: 12,),
                         Expanded(
                             child: Center(
                                 child:  Text("Đăng nhập bằng Facebook",
@@ -207,7 +207,7 @@ class SignInWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SvgPicture.asset("assets/account/gg.svg", height: 12,),
+                        SvgPicture.asset("assets/images/account/gg.svg", height: 12,),
                         Expanded(
                             child: Center(
                                 child:  Text("Đăng nhập bằng Google",
@@ -231,7 +231,7 @@ class SignInWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SvgPicture.asset("assets/account/zalo.svg", height: 14,),
+                        SvgPicture.asset("assets/images/account/zalo.svg", height: 14,),
                         Expanded(
                             child: Center(
                                 child:  Text("Đăng nhập bằng Zalo",
