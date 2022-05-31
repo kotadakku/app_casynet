@@ -9,7 +9,7 @@ class StoresMoreController extends GetxController {
 
   // SellerController controller = Get.find();
   late ScrollController scrollController;
-  int _curPageNumber = 1;
+  int _curPageNumber = 2;
   int _pageSizeNumber = 12;
   bool isLoading = false;
 

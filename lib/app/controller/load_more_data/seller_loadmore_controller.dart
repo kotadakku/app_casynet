@@ -5,11 +5,12 @@ import 'package:get/get.dart';
 import '../../data/model/seller.dart';
 import '../../data/repo/home_repo.dart';
 import '../filter_map_controller.dart';
+import '../home/api/seller_controller.dart';
 
 class SellerLoadMoreController extends GetxController with StateMixin{
 
   FilterMapController mapController = Get.put(FilterMapController());
-
+  SellerController _sellerController = Get.find();
   var sellerListLoadMore = <Seller>[].obs;
 
   late int pageNumber =1;
@@ -18,15 +19,15 @@ class SellerLoadMoreController extends GetxController with StateMixin{
 
   @override
   void onInit() {
-    getSellersLoadMoreAPI(pageSize: pageSizeNumber, curPage: pageNumber, type_filter: 'null');
+    change(sellerListLoadMore, status: RxStatus.loading());
+    sellerListLoadMore.addAll(_sellerController.sellerList);
+    change(sellerListLoadMore, status: RxStatus.success());
   }
 
   Future<void> getSellersLoadMoreAPI({bool first_load = false, required int pageSize, required int curPage,required String type_filter }) async {
-
-
     if(first_load) change(sellerListLoadMore, status: RxStatus.loading());
     try {
-      final resultLM = await HomePageRepo().getSellersLoadMore(
+      final resultLM = await HomePageRepo().getSellers(
           queryParameters: {
             'lat': mapController.latitudeUser,   /*21.0012507,*/  // lat user
             'lng': mapController.longitudeUser,     /*105.7938183,*/ // long user
