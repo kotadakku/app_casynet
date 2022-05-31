@@ -13,7 +13,7 @@ class MapController extends GetxController {
   late LocationData currentLocation;
   Location location = new Location();
   final Set<Marker> markers = Set();
-  final CameraPosition currentLocationCamera = CameraPosition(
+  late CameraPosition currentLocationCamera = CameraPosition(
     target: LatLng(21.021269086008136, 105.83777770400047),
     zoom: 14.4746,
   );
@@ -48,23 +48,23 @@ class MapController extends GetxController {
   _getCurrentLocation() async {
     currentLocation = await location.getLocation();
     location.onLocationChanged.listen((LocationData currentLocation) {
-      googleMapController.animateCamera(
-          CameraUpdate.newCameraPosition(new CameraPosition(
-            target: LatLng(currentLocation.latitude ?? 0.0,
-                currentLocation.longitude ?? 0.0),
-            zoom: 12.0,
-          )));
-      Marker destinationMarker = Marker(
-        markerId: MarkerId("Home"),
-        position: LatLng(
-            currentLocation.latitude ?? 0.0, currentLocation.longitude ?? 0.0),
-        infoWindow: InfoWindow(
-          // title: name,
-          // snippet: address,
-        ),
-        icon: BitmapDescriptor.defaultMarker,
-      );
-      markers.add(destinationMarker);
+      // googleMapController.animateCamera(
+      //     CameraUpdate.newCameraPosition(new CameraPosition(
+      //       target: LatLng(currentLocation.latitude ?? 0.0,
+      //           currentLocation.longitude ?? 0.0),
+      //       zoom: 12.0,
+      //     )));
+      // Marker destinationMarker = Marker(
+      //   markerId: MarkerId("Home"),
+      //   position: LatLng(
+      //       currentLocation.latitude ?? 0.0, currentLocation.longitude ?? 0.0),
+      //   infoWindow: InfoWindow(
+      //     // title: name,
+      //     // snippet: address,
+      //   ),
+      //   icon: BitmapDescriptor.defaultMarker,
+      // );
+      // markers.add(destinationMarker);
     });
     update();
   }
@@ -130,14 +130,27 @@ class MapController extends GetxController {
   }
 
   void getStoresLocation(List<Seller> sellers) {
-    double min_lat = 0.0;
+    double min_lat = 2000.0;
     double max_lat = 0.0;
-    double min_lon = 0.0;
+    double min_lon = 2000.0;
     double max_lon = 0.0;
     markers.clear();
 
     sellers.forEach((seller) {
       String destinationCoordinatesString = '(${seller.lat}, ${seller.lon})';
+      if(min_lat> seller.lat!){
+        min_lat = seller.lat!;
+      }
+      if(min_lon> seller.lon!){
+        min_lon = seller.lon!;
+      }
+      if(max_lat< seller.lat!){
+        max_lat = seller.lat!;
+      }
+      if(max_lon< seller.lon!){
+        max_lon = seller.lon!;
+      }
+
 
       print(destinationCoordinatesString);
       Marker destinationMarker = Marker(
@@ -152,16 +165,16 @@ class MapController extends GetxController {
 
       markers.add(destinationMarker);
     });
+    update();
     googleMapController.animateCamera(
       CameraUpdate.newLatLngBounds(
         LatLngBounds(
           northeast: LatLng(min_lat, min_lon),
           southwest: LatLng(max_lat, max_lon),
         ),
-        100.0,
+       0.0
       ),
     );
-    update();
   }
 
 

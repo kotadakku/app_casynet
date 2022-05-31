@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:app_casynet/app/controller/account/account_detail_controller.dart';
