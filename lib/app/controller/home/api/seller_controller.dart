@@ -2,13 +2,15 @@
 import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/model/seller.dart';
 import 'package:app_casynet/app/data/provider/db_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/repo/seller_repo.dart';
+import '../../filter_map_controller.dart';
 
 
 class SellerController extends GetxController{
+
+  FilterMapController mapController = Get.put(FilterMapController());
   final sellerList = <Seller>[].obs;
   // final ScaffoldMessengerState scaffoldMessenger = Get.find<ScaffoldMessengerState>();
   final isLoadingAPI = false.obs;
@@ -31,8 +33,8 @@ class SellerController extends GetxController{
     try {
       final result = await SellerRepo().getSellers(
         queryParameters: {
-          'lat': 21.0012507,  // lat user
-          'lng': 105.7938183, // long user
+          'lat': mapController.latitudeUser,   /*21.0012507,*/  // lat user
+          'lng': mapController.longitudeUser,  /*105.7938183,*/ // long user
           'pageSize': pageSize,
           'curPage': curPage,
           'type_filter': type_filter

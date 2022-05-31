@@ -4,9 +4,14 @@ import 'package:get/get.dart';
 
 import '../../data/model/seller.dart';
 import '../../data/repo/home_repo.dart';
+import '../filter_map_controller.dart';
 
 class SellerLoadMoreController extends GetxController with StateMixin{
+
+  FilterMapController mapController = Get.put(FilterMapController());
+
   var sellerListLoadMore = <Seller>[].obs;
+
   late int pageNumber =1;
   late int pageSizeNumber =12;
 
@@ -23,8 +28,8 @@ class SellerLoadMoreController extends GetxController with StateMixin{
     try {
       final resultLM = await HomePageRepo().getSellersLoadMore(
           queryParameters: {
-            'lat': 21.0012507,  // lat user
-            'lng': 105.7938183, // long user
+            'lat': mapController.latitudeUser,   /*21.0012507,*/  // lat user
+            'lng': mapController.longitudeUser,     /*105.7938183,*/ // long user
             'pageSize': pageSize,
             'curPage': curPage,
             'type_filter': type_filter

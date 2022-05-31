@@ -16,7 +16,6 @@ import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 import '../../../widgets/image_network_loading.dart';
-import '../../../widgets/shimmer_loading.dart';
 
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
@@ -243,7 +242,7 @@ class ItemCuaHangWidget extends StatelessWidget {
                 onTap: () {
                   if (store != null)
                     Get.toNamed(Routes.STORE_DETAIL,
-                        arguments: {'store': store});
+                         arguments: {'store': store});
                   FocusScope.of(context).unfocus();
                 },
                 child: Container(

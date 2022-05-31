@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,10 +9,12 @@ import '../../../controller/map_controller.dart';
 import '../account/widgets/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
-
+import 'package:geolocator/geolocator.dart';
 
 class FilterProductMap extends StatelessWidget {
-  const FilterProductMap({Key? key}) : super(key: key);
+  FilterProductMap({Key? key}) : super(key: key);
+  FilterMapController mapController = Get.put(FilterMapController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,59 +22,56 @@ class FilterProductMap extends StatelessWidget {
     final sellers = Get.arguments[0];
 
 
-    final CameraPosition _kGooglePlex = CameraPosition(
-      target: LatLng(21.021269086008136, 105.83777770400047),
-      zoom: 14.4746,
-    );
-
     return SafeArea(
         child: Scaffold(
-          appBar:  AppBarAccountWidget(),
-          body: Column(
-            mainAxisSize: MainAxisSize.max,
+      appBar: AppBarAccountWidget(),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      Container(child: CircleAvatar(
-                        child: Text(
-                          "123",
-                          style: TextStyle(
-                              color: Colors.white
-                          ),
-                        ),
-                        backgroundColor: Color(0xffDFB400),
-                      ),),
-                      Obx(()=>Row(
+                  Container(
+                    child: CircleAvatar(
+                      child: Text(
+                        "123",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: Color(0xffDFB400),
+                    ),
+                  ),
+                  Obx(() => Row(
                         children: [
                           Radio(
                               value: true,
                               groupValue: _isCar.value,
-                              onChanged: (value){
+                              onChanged: (value) {
                                 _isCar.value = !_isCar.value;
                               },
                               activeColor: Color(0xffDFB400)),
                           Text("Ô tô"),
-                          SizedBox(width: 20,),
+                          SizedBox(
+                            width: 20,
+                          ),
                           Radio(
                               value: false,
                               groupValue: _isCar.value,
-                              onChanged: (value){
+                              onChanged: (value) {
                                 _isCar.value = !_isCar.value;
                               },
-                              activeColor: Color(0xffDFB400)
-                          ),
-
+                              activeColor: Color(0xffDFB400)),
                           Text("Xe máy")
                         ],
                       ))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),
+                ],
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    "assets/home/store/icon_filter.svg",
+                    width: 15,),
                       SizedBox(width: 5,),
                       Text(
                         "Lọc",
@@ -135,72 +133,23 @@ class FilterProductMap extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Divider(
-                      height: 5
+                  SizedBox(
+                    width: 5,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    child: Text("Danh sách cửa hàng bạn cần tìm",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500
-                      ),
+                  Text(
+                    "Lọc",
+                    style: TextStyle(
+                      color: Color(0xffB7BAC1),
                     ),
-
                   ),
-                  Divider(
-                      height: 5
-                  ),
-                  GetBuilder<FilterMapController>(
-                    init: FilterMapController(),
-                    builder: (controller){
-                      return GestureDetector(
-                        onTap: (){
-                          controller.add();
-
-                        },
-                        child: ListTile(
-                        leading: CircleAvatar(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image.asset("assets/images/account/image_user.png"),
-                            )
-                        ),
-                        title: Text("Gara Ô Tô Hà Nội Car Sevices"),
-                        subtitle: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("số 2 Phố Trần Hữu Dực, Mỹ Đình, Từ Liêm, Hà Nội",
-                              style: TextStyle(
-                                  color: kTextColor_gray,
-                                  fontSize: 12
-                              ),
-                            ),
-                            Row(children: [
-                              Container(
-                                height: 20,
-                                width: 20,
-                                margin: EdgeInsets.all(5.0),
-                                child: Icon(Icons.add),
-                              ),
-                              Text("Vào cửa hàng"),
-                            ],)
-                          ],
-                        ),
-                      ),
-                      );
-                    }
+                  SizedBox(
+                    width: 10,
                   )
-
-
                 ],
               )
-
-
-
             ],
           ),
-        )
+      ),
     );
   }
 }
