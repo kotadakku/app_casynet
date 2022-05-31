@@ -18,11 +18,13 @@ abstract class Routes{
   static const ACCOUNT_WALLET_VOUCHER = '/account/wallet_voucher';
   static const ACCOUNT_CASYCOIN = '/account/casycoin';
   static const ACCOUNT_CHANGE_PASS = '/account/change_password';
+  static const ACCOUNT_EDIT_INFO = '/account/edit_info';
   static const SELECT_REGION = '/select_region';
   static const CHECKOUT = '/checkout';
   static const CHECKOUT_SUCCESS = '/checkout/success';
   static const PRODUCT_DETAIL= '/product';
   static const PRODUCTS_BY_CATEGORY = '/products';
+
 
   static const STORE_HOME_MORE= '/storemore';
 
@@ -54,8 +56,10 @@ abstract class Routes{
   static const STORE_MANAGER_ADD_PRODUCT = '/manager_store/add_product';
   static const STORE_MANAGER_GIFTS = '/manager_store/gifts';
   static const STORE_MANAGER_ADD_GIFT = '/manager_store/add_gift';
-  static const STORE_MANAGER_NOTIS = '/managrt_store/notis';
-  static const STORE_MANAGER_ADD_NOTI = '/managrt_store/add_noti';
+  static const STORE_MANAGER_NOTIS = '/manager_store/notis';
+  static const STORE_MANAGER_ADD_NOTI = '/manager_store/add_noti';
+
+
 
 
 }

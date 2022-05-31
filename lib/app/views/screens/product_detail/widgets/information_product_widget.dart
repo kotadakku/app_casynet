@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/utlis/int_to_price.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -20,10 +21,7 @@ class InformationProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var date = "".obs;
-    TextEditingController date_controller = TextEditingController();
-    TextEditingController hours_controller = TextEditingController();
-    TextEditingController note_controller = TextEditingController();
+
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -37,7 +35,7 @@ class InformationProductWidget extends StatelessWidget {
           SizedBox(height: 10,),
           Row(
             children: [
-              Text("${controller.product.value.officialPrice ?? 'Liên hệ'}",
+              Text("${IntToPrice(controller.product.value.price ?? controller.product.value.officialPrice??0).intToPrice()} đ",
               style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,
@@ -45,7 +43,8 @@ class InformationProductWidget extends StatelessWidget {
               ),
               ),
               SizedBox(width: 5,),
-              Text('${controller.product.value.price ?? ''}',
+              if(controller.product.value.officialPrice != null)
+              Text('${IntToPrice(controller.product.value.officialPrice).intToPrice()}',
                 textAlign: TextAlign.end,
                 style: TextStyle(
                   color: kTextColor_gray,
@@ -53,7 +52,8 @@ class InformationProductWidget extends StatelessWidget {
                   decoration: TextDecoration.lineThrough
                 ),
               ),
-              Text('       ${controller.product.value.saleoff ?? ''}',style: TextStyle(
+              if(controller.product.value.officialPrice != null)
+              Text('   -${controller.product.value.calSaleOff() ?? 0} %',style: TextStyle(
                 color: kTextColor_gray,
                 fontSize: 13,
               ),)
@@ -222,7 +222,9 @@ class InformationProductWidget extends StatelessWidget {
           ),
           SizedBox(height: 10,),
           //Yeu cau hen truoc
-          Container(
+          controller.product.value.requiredOptions == 0
+              ? SizedBox()
+              : Container(
             color: kBackgroundColor,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
@@ -253,7 +255,8 @@ class InformationProductWidget extends StatelessWidget {
                                     height: 30,
                                     color: Colors.white,
                                     child: TextField(
-                                      controller: date_controller,
+                                      controller: controller.date_controller,
+                                      focusNode: controller.date_focus,
                                       readOnly: true,
                                       style: TextStyle(
                                         color: kTextColor_gray,
@@ -270,19 +273,14 @@ class InformationProductWidget extends StatelessWidget {
                                         ),
                                         suffixIcon: GestureDetector(
                                           behavior: HitTestBehavior.translucent,
-                                          onTap: (){
-                                            DatePicker.showDatePicker(context,
-                                                showTitleActions: true,
-                                                minTime: DateTime.now(),
-                                                maxTime: DateTime.now().add(Duration(days: 100)),
-                                                onChanged: (date) {
-                                                },
-                                                onConfirm: (value) {
-                                                  date.value = DateFormat('yyyy/MM/dd').format(value).toString();
-                                                  date_controller.text = date.value;
-                                                },
-                                                currentTime: DateTime.now(),
-                                                locale: LocaleType.vi);
+                                          onTap: () async {
+                                            final DateTime? value = await showDatePicker(
+                                                context: context,
+                                                initialDate: DateTime.now().add(Duration(days: 1)),
+                                                firstDate: DateTime.now().add(Duration(days: 1)),
+                                                lastDate: DateTime.now().add(Duration(days: 100)),
+                                            );
+                                            controller.date_controller.text = DateFormat('yyyy-MM-dd').format(value!).toString();
                                           },
                                           child: Container(
                                             padding: EdgeInsets.all(5.0),
@@ -317,7 +315,8 @@ class InformationProductWidget extends StatelessWidget {
                                   height: 30,
                                   child: TextField(
                                     readOnly: true,
-                                    controller: hours_controller,
+                                    focusNode: controller.hours_focus,
+                                    controller: controller.hours_controller,
                                     style: TextStyle(
                                       color: kTextColor_gray,
                                       fontSize: 13,
@@ -333,16 +332,20 @@ class InformationProductWidget extends StatelessWidget {
                                       ),
                                       suffixIcon: GestureDetector(
                                         behavior: HitTestBehavior.translucent,
-                                        onTap: (){
-                                          DatePicker.showTimePicker(context,
-                                              showTitleActions: true,
-                                              onChanged: (hours) {
-                                              },
-                                              onConfirm: (hours) {
-                                                hours_controller.text = DateFormat('hh:mm').format(hours).toString();
-                                              },
-                                              currentTime: DateTime.now(),
-                                              locale: LocaleType.en);
+                                        onTap: () async {
+                                          TimeOfDay? value = await showTimePicker(
+                                              context: context,
+                                              builder: (context, childWidget) {
+                                                return MediaQuery(
+                                                    data: MediaQuery.of(context).copyWith(
+                                                      // Using 24-Hour format
+                                                        alwaysUse24HourFormat: true),
+                                                    // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+                                                    child: childWidget!);
+                                              }
+                                              initialTime: TimeOfDay.now(),
+                                          );
+                                          controller.hours_controller.text = '${value?.hour}:${value?.minute}';
                                         },
                                         child: Container(
                                             padding: EdgeInsets.all(5.0),
@@ -381,7 +384,7 @@ class InformationProductWidget extends StatelessWidget {
                               color: Colors.white,
                               height: 30,
                               child: TextField(
-                                controller: note_controller,
+                                controller: controller.note_controller,
                                 cursorColor: kYellowColor,
                                 style: TextStyle(
                                   color: kTextColor_gray

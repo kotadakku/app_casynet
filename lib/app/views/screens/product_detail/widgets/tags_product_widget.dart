@@ -32,11 +32,12 @@ class TagsProductWidget extends StatelessWidget {
           height: 20,
           color: kTextColor,
         ),
+        if(controller.product.value.tags != null)
         Container(
             padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
             child: Wrap(
               spacing: 5.0.w,
-              children: controller.product.value.tags.map((e) => Row(
+              children:  controller.product.value.tags!.map((e) => Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
@@ -56,7 +57,7 @@ class TagsProductWidget extends StatelessWidget {
                 ],
               )).toList(),
             )
-        ),
+        )
       ],
     );
   }

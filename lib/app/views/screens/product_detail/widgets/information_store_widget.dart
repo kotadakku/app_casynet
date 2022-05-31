@@ -25,10 +25,10 @@ class InformationStoreWidget extends StatelessWidget {
             leading: CircleAvatar(
               child: Text("123"),
             ),
-            title: Text('${controller.product.value.store?.name ?? 'Chưa có thông tin'}'),
+            title: Text('${controller.product.value.seller?.name ?? 'Chưa có thông tin'}'),
             subtitle: Row(
               children: [
-                Text('${controller.product.value.store?.owner_shop ?? 'Chưa có thông tin'}',
+                Text('${controller.product.value.seller?.ownerShop ?? 'Chưa có thông tin'}',
                   style: TextStyle(
                     color: kYellowColor,
                     fontSize: 12.sp
@@ -67,7 +67,7 @@ class InformationStoreWidget extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text('${controller.product.value.store?.total_product ?? '0'}', style: TextStyle(
+                      Text('${controller.product.value.seller?.totalProduct ?? '0'}', style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
                       ),)
@@ -81,7 +81,7 @@ class InformationStoreWidget extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text("${controller.product.value.store?.rateFeedback ?? '0'}%", style: TextStyle(
+                      Text("${controller.product.value.seller?.rateFeedback ?? '0'}%", style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
                       ),)
@@ -95,7 +95,7 @@ class InformationStoreWidget extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text("${controller.product.value.store?.totalTransaction ?? '0'}", style: TextStyle(
+                      Text("${controller.product.value.seller?.totalTransaction ?? '0'}", style: TextStyle(
                           color: kYellowColor,
                           fontWeight: FontWeight.w800
                       ),)
@@ -163,7 +163,7 @@ class InformationStoreWidget extends StatelessWidget {
                   ), onPressed: () {
                     Get.toNamed(Routes.STORE_DETAIL,
                       arguments: {
-                        'store': controller.product.value.store
+                        'store': controller.product.value.seller
                       }
                     );
                 },

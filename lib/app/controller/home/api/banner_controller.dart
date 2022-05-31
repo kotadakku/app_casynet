@@ -1,4 +1,4 @@
-import 'package:app_casynet/app/data/model/banner_slider_new.dart';
+import 'package:app_casynet/app/data/model/banner_slider.dart';
 import 'package:get/get.dart';
 
 import '../../../config/config_db.dart';

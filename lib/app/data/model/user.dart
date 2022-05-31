@@ -35,7 +35,6 @@ class User{
       this.image,
       this.created_at,
       this.receiveNotification,
-
       this.follow_seller});
 
 
@@ -128,4 +127,30 @@ class User{
       });
     }
   }
+
+  String fullnameToString(){
+    if(firstname == null && lastname == null){
+      return 'user_34249384';
+    }
+    return '${firstname??''} ${lastname??''}';
+  }
+
+  Map<String, dynamic> toEditJson(){
+    return {
+      "customer": {
+        "email": this.email,
+        "lastname" : this.lastname,
+        "firstname": this.firstname,
+        "website_id": 1,
+        "gender": this.gender,
+        "custom_attributes": [
+          {
+            "attribute_code": "phone_number",
+            "value": this.phone
+          }
+        ]
+      }
+    };
+  }
+
 }

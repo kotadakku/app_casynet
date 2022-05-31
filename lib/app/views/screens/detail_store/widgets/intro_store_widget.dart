@@ -44,11 +44,11 @@ class IntroStoreWidget extends StatelessWidget {
                   ),
                 )),
             Text("Giờ mở cửa  "),
-            controller.store.value.time_open == 'null' ||
-                    controller.store.value.time_close == 'null'
+            controller.store.value.timeOpen == 'null' ||
+                    controller.store.value.timeClose == 'null'
                 ? Text("Đang tải ...")
                 : Text(
-                    "${controller.store.value.time_open}  -  ${controller.store.value.time_close}",
+                    "${controller.store.value.timeOpen}  -  ${controller.store.value.timeClose}",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
           ],
@@ -116,11 +116,11 @@ class IntroStoreWidget extends StatelessWidget {
                           Icons.add,
                           color: kYellowColor,
                         ),
-                        controller.store.value.total_product.toString() ==
+                        controller.store.value.totalProduct.toString() ==
                                 'null'
                             ? Text("Đang tải ...")
                             : Text(
-                                controller.store.value.total_product.toString(),
+                                controller.store.value.totalProduct.toString(),
                                 style: TextStyle(
                                     color: kYellowColor,
                                     fontSize: 16,
@@ -200,7 +200,7 @@ class IntroStoreWidget extends StatelessWidget {
               ),
               Text("Tham gia: "),
               Text(
-                controller.store.value.participation_time ??
+                controller.store.value.participationTime ??
                     'Chưa có thông tin',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),

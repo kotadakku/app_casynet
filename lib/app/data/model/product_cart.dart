@@ -1,4 +1,6 @@
 
+import 'package:app_casynet/app/data/model/product.dart';
+import 'package:app_casynet/app/data/model/seller.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class ProductCart {
@@ -14,6 +16,10 @@ class ProductCart {
   int? price;
   int? quantity;
   int? cartId;
+
+  Product? product;
+  Seller? seller;
+
 
   ProductCart({this.p_id,this.item_id, this.p_sku,
     this.p_image, this.p_name, this.s_name,
@@ -32,6 +38,23 @@ class ProductCart {
     discount_price = json[''];
     quantity = json['qty'];
     cartId = int.parse(json['quote_id']);
+  }
+  ProductCart.fromJson1(Map<String, dynamic> json) {
+    item_id = json['item_id'];
+    quantity = json['qty'];
+    cartId = int.parse(json['quote_id']);
+    quantity = json['qty'];
+    product = Product(
+      sku: json['sku'],
+      thumbnail: json[''],
+      name: json['name'],
+      price: json['price'],
+      officialPrice: json[''],
+    );
+    seller = Seller(
+      name: json[''],
+
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -54,7 +77,18 @@ class ProductCart {
         "sku": this.p_sku,
         "qty": qty,
         "quote_id": this.cartId,
-      }
+        "product_option": {
+          "extension_attributes": {
+            "custom_options": [
+              {
+                "option_id": "336",
+                "option_value": "2022-05-29 05:00:00"
+              }
+            ]
+          }
+        }
+      },
+
     };
   }
 

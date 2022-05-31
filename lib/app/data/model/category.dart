@@ -28,5 +28,4 @@ class Category {
     data[DBConfig.CATEGORY_COLUMN_IMAGE] = this.imageUrl;
     return data;
   }
-
 }

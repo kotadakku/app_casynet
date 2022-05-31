@@ -7,31 +7,30 @@ class Product {
   String? sku;
   String? name;
   String? thumbnail;
-  String? imageUrl;
   int? price;
   int? officialPrice;
   int? likeQty;
   int? commentQty;
   double? rate;
   int? coinPoint;
-  int? saleoff;
   int? sold;
+  int? amount;
   int? badReport;
-  String? detailProduct;
-  Seller? store;
+  Seller? seller;
   String? description;
   int? requiredOptions;
   int? catId;
-  List<String> tags = [];
-  List<String> images = [];
+  List<String>? tags;
+  List<String>? images;
+  List<Option>? options;
 
 
 
   Product(
       {this.id,
+        this.sku,
         this.isCar,
         this.name,
-        this.imageUrl,
         this.price,
         this.officialPrice,
         this.likeQty,
@@ -39,35 +38,35 @@ class Product {
         this.rate,
         this.coinPoint,
         this.thumbnail,
-        this.catId,
-        this.store
+        this.seller,
+        this.catId
       });
 
   Product.fromJson(Map<String, dynamic> json) {
     id = int.parse(json['id'].toString());
     sku = json['sku'];
     name = json["name"].toString();
-    imageUrl = json['images'][0];
-    price = double.parse(json[ "price"]).round();
-    officialPrice = double.parse(json["discount_price"]).round();
+    thumbnail = json['images'][0];
+    price = double.parse(json[ "discount_price"]).round();
+    officialPrice = double.parse(json["price"]).round();
     likeQty = json["liked"];
     commentQty = json["comment"];
     rate = json["vote"].toDouble();
     coinPoint = json["casy_coin"];
     sold = json['sold'];
-    detailProduct = json['detail_product'];
+    description = json['detail_product'];
     badReport = json['bad_report'];
     if(json['tag'] != null){
       for (var v in (json['tag'] as List)) {
-        tags.add(v);
+        tags?.add(v);
       }
     }
-    store = Seller(
+    seller = Seller(
       name: json["store"]["name"].toString(),
       distance: json["store"]["distance"],
       phone: json['store']['phone'],
-      owner_shop: json['store']['shop_owner'],
-      total_product: json['store']['count_product'],
+      ownerShop: json['store']['shop_owner'],
+      totalProduct: json['store']['count_product'],
       totalTransaction: int.parse(json['store']['total_transaction']),
       rateFeedback: json['store']['rate_feedback']
     );
@@ -81,7 +80,7 @@ class Product {
     if(json['media_gallery_entries']!= null){
       json['media_gallery_entries'].forEach((v) {
         if(v['attribute_code'] == 'phone_number'){
-          images.add(v['file']);
+          images?.add(v['file']);
         }
       });
     }
@@ -99,8 +98,15 @@ class Product {
         if(v['attribute_code'] == 'required_options'){
           requiredOptions = int.parse(v['value'].toString());
         }
-
+        if(v['attribute_code'] == 'seller_id'){
+          seller?.id = int.parse(json['value'].toString());
+        }
       });
+      if(json['options'] != null){
+        (json['options'] as List).forEach((element) {
+          options?.add(Option.fromJson(element));
+        });
+      }
     }
 
     // imageUrl = "https://client.casynet.com/pub/media/catalog/product"+json['images'][0]['image'];;
@@ -121,7 +127,6 @@ class Product {
     data['id'] = this.id;
     data['isCar'] = this.isCar;
     data['name'] = this.name;
-    data['imageUrl'] = this.imageUrl;
     data['price'] = this.price;
     data['officialPrice'] = this.officialPrice;
     data['likeQty'] = this.likeQty;
@@ -140,8 +145,8 @@ class Product {
     data[DBConfig.PRODUCT_LIKED] = this.likeQty;
     data[DBConfig.PRODUCT_COMMENT] = this.commentQty;
     data[DBConfig.PRODUCT_RATE] = this.rate;
-    data[DBConfig.PRODUCT_SELLER_NAME] = this.store?.name;
-    data[DBConfig.PRODUCT_SELLER_PHONE] = this.store?.phone;
+    data[DBConfig.PRODUCT_SELLER_NAME] = this.seller?.name;
+    data[DBConfig.PRODUCT_SELLER_PHONE] = this.seller?.phone;
     data[DBConfig.PRODUCT_CATEGORY_ID] = catId;
     return data;
   }
@@ -151,5 +156,29 @@ class Product {
     name = json['name'];
     officialPrice = json['original_price'].round();
     price = json['price'].round();
+  }
+
+  int? calSaleOff(){
+    if(officialPrice != null && price != null && officialPrice !=0){
+      return ((officialPrice! - price!)*100/officialPrice!).floor();
+    }
+    return null;
+
+  }
+}
+
+class Option{
+  int? id;
+  String? name;
+  String? title;
+  String? type;
+  bool? is_require;
+  String? value;
+
+  Option.fromJson(json){
+    this.id = json['option_id'];
+    this.title = json['title'];
+    this.type = json['tyle'];
+    this.is_require = json['is_require'];
   }
 }

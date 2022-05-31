@@ -73,7 +73,7 @@ class ProfileStoreWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            controller.store.value.owner_shop??'',
+                            controller.store.value.ownerShop??'',
                             style: TextStyle(color: kYellowColor),
                           ),
                           SizedBox(

@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
+import 'package:app_casynet/app/views/screens/account/widgets/edit_info.dart';
 import 'package:app_casynet/app/views/screens/contact.dart';
 import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:app_casynet/app/views/screens/store/mystore.dart';
@@ -21,6 +22,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../../main.dart';
+import '../bindings/account/account_detail_binding.dart';
 import '../bindings/account/casycoin_manager_bindings.dart';
 import '../bindings/account/edit_address_bindings.dart';
 import '../bindings/account/information_address.dart';
@@ -92,6 +94,11 @@ class AppPages {
       page:()=> FilterProductMap()
     ),
     GetPage(
+        name: Routes.ACCOUNT_EDIT_INFO,
+        page: ()=> EditInfomation()
+    ),
+
+    GetPage(
       name: Routes.AUTH,
       page: ()=> AuthPage(),
       binding: AuthBindings(),
@@ -99,7 +106,10 @@ class AppPages {
     GetPage(name: Routes.CHECKOUT,
       page: ()=>CheckoutPage(),
     ),
-    GetPage(name: Routes.ACCOUNT_DETAIL, page: ()=> AccountDetailPage()),
+    GetPage(name: Routes.ACCOUNT_DETAIL,
+        page: ()=> AccountDetailPage(),
+      binding: AccountDetailBinding()
+    ),
     GetPage(name: Routes.ACCOUNT_ORDER,
       page: ()=>OrderAccountPage(),
       binding: OrderAccountBindings(),

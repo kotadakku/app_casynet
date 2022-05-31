@@ -1,6 +1,6 @@
 
 import 'dart:convert';
-import 'package:app_casynet/app/data/model/banner_slider_new.dart';
+import 'package:app_casynet/app/data/model/banner_slider.dart';
 import 'package:app_casynet/app/data/model/sales.dart';
 import 'package:dio/dio.dart';
 

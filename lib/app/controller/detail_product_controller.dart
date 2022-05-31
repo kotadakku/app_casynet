@@ -13,7 +13,12 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
   var isLoading = true.obs;
   RxBool isLive = true.obs;
   RxBool followed = true.obs;
-
+  var date = "".obs;
+  TextEditingController date_controller = TextEditingController();
+  TextEditingController hours_controller = TextEditingController();
+  TextEditingController note_controller = TextEditingController();
+  FocusNode hours_focus = FocusNode();
+  FocusNode date_focus = FocusNode();
 
   @override
   void onInit() {

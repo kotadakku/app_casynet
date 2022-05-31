@@ -10,7 +10,7 @@ import '../data/model/seller.dart';
 class MapController extends GetxController {
   Completer<GoogleMapController> controller = Completer();
   late GoogleMapController googleMapController;
-  late LocationData _currentLocation;
+  late LocationData currentLocation;
   Location location = new Location();
   final Set<Marker> markers = Set();
   final CameraPosition currentLocationCamera = CameraPosition(
@@ -46,8 +46,7 @@ class MapController extends GetxController {
   }
 
   _getCurrentLocation() async {
-    _currentLocation = await location.getLocation();
-
+    currentLocation = await location.getLocation();
     location.onLocationChanged.listen((LocationData currentLocation) {
       googleMapController.animateCamera(
           CameraUpdate.newCameraPosition(new CameraPosition(

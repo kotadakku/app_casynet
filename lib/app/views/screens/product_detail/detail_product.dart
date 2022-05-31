@@ -2,6 +2,7 @@ import 'package:app_casynet/app/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/app/controller/detail_product_controller.dart';
 import 'package:app_casynet/app/views/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/api/product_cart_controller.dart';
@@ -41,7 +42,7 @@ class DetailProductPage extends StatelessWidget {
                       children: [
                         ImageProductWidget(controller: _detailProductController,),
                         InformationProductWidget(controller: _detailProductController,),
-                        RevervationProductWidget(controller: _detailProductController,),
+                        _detailProductController.product.value.requiredOptions == 0 ? SizedBox() :  RevervationProductWidget(controller: _detailProductController,),
                         InformationStoreWidget(controller: _detailProductController,),
                         DetailProductWidget(controller: _detailProductController,),
                         Container(
@@ -69,12 +70,12 @@ class DetailProductPage extends StatelessWidget {
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: kYellowColor),
                       onPressed: () {
                         if(_detailProductController.product.value.requiredOptions == 0){
                           _productCartController.incrementProductCartDB(_detailProductController.product.value);
-
 
                           final snackBar = SnackBar(
                             content: Text("Thêm thành công"),
@@ -88,11 +89,21 @@ class DetailProductPage extends StatelessWidget {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
+                        else{
+                          if(_detailProductController.date_controller.text.isEmpty || _detailProductController.date_controller.text == ''){
+                            _detailProductController.date_focus.requestFocus();
+                          } else if(_detailProductController.hours_controller.text.isEmpty || _detailProductController.hours_controller.text == ''){
+                            _detailProductController.hours_focus.requestFocus();
+                          }
+                          else {
+
+                          }
+                        }
 
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.add), Text(_detailProductController.product.value.requiredOptions == 1 ? " Đặt hàng": "Thêm vào giỏ")],
+                        children: [Icon(Icons.add), Text("Đặt hàng")],
                       )),
                 ),
               ],

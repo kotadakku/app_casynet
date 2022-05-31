@@ -1,21 +1,21 @@
-import 'package:app_casynet/app/config/config_db.dart';
+import '../../config/config_db.dart';
 
-class BannerSlider{
+class BannerSlider {
   int? id;
-  String image;
+  String? htmlTag;
 
-  BannerSlider.init(this.id, this.image);
-  BannerSlider({this.id, required this.image});
+  BannerSlider({this.id, required this.htmlTag});
 
   factory BannerSlider.fromJson(Map<String, dynamic> json){
     return BannerSlider(
-      id: json['id'],
-      image: json['image']
+        id: json['id'],
+        htmlTag: json['image']
     );
   }
 
   Map<String, dynamic> toJson() => {
-    DBConfig.BANNER_COLUMN_ID : id,
-    DBConfig.BANNER_COLUMN_IMAGE : image
+    // DBConfig.BANNER_COLUMN_ID : id,
+    DBConfig.BANNER_COLUMN_IMAGE : htmlTag
   };
+
 }

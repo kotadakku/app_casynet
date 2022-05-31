@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/utlis/int_to_price.dart';
 import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -70,15 +71,15 @@ class ItemProductWidget extends StatelessWidget {
               SizedBox(height: 10.0.h,),
               Row(
                 children: [
-                  Text(
-                    '${(product.price == null && product.officialPrice == null) ?  "Liên hệ" : product.price??product.officialPrice}',
+                  Text('${IntToPrice(product.price??product.officialPrice??0).intToPrice() } đ',
                     style: TextStyle(
                         fontWeight: FontWeight.bold
                     ),
                   ),
                   SizedBox(width: 5.w,),
+                  if(product.price != null)
                   Text(
-                    product.price == null ? "" : product.price.toString(),
+                    '${IntToPrice(product.officialPrice ?? 0).intToPrice()}',
                     style: TextStyle(
                         fontSize: 13.sp,
                         decoration: TextDecoration.lineThrough
@@ -87,10 +88,10 @@ class ItemProductWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 10.0.h,),
-              product.store == null ? Text('Chưa có thông tin') : Row(
+              product.seller == null ? Text('Chưa có thông tin') : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: Text( product.store?.name ==null ? 'Chưa có thông tin' : product.store!.name.toString(),
+                  Expanded(child: Text( product.seller?.name ?? 'Chưa có thông tin',
                     style: TextStyle(
                       fontSize: 12,
 
@@ -102,7 +103,7 @@ class ItemProductWidget extends StatelessWidget {
                     children: [
                       FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
                       SizedBox(width: 3,),
-                      Text("${ product.store?.distance == null ? '0.0' : product.store?.distance} km",
+                      Text("${product.seller?.distance ?? 0.0} km",
                         style: TextStyle(
                             fontSize: 12.sp
                         ),
