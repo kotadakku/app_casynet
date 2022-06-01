@@ -135,21 +135,39 @@ class ReservationWidget extends StatelessWidget {
             Obx(()=>
               LoadingOverlay(
                 isLoading: _ReservationController.isLoadingDB.value,
-                shimmer: ItemSellerShimmer(),
+                shimmer: const ItemSellerShimmer(),
                 child: Stack(
                   children: [
-                    Padding(padding: EdgeInsets.only(bottom: 15.h),
-                        child:
-                        Wrap(
-                          spacing: 5.0.w,
-                          runSpacing: 10.0,
-                          children: (_ReservationController.reservationProductList as List).map((e) =>
-                              ItemProductWidget(
-                                product: e
-                              ),
-                          ).toList(),
-                        )
+                    GridView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 3.3,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
+                        itemCount: _ReservationController.reservationProductList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return ItemProductWidget(
+                            index: index,
+                            products: _ReservationController.reservationProductList,
+                          );
+                        }
                     ),
+
+                    // Padding(padding: EdgeInsets.only(bottom: 15.h),
+                    //     child:
+                    //     Wrap(
+                    //       spacing: 5.0.w,
+                    //       runSpacing: 10.0,
+                    //       children: (_ReservationController.reservationProductList as List).map((e) =>
+                    //           ItemProductWidget(
+                    //             product: e
+                    //           ),
+                    //       ).toList(),
+                    //     )
+                    // ),
                     _ReservationController.error == ''? SizedBox()
                         : Positioned.fill(
                         child: Container(
@@ -166,7 +184,7 @@ class ReservationWidget extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ElevatedButton(
-                                    child: Text('Thử lại'),
+                                    child: const Text('Thử lại'),
                                     onPressed: (){
                                       _ReservationController.getReservationProductsAPI();
                                     },
@@ -211,7 +229,7 @@ class ReservationWidget extends StatelessWidget {
   }
 
   void _view_more(title, id) {
-    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id ]);
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id, _ReservationController.reservationProductList ]);
   }
 }
 

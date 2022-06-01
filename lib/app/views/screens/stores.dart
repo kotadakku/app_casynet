@@ -10,6 +10,7 @@ import '../../routes/app_pages.dart';
 import '../widgets/bottom_widget.dart';
 import '../widgets/shimmer/seller_shimmer.dart';
 import 'home/widgets/category_bottom_widget.dart';
+import 'home/widgets/items/seller_item.dart';
 import 'home/widgets/store_widget.dart';
 
 class StoreHomeMore extends StatelessWidget {
@@ -143,14 +144,15 @@ class StoreHomeMore extends StatelessWidget {
                               padding: EdgeInsets.only(bottom: 20.0.h),
                               child: state.isEmpty
                                   ? Text("Không có cửa hàng để hiển thị")
-                                  : Wrap(
-                                  spacing: 5.0.w,
-                                  runSpacing: 10.0,
-                                  children: (state as List)
-                                      .map((e) => ItemCuaHangWidget(
-                                    store: e,
-                                  ))
-                                      .toList()),
+                                  // : Wrap(
+                                  // spacing: 5.0.w,
+                                  // runSpacing: 10.0,
+                                  // children: (state as List)
+                                  //     .map((e) => ItemSellerWidget(
+                                  //   store: e,
+                                  // ))
+                                  //     .toList()),
+                                  :Text('')
                             ),
                             onLoading: ItemSellerShimmer(),
                             onError: (error) => InkWell(
@@ -164,15 +166,15 @@ class StoreHomeMore extends StatelessWidget {
                             : _sellerController.obx((state) => Container(
                               padding: EdgeInsets.only(bottom: 20.0.h),
                               child: state.isEmpty
-                                  ? Text("Không có cửa hàng để hiển thị")
-                                  : Wrap(
-                                  spacing: 5.0.w,
-                                  runSpacing: 10.0,
-                                  children: (state as List)
-                                      .map((e) => ItemCuaHangWidget(
-                                    store: e,
-                                  ))
-                                      .toList()),
+                                  ? Text("Không có cửa hàng để hiển thị") :Text('')
+                                  // : Wrap(
+                                  // spacing: 5.0.w,
+                                  // runSpacing: 10.0,
+                                  // children: (state as List)
+                                  //     .map((e) => ItemSellerWidget(
+                                  //   store: e,
+                                  // ))
+                                  //     .toList()),
                             ),
                             onLoading: ItemSellerShimmer(),
                             onEmpty: SizedBox(

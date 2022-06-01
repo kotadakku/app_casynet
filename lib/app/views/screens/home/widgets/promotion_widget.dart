@@ -137,16 +137,24 @@ class PromotionWidget extends StatelessWidget {
                 shimmer: ItemSellerShimmer(),
                 child: Stack(
                   children: [
-                    Padding(padding: EdgeInsets.only(bottom: 15.h),
-                      child:
-                      Wrap(
-                        spacing: 5.0.w,
-                        runSpacing: 10.0,
-                        children: (_promotionController.promotionProductList as List).map((e) => ItemProductWidget(
-                            product: e
-                        ),).toList(),
-                      )
+                    GridView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 3.3,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
+                        itemCount: _promotionController.promotionProductList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return ItemProductWidget(
+                            index: index,
+                            products: _promotionController.promotionProductList,
+                          );
+                        }
                     ),
+
                     _promotionController.error == '' ? SizedBox() : Positioned.fill(
                         child: Container(
                           color: AppColors.kBackgroundColor.withOpacity(0.5),
@@ -207,7 +215,7 @@ class PromotionWidget extends StatelessWidget {
   }
 
   void _view_more(title, id) {
-    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id]);
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id, _promotionController.promotionProductList]);
   }
 }
 

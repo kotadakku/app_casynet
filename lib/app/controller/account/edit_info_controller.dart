@@ -1,9 +1,5 @@
-import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
-
-import '../../data/repo/account_repo.dart';
 
 class EditInfoController extends GetxController{
   final isChange = false.obs;

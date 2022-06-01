@@ -1,188 +1,181 @@
 
+import 'package:app_casynet/app/controller/home/api/seller_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controller/home/cuahang_controller.dart';
-import '../../../../../data/model/seller.dart';
 import '../../../../../routes/app_pages.dart';
 import '../../../../theme/app_colors.dart';
 import '../../../../theme/app_sizes.dart';
 import '../../../../widgets/image_network_loading.dart';
 
 class ItemSellerWidget extends StatelessWidget {
-  final Seller store;
+  final int index;
+  final sellers;
 
   const ItemSellerWidget({
-    Key? key,
-    required this.store
+    Key? key, required this.index, required this.sellers,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CuaHangController controller = Get.put(CuaHangController());
-    return LayoutBuilder(builder: (context, constraints) {
-      var divide = constraints.maxWidth > 785? 3: 2;
-      return Container(
-        width:  (1/divide).sw - 7.5.w,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-                onTap: () {
-                  if (store != null) Get.toNamed(
-                      Routes.STORE_DETAIL, arguments: { 'store': store});
-                  FocusScope.of(context).unfocus();
-                },
-                child: Container(
-                  height: 120.w,
-                  width:  (1/divide).sw - 7.5.w,
-                  child: ImageNetworkLoading(
-                    image_url: store.avatar_image.toString(),
-                    fit: BoxFit.fill,
-                  ),
-                )
-            ),
-            Container(
-              padding: EdgeInsets.all(5.0),
-              color: Color(0xffEFF1FC),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    CuaHangController chcontroller = Get.put(CuaHangController());
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Obx(()=>GestureDetector(
+            onTap: () {
+              Get.toNamed(
+                  Routes.STORE_DETAIL, arguments: { 'store':sellers[index]});
+              FocusScope.of(context).unfocus();
+            },
+            child: SizedBox(
+              height: 120.h,
+              width:  200,
+              child: ImageNetworkLoading(
+                image_url: sellers[index].avatar_image.toString(),
+                fit: BoxFit.fill,
+              ),
+            )
+        ),),
+        Container(
+          padding: const EdgeInsets.all(5.0),
+          color: const Color(0xffEFF1FC),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.thumb_up_alt_rounded,
-                        color: kTextColor_gray,
-                        size: IconSize.iconSize,
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Text(this.store.likeQty == null ? '0': store.likeQty.toString(), style: TextStyle(fontSize: 13))
-                    ],
+                  Icon(
+                    Icons.thumb_up_alt_rounded,
+                    color: kTextColor_gray,
+                    size: IconSize.iconSize,
                   ),
-                  Row(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.comment,
-                        size: IconSize.iconSize,
-                        color: kTextColor_gray,
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Text(store.commentQty == null ? '0' : store.commentQty.toString(),
-                          style: TextStyle(fontSize: 13))
-                    ],
+                  SizedBox(
+                    width: 2,
                   ),
-                  Row(
-                    children: [
-                      Text(store.rate == null ? '0.0' : store.rate.toString(),
-                          style: TextStyle(fontSize: 15)
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
+                  Obx(()=>Text('${this.sellers[index].likeQty  ?? 0}', style: TextStyle(fontSize: 13)))
+                ],
+              ),
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.comment,
+                    size: IconSize.iconSize,
+                    color: kTextColor_gray,
+                  ),
+                  const SizedBox(
+                    width: 2,
+                  ),
+                 Obx(()=> Text('${sellers[index].commentQty ?? 0}',
+                     style: TextStyle(fontSize: 13)))
+                ],
+              ),
+              Row(
+                children: [
+                  Obx(()=>Text('${this.sellers[index].rate ?? 0.0}',
+                      style: TextStyle(fontSize: 15)
+                  ),),
+                  const SizedBox(
+                    width: 2,
+                  ),
 
-                      Icon(
-                        Icons.star_outlined,
-                        color: kTextColor_gray,
-                        size: 12,
-                      ),
-                    ],
+                  const Icon(
+                    Icons.star_outlined,
+                    color: kTextColor_gray,
+                    size: 12,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 10.0.h,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Obx(()=>
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(
+                        Routes.STORE_DETAIL,
+                        arguments: { 'store': sellers[index]});
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: Text(sellers[index].name ?? '',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 15.sp
+                    ),
                   )
+              ),)
+            ),
+            InkWell(
+              onTap: (){
+                chcontroller.callPhone(sellers[index].phone.toString());
+              },
+              child: Container(
+                padding: const EdgeInsets.all(5.0),
+                child: FaIcon(
+                  FontAwesomeIcons.phoneFlip,
+                  color: kTextColor_gray,
+                  size: IconSize.iconSize,
+                ),
+              ),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 10.0.h,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const FaIcon(
+                    FontAwesomeIcons.mapLocationDot,
+                    color: kTextColor_gray,
+                    size: 15,
+                  ),
+                  SizedBox(
+                    width: 3.0.w,
+                  ),
+                  Expanded(
+                      child: Obx(()=>Text(
+                        '${sellers[index].address ?? 'Chưa có thông tin'}',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 12.sp),
+                      )))
                 ],
               ),
             ),
-            SizedBox(
-              height: 10.0.h,
-            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      if (store != null) Get.toNamed(
-                          Routes.STORE_DETAIL, arguments: { 'store': store});
-                      FocusScope.of(context).unfocus();
-                    },
-                    child: Text(
-                      store.name.toString(),
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 15.sp
-                      ),
-                    ),
-                  ),
+                const FaIcon(
+                  FontAwesomeIcons.locationArrow,
+                  color: kTextColor_gray,
+                  size: 15.0,
                 ),
-                GestureDetector(
-
-                  onTap: (){
-                    controller.callPhone(store.phone.toString());
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(5.0),
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneFlip,
-                      color: kTextColor_gray,
-                      size: IconSize.iconSize,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 10.0.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.mapLocationDot,
-                        color: kTextColor_gray,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 3.0.w,
-                      ),
-                      Expanded(
-                          child: Text(
-                            store.address == null? 'Chưa có thông tin' :
-                            store.address.toString(),
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 12.sp),
-                          ))
-                    ],
-                  ),
+                const SizedBox(
+                  width: 3,
                 ),
-                Row(
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.locationArrow,
-                      color: kTextColor_gray,
-                      size: 15.0,
-                    ),
-                    SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      "${store.distance == null? 0.0: store.distance} km",
-                      style: TextStyle(fontSize: 12.sp),
-                    )
-                  ],
-                ),
+                Obx(()=>Text(
+                  "${sellers[index].distance ?? 0.0} km",
+                  style: TextStyle(fontSize: 12.sp),
+                ))
               ],
             ),
           ],
         ),
-      );
-    });
+      ],
+    );
   }
 }

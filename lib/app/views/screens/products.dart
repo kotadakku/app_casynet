@@ -115,7 +115,8 @@ class ProductsPage extends StatelessWidget {
                       runSpacing: 10.0,
                       children: (state as List).map((e) =>
                         ItemProductWidget(
-                          product: e
+                          products: state,
+                          index: 1,
                         )
                       ).toList()
                     )

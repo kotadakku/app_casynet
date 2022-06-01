@@ -6,158 +6,164 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../../../data/model/product.dart';
 import '../../../../../routes/app_pages.dart';
 import '../../../../theme/app_colors.dart';
 import '../../../../theme/app_sizes.dart';
 import '../reservation_widget.dart';
 
 class ItemProductWidget extends StatelessWidget {
-  Product product;
+  final products;
+  final int index;
 
-  ItemProductWidget({
-    Key? key, required this.product
+  const ItemProductWidget({
+    Key? key, required this.products, required this.index
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      double grid = .5;
-      if(constraints.maxWidth > 500){
-        grid = .333;
-      }
       return GestureDetector(
         onTap: (){
           Get.toNamed(
             Routes.PRODUCT_DETAIL,
-            arguments: { 'product': product },
+            arguments: { 'product': products[index] },
           );
           FocusScope.of(context).unfocus();
 
         },
-        child: Container(
-          width: grid.sw -5.0.w*(1/grid + 1)*grid,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: grid.sw -5.0.w*(1/grid + 1)*grid,
-                width: grid.sw -5.0.w*(1/grid + 1)*grid,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    ImageNetworkLoading(
-                      image_url: product.thumbnail.toString(),
-                      fit: BoxFit.fill
-                    ),
-                    if(product.coinPoint != null) Positioned(
-                        right: 5,
-                        top: 5,
-                        child: ItemAddPoint(color: Colors.red, width: 50, point: product.coinPoint)
-                    ),
-                    if(product.coinPoint != null) Positioned(
-                        top: 5,
-                        left: 5,
-                        child: ItemSale(color: kYellowColor, width: 40, sale: product.coinPoint)
-                    )
-                  ],
-                  // Image.asset("")
-                ),
-              ),
-              SizedBox(height: 10.0.h,),
-              Text(product.name.toString(),
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 10.0.h,),
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: constraints.maxWidth,
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Text('${IntToPrice(product.price??product.officialPrice??0).intToPrice() } đ',
+                  Obx(()=>ImageNetworkLoading(
+                      image_url: products[index].thumbnail.toString(),
+                      fit: BoxFit.fill
+                  ),),
+
+                  Obx(()=> products[index].coinPoint != null
+                      ? Positioned(
+                          right: 5,
+                          top: 5,
+                          child: ItemAddPoint(color: Colors.red, width: 50, point: products[index].coinPoint
+                          )
+                        )
+                      : SizedBox()
+
+                  ),
+
+                  Obx(()=> products[index].coinPoint != null
+                      ? Positioned(
+                          top: 5,
+                          left: 5,
+                          child: ItemSale(color: kYellowColor, width: 40, sale: products[index].coinPoint
+                          )
+                        )
+                      : SizedBox())
+                ],
+                // Image.asset("")
+              ),
+            ),
+            SizedBox(height: 10.0.h,),
+            Obx(()=>Text(products[index].name.toString(),
+              overflow: TextOverflow.ellipsis,
+            ),),
+            SizedBox(height: 10.0.h,),
+            Row(
+              children: [
+                Obx(()=>
+                  Text('${IntToPrice(products[index].price??products[index].officialPrice??0).intToPrice() } đ',
                     style: TextStyle(
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  SizedBox(width: 5.w,),
-                  if(product.price != null)
-                  Text(
-                    '${IntToPrice(product.officialPrice ?? 0).intToPrice()}',
+                ),
+                SizedBox(width: 5.w,),
+                if(products[index].price != null)
+                  Obx(()=>Text(
+                    '${IntToPrice(products[index].officialPrice ?? 0).intToPrice()}',
                     style: TextStyle(
                         fontSize: 13.sp,
                         decoration: TextDecoration.lineThrough
                     ),
+                  ),)
+              ],
+            ),
+            SizedBox(height: 10.0.h,),
+            products[index].seller == null ? Text('Chưa có thông tin') : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(child:
+                Obx(()=>Text( products[index].seller?.name ?? 'Chưa có thông tin',
+                  style: TextStyle(
+                    fontSize: 12,
+
                   ),
-                ],
-              ),
-              SizedBox(height: 10.0.h,),
-              product.seller == null ? Text('Chưa có thông tin') : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(child: Text( product.seller?.name ?? 'Chưa có thông tin',
-                    style: TextStyle(
-                      fontSize: 12,
+                  overflow: TextOverflow.ellipsis,
+                ),)
+                ),
 
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),),
-
-                  Row(
-                    children: [
-                      FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
-                      SizedBox(width: 3,),
-                      Text("${product.seller?.distance ?? 0.0} km",
-                        style: TextStyle(
-                            fontSize: 12.sp
-                        ),
-                      )
-                    ],
-                  ),
-
-                ],
-              ),
-              SizedBox(height: 10.0,),
-              Container(
-                padding: EdgeInsets.all(4),
-                child:Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        FaIcon(FontAwesomeIcons.solidThumbsUp, color: kTextColor_gray, size: IconSize.iconSize,),
-                        SizedBox(width: 2.0,),
-                        Text('${product.likeQty ?? 0}',
-                            style: TextStyle(
-                                fontSize: 15.sp
-                            )
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        FaIcon(FontAwesomeIcons.comment, color: kTextColor_gray, size: IconSize.iconSize,),
-                        SizedBox(width: 2.0,),
-                        Text('${product.commentQty ?? 0}',
-                            style: TextStyle(
-                                fontSize: 15.sp
-                            )
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-
-                        Text('${product.rate ?? 0.0}',
-                          style: TextStyle(
-                              fontSize: 15.sp
-                          ),
-                        ),
-                        SizedBox(width: 2.0,),
-                        Icon(Icons.star_outlined, size: 15, color: kTextColor_gray,),
-                      ],
-                    )
+                    FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
+                    SizedBox(width: 3,),
+                    Obx(()=>Text("${products[index].seller?.distance ?? 0.0} km",
+                      style: TextStyle(
+                          fontSize: 12.sp
+                      ),
+                    ))
                   ],
                 ),
+
+              ],
+            ),
+            SizedBox(height: 10.0,),
+            Padding(
+              padding: const EdgeInsets.all(4),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      FaIcon(FontAwesomeIcons.solidThumbsUp, color: kTextColor_gray, size: IconSize.iconSize,),
+                      SizedBox(width: 2.0,),
+                      Obx(()=>Text('${products[index].likeQty ?? 0}',
+                          style: TextStyle(
+                              fontSize: 15.sp
+                          )
+                      ))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      FaIcon(FontAwesomeIcons.comment, color: kTextColor_gray, size: IconSize.iconSize,),
+                      SizedBox(width: 2.0,),
+                      Obx(()=>Text('${products[index].commentQty ?? 0}',
+                          style: TextStyle(
+                              fontSize: 15.sp
+                          )
+                      ),)
+                    ],
+                  ),
+                  Row(
+                    children: [
+
+                      Obx(()=>Text('${products[index].rate ?? 0.0}',
+                        style: TextStyle(
+                            fontSize: 15.sp
+                        ),
+                      ),),
+                      const SizedBox(width: 2.0,),
+                      const Icon(Icons.star_outlined, size: 15, color: kTextColor_gray,),
+                    ],
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     });
@@ -198,8 +204,6 @@ class ItemAddPoint extends StatelessWidget {
             child: SvgPicture.asset("assets/images/home/rect_sale.svg", height: 5, color: color,
             ),
           ),
-
-
         ],
       ),
     );

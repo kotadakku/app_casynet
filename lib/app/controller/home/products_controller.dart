@@ -84,6 +84,14 @@ class ProductsController extends GetxController with StateMixin{
   void getParameters(){
     category_name = Get.arguments[0].toString();
     category_id = Get.arguments[1];
-    getProductsAPI(first_load: true, category_id: category_id, currentPage: page);
+    if(Get.arguments[2]!= null){
+      change(_productList, status: RxStatus.loading());
+      _productList.addAll(Get.arguments[2]);
+      change(_productList, status: RxStatus.success());
+    }
+    else{
+      getProductsAPI(first_load: true, category_id: category_id, currentPage: page);
+    }
+
   }
 }

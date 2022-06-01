@@ -455,7 +455,11 @@ class IntroStoreWidget extends StatelessWidget {
                             runSpacing: 10.0,
                             children: (state as List)
                                 .map(
-                                  (e) => ItemProductWidget(product: e),
+                                  (e) => ItemProductWidget(
+                                      products: state,
+                                    index:1,
+
+                                  ),
                                 )
                                 .toList(),
                           )),
@@ -504,7 +508,8 @@ class IntroStoreWidget extends StatelessWidget {
                               (e) {
                                 return GestureDetector(
                                   child: ItemProductWidget(
-                                    product: e,
+                                    products: controller.productFeaturedSellerList,
+                                    index: 1,
                                   ),
                                   onTap: () {
                                     Get.toNamed(Routes.PRODUCT_DETAIL);
