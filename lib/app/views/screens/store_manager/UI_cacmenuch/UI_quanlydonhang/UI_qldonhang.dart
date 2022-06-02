@@ -243,9 +243,9 @@ class QuanLyDonHang extends StatelessWidget {
                   return Container(
                     margin: new EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     height: 50,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       child: Text("Xem hêm"),
-                      color: Colors.amber,
+                      style: ElevatedButton.styleFrom(primary: Colors.amber),
                       onPressed: () {
                         xemthem += 5;
                       },
@@ -256,8 +256,8 @@ class QuanLyDonHang extends StatelessWidget {
                   margin: new EdgeInsets.only(bottom: 10),
                   child: Column(
                     children: [
-                      RaisedButton(
-                        color: Colors.white,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.white),
                         child: Column(
                           children: [
                             Container(

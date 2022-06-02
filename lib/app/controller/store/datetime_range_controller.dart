@@ -27,7 +27,7 @@ class DateTimeRangeController extends GetxController {
         lastDate: DateTime(DateTime.now().year + 20),
         initialDateRange: dateRange.value,
         builder: (context, child) {
-          return Theme(data: ThemeData.fallback(), child: child!)
+          return Theme(data: ThemeData.fallback(), child: child!);
         } ,
     );
 

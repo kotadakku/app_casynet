@@ -134,9 +134,6 @@ class StoreHomeMore extends StatelessWidget {
                   children:[
                     Column(
                       children: [
-
-
-
                         controllerLoadMore.isCar == true
                             ? _sellerController.obx(
                                 (state) => Container(

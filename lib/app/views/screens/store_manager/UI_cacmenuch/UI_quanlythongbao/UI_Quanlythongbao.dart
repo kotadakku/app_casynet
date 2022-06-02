@@ -23,8 +23,8 @@ class QuanLyThongBao extends StatelessWidget {
               height: 40,
               width: 80,
               margin: new EdgeInsets.only(left: 10),
-              child: RaisedButton(
-                color: Colors.amber,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.amber),
                 child: Text("Thêm +"),
                 onPressed: () {
                   Get.toNamed(Routes.STORE_MANAGER_ADD_NOTI);

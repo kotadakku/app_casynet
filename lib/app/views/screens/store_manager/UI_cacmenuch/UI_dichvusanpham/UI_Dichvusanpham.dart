@@ -64,8 +64,9 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
               height: 40,
               width: 80,
               margin: new EdgeInsets.only(left: 10),
-              child: RaisedButton(
-                color: Colors.amber,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.amber),
+                // color: Colors.amber,
                 child: Text("Thêm +"),
                 onPressed: () {
                   getdms.getdanhmuctid.value = [];

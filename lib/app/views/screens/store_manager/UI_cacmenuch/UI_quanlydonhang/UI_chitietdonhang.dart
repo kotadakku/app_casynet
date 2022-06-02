@@ -44,8 +44,8 @@ class ChiTietDonHang extends StatelessWidget {
                       ),
                       Container(
                         margin: new EdgeInsets.only(top: 20),
-                        child: RaisedButton(
-                          color: Colors.amber,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.amber),
                           child: Text(
                             "Ok",
                             style: TextStyle(color: Colors.white),
@@ -421,8 +421,8 @@ class ChiTietDonHang extends StatelessWidget {
                     Expanded(
                       child: Container(
                         margin: new EdgeInsets.only(right: 5, left: 10),
-                        child: RaisedButton(
-                          color: Colors.white,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.white),
                           child: Text("Hủy đơn hàng"),
                           onPressed: () {
                             Showpopuphuydon();
@@ -433,8 +433,8 @@ class ChiTietDonHang extends StatelessWidget {
                     Expanded(
                       child: Container(
                         margin: new EdgeInsets.only(right: 10, left: 5),
-                        child: RaisedButton(
-                          color: Colors.amber,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.amber),
                           child: Text("Xác nhận"),
                           onPressed: () {},
                         ),

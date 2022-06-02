@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../load_more_data/seller_loadmore_controller.dart';
 
-class StoresMoreController extends GetxController {
+class   StoresMoreController extends GetxController {
   var isCar = true.obs;
 
   // SellerController controller = Get.find();

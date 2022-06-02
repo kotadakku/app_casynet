@@ -1,4 +1,3 @@
-
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,38 +41,41 @@ class MenuCuahang extends StatelessWidget {
                     Image.network(
                         "https://xemaynghean.com/wp-content/uploads/2019/03/50272791_137653880484230_7970165378053570560_n-1024x554.jpg"),
                     Positioned(
-                      width:  MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width,
                       bottom: 40,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.amber,
-                                border: Border.all(color: Colors.white,width: 2,),
-                            ),
-                            width: 100,
-                            height: 100,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: ExactAssetImage(
-                                        "assets/images/Icon/icon_xemay.png"),
-                                  ),
-                                ),
-                                width: 80,
-                                height: 80,
-                              ),
-                            ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.amber,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 2,
                           ),
                         ),
+                        width: 100,
+                        height: 100,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: ExactAssetImage(
+                                    "assets/images/Icon/icon_xemay.png"),
+                              ),
+                            ),
+                            width: 80,
+                            height: 80,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,8 +106,8 @@ class MenuCuahang extends StatelessWidget {
               ),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -133,8 +135,8 @@ class MenuCuahang extends StatelessWidget {
               ),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -159,8 +161,8 @@ class MenuCuahang extends StatelessWidget {
               ),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -187,8 +189,8 @@ class MenuCuahang extends StatelessWidget {
               ),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -216,8 +218,8 @@ class MenuCuahang extends StatelessWidget {
               ),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -245,8 +247,8 @@ class MenuCuahang extends StatelessWidget {
               ),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -273,8 +275,8 @@ class MenuCuahang extends StatelessWidget {
               Container(
                 margin: new EdgeInsets.only(top: 20),
                 height: 50,
-                child: RaisedButton(
-                  color: Colors.amber,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Text(
                     "Đi đến cửa hàng",
                     style: TextStyle(fontSize: 20),

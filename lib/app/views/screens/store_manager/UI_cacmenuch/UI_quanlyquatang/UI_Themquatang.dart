@@ -69,7 +69,7 @@ class ThemQuaTang extends StatelessWidget {
                           return Row(
                             children: [
                               Stack(
-                                overflow: Overflow.visible,
+                                clipBehavior: Clip.none,
                                 children: [
                                   Container(
                                     margin: EdgeInsets.only(
@@ -426,8 +426,8 @@ class ThemQuaTang extends StatelessWidget {
                   Expanded(
                     child: Container(
                       margin: new EdgeInsets.only(right: 5, left: 10),
-                      child: RaisedButton(
-                        color: Colors.white,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.white),
                         child: Text("Trở lại"),
                         onPressed: () {
 
@@ -438,8 +438,8 @@ class ThemQuaTang extends StatelessWidget {
                   Expanded(
                     child: Container(
                       margin: new EdgeInsets.only(right: 10, left: 5),
-                      child: RaisedButton(
-                        color: Colors.amber,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.amber),
                         child: Text("Lưu quà tặng"),
                         onPressed: () {},
                       ),

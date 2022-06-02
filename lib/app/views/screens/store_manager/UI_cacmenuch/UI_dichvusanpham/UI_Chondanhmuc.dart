@@ -102,7 +102,7 @@ class _chondanhmucState extends State<chondanhmuc> {
                           },
                         ),
                         Container(
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             child: Text(
                                 "Lưu " + getdms.dem.toString() + " (Tùy chọn)"),
                             onPressed: () {

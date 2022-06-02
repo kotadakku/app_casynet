@@ -36,6 +36,7 @@ import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../bindings/products_bindings.dart';
 import '../bindings/stores_bindings.dart';
+import '../data/model/seller.dart';
 import '../views/screens/account/account_base.dart';
 import '../views/screens/account/address/edit_address.dart';
 import '../views/screens/account/address/information_address.dart';
@@ -89,7 +90,7 @@ class AppPages {
 
     GetPage(
       name: Routes.FILTER_MAP,
-      page:()=> FilterProductMap()
+      page:()=> FilterProductMap(),
     ),
     GetPage(
       name: Routes.AUTH,
