@@ -31,7 +31,7 @@ class FavouriteProductPage extends StatelessWidget {
           ),
           Divider(
             thickness: 10,
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
           ),
 
           Expanded(
@@ -87,14 +87,14 @@ class FavouriteProductPage extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: kTextColor_gray
+                                                color: AppColors.textGrayBoldColor
                                             ),
                                           )
                                       ),
                                       Text("1.290.000 đ",
                                         style: TextStyle(
                                             decoration: TextDecoration.lineThrough,
-                                            color: kTextColor_gray,
+                                            color: AppColors.textGrayBoldColor,
                                             fontSize: 12
                                         ),
                                       )
@@ -105,15 +105,15 @@ class FavouriteProductPage extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                                          Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
+                                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                                          Icon(Icons.star_half_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
                                           SizedBox(width: 10.w),
                                           Text("Mã: 235345345",
                                             style: TextStyle(
-                                                color: kTextColor_gray,
+                                                color: AppColors.textGrayBoldColor,
                                                 fontSize: 12
                                             ),
                                           )
@@ -125,14 +125,14 @@ class FavouriteProductPage extends StatelessWidget {
                                             margin: EdgeInsets.all(5.0),
                                             child: FaIcon(
                                                 FontAwesomeIcons.trash,
-                                                color: kTextColor_gray,
+                                                color: AppColors.textGrayBoldColor,
                                                 size: 12
                                             ),
                                           ),
                                           Text(
                                             "Xóa",
                                             style: TextStyle(
-                                                color: kTextColor_gray,
+                                                color: AppColors.textGrayBoldColor,
                                                 fontSize: 12
                                             ),
                                           )

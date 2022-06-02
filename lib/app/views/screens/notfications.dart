@@ -90,7 +90,7 @@ class NotificationPage extends StatelessWidget {
                                 child: Container(
                                   color:
                                       controller.notificationList[index].isSeen
-                                          ? AppColors.kBackgroundColor
+                                          ? AppColors.backgroundColor
                                           : Colors.blue,
                                   margin: EdgeInsets.only(top: 5.0.h),
                                   padding: EdgeInsets.symmetric(vertical: 10.h),

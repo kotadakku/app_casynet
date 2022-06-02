@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,10 +8,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/home/api/recommend_controller.dart';
-import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
-import '../../../theme/textTheme.dart';
+import '../../../theme/app_style.dart';
 import '../../../widgets/shimmer/seller_shimmer.dart';
 import 'items/product_item.dart';
 
@@ -18,9 +18,9 @@ class RecommendWidget extends StatelessWidget {
 
   RecommendWidget({Key? key}) : super(key: key);
   RecommendController _recommendController = Get.find();
+  HomeController _homeController = Get.find();
   @override
   Widget build(BuildContext context) {
-    RadioController controller = Get.find();
     return Material(
       elevation: 3,
       child: Container(
@@ -50,7 +50,7 @@ class RecommendWidget extends StatelessWidget {
                         SizedBox(width: 15,),
                         Text(
                             'recommend'.tr.toUpperCase(),
-                            style: AppTextTheme.titleProduct
+                            style: AppStyle.texttitleProduct
                         )
                       ],
                     ),
@@ -88,18 +88,18 @@ class RecommendWidget extends StatelessWidget {
                       children: [
                         Radio(
                             value: true,
-                            groupValue: controller.isCarRecommend.value,
+                            groupValue: _homeController.isCarRecommend.value,
                             onChanged: (value){
-                              controller.updateIsCarRecommend();
+                              _homeController.updateIsCarRecommend();
                             },
                             activeColor: Color(0xffDFB400)),
                         Text("Ô tô"),
                         SizedBox(width: 20,),
                         Radio(
                             value: false,
-                            groupValue: controller.isCarRecommend.value,
+                            groupValue: _homeController.isCarRecommend.value,
                             onChanged: (value){
-                              controller.updateIsCarRecommend();
+                              _homeController.updateIsCarRecommend();
                             },
                             activeColor: Color(0xffDFB400)
                         ),
@@ -156,7 +156,7 @@ class RecommendWidget extends StatelessWidget {
                     _recommendController.error == '' ? SizedBox() :
                     Positioned.fill(
                         child: Container(
-                          color: AppColors.kBackgroundColor.withOpacity(0.5),
+                          color: AppColors.backgroundColor.withOpacity(0.5),
                           padding: EdgeInsets.only(top: 100),
                           child: Column(
                             children: [
@@ -191,7 +191,7 @@ class RecommendWidget extends StatelessWidget {
                       Positioned.fill(
                         child: Container(
                           padding: EdgeInsets.only(top: 100),
-                          color: AppColors.kBackgroundColor.withOpacity(0.5),
+                          color: AppColors.backgroundColor.withOpacity(0.5),
                           child: Center(
                             child: CircularProgressIndicator(),
                           )

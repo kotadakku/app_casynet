@@ -22,7 +22,7 @@ class WalletVoucherPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              color: kBackgroundColor,
+              color: AppColors.backgroundColor,
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
               child: Row(
                 children: [
@@ -38,9 +38,9 @@ class WalletVoucherPage extends StatelessWidget {
                       height: 35,
                       margin: EdgeInsets.all(5.0),
                       child: TextField(
-                        cursorColor: kTextColor,
+                        cursorColor: AppColors.textGrayColor,
                         style: TextStyle(
-                          color: kTextColor,
+                          color: AppColors.textGrayColor,
                           fontSize: 14
                         ),
                         decoration: InputDecoration(
@@ -48,15 +48,15 @@ class WalletVoucherPage extends StatelessWidget {
                             fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(width: 1.0, color: kTextColor),
+                              borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(width: 1.0, color: kYellowColor),
+                              borderSide: BorderSide(width: 1.0, color: AppColors.yellowColor),
                             ),
                             contentPadding: EdgeInsets.all(5.0),
                             hintText: "Thêm mã giảm giá",
-                            hintStyle: TextStyle(color: kTextColor)
+                            hintStyle: TextStyle(color: AppColors.textGrayColor)
                         ),
                       ),
                     )
@@ -67,7 +67,7 @@ class WalletVoucherPage extends StatelessWidget {
                       onPressed: () {},
                       child: Text("Lưu"),
                       style: ElevatedButton.styleFrom(
-                          primary: kYellowColor, elevation: 0),
+                          primary: AppColors.yellowColor, elevation: 0),
                     ),
                   )
 
@@ -79,9 +79,9 @@ class WalletVoucherPage extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.white),
               child: TabBar(
                   controller: _tabx.controller,
-                  indicatorColor: kYellowColor,
-                  unselectedLabelColor: kTextColor,
-                  labelColor: kYellowColor,
+                  indicatorColor: AppColors.yellowColor,
+                  unselectedLabelColor: AppColors.textGrayColor,
+                  labelColor: AppColors.yellowColor,
                   tabs: _tabx.listTab
                       .map((e) => Tab(
                     child: Text(
@@ -102,7 +102,7 @@ class WalletVoucherPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             border: Border.all(
-                                width: 1, color: kTextColor.withOpacity(0.5)
+                                width: 1, color: AppColors.textGrayColor.withOpacity(0.5)
                             )
                           ),
                           child: IntrinsicHeight(
@@ -179,7 +179,7 @@ class WalletVoucherPage extends StatelessWidget {
                                     children: [
                                       Container(
                                         padding: EdgeInsets.all(2.0),
-                                        decoration: BoxDecoration(color: kYellowColor),
+                                        decoration: BoxDecoration(color: AppColors.yellowColor),
                                         child: Text(
                                           "AirPay- Tối đa 70k  ",
                                           style: TextStyle(color: Colors.white),
@@ -190,10 +190,10 @@ class WalletVoucherPage extends StatelessWidget {
                                         padding: EdgeInsets.all(3.0),
                                         decoration: BoxDecoration(
                                             border: Border.all(
-                                                width: 1, color: kYellowColor)),
+                                                width: 1, color: AppColors.yellowColor)),
                                         child: Text(
                                           "AirPay- Tối đa 70k  ",
-                                          style: TextStyle(color: kYellowColor),
+                                          style: TextStyle(color: AppColors.yellowColor),
                                         ),
                                       ),
                                       Row(
@@ -208,7 +208,7 @@ class WalletVoucherPage extends StatelessWidget {
                                           Text(
                                             "Điều kiện",
                                             style: TextStyle(
-                                                fontSize: 12, color: kTextLink),
+                                                fontSize: 12, color: AppColors.textLink),
                                           ),
                                           SizedBox(width: 10.w,),
                                         ],
@@ -234,7 +234,7 @@ class WalletVoucherPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 border: Border.all(
-                                    width: 1, color: kTextColor.withOpacity(0.5))),
+                                    width: 1, color: AppColors.textGrayColor.withOpacity(0.5))),
                             child: Row(
                               children: [
                                 Container(
@@ -307,7 +307,7 @@ class WalletVoucherPage extends StatelessWidget {
                                   children: [
                                     Container(
                                       padding: EdgeInsets.all(2.0),
-                                      decoration: BoxDecoration(color: kYellowColor),
+                                      decoration: BoxDecoration(color: AppColors.yellowColor),
                                       child: Text(
                                         "AirPay- Tối đa 70k  ",
                                         style: TextStyle(color: Colors.white,
@@ -320,10 +320,10 @@ class WalletVoucherPage extends StatelessWidget {
                                       padding: EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           border: Border.all(
-                                              width: 1, color: kYellowColor)),
+                                              width: 1, color: AppColors.yellowColor)),
                                       child: Text(
                                         "AirPay- Tối đa 70k  ",
-                                        style: TextStyle(color: kYellowColor),
+                                        style: TextStyle(color: AppColors.yellowColor),
                                       ),
                                     ),
                                     Row(
@@ -340,7 +340,7 @@ class WalletVoucherPage extends StatelessWidget {
                                         Text(
                                           "Điều kiện",
                                           style: TextStyle(
-                                              fontSize: 12, color: kTextLink),
+                                              fontSize: 12, color: AppColors.textLink),
                                         )
                                       ],
                                     )
@@ -357,7 +357,7 @@ class WalletVoucherPage extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.5),
                                 borderRadius: BorderRadius.circular(10.0),
                                 border: Border.all(
-                                    width: 1, color: kTextColor.withOpacity(0.5)
+                                    width: 1, color: AppColors.textGrayColor.withOpacity(0.5)
                                 )
                               ),
                             )

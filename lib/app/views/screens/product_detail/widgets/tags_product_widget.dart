@@ -1,6 +1,6 @@
 
 import 'package:app_casynet/app/controller/cart/api/product_cart_controller.dart';
-import 'package:app_casynet/app/controller/detail_product_controller.dart';
+import 'package:app_casynet/app/controller/product_detail/detail_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,7 +30,7 @@ class TagsProductWidget extends StatelessWidget {
         ),
         Divider(
           height: 20,
-          color: kTextColor,
+          color: AppColors.textGrayColor,
         ),
         if(controller.product.value.tags != null)
         Container(
@@ -49,7 +49,7 @@ class TagsProductWidget extends StatelessWidget {
                         ],
                       ),
                       style: OutlinedButton.styleFrom(
-                          primary: kTextColor,
+                          primary: AppColors.textGrayColor,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                       ), onPressed: () {  },
                     ),

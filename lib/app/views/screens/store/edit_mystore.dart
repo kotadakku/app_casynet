@@ -2,7 +2,6 @@
 import 'package:app_casynet/app/views/screens/store/short_description.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
@@ -204,15 +203,20 @@ class EditMyStore extends StatelessWidget {
                             height: 50.0,
                             child: InkWell(
                               splashColor: Color.fromARGB(255, 188, 195, 216),
-                              onTap: () {
-                                DatePicker.showTimePicker(context,
-                                    showTitleActions: true,
-                                    onConfirm: (s) {
-                                      open_hours.value =
-                                          DateFormat('HH:mm').format(s).toString();
-                                    },
-                                    currentTime: DateTime.now(),
-                                    locale: LocaleType.vi);
+                              onTap: () async {
+                                TimeOfDay? value = await showTimePicker(
+                                  context: context,
+                                  builder: (context, childWidget) {
+                                    return MediaQuery(
+                                        data: MediaQuery.of(context).copyWith(
+                                          // Using 24-Hour format
+                                            alwaysUse24HourFormat: true),
+                                        // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+                                        child: childWidget!);
+                                  },
+                                  initialTime: TimeOfDay.now(),
+                                );
+                                open_hours.value = '${value?.hour}:${value?.minute}';
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -256,19 +260,20 @@ class EditMyStore extends StatelessWidget {
                             child: InkWell(
                               splashColor: Color.fromARGB(255, 188, 195, 216),
                               // splashColor: Colors.blue,
-                              onTap: () {
-                                DatePicker.showTimePicker(context,
-                                    showTitleActions: true,
-                                    // onChanged: (s) {
-                                    //   close_hours.value = DateFormat('HH-mm').format(s).toString();
-                                    //   print(open_hours);
-                                    // },
-                                    onConfirm: (s) {
-                                      close_hours.value =
-                                          DateFormat('HH:mm').format(s).toString();
-                                    },
-                                    currentTime: DateTime.now(),
-                                    locale: LocaleType.vi);
+                              onTap: () async {
+                                TimeOfDay? value = await showTimePicker(
+                                  context: context,
+                                  builder: (context, childWidget) {
+                                    return MediaQuery(
+                                        data: MediaQuery.of(context).copyWith(
+                                          // Using 24-Hour format
+                                            alwaysUse24HourFormat: true),
+                                        // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+                                        child: childWidget!);
+                                  },
+                                  initialTime: TimeOfDay.now(),
+                                );
+                                close_hours.value = '${value?.hour}:${value?.minute}';
                               },
 
                               child: Row(

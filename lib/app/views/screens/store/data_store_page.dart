@@ -10,7 +10,7 @@ class DataStorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: Text("Dữ liệu"),
       ),
@@ -27,9 +27,9 @@ class DataStorePage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.add, color: kYellowColor,),
+                          Icon(Icons.add, color: AppColors.yellowColor,),
                           Text("100", style: TextStyle(
-                              color: kYellowColor,
+                              color: AppColors.yellowColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold
                           ),)
@@ -37,7 +37,7 @@ class DataStorePage extends StatelessWidget {
                       ),
                       Text("Sản phẩm",
                         style: TextStyle(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             fontSize: 18
                         ),
                       )
@@ -48,9 +48,9 @@ class DataStorePage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.add, color: kYellowColor,),
+                          Icon(Icons.add, color: AppColors.yellowColor,),
                           Text("145", style: TextStyle(
-                              color: kYellowColor,
+                              color: AppColors.yellowColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold
                           ),)
@@ -58,7 +58,7 @@ class DataStorePage extends StatelessWidget {
                       ),
                       Text("Giao dịch",
                         style: TextStyle(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             fontSize: 18
                         ),
                       )
@@ -69,9 +69,9 @@ class DataStorePage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.add, color: kYellowColor,),
+                          Icon(Icons.add, color: AppColors.yellowColor,),
                           Text("75%", style: TextStyle(
-                              color: kYellowColor,
+                              color: AppColors.yellowColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold
                           ),)
@@ -79,7 +79,7 @@ class DataStorePage extends StatelessWidget {
                       ),
                       Text("Tỷ lệ phản hồi",
                         style: TextStyle(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             fontSize: 18
                         ),
                       )

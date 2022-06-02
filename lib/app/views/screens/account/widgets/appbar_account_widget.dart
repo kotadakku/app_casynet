@@ -36,14 +36,14 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
         height: 40,
         child:  TextField(
           textAlignVertical: TextAlignVertical.center,
-          cursorColor: kYellowColor,
+          cursorColor: AppColors.yellowColor,
           readOnly: true,
           onTap: (){
             Get.toNamed(Routes.SEARCH);
           },
           style: TextStyle(
               fontSize: 15,
-              color: kTextColor_gray
+              color: AppColors.textGrayBoldColor
           ),
           decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 5.0.h),
@@ -51,7 +51,7 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
                   borderRadius: BorderRadius.circular(5.0)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: kYellowColor),
+                borderSide: BorderSide(color: AppColors.yellowColor),
                 borderRadius: BorderRadius.circular(5.0),
               ),
               hintStyle: const TextStyle(
@@ -63,7 +63,7 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
                   child: Row(
                     children: [
                       // Icon vị trí
-                      Icon(Icons.search, color: kYellowColor,),
+                      Icon(Icons.search, color: AppColors.yellowColor,),
                       VerticalDivider(
                         width: 10,
                         thickness: 1,
@@ -107,7 +107,7 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
                       const Text(
                         "Hà Nội",
                         style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                             fontSize: 13
                         ),
                       ),
@@ -140,7 +140,7 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
                   style: TextButton.styleFrom(
                       primary: Colors.white,
                       side: BorderSide(
-                        color: AppColors.borderGray_0_5,
+                        color: AppColors.textGrayColor,
 
                       )
                   ),

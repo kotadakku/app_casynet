@@ -19,7 +19,7 @@ class MessageAccount_1 extends StatelessWidget {
                       decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                               offset: const Offset(
                                 0.0,
                                 13.0,

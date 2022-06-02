@@ -35,7 +35,7 @@ class SearchRate extends StatelessWidget {
                       // suffixIcon: Icon(Icons.navigate_next),
 
                       hintText: 'Nhập tên sản phẩm',
-                      hintStyle: TextStyle(color: kTextColor),
+                      hintStyle: TextStyle(color: AppColors.textGrayColor),
                     ),
                   ),
                 ),
@@ -67,7 +67,7 @@ class SearchRate extends StatelessWidget {
                       // suffixIcon: Icon(Icons.navigate_next),
 
                       hintText: 'Nhập tên đăng nhập',
-                      hintStyle: TextStyle(color: kTextColor),
+                      hintStyle: TextStyle(color: AppColors.textGrayColor),
                     ),
                   ),
                 ),
@@ -99,7 +99,7 @@ class SearchRate extends StatelessWidget {
                       // suffixIcon: Icon(Icons.navigate_next),
 
                       hintText: 'Nhập tên phân loại hàng',
-                      hintStyle: TextStyle(color: kTextColor),
+                      hintStyle: TextStyle(color: AppColors.textGrayColor),
                     ),
                   ),
                 ),
@@ -134,8 +134,8 @@ class SearchRate extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: const [
-                            Text("Thiết lập",style: TextStyle(color: kTextColor),),
-                            Icon(Icons.navigate_next,color: kTextColor,),
+                            Text("Thiết lập",style: TextStyle(color: AppColors.textGrayColor),),
+                            Icon(Icons.navigate_next,color: AppColors.textGrayColor,),
                           ],
                         ))
                   ],

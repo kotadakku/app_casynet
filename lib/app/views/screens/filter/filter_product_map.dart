@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../controller/filter_map_controller.dart';
-import '../../../controller/map_controller.dart';
+import '../../../controller/filter/filter_map_controller.dart';
+import '../../../controller/filter/map_controller.dart';
 import '../account/widgets/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
@@ -123,13 +123,13 @@ class FilterProductMap extends StatelessWidget {
                     ),),
                     subtitle: Text("165 Vũ Phạm Hàm, Yên Hòa, Cầu Giấy...",
                       style: TextStyle(
-                          color: kTextColor_gray,
+                          color: AppColors.textGrayBoldColor,
                           fontSize: 12
                       ),
                     ),
                     trailing: Text("Sửa",
                       style: TextStyle(
-                          color: kTextLink
+                          color: AppColors.textLink
                       ),
                     ),
                   ),

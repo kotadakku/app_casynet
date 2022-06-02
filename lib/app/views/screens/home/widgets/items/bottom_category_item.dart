@@ -29,7 +29,7 @@ class CategoryItemBottom extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5.0),
-                border: Border.all(width: 1, color: kYellowColor)),
+                border: Border.all(width: 1, color: AppColors.yellowColor)),
             child: Column(
               children: [
                 Row(
@@ -55,7 +55,7 @@ class CategoryItemBottom extends StatelessWidget {
                     FittedBox(
                       child: Text(
                         name,
-                        style: TextStyle(color: kTextColor_gray, fontSize: 12),
+                        style: TextStyle(color: AppColors.textGrayBoldColor, fontSize: 12),
                       ),
                     )
                   ],

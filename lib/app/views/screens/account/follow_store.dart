@@ -30,7 +30,7 @@ class FollowedStorePage extends StatelessWidget {
           ),
           Divider(
             thickness: 10.h,
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
           ),
           ListView.separated(
             scrollDirection: Axis.vertical,
@@ -65,7 +65,7 @@ class FollowedStorePage extends StatelessWidget {
                               Text("số 2 Phố Trần Hữu Dực, Mỹ Đình, Từ Liêm, Hà Nội",
                                 style: TextStyle(
                                     fontSize: 12,
-                                    color: kTextColor_gray
+                                    color: AppColors.textGrayBoldColor
                                 ),
                               ),
                               Container(
@@ -79,15 +79,15 @@ class FollowedStorePage extends StatelessWidget {
                                       },
                                       style: OutlinedButton.styleFrom(
                                         side: BorderSide(
-                                          color: kTextColor,
+                                          color: AppColors.textGrayColor,
                                         ),
-                                        primary: kYellowColor,
+                                        primary: AppColors.yellowColor,
                                       ),
                                       child: Row(
                                         children: [
                                           Container(
                                             margin: EdgeInsets.all(2.0),
-                                            child: Icon(Icons.add, color: kTextColor,),
+                                            child: Icon(Icons.add, color: AppColors.textGrayColor,),
                                           ),
                                           Text("Vào cửa hàng",
                                             style: TextStyle(

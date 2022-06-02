@@ -27,7 +27,7 @@ class SearchSreen extends StatelessWidget {
           autofocus: true,
           style: TextStyle(
             fontSize: 15.sp,
-            color: AppColors.textGrayBoldColor,
+            color: AppColors.textGrayColor,
           ),
           decoration: InputDecoration(
             border: OutlineInputBorder(

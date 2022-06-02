@@ -12,7 +12,7 @@ class CategoryBottomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: kBackgroundColor,
+        color: AppColors.backgroundColor,
         padding: EdgeInsets.symmetric(vertical: 10),
         child: Align(
           alignment: Alignment.center,

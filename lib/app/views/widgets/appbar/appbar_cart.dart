@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/account/new_address_controller.dart';
-import '../../../controller/bottom_nav_controller.dart';
 import '../../../controller/home/home_controller.dart';
 import '../../../controller/home/search_controller.dart';
 import '../../../routes/app_pages.dart';
@@ -32,7 +31,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: (){
-          Get.put(BottomNavController()).tabIndex.value = 0;
+          Get.put(HomeController()).tabIndex.value = 0;
           Get.offNamed(Routes.HOME);
         },
         child: Container(
@@ -53,13 +52,13 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
           },
 
           textAlignVertical: TextAlignVertical.center,
-          cursorColor: kTextColor,
+          cursorColor: AppColors.textGrayColor,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.all(5.0.w),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: BorderSide(
-                      color: AppColors.borderGray_0_5
+                      color: AppColors.textGrayColor
                   )
 
               ),
@@ -69,7 +68,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: BorderSide(
-                      color: kYellowColor
+                      color: AppColors.yellowColor
                   )
 
               ),
@@ -96,7 +95,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                         thickness: 1,
                         indent: 5,
                         endIndent: 5,
-                        color: AppColors.borderGray_0_5,
+                        color: AppColors.textGrayColor,
                       ),
                       SizedBox(width: 2.0.w,),
                       SvgPicture.asset(
@@ -106,7 +105,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                       Obx(()=> Text(
                         searchController.location.value,
                         style: TextStyle(
-                          color: kTextColor,
+                          color: AppColors.textGrayColor,
                           fontSize: 13,
                         ),
                       ),),
@@ -187,7 +186,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                 offset: Offset(30, 30),
                 child: Icon(
                   Icons.more_horiz,
-                  color: kTextColor,
+                  color: AppColors.textGrayColor,
                 ),
                 onSelected: (value) {
                   switch(value){
@@ -203,7 +202,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                       children: [
                         Container(
                           child: Icon(Icons.home_outlined,
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                           ),
                           padding: EdgeInsets.only(
                               bottom: 15,
@@ -217,11 +216,11 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                               children: [
                                 Text("Trang chủ",
                                   style: TextStyle(
-                                      color: kTextColor
+                                      color: AppColors.textGrayColor
                                   ),
                                 ),
                                 Divider(
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                   height: 20,
                                   thickness: 1,
                                 ),
@@ -237,7 +236,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                       children: [
                         Container(
                           child: Icon(Icons.production_quantity_limits,
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                           ),
                           padding: EdgeInsets.only(
                               bottom: 15, right: 10),
@@ -250,11 +249,11 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                                 Text(
                                   "Sản phẩm đã xem",
                                   style: TextStyle(
-                                      color: kTextColor
+                                      color: AppColors.textGrayColor
                                   ),
                                 ),
                                 Divider(
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                   height: 20,
                                   thickness: 1,
                                 ),
@@ -270,7 +269,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                       children: [
                         Container(
                           child: Icon(Icons.account_circle_outlined,
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                           ),
                           padding: EdgeInsets.only(
                               bottom: 15,
@@ -283,11 +282,11 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                               children: [
                                 Text("Tài khoản",
                                   style: TextStyle(
-                                      color: kTextColor
+                                      color: AppColors.textGrayColor
                                   ),
                                 ),
                                 Divider(
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                   height: 20,
                                   thickness: 1,
                                 ),
@@ -304,7 +303,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                         Container(
                           child: Icon(
                             Icons.help_outline,
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                           ),
                           padding: EdgeInsets.only(
                               bottom: 15, right: 10),
@@ -318,10 +317,10 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                               children: [
                                 Text(
                                   "Trợ giúp",
-                                  style: TextStyle(color: kTextColor),
+                                  style: TextStyle(color: AppColors.textGrayColor),
                                 ),
                                 Divider(
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                   height: 20,
                                   thickness: 1,
                                 ),

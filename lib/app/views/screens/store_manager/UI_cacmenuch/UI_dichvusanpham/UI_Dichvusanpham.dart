@@ -1,12 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+
 import '../../../../../routes/app_pages.dart';
-import '../../widgets/Appbar.dart';
-import '../../UI_cuahang.dart';
 import 'UI_ThemSPDV.dart';
 
 class DichVuSanPham extends StatefulWidget {

@@ -6,7 +6,7 @@ import '../model/user.dart';
 import '../provider/api/api_provider.dart';
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';
-import '../model/responses.dart';
+import '../provider/api/responses.dart';
 import '../provider/api/exceptions.dart';
 
 class AccountRepo{

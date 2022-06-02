@@ -48,11 +48,11 @@ class SignInWidget extends StatelessWidget {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kTextColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
@@ -64,7 +64,7 @@ class SignInWidget extends StatelessWidget {
                           hintText: 'Email/SDT',
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                            child: Icon(Icons.perm_identity, color: kYellowColor,),
+                            child: Icon(Icons.perm_identity, color: AppColors.yellowColor,),
                           ),
                         )
                     ),
@@ -87,11 +87,11 @@ class SignInWidget extends StatelessWidget {
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
-                          borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                          borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
-                          borderSide: BorderSide(color: kTextColor, width: 2.0),
+                          borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                         ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0)
@@ -101,13 +101,13 @@ class SignInWidget extends StatelessWidget {
                         ),
                         hintText: 'Mật khẩu',
                         suffixIcon: GestureDetector(
-                          child: authController.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
-                          Icon(Icons.visibility_outlined, color: kYellowColor,), onTap: (){
+                          child: authController.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: AppColors.textGrayColor,):
+                          Icon(Icons.visibility_outlined, color: AppColors.yellowColor,), onTap: (){
                           authController.changeObscurePassword(!authController.isObscurePassword.value);
                         },),
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Icon(Icons.lock, color: kYellowColor,),
+                          child: Icon(Icons.lock, color: AppColors.yellowColor,),
                         ),
                       )
                       ),
@@ -131,7 +131,7 @@ class SignInWidget extends StatelessWidget {
 
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: kYellowColor,
+                          primary: AppColors.yellowColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50.0),
                           )

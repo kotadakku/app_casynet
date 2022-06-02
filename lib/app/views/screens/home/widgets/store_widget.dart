@@ -1,4 +1,5 @@
-import 'package:app_casynet/app/views/theme/textTheme.dart';
+import 'package:app_casynet/app/controller/home/home_controller.dart';
+import 'package:app_casynet/app/views/theme/app_style.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:app_casynet/app/views/widgets/shimmer/seller_shimmer.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/home/api/seller_controller.dart';
-import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import 'items/seller_item.dart';
@@ -16,10 +16,10 @@ import 'items/seller_item.dart';
 class StoreWidget extends StatelessWidget {
   StoreWidget({Key? key}) : super(key: key);
   SellerController _sellerController = Get.find();
+  HomeController _homeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    RadioController controller = Get.find();
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -44,7 +44,7 @@ class StoreWidget extends StatelessWidget {
                     ),
                     Text(
                       'store'.tr.toUpperCase(),
-                      style: AppTextTheme.titleProduct,
+                      style: AppStyle.texttitleProduct,
                     )
                   ],
                 ),
@@ -85,9 +85,9 @@ class StoreWidget extends StatelessWidget {
                     children: [
                       Radio(
                           value: true,
-                          groupValue: controller.isCarStore.value,
+                          groupValue: _homeController.isCarStore.value,
                           onChanged: (value) {
-                            controller.updateIsCarStore();
+                            _homeController.updateIsCarStore();
                             _sellerController.getSellersAPI(
                                 pageSize: 12,
                                 curPage: 1,
@@ -101,9 +101,9 @@ class StoreWidget extends StatelessWidget {
                       ),
                       Radio(
                           value: false,
-                          groupValue: controller.isCarStore.value,
+                          groupValue: _homeController.isCarStore.value,
                           onChanged: (value) {
-                            controller.updateIsCarStore();
+                            _homeController.updateIsCarStore();
                             _sellerController.getSellersAPI(
                                 pageSize: 12,
                                 curPage: 1,
@@ -170,7 +170,7 @@ class StoreWidget extends StatelessWidget {
                     SizedBox()
                         : Positioned.fill(
                         child: Container(
-                          color: AppColors.kBackgroundColor.withOpacity(0.5),
+                          color: AppColors.backgroundColor.withOpacity(0.5),
                           padding: EdgeInsets.only(top: 100),
                           child: Column(
                             children: [

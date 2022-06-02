@@ -47,9 +47,9 @@ class OrderAccountPage extends StatelessWidget{
               ),
               child: TabBar(
                   controller: _tabx.controller,
-                  indicatorColor: kYellowColor,
-                  unselectedLabelColor: kTextColor,
-                  labelColor: kYellowColor,
+                  indicatorColor: AppColors.yellowColor,
+                  unselectedLabelColor: AppColors.textGrayColor,
+                  labelColor: AppColors.yellowColor,
                   tabs: _tabx.listTabs.map((e) => Tab(
                     child: Text(e,
                       style: TextStyle(

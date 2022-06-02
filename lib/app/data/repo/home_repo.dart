@@ -8,7 +8,7 @@ import '../../config/api_config.dart';
 import '../../config/api_params.dart';
 import '../model/category.dart';
 import '../model/product.dart';
-import '../model/responses.dart';
+import '../provider/api/responses.dart';
 import '../model/seller.dart';
 import '../model/user.dart';
 import '../provider/api/api_provider.dart';

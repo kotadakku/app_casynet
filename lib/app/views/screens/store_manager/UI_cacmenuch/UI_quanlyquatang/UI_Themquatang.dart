@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ThemQuaTang extends StatelessWidget {
@@ -69,6 +68,7 @@ class ThemQuaTang extends StatelessWidget {
                           return Row(
                             children: [
                               Stack(
+
                                 overflow: Overflow.visible,
                                 children: [
                                   Container(
@@ -252,20 +252,18 @@ class ThemQuaTang extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(left: 10),
                           child: Obx(
-                            () => FlutterSwitch(
-                              width: 60.0,
+                            () => Switch.adaptive(
                               value: statusht.value,
-                              padding: 8.0,
-                              onToggle: (val) {
-                                statusht.value = !statusht.value;
-                                if (statusht.value == true) {
-                                  textht.value = "Có";
-                                  colorht.value = Colors.green;
-                                } else {
-                                  textht.value = "Không";
-                                  colorht.value = Colors.grey;
-                                }
-                              },
+                               onChanged: (bool value) {
+                              statusht.value = !statusht.value;
+                              if (statusht.value == true) {
+                                textht.value = "Có";
+                                colorht.value = Colors.green;
+                              } else {
+                                textht.value = "Không";
+                                colorht.value = Colors.grey;
+                              }
+                            },
                             ),
                           ),
                         ),
@@ -383,18 +381,17 @@ class ThemQuaTang extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(left: 10),
                           child: Obx(
-                            () => FlutterSwitch(
-                              width: 60.0,
+                            () => Switch.adaptive(
+
                               value: statusgmkh.value,
-                              padding: 8.0,
-                              onToggle: (val) {
-                                statusgmkh.value = !statusgmkh.value;
-                                if (statusgmkh.value == true) {
-                                  textgmkh.value = "Có";
-                                } else {
-                                  textgmkh.value = "Không";
-                                }
-                              },
+                              onChanged: (bool value) {
+                              statusgmkh.value = !statusgmkh.value;
+                              if (statusgmkh.value == true) {
+                                textgmkh.value = "Có";
+                              } else {
+                                textgmkh.value = "Không";
+                              }
+                            },
                             ),
                           ),
                         ),

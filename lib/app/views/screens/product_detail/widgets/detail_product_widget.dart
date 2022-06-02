@@ -1,5 +1,5 @@
 
-import 'package:app_casynet/app/controller/detail_product_controller.dart';
+import 'package:app_casynet/app/controller/product_detail/detail_product_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -18,7 +18,7 @@ class DetailProductWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Divider(color: kTextColor,),
+        Divider(color: AppColors.textGrayColor,),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Text("Chi tiết sản phẩm", style: TextStyle(
@@ -26,7 +26,7 @@ class DetailProductWidget extends StatelessWidget {
             fontSize: 16,
           ),),
         ),
-        Divider(color: kTextColor,),
+        Divider(color: AppColors.textGrayColor,),
         // Container(
         //   padding: EdgeInsets.symmetric(horizontal: 10),
         //   height: 80,
@@ -75,11 +75,11 @@ class DetailProductWidget extends StatelessWidget {
             children: [
               Text(isReadMore.value ? "Ẩn bớt" : "Xem thêm",
                 style: TextStyle(
-                    color: kYellowColor
+                    color: AppColors.yellowColor
                 ),
 
               ),
-              Icon(isReadMore.value ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down, color: kYellowColor, size: sizeIcon.width,)
+              Icon(isReadMore.value ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down, color: AppColors.yellowColor, size: AppSize.iconSize,)
             ],
           ),
         ),

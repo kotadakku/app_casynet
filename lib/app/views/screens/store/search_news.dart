@@ -97,7 +97,7 @@ class SearchNews extends StatelessWidget {
               child: TextField(
                 decoration: const InputDecoration(
                   hintText: "Nhập thông tin cần tìm",
-                  hintStyle: TextStyle(color: kTextColor),
+                  hintStyle: TextStyle(color: AppColors.textGrayColor),
                   counterText: "",
                   border: InputBorder.none,
 

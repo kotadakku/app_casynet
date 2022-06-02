@@ -2,7 +2,7 @@ import 'package:app_casynet/app/data/model/product.dart';
 import 'package:dio/dio.dart';
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';
-import '../model/responses.dart';
+import '../provider/api/responses.dart';
 import '../provider/api/api_provider.dart';
 import '../provider/api/exceptions.dart';
 

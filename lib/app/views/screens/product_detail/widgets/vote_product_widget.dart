@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/detail_product_controller.dart';
+import '../../../../controller/product_detail/detail_product_controller.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 
@@ -24,7 +24,7 @@ class VoteProductWidget extends StatelessWidget {
               fontWeight: FontWeight.bold
           ),),
         ),
-        Divider(color: kTextColor,),
+        Divider(color: AppColors.textGrayColor,),
         Padding(padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: IntrinsicHeight(child:Row(
             children: [
@@ -50,11 +50,11 @@ class VoteProductWidget extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                              Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                              Icon(Icons.star_half_outlined , size: sizeIcon.width, color: kYellowColor,),
+                              Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                              Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                              Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                              Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                              Icon(Icons.star_half_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
                             ],
                           ),
                         ],
@@ -79,19 +79,19 @@ class VoteProductWidget extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
                             child: LinearProgressIndicator(
 
                               value: 0.8,
-                              color: kYellowColor,
-                              backgroundColor: kTextColor,
+                              color: AppColors.yellowColor,
+                              backgroundColor: AppColors.textGrayColor,
                             ),
                           ),
                           Expanded(
@@ -102,18 +102,18 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.2,
-                              color: kYellowColor,
-                              backgroundColor: kTextColor,
+                              color: AppColors.yellowColor,
+                              backgroundColor: AppColors.textGrayColor,
 
                             ),
                           ),
@@ -125,18 +125,18 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.5,
-                              color: kYellowColor,
-                              backgroundColor: kTextColor,
+                              color: AppColors.yellowColor,
+                              backgroundColor: AppColors.textGrayColor,
                             ),),
                           Expanded(
                             flex: 2,
@@ -146,18 +146,18 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.4,
-                              color: kYellowColor,
-                              backgroundColor: kTextColor,
+                              color: AppColors.yellowColor,
+                              backgroundColor: AppColors.textGrayColor,
                             ),),
                           Expanded(
                             flex: 2,
@@ -167,18 +167,18 @@ class VoteProductWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star_outlined , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
-                          Icon(Icons.star_outline , size: sizeIcon.width, color: kYellowColor,),
+                          Icon(Icons.star_outlined , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
+                          Icon(Icons.star_outline , size: AppSize.iconSize, color: AppColors.yellowColor,),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
                             child: LinearProgressIndicator(
                               value: 0.4,
-                              color: kYellowColor,
-                              backgroundColor: kTextColor,
+                              color: AppColors.yellowColor,
+                              backgroundColor: AppColors.textGrayColor,
                             ),
                           ),
 

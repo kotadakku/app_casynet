@@ -134,7 +134,7 @@ class MenuAccountWidget extends StatelessWidget {
                   child: FaIcon(
                     icon,
                     size: 20,
-                    color: kTextColor_gray,
+                    color: AppColors.textGrayBoldColor,
                   )),
               Expanded(
                 child: Row(
@@ -142,14 +142,14 @@ class MenuAccountWidget extends StatelessWidget {
                   children: [
                     Text(
                       e,
-                      style: TextStyle(color: kTextColor_gray),
+                      style: TextStyle(color: AppColors.textGrayBoldColor),
                     ),
                     Container(
                       width: 50,
                       height: 50,
                       child: Icon(
                         Icons.arrow_forward_ios,
-                        color: kTextColor_gray,
+                        color: AppColors.textGrayBoldColor,
                         size: 12,
                       ),
                     ),
@@ -173,7 +173,7 @@ class MenuAccountWidget extends StatelessWidget {
           itemCount: _menus.length,
           separatorBuilder: (context, index) {
             return Divider(
-              color: kTextColor,
+              color: AppColors.textGrayColor,
               height: 0,
               indent: 50,
               thickness: 0.2,

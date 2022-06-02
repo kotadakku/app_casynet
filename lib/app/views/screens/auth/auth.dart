@@ -27,7 +27,7 @@ class AuthPage extends StatelessWidget {
                     Container(
                       height: 180,
                       width: double.infinity,
-                      color: kYellowColor,
+                      color: AppColors.yellowColor,
                       child: Stack(
                         children: [
                           Positioned(
@@ -54,19 +54,19 @@ class AuthPage extends StatelessWidget {
                       ),
                       child: TabBar(
                         controller: authController.controller,
-                        indicatorColor: kYellowColor,
+                        indicatorColor: AppColors.yellowColor,
                         tabs: [
                           Tab(
                             child: Text("Đăng nhập",
                               style: TextStyle(
-                                  color: kYellowColor
+                                  color: AppColors.yellowColor
                               ),
                             ),
                           ),
                           Tab(
                             child: Text("Đăng ký",
                               style: TextStyle(
-                                  color: kYellowColor
+                                  color: AppColors.yellowColor
                               ),
                             ),
                           ),

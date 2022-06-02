@@ -54,12 +54,12 @@ class AddNotication extends StatelessWidget {
                 child: TextField(
                   decoration: const InputDecoration(
                       hintText: "Nhập tên tên chương trình khuyến mãi",
-                      hintStyle: TextStyle(color: kTextColor),
+                      hintStyle: TextStyle(color: AppColors.textGrayColor),
                       counterText: "",
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.edit_outlined,
-                        color: kTextColor,
+                        color: AppColors.textGrayColor,
                       )),
                   maxLength: 120,
                   maxLines: 2,
@@ -93,12 +93,12 @@ class AddNotication extends StatelessWidget {
                 child: TextField(
                   decoration: const InputDecoration(
                     hintText: "Nhập mô tả sản phẩm",
-                    hintStyle: TextStyle(color: kTextColor),
+                    hintStyle: TextStyle(color: AppColors.textGrayColor),
                     counterText: "",
                     border: InputBorder.none,
                     suffixIcon: Icon(
                       Icons.edit_outlined,
-                      color: kTextColor,
+                      color: AppColors.textGrayColor,
                     ),
                   ),
                   maxLength: 400,
@@ -157,11 +157,11 @@ class AddNotication extends StatelessWidget {
                           Text(
                             "Lựa chọn",
                             /*controller.chonDanhmuc.toString(),*/
-                            style: TextStyle(color: kTextColor),
+                            style: TextStyle(color: AppColors.textGrayColor),
                           ),
                           const Icon(
                             Icons.navigate_next,
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                           ),
                         ],
                       ))

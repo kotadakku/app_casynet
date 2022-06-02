@@ -52,7 +52,7 @@ class OrderDetailCancel extends StatelessWidget {
                           Text("Đơn hàng đã đặt"),
                           Text("01:08 12-02-2020",
                             style: TextStyle(
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                                 fontSize: 12
                             ),
                           )
@@ -63,7 +63,7 @@ class OrderDetailCancel extends StatelessWidget {
                           Text("Đơn hàng đã bị hủy"),
                           Text("11:08 12-02-2020",
                             style: TextStyle(
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                                 fontSize: 12
                             ),
                           )
@@ -73,7 +73,7 @@ class OrderDetailCancel extends StatelessWidget {
                     ],
                   ),),
                   Container(
-                    color: kYellowColor.withOpacity(0.1),
+                    color: AppColors.yellowColor.withOpacity(0.1),
                     margin: EdgeInsets.all(10),
                     padding: EdgeInsets.all(10),
                     child: Row(
@@ -87,14 +87,14 @@ class OrderDetailCancel extends StatelessWidget {
                             onPressed: (){},
                             child: Text("Mua lần nữa"),
                             style: ElevatedButton.styleFrom(
-                                primary: kYellowColor
+                                primary: AppColors.yellowColor
                             ),
                           ),
                         )
 
                       ],
                     ),),
-                  Container(color: kBackgroundColor, height: 10,),
+                  Container(color: AppColors.backgroundColor, height: 10,),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     child: Text("Địa chỉ nhận hàng",
@@ -120,7 +120,7 @@ class OrderDetailCancel extends StatelessWidget {
                               ),
                               Text("Sửa",
                                 style: TextStyle(
-                                    color: kTextLink,
+                                    color: AppColors.textLink,
                                     decoration: TextDecoration.underline
                                 ),
                               )
@@ -129,14 +129,14 @@ class OrderDetailCancel extends StatelessWidget {
                           SizedBox(height: 5.0,),
                           Text("097474553",
                             style: TextStyle(
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                                 fontSize: 12
                             ),
                           ),
                           SizedBox(height: 5.0,),
                           Text("Số 6/86 phùng khoang trung Văn Nam Từ Liêm, Hà Nội",
                             style: TextStyle(
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                                 fontSize: 12
                             ),
                           )
@@ -151,7 +151,7 @@ class OrderDetailCancel extends StatelessWidget {
                       children: [
                         Text("Không có thông tin vận chuyển",
                           style: TextStyle(
-                              color: kTextColor
+                              color: AppColors.textGrayColor
                           ),
                         ),
                         Text("Người bán tự vẫn chuyển")
@@ -159,7 +159,7 @@ class OrderDetailCancel extends StatelessWidget {
                     ),
                   ),
                   Divider(
-                    color: kBackgroundColor,
+                    color: AppColors.backgroundColor,
                     height: 20,
                     thickness: 10,
                   ),

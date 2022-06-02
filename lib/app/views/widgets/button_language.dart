@@ -49,7 +49,7 @@ class _ButtonLanguageState extends State<ButtonLanguage> {
           style: TextButton.styleFrom(
               primary: Colors.white,
               side: BorderSide(
-                color: AppColors.borderGray_0_5,
+                color: AppColors.textGrayColor,
 
               )
           ),

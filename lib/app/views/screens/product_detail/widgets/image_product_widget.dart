@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-import '../../../../controller/detail_product_controller.dart';
+import '../../../../controller/product_detail/detail_product_controller.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 
@@ -53,7 +53,7 @@ class ImageProductWidget extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.favorite_border, color: Colors.red, size: sizeIcon.width,),
+                              Icon(Icons.favorite_border, color: Colors.red, size: AppSize.iconSize,),
                               SizedBox(width: 5,),
                               Text("Yêu thích",
                                 style: TextStyle(
@@ -78,11 +78,11 @@ class ImageProductWidget extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.share, color: kTextColor, size: sizeIcon.width,),
+                              Icon(Icons.share, color: AppColors.textGrayColor, size: AppSize.iconSize,),
                               SizedBox(width: 5,),
                               Text("Chia sẻ",
                                 style: TextStyle(
-                                    color: kTextColor
+                                    color: AppColors.textGrayColor
                                 ),
                               )
                             ],

@@ -21,7 +21,7 @@ class ContactPage extends StatelessWidget {
                 SizedBox(height: 15),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  color: kBackgroundColor,
+                  color: AppColors.backgroundColor,
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Text("Liên hệ",
                     style: TextStyle(
@@ -37,11 +37,11 @@ class ContactPage extends StatelessWidget {
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         prefixIcon: Icon(Icons.perm_identity),
                         suffixIcon: Container(
@@ -56,7 +56,7 @@ class ContactPage extends StatelessWidget {
                         ),
                         hintText: "Họ và tên",
                         hintStyle: TextStyle(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             fontSize: 14
                         )
                     ),
@@ -69,11 +69,11 @@ class ContactPage extends StatelessWidget {
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         prefixIcon: Icon(Icons.email_outlined),
                         suffixIcon: Container(
@@ -88,7 +88,7 @@ class ContactPage extends StatelessWidget {
                         ),
                         hintText: "Email",
                         hintStyle: TextStyle(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             fontSize: 14
                         )
                     ),
@@ -101,11 +101,11 @@ class ContactPage extends StatelessWidget {
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         prefixIcon: Icon(Icons.call_outlined),
                         suffixIcon: Container(
@@ -120,7 +120,7 @@ class ContactPage extends StatelessWidget {
                         ),
                         hintText: "Số điện thoại",
                         hintStyle: TextStyle(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             fontSize: 14
                         )
                     ),
@@ -134,11 +134,11 @@ class ContactPage extends StatelessWidget {
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            borderSide: BorderSide(width: 1.0, color: kTextColor)
+                            borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor)
                         ),
                         prefixIcon: Container(
                           padding: EdgeInsets.all(20.0),
@@ -158,7 +158,7 @@ class ContactPage extends StatelessWidget {
                         ),
                         hintText: "Nội dung",
                         hintStyle: TextStyle(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             fontSize: 14
                         )
                     ),
@@ -171,7 +171,7 @@ class ContactPage extends StatelessWidget {
                     onPressed: (){},
                     child: Text("Gửi"),
                     style: ElevatedButton.styleFrom(
-                        primary: kYellowColor,
+                        primary: AppColors.yellowColor,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0)
                         )

@@ -29,14 +29,14 @@ class ChatProductWidget extends StatelessWidget {
               ),),
               Text("${chats.length} hỏi đáp",
               style: TextStyle(
-                  color: kTextColor
+                  color: AppColors.textGrayColor
               ),)
             ],
           ),
         ),
         Divider(
           height: 10,
-          color: kTextColor,
+          color: AppColors.textGrayColor,
         ),
 
         Obx(()=>ListView.builder(
@@ -63,9 +63,9 @@ class ChatProductWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Obx(()=>Text(isReadMore.value ? "Ẩn bớt" : "Xem tất cả", style: TextStyle(
-                color: kYellowColor,
+                color: AppColors.yellowColor,
               ),)),
-              Obx(()=>Icon(isReadMore.value ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded, color: kYellowColor,))
+              Obx(()=>Icon(isReadMore.value ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded, color: AppColors.yellowColor,))
             ],
           ),
         ),
@@ -129,7 +129,7 @@ class CardChatItem extends StatelessWidget {
                       ),
                       Text(time,
                         style: TextStyle(
-                            color: kTextColor
+                            color: AppColors.textGrayColor
                         ),
 
                       )

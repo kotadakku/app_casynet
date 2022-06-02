@@ -59,7 +59,7 @@ class ItemProductWidget extends StatelessWidget {
                       ? Positioned(
                           top: 5,
                           left: 5,
-                          child: ItemSale(color: kYellowColor, width: 40, sale: products[index].coinPoint
+                          child: ItemSale(color: AppColors.yellowColor, width: 40, sale: products[index].coinPoint
                           )
                         )
                       : SizedBox())
@@ -108,7 +108,7 @@ class ItemProductWidget extends StatelessWidget {
 
                 Row(
                   children: [
-                    FaIcon(FontAwesomeIcons.locationArrow, color: kTextColor_gray, size: 15,),
+                    FaIcon(FontAwesomeIcons.locationArrow, color: AppColors.textGrayBoldColor, size: 15,),
                     SizedBox(width: 3,),
                     Obx(()=>Text("${products[index].seller?.distance ?? 0.0} km",
                       style: TextStyle(
@@ -128,7 +128,7 @@ class ItemProductWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      FaIcon(FontAwesomeIcons.solidThumbsUp, color: kTextColor_gray, size: IconSize.iconSize,),
+                      FaIcon(FontAwesomeIcons.solidThumbsUp, color: AppColors.textGrayBoldColor, size: AppSize.iconSize,),
                       SizedBox(width: 2.0,),
                       Obx(()=>Text('${products[index].likeQty ?? 0}',
                           style: TextStyle(
@@ -139,7 +139,7 @@ class ItemProductWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      FaIcon(FontAwesomeIcons.comment, color: kTextColor_gray, size: IconSize.iconSize,),
+                      FaIcon(FontAwesomeIcons.comment, color: AppColors.textGrayBoldColor, size: AppSize.iconSize,),
                       SizedBox(width: 2.0,),
                       Obx(()=>Text('${products[index].commentQty ?? 0}',
                           style: TextStyle(
@@ -157,7 +157,7 @@ class ItemProductWidget extends StatelessWidget {
                         ),
                       ),),
                       const SizedBox(width: 2.0,),
-                      const Icon(Icons.star_outlined, size: 15, color: kTextColor_gray,),
+                      const Icon(Icons.star_outlined, size: 15, color: AppColors.textGrayBoldColor,),
                     ],
                   )
                 ],

@@ -2,7 +2,7 @@ import 'package:app_casynet/app/config/api_params.dart';
 import 'package:app_casynet/app/data/model/checkout/payment_method.dart';
 import 'package:app_casynet/app/data/model/checkout/shipping_method.dart';
 import 'package:app_casynet/app/data/model/product_cart.dart';
-import 'package:app_casynet/app/data/model/responses.dart';
+import 'package:app_casynet/app/data/provider/api/responses.dart';
 import 'package:app_casynet/app/data/provider/api/api_provider.dart';
 import 'package:dio/dio.dart';
 

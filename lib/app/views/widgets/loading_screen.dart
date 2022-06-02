@@ -11,7 +11,7 @@ class LoadingScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
           child: SpinKitThreeBounce(
-            color: kYellowColor,
+            color: AppColors.yellowColor,
           )
       ),
     );

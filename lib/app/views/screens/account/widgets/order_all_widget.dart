@@ -25,11 +25,11 @@ class OrderAllWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: kTextLink
+                      color: AppColors.textLink
                   ),
                 ),
                 SizedBox(width: 20.w,),
-                Icon(Icons.message_outlined, color: kYellowColor,)
+                Icon(Icons.message_outlined, color: AppColors.yellowColor,)
               ],
             )
         ),
@@ -68,14 +68,14 @@ class OrderAllWidget extends StatelessWidget {
                   children: [
                     Text("Phân loại hàng: ngocbich",
                       style: TextStyle(
-                          color: kTextColor,
+                          color: AppColors.textGrayColor,
                           fontSize: 12
                       ),
                     ),
                     Text("1.290.000 đ",
                       style: TextStyle(
                           decoration: TextDecoration.lineThrough,
-                          color: kTextColor,
+                          color: AppColors.textGrayColor,
                           fontSize: 12
                       ),
                     )
@@ -83,7 +83,7 @@ class OrderAllWidget extends StatelessWidget {
                 ),
                 Text("x1",
                   style: TextStyle(
-                      color: kTextColor,
+                      color: AppColors.textGrayColor,
                       fontSize: 12
                   ),)
               ],
@@ -100,7 +100,7 @@ class OrderAllWidget extends StatelessWidget {
             children: [
               Text("Không nhận được được đánh giá",
                 style: TextStyle(
-                  color: kTextColor,
+                  color: AppColors.textGrayColor,
                   fontSize: 12,
                 ),
               ),
@@ -112,13 +112,13 @@ class OrderAllWidget extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                    primary: kYellowColor
+                    primary: AppColors.yellowColor
                 ),
               )
             ],
           ),
         ),
-        Container(height: 10, color: kBackgroundColor,)
+        Container(height: 10, color: AppColors.backgroundColor,)
 
 
       ],

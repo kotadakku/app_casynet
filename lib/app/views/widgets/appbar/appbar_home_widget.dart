@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/account/new_address_controller.dart';
-import '../../../controller/bottom_nav_controller.dart';
+import '../../../controller/home/home_controller.dart';
 import '../../../controller/home/search_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
@@ -28,7 +28,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: (){
-          Get.put(BottomNavController()).tabIndex.value = 0;
+          Get.put(HomeController()).tabIndex.value = 0;
           Get.offNamed(Routes.HOME);
         },
         child: Container(
@@ -49,13 +49,13 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
           },
 
           textAlignVertical: TextAlignVertical.center,
-          cursorColor: kTextColor,
+          cursorColor: AppColors.textGrayColor,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.all(5.0.w),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: BorderSide(
-                      color: AppColors.borderGray_0_5
+                      color: AppColors.textGrayColor
                   )
 
               ),
@@ -65,7 +65,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: BorderSide(
-                      color: kYellowColor
+                      color: AppColors.yellowColor
                   )
 
               ),
@@ -92,7 +92,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
                         thickness: 1,
                         indent: 5,
                         endIndent: 5,
-                        color: AppColors.borderGray_0_5,
+                        color: AppColors.textGrayColor,
                       ),
                       SizedBox(width: 2.0.w,),
                       SvgPicture.asset(
@@ -102,7 +102,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
                       Obx(()=> Text(
                         searchController.location.value,
                         style: TextStyle(
-                          color: kTextColor,
+                          color: AppColors.textGrayColor,
                           fontSize: 13,
                         ),
                       ),),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/filter_product_controller.dart';
+import '../../../../controller/filter/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 
 class OriginProductWidget extends StatelessWidget {
@@ -65,20 +65,20 @@ class OriginProductWidget extends StatelessWidget {
                                 children: [
                                   Text(e,
                                     style: TextStyle(
-                                        color: isContain ? Colors.white : kTextColor
+                                        color: isContain ? Colors.white : AppColors.textGrayColor
                                     ),
                                   )
                                 ],
                               ),
                               style: ElevatedButton.styleFrom(
                                   elevation: 0,
-                                  primary: isContain ? kYellowColor: Colors.white,
+                                  primary: isContain ? AppColors.yellowColor: Colors.white,
                                   shape: RoundedRectangleBorder(
 
                                     borderRadius: BorderRadius.circular(30.0),
                                     side: BorderSide(
                                         width: 1,
-                                        color: controller.isContain(e) ? kYellowColor: kTextColor
+                                        color: controller.isContain(e) ? AppColors.yellowColor: AppColors.textGrayColor
                                     ),
                                   )
                               ), onPressed: () {

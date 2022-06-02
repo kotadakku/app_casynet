@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app_casynet/app/views/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'app/bindings/main_bindings.dart';
-import 'app/controller/bottom_nav_controller.dart';
+import 'app/controller/home/home_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/utlis/languages/localization_service.dart';
 import 'app/views/screens/Cart/cart.dart';
 import 'app/views/screens/account/account_base.dart';
-import 'app/views/screens/detail_app.dart';
+import 'app/views/screens/app_detail/detail_app.dart';
 import 'app/views/screens/home/home.dart';
 import 'app/views/screens/notfications.dart';
 import 'app/views/screens/splash/splash_1.dart';
@@ -56,34 +57,7 @@ class MyApp extends StatelessWidget {
       builder: (context) => OverlaySupport(
           child: GetMaterialApp(
             title: 'Flutter Demo',
-            theme: ThemeData(
-                primarySwatch: Colors.blue,
-                appBarTheme: AppBarTheme(
-                  color: Colors.white,
-                  systemOverlayStyle: SystemUiOverlayStyle(
-                    statusBarBrightness: Brightness.dark,
-                  ),
-                  titleTextStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.bold
-                  ),
-                  iconTheme: IconThemeData(
-                    color: Colors.black,
-                  ),
-                  elevation: 1,
-                  centerTitle: true,
-                  shadowColor: kTextColor,
-
-                ),
-                inputDecorationTheme: InputDecorationTheme(
-                  errorStyle: TextStyle(
-                    color: kYellowColor,
-                  ),
-                )
-              // textTheme:
-
-            ),
+            theme: AppTheme.appTheme,
             builder: (context, widget) {
               Get.put<ScaffoldMessengerState>(ScaffoldMessenger.of(context));
               // ScreenUtil.setContext(context);
@@ -109,7 +83,7 @@ class MyApp extends StatelessWidget {
 
 
 class Home extends StatelessWidget {
-  var c = Get.put(BottomNavController());
+  final HomeController _homeController = Get.put(HomeController());
   Home({Key? key}) : super(key: key);
 
   @override
@@ -122,7 +96,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigator(),
         body:Obx(()=>IndexedStack(
-          index: c.tabIndex.value,
+          index: _homeController.tabIndex.value,
           children: [
             HomePage(),
             NotificationPage(),
@@ -137,14 +111,14 @@ class Home extends StatelessWidget {
   }
   Future<bool> _onWillPop(BuildContext context) async {
     late bool? exitResult;
-    if(Get.put(BottomNavController()).tabIndex.value == 0){
+    if(_homeController.tabIndex.value == 0){
       exitResult = await showDialog(
         context: context,
         builder: (context) => _buildExitDialog(context),
       );
     }
     else {
-      Get.put(BottomNavController()).tabIndex.value = 0;
+      _homeController.tabIndex.value = 0;
       exitResult =  false;
     }
 

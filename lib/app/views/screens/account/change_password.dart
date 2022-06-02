@@ -41,7 +41,7 @@ class ChangePasswordAccount extends StatelessWidget {
                 Expanded(
                     child: Text("Mật khẩu mới",
                       style: TextStyle(
-                          color: kTextColor_gray
+                          color: AppColors.textGrayBoldColor
                       ),
                     )
                 ),
@@ -53,8 +53,8 @@ class ChangePasswordAccount extends StatelessWidget {
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               suffixIcon: GestureDetector(
-                                child: c.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
-                                Icon(Icons.visibility_outlined, color: kYellowColor,),
+                                child: c.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: AppColors.textGrayColor,):
+                                Icon(Icons.visibility_outlined, color: AppColors.yellowColor,),
                                 onTap: (){
                                   c.changeObscurePassword(!c.isObscurePassword.value);
                                 },
@@ -62,7 +62,7 @@ class ChangePasswordAccount extends StatelessWidget {
 
                               hintText: "Nhập mật khẩu",
                               hintStyle: TextStyle(
-                                  color: kTextColor
+                                  color: AppColors.textGrayColor
                               )
                           ),
                         )
@@ -78,7 +78,7 @@ class ChangePasswordAccount extends StatelessWidget {
                 Expanded(
                   child: Text("Xác nhận mật khẩu",
                     style: TextStyle(
-                        color: kTextColor_gray
+                        color: AppColors.textGrayBoldColor
                     ),
                   ),
                 ),
@@ -90,13 +90,13 @@ class ChangePasswordAccount extends StatelessWidget {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             suffixIcon: GestureDetector(
-                              child: c.isObscureConfirmPassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
-                              Icon(Icons.visibility_outlined, color: kYellowColor,), onTap: (){
+                              child: c.isObscureConfirmPassword.value ? Icon(Icons.visibility_off_outlined, color: AppColors.textGrayColor,):
+                              Icon(Icons.visibility_outlined, color: AppColors.yellowColor,), onTap: (){
                               c.changeObscureConfirmPassword(!c.isObscureConfirmPassword.value);
                             },),
                             hintText: "Xác nhận mật khẩu",
                             hintStyle: TextStyle(
-                                color: kTextColor
+                                color: AppColors.textGrayColor
                             ),
                           ),
                         )
@@ -112,7 +112,7 @@ class ChangePasswordAccount extends StatelessWidget {
                 Expanded(
                   child: Text("Mã xác minh",
                     style: TextStyle(
-                        color: kTextColor_gray
+                        color: AppColors.textGrayBoldColor
                     ),
                   ),
                 ),
@@ -122,7 +122,7 @@ class ChangePasswordAccount extends StatelessWidget {
                       border: InputBorder.none,
                       hintText: "Nhập mã xác minh",
                       hintStyle: TextStyle(
-                          color: kTextColor
+                          color: AppColors.textGrayColor
                       )
                   ),
 
@@ -138,12 +138,12 @@ class ChangePasswordAccount extends StatelessWidget {
               child: OutlinedButton(
                   onPressed: (){},
                   style: OutlinedButton.styleFrom(
-                    primary: kYellowColor,
-                    side: BorderSide(color: kYellowColor),
+                    primary: AppColors.yellowColor,
+                    side: BorderSide(color: AppColors.yellowColor),
                   ),
                   child: Text("Gửi mã xác minh",
                     style: TextStyle(
-                        color: kYellowColor
+                        color: AppColors.yellowColor
                     ),
                   )
 
@@ -154,7 +154,7 @@ class ChangePasswordAccount extends StatelessWidget {
                 padding: EdgeInsets.only(right: 10.w, top: 10.h, bottom: 10.h),
                 child: Text("Mã xác minh được gửi vào số điện thoại của bạn",
                   style: TextStyle(
-                      color: kTextColor
+                      color: AppColors.textGrayColor
                   ),
                 )
             ),
@@ -167,7 +167,7 @@ class ChangePasswordAccount extends StatelessWidget {
                 },
                 child: Text("Lưu mật khẩu"),
                 style: ElevatedButton.styleFrom(
-                    primary: kYellowColor
+                    primary: AppColors.yellowColor
                 ),
               ),
             )

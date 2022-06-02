@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../controller/filter_product_controller.dart';
+import '../../../../controller/filter/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 
 
@@ -42,7 +42,7 @@ class DistrictProductWidget extends StatelessWidget {
                         ],
                       ),
                       style: OutlinedButton.styleFrom(
-                          primary: kYellowColor,
+                          primary: AppColors.yellowColor,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                       ), onPressed: () {  },
                     ),
@@ -78,14 +78,14 @@ class DistrictProductWidget extends StatelessWidget {
                            child: OutlinedButton(
                              child: Text(e,
                                style: TextStyle(
-                                 color: isContains ? Colors.white : kTextColor,
+                                 color: isContains ? Colors.white : AppColors.textGrayColor,
                                ),
                              ),
                              style: ElevatedButton.styleFrom(
-                                 primary: isContains ? kYellowColor : Colors.white,
-                                 onPrimary: isContains ? kYellowColor : Colors.white,
+                                 primary: isContains ? AppColors.yellowColor : Colors.white,
+                                 onPrimary: isContains ? AppColors.yellowColor : Colors.white,
                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                                 side: BorderSide(color: isContains ? kYellowColor : kTextColor, width: 1),
+                                 side: BorderSide(color: isContains ? AppColors.yellowColor : AppColors.textGrayColor, width: 1),
                                  elevation: 0
                              ), onPressed: () {
                              controller..change_list(e);

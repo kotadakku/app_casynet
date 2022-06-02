@@ -80,7 +80,7 @@ class BannerHomeWidget extends StatelessWidget {
               //           },
               //           itemBuilder: (context, index){
               //             return Container(
-              //               color: AppColors.kBackgroundColor,
+              //               color: AppColors.backgroundColor,
               //               child: Html(
               //                 data: _fetchBannerController.bannerSliderList[index].htmlTag,
               //                 style: {

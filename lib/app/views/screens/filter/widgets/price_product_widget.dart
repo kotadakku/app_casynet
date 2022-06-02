@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/filter_product_controller.dart';
+import '../../../../controller/filter/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 
 class PriceProductWidget extends StatelessWidget {
@@ -57,16 +57,16 @@ class PriceProductWidget extends StatelessWidget {
                               ElevatedButton(
                                 child: Text("Giá cao",
                                   style: TextStyle(
-                                      color: is_high_price ? Colors.white: kTextColor
+                                      color: is_high_price ? Colors.white: AppColors.textGrayColor
                                   ),
                                 ),
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    primary: is_high_price ? kYellowColor: Colors.white,
+                                    primary: is_high_price ? AppColors.yellowColor: Colors.white,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),
                                         side: BorderSide(
                                             width: 1,
-                                            color: is_high_price ? kYellowColor: kTextColor
+                                            color: is_high_price ? AppColors.yellowColor: AppColors.textGrayColor
                                         )
                                     )
                                 ), onPressed: () {
@@ -78,16 +78,16 @@ class PriceProductWidget extends StatelessWidget {
                                 child: Text(
                                   "Giá thấp",
                                   style: TextStyle(
-                                      color: !is_high_price ? Colors.white: kTextColor
+                                      color: !is_high_price ? Colors.white: AppColors.textGrayColor
                                   ),
                                 ),
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    primary: is_high_price ? Colors.white : kYellowColor,
+                                    primary: is_high_price ? Colors.white : AppColors.yellowColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                                     side: BorderSide(
                                         width: 1,
-                                        color: !is_high_price ? kYellowColor: kTextColor
+                                        color: !is_high_price ? AppColors.yellowColor: AppColors.textGrayColor
                                     )
                                 ),
                                 onPressed: () {
@@ -114,12 +114,12 @@ class PriceProductWidget extends StatelessWidget {
                                     child: Obx(()=>
                                         TextFormField(
                                             controller: controller.price_min_text,
-                                            cursorColor: kYellowColor,
+                                            cursorColor: AppColors.yellowColor,
                                             keyboardType: TextInputType.number,
 
                                             textAlignVertical: TextAlignVertical.center,
                                             style: TextStyle(
-                                                color: kTextColor_gray
+                                                color: AppColors.textGrayBoldColor
                                             ),
                                             validator: (value){
                                               if(value == null || value.isEmpty){
@@ -142,13 +142,13 @@ class PriceProductWidget extends StatelessWidget {
                                               ),
                                               contentPadding: EdgeInsets.all(5.0),
                                               focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                                                borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
                                               ),
                                               errorBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.red, width: 1.0),
                                               ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                                borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
                                               ),
                                             )
                                         )),
@@ -167,12 +167,12 @@ class PriceProductWidget extends StatelessWidget {
                                     padding: EdgeInsets.only(left: 5.0.w),
                                     child: Obx(()=>
                                         TextFormField(
-                                          cursorColor: kYellowColor,
+                                          cursorColor: AppColors.yellowColor,
                                           keyboardType: TextInputType.number,
                                           controller:  controller.price_max_text,
                                           textAlignVertical: TextAlignVertical.center,
                                           style: TextStyle(
-                                              color: kTextColor_gray
+                                              color: AppColors.textGrayBoldColor
                                           ),
                                           decoration: InputDecoration(
                                             errorText: controller.price_max_error.value!=""? controller.price_max_error.value:null,
@@ -181,13 +181,13 @@ class PriceProductWidget extends StatelessWidget {
                                             ),
                                             contentPadding: EdgeInsets.all(5.0),
                                             focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                                              borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                              borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
                                             ),
                                           ),
                                           onChanged: (value){

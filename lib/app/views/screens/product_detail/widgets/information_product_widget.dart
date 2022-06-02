@@ -2,15 +2,13 @@
 import 'package:app_casynet/app/utlis/int_to_price.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../controller/detail_product_controller.dart';
+import '../../../../controller/product_detail/detail_product_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
@@ -47,20 +45,20 @@ class InformationProductWidget extends StatelessWidget {
               Text('${IntToPrice(controller.product.value.officialPrice).intToPrice()}',
                 textAlign: TextAlign.end,
                 style: TextStyle(
-                  color: kTextColor_gray,
+                  color: AppColors.textGrayBoldColor,
                   fontSize: 13,
                   decoration: TextDecoration.lineThrough
                 ),
               ),
               if(controller.product.value.officialPrice != null)
               Text('   -${controller.product.value.calSaleOff() ?? 0} %',style: TextStyle(
-                color: kTextColor_gray,
+                color: AppColors.textGrayBoldColor,
                 fontSize: 13,
               ),)
             ],
           ),
 
-          Divider(color: kTextColor,),
+          Divider(color: AppColors.textGrayColor,),
           Padding(
             padding: EdgeInsets.symmetric(
               vertical: 5,
@@ -83,7 +81,7 @@ class InformationProductWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 5,),
                     Text('${controller.product.value.rate??0.0}', style: TextStyle(
-                        color: kTextColor_gray
+                        color: AppColors.textGrayBoldColor
                     ),)
                   ],
                 ),
@@ -91,15 +89,15 @@ class InformationProductWidget extends StatelessWidget {
                   children: [
                     Container(
                       padding: EdgeInsets.all(5.0),
-                      child: Icon(Icons.warning, color: kYellowColor, size: sizeIcon.width),
+                      child: Icon(Icons.warning, color: AppColors.yellowColor, size: AppSize.iconSize),
                     ),
                     Text("Báo xấu: ",
                       style: TextStyle(
-                        color: kTextColor_gray
+                        color: AppColors.textGrayBoldColor
                     ),),
                     Text("${controller.product.value.badReport ?? 0}",
                       style: TextStyle(
-                        color: kTextColor_gray,
+                        color: AppColors.textGrayBoldColor,
                         fontWeight: FontWeight.bold
                     ),)
                   ],
@@ -110,16 +108,16 @@ class InformationProductWidget extends StatelessWidget {
                       height: 20,
                       width: 20,
                       margin: EdgeInsets.all(5.0),
-                      child: SvgPicture.asset("assets/images/product_detail/cart2.svg", width: sizeIcon.width,),
+                      child: SvgPicture.asset("assets/images/product_detail/cart2.svg", width: AppSize.iconSize,),
                     ),
                     Text("${controller.product.value.sold ?? 0} ",
                         style: TextStyle(
-                        color: kTextColor_gray,
+                        color: AppColors.textGrayBoldColor,
                         fontWeight: FontWeight.bold
                       )
                     ),
                     Text("đã bán", style: TextStyle(
-                        color: kTextColor_gray
+                        color: AppColors.textGrayBoldColor
                       ),
                     ),
 
@@ -129,11 +127,11 @@ class InformationProductWidget extends StatelessWidget {
               ],
             ),
           ),
-          Divider(color: kTextColor,),
+          Divider(color: AppColors.textGrayColor,),
           SizedBox(height: 10,),
           Row(
             children: [
-              SvgPicture.asset("assets/images/product_detail/gift.svg", width: sizeIcon.width),
+              SvgPicture.asset("assets/images/product_detail/gift.svg", width: AppSize.iconSize),
               SizedBox(width: 5,),
               Text("Quà tặng của của hàng: "),
               Container(
@@ -152,7 +150,7 @@ class InformationProductWidget extends StatelessWidget {
                               text: TextSpan(
                                 text: 'Giảm ',
                                 style: TextStyle(
-                                    color: kYellowColor,
+                                    color: AppColors.yellowColor,
                                     fontSize: 10
                                 ),
                                 children:[
@@ -183,7 +181,7 @@ class InformationProductWidget extends StatelessWidget {
                               text: TextSpan(
                                 text: 'Giảm ',
                                 style: TextStyle(
-                                    color: kYellowColor,
+                                    color: AppColors.yellowColor,
                                     fontSize: 10
                                 ),
                                 children:[
@@ -204,19 +202,19 @@ class InformationProductWidget extends StatelessWidget {
           SizedBox(height: 10,),
           Row(
             children: [
-              SvgPicture.asset("assets/images/product_detail/coin.svg", width: sizeIcon.width),
+              SvgPicture.asset("assets/images/product_detail/coin.svg", width: AppSize.iconSize),
               SizedBox(width: 5,),
               Text("Mua hàng và tích "),
               Text('${controller.product.value.coinPoint ?? 0}', style: TextStyle(
-                color: kYellowColor,
+                color: AppColors.yellowColor,
                 fontWeight: FontWeight.bold
               ),),
               Text("Casycoin", style: TextStyle(
-                color: kTextColor
+                color: AppColors.textGrayColor
               ),),
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: Icon(Icons.help, color: Colors.blue, size: sizeIcon.width,),
+                child: Icon(Icons.help, color: Colors.blue, size: AppSize.iconSize,),
               )
             ],
           ),
@@ -225,7 +223,7 @@ class InformationProductWidget extends StatelessWidget {
           controller.product.value.requiredOptions == 0
               ? SizedBox()
               : Container(
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
               child: Column(
@@ -259,17 +257,17 @@ class InformationProductWidget extends StatelessWidget {
                                       focusNode: controller.date_focus,
                                       readOnly: true,
                                       style: TextStyle(
-                                        color: kTextColor_gray,
+                                        color: AppColors.textGrayBoldColor,
                                         fontSize: 13,
                                       ),
                                       decoration: InputDecoration(
 
                                         contentPadding: EdgeInsets.all(5.0),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                                          borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                          borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
                                         ),
                                         suffixIcon: GestureDetector(
                                           behavior: HitTestBehavior.translucent,
@@ -287,7 +285,7 @@ class InformationProductWidget extends StatelessWidget {
                                             child: SvgPicture.asset(
                                               'assets/images/product_detail/calendar-alt.svg',
                                               height: 14,
-                                              color: kTextColor,
+                                              color: AppColors.textGrayColor,
                                             )
                                           ),
                                         ),
@@ -318,17 +316,17 @@ class InformationProductWidget extends StatelessWidget {
                                     focusNode: controller.hours_focus,
                                     controller: controller.hours_controller,
                                     style: TextStyle(
-                                      color: kTextColor_gray,
+                                      color: AppColors.textGrayBoldColor,
                                       fontSize: 13,
                                     ),
-                                    cursorColor: kYellowColor,
+                                    cursorColor: AppColors.yellowColor,
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.all(5.0),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                                        borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                        borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
                                       ),
                                       suffixIcon: GestureDetector(
                                         behavior: HitTestBehavior.translucent,
@@ -342,7 +340,7 @@ class InformationProductWidget extends StatelessWidget {
                                                         alwaysUse24HourFormat: true),
                                                     // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
                                                     child: childWidget!);
-                                              }
+                                              },
                                               initialTime: TimeOfDay.now(),
                                           );
                                           controller.hours_controller.text = '${value?.hour}:${value?.minute}';
@@ -352,7 +350,7 @@ class InformationProductWidget extends StatelessWidget {
                                             child: SvgPicture.asset(
                                               'assets/images/product_detail/ic_alarm.svg',
                                               height: 14,
-                                              color: kTextColor,
+                                              color: AppColors.textGrayColor,
                                             )
                                         ),
                                       ),
@@ -385,17 +383,17 @@ class InformationProductWidget extends StatelessWidget {
                               height: 30,
                               child: TextField(
                                 controller: controller.note_controller,
-                                cursorColor: kYellowColor,
+                                cursorColor: AppColors.yellowColor,
                                 style: TextStyle(
-                                  color: kTextColor_gray
+                                  color: AppColors.textGrayBoldColor
                                 ),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(5.0),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                                    borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: kTextColor, width: 1.0),
+                                    borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
                                   ),
                                 ),
                               )
@@ -414,21 +412,21 @@ class InformationProductWidget extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.map_outlined, color: kYellowColor, size: sizeIcon.width,),
+                              Icon(Icons.map_outlined, color: AppColors.yellowColor, size: AppSize.iconSize,),
                               SizedBox(width: 5,),
                               Text("Bản đồ",
                                 style: TextStyle(
 
-                                    color: kYellowColor
+                                    color: AppColors.yellowColor
                                 ),
                               )
                             ],
                           ),
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
-                            onPrimary: kYellowColor,
+                            onPrimary: AppColors.yellowColor,
                             primary: Colors.white,
-                            side: BorderSide(color: kYellowColor),
+                            side: BorderSide(color: AppColors.yellowColor),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ), onPressed: () {  },
                         ),
@@ -449,7 +447,7 @@ class InformationProductWidget extends StatelessWidget {
                               SizedBox(width: 5,),
                               Text("Liên hệ",
                                 style: TextStyle(
-                                    color: kYellowColor
+                                    color: AppColors.yellowColor
                                 ),
                               )
                             ],
@@ -457,8 +455,8 @@ class InformationProductWidget extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
                             primary: Colors.white,
-                            onPrimary: kYellowColor,
-                            side: const BorderSide(color: kYellowColor),
+                            onPrimary: AppColors.yellowColor,
+                            side: const BorderSide(color: AppColors.yellowColor),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))
                           ),
                           onPressed: () {

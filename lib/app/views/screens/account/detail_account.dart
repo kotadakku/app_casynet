@@ -38,7 +38,7 @@ class AccountDetailPage extends StatelessWidget {
                           width: 100,
                           height: 100,
                           decoration: BoxDecoration(
-                            border: Border.all(color: kYellowColor, width: 2),
+                            border: Border.all(color: AppColors.yellowColor, width: 2),
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
@@ -71,7 +71,7 @@ class AccountDetailPage extends StatelessWidget {
                                       Icons.camera_alt_outlined,
                                       size: 20,
                                     ),
-                                    backgroundColor: kYellowColor,
+                                    backgroundColor: AppColors.yellowColor,
                                   ),
                                 ),
                               )
@@ -130,7 +130,7 @@ class AccountDetailPage extends StatelessWidget {
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   size: 10,
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                 ),
                               )
                             ],
@@ -182,7 +182,7 @@ class AccountDetailPage extends StatelessWidget {
                               ),
                               Text(
                                 "Thay đổi",
-                                style: TextStyle(color: kTextLink),
+                                style: TextStyle(color: AppColors.textLink),
                               ),
                               SizedBox(
                                 width: 5.w,
@@ -192,7 +192,7 @@ class AccountDetailPage extends StatelessWidget {
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   size: 10,
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                 ),
                               )
                             ],
@@ -232,14 +232,14 @@ class AccountDetailPage extends StatelessWidget {
                             children: [
                               Text(
                                 accountDetailController.user.value.phone == null ? "Thêm":  accountDetailController.user.value.phone.toString(),
-                                style: TextStyle(color: kTextLink),
+                                style: TextStyle(color: AppColors.textLink),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(10),
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   size: 10,
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                 ),
                               )
                             ],
@@ -262,14 +262,14 @@ class AccountDetailPage extends StatelessWidget {
                           children: [
                             Text(
                               "Thêm tên cửa hàng",
-                              style: TextStyle(color: kTextColor),
+                              style: TextStyle(color: AppColors.textGrayColor),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 size: 10,
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                               ),
                             )
                           ],
@@ -328,7 +328,7 @@ class AccountDetailPage extends StatelessWidget {
                                     child: Icon(
                                       Icons.arrow_forward_ios,
                                       size: 10,
-                                      color: kTextColor,
+                                      color: AppColors.textGrayColor,
                                     ),
                                   )
                               ),
@@ -355,14 +355,14 @@ class AccountDetailPage extends StatelessWidget {
 
                                 Obx(()=>Text(
                                   accountDetailController.date_birthday.value == "" ? "Thiết lập ngay" :accountDetailController.date_birthday.value,
-                                  style: TextStyle(color: kTextColor),
+                                  style: TextStyle(color: AppColors.textGrayColor),
                                 ),): Text( accountDetailController.user.value.birthday.toString()),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 10,
-                                    color: kTextColor,
+                                    color: AppColors.textGrayColor,
                                   ),
                                 )
                               ],
@@ -403,14 +403,14 @@ class AccountDetailPage extends StatelessWidget {
                             children: [
                               Text(
                                 "Thay đổi mật khẩu",
-                                style: TextStyle(color: kTextLink),
+                                style: TextStyle(color: AppColors.textLink),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(10),
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   size: 10,
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                 ),
                               )
                             ],

@@ -1,11 +1,10 @@
 
-import 'package:app_casynet/app/controller/home/api/seller_controller.dart';
+import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../../../controller/home/cuahang_controller.dart';
 import '../../../../../routes/app_pages.dart';
 import '../../../../theme/app_colors.dart';
 import '../../../../theme/app_sizes.dart';
@@ -21,7 +20,7 @@ class ItemSellerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CuaHangController chcontroller = Get.put(CuaHangController());
+    HomeController _homController = Get.find();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -50,8 +49,8 @@ class ItemSellerWidget extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.thumb_up_alt_rounded,
-                    color: kTextColor_gray,
-                    size: IconSize.iconSize,
+                    color: AppColors.textGrayBoldColor,
+                    size: AppSize.iconSize,
                   ),
                   SizedBox(
                     width: 2,
@@ -63,8 +62,8 @@ class ItemSellerWidget extends StatelessWidget {
                 children: [
                   FaIcon(
                     FontAwesomeIcons.comment,
-                    size: IconSize.iconSize,
-                    color: kTextColor_gray,
+                    size: AppSize.iconSize,
+                    color: AppColors.textGrayBoldColor,
                   ),
                   const SizedBox(
                     width: 2,
@@ -84,7 +83,7 @@ class ItemSellerWidget extends StatelessWidget {
 
                   const Icon(
                     Icons.star_outlined,
-                    color: kTextColor_gray,
+                    color: AppColors.textGrayBoldColor,
                     size: 12,
                   ),
                 ],
@@ -117,14 +116,14 @@ class ItemSellerWidget extends StatelessWidget {
             ),
             InkWell(
               onTap: (){
-                chcontroller.callPhone(sellers[index].phone.toString());
+                _homController.callPhone(sellers[index].phone.toString());
               },
               child: Container(
                 padding: const EdgeInsets.all(5.0),
                 child: FaIcon(
                   FontAwesomeIcons.phoneFlip,
-                  color: kTextColor_gray,
-                  size: IconSize.iconSize,
+                  color: AppColors.textGrayBoldColor,
+                  size: AppSize.iconSize,
                 ),
               ),
             )
@@ -142,7 +141,7 @@ class ItemSellerWidget extends StatelessWidget {
                 children: [
                   const FaIcon(
                     FontAwesomeIcons.mapLocationDot,
-                    color: kTextColor_gray,
+                    color: AppColors.textGrayBoldColor,
                     size: 15,
                   ),
                   SizedBox(
@@ -161,7 +160,7 @@ class ItemSellerWidget extends StatelessWidget {
               children: [
                 const FaIcon(
                   FontAwesomeIcons.locationArrow,
-                  color: kTextColor_gray,
+                  color: AppColors.textGrayBoldColor,
                   size: 15.0,
                 ),
                 const SizedBox(

@@ -37,7 +37,7 @@ class NewPromotionPage extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 15.0.h),
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
             width: ScreenUtil().screenWidth,
             child: Text("Thông tin khuyến mãi",
               style: TextStyle(
@@ -49,26 +49,26 @@ class NewPromotionPage extends StatelessWidget {
           TextField(
             textAlignVertical: TextAlignVertical.center,
             style: TextStyle(
-              color: kTextColor,
+              color: AppColors.textGrayColor,
               fontSize: 15,
             ),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10.0),
               hintText: "Nhập tên chương trình khuyến mãi",
               hintStyle: TextStyle(
-                color: kTextColor
+                color: AppColors.textGrayColor
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: kYellowColor
+                  color: AppColors.yellowColor
                 )
               ),
               enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: kTextColor
+                      color: AppColors.textGrayColor
                   )
               ),
-              suffixIcon: Icon(Icons.edit_outlined, color: kTextColor,),
+              suffixIcon: Icon(Icons.edit_outlined, color: AppColors.textGrayColor,),
             ),
           ),
           Row(
@@ -82,16 +82,16 @@ class NewPromotionPage extends StatelessWidget {
               Text("Mã quà tặng"),
               Expanded(child: TextField(
                 textAlign: TextAlign.end,
-                cursorColor: kTextColor,
+                cursorColor: AppColors.textGrayColor,
                 style: TextStyle(
-                  color: kTextColor,
+                  color: AppColors.textGrayColor,
                   fontSize: 15,
                 ),
                 decoration: InputDecoration(
                   hintText: "Nhập mã quà tặng",
                   contentPadding: EdgeInsets.all(10.0),
                   hintStyle: TextStyle(
-                    color: kTextColor,
+                    color: AppColors.textGrayColor,
                     fontSize: 15,
                   ),
                   focusedBorder: UnderlineInputBorder(
@@ -106,7 +106,7 @@ class NewPromotionPage extends StatelessWidget {
           ),
           Container(
             height: 20.h,
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
           ),
           Padding(padding: EdgeInsets.only(left: 10.0.w, top: 10.h),
             child: Row(
@@ -138,16 +138,16 @@ class NewPromotionPage extends StatelessWidget {
               children: [
                 Text("Từ ngày",
                   style: TextStyle(
-                      color: kTextColor_gray
+                      color: AppColors.textGrayBoldColor
                   ),
                 ),
                 Spacer(),
                 Text("Thiết lập",
                   style: TextStyle(
-                    color: kTextColor
+                    color: AppColors.textGrayColor
                   ),
                 ),
-                Icon(Icons.keyboard_arrow_right_outlined, color: kTextColor, size: 18,)
+                Icon(Icons.keyboard_arrow_right_outlined, color: AppColors.textGrayColor, size: 18,)
               ],
 
             ),
@@ -161,16 +161,16 @@ class NewPromotionPage extends StatelessWidget {
               children: [
                 Text("Đến ngày",
                   style: TextStyle(
-                    color: kTextColor_gray
+                    color: AppColors.textGrayBoldColor
                   ),
                 ),
                 Spacer(),
                 Text("Thiết lập",
                   style: TextStyle(
-                      color: kTextColor
+                      color: AppColors.textGrayColor
                   ),
                 ),
-                Icon(Icons.keyboard_arrow_right_outlined, color: kTextColor, size: 18,)
+                Icon(Icons.keyboard_arrow_right_outlined, color: AppColors.textGrayColor, size: 18,)
               ],
 
             ),
@@ -178,7 +178,7 @@ class NewPromotionPage extends StatelessWidget {
           Divider(
             height: 30.h,
             thickness: 10.h,
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
           ),
           Container(
             width: ScreenUtil().screenWidth,
@@ -187,7 +187,7 @@ class NewPromotionPage extends StatelessWidget {
               onPressed: (){},
               child: Text("Lưu & tiếp tục"),
               style: ElevatedButton.styleFrom(
-                primary: kYellowColor,
+                primary: AppColors.yellowColor,
               )
             ),
           )

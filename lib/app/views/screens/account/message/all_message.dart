@@ -22,7 +22,7 @@ class AllMessageAccount extends StatelessWidget {
                     decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                             offset: const Offset(
                               0.0,
                               13.0,
@@ -97,7 +97,7 @@ class AllMessageAccount extends StatelessWidget {
                         title: Text("Gara Ô Tô Hà Nội Car Sevices"),
                         subtitle: Text("Bạn giới thiệu về sản phẩm được không ạ?",
                           style: TextStyle(
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                               fontSize: 12
                           ),
                         ),
@@ -107,7 +107,7 @@ class AllMessageAccount extends StatelessWidget {
                           child: Text("4 giay",
                             textAlign: TextAlign.end,
                             style: TextStyle(
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                                 fontSize: 12
                             ),
                           ),
