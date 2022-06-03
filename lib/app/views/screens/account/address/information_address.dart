@@ -54,7 +54,7 @@ class InformationAddress extends StatelessWidget {
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: c.user_current.addresses.length,
-                        separatorBuilder: (context, index) => Container(height: 10.h, color: kBackgroundColor, ),
+                        separatorBuilder: (context, index) => Container(height: 10.h, color: AppColors.backgroundColor, ),
                         itemBuilder: (context, index) =>  Padding(
                             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                             child: Column(
@@ -72,20 +72,20 @@ class InformationAddress extends StatelessWidget {
                                       onTap: (){
                                         Get.toNamed(Routes.ACCOUNT_ADDRESS_EDIT, arguments: c.user_current.addresses[index]);
                                       },
-                                      child: SvgPicture.asset("assets/images/account/edit.svg", width: 15, color: kTextColor,),
+                                      child: SvgPicture.asset("assets/images/account/edit.svg", width: 15, color: AppColors.textGrayColor,),
                                     )
                                   ],
                                 ),
                                 SizedBox(height: 2.h,),
                                 Text(c.user_current.addresses[index].phone.toString(),
                                   style: TextStyle(
-                                      color: kTextColor
+                                      color: AppColors.textGrayColor
                                   ),
                                 ),
                                 SizedBox(height: 2.h,),
                                 Text(c.user_current.addresses[index].street.toString(),
                                   style: TextStyle(
-                                      color: kTextColor
+                                      color: AppColors.textGrayColor
                                   ),
                                 ),
                                 SizedBox(height: 2.h,),
@@ -93,12 +93,12 @@ class InformationAddress extends StatelessWidget {
                                   children: [
                                     Text(c.user_current.addresses[index].default_shipping ? "[ bỏ mặc định ]" : "[ mặc định ]",
                                       style: TextStyle(
-                                          color: kYellowColor
+                                          color: AppColors.yellowColor
                                       ),),
 
                                     Text("[ Địa chỉ lấy hàng ]",
                                       style: TextStyle(
-                                          color: kTextLink
+                                          color: AppColors.textLink
                                       ),)
                                   ],
                                 )
@@ -109,7 +109,7 @@ class InformationAddress extends StatelessWidget {
 
               ),
 
-              Container(height: 10.h, color: kBackgroundColor, ),
+              Container(height: 10.h, color: AppColors.backgroundColor, ),
               SizedBox(height: 15.h,),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -120,7 +120,7 @@ class InformationAddress extends StatelessWidget {
                   },
                   child: Text("Thêm địa chỉ mới"),
                   style: ElevatedButton.styleFrom(
-                      primary: kYellowColor
+                      primary: AppColors.yellowColor
                   ),
                 ),
               )

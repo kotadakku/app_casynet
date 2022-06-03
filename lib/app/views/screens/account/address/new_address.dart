@@ -55,13 +55,13 @@ class NewAddress extends StatelessWidget {
                       Expanded(
                           child: Text("Nhập họ và tên",
                             style: TextStyle(
-                                color: kTextColor_gray
+                                color: AppColors.textGrayBoldColor
                             ),
                           )
                       ),
                       Expanded(
                           child: TextFormField(
-                            cursorColor: kTextColor_gray,
+                            cursorColor: AppColors.textGrayBoldColor,
                             textAlign: TextAlign.end,
                             onSaved: (value)
                               {
@@ -77,7 +77,7 @@ class NewAddress extends StatelessWidget {
                                 border: InputBorder.none,
                                 hintText: "Nhập họ và tên",
                                 hintStyle: TextStyle(
-                                    color: kTextColor
+                                    color: AppColors.textGrayColor
                                 )
                             ),
                           ))
@@ -92,7 +92,7 @@ class NewAddress extends StatelessWidget {
                       Expanded(
                           child: Text("Số điện thoại",
                             style: TextStyle(
-                                color: kTextColor_gray
+                                color: AppColors.textGrayBoldColor
                             ),
                           )
                       ),
@@ -105,7 +105,7 @@ class NewAddress extends StatelessWidget {
                               {
                                 address.phone = value;
                               },
-                            cursorColor: kTextColor_gray,
+                            cursorColor: AppColors.textGrayBoldColor,
                             validator: (value){
                               if (value!.isEmpty) {
                                 return "Bạn cần nhập số điện thoại";
@@ -119,7 +119,7 @@ class NewAddress extends StatelessWidget {
                                 border: InputBorder.none,
                                 hintText: "Nhập số điện thoại",
                                 hintStyle: TextStyle(
-                                    color: kTextColor
+                                    color: AppColors.textGrayColor
                                 ),
                             ),
                           ))
@@ -134,7 +134,7 @@ class NewAddress extends StatelessWidget {
                       Expanded(
                           child: Text("Tỉnh/Thành phố",
                             style: TextStyle(
-                                color: kTextColor_gray
+                                color: AppColors.textGrayBoldColor
                             ),
                           )
                       ),
@@ -165,7 +165,7 @@ class NewAddress extends StatelessWidget {
                                 border: InputBorder.none,
                                 hintText: "Chọn tỉnh/ thành phố",
                                 hintStyle: TextStyle(
-                                    color: kTextColor
+                                    color: AppColors.textGrayColor
                                 ),
                                 suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
                             ),
@@ -182,7 +182,7 @@ class NewAddress extends StatelessWidget {
               Expanded(
                   child: Text("Quận/Huyện",
                     style: TextStyle(
-                        color: kTextColor_gray
+                        color: AppColors.textGrayBoldColor
                     ),
                   )
               ),
@@ -214,7 +214,7 @@ class NewAddress extends StatelessWidget {
                         contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                         hintText: "Chọn quận/ huyện",
                         hintStyle: TextStyle(
-                            color: kTextColor
+                            color: AppColors.textGrayColor
                         ),
                         suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
                     ),
@@ -231,7 +231,7 @@ class NewAddress extends StatelessWidget {
                       Expanded(
                           child: Text("Phường/Xã",
                             style: TextStyle(
-                                color: kTextColor_gray
+                                color: AppColors.textGrayBoldColor
                             ),
                           )
                       ),
@@ -253,14 +253,14 @@ class NewAddress extends StatelessWidget {
                             },
                             textAlign: TextAlign.end,
                             controller: controller.textCommuneController,
-                            cursorColor: kTextColor_gray,
+                            cursorColor: AppColors.textGrayBoldColor,
 
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
                                 hintText: "Chọn Phường/Xã",
                                 hintStyle: TextStyle(
-                                    color: kTextColor
+                                    color: AppColors.textGrayColor
                                 ),
                                 suffixIcon: Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
                             ),
@@ -276,13 +276,13 @@ class NewAddress extends StatelessWidget {
                       Expanded(
                           child: Text("Địa chỉ cụ thể",
                             style: TextStyle(
-                                color: kTextColor_gray
+                                color: AppColors.textGrayBoldColor
                             ),
                           )
                       ),
                       Expanded(
                           child: TextFormField(
-                            cursorColor: kTextColor_gray,
+                            cursorColor: AppColors.textGrayBoldColor,
                             textAlign: TextAlign.end,
                             onSaved: (value)/*=> controller.address.street[0] = value!*/
                             {
@@ -292,7 +292,7 @@ class NewAddress extends StatelessWidget {
                                 border: InputBorder.none,
                                 hintText: "Nhập địa chỉ cụ thể",
                                 hintStyle: TextStyle(
-                                    color: kTextColor
+                                    color: AppColors.textGrayColor
                                 )
                             ),
                           )
@@ -309,7 +309,7 @@ class NewAddress extends StatelessWidget {
                     children: [
                       Text("Đặt làm địa chỉ mặc định",
                           style: TextStyle(
-                              color: kTextColor_gray
+                              color: AppColors.textGrayBoldColor
                           )
                       ),
                       Obx(()=>Switch(value: controller.switch_default.value, onChanged: (value) {
@@ -318,7 +318,7 @@ class NewAddress extends StatelessWidget {
                     ],
                   ),
                   ),
-                  Container(height: 10, color: kBackgroundColor,),
+                  Container(height: 10, color: AppColors.backgroundColor,),
                   SizedBox(height: 10,),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
@@ -336,7 +336,7 @@ class NewAddress extends StatelessWidget {
                       },
                       child: Text("Lưu địa chỉ"),
                       style: ElevatedButton.styleFrom(
-                          primary: kYellowColor
+                          primary: AppColors.yellowColor
                       ),
 
                     ),

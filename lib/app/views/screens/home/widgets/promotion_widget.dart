@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/controller/home/api/reservation_controller.dart';
+import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,10 +9,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/home/api/promotion_controller.dart';
-import '../../../../controller/home/radio_controller.dart';
+
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
-import '../../../theme/textTheme.dart';
+import '../../../theme/app_style.dart';
 import '../../../widgets/shimmer/seller_shimmer.dart';
 import 'items/product_item.dart';
 
@@ -19,9 +20,9 @@ class PromotionWidget extends StatelessWidget {
 
   PromotionWidget({Key? key}) : super(key: key);
   PromotionController _promotionController = Get.find();
+  HomeController _homeController = Get.find();
   @override
   Widget build(BuildContext context) {
-    RadioController controller = Get.find();
     return Material(
       elevation: 3,
       child: Container(
@@ -51,7 +52,7 @@ class PromotionWidget extends StatelessWidget {
                         SizedBox(width: 15,),
                         Text(
                           'promotion'.tr.toUpperCase(),
-                          style: AppTextTheme.titleProduct
+                          style: AppStyle.texttitleProduct
                         )
                       ],
                     ),
@@ -89,18 +90,18 @@ class PromotionWidget extends StatelessWidget {
                       children: [
                         Radio(
                             value: true,
-                            groupValue: controller.isCarPromotion.value,
+                            groupValue: _homeController.isCarPromotion.value,
                             onChanged: (value){
-                              controller.updateIsCarPromotion();
+                              _homeController.updateIsCarPromotion();
                             },
                             activeColor: Color(0xffDFB400)),
                         Text("Ô tô"),
                         SizedBox(width: 20,),
                         Radio(
                             value: false,
-                            groupValue: controller.isCarPromotion.value,
+                            groupValue: _homeController.isCarPromotion.value,
                             onChanged: (value){
-                              controller.updateIsCarPromotion();
+                              _homeController.updateIsCarPromotion();
                             },
                             activeColor: Color(0xffDFB400)
                         ),
@@ -137,19 +138,27 @@ class PromotionWidget extends StatelessWidget {
                 shimmer: ItemSellerShimmer(),
                 child: Stack(
                   children: [
-                    Padding(padding: EdgeInsets.only(bottom: 15.h),
-                      child:
-                      Wrap(
-                        spacing: 5.0.w,
-                        runSpacing: 10.0,
-                        children: (_promotionController.promotionProductList as List).map((e) => ItemProductWidget(
-                            product: e
-                        ),).toList(),
-                      )
+                    GridView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 3.3,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
+                        itemCount: _promotionController.promotionProductList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return ItemProductWidget(
+                            index: index,
+                            products: _promotionController.promotionProductList,
+                          );
+                        }
                     ),
+
                     _promotionController.error == '' ? SizedBox() : Positioned.fill(
                         child: Container(
-                          color: AppColors.kBackgroundColor.withOpacity(0.5),
+                          color: AppColors.backgroundColor.withOpacity(0.5),
                           padding: EdgeInsets.only(top: 100),
                           child: Column(
                             children: [
@@ -184,7 +193,7 @@ class PromotionWidget extends StatelessWidget {
                     Positioned.fill(
                       child: Container(
                         padding: EdgeInsets.only(top: 100),
-                        color: AppColors.kBackgroundColor.withOpacity(0.5),
+                        color: AppColors.backgroundColor.withOpacity(0.5),
                         child: Center(
                           child: CircularProgressIndicator(),
                         )
@@ -207,7 +216,7 @@ class PromotionWidget extends StatelessWidget {
   }
 
   void _view_more(title, id) {
-    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id]);
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id, _promotionController.promotionProductList]);
   }
 }
 

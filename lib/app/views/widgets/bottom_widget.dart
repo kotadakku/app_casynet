@@ -34,7 +34,7 @@ class BottomWidget extends StatelessWidget {
             Text('Copyright @2020 casynet',
               style: TextStyle(
                   fontSize: 12,
-                  color: kTextColor
+                  color: AppColors.textGrayColor
               ),
             ),
           ],

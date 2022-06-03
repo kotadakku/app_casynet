@@ -1,8 +1,7 @@
 
-import 'package:app_casynet/app/controller/detail_product_controller.dart';
+import 'package:app_casynet/app/controller/product_detail/detail_product_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -71,7 +70,7 @@ class RevervationProductWidget extends StatelessWidget {
                     item,
                     style: const TextStyle(
                       fontSize: 14,
-                      color: kTextColor_gray,
+                      color: AppColors.textGrayBoldColor,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -86,15 +85,15 @@ class RevervationProductWidget extends StatelessWidget {
                   Icons.arrow_drop_down,
                 ),
                 iconSize: 18,
-                iconEnabledColor: kTextColor,
-                iconDisabledColor: kTextColor_gray,
+                iconEnabledColor: AppColors.textGrayColor,
+                iconDisabledColor: AppColors.textGrayBoldColor,
                 buttonHeight: 50,
                 buttonWidth: 160,
                 buttonPadding: const EdgeInsets.only(left: 14, right: 14),
                 buttonDecoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3.0),
                   border: Border.all(
-                    color: kTextColor,
+                    color: AppColors.textGrayColor,
                   ),
                   color: Colors.white
                 ),
@@ -128,52 +127,60 @@ class RevervationProductWidget extends StatelessWidget {
                         autofocus: false,
                         controller: date_controller,
                         style: TextStyle(
-                          color: kTextColor_gray,
+                          color: AppColors.textGrayBoldColor,
                           fontSize: 13
                         ),
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                            borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: kTextColor, width: 1.0),
+                            borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
                           ),
                           prefixIcon: GestureDetector(
                             behavior: HitTestBehavior.translucent,
-                            onTap: (){
-                              DatePicker.showTimePicker(context,
-                                  showTitleActions: true,
-                                  onChanged: (hours) {
-                                  },
-                                  onConfirm: (hours) {
-                                    // hours_controller.text = DateFormat('hh:mm').format(hours).toString();
-                                  },
-                                  currentTime: DateTime.now(),
-                                  locale: LocaleType.en);
+                            onTap: () async{
+                              TimeOfDay? value = await showTimePicker(
+                                context: context,
+                                builder: (context, childWidget) {
+                                  return MediaQuery(
+                                      data: MediaQuery.of(context).copyWith(
+                                        // Using 24-Hour format
+                                          alwaysUse24HourFormat: true),
+                                      // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+                                      child: childWidget!);
+                                },
+                                initialTime: TimeOfDay.now(),
+                              );
+                              hours_controller.text = '${value?.hour}:${value?.minute}';
                             },
                             child: Container(
                                 padding: EdgeInsets.all(5.0),
                                 child: SvgPicture.asset(
                                   'assets/images/product_detail/calendar-alt.svg',
                                   height: 14,
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                 )
                             ),
                           ),
                           suffixIcon: GestureDetector(
                             behavior: HitTestBehavior.translucent,
-                            onTap: (){
-                              DatePicker.showDatePicker(context,
-                                  showTitleActions: true,
-                                  onChanged: (date) {
-                                  },
-                                  onConfirm: (date) {
-                                    date_controller.text = DateFormat('yyyy/MM/dd').format(date).toString();
-                                  },
-                                  currentTime: DateTime.now(),
-                                  locale: LocaleType.vi);
+                            onTap: () async {
+                              TimeOfDay? value = await showTimePicker(
+                                context: context,
+                                builder: (context, childWidget) {
+                                  return MediaQuery(
+                                      data: MediaQuery.of(context).copyWith(
+                                        // Using 24-Hour format
+                                          alwaysUse24HourFormat: true),
+                                      // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+                                      child: childWidget!);
+                                },
+                                initialTime: TimeOfDay.now(),
+                              );
+                              hours_controller.text = '${value?.hour}:${value?.minute}';
                             },
-                            child: Icon(Icons.arrow_drop_down, color: kTextColor),
+                            child: Icon(Icons.arrow_drop_down, color: AppColors.textGrayColor),
                           ),
                           suffixIconConstraints: BoxConstraints(
                             maxWidth: 30,
@@ -198,16 +205,16 @@ class RevervationProductWidget extends StatelessWidget {
                         readOnly: true,
                         autofocus: false,
                         style: TextStyle(
-                          color: kTextColor_gray,
+                          color: AppColors.textGrayBoldColor,
                           fontSize: 13
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(5.0),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                            borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: kTextColor, width: 1.0),
+                            borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
                           ),
 
                           prefixIcon: Container(
@@ -215,23 +222,20 @@ class RevervationProductWidget extends StatelessWidget {
                               child: SvgPicture.asset(
                                 'assets/images/product_detail/ic_alarm.svg',
                                 height: 14,
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                               )
                           ),
                           suffixIcon: GestureDetector(
                           behavior: HitTestBehavior.translucent,
-                          onTap: (){
-                            DatePicker.showTimePicker(context,
-                                showTitleActions: true,
-                                onChanged: (hours) {
-                                },
-                                onConfirm: (hours) {
-                                  hours_controller.text = DateFormat('HH:mm').format(hours).toString();
-                                },
-                                currentTime: DateTime.now(),
-                                locale: LocaleType.vi);
+                          onTap: () async {
+                            DateTime? date = await showDatePicker(context: context,
+                                initialDate: DateTime.now(),
+                                firstDate:DateTime.now(),
+                                lastDate: DateTime.now().add(Duration(days: 100))
+                            );
+                            date_controller.text = DateFormat('hh:mm').format(date!).toString();
                           },
-                          child: Icon(Icons.arrow_drop_down, color: kTextColor),
+                          child: Icon(Icons.arrow_drop_down, color: AppColors.textGrayColor),
                         ),
                           prefixIconConstraints: BoxConstraints(
                             maxWidth: 30,
@@ -255,22 +259,22 @@ class RevervationProductWidget extends StatelessWidget {
             keyboardType: TextInputType.multiline,
             maxLines: 3,
             style: TextStyle(
-                color: kTextColor_gray,
+                color: AppColors.textGrayBoldColor,
                 fontSize: 13
             ),
-            cursorColor: kTextColor_gray,
+            cursorColor: AppColors.textGrayBoldColor,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               hintText: "Điền ghi chú tại đây ...",
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: kYellowColor, width: 1.0),
+                borderSide: BorderSide(color: AppColors.yellowColor, width: 1.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: kTextColor, width: 1.0),
+                borderSide: BorderSide(color: AppColors.textGrayColor, width: 1.0),
               ),
               hintStyle: TextStyle(
                 fontSize: 12,
-                color: kTextColor,
+                color: AppColors.textGrayColor,
               ),
             ),
 
@@ -285,7 +289,7 @@ class RevervationProductWidget extends StatelessWidget {
                   ),
                 ),
               style: ElevatedButton.styleFrom(
-                primary: kYellowColor
+                primary: AppColors.yellowColor
               ),
 
             ),
@@ -295,7 +299,7 @@ class RevervationProductWidget extends StatelessWidget {
               SvgPicture.asset("assets/images/product_detail/phone-volume.svg", height: 20),
               SizedBox(width: 5,),
               Text("Hoặc gọi tới: "),
-              Text('${controller.product.value.store?.phone?? 'Chưa có thông tin'}' , style: TextStyle(
+              Text('${controller.product.value.seller?.phone?? 'Chưa có thông tin'}' , style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold
               ),)

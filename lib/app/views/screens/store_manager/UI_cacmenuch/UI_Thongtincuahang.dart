@@ -2,7 +2,6 @@ import 'package:app_casynet/app/controller/store/new_address_shop_controller.dar
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -46,7 +45,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Text(
                           "Tên",
                           style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                           ),
                         ),
                         Expanded(
@@ -67,7 +66,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
-                                    color: kTextColor_gray,
+                                    color: AppColors.textGrayBoldColor,
                                   ),
                                 )),
                           ),
@@ -86,7 +85,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Text(
                           "Link",
                           style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                           ),
                         ),
                         Expanded(
@@ -107,7 +106,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
-                                    color: kTextColor_gray,
+                                    color: AppColors.textGrayBoldColor,
                                   ),
                                 )),
                           ),
@@ -126,7 +125,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Text(
                           "Số điện thoại",
                           style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                           ),
                         ),
                         Expanded(
@@ -147,7 +146,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
-                                    color: kTextColor_gray,
+                                    color: AppColors.textGrayBoldColor,
                                   ),
                                 )),
                           ),
@@ -173,7 +172,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             Expanded(
                               child: Text("Giờ mở",
                                   style: TextStyle(
-                                      fontSize: 15, color: kTextColor_gray)),
+                                      fontSize: 15, color: AppColors.textGrayBoldColor)),
                             ),
                             Obx(
                               () => Text(
@@ -189,14 +188,20 @@ class ThongTinCuaHang extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onTap: () {
-                          DatePicker.showTimePicker(context,
-                              showTitleActions: true, onConfirm: (s) {
-                            controller.open_hours.value =
-                                DateFormat('HH:mm').format(s).toString();
-                          },
-                              currentTime: DateTime.now(),
-                              locale: LocaleType.vi);
+                        onTap: () async {
+                          TimeOfDay? value = await showTimePicker(
+                            context: context,
+                            builder: (context, childWidget) {
+                              return MediaQuery(
+                                  data: MediaQuery.of(context).copyWith(
+                                    // Using 24-Hour format
+                                      alwaysUse24HourFormat: true),
+                                  // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+                                  child: childWidget!);
+                            },
+                            initialTime: TimeOfDay.now(),
+                          );
+                          controller.open_hours.value = '${value?.hour}:${value?.minute}';
                         },
                       ),
                     ),
@@ -218,7 +223,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             Expanded(
                               child: Text("Giờ đóng",
                                   style: TextStyle(
-                                      fontSize: 15, color: kTextColor_gray)),
+                                      fontSize: 15, color: AppColors.textGrayBoldColor)),
                             ),
                             Obx(
                               () => Text(
@@ -234,14 +239,20 @@ class ThongTinCuaHang extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onTap: () {
-                          DatePicker.showTimePicker(context,
-                              showTitleActions: true, onConfirm: (s) {
-                            controller.closer_hours.value =
-                                DateFormat('HH:mm').format(s).toString();
-                          },
-                              currentTime: DateTime.now(),
-                              locale: LocaleType.vi);
+                        onTap: () async {
+                          TimeOfDay? value = await showTimePicker(
+                            context: context,
+                            builder: (context, childWidget) {
+                              return MediaQuery(
+                                  data: MediaQuery.of(context).copyWith(
+                                    // Using 24-Hour format
+                                      alwaysUse24HourFormat: true),
+                                  // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+                                  child: childWidget!);
+                            },
+                            initialTime: TimeOfDay.now(),
+                          );
+                          controller.closer_hours.value = '${value?.hour}:${value?.minute}';
                         },
                       ),
                     ),
@@ -261,7 +272,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           child: Text(
                             "Địa chỉ",
                             style:
-                                TextStyle(fontSize: 15, color: kTextColor_gray),
+                                TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
                           ),
                         ),
                         Obx(
@@ -273,7 +284,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                         Icon(
                           Icons.navigate_next,
-                          color: kTextColor_gray,
+                          color: AppColors.textGrayBoldColor,
                           size: 20,
                         ),
                       ],
@@ -304,7 +315,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Expanded(
                           child: Text("Quận/Huyện",
                               style: TextStyle(
-                                  fontSize: 15, color: kTextColor_gray)),
+                                  fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         Obx(
                           () => Text(
@@ -315,7 +326,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                         Icon(
                           Icons.navigate_next,
-                          color: kTextColor_gray,
+                          color: AppColors.textGrayBoldColor,
                           size: 20,
                         ),
                       ],
@@ -346,7 +357,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Expanded(
                           child: Text("Xã/Phường",
                               style: TextStyle(
-                                  fontSize: 15, color: kTextColor_gray)),
+                                  fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         Obx(
                           () => Text(
@@ -357,7 +368,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                         Icon(
                           Icons.navigate_next,
-                          color: kTextColor_gray,
+                          color: AppColors.textGrayBoldColor,
                           size: 20,
                         ),
                       ],
@@ -385,11 +396,11 @@ class ThongTinCuaHang extends StatelessWidget {
                     children: [
                       Text(
                         "Số nhà, tên đường",
-                        style: TextStyle(color: kTextColor_gray),
+                        style: TextStyle(color: AppColors.textGrayBoldColor),
                       ),
                       Expanded(
                           child: TextFormField(
-                        cursorColor: kTextColor_gray,
+                        cursorColor: AppColors.textGrayBoldColor,
                         textAlign: TextAlign.end,
                         onSaved: (value) {},
                         decoration: InputDecoration(
@@ -416,7 +427,7 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text("Danh mục ngành nghề chính",
-                              style: TextStyle(fontSize: 15, color: kTextColor_gray)),
+                              style: TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -446,7 +457,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           child: Text(
                             "Danh mục ngành nghề",
                             style:
-                            TextStyle(fontSize: 15, color: kTextColor_gray),
+                            TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
                           ),
                         ),
                         Text(
@@ -454,7 +465,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             style: TextStyle(fontSize: 15)),
                         Icon(
                           Icons.navigate_next,
-                          color: kTextColor_gray,
+                          color: AppColors.textGrayBoldColor,
                           size: 20,
                         ),
                       ],
@@ -476,7 +487,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Text(
                           "Loại cửa hàng",
                           style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                           ),
                         ),
                         Expanded(
@@ -497,7 +508,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
-                                    color: kTextColor_gray,
+                                    color: AppColors.textGrayBoldColor,
                                   ),
                                 )),
                           ),
@@ -517,7 +528,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text("Giới thiệu cửa hàng", style: TextStyle(color: kTextColor_gray, fontSize: 15),),
+                          Text("Giới thiệu cửa hàng", style: TextStyle(color: AppColors.textGrayBoldColor, fontSize: 15),),
                           Container(
                             margin: new EdgeInsets.only(right: 20),
                             child: ImageIcon(
@@ -552,7 +563,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Text(
                           "Loại giao diện",
                           style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                           ),
                         ),
                         Expanded(
@@ -573,7 +584,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
-                                    color: kTextColor_gray,
+                                    color: AppColors.textGrayBoldColor,
                                   ),
                                 )),
                           ),
@@ -592,7 +603,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Text(
                           "SĐT Zalo",
                           style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                           ),
                         ),
                         Expanded(
@@ -613,7 +624,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
-                                    color: kTextColor_gray,
+                                    color: AppColors.textGrayBoldColor,
                                   ),
                                 )),
                           ),
@@ -632,7 +643,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Text(
                           "Mã cộng tác viên",
                           style: TextStyle(
-                            color: kTextColor_gray,
+                            color: AppColors.textGrayBoldColor,
                           ),
                         ),
                         Expanded(
@@ -653,7 +664,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
-                                    color: kTextColor_gray,
+                                    color: AppColors.textGrayBoldColor,
                                   ),
                                 )),
                           ),

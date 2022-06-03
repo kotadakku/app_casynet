@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
+import 'package:app_casynet/app/views/screens/account/widgets/edit_info.dart';
 import 'package:app_casynet/app/views/screens/contact.dart';
 import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:app_casynet/app/views/screens/store/mystore.dart';
@@ -16,11 +17,9 @@ import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quan
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlythongbao/UI_Quanlythongbao.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlythongbao/UI_Themthongbao.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cuahang.dart';
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-
 import '../../main.dart';
+import '../bindings/account/account_detail_binding.dart';
 import '../bindings/account/casycoin_manager_bindings.dart';
 import '../bindings/account/edit_address_bindings.dart';
 import '../bindings/account/information_address.dart';
@@ -52,12 +51,13 @@ import '../views/screens/account/seen_product.dart';
 import '../views/screens/account/wallet_voucher.dart';
 import '../views/screens/auth/auth.dart';
 import '../views/screens/cart/checkout_page.dart';
-import '../views/screens/detail_store/details_store.dart';
+import '../views/screens/seller_detail/details_store.dart';
 import '../views/screens/filter/filter_product.dart';
 import '../views/screens/filter/filter_product_2.dart';
 import '../views/screens/filter/filter_product_map.dart';
 import '../views/screens/product_detail/detail_product.dart';
-import '../views/screens/products.dart';
+import '../views/screens/products/products.dart';
+import '../views/screens/sellers/stores.dart';
 import '../views/screens/store/data_store_page.dart';
 import '../views/screens/store/gift_store_page.dart';
 import '../views/screens/store/question_answer.dart';
@@ -65,7 +65,6 @@ import '../views/screens/store/sanpham_dichvu.dart';
 import '../views/screens/store/setting_notications.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Bangdieukhien.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Thongtincuahang.dart';
-import '../views/screens/stores.dart';
 
 part './app_routes.dart';
 
@@ -93,6 +92,11 @@ class AppPages {
       page:()=> FilterProductMap(),
     ),
     GetPage(
+        name: Routes.ACCOUNT_EDIT_INFO,
+        page: ()=> EditInfomation()
+    ),
+
+    GetPage(
       name: Routes.AUTH,
       page: ()=> AuthPage(),
       binding: AuthBindings(),
@@ -100,7 +104,10 @@ class AppPages {
     GetPage(name: Routes.CHECKOUT,
       page: ()=>CheckoutPage(),
     ),
-    GetPage(name: Routes.ACCOUNT_DETAIL, page: ()=> AccountDetailPage()),
+    GetPage(name: Routes.ACCOUNT_DETAIL,
+        page: ()=> AccountDetailPage(),
+      binding: AccountDetailBinding()
+    ),
     GetPage(name: Routes.ACCOUNT_ORDER,
       page: ()=>OrderAccountPage(),
       binding: OrderAccountBindings(),
@@ -127,11 +134,15 @@ class AppPages {
       page: ()=> EditAddress(),
       binding: EditAddressBindings(),
     ),
-    GetPage(name: Routes.PRODUCTS_FAVOURITE, page: ()=>FavouriteProductPage()),
-    GetPage(name: Routes.STORE_FOLLOWED, page: ()=> FollowedStorePage()),
+    GetPage(name: Routes.PRODUCTS_FAVOURITE,
+        page: ()=>FavouriteProductPage()
+    ),
+    GetPage(name: Routes.STORE_FOLLOWED,
+        page: ()=> FollowedStorePage()
+    ),
     GetPage(
       name: Routes.FILTER_PRODUCT,
-      page:() => FilterProductPage(),
+      page:() => const FilterProductPage(),
       binding: FilterProductBindings(),
     ),
     GetPage(

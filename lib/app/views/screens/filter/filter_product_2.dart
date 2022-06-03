@@ -32,7 +32,7 @@ class FilterProductPage2 extends StatelessWidget {
                     GestureDetector(
                       child: Container(
                         padding: EdgeInsets.all(5.0.w),
-                        child: Icon(Icons.arrow_back_ios, size: sizeIcon.width,),
+                        child: Icon(Icons.arrow_back_ios, size: AppSize.iconSize,),
                       ),
                       onTap: (){
                         Get.back();

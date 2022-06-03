@@ -47,7 +47,7 @@ class AccountBasePage extends StatelessWidget {
                                 },
                                 child: Text("Đăng nhập"),
                                 style: OutlinedButton.styleFrom(
-                                    primary: kYellowColor,
+                                    primary: AppColors.yellowColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                                 ),
                               ),
@@ -61,7 +61,7 @@ class AccountBasePage extends StatelessWidget {
                                 },
                                 child: Text("Đăng ký"),
                                 style: OutlinedButton.styleFrom(
-                                    primary: kYellowColor,
+                                    primary: AppColors.yellowColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                                 ),
                               ),
@@ -91,7 +91,7 @@ class AccountBasePage extends StatelessWidget {
                                         ),
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                          primary: kYellowColor,
+                                          primary: AppColors.yellowColor,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0))
                                       ),
                                     );
@@ -102,7 +102,7 @@ class AccountBasePage extends StatelessWidget {
                     }
                   }),
                   Divider(
-                    color: kBackgroundColor,
+                    color: AppColors.backgroundColor,
                     height: 20,
                     thickness: 10,
                   ),
@@ -119,11 +119,11 @@ class AccountBasePage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FaIcon(FontAwesomeIcons.arrowRightFromBracket, size: 15, color: kYellowColor,),
+                              FaIcon(FontAwesomeIcons.arrowRightFromBracket, size: 15, color: AppColors.yellowColor,),
                               SizedBox(width: 10.0,),
                               Text("Đăng xuất",
                                 style: TextStyle(
-                                    color: kYellowColor
+                                    color: AppColors.yellowColor
                                 ),
                               )
                             ],

@@ -1,6 +1,6 @@
 
 import 'dart:convert';
-import 'package:app_casynet/app/data/model/banner_slider_new.dart';
+import 'package:app_casynet/app/data/model/banner_slider.dart';
 import 'package:app_casynet/app/data/model/sales.dart';
 import 'package:dio/dio.dart';
 
@@ -8,7 +8,7 @@ import '../../config/api_config.dart';
 import '../../config/api_params.dart';
 import '../model/category.dart';
 import '../model/product.dart';
-import '../model/responses.dart';
+import '../provider/api/responses.dart';
 import '../model/seller.dart';
 import '../model/user.dart';
 import '../provider/api/api_provider.dart';
@@ -111,26 +111,6 @@ class HomePageRepo{
             (response.data as List).map((e) => Seller.fromJson(e))
         );
         return Responses<Seller>(isSuccess: true, listObjects: sellers);
-      }
-      return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
-    } catch(error){
-      final errorMessage = DioExceptions.fromDioError(error);
-      return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
-    }
-  }
-
-  Future<Responses<Seller>> getSellersLoadMore({data,Map<String,
-      dynamic>?  queryParameters}) async {
-    try{
-      final response = await ApiRequest().get(
-          path: ApiConfig.baseUrl + "/rest/V1/SellerHomePage",
-          queryParameters: queryParameters
-      );
-      if(response != null){
-        List<Seller> sellersLoadMore = List<Seller>.from(
-            (response.data as List).map((e) => Seller.fromJson(e))
-        );
-        return Responses<Seller>(isSuccess: true, listObjects: sellersLoadMore);
       }
       return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch(error){

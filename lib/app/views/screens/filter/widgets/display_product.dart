@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../controller/filter_product_controller.dart';
+import '../../../../controller/filter/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 class DisplayProductWidget extends StatefulWidget {
   const DisplayProductWidget({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
                         controller.expand();
                       });
                     },
-                    iconSize: 20,
+                      iconSize: 20,
                     icon: AnimatedBuilder(
                       animation: controller.expandDisplayController,
                       builder: (context, child){
@@ -71,7 +71,7 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
                           child: Text(_displays[index]),
                         ),
                         Obx(()=> Radio(
-                          activeColor: kYellowColor,
+                          activeColor: AppColors.yellowColor,
                           value: _displays[index],
                             onChanged: (value){
                               controller.display.value = _displays[index];

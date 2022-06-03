@@ -100,7 +100,7 @@ class PromotionController extends GetxController{
                   commentQty: element[DBConfig.PRODUCT_COMMENT],
                   rate: element[DBConfig.PRODUCT_RATE],
                   catId: element[DBConfig.PRODUCT_CATEGORY_ID],
-                  store: Seller(
+                  seller: Seller(
                     name: element[DBConfig.PRODUCT_SELLER_NAME],
                     phone: element[DBConfig.PRODUCT_SELLER_PHONE],
                   )

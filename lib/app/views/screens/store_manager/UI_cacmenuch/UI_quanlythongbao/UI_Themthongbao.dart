@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 
 class ThemThongBao extends StatelessWidget {
@@ -132,18 +131,16 @@ class ThemThongBao extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(left: 10),
                     child: Obx(
-                      () => FlutterSwitch(
-                        width: 60.0,
+                      () => Switch.adaptive(
                         value: statusgmkh.value,
-                        padding: 8.0,
-                        onToggle: (val) {
-                          statusgmkh.value = !statusgmkh.value;
-                          if (statusgmkh.value == true) {
-                            textgmkh.value = "Có";
-                          } else {
-                            textgmkh.value = "Không";
-                          }
-                        },
+                        onChanged: (bool value) {
+                        statusgmkh.value = !statusgmkh.value;
+                        if (statusgmkh.value == true) {
+                          textgmkh.value = "Có";
+                        } else {
+                          textgmkh.value = "Không";
+                        }
+                      },
                       ),
                     ),
                   ),

@@ -24,7 +24,7 @@ class BannerHomeWidget extends StatelessWidget {
               isLoading: _fetchBannerController.isLoadingDB.value,
               child: Stack(
                 children: [
-                  PageView.builder(
+                  Obx(()=>PageView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: _fetchBannerController.bannerSliderList.length,
                       controller: _bannerController.pageController,
@@ -33,23 +33,20 @@ class BannerHomeWidget extends StatelessWidget {
                         _bannerController.current_banner.value = index;
                       },
                       itemBuilder: (context, index){
-                        return Container(
-                          color: AppColors.kBackgroundColor,
-                          child: Html(
-                            data: _fetchBannerController.bannerSliderList[index].htmlTag,
-                            style: {
-                              'img': Style(
-                                height: ScreenUtil().screenWidth/1125*410,
-                                alignment: Alignment.center,
-                                padding: EdgeInsets.all(0.0),
-                                margin: EdgeInsets.all(0.0),
+                        return Html(
+                          data: _fetchBannerController.bannerSliderList[index].htmlTag,
+                          style: {
+                            'img': Style(
+                              height: ScreenUtil().screenWidth/1125*410,
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.all(0.0),
+                              margin: EdgeInsets.all(0.0),
 
-                              ),
-                            },
-                          ),
+                            ),
+                          },
                         );
                       }
-                  ),
+                  ),),
                   Positioned.fill(
                       child: Align(
                           alignment: Alignment.bottomCenter,
@@ -83,7 +80,7 @@ class BannerHomeWidget extends StatelessWidget {
               //           },
               //           itemBuilder: (context, index){
               //             return Container(
-              //               color: AppColors.kBackgroundColor,
+              //               color: AppColors.backgroundColor,
               //               child: Html(
               //                 data: _fetchBannerController.bannerSliderList[index].htmlTag,
               //                 style: {

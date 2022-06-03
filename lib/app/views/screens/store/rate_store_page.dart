@@ -26,10 +26,10 @@ class RateStorePage extends StatelessWidget {
           ),
           Container(
             height: 55,
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
             padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
             child: TextField(
-              cursorColor: kTextColor,
+              cursorColor: AppColors.textGrayColor,
               onTap: (){
                 Get.to(SearchRate());
               },
@@ -37,24 +37,24 @@ class RateStorePage extends StatelessWidget {
               decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
-                focusColor: kYellowColor,
+                focusColor: AppColors.yellowColor,
                 contentPadding: EdgeInsets.all(5.0),
                 prefixIcon: Icon(Icons.search),
                 hintText: "Tìm kiếm đánh giá",
                 hintStyle: TextStyle(
-                    color: kTextColor_gray
+                    color: AppColors.textGrayBoldColor
                 ),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(2.0),
                     borderSide: BorderSide(
-                        color: kTextColor,
+                        color: AppColors.textGrayColor,
                         width: 1.0
                     )
                 ),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(2.0),
                     borderSide: BorderSide(
-                        color: kYellowColor,
+                        color: AppColors.yellowColor,
                         width: 1.0
                     )
                 ),

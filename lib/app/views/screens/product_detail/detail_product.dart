@@ -1,11 +1,12 @@
-import 'package:app_casynet/app/controller/bottom_nav_controller.dart';
-import 'package:app_casynet/app/controller/detail_product_controller.dart';
+
+import 'package:app_casynet/app/controller/product_detail/detail_product_controller.dart';
 import 'package:app_casynet/app/views/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/api/product_cart_controller.dart';
-import '../../../data/model/product_cart.dart';
+import '../../../controller/home/home_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/appbar/appbar_cart.dart';
@@ -41,27 +42,27 @@ class DetailProductPage extends StatelessWidget {
                       children: [
                         ImageProductWidget(controller: _detailProductController,),
                         InformationProductWidget(controller: _detailProductController,),
-                        RevervationProductWidget(controller: _detailProductController,),
+                        _detailProductController.product.value.requiredOptions == 0 ? SizedBox() :  RevervationProductWidget(controller: _detailProductController,),
                         InformationStoreWidget(controller: _detailProductController,),
                         DetailProductWidget(controller: _detailProductController,),
                         Container(
                           height: 10,
-                          color: kBackgroundColor,
+                          color: AppColors.backgroundColor,
                         ),
                         VoteProductWidget(),
                         Container(
                           height: 10,
-                          color: kBackgroundColor,
+                          color: AppColors.backgroundColor,
                         ),
                         ChatProductWidget(),
                         Container(
                           height: 10,
-                          color: kBackgroundColor,
+                          color: AppColors.backgroundColor,
                         ),
                         TagsProductWidget(controller : _detailProductController),
                         Container(
                           height: 10,
-                          color: kBackgroundColor,
+                          color: AppColors.backgroundColor,
                         ),
                         FeaturedProductWidget(),
                       ],
@@ -69,30 +70,40 @@ class DetailProductPage extends StatelessWidget {
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(primary: kYellowColor),
+                      style: ElevatedButton.styleFrom(primary: AppColors.yellowColor),
                       onPressed: () {
                         if(_detailProductController.product.value.requiredOptions == 0){
                           _productCartController.incrementProductCartDB(_detailProductController.product.value);
-
 
                           final snackBar = SnackBar(
                             content: Text("Thêm thành công"),
                             action: SnackBarAction(
                               label: "Kiểm tra",
                               onPressed: () {
-                                Get.put(BottomNavController()).tabIndex.value = 2;
+                                Get.put(HomeController()).tabIndex.value = 2;
                                 Get.toNamed(Routes.HOME);
                               },
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
+                        else{
+                          if(_detailProductController.date_controller.text.isEmpty || _detailProductController.date_controller.text == ''){
+                            _detailProductController.date_focus.requestFocus();
+                          } else if(_detailProductController.hours_controller.text.isEmpty || _detailProductController.hours_controller.text == ''){
+                            _detailProductController.hours_focus.requestFocus();
+                          }
+                          else {
+
+                          }
+                        }
 
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.add), Text(_detailProductController.product.value.requiredOptions == 1 ? " Đặt hàng": "Thêm vào giỏ")],
+                        children: [Icon(Icons.add), Text("Đặt hàng")],
                       )),
                 ),
               ],
@@ -120,7 +131,7 @@ class DetailProductPage extends StatelessWidget {
                     onPressed: (){
                       Navigator.of(context).pop();
                     },
-                    child: Text("Tiếp tục mua hàng", style: TextStyle(color: kYellowColor),),
+                    child: Text("Tiếp tục mua hàng", style: TextStyle(color: AppColors.yellowColor),),
 
                 ),
                 OutlinedButton(
@@ -128,7 +139,7 @@ class DetailProductPage extends StatelessWidget {
                     Get.put(BottomNavController()).tabIndex.value = 2;
                     Get.toNamed(Routes.HOME);
                   },
-                  child: Text("Kiểm tra giỏ hàng",style: TextStyle(color: kYellowColor),),
+                  child: Text("Kiểm tra giỏ hàng",style: TextStyle(color: AppColors.yellowColor),),
 
                 ),
 

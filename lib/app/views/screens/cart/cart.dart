@@ -33,7 +33,7 @@ class Cart extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Icon(Icons.shopping_cart,
-                    color: kYellowColor,
+                    color: AppColors.yellowColor,
                   ),
                 ),
                 const Text(

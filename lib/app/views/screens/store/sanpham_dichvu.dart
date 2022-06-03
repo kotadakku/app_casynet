@@ -209,7 +209,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                             left: 5,
                                                             child: ItemSale(
                                                                 color:
-                                                                kYellowColor,
+                                                                AppColors.yellowColor,
                                                                 width: 40,
                                                                 sale: 30))
                                                     ],
@@ -276,7 +276,7 @@ class SanPhamDichVu extends StatelessWidget {
 
                                                           child: const Icon(
                                                             Icons.more_horiz,
-                                                            color: kTextColor,
+                                                            color: AppColors.textGrayColor,
                                                           ),
                                                           onSelected: (value) {
                                                             switch (value) {
@@ -302,7 +302,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                     child:
                                                                     Image.asset(
                                                                       "assets/images/store/ic_eye_slash.png",
-                                                                      color: kTextColor,
+                                                                      color: AppColors.textGrayColor,
                                                                       width: 20,
                                                                       height: 20,
                                                                     ),
@@ -318,10 +318,10 @@ class SanPhamDichVu extends StatelessWidget {
                                                                         children: const [
                                                                           Text(
                                                                             "Ẩn",
-                                                                            style: TextStyle(color: kTextColor),
+                                                                            style: TextStyle(color: AppColors.textGrayColor),
                                                                           ),
                                                                           Divider(
-                                                                            color: kTextColor,
+                                                                            color: AppColors.textGrayColor,
                                                                             height: 20,
                                                                             thickness: 1,
                                                                           ),
@@ -340,7 +340,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                     child:
                                                                     Image.asset(
                                                                       "assets/images/store/ic_trash.png",
-                                                                      color: kTextColor,
+                                                                      color: AppColors.textGrayColor,
                                                                       width: 20,
                                                                       height: 20,
                                                                     ),
@@ -356,10 +356,10 @@ class SanPhamDichVu extends StatelessWidget {
                                                                         children: const [
                                                                           Text(
                                                                             "Xóa",
-                                                                            style: TextStyle(color: kTextColor),
+                                                                            style: TextStyle(color: AppColors.textGrayColor),
                                                                           ),
                                                                           Divider(
-                                                                            color: kTextColor,
+                                                                            color: AppColors.textGrayColor,
                                                                             height: 20,
                                                                             thickness: 1,
                                                                           ),
@@ -378,7 +378,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                                     child:
                                                                     Image.asset(
                                                                       "assets/images/store/ic_edit.png",
-                                                                      color: kTextColor,
+                                                                      color: AppColors.textGrayColor,
                                                                       width: 20,
                                                                       height: 20,
                                                                     ),
@@ -394,10 +394,10 @@ class SanPhamDichVu extends StatelessWidget {
                                                                         children: const [
                                                                           Text(
                                                                             "Sửa",
-                                                                            style: TextStyle(color: kTextColor),
+                                                                            style: TextStyle(color: AppColors.textGrayColor),
                                                                           ),
                                                                           Divider(
-                                                                            color: kTextColor,
+                                                                            color: AppColors.textGrayColor,
                                                                             height: 20,
                                                                             thickness: 1,
                                                                           ),
@@ -470,7 +470,7 @@ class SanPhamDichVu extends StatelessWidget {
                               children: [
                                 Checkbox(
                                   checkColor: Colors.white,
-                                  activeColor: kYellowColor,
+                                  activeColor: AppColors.yellowColor,
                                   value: true, onChanged: (value) {  },),
                                 SizedBox(width: 5,),
                                 Text("Chọn tất cả", style: TextStyle(fontSize: 15),),

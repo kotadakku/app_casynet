@@ -4,7 +4,6 @@ import 'package:app_casynet/app/config/config_db.dart';
 
 class Seller {
   int? id;
-  String? isCar;
   String? name;
   String? phone;
   String? address;
@@ -14,23 +13,23 @@ class Seller {
   double? rate;
   int? followed;
   String? avatar_image;
-  String? background_image;
-  String? time_open;
-  String? time_close;
-  String? intro_store;
+  String? backgroundImage;
+  String? timeOpen;
+  String? timeClose;
+  String? timeFeedback;
+  String? description;
   double? lat;
   double? lon;
   int? bad_message;
-  int? total_product;
-  String? participation_time;
-  String? owner_shop;
+  int? totalProduct;
+  String? participationTime;
+  String? ownerShop;
   int? rateFeedback;
   int? totalTransaction;
 
 
   Seller(
   {this.id,
-    this.isCar,
     this.name,
     this.phone,
     this.address,
@@ -40,16 +39,16 @@ class Seller {
     this.rate,
     this.followed,
     this.avatar_image,
-    this.background_image,
-    this.time_open,
-    this.time_close,
-    this.intro_store,
+    this.backgroundImage,
+    this.timeOpen,
+    this.timeClose,
+    this.description,
     this.lat,
     this.lon,
     this.bad_message,
-    this.total_product,
-    this.participation_time,
-    this.owner_shop,
+    this.totalProduct,
+    this.participationTime,
+    this.ownerShop,
     this.rateFeedback,
     this.totalTransaction
   }); // json trả về và gán vào UI
@@ -65,13 +64,13 @@ class Seller {
     phone = data['phone'];
     if(data['lat'] != null) lat = double.parse(data['lat']);
     if(data['lng'] != null) lon = double.parse(data['lng']??'');
-    time_open = data['open_time'];
-    time_close = data['close_time'];
-    total_product = data['total_product'];
+    timeOpen = data['open_time'];
+    timeClose = data['close_time'];
+    totalProduct = data['total_product'];
     bad_message = data['bad_message'];
-    intro_store = data['intro_store'];
-    participation_time = data['participation_time'];
-    owner_shop = data['owner_shop'];
+    description = data['intro_store'];
+    participationTime = data['participation_time'];
+    ownerShop = data['owner_shop'];
     followed = data['followed'];
   }
 

@@ -3,8 +3,7 @@ import 'package:app_casynet/app/controller/home/api/reservation_controller.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import '../../../../controller/filter_product_controller.dart';
+import '../../../../controller/filter/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 
 class BottomButtonWidget extends StatelessWidget {
@@ -34,7 +33,7 @@ class BottomButtonWidget extends StatelessWidget {
                             ],
                           ),
                           style: OutlinedButton.styleFrom(
-                              primary: kYellowColor,
+                              primary: AppColors.yellowColor,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                           ),
                           onPressed: () {
@@ -60,7 +59,7 @@ class BottomButtonWidget extends StatelessWidget {
                             ],
                           ),
                           style: ElevatedButton.styleFrom(
-                              primary: kYellowColor,
+                              primary: AppColors.yellowColor,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                           ),
                           onPressed: () {

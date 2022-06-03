@@ -2,10 +2,11 @@ import 'package:app_casynet/app/data/model/order.dart';
 import 'package:app_casynet/app/data/model/product_cart.dart';
 
 import 'package:dio/dio.dart';
+import '../model/user.dart';
 import '../provider/api/api_provider.dart';
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';
-import '../model/responses.dart';
+import '../provider/api/responses.dart';
 import '../provider/api/exceptions.dart';
 
 class AccountRepo{
@@ -78,6 +79,23 @@ class AccountRepo{
     } catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
       return Responses<int>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+  Future<Responses<User>> updateUserAccount({data, Options? options}) async {
+    try{
+      final response = await ApiRequest().put(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/me',
+          data: data,
+          options: options
+      );
+      if(response!=null){
+        User user = User.successLogin(response.data);
+        return Responses<User>(isSuccess: true, objects: user);
+      }
+      return Responses<User>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<User>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
 }

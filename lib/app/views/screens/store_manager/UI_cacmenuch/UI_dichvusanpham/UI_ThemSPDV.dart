@@ -10,7 +10,7 @@ import 'package:video_player/video_player.dart';
 
 import '../../../../../data/model/category.dart';
 import '../../../../../data/model/Sanpham.dart';
-import '../../../../../data/model/Xuatxu.dart';
+import '../../../../../data/model/origin.dart';
 import '../../CheckInternet.dart';
 import 'UI_Chondanhmuc.dart';
 import 'UI_Chonloaisanpham.dart';

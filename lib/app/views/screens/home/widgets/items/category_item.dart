@@ -31,7 +31,7 @@ class ItemCategoryWidget extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.amber,
               border: Border.all(
-                  color: AppColors.kBackgroundColor
+                  color: AppColors.backgroundColor
               )
           ),
         ),

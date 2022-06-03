@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/detail_product_controller.dart';
+import '../../../../controller/product_detail/detail_product_controller.dart';
 import '../../../../controller/store_detail/detail_store_controller.dart';
 import '../../../../routes/app_pages.dart';
 
@@ -25,12 +25,12 @@ class InformationStoreWidget extends StatelessWidget {
             leading: CircleAvatar(
               child: Text("123"),
             ),
-            title: Text('${controller.product.value.store?.name ?? 'Chưa có thông tin'}'),
+            title: Text('${controller.product.value.seller?.name ?? 'Chưa có thông tin'}'),
             subtitle: Row(
               children: [
-                Text('${controller.product.value.store?.owner_shop ?? 'Chưa có thông tin'}',
+                Text('${controller.product.value.seller?.ownerShop ?? 'Chưa có thông tin'}',
                   style: TextStyle(
-                    color: kYellowColor,
+                    color: AppColors.yellowColor,
                     fontSize: 12.sp
                 ),),
                 SizedBox(width: 10,),
@@ -40,14 +40,14 @@ class InformationStoreWidget extends StatelessWidget {
                       height: 8,
                       width: 8,
                       decoration: BoxDecoration(
-                          color: controller.isLive.value ? Colors.green: kYellowColor,
+                          color: controller.isLive.value ? Colors.green: AppColors.yellowColor,
                           borderRadius: BorderRadius.circular(8)
                       ),
                     ),),
                     SizedBox(width: 5,),
                     Text("Hoạt động cách đây 3 giờ trước",
                       style: TextStyle(
-                          color: kTextColor,
+                          color: AppColors.textGrayColor,
                           fontSize: 12.sp
                       ),
                     )
@@ -66,9 +66,9 @@ class InformationStoreWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text('${controller.product.value.store?.total_product ?? '0'}', style: TextStyle(
-                          color: kYellowColor,
+                      Icon(Icons.add, color: AppColors.yellowColor, size: AppSize.iconSize,),
+                      Text('${controller.product.value.seller?.totalProduct ?? '0'}', style: TextStyle(
+                          color: AppColors.yellowColor,
                           fontWeight: FontWeight.w800
                       ),)
                     ],
@@ -80,9 +80,9 @@ class InformationStoreWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text("${controller.product.value.store?.rateFeedback ?? '0'}%", style: TextStyle(
-                          color: kYellowColor,
+                      Icon(Icons.add, color: AppColors.yellowColor, size: AppSize.iconSize,),
+                      Text("${controller.product.value.seller?.rateFeedback ?? '0'}%", style: TextStyle(
+                          color: AppColors.yellowColor,
                           fontWeight: FontWeight.w800
                       ),)
                     ],
@@ -94,9 +94,9 @@ class InformationStoreWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.add, color: kYellowColor, size: sizeIcon.width,),
-                      Text("${controller.product.value.store?.totalTransaction ?? '0'}", style: TextStyle(
-                          color: kYellowColor,
+                      Icon(Icons.add, color: AppColors.yellowColor, size: AppSize.iconSize,),
+                      Text("${controller.product.value.seller?.totalTransaction ?? '0'}", style: TextStyle(
+                          color: AppColors.yellowColor,
                           fontWeight: FontWeight.w800
                       ),)
                     ],
@@ -117,20 +117,20 @@ class InformationStoreWidget extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.favorite_border, color: controller.followed.value ? Colors.white: kYellowColor, size: sizeIcon.width,),
+                          Icon(Icons.favorite_border, color: controller.followed.value ? Colors.white: AppColors.yellowColor, size: AppSize.iconSize,),
                           SizedBox(width: 5,),
                           Text("Theo dõi",
                             style: TextStyle(
-                              color: controller.followed.value ? Colors.white: kYellowColor,
+                              color: controller.followed.value ? Colors.white: AppColors.yellowColor,
                             ),
                           )
                         ],
                       ),
                       style: ElevatedButton.styleFrom(
-                          primary:controller.followed.value ? kYellowColor: Colors.white,
-                          onPrimary: kYellowColor,
+                          primary:controller.followed.value ? AppColors.yellowColor: Colors.white,
+                          onPrimary: AppColors.yellowColor,
                           side: BorderSide(
-                            color: kYellowColor,
+                            color: AppColors.yellowColor,
                           ),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                       ),
@@ -148,7 +148,7 @@ class InformationStoreWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.share, size: sizeIcon.width,),
+                      Icon(Icons.share, size: AppSize.iconSize,),
                       SizedBox(width: 5,),
                       Text("Xem cửa hàng",
                         style: TextStyle(
@@ -157,13 +157,13 @@ class InformationStoreWidget extends StatelessWidget {
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: kYellowColor,
+                      primary: AppColors.yellowColor,
 
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                   ), onPressed: () {
                     Get.toNamed(Routes.STORE_DETAIL,
                       arguments: {
-                        'store': controller.product.value.store
+                        'store': controller.product.value.seller
                       }
                     );
                 },

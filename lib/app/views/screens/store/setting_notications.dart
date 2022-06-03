@@ -88,7 +88,7 @@ class SettingNotications extends StatelessWidget {
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
                   Text(
-                    "Cập nhật đơn hàng", style: TextStyle(color: kTextColor),),
+                    "Cập nhật đơn hàng", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -120,7 +120,7 @@ class SettingNotications extends StatelessWidget {
                     height: 30.0.h,
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
-                  Text("Tin tức", style: TextStyle(color: kTextColor),),
+                  Text("Tin tức", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -152,7 +152,7 @@ class SettingNotications extends StatelessWidget {
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
                   Text(
-                    "Thông báo cửa hàng", style: TextStyle(color: kTextColor),),
+                    "Thông báo cửa hàng", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -184,7 +184,7 @@ class SettingNotications extends StatelessWidget {
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
                   Text(
-                    "Nội dung cá nhân", style: TextStyle(color: kTextColor),),
+                    "Nội dung cá nhân", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -247,7 +247,7 @@ class SettingNotications extends StatelessWidget {
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
                   Text(
-                    "Cập nhật đơn hàng", style: TextStyle(color: kTextColor),),
+                    "Cập nhật đơn hàng", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -278,7 +278,7 @@ class SettingNotications extends StatelessWidget {
                     height: 30.0.h,
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
-                  Text("Tin nhắn", style: TextStyle(color: kTextColor),),
+                  Text("Tin nhắn", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -309,7 +309,7 @@ class SettingNotications extends StatelessWidget {
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
                   Text(
-                    "Khuyến mãi Casynet", style: TextStyle(color: kTextColor),),
+                    "Khuyến mãi Casynet", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -341,7 +341,7 @@ class SettingNotications extends StatelessWidget {
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
                   Text(
-                    "Theo dõi bình luận", style: TextStyle(color: kTextColor),),
+                    "Theo dõi bình luận", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -372,7 +372,7 @@ class SettingNotications extends StatelessWidget {
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
                   Text(
-                    "Sản phẩm hết hàng", style: TextStyle(color: kTextColor),),
+                    "Sản phẩm hết hàng", style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

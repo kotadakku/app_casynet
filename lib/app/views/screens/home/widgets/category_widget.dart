@@ -9,7 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/home/api/category_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
-import '../../../theme/textTheme.dart';
+import '../../../theme/app_style.dart';
 import '../../../widgets/shimmer/category_shimmer.dart';
 import 'items/category_item.dart';
 
@@ -27,7 +27,7 @@ class CategoryWidget extends StatelessWidget {
           children: [
             Padding(padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 15.0.h ),
               child: Text('category'.tr.toUpperCase(),
-                style: AppTextTheme.categories,
+                style: AppStyle.textcategories,
               ),
             ),
             Stack(

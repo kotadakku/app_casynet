@@ -13,4 +13,6 @@ class ApiConfig {
   static const product = '/pub/media/api_json/Product Detail Json/';
   static const products = '/rest/V1/products/';
 
+  static const dataAddress = '/pub/media/api_json/RegionJson/Region.json';
+
 }

@@ -5,7 +5,6 @@ import 'package:app_casynet/app/data/model/user.dart';
 class Address {
   int? id;
   String? email;
-
   int? websiteId;
   String? region; // Tỉnh/ thành phố
   String? regionCode;

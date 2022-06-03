@@ -273,12 +273,12 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           child: TextField(
                             decoration: const InputDecoration(
                                 hintText: "Nhập tên sản phẩm",
-                                hintStyle: TextStyle(color: kTextColor),
+                                hintStyle: TextStyle(color: AppColors.textGrayColor),
                                 counterText: "",
                                 border: InputBorder.none,
                                 suffixIcon: Icon(
                                   Icons.edit_outlined,
-                                  color: kTextColor,
+                                  color: AppColors.textGrayColor,
                                 )),
                             maxLength: 120,
                             maxLines: 2,
@@ -315,12 +315,12 @@ class ThemSanPhamDichVu extends StatelessWidget {
                           child: TextField(
                             decoration: const InputDecoration(
                               hintText: "Nhập mô tả sản phẩm",
-                              hintStyle: TextStyle(color: kTextColor),
+                              hintStyle: TextStyle(color: AppColors.textGrayColor),
                               counterText: "",
                               border: InputBorder.none,
                               suffixIcon: Icon(
                                 Icons.edit_outlined,
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                               ),
                             ),
                             maxLength: 400,
@@ -355,7 +355,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   // suffixIcon: Icon(Icons.navigate_next),
 
                                   hintText: 'Nhập mã sản phẩm',
-                                  hintStyle: TextStyle(color: kTextColor),
+                                  hintStyle: TextStyle(color: AppColors.textGrayColor),
                                 ),
                               ),
                             ),
@@ -391,11 +391,11 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   children: const [
                                     Text(
                                       "Thiết lập giá",
-                                      style: TextStyle(color: kTextColor),
+                                      style: TextStyle(color: AppColors.textGrayColor),
                                     ),
                                     Icon(
                                       Icons.navigate_next,
-                                      color: kTextColor,
+                                      color: AppColors.textGrayColor,
                                     ),
                                   ],
                                 ))
@@ -426,7 +426,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   // suffixIcon: Icon(Icons.navigate_next),
 
                                   hintText: 'Nhập số lượng',
-                                  hintStyle: TextStyle(color: kTextColor),
+                                  hintStyle: TextStyle(color: AppColors.textGrayColor),
                                 ),
                               ),
                             ),
@@ -532,7 +532,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   children: [
                                     Text(
                                       controller.chonDanhmuc.toString(),
-                                      style: TextStyle(color: kTextColor),
+                                      style: TextStyle(color: AppColors.textGrayColor),
                                     ),
                                     const Icon(Icons.navigate_next),
                                   ],
@@ -569,7 +569,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   children: const [
                                     Text(
                                       "Chọn thương hiệu",
-                                      style: TextStyle(color: kTextColor),
+                                      style: TextStyle(color: AppColors.textGrayColor),
                                     ),
                                     Icon(Icons.navigate_next),
                                   ],
@@ -613,7 +613,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   // suffixIcon: Icon(Icons.navigate_next),
 
                                   hintText: 'Nhập URL key',
-                                  hintStyle: TextStyle(color: kTextColor),
+                                  hintStyle: TextStyle(color: AppColors.textGrayColor),
                                 ),
                               ),
                             ),
@@ -644,7 +644,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   // suffixIcon: Icon(Icons.navigate_next),
 
                                   hintText: 'Nhập tiêu đề meta',
-                                  hintStyle: TextStyle(color: kTextColor),
+                                  hintStyle: TextStyle(color: AppColors.textGrayColor),
                                 ),
                               ),
                             ),
@@ -675,7 +675,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   // suffixIcon: Icon(Icons.navigate_next),
 
                                   hintText: 'Nhập từ khóa meta',
-                                  hintStyle: TextStyle(color: kTextColor),
+                                  hintStyle: TextStyle(color: AppColors.textGrayColor),
                                 ),
                               ),
                             ),
@@ -706,7 +706,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                   // suffixIcon: Icon(Icons.navigate_next),
 
                                   hintText: 'Nhập mô tả meta',
-                                  hintStyle: TextStyle(color: kTextColor),
+                                  hintStyle: TextStyle(color: AppColors.textGrayColor),
                                 ),
                               ),
                             ),

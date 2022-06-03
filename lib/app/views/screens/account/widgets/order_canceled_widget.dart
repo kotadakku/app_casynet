@@ -43,7 +43,7 @@ class OrderCanceledWidget extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
-                                  color: kTextLink
+                                  color: AppColors.textLink
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -52,7 +52,7 @@ class OrderCanceledWidget extends StatelessWidget {
                             ),
                             Icon(
                               CupertinoIcons.chat_bubble_2,
-                              color: kYellowColor,
+                              color: AppColors.yellowColor,
                             ),
                             Spacer(),
                             Text('ĐÃ HỦY',
@@ -82,7 +82,7 @@ class OrderCanceledWidget extends StatelessWidget {
                           children: [
                             Text(
                               "Thành tiền",
-                              style: TextStyle(color: kTextColor_gray),
+                              style: TextStyle(color: AppColors.textGrayBoldColor),
                             ),
                             Text(
                               "1.655.001",
@@ -101,7 +101,7 @@ class OrderCanceledWidget extends StatelessWidget {
                                   onPressed: () {},
                                   child: Text(
                                     "Chi tiết đơn này",
-                                    style: TextStyle(color: kYellowColor),
+                                    style: TextStyle(color: AppColors.yellowColor),
                                   ),
                                   style:
                                   ElevatedButton.styleFrom(primary: Colors.white))),
@@ -115,7 +115,7 @@ class OrderCanceledWidget extends StatelessWidget {
                                   "Mua lần nữa",
                                   style: TextStyle(),
                                 ),
-                                style: ElevatedButton.styleFrom(primary: kYellowColor),
+                                style: ElevatedButton.styleFrom(primary: AppColors.yellowColor),
                               ))
                         ],
                       ),
@@ -123,7 +123,7 @@ class OrderCanceledWidget extends StatelessWidget {
                     ),
                     Container(
                       height: 10,
-                      color: kBackgroundColor,
+                      color: AppColors.backgroundColor,
                     )
                   ]);
             else return Obx(()=>_orderAccountController.isLoadingCancel.value ?
@@ -142,11 +142,11 @@ class OrderCanceledWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Xem thêm", style: TextStyle(
-                        color: kYellowColor
+                        color: AppColors.yellowColor
                     ),),
                     Container(
                       margin: EdgeInsets.all(5.0),
-                      child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor, size: 15,),
+                      child: Icon(Icons.keyboard_arrow_down_sharp, color: AppColors.yellowColor, size: 15,),
                     )
                   ],
                 ),
@@ -208,20 +208,20 @@ class OrderItem extends StatelessWidget {
                         children: [
                           Text(
                             "Phân loại hàng: ngocbich",
-                            style: TextStyle(color: kTextColor, fontSize: 12),
+                            style: TextStyle(color: AppColors.textGrayColor, fontSize: 12),
                           ),
                           Text(
                             product.officialPrice.toString(),
                             style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
-                                color: kTextColor,
+                                color: AppColors.textGrayColor,
                                 fontSize: 12),
                           )
                         ],
                       ),
                       Text(
                         "x1",
-                        style: TextStyle(color: kTextColor, fontSize: 12),
+                        style: TextStyle(color: AppColors.textGrayColor, fontSize: 12),
                       )
                     ],
                   ))

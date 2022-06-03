@@ -44,7 +44,7 @@ class OrderCompleteWidget extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: kTextLink
+                                color: AppColors.textLink
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -53,7 +53,7 @@ class OrderCompleteWidget extends StatelessWidget {
                           ),
                           Icon(
                             CupertinoIcons.chat_bubble_2,
-                            color: kYellowColor,
+                            color: AppColors.yellowColor,
                           ),
                         ],
                       )),
@@ -76,7 +76,7 @@ class OrderCompleteWidget extends StatelessWidget {
                         children: [
                           Text(
                             "Thành tiền",
-                            style: TextStyle(color: kTextColor_gray),
+                            style: TextStyle(color: AppColors.textGrayBoldColor),
                           ),
                           Text(
                             "1.655.001",
@@ -95,7 +95,7 @@ class OrderCompleteWidget extends StatelessWidget {
                                 onPressed: () {},
                                 child: Text(
                                   "Chi tiết đơn này",
-                                  style: TextStyle(color: kYellowColor),
+                                  style: TextStyle(color: AppColors.yellowColor),
                                 ),
                                 style:
                                 ElevatedButton.styleFrom(primary: Colors.white))),
@@ -109,14 +109,14 @@ class OrderCompleteWidget extends StatelessWidget {
                                 "Mua lần nữa",
                                 style: TextStyle(),
                               ),
-                              style: ElevatedButton.styleFrom(primary: kYellowColor),
+                              style: ElevatedButton.styleFrom(primary: AppColors.yellowColor),
                             ))
                       ],
                     ),
                   ),
                   Container(
                     height: 10,
-                    color: kBackgroundColor,
+                    color: AppColors.backgroundColor,
                   )
                 ]);
           else return Obx(()=>_orderAccountController.isLoadingComplete.value ?
@@ -135,11 +135,11 @@ class OrderCompleteWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Xem thêm", style: TextStyle(
-                      color: kYellowColor
+                      color: AppColors.yellowColor
                   ),),
                   Container(
                     margin: EdgeInsets.all(5.0),
-                    child: Icon(Icons.keyboard_arrow_down_sharp, color: kYellowColor, size: 15,),
+                    child: Icon(Icons.keyboard_arrow_down_sharp, color: AppColors.yellowColor, size: 15,),
                   )
                 ],
               ),

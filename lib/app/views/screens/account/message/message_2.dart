@@ -22,7 +22,7 @@ class MessageAccount_2 extends StatelessWidget {
                       decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                               offset: const Offset(
                                 0.0,
                                 13.0,
@@ -101,13 +101,13 @@ class MessageAccount_2 extends StatelessWidget {
                 ),),
                 Container(
                   height: 60,
-                  color: kBackgroundColor,
+                  color: AppColors.backgroundColor,
                   padding: EdgeInsets.all(5.0),
                   child: Row(
                     children: [
-                      Expanded(flex: 1,child: Icon(Icons.send, color: kYellowColor,)),
-                      Expanded(flex: 1,child: Icon(Icons.send, color: kYellowColor,)),
-                      Expanded(flex: 1,child: Icon(Icons.send, color: kYellowColor,)),
+                      Expanded(flex: 1,child: Icon(Icons.send, color: AppColors.yellowColor,)),
+                      Expanded(flex: 1,child: Icon(Icons.send, color: AppColors.yellowColor,)),
+                      Expanded(flex: 1,child: Icon(Icons.send, color: AppColors.yellowColor,)),
                       Expanded(
                           flex: 6,
                           child: Container(
@@ -120,23 +120,23 @@ class MessageAccount_2 extends StatelessWidget {
                                 hintText: "Nhập tin nhắn",
                                 contentPadding: EdgeInsets.all(10.0),
                                 hintStyle: TextStyle(
-                                    color: kTextColor,
+                                    color: AppColors.textGrayColor,
                                     fontSize: 14
                                 ),
-                                suffixIcon: Icon(Icons.tag_faces, color: kYellowColor,),
+                                suffixIcon: Icon(Icons.tag_faces, color: AppColors.yellowColor,),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
-                                    borderSide: BorderSide(color: kTextColor)
+                                    borderSide: BorderSide(color: AppColors.textGrayColor)
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
-                                    borderSide: BorderSide(color: kTextColor)
+                                    borderSide: BorderSide(color: AppColors.textGrayColor)
                                 ),
                               ),
                             ),
                           )
                       ),
-                      Expanded(flex: 1,child: Icon(Icons.send, color: kYellowColor,))
+                      Expanded(flex: 1,child: Icon(Icons.send, color: AppColors.yellowColor,))
                     ],
                   ),
                 )
@@ -159,7 +159,7 @@ class RawChat extends StatelessWidget {
         children: [
           Text("12:40, 28/06/2019",
             style: TextStyle(
-              color: kTextColor,
+              color: AppColors.textGrayColor,
               fontSize: 12
             ),
           ),
@@ -185,7 +185,7 @@ class RawChat extends StatelessWidget {
                     maxWidth: MediaQuery.of(context).size.width*0.6
                 ),
                 decoration: BoxDecoration(
-                    color: isMe ? kYellowColor: Colors.grey.withOpacity(0.3) ,
+                    color: isMe ? AppColors.yellowColor: Colors.grey.withOpacity(0.3) ,
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(isMe? 0: 20.0),
                       bottomRight: Radius.circular(isMe? 0 :20.0),

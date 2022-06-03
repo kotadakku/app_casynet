@@ -3,7 +3,7 @@
 import 'package:intl/intl.dart';
 
 class IntToPrice{
-  final int priceInt;
+  final int? priceInt;
 
   IntToPrice(this.priceInt);
 

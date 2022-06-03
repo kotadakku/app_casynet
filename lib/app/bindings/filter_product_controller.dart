@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../controller/filter_product_controller.dart';
+import '../controller/filter/filter_product_controller.dart';
 
 class FilterProductBindings extends Bindings{
   @override

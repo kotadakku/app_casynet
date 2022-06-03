@@ -37,7 +37,7 @@ class RegisterWidget extends StatelessWidget {
                   TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      cursorColor: kYellowColor,
+                      cursorColor: AppColors.yellowColor,
                       onSaved: (value) {
                         if(value != null){
                           List<String> val = value.split(" ",);
@@ -58,11 +58,11 @@ class RegisterWidget extends StatelessWidget {
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
-                          borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                          borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
-                          borderSide: BorderSide(color: kTextColor, width: 2.0),
+                          borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
@@ -73,7 +73,7 @@ class RegisterWidget extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Icon(
                             Icons.perm_identity,
-                            color: kTextColor,
+                            color: AppColors.textGrayColor,
                           ),
                         ),
                         suffixIcon: SizedBox(
@@ -104,15 +104,15 @@ class RegisterWidget extends StatelessWidget {
                           return "Bạn chưa nhập đúng định dạng, Ex: a@gmail.com";
                         }
                       },
-                      cursorColor: kYellowColor,
+                      cursorColor: AppColors.yellowColor,
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kTextColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
@@ -123,7 +123,7 @@ class RegisterWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(
                               Icons.email_outlined,
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                             ),
                           ),
                           suffixIcon: SizedBox(
@@ -153,15 +153,15 @@ class RegisterWidget extends StatelessWidget {
                         }
                       },
                       keyboardType: TextInputType.phone,
-                      cursorColor: kYellowColor,
+                      cursorColor: AppColors.yellowColor,
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kTextColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
@@ -172,7 +172,7 @@ class RegisterWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(
                               Icons.phone,
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                             ),
                           ),
                           suffixIcon: SizedBox(
@@ -202,15 +202,15 @@ class RegisterWidget extends StatelessWidget {
                         //(?=.*?[!@#\><*~])
                       },
                       obscureText: authController.isRegisterObscurePassword.value,
-                      cursorColor: kYellowColor,
+                      cursorColor: AppColors.yellowColor,
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kTextColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
@@ -221,15 +221,15 @@ class RegisterWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(
                               Icons.lock,
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                             ),
                           ),
                           suffixIcon: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               GestureDetector(
-                                child: authController.isRegisterObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: kTextColor,):
-                                Icon(Icons.visibility_outlined, color: kYellowColor,), onTap: (){
+                                child: authController.isRegisterObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: AppColors.textGrayColor,):
+                                Icon(Icons.visibility_outlined, color: AppColors.yellowColor,), onTap: (){
                                 authController.changeRegisterObscurePassword(!authController.isRegisterObscurePassword.value);
                               },),
                               SizedBox(
@@ -252,7 +252,7 @@ class RegisterWidget extends StatelessWidget {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       textAlignVertical: TextAlignVertical.center,
                       obscureText: true,
-                      cursorColor: kYellowColor,
+                      cursorColor: AppColors.yellowColor,
                       onSaved: (value) {},
                       validator: (value) {
                         /*if (value.length < ) {
@@ -268,11 +268,11 @@ class RegisterWidget extends StatelessWidget {
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
-                            borderSide: BorderSide(color: kTextColor, width: 2.0),
+                            borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50.0),
@@ -283,7 +283,7 @@ class RegisterWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(
                               Icons.lock,
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                             ),
                           ),
                           suffixIcon: SizedBox(
@@ -299,7 +299,7 @@ class RegisterWidget extends StatelessWidget {
                   // TextField Ngày sinh
                   TextFormField(
                       textAlignVertical: TextAlignVertical.center,
-                      cursorColor: kYellowColor,
+                      cursorColor: AppColors.yellowColor,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: authController.birthDayTextController,
                       onSaved: (value) {
@@ -323,11 +323,11 @@ class RegisterWidget extends StatelessWidget {
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
-                          borderSide: BorderSide(color: kYellowColor, width: 2.0),
+                          borderSide: BorderSide(color: AppColors.yellowColor, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
-                          borderSide: BorderSide(color: kTextColor, width: 2.0),
+                          borderSide: BorderSide(color: AppColors.textGrayColor, width: 2.0),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.0),
@@ -337,7 +337,7 @@ class RegisterWidget extends StatelessWidget {
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: IconButton(
-                              color: kTextColor,
+                              color: AppColors.textGrayColor,
                               onPressed: () {
                               },
                               icon: Icon(
@@ -378,7 +378,7 @@ class RegisterWidget extends StatelessWidget {
                     children: [
                       Obx(
                             () => Checkbox(
-                            activeColor: kYellowColor,
+                            activeColor: AppColors.yellowColor,
                             value: _isCheckboxAccept.value,
                             onChanged: (value) {
                               _isCheckboxAccept.value = !_isCheckboxAccept.value;
@@ -423,7 +423,7 @@ class RegisterWidget extends StatelessWidget {
 
                     },
                     style: ElevatedButton.styleFrom(
-                        primary: kYellowColor,
+                        primary: AppColors.yellowColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                         )),

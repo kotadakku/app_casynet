@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/data/model/notification.dart';
 import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/provider/db_provider.dart';
@@ -6,14 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-import '../../controller/bottom_nav_controller.dart';
 class NotificationService extends GetxController{
   var notificationList = [];
   var isLoading = true;
 
   late final FirebaseMessaging _messaging;
   late var totalNotificationCounter = 0;
-  BottomNavController _bottomNavController = Get.find();
+  HomeController _homeController = Get.find();
 
   @override
   void onInit() {
@@ -26,7 +26,7 @@ class NotificationService extends GetxController{
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       NotificationModel notification = NotificationModel.fromJson(message);
       notificationList.add(notification);
-      if(_bottomNavController.tabIndex == 1) updateSeenNotification();
+      if(_homeController.tabIndex == 1) updateSeenNotification();
       updateTotalNotication();
       update();
     });
@@ -72,7 +72,7 @@ class NotificationService extends GetxController{
         // ham get
         updateTotalNotication();
 
-        if(_bottomNavController.tabIndex == 1) updateSeenNotification();
+        if(_homeController.tabIndex == 1) updateSeenNotification();
         update();
 
         if(notification != null){
@@ -99,7 +99,7 @@ class NotificationService extends GetxController{
       print('<Init Message> ${initialMessage.data}');
       NotificationModel notification = NotificationModel.fromJson(initialMessage);
       notificationList.add(notification);
-      if(_bottomNavController.tabIndex == 1) updateSeenNotification();
+      if(_homeController.tabIndex == 1) updateSeenNotification();
       updateTotalNotication();
       update();
 

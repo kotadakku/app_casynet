@@ -156,7 +156,7 @@ class NewPost extends StatelessWidget {
                           child: TextField(
                             decoration: const InputDecoration(
                               hintText: "Nhập tiêu đề bài viết",
-                              hintStyle: TextStyle(color: kTextColor),
+                              hintStyle: TextStyle(color: AppColors.textGrayColor),
                               counterText: "",
                               border: InputBorder.none,
 
@@ -195,7 +195,7 @@ class NewPost extends StatelessWidget {
                           child: TextField(
                             decoration: const InputDecoration(
                               hintText: "Nhập nội dung bài viết",
-                              hintStyle: TextStyle(color: kTextColor),
+                              hintStyle: TextStyle(color: AppColors.textGrayColor),
                               counterText: "",
                               border: InputBorder.none,
                             ),

@@ -1,13 +1,13 @@
 
+import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import '../../controller/bottom_nav_controller.dart';
 import '../../utlis/service/notication_service.dart';
 import '../theme/app_colors.dart';
 
 class BottomNavigator extends StatelessWidget {
-  var c = Get.find<BottomNavController>();
+  final HomeController  _homeController = Get.find<HomeController>();
   BottomNavigator({Key? key}) : super(key: key);
 
   @override
@@ -20,15 +20,15 @@ class BottomNavigator extends StatelessWidget {
         showSelectedLabels: false,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined, color: kTextColor, size: 35,),
-              activeIcon: Icon(Icons.home, color: kYellowColor, size: 35,),
+              icon: Icon(Icons.home_outlined, color: AppColors.textGrayColor, size: 35,),
+              activeIcon: Icon(Icons.home, color: AppColors.yellowColor, size: 35,),
               // activeIcon: ,
               label: "Home"
           ),
           BottomNavigationBarItem(
               icon: Stack(
                 children: <Widget>[
-                  Icon(Icons.notifications_none, color: kTextColor, size: 35,),
+                  Icon(Icons.notifications_none, color: AppColors.textGrayColor, size: 35,),
                   GetBuilder<NotificationService>(
                       init: NotificationService(),
                       builder: (controller){
@@ -38,7 +38,7 @@ class BottomNavigator extends StatelessWidget {
                             padding: EdgeInsets.all(1),
                             decoration: new BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(color: kYellowColor),
+                              border: Border.all(color: AppColors.yellowColor),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             constraints: BoxConstraints(
@@ -48,7 +48,7 @@ class BottomNavigator extends StatelessWidget {
                             child: new Text(
                               controller.totalNotificationCounter.toString(),
                               style: new TextStyle(
-                                color: kYellowColor,
+                                color: AppColors.yellowColor,
                                 fontSize: 13,
                               ),
                               textAlign: TextAlign.center,
@@ -59,30 +59,30 @@ class BottomNavigator extends StatelessWidget {
                   )
                 ],
               ),
-              activeIcon: Icon(Icons.notifications, color: kYellowColor, size: 35,),
+              activeIcon: Icon(Icons.notifications, color: AppColors.yellowColor, size: 35,),
               label: "Notications"
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined, color: kTextColor, size: 35),
-              activeIcon: Icon(Icons.shopping_cart, color: kYellowColor, size: 35),
+              icon: Icon(Icons.shopping_cart_outlined, color: AppColors.textGrayColor, size: 35),
+              activeIcon: Icon(Icons.shopping_cart, color: AppColors.yellowColor, size: 35),
               label: "Cart"
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined, color: kTextColor, size: 35,),
-              activeIcon: Icon(Icons.account_circle, color: kYellowColor, size: 35,),
+              icon: Icon(Icons.account_circle_outlined, color: AppColors.textGrayColor, size: 35,),
+              activeIcon: Icon(Icons.account_circle, color: AppColors.yellowColor, size: 35,),
               label: "Account"
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.help_outline, color: kTextColor, size: 35,),
-              activeIcon: Icon(Icons.help, color: kYellowColor, size: 35,),
+              icon: Icon(Icons.help_outline, color: AppColors.textGrayColor, size: 35,),
+              activeIcon: Icon(Icons.help, color: AppColors.yellowColor, size: 35,),
               label: "Detail"
           ),
         ],
         showUnselectedLabels: false,
-        currentIndex: c.tabIndex.value,
+        currentIndex: _homeController.tabIndex.value,
         elevation: 10,
         type: BottomNavigationBarType.fixed,
-        onTap:(index)=> c.changeTabIndex(index),
+        onTap:(index)=> _homeController.changeTabIndex(index),
       ),
     ));
   }

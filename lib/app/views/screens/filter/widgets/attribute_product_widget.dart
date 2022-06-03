@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../controller/filter_product_controller.dart';
+import '../../../../controller/filter/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 
 class AttributeProductWidget extends StatelessWidget {
@@ -65,7 +65,7 @@ class AttributeProductWidget extends StatelessWidget {
                         ),
                         Obx(()=>Radio(
                           value: _attrs[index],
-                          activeColor: kYellowColor,
+                          activeColor: AppColors.yellowColor,
                           onChanged: (value){
                             controller.attr.value = _attrs[index];
                           },

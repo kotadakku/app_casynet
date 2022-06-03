@@ -38,32 +38,32 @@ class GiftStorePage extends StatelessWidget {
         children: [
           Container(
             height: 55,
-            color: kBackgroundColor,
+            color: AppColors.backgroundColor,
             padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
             child: TextField(
-              cursorColor: kTextColor,
+              cursorColor: AppColors.textGrayColor,
 
               decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
-                focusColor: kYellowColor,
+                focusColor: AppColors.yellowColor,
                 contentPadding: EdgeInsets.all(5.0),
                 prefixIcon: Icon(Icons.search),
                 hintText: "Tìm chương trình khuyến mãi",
                 hintStyle: TextStyle(
-                  color: kTextColor_gray
+                  color: AppColors.textGrayBoldColor
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2.0),
                   borderSide: BorderSide(
-                    color: kTextColor,
+                    color: AppColors.textGrayColor,
                     width: 1.0
                   )
                 ),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(2.0),
                     borderSide: BorderSide(
-                        color: kYellowColor,
+                        color: AppColors.yellowColor,
                         width: 1.0
                     )
                 ),
@@ -77,9 +77,9 @@ class GiftStorePage extends StatelessWidget {
               child: Column(
                 children: [
                   TabBar(
-                    labelColor: kYellowColor,
-                    indicatorColor: kYellowColor,
-                    unselectedLabelColor: kTextColor,
+                    labelColor: AppColors.yellowColor,
+                    indicatorColor: AppColors.yellowColor,
+                    unselectedLabelColor: AppColors.textGrayColor,
                     tabs: [
                       Tab(
                         child: Text("Sắp diễn ra"),
@@ -119,7 +119,7 @@ class GiftStorePage extends StatelessWidget {
                                         offset: Offset(30, 30),
                                         child: Icon(
                                           Icons.more_horiz,
-                                          color: kTextColor,
+                                          color: AppColors.textGrayColor,
                                         ),
                                         onSelected: (value){
 
@@ -131,7 +131,7 @@ class GiftStorePage extends StatelessWidget {
                                                 children: [
                                                   Container(
                                                     child: Icon(Icons.share_outlined,
-                                                      color: kTextColor,
+                                                      color: AppColors.textGrayColor,
                                                     ),
                                                     padding: EdgeInsets.only(
                                                         bottom: 15,
@@ -145,11 +145,11 @@ class GiftStorePage extends StatelessWidget {
                                                         children: [
                                                           Text("Chia sẻ",
                                                             style: TextStyle(
-                                                                color: kTextColor
+                                                                color: AppColors.textGrayColor
                                                             ),
                                                           ),
                                                           Divider(
-                                                            color: kTextColor,
+                                                            color: AppColors.textGrayColor,
                                                             height: 20,
                                                             thickness: 1,
                                                           ),
@@ -165,7 +165,7 @@ class GiftStorePage extends StatelessWidget {
                                                 children: [
                                                   Container(
                                                     child: Icon(Icons.edit,
-                                                      color: kTextColor,
+                                                      color: AppColors.textGrayColor,
                                                     ),
                                                     padding: EdgeInsets.only(
                                                         bottom: 15,
@@ -179,11 +179,11 @@ class GiftStorePage extends StatelessWidget {
                                                         children: [
                                                           Text("Sửa",
                                                             style: TextStyle(
-                                                                color: kTextColor
+                                                                color: AppColors.textGrayColor
                                                             ),
                                                           ),
                                                           Divider(
-                                                            color: kTextColor,
+                                                            color: AppColors.textGrayColor,
                                                             height: 20,
                                                             thickness: 1,
                                                           ),
@@ -199,7 +199,7 @@ class GiftStorePage extends StatelessWidget {
                                                 children: [
                                                   Container(
                                                     child: Icon(CupertinoIcons.trash,
-                                                      color: kTextColor,
+                                                      color: AppColors.textGrayColor,
                                                     ),
                                                     padding: EdgeInsets.only(
                                                         bottom: 15,
@@ -213,11 +213,11 @@ class GiftStorePage extends StatelessWidget {
                                                         children: [
                                                           Text("Xóa",
                                                             style: TextStyle(
-                                                                color: kTextColor
+                                                                color: AppColors.textGrayColor
                                                             ),
                                                           ),
                                                           Divider(
-                                                            color: kTextColor,
+                                                            color: AppColors.textGrayColor,
                                                             height: 20,
                                                             thickness: 1,
                                                           ),
@@ -243,7 +243,7 @@ class GiftStorePage extends StatelessWidget {
                                       ),
                                       Text("Mã quà tặng: 00000001",
                                         style: TextStyle(
-                                            color: kTextColor
+                                            color: AppColors.textGrayColor
                                         ),
 
                                       )
@@ -260,13 +260,13 @@ class GiftStorePage extends StatelessWidget {
 
                                       Text("Bắt đầu: 17/03/2020",
                                         style: TextStyle(
-                                            color: kTextColor
+                                            color: AppColors.textGrayColor
                                         ),
                                       ),
                                       SizedBox(width: 20.w,),
                                       Text("Kết thúc: 17/03/2020",
                                         style: TextStyle(
-                                            color: kTextColor
+                                            color: AppColors.textGrayColor
                                         ),
                                       ),
                                     ],

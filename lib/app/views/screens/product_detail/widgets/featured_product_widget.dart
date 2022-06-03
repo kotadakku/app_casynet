@@ -17,14 +17,14 @@ class FeaturedProductWidget extends StatelessWidget {
           child: Text("Sản phẩm nổi bật",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: kYellowColor,
+              color: AppColors.yellowColor,
               fontSize: 18
             ),
           ),
         ),
         Divider(
           height: 20,
-          color: kTextColor,
+          color: AppColors.textGrayColor,
         ),
         Wrap(
           spacing: 5.0,
@@ -66,7 +66,7 @@ class FeaturedProductWidget extends StatelessWidget {
         ),
         Divider(
           height: 20,
-          color: kTextColor,
+          color: AppColors.textGrayColor,
         ),
         Padding(padding: EdgeInsets.symmetric(vertical: 10),
           child: Row(
@@ -75,9 +75,9 @@ class FeaturedProductWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("Xem thêm", style: TextStyle(
-                color: kYellowColor,
+                color: AppColors.yellowColor,
               ),),
-              Icon(Icons.keyboard_arrow_down_rounded, color: kYellowColor,),
+              Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.yellowColor,),
 
             ],
           ),

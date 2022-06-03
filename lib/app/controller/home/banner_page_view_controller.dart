@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'home_controller.dart';
 
 class BannerController extends GetxController{
-  var current_banner = 0.obs;
+  final current_banner = 0.obs;
   late Timer _timer;
   PageController pageController = PageController(
     initialPage: 0,

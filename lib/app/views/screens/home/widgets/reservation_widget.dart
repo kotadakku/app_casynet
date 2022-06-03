@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,20 +8,19 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/home/api/reservation_controller.dart';
-import '../../../../controller/home/radio_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
-import '../../../theme/textTheme.dart';
+import '../../../theme/app_style.dart';
 import '../../../widgets/shimmer/seller_shimmer.dart';
 import 'items/product_item.dart';
 
 class ReservationWidget extends StatelessWidget {
   ReservationWidget({Key? key}) : super(key: key);
   ReservationController _ReservationController = Get.find();
+  HomeController _homeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    RadioController controller = Get.find();
     return Material(
       elevation: 3,
       child: Container(
@@ -50,7 +50,7 @@ class ReservationWidget extends StatelessWidget {
                         SizedBox(width: 15,),
                         Text(
                           'reservation'.tr.toUpperCase(),
-                          style: AppTextTheme.titleProduct,
+                          style: AppStyle.texttitleProduct,
                         )
                       ],
                     ),
@@ -88,9 +88,9 @@ class ReservationWidget extends StatelessWidget {
                       children: [
                         Radio(
                             value: true,
-                            groupValue: controller.isCarReservation.value,
+                            groupValue: _homeController.isCarReservation.value,
                             onChanged: (value) {
-                              controller.updateIsCarReservation();
+                              _homeController.updateIsCarReservation();
                             },
                             activeColor: Color(0xffDFB400)),
                         Text("Ô tô"),
@@ -99,9 +99,9 @@ class ReservationWidget extends StatelessWidget {
                         ),
                         Radio(
                             value: false,
-                            groupValue: controller.isCarReservation.value,
+                            groupValue: _homeController.isCarReservation.value,
                             onChanged: (value) {
-                              controller.updateIsCarReservation();
+                              _homeController.updateIsCarReservation();
                             },
                             activeColor: Color(0xffDFB400)),
                         Text("Xe máy")
@@ -135,25 +135,43 @@ class ReservationWidget extends StatelessWidget {
             Obx(()=>
               LoadingOverlay(
                 isLoading: _ReservationController.isLoadingDB.value,
-                shimmer: ItemSellerShimmer(),
+                shimmer: const ItemSellerShimmer(),
                 child: Stack(
                   children: [
-                    Padding(padding: EdgeInsets.only(bottom: 15.h),
-                        child:
-                        Wrap(
-                          spacing: 5.0.w,
-                          runSpacing: 10.0,
-                          children: (_ReservationController.reservationProductList as List).map((e) =>
-                              ItemProductWidget(
-                                product: e
-                              ),
-                          ).toList(),
-                        )
+                    GridView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 3.3,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
+                        itemCount: _ReservationController.reservationProductList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return ItemProductWidget(
+                            index: index,
+                            products: _ReservationController.reservationProductList,
+                          );
+                        }
                     ),
+
+                    // Padding(padding: EdgeInsets.only(bottom: 15.h),
+                    //     child:
+                    //     Wrap(
+                    //       spacing: 5.0.w,
+                    //       runSpacing: 10.0,
+                    //       children: (_ReservationController.reservationProductList as List).map((e) =>
+                    //           ItemProductWidget(
+                    //             product: e
+                    //           ),
+                    //       ).toList(),
+                    //     )
+                    // ),
                     _ReservationController.error == ''? SizedBox()
                         : Positioned.fill(
                         child: Container(
-                          color: AppColors.kBackgroundColor.withOpacity(0.5),
+                          color: AppColors.backgroundColor.withOpacity(0.5),
                           padding: EdgeInsets.only(top: 100),
                           child: Column(
                             children: [
@@ -166,7 +184,7 @@ class ReservationWidget extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ElevatedButton(
-                                    child: Text('Thử lại'),
+                                    child: const Text('Thử lại'),
                                     onPressed: (){
                                       _ReservationController.getReservationProductsAPI();
                                     },
@@ -188,7 +206,7 @@ class ReservationWidget extends StatelessWidget {
                     Positioned.fill(
                       child: Container(
                         padding: EdgeInsets.only(top: 100),
-                        color: AppColors.kBackgroundColor.withOpacity(0.5),
+                        color: AppColors.backgroundColor.withOpacity(0.5),
                         child: Center(
                           child: CircularProgressIndicator(),
                         )
@@ -211,7 +229,7 @@ class ReservationWidget extends StatelessWidget {
   }
 
   void _view_more(title, id) {
-    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id ]);
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id, _ReservationController.reservationProductList ]);
   }
 }
 

@@ -1,13 +1,12 @@
-import 'package:app_casynet/app/controller/bottom_nav_controller.dart';
 import 'package:app_casynet/app/controller/home/api/promotion_controller.dart';
 import 'package:app_casynet/app/controller/home/api/recommend_controller.dart';
 import 'package:app_casynet/app/controller/home/api/seller_controller.dart';
-import 'package:app_casynet/app/controller/map_controller.dart';
+import 'package:app_casynet/app/controller/filter/map_controller.dart';
 import 'package:get/get.dart';
 import '../controller/account/new_address_controller.dart';
 import '../controller/auth/authentication_manager.dart';
 import '../controller/cart/api/product_cart_controller.dart';
-import '../controller/detail_app_controller.dart';
+import '../controller/product_detail/detail_app_controller.dart';
 import '../controller/home/api/banner_controller.dart';
 import '../controller/home/api/category_controller.dart';
 import '../controller/home/api/reservation_controller.dart';
@@ -20,7 +19,6 @@ import '../utlis/service/notication_service.dart';
 class MainBindings extends Bindings {
   @override
   void dependencies() {
-    Get.put(BottomNavController());
 
     Get.put(HomeController());
     Get.lazyPut(() => BannerController());

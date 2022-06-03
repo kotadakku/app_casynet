@@ -125,7 +125,7 @@ class NotificationCustomer extends StatelessWidget {
 
                                   child: const Icon(
                                     Icons.more_horiz,
-                                    color: kTextColor,
+                                    color: AppColors.textGrayColor,
                                   ),
                                   onSelected: (value) {
                                     switch (value) {
@@ -148,7 +148,7 @@ class NotificationCustomer extends StatelessWidget {
                                             child:
                                             Image.asset(
                                               "assets/images/store/ic_trash.png",
-                                              color: kTextColor,
+                                              color: AppColors.textGrayColor,
                                               width: 20,
                                               height: 20,
                                             ),
@@ -164,10 +164,10 @@ class NotificationCustomer extends StatelessWidget {
                                                 children: const [
                                                   Text(
                                                     "Xóa",
-                                                    style: TextStyle(color: kTextColor),
+                                                    style: TextStyle(color: AppColors.textGrayColor),
                                                   ),
                                                   Divider(
-                                                    color: kTextColor,
+                                                    color: AppColors.textGrayColor,
                                                     height: 20,
                                                     thickness: 1,
                                                   ),
@@ -186,7 +186,7 @@ class NotificationCustomer extends StatelessWidget {
                                             child:
                                             Image.asset(
                                               "assets/images/store/ic_edit.png",
-                                              color: kTextColor,
+                                              color: AppColors.textGrayColor,
                                               width: 20,
                                               height: 20,
                                             ),
@@ -202,10 +202,10 @@ class NotificationCustomer extends StatelessWidget {
                                                 children: const [
                                                   Text(
                                                     "Sửa",
-                                                    style: TextStyle(color: kTextColor),
+                                                    style: TextStyle(color: AppColors.textGrayColor),
                                                   ),
                                                   Divider(
-                                                    color: kTextColor,
+                                                    color: AppColors.textGrayColor,
                                                     height: 20,
                                                     thickness: 1,
                                                   ),
@@ -221,10 +221,10 @@ class NotificationCustomer extends StatelessWidget {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [Text("000001", style: TextStyle(color: kTextColor),),],),
+                            children: [Text("000001", style: TextStyle(color: AppColors.textGrayColor),),],),
                           Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text("Đã gửi: 15:00 17/03/2022", style: TextStyle(color: kTextColor), )
+                            Text("Đã gửi: 15:00 17/03/2022", style: TextStyle(color: AppColors.textGrayColor), )
                           ],
                           )
 

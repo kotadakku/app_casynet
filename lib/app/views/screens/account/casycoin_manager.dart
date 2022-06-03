@@ -44,14 +44,14 @@ class CasycoinManagerPage extends StatelessWidget {
                           children: [
                             Text("1.800",
                               style: TextStyle(
-                                  color: kYellowColor,
+                                  color: AppColors.yellowColor,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold
                               ),
                             ),
                             Text("Tích điểm",
                               style: TextStyle(
-                                  color: kTextColor_gray
+                                  color: AppColors.textGrayBoldColor
                               ),
                             )
                           ],
@@ -63,15 +63,15 @@ class CasycoinManagerPage extends StatelessWidget {
               ),
               Divider(
                 thickness: 10,
-                color: kBackgroundColor,
+                color: AppColors.backgroundColor,
               ),
               Container(
                 decoration: BoxDecoration(color: Colors.white),
                 child: TabBar(
                     controller: _tabx.controller,
-                    indicatorColor: kYellowColor,
-                    unselectedLabelColor: kTextColor,
-                    labelColor: kYellowColor,
+                    indicatorColor: AppColors.yellowColor,
+                    unselectedLabelColor: AppColors.textGrayColor,
+                    labelColor: AppColors.yellowColor,
                     tabs: _tabx.listTab
                         .map((e) => Tab(
                       child: Text(
@@ -147,7 +147,7 @@ class ItemCoin extends StatelessWidget {
         ),),
       trailing: Text(point_change.isNegative ? point_change.toString(): "+"+ point_change.toString(),
         style: TextStyle(
-            color: point_change.isNegative ? Colors.black : kYellowColor,
+            color: point_change.isNegative ? Colors.black : AppColors.yellowColor,
             fontWeight: point_change.isNegative ? null : FontWeight.bold,
         ),
 

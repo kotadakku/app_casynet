@@ -29,7 +29,7 @@ class ProfileAccountWidget extends StatelessWidget {
                 height: 60,
                 width: 60,
                 decoration: BoxDecoration(
-                  border: Border.all(color: kYellowColor, width: 2),
+                  border: Border.all(color: AppColors.yellowColor, width: 2),
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
@@ -44,7 +44,7 @@ class ProfileAccountWidget extends StatelessWidget {
         // Tên
         title: Text('${controller.user_current.firstname?? "user_312312"} ${controller.user_current.lastname??''}',
           style: TextStyle(
-              color: kYellowColor,
+              color: AppColors.yellowColor,
               fontWeight: FontWeight.bold
           ),
         ),
@@ -55,13 +55,13 @@ class ProfileAccountWidget extends StatelessWidget {
             Text(
               "Tài khoản Facebook",
               style: TextStyle(
-                  color: kTextColor_gray
+                  color: AppColors.textGrayBoldColor
               ),
             ),
             // Ngày tham gia
             Text("Thành viên từ: ${controller.user_current.created_at?? '__/__/20__'}",
               style: TextStyle(
-                  color: kTextColor_gray
+                  color: AppColors.textGrayBoldColor
               ),
             )
           ],
