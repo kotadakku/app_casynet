@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/shadow_of_doubt.dart';
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 
 class AccountDetailPage extends StatelessWidget {
   const AccountDetailPage({Key? key}) : super(key: key);
@@ -95,7 +95,7 @@ class AccountDetailPage extends StatelessWidget {
                   InkWell(
                     onTap: (){
                       Get.toNamed(Routes.ACCOUNT_EDIT_INFO,
-                          arguments: ['tên',
+                          arguments: ['name',
                             accountDetailController.user.value.fullnameToString()])?.then((value){
                         if(value != null){
                           if(value != accountDetailController.user.value.fullnameToString()){
@@ -119,7 +119,7 @@ class AccountDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Họ tên",
+                            'name'.tr,
                             style: TextStyle(),
                           ),
                           Row(
@@ -181,7 +181,7 @@ class AccountDetailPage extends StatelessWidget {
                                 width: 5.w,
                               ),
                               Text(
-                                "Thay đổi",
+                                'change'.tr,
                                 style: TextStyle(color: AppColors.textLink),
                               ),
                               SizedBox(
@@ -209,7 +209,7 @@ class AccountDetailPage extends StatelessWidget {
                   InkWell(
                     onTap: (){
                       Get.toNamed(Routes.ACCOUNT_EDIT_INFO,
-                          arguments: ['số điện thoại',
+                          arguments: ['phone',
                             accountDetailController.user.value.phone])?.then((value){
                         if(value != null){
                           if(value != accountDetailController.user.value.phone){
@@ -226,12 +226,12 @@ class AccountDetailPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Số điện thoại"),
+                          Text('phone'.tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                accountDetailController.user.value.phone == null ? "Thêm":  accountDetailController.user.value.phone.toString(),
+                                accountDetailController.user.value.phone == null ? 'add'.tr:  accountDetailController.user.value.phone.toString(),
                                 style: TextStyle(color: AppColors.textLink),
                               ),
                               Padding(
@@ -286,7 +286,7 @@ class AccountDetailPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Row(
                       children: [
-                        Text("Giới tính"),
+                        Text('sex'.tr),
                         Spacer(),
                         Row(
                           children: [
@@ -314,7 +314,7 @@ class AccountDetailPage extends StatelessWidget {
                                       ))
                                       .toList(),
                                   value:  accountDetailController.user.value.gender != null
-                                      ? ( accountDetailController.user.value.gender == 0 ? 'Nam':(accountDetailController.user.value.gender == 1 ? 'Nữ': 'Khác')): "Chưa có thông tin",
+                                      ? ( accountDetailController.user.value.gender == 0 ? 'Nam':(accountDetailController.user.value.gender == 1 ? 'Nữ': 'Khác')): 'no-info'.tr,
                                   onChanged: (value) {
                                     int gender = value.toString() == "Nam" ? 0 :(value.toString() == "Nữ" ? 1: 2);
                                     accountDetailController.user.value.gender = gender;
@@ -347,14 +347,15 @@ class AccountDetailPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Ngày sinh"),
+                        Text('birthday'.tr),
+
                         GestureDetector(
                             child: Row(
                               children: [
                                 accountDetailController.user.value.birthday == null ?
 
                                 Obx(()=>Text(
-                                  accountDetailController.date_birthday.value == "" ? "Thiết lập ngay" :accountDetailController.date_birthday.value,
+                                  accountDetailController.date_birthday.value == "" ? 'setup_now'.tr :accountDetailController.date_birthday.value,
                                   style: TextStyle(color: AppColors.textGrayColor),
                                 ),): Text( accountDetailController.user.value.birthday.toString()),
                                 Padding(
@@ -397,12 +398,12 @@ class AccountDetailPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Mật khẩu"),
+                        Text('password'.tr),
                         GestureDetector(
                           child: Row(
                             children: [
                               Text(
-                                "Thay đổi mật khẩu",
+                                'change_pass'.tr,
                                 style: TextStyle(color: AppColors.textLink),
                               ),
                               Padding(

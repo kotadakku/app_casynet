@@ -64,7 +64,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
               margin: new EdgeInsets.only(left: 10),
               child: RaisedButton(
                 color: Colors.amber,
-                child: Text("Thêm +"),
+                child: Text("${'add'.tr} +"),
                 onPressed: () {
                   getdms.getdanhmuctid.value = [];
                   getdms.dem.value = 0;
@@ -97,8 +97,8 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                           },
                         ),
                       ),
-                      Text("Xóa "),
-                      Text("20 Bản ghi"),
+                      Text('delete'.tr),
+                      Text("20 ${'record'.tr}"),
                     ],
                   ),
                 ),
@@ -146,7 +146,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                       onPressed: (context) {},
                                       backgroundColor: Colors.amber,
                                       foregroundColor: Colors.white,
-                                      label: 'Xóa',
+                                      label: 'delete'.tr,
                                     ),
                                   ),
                                 ],
@@ -189,7 +189,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                             ),
                                             Container(
                                               margin: new EdgeInsets.only(right: 5),
-                                              child: Text("Số lượng:1000",
+                                              child: Text("${'amount'.tr}:1000",
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
@@ -201,7 +201,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                             Expanded(
                                               child: Container(
                                                 margin: new EdgeInsets.only(),
-                                                child: Text("Loại: Sản phẩm",
+                                                child: Text("${'type'.tr}: Sản phẩm",
                                                     maxLines: 1,
                                                     overflow:
                                                         TextOverflow.ellipsis),
@@ -209,7 +209,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                             ),
                                             Container(
                                               margin: new EdgeInsets.only(right: 5),
-                                              child: Text("Giá: 1.000.000",
+                                              child: Text("${'price'.tr}: 1.000.000",
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
@@ -221,7 +221,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                           children: [
                                               Expanded(
                                                 child: Container(
-                                                  child: Text("Loại sản phẩm: xe máy\nNgày hết hạn: 15/10/2025\nNổi bật: có\nXuất xứ: Việt Nam\nYêu cầu hẹn trước: có",maxLines: maxliness[index],),
+                                                  child: Text("${'type_product'.tr}: xe máy\nNgày hết hạn: 15/10/2025\nNổi bật: có\nXuất xứ: Việt Nam\nYêu cầu hẹn trước: có",maxLines: maxliness[index],),
                                                 ),
                                               ),
                                             Container(

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../controller/account/wallet_voucher_controller.dart';
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
 
@@ -27,7 +27,7 @@ class WalletVoucherPage extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "Ví Voucher",
+                    'wallet_voucher'.tr,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   SizedBox(
@@ -55,7 +55,7 @@ class WalletVoucherPage extends StatelessWidget {
                               borderSide: BorderSide(width: 1.0, color: AppColors.yellowColor),
                             ),
                             contentPadding: EdgeInsets.all(5.0),
-                            hintText: "Thêm mã giảm giá",
+                            hintText: 'add_voucher'.tr,
                             hintStyle: TextStyle(color: AppColors.textGrayColor)
                         ),
                       ),
@@ -65,7 +65,7 @@ class WalletVoucherPage extends StatelessWidget {
                     height: 35,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text("Lưu"),
+                      child: Text('delete'.tr),
                       style: ElevatedButton.styleFrom(
                           primary: AppColors.yellowColor, elevation: 0),
                     ),
@@ -151,7 +151,7 @@ class WalletVoucherPage extends StatelessWidget {
                                                       child: ElevatedButton(
                                                         onPressed: () {},
                                                         child: Text(
-                                                          "Dùng ngay",
+                                                          'use_now'.tr,
                                                           style: TextStyle(
                                                               color: Colors.blue),
                                                         ),
@@ -206,7 +206,7 @@ class WalletVoucherPage extends StatelessWidget {
                                             style: TextStyle(fontSize: 12),
                                           ),),
                                           Text(
-                                            "Điều kiện",
+                                            'condition'.tr,
                                             style: TextStyle(
                                                 fontSize: 12, color: AppColors.textLink),
                                           ),
@@ -279,7 +279,7 @@ class WalletVoucherPage extends StatelessWidget {
                                                       child: ElevatedButton(
                                                           onPressed: () {},
                                                           child: Text(
-                                                            "Dùng ngay",
+                                                            'use_now'.tr,
                                                             style: TextStyle(
                                                                 color: Colors.blue),
                                                           ),
@@ -338,8 +338,8 @@ class WalletVoucherPage extends StatelessWidget {
                                           width: 30,
                                         ),
                                         Text(
-                                          "Điều kiện",
-                                          style: TextStyle(
+                                          'condition'.tr,
+                                          style: const TextStyle(
                                               fontSize: 12, color: AppColors.textLink),
                                         )
                                       ],

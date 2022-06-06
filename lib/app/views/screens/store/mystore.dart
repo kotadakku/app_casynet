@@ -32,7 +32,7 @@ class MyStorePage extends StatelessWidget {
           onTap: (){Get.back();},
           child: Icon(Icons.arrow_back),
         ),
-        title: Text("Cửa hàng của tôi"),
+        title: Text('my_seller'.tr),
         actions: [
           Container(
             margin: EdgeInsets.only(left: 10,right: 5),
@@ -210,7 +210,7 @@ class MyStorePage extends StatelessWidget {
                             ),
                             child: const Icon(Icons.money_sharp),
                           ),
-                          const Text("Quản lý đơn hàng",
+                          Text('order_management'.tr,
                               style: TextStyle(
                                   fontSize: 15, color: Colors.black))
                         ],
@@ -378,8 +378,8 @@ class MyStorePage extends StatelessWidget {
                           margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: const [
-                              Text("Quà tặng cửa hàng",
+                            children: [
+                              Text('gift_seller'.tr,
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black))
                             ],
@@ -533,8 +533,8 @@ class MyStorePage extends StatelessWidget {
                           margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: const [
-                              Text("Đánh giá",
+                            children: [
+                              Text('rate'.tr,
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black))
                             ],
@@ -565,8 +565,8 @@ class MyStorePage extends StatelessWidget {
                           margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: const [
-                              Text("Hỏi đáp",
+                            children: [
+                              Text('qa'.tr,
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black))
                             ],
@@ -598,8 +598,8 @@ class MyStorePage extends StatelessWidget {
                           margin: const EdgeInsets.only(left: 5.0, right: 5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: const [
-                              Text("Tin Tức",
+                            children: [
+                              Text('news'.tr,
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black))
                             ],
@@ -766,9 +766,9 @@ class MyStorePage extends StatelessWidget {
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
-                                    'Đăng xuất',
+                                    'signout'.tr,
                                     style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400,

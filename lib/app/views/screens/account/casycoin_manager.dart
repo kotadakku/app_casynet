@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../controller/account/casycoin_manager_controller.dart';
 
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
 class CasycoinManagerPage extends StatelessWidget {
@@ -30,7 +30,7 @@ class CasycoinManagerPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Quản lý tích điểm",
+                      'casypoint'.tr,
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold
@@ -49,7 +49,7 @@ class CasycoinManagerPage extends StatelessWidget {
                                   fontWeight: FontWeight.bold
                               ),
                             ),
-                            Text("Tích điểm",
+                            Text('point'.tr,
                               style: TextStyle(
                                   color: AppColors.textGrayBoldColor
                               ),

@@ -64,7 +64,7 @@ class ReservationController extends GetxController{
             );
           }
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           isLoadingAPI.value = false;
           error.value = "${result.msg.toString()}";
@@ -72,7 +72,7 @@ class ReservationController extends GetxController{
         }
       }
     } catch (e) {
-      // Get.snackbar("Thông báo", "error:: $e",
+      // Get.snackbar('noti'.tr, "error:: $e",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       error.value = "Hệ thống đang có vấn đề!!";

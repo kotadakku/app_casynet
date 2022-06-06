@@ -116,8 +116,8 @@ class AddNotication extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Gửi mail cho tất cả khách hàng",
+                  Text(
+                    'send_mail'.tr,
                     style: TextStyle(color: Color.fromARGB(255, 137, 144, 166)),
                   ),
                   /*Switch(value: true, onChanged: (value){}),*/
@@ -144,8 +144,8 @@ class AddNotication extends StatelessWidget {
                       Expanded(
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Text("Khách hàng",
+                        children: [
+                          Text('customer'.tr,
                               style: TextStyle(
                                   color: Color.fromARGB(255, 127, 141, 171)))
                         ],
@@ -155,7 +155,7 @@ class AddNotication extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "Lựa chọn",
+                            'select'.tr,
                             /*controller.chonDanhmuc.toString(),*/
                             style: TextStyle(color: AppColors.textGrayColor),
                           ),

@@ -99,7 +99,7 @@ class SignInWidget extends StatelessWidget {
                         hintStyle: const TextStyle(
                             fontSize: 15
                         ),
-                        hintText: 'Mật khẩu',
+                        hintText: 'password'.tr,
                         suffixIcon: GestureDetector(
                           child: authController.isObscurePassword.value ? Icon(Icons.visibility_off_outlined, color: AppColors.textGrayColor,):
                           Icon(Icons.visibility_outlined, color: AppColors.yellowColor,), onTap: (){
@@ -118,8 +118,8 @@ class SignInWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Quên mật khẩu"),
-                        Text("Cần trợ giúp?")
+                        Text('forgot_pass'.tr),
+                        Text('help'.tr)
                       ],
                     ),
                     SizedBox(height: 30,),
@@ -142,7 +142,7 @@ class SignInWidget extends StatelessWidget {
                         children: [
                           Icon(Icons.assignment_ind_outlined),
                           SizedBox(width: 10.0,),
-                          Text("Đăng nhập",
+                          Text('login'.tr,
                             style: TextStyle(
 
                             ),
@@ -162,7 +162,7 @@ class SignInWidget extends StatelessWidget {
               child: Center(
                 child:  Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text("Hoặc đăng nhập bằng"),
+                  child: Text('or_login'.tr),
                 ),
               ),
             ),
@@ -186,7 +186,7 @@ class SignInWidget extends StatelessWidget {
                         SvgPicture.asset("assets/images/account/fb.svg", height: 12,),
                         Expanded(
                             child: Center(
-                                child:  Text("Đăng nhập bằng Facebook",
+                                child:  Text("${'login_with'.tr} Facebook",
                                   style: TextStyle(
                                   ),
                                 )
@@ -210,7 +210,7 @@ class SignInWidget extends StatelessWidget {
                         SvgPicture.asset("assets/images/account/gg.svg", height: 12,),
                         Expanded(
                             child: Center(
-                                child:  Text("Đăng nhập bằng Google",
+                                child:  Text("${'login_with'.tr} Google",
                                   style: TextStyle(
                                   ),
                                 )
@@ -234,7 +234,7 @@ class SignInWidget extends StatelessWidget {
                         SvgPicture.asset("assets/images/account/zalo.svg", height: 14,),
                         Expanded(
                             child: Center(
-                                child:  Text("Đăng nhập bằng Zalo",
+                                child:  Text("${'login_with'.tr} Zalo",
                                   style: TextStyle(
                                   ),
                                 )

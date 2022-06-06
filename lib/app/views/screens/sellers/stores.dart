@@ -105,7 +105,7 @@ class StoreHomeMore extends StatelessWidget {
                     _sellersController.getSellersAPI(first_load: true, type_filter: '5');
                   },
                   activeColor: Color(0xffDFB400)),
-              Text("Ô tô"),
+              Text('car'.tr),
               SizedBox(width: 20,),
               Radio(
                   value: false,
@@ -116,7 +116,7 @@ class StoreHomeMore extends StatelessWidget {
                   },
                   activeColor: Color(0xffDFB400)
               ),
-              Text("Xe máy")
+              Text('motorcycle'.tr)
             ],
           ),),
           SizedBox(height: 10,child: Container(

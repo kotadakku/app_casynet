@@ -59,7 +59,7 @@ class ProfileAccountWidget extends StatelessWidget {
               ),
             ),
             // Ngày tham gia
-            Text("Thành viên từ: ${controller.user_current.created_at?? '__/__/20__'}",
+            Text("${'joined'.tr}: ${controller.user_current.created_at?? '__/__/20__'}",
               style: TextStyle(
                   color: AppColors.textGrayBoldColor
               ),

@@ -88,7 +88,7 @@ class MenuCuahang extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "Bảng điều khiển",
+                            'dashboard'.tr,
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
@@ -119,7 +119,7 @@ class MenuCuahang extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "Thông tin cửa hàng",
+                          'info_seller'.tr,
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
@@ -145,7 +145,7 @@ class MenuCuahang extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "Quản lý đơn hàng",
+                          'order_management'.tr,
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
@@ -173,7 +173,7 @@ class MenuCuahang extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "Dịch vụ/ Sản phẩm",
+                          'services_products'.tr,
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
@@ -202,7 +202,7 @@ class MenuCuahang extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "Quản lý quà tặng",
+                          'gift_management'.tr,
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
@@ -231,7 +231,7 @@ class MenuCuahang extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "Quản lý thông báo",
+                          'noti_manage'.tr,
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
@@ -260,7 +260,7 @@ class MenuCuahang extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "Tin tức",
+                          'news'.tr,
                           style: TextStyle(fontSize: 20),
                         ),
                       ),

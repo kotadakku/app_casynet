@@ -50,8 +50,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0))),
                 ),
                 onPressed: () {},
-                child: const Text(
-                  "Lưu",
+                child: Text(
+                  'save'.tr,
                   style: TextStyle(color: Colors.black),
                 )),
           )
@@ -139,7 +139,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                       style: BorderStyle.solid,
                                     ),
                                   ),
-                                  child: const Text("Thêm ảnh/ video",
+                                  child: Text('add_image'.tr,
                                       maxLines: 2, textAlign: TextAlign.center),
                                   onPressed: () {
                                     _tripEditModalBottomSheet(context);
@@ -181,7 +181,7 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text("Sản phẩm nổi bật"),
+                            Text('featured_product'.tr),
                             /*Switch(value: true, onChanged: (value){}),*/
                             Obx(() => CupertinoSwitch(
                                 value: checkSanPhamNoiBat.value,
@@ -376,8 +376,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 Expanded(
                                     child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: const [
-                                    Text("Giá",
+                                  children: [
+                                    Text('price'.tr,
                                         style: TextStyle(
                                             color: Color.fromARGB(
                                                 255, 127, 141, 171)))
@@ -408,9 +408,9 @@ class ThemSanPhamDichVu extends StatelessWidget {
                         height: 50.0,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Expanded(
-                                child: Text("Số lượng",
+                                child: Text('amount'.tr,
                                     style: TextStyle(
                                         color: Color.fromARGB(
                                             255, 127, 141, 171)))),
@@ -481,8 +481,8 @@ class ThemSanPhamDichVu extends StatelessWidget {
                                 Expanded(
                                     child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: const [
-                                    Text("Hiển thị",
+                                  children: [
+                                    Text('display'.tr,
                                         style: TextStyle(
                                             color: Color.fromARGB(
                                                 255, 127, 141, 171)))

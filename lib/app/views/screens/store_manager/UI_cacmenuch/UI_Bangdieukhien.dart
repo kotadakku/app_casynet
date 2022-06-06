@@ -49,7 +49,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10),
                                 child: Text(
-                                  "Doanh số",
+                                  'turnover'.tr,
                                   style: TextStyle(fontSize: 10),
                                 ),
                               ),
@@ -87,7 +87,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10),
                                 child: Text(
-                                  "Sản phẩm đã bán",
+                                  'sold'.tr,
                                   style: TextStyle(fontSize: 10),
                                 ),
                               ),
@@ -126,7 +126,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10),
                                 child: Text(
-                                  "Tổng đơn hàng",
+                                  'total_order'.tr,
                                   style: TextStyle(fontSize: 10),
                                 ),
                               ),
@@ -164,7 +164,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10),
                                 child: Text(
-                                  "Số lượng sản phẩm",
+                                  'total_products'.tr,
                                   style: TextStyle(fontSize: 10),
                                 ),
                               ),
@@ -437,7 +437,7 @@ class BangDieuKhien extends StatelessWidget {
                         width: widthdt,
                         child: RaisedButton(
                           color: Colors.amber,
-                          child: Text("Xem thêm"+ss.toString()),
+                          child: Text('more'.tr+ss.toString()),
                           onPressed: () {
                             heightdon = heightdon + 500-tinh.toInt();
 

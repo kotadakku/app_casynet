@@ -127,16 +127,24 @@ class Home extends StatelessWidget {
 
   AlertDialog _buildExitDialog(BuildContext context) {
     return AlertDialog(
-      title: const Text('Xác nhận'),
-      content: const Text('Bạn có muốn thoát?'),
+      title: Text('confirm'.tr),
+      content: Text('do-quit'.tr),
+      actionsAlignment: MainAxisAlignment.spaceEvenly,
       actions: <Widget>[
         TextButton(
           onPressed: () => Get.back(result: false),
-          child: Text('Không'),
+          child: Text(
+            'no'.tr, style: TextStyle(
+            color: Colors.red
+          ),
+          ),
+          style: ElevatedButton.styleFrom(
+
+          ),
         ),
         TextButton(
           onPressed: () => Get.back(result: true),
-          child: Text('Đồng ý'),
+          child: Text('yes'.tr),
         ),
       ],
     );

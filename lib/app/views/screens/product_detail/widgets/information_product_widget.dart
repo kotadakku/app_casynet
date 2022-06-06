@@ -27,7 +27,7 @@ class InformationProductWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10,),
-          Text(controller.product.value.name?? 'Chưa có thông tin',
+          Text(controller.product.value.name?? 'no-info'.tr,
             style: Theme.of(context).textTheme.titleMedium
           ),
           SizedBox(height: 10,),
@@ -91,7 +91,7 @@ class InformationProductWidget extends StatelessWidget {
                       padding: EdgeInsets.all(5.0),
                       child: Icon(Icons.warning, color: AppColors.yellowColor, size: AppSize.iconSize),
                     ),
-                    Text("Báo xấu: ",
+                    Text("${'bad_report'.tr}: ",
                       style: TextStyle(
                         color: AppColors.textGrayBoldColor
                     ),),
@@ -133,7 +133,7 @@ class InformationProductWidget extends StatelessWidget {
             children: [
               SvgPicture.asset("assets/images/product_detail/gift.svg", width: AppSize.iconSize),
               SizedBox(width: 5,),
-              Text("Quà tặng của của hàng: "),
+              Text("${'gift_seller'.tr}: "),
               Container(
                 height: 20,
                 width: 60,
@@ -204,7 +204,7 @@ class InformationProductWidget extends StatelessWidget {
             children: [
               SvgPicture.asset("assets/images/product_detail/coin.svg", width: AppSize.iconSize),
               SizedBox(width: 5,),
-              Text("Mua hàng và tích "),
+              Text('buy_get'.tr),
               Text('${controller.product.value.coinPoint ?? 0}', style: TextStyle(
                 color: AppColors.yellowColor,
                 fontWeight: FontWeight.bold
@@ -414,7 +414,7 @@ class InformationProductWidget extends StatelessWidget {
                             children: [
                               Icon(Icons.map_outlined, color: AppColors.yellowColor, size: AppSize.iconSize,),
                               SizedBox(width: 5,),
-                              Text("Bản đồ",
+                              Text('map'.tr,
                                 style: TextStyle(
 
                                     color: AppColors.yellowColor
@@ -445,7 +445,7 @@ class InformationProductWidget extends StatelessWidget {
                                 child: SvgPicture.asset("assets/images/product_detail/ic_perm_phone.svg"),
                               ),
                               SizedBox(width: 5,),
-                              Text("Liên hệ",
+                              Text('contact'.tr,
                                 style: TextStyle(
                                     color: AppColors.yellowColor
                                 ),

@@ -11,7 +11,7 @@ class CasycoinManagerController extends GetxController with GetSingleTickerProvi
   void onInit() {
     super.onInit();
     listTab.value = [
-      "Tất cả lịch sử (${sizeCoin.value})", "Đã nhận", "Đã dùng"
+      "${'all_history'.tr} (${sizeCoin.value})", 'received'.tr, 'used'.tr
     ];
     controller = TabController(vsync: this, length: listTab.length);
   }

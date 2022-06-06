@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../theme/app_colors.dart';
 
@@ -14,7 +15,7 @@ class FeaturedProductWidget extends StatelessWidget {
         Container(
           padding: EdgeInsets.only(top: 10.h, left: 10.w),
           width: double.infinity,
-          child: Text("Sản phẩm nổi bật",
+          child: Text('featured_product'.tr,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: AppColors.yellowColor,
@@ -74,7 +75,7 @@ class FeaturedProductWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Xem thêm", style: TextStyle(
+              Text('more'.tr, style: TextStyle(
                 color: AppColors.yellowColor,
               ),),
               Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.yellowColor,),

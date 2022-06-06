@@ -33,7 +33,7 @@ class VoteStoreWidget extends StatelessWidget {
                       onPressed: (){
                         controller.vote_selected.value = 0;
                       },
-                      child: Text("Tất cả (44)",
+                      child: Text("${'all'.tr} (44)",
                         style: TextStyle(
                             color: controller.vote_selected.value == 0 ? Colors.white : AppColors.textGrayColor
                         ),
@@ -53,7 +53,7 @@ class VoteStoreWidget extends StatelessWidget {
                       onPressed: (){
                         controller.vote_selected.value = 5;
                       },
-                      child: Text("5 Sao (12)",
+                      child: Text("5 ${'star'.tr} (12)",
                         style: TextStyle(
                             color: controller.vote_selected.value == 5 ? Colors.white : AppColors.textGrayColor
                         ),
@@ -73,7 +73,7 @@ class VoteStoreWidget extends StatelessWidget {
                       onPressed: (){
                         controller.vote_selected.value = 4;
                       },
-                      child: Text("4 Sao (12)",
+                      child: Text("4 ${'star'.tr} (12)",
                         style: TextStyle(
                             color: controller.vote_selected.value == 4 ? Colors.white : AppColors.textGrayColor
                         ),
@@ -93,7 +93,7 @@ class VoteStoreWidget extends StatelessWidget {
                       onPressed: (){
                         controller.vote_selected.value = 3;
                       },
-                      child: Text("3 Sao (12)",
+                      child: Text("3 ${'star'.tr} (12)",
                         style: TextStyle(
                             color: controller.vote_selected.value == 3 ? Colors.white : AppColors.textGrayColor
                         ),
@@ -113,7 +113,7 @@ class VoteStoreWidget extends StatelessWidget {
                       onPressed: (){
                         controller.vote_selected.value = 2;
                       },
-                      child: Text("2 Sao (12)",
+                      child: Text("2 ${'star'.tr} (12)",
                         style: TextStyle(
                             color: controller.vote_selected.value == 2 ? Colors.white : AppColors.textGrayColor
                         ),
@@ -133,7 +133,7 @@ class VoteStoreWidget extends StatelessWidget {
                       onPressed: (){
                         controller.vote_selected.value = 1;
                       },
-                      child: Text("1 Sao (12)",
+                      child: Text("1 ${'star'.tr} (12)",
                         style: TextStyle(
                             color: controller.vote_selected.value == 1 ? Colors.white : AppColors.textGrayColor
                         ),
@@ -172,7 +172,7 @@ class VoteStoreWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Obx(()=>Text(isReadMore.value ? "Xem thêm": "Ẩn bớt", style: TextStyle(
+                Obx(()=>Text(isReadMore.value ? 'more'.tr: 'hide'.tr, style: TextStyle(
                     color: AppColors.yellowColor
                 ),),),
                 Obx(()=>Container(

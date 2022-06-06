@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../controller/auth/authentication_manager.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import 'widgets/menu_account_widget.dart';
 import 'widgets/profile_account_widget.dart';
 import '../store/mystore.dart';
@@ -45,7 +45,7 @@ class AccountBasePage extends StatelessWidget {
                                 onPressed: () {
                                   Get.toNamed(Routes.AUTH, arguments: 0);
                                 },
-                                child: Text("Đăng nhập"),
+                                child: Text('login'.tr),
                                 style: OutlinedButton.styleFrom(
                                     primary: AppColors.yellowColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
@@ -59,7 +59,7 @@ class AccountBasePage extends StatelessWidget {
                                 onPressed: () {
                                   Get.toNamed(Routes.AUTH, arguments: 1);
                                 },
-                                child: Text("Đăng ký"),
+                                child: Text('register'.tr),
                                 style: OutlinedButton.styleFrom(
                                     primary: AppColors.yellowColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
@@ -83,9 +83,9 @@ class AccountBasePage extends StatelessWidget {
                                   builder: (controller){
                                     return ElevatedButton(
                                       onPressed: () {
-                                        Get.toNamed(Routes.MY_STORE);
+                                        Get.toNamed(Routes.MY_STORE_CREATE);
                                       },
-                                      child: Text(controller.user_current.storeId == null ? "Tạo cửa hàng" :"Cửa hàng của tôi",
+                                      child: Text(controller.user_current.storeId == null ? 'my_seller'.tr: "Tạo cửa hàng",
                                         style: TextStyle(
                                             color: Colors.white
                                         ),
@@ -121,7 +121,7 @@ class AccountBasePage extends StatelessWidget {
                             children: [
                               FaIcon(FontAwesomeIcons.arrowRightFromBracket, size: 15, color: AppColors.yellowColor,),
                               SizedBox(width: 10.0,),
-                              Text("Đăng xuất",
+                              Text('signout'.tr,
                                 style: TextStyle(
                                     color: AppColors.yellowColor
                                 ),

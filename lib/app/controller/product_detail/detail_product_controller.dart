@@ -59,14 +59,14 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
           isLoading.value = false;
 
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
           isLoading.value = false;
         }
       }
     } catch (e) {
-      // Get.snackbar("Thông báo", "error:: $e",
+      // Get.snackbar('noti'.tr, "error:: $e",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       isLoading.value = false;
     }

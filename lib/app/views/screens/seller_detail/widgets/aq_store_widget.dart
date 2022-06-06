@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '../../../../../data.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
@@ -96,7 +97,7 @@ class AQStoreWidget extends StatelessWidget {
                             child: TextField(
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(5.0),
-                                hintText: "Đặt câu hỏi cho sản phẩm",
+                                hintText: 'enter_question'.tr,
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColors.yellowColor

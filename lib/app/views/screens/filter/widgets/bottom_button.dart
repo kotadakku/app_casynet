@@ -29,7 +29,7 @@ class BottomButtonWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.autorenew),
-                              Text("Thiết lập lại")
+                              Text('reset'.tr)
                             ],
                           ),
                           style: OutlinedButton.styleFrom(
@@ -55,7 +55,7 @@ class BottomButtonWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.done),
-                              Text("Áp dụng")
+                              Text('apply'.tr)
                             ],
                           ),
                           style: ElevatedButton.styleFrom(

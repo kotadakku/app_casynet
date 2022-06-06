@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import '../../../../controller/account/new_address_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
-import '../widgets/appbar_account_widget.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
 
 
 
@@ -39,7 +39,7 @@ class NewAddress extends StatelessWidget {
                 children: [
 
                   Padding(padding: EdgeInsets.symmetric(vertical: 15.0),
-                    child: Text("Thêm địa chỉ mới",
+                    child: Text('add_address'.tr,
                       style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold
@@ -53,7 +53,7 @@ class NewAddress extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(left: 10, right: 10 ), child: Row(
                     children: [
                       Expanded(
-                          child: Text("Nhập họ và tên",
+                          child: Text('enter_name'.tr,
                             style: TextStyle(
                                 color: AppColors.textGrayBoldColor
                             ),
@@ -75,7 +75,7 @@ class NewAddress extends StatelessWidget {
                               /*=> controller.address.firstname = value!,*/
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "Nhập họ và tên",
+                                hintText: 'enter_name'.tr,
                                 hintStyle: TextStyle(
                                     color: AppColors.textGrayColor
                                 )
@@ -90,7 +90,7 @@ class NewAddress extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(left: 10, right: 10 ), child: Row(
                     children: [
                       Expanded(
-                          child: Text("Số điện thoại",
+                          child: Text('phone'.tr,
                             style: TextStyle(
                                 color: AppColors.textGrayBoldColor
                             ),
@@ -117,7 +117,7 @@ class NewAddress extends StatelessWidget {
 
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "Nhập số điện thoại",
+                                hintText: 'enter_phone'.tr,
                                 hintStyle: TextStyle(
                                     color: AppColors.textGrayColor
                                 ),
@@ -132,7 +132,7 @@ class NewAddress extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(left: 10, ), child: Row(
                     children: [
                       Expanded(
-                          child: Text("Tỉnh/Thành phố",
+                          child: Text('province_city'.tr,
                             style: TextStyle(
                                 color: AppColors.textGrayBoldColor
                             ),
@@ -180,7 +180,7 @@ class NewAddress extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(left: 10, ), child: Row(
             children: [
               Expanded(
-                  child: Text("Quận/Huyện",
+                  child: Text('district'.tr,
                     style: TextStyle(
                         color: AppColors.textGrayBoldColor
                     ),
@@ -229,7 +229,7 @@ class NewAddress extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(left: 10), child: Row(
                     children: [
                       Expanded(
-                          child: Text("Phường/Xã",
+                          child: Text('village'.tr,
                             style: TextStyle(
                                 color: AppColors.textGrayBoldColor
                             ),
@@ -274,7 +274,7 @@ class NewAddress extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(left: 10, right: 10 ), child: Row(
                     children: [
                       Expanded(
-                          child: Text("Địa chỉ cụ thể",
+                          child: Text('specific_address'.tr,
                             style: TextStyle(
                                 color: AppColors.textGrayBoldColor
                             ),
@@ -307,7 +307,7 @@ class NewAddress extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(left: 10, right: 10 ), child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Đặt làm địa chỉ mặc định",
+                      Text('set_default_address'.tr,
                           style: TextStyle(
                               color: AppColors.textGrayBoldColor
                           )
@@ -334,7 +334,7 @@ class NewAddress extends StatelessWidget {
                         controller.createAddress(address);
                         print(address.toJsonAddress());
                       },
-                      child: Text("Lưu địa chỉ"),
+                      child: Text('save_address'.tr),
                       style: ElevatedButton.styleFrom(
                           primary: AppColors.yellowColor
                       ),

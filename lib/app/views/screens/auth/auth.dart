@@ -33,12 +33,12 @@ class AuthPage extends StatelessWidget {
                           Positioned(
                               left: -15,
                               bottom: -20,
-                              child: SvgPicture.asset("assets/images/background.svg", width: 420,)
+                              child: SvgPicture.asset("assets/images/auth/background.svg", width: 420,)
                           ),
                           Positioned(
                               left: -15,
                               bottom: -70,
-                              child: SvgPicture.asset("assets/images/background_2.svg", width: 420,)
+                              child: SvgPicture.asset("assets/images/auth/background_2.svg", width: 420,)
                           ),
                           Positioned(
                             left: 50,
@@ -57,14 +57,14 @@ class AuthPage extends StatelessWidget {
                         indicatorColor: AppColors.yellowColor,
                         tabs: [
                           Tab(
-                            child: Text("Đăng nhập",
+                            child: Text('login'.tr,
                               style: TextStyle(
                                   color: AppColors.yellowColor
                               ),
                             ),
                           ),
                           Tab(
-                            child: Text("Đăng ký",
+                            child: Text('register'.tr,
                               style: TextStyle(
                                   color: AppColors.yellowColor
                               ),

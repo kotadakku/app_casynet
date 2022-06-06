@@ -25,10 +25,10 @@ class InformationStoreWidget extends StatelessWidget {
             leading: CircleAvatar(
               child: Text("123"),
             ),
-            title: Text('${controller.product.value.seller?.name ?? 'Chưa có thông tin'}'),
+            title: Text('${controller.product.value.seller?.name ?? 'no-info'.tr}'),
             subtitle: Row(
               children: [
-                Text('${controller.product.value.seller?.ownerShop ?? 'Chưa có thông tin'}',
+                Text('${controller.product.value.seller?.ownerShop ?? 'no-info'.tr}',
                   style: TextStyle(
                     color: AppColors.yellowColor,
                     fontSize: 12.sp
@@ -73,7 +73,7 @@ class InformationStoreWidget extends StatelessWidget {
                       ),)
                     ],
                   ),
-                  Text("Sản phẩm")
+                  Text('product'.tr)
                 ],
               ),
               Column(
@@ -87,7 +87,7 @@ class InformationStoreWidget extends StatelessWidget {
                       ),)
                     ],
                   ),
-                  Text("Tỉ lệ phản hồi")
+                  Text('response_rate'.tr)
                 ],
               ),
               Column(
@@ -101,7 +101,7 @@ class InformationStoreWidget extends StatelessWidget {
                       ),)
                     ],
                   ),
-                  Text("Giao dịch")
+                  Text('transactions'.tr)
                 ],
               )
             ],
@@ -119,7 +119,7 @@ class InformationStoreWidget extends StatelessWidget {
                         children: [
                           Icon(Icons.favorite_border, color: controller.followed.value ? Colors.white: AppColors.yellowColor, size: AppSize.iconSize,),
                           SizedBox(width: 5,),
-                          Text("Theo dõi",
+                          Text('follow'.tr,
                             style: TextStyle(
                               color: controller.followed.value ? Colors.white: AppColors.yellowColor,
                             ),
@@ -150,7 +150,7 @@ class InformationStoreWidget extends StatelessWidget {
                     children: [
                       Icon(Icons.share, size: AppSize.iconSize,),
                       SizedBox(width: 5,),
-                      Text("Xem cửa hàng",
+                      Text('view_seller'.tr,
                         style: TextStyle(
                         ),
                       )

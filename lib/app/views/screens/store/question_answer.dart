@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '../../theme/app_colors.dart';
 class QuestionAnswer extends StatelessWidget {
   const QuestionAnswer({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class QuestionAnswer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Hỏi đáp",),
+          title: Text('qa'.tr,),
       ),
       body: Column(
         children: [
@@ -73,7 +74,7 @@ class QuestionAnswer extends StatelessWidget {
                                       indicatorColor: Color.fromARGB(255, 223, 180, 0),
                                       tabs: [
                                         Tab(
-                                          child: Text("Tất cả"),
+                                          child: Text('all'.tr),
                                         ),
                                         Tab(
                                           child: Text("Chưa trả lời"),
@@ -141,7 +142,7 @@ class QuestionAnswer extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -169,7 +170,7 @@ class QuestionAnswer extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -197,7 +198,7 @@ class QuestionAnswer extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -225,7 +226,7 @@ class QuestionAnswer extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -253,7 +254,7 @@ class QuestionAnswer extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),

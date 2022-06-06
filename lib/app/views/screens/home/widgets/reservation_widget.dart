@@ -93,7 +93,7 @@ class ReservationWidget extends StatelessWidget {
                               _homeController.updateIsCarReservation();
                             },
                             activeColor: Color(0xffDFB400)),
-                        Text("Ô tô"),
+                        Text('car'.tr),
                         SizedBox(
                           width: 20,
                         ),
@@ -104,7 +104,7 @@ class ReservationWidget extends StatelessWidget {
                               _homeController.updateIsCarReservation();
                             },
                             activeColor: Color(0xffDFB400)),
-                        Text("Xe máy")
+                        Text('motorcycle'.tr)
                       ],
                     ))
 
@@ -184,14 +184,14 @@ class ReservationWidget extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ElevatedButton(
-                                    child: const Text('Thử lại'),
+                                    child: Text('retry'.tr),
                                     onPressed: (){
                                       _ReservationController.getReservationProductsAPI();
                                     },
                                   ),
                                   SizedBox(width: 10,),
                                   ElevatedButton(
-                                    child: Text('Bỏ qua'),
+                                    child: Text('skip'.tr),
                                     onPressed: (){
                                       _ReservationController.error.value = '';
                                     },

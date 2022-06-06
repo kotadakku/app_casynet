@@ -35,7 +35,7 @@ class QuanLyQuaTang extends StatelessWidget {
               margin: new EdgeInsets.only(left: 10),
               child: RaisedButton(
                 color: Colors.amber,
-                child: Text("Thêm +"),
+                child: Text("${'add'.tr} +"),
                 onPressed: () {
                   Get.toNamed(Routes.STORE_MANAGER_ADD_GIFT);
                 },
@@ -61,8 +61,8 @@ class QuanLyQuaTang extends StatelessWidget {
                         },
                       ),
                     ),
-                    Text("Xóa "),
-                    Text("20 Bản ghi"),
+                    Text('delete'.tr),
+                    Text("20 ${'record'.tr}"),
 
                   ],
                 ),
@@ -129,12 +129,12 @@ class QuanLyQuaTang extends StatelessWidget {
                                             ),
                                             Row(
                                               children: [
-                                                Expanded(child: Text("Ngày bắt đầu:15/09/2021",maxLines: 1,overflow: TextOverflow.ellipsis,),),
+                                                Expanded(child: Text("${'start_date'.tr}:15/09/2021",maxLines: 1,overflow: TextOverflow.ellipsis,),),
                                               ],
                                             ),
                                             Row(
                                               children: [
-                                                Expanded(child: Text("Ngày kết thúc:15/010/2021",maxLines: 1,overflow: TextOverflow.ellipsis),),
+                                                Expanded(child: Text("${'end_date'.tr}:15/010/2021",maxLines: 1,overflow: TextOverflow.ellipsis),),
                                               ],
                                             ),
 

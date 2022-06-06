@@ -37,13 +37,13 @@ class FilterAttrController extends GetxController with GetSingleTickerProviderSt
   late AnimationController expandAttrController;
   late Animation<double> animationAttr;
   late Animation animationRotale;
-  var attr = "Mới nhất".obs;
+  var attr = "latest".obs;
   void expand(){
     expandAttrController.isCompleted ? expandAttrController.reverse():
         expandAttrController.forward();
   }
   void clear(){
-    attr.value = "Mới nhất";
+    attr.value = "latest";
   }
 
   @override

@@ -52,13 +52,13 @@ class ShippingMethodController extends GetxController with StateMixin{
             change(_shippingMethodList, status: RxStatus.success());
           }
           else{
-            Get.snackbar("Thông báo", result.msg.toString(),
+            Get.snackbar('noti'.tr, result.msg.toString(),
                 backgroundColor: Colors.black.withOpacity(0.3));
             change(_shippingMethodList, status: RxStatus.error());
           }
         }
       } catch(error) {
-        Get.snackbar("Thông báo", "error:: $error",
+        Get.snackbar('noti'.tr, "error:: $error",
             backgroundColor: Colors.black.withOpacity(0.3));
         change(_shippingMethodList, status: RxStatus.error());
       }

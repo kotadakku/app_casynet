@@ -152,10 +152,10 @@ class QuanLyDoanhThu extends StatelessWidget {
                           indicatorColor: Color.fromARGB(255, 223, 180, 0),
                           tabs: [
                             Tab(
-                              child: Text("Doanh số"),
+                              child: Text('turnover'.tr),
                             ),
                             Tab(
-                              child: Text("Tổng đơn hàng"),
+                              child: Text('total_order'.tr),
                             ),
                           ],
                         ),
@@ -203,7 +203,7 @@ class QuanLyDoanhThu extends StatelessWidget {
                                       children: [
                                         Obx(
                                               () => Text(
-                                            "Từ : " +
+                                            "${'from'.tr} : " +
                                                 DateFormat("dd/MM/yyyy")
                                                     .format(QLDTController
                                                     .dateRange
@@ -215,7 +215,7 @@ class QuanLyDoanhThu extends StatelessWidget {
                                         ),
                                         Obx(
                                               () => Text(
-                                            "Đến : " +
+                                            "${'to'.tr} : " +
                                                 DateFormat("dd/MM/yyyy")
                                                     .format(QLDTController
                                                     .dateRange
@@ -262,10 +262,10 @@ class QuanLyDoanhThu extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -290,10 +290,10 @@ class QuanLyDoanhThu extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -318,10 +318,10 @@ class QuanLyDoanhThu extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -346,10 +346,10 @@ class QuanLyDoanhThu extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -374,10 +374,10 @@ class QuanLyDoanhThu extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),

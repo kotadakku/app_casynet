@@ -22,8 +22,8 @@ class ShortDescription extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0))),
                 ),
                 onPressed: () {},
-                child: const Text(
-                  "Lưu",
+                child: Text(
+                  'save'.tr,
                   style: TextStyle(color: Colors.black),
                 )),
           )

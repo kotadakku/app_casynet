@@ -95,7 +95,7 @@ class PromotionWidget extends StatelessWidget {
                               _homeController.updateIsCarPromotion();
                             },
                             activeColor: Color(0xffDFB400)),
-                        Text("Ô tô"),
+                        Text('car'.tr),
                         SizedBox(width: 20,),
                         Radio(
                             value: false,
@@ -105,7 +105,7 @@ class PromotionWidget extends StatelessWidget {
                             },
                             activeColor: Color(0xffDFB400)
                         ),
-                        Text("Xe máy")
+                        Text('motorcycle'.tr)
                       ],
                     ))
 
@@ -171,14 +171,14 @@ class PromotionWidget extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ElevatedButton(
-                                    child: Text('Thử lại'),
+                                    child: Text('retry'.tr),
                                     onPressed: (){
                                       _promotionController.getPromotionProductsAPI();
                                     },
                                   ),
                                   SizedBox(width: 10,),
                                   ElevatedButton(
-                                    child: Text('Bỏ qua'),
+                                    child: Text('skip'.tr),
                                     onPressed: (){
                                       _promotionController.error.value = '';
                                     },

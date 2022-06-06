@@ -13,7 +13,7 @@ class ThemThongBao extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          "Thêm mới thông báo",
+          'add_noti'.tr,
           style: TextStyle(color: Colors.black),
         ),
         leading: Container(
@@ -43,7 +43,7 @@ class ThemThongBao extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Tiêu đề",
+                            'title'.tr,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -56,7 +56,7 @@ class ThemThongBao extends StatelessWidget {
                     Container(
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: "Nhập tiêu đề",
+                          hintText: 'enter_title'.tr,
                           counterText: "",
                           border: InputBorder.none,
                         ),
@@ -84,7 +84,7 @@ class ThemThongBao extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Mô tả",
+                            'description'.tr,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -97,7 +97,7 @@ class ThemThongBao extends StatelessWidget {
                     Container(
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: "Nhập mô tả",
+                          hintText: 'enter_descrip'.tr,
                           counterText: "",
                           border: InputBorder.none,
                         ),
@@ -124,7 +124,7 @@ class ThemThongBao extends StatelessWidget {
               height: 50,
               child: Row(
                 children: [
-                  Expanded(child: Text("Gửi mail cho tất cả khách hàng")),
+                  Expanded(child: Text('send_mail'.tr)),
                   Obx(
                     () => Text(textgmkh.value),
                   ),
@@ -154,9 +154,9 @@ class ThemThongBao extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text("Khách hàng"),
+                      child: Text('customer'.tr),
                     ),
-                    Text("Lựa chọn"),
+                    Text('select'.tr),
                     Icon(Icons.navigate_next),
                   ],
                 ),

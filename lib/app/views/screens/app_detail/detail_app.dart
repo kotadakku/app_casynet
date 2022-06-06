@@ -38,7 +38,7 @@ class DetailAppPage extends StatelessWidget {
                       ),
                   ),
                   Text(
-                    "Thông tin cần thiết",
+                    'nes_info'.tr,
                     style:
                     TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
@@ -435,7 +435,7 @@ class DetailAppPage extends StatelessWidget {
                                   MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Tin tức",
+                                      'news'.tr,
                                       style:
                                       TextStyle(color: AppColors.textGrayBoldColor),
                                     ),

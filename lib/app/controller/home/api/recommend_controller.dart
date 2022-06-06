@@ -59,7 +59,7 @@ class RecommendController extends GetxController{
           }
 
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
           isLoadingAPI.value = false;
@@ -67,7 +67,7 @@ class RecommendController extends GetxController{
         }
       }
     } catch (e) {
-      // Get.snackbar("Thông báo", "error:: $e",
+      // Get.snackbar('noti'.tr, "error:: $e",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       error.value = "Hệ thống đang có vấn đề!!";

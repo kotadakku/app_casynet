@@ -16,7 +16,7 @@ class QuanLyThongBao extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                child: Text("Quản lý thông báo"),
+                child: Text('noti_manage'.tr),
               ),
             ),
             Container(
@@ -25,7 +25,7 @@ class QuanLyThongBao extends StatelessWidget {
               margin: new EdgeInsets.only(left: 10),
               child: RaisedButton(
                 color: Colors.amber,
-                child: Text("Thêm +"),
+                child: Text("${'add'.tr} +"),
                 onPressed: () {
                   Get.toNamed(Routes.STORE_MANAGER_ADD_NOTI);
                 },
@@ -51,8 +51,8 @@ class QuanLyThongBao extends StatelessWidget {
                         },
                       ),
                     ),
-                    Text("Xóa "),
-                    Text("20 Bản ghi"),
+                    Text('delete'.tr),
+                    Text("20 ${'record'.tr}"),
 
                   ],
                 ),
@@ -113,7 +113,7 @@ class QuanLyThongBao extends StatelessWidget {
                                             ),
                                             Row(
                                               children: [
-                                                Expanded(child: Text("Cập nhật lúc:15/09/2021",maxLines: 1,overflow: TextOverflow.ellipsis,),),
+                                                Expanded(child: Text("${'update_at'.tr}:15/09/2021",maxLines: 1,overflow: TextOverflow.ellipsis,),),
                                               ],
                                             ),
 

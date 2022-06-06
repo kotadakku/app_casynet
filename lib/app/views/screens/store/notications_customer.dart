@@ -59,7 +59,7 @@ class NotificationCustomer extends StatelessWidget {
                   Obx(
                         () =>
                         Text(
-                          "Từ : " +
+                          "${'from'.tr} : " +
                               DateFormat("dd/MM/yyyy")
                                   .format(ThongBaoController
                                   .dateRange
@@ -161,9 +161,8 @@ class NotificationCustomer extends StatelessWidget {
                                                 MainAxisAlignment.start,
                                                 crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                                children: const [
-                                                  Text(
-                                                    "Xóa",
+                                                children: [
+                                                  Text('delete'.tr,
                                                     style: TextStyle(color: AppColors.textGrayColor),
                                                   ),
                                                   Divider(
@@ -199,9 +198,9 @@ class NotificationCustomer extends StatelessWidget {
                                                 MainAxisAlignment.start,
                                                 crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                                children: const [
+                                                children: [
                                                   Text(
-                                                    "Sửa",
+                                                    'edit'.tr,
                                                     style: TextStyle(color: AppColors.textGrayColor),
                                                   ),
                                                   Divider(

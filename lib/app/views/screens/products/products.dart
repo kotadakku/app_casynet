@@ -94,7 +94,7 @@ class ProductsPage extends StatelessWidget {
                           _productsController.isCar.value = !_productsController.isCar.value;
                         },
                         activeColor: Color(0xffDFB400)),
-                    Text("Ô tô"),
+                    Text('car'.tr),
                     SizedBox(width: 20,),
                     Radio(
                         value: false,
@@ -104,7 +104,7 @@ class ProductsPage extends StatelessWidget {
                         },
                         activeColor: Color(0xffDFB400)
                     ),
-                    Text("Xe máy")
+                    Text('motorcycle'.tr)
                   ],
                 ),),
                 _productsController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
@@ -146,7 +146,7 @@ class ProductsPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Xem thêm", style: TextStyle(
+                        Text('more'.tr, style: TextStyle(
                             color: AppColors.yellowColor
                         ),),
                         Container(

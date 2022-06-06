@@ -4,11 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/account/new_address_controller.dart';
-import '../../../../controller/home/home_controller.dart';
-import '../../../../controller/home/search_controller.dart';
-import '../../../../routes/app_pages.dart';
-import '../../../theme/app_colors.dart';
+import '../../../controller/account/new_address_controller.dart';
+import '../../../controller/home/home_controller.dart';
+import '../../../controller/home/search_controller.dart';
+import '../../../routes/app_pages.dart';
+import '../../theme/app_colors.dart';
+import '../button_language.dart';
 
 class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget {
 
@@ -24,14 +25,21 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
 
     return AppBar(
       backgroundColor: Colors.white,
-      leading: Container(
-        padding: EdgeInsets.only(left: 5.0.w),
-          child: SvgPicture.asset(
-            "assets/images/home/icon_top_home.svg",
-            width: 40,
-          )
+      leading: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: (){
+          Get.put(HomeController()).tabIndex.value = 0;
+          Get.offNamed(Routes.HOME);
+        },
+        child: Container(
+            padding: EdgeInsets.only(left: 5.0.w),
+            child: SvgPicture.asset(
+              "assets/images/home/icon_top_home.svg",
+              width: 40,
+            )
+        ),
       ),
-      leadingWidth: 50,
+      leadingWidth: 40,
       title: Container(
         height: 40,
         child:  TextField(
@@ -104,13 +112,13 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
                           "assets/images/home/icon_location.svg",
                           width: 14),
                       SizedBox(width: 5.0.w,),
-                      const Text(
-                        "Hà Nội",
+                      Obx(()=> Text(
+                        searchController.location.value,
                         style: TextStyle(
-                            color: AppColors.textGrayBoldColor,
-                            fontSize: 13
+                          color: AppColors.textGrayColor,
+                          fontSize: 13,
                         ),
-                      ),
+                      ),),
                       SizedBox(width: 5.0.w,),
                     ],
                   ),
@@ -120,34 +128,7 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
         ),
       ),
       actions: [
-        Container(
-          width: 40,
-          margin: EdgeInsets.only(right: 5.0.w, top: 10.0, bottom: 10.0),
-            child: GetBuilder<HomeController>(
-              init: HomeController(),
-              builder: (controller){
-                return TextButton(
-                  onPressed: () {
-                    controller.setIsVN();
-                  },
-                  child: Text(controller.languageToString(),
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13.sp
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(
-                        color: AppColors.textGrayColor,
-
-                      )
-                  ),
-                );
-              },
-            )
-        )
+        ButtonLanguage()
       ],
     );
   }

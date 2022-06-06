@@ -51,7 +51,7 @@ class OrderCancelWidget extends StatelessWidget {
                         ),
                         Spacer(),
                         if(state[index].status == 'canceled')
-                        Text('ĐÃ HỦY',
+                        Text('cancelled'.tr.toUpperCase(),
                           style: TextStyle(
                               color: Colors.red,
                               fontWeight: FontWeight.bold
@@ -78,7 +78,7 @@ class OrderCancelWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Thành tiền",
+                          'sub_total'.tr,
                           style: TextStyle(color: AppColors.textGrayBoldColor),
                         ),
                         Text(
@@ -97,7 +97,7 @@ class OrderCancelWidget extends StatelessWidget {
                           child: ElevatedButton(
                               onPressed: () {},
                               child: Text(
-                                "Chi tiết đơn này",
+                                'detail_order'.tr,
                                 style: TextStyle(color: AppColors.yellowColor),
                               ),
                               style:
@@ -109,7 +109,7 @@ class OrderCancelWidget extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {},
                             child: Text(
-                              "Mua lần nữa",
+                              'buy_again'.tr,
                               style: TextStyle(),
                             ),
                             style: ElevatedButton.styleFrom(primary: AppColors.yellowColor),
@@ -137,7 +137,7 @@ class OrderCancelWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Xem thêm", style: TextStyle(
+                Text('more'.tr, style: TextStyle(
                     color: AppColors.yellowColor
                 ),),
                 Container(

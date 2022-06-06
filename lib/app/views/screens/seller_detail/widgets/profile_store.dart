@@ -103,7 +103,7 @@ class ProfileStoreWidget extends StatelessWidget {
                             size: AppSize.iconSize,
                           ),
                           Text(
-                            "${FollowedConvert().followedConvert(controller.store.value.followed)} người theo dõi",
+                            "${FollowedConvert().followedConvert(controller.store.value.followed)} ${'follower'.tr}",
                             style: TextStyle(color: AppColors.textGrayBoldColor),
                           )
                         ],
@@ -129,7 +129,7 @@ class ProfileStoreWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    "Theo dõi",
+                                    'follow'.tr,
                                     style: TextStyle(
                                         color: controller.followed.value ? Colors.white : AppColors.yellowColor
                                     ),

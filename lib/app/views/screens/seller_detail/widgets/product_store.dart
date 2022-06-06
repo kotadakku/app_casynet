@@ -59,7 +59,7 @@ class ProductStoreWidget extends StatelessWidget {
                           SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),
                           SizedBox(width: 5,),
                           Text(
-                            "Lọc",
+                            'filter'.tr,
                             style: TextStyle(
                               color: Color(0xffB7BAC1),
                             ),
@@ -122,7 +122,7 @@ class ProductStoreWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Xem thêm", style: TextStyle(
+                    Text('more'.tr, style: TextStyle(
                         color: AppColors.yellowColor
                     ),),
                     Container(

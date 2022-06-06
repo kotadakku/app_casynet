@@ -247,7 +247,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Sản phẩm đã xem",
+                                  'viewed_product'.tr,
                                   style: TextStyle(
                                       color: AppColors.textGrayColor
                                   ),

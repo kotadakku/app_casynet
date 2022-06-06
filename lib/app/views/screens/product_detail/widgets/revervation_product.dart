@@ -299,7 +299,7 @@ class RevervationProductWidget extends StatelessWidget {
               SvgPicture.asset("assets/images/product_detail/phone-volume.svg", height: 20),
               SizedBox(width: 5,),
               Text("Hoặc gọi tới: "),
-              Text('${controller.product.value.seller?.phone?? 'Chưa có thông tin'}' , style: TextStyle(
+              Text('${controller.product.value.seller?.phone?? 'no-info'.tr}' , style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold
               ),)
