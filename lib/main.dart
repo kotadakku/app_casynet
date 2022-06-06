@@ -35,7 +35,7 @@ class MyHttpOverrides extends HttpOverrides{
 }
 
 void main() async {
-  HttpOverrides.global = MyHttpOverrides();
+  HttpOverrides.global = new MyHttpOverrides();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
@@ -149,4 +149,5 @@ class Home extends StatelessWidget {
       ],
     );
   }
+
 }

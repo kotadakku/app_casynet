@@ -3,6 +3,11 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        jcenter()
+
+        maven { // THIS
+            url 'https://dl.bintray.com/tapsellorg/maven'
+        }
     }
 
     dependencies {

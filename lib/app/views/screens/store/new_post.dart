@@ -63,7 +63,8 @@ class NewPost extends StatelessWidget {
                               i < imgController.imageAndVideoPicker.length;
                               i++)
                                 Stack(
-                                  overflow: Overflow.visible,
+                                  clipBehavior: Clip.none,
+                                  // overflow: Overflow.visible,
                                   children: [
                                     Container(
                                         width: 110.w,

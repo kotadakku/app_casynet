@@ -435,8 +435,9 @@ class BangDieuKhien extends StatelessWidget {
                       Obx(()=>Container(
                         margin: new EdgeInsets.only(left: 10,right: 10,bottom: 10),
                         width: widthdt,
-                        child: RaisedButton(
-                          color: Colors.amber,
+
+                        child: ElevatedButton (
+                          style: ElevatedButton.styleFrom(primary: Colors.amber),
                           child: Text('more'.tr+ss.toString()),
                           onPressed: () {
                             heightdon = heightdon + 500-tinh.toInt();

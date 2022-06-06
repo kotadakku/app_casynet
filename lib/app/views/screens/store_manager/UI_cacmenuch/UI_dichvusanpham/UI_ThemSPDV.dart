@@ -240,7 +240,7 @@ class _ThemspdvState extends State<Themspdv> {
                                   return Row(
                                     children: [
                                       Stack(
-                                        overflow: Overflow.visible,
+                                        clipBehavior: Clip.none,
                                         children: [
                                           Container(
                                             margin: EdgeInsets.only(
@@ -677,8 +677,8 @@ class _ThemspdvState extends State<Themspdv> {
               Container(
                 height: 50,
                 color: Colors.white,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     children: [
                       Expanded(child: Text("Tình trạng kho hàng")),
@@ -692,8 +692,8 @@ class _ThemspdvState extends State<Themspdv> {
               Container(
                 height: 50,
                 color: Colors.white,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     children: [
                       Expanded(child: Text("Danh mục")),
@@ -707,7 +707,7 @@ class _ThemspdvState extends State<Themspdv> {
                                 child: Container(
                                   padding: EdgeInsets.only(right: 20),
                                   child: Stack(
-                                    overflow: Overflow.visible,
+                                    clipBehavior: Clip.none,
                                     children: [
                                       Container(
                                         padding:
@@ -766,8 +766,8 @@ class _ThemspdvState extends State<Themspdv> {
               Container(
                 height: 50,
                 color: Colors.white,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     children: [
                       Expanded(child: Text('display'.tr)),
@@ -781,8 +781,8 @@ class _ThemspdvState extends State<Themspdv> {
               Container(
                 height: 50,
                 color: Colors.white,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     children: [
                       Expanded(child: Text("Xuất xứ")),
@@ -798,8 +798,8 @@ class _ThemspdvState extends State<Themspdv> {
               Container(
                 height: 50,
                 color: Colors.white,
-                child: RaisedButton(
-                  color: Colors.white,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     children: [
                       Expanded(child: Text('type_product'.tr)),
@@ -907,8 +907,9 @@ class _ThemspdvState extends State<Themspdv> {
                     Expanded(
                       child: Container(
                         margin: new EdgeInsets.only(right: 5, left: 10),
-                        child: RaisedButton(
-                          color: Colors.white,
+
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.white),
                           child: Text('back'.tr),
                           onPressed: () {},
                         ),
@@ -917,8 +918,8 @@ class _ThemspdvState extends State<Themspdv> {
                     Expanded(
                       child: Container(
                         margin: new EdgeInsets.only(right: 10, left: 5),
-                        child: RaisedButton(
-                          color: Colors.amber,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.amber),
                           child: Text('save_info'.tr),
                           onPressed: () {
                             var array = [];

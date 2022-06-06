@@ -68,7 +68,7 @@ class ThemQuaTang extends StatelessWidget {
                           return Row(
                             children: [
                               Stack(
-
+                                clipBehavior: Clip.none,
                                 overflow: Overflow.visible,
                                 children: [
                                   Container(
@@ -423,8 +423,9 @@ class ThemQuaTang extends StatelessWidget {
                   Expanded(
                     child: Container(
                       margin: new EdgeInsets.only(right: 5, left: 10),
-                      child: RaisedButton(
-                        color: Colors.white,
+
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.white),
                         child: Text('back'.tr),
                         onPressed: () {
 
@@ -435,8 +436,8 @@ class ThemQuaTang extends StatelessWidget {
                   Expanded(
                     child: Container(
                       margin: new EdgeInsets.only(right: 10, left: 5),
-                      child: RaisedButton(
-                        color: Colors.amber,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.amber),
                         child: Text('save_gift'.tr),
                         onPressed: () {},
                       ),

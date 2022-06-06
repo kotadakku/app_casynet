@@ -149,8 +149,8 @@ class ThemThongBao extends StatelessWidget {
             ),
             Container(
               height: 50,
-              child: RaisedButton(
-                color: Colors.white,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.white),
                 child: Row(
                   children: [
                     Expanded(
