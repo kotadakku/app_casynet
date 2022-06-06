@@ -147,8 +147,9 @@ class NewAddress extends StatelessWidget {
                               });
                               if(data != null){
                                 data.then((value){
+                                  // controller.textProvinceCotroller.text = value['province'];
                                   controller.textProvinceCotroller.text = value['name'];
-                                  controller.updateDistrict(value['id']);
+                                  controller.getProvince(value[0]['id']);
                                   controller.textDistrictController.clear();
                                   controller.textCommuneController.clear();
                                 });

@@ -2,28 +2,32 @@
 import 'package:app_casynet/app/config/api_config.dart';
 import 'package:app_casynet/app/data/provider/api/exceptions.dart';
 import 'package:app_casynet/app/utlis/data/data.dart';
+import 'package:dio/dio.dart';
 
 import '../../config/api_params.dart';
 import '../provider/api/api_provider.dart';
 import '../provider/api/responses.dart';
 
 class AddressRepo {
-  Future<Responses<DataAddress>?> getDataAddress() async{
+  Future<Responses<Province>?> getDataAddress() async{
     try{
       final response = await ApiRequest().get(
-        path: ApiConfig.baseUrl + ApiConfig.dataAddress
+        path: ApiConfig.dataProvince,
+        // data: data,
+        // options: options
       );
       if(response != null){
         // String html = response.data
-        List<DataAddress> dataAddress = List<DataAddress>.from(
-            (response.data.keys).map((e) => DataAddress.fromJson(e)));
+        List<Province> dataAddress = List<Province>.from(
+            (response.data.keys[0]).map((e) => Province.fromJson(e)));
 
-        return Responses<DataAddress>(isSuccess: true, listObjects: dataAddress);
+        return Responses<Province>(isSuccess: true, listObjects: dataAddress);
       }
-      return Responses<DataAddress>(statusCode: CODE_RESPONSE_NULL, msg: "");
+      return Responses<Province>(statusCode: CODE_RESPONSE_NULL, msg: "");
     }catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
-      return Responses<DataAddress>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+      return Responses<Province>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
 }
+
