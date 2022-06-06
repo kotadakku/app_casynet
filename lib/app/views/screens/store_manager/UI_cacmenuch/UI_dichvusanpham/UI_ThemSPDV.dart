@@ -347,7 +347,7 @@ class _ThemspdvState extends State<Themspdv> {
                                 style: BorderStyle.solid,
                               ),
                             ),
-                            child: Text("Thêm ảnh/ video",
+                            child: Text('add_image'.tr,
                                 maxLines: 2, textAlign: TextAlign.center),
                             onPressed: () {
                               // x.value = x.value + " ";
@@ -601,7 +601,7 @@ class _ThemspdvState extends State<Themspdv> {
                   margin: EdgeInsets.only(right: 10, left: 10),
                   child: Row(
                     children: [
-                      Text("Giá"),
+                      Text('price'.tr),
                       Expanded(
                         child: TextField(
                           controller: gia,
@@ -770,7 +770,7 @@ class _ThemspdvState extends State<Themspdv> {
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     children: [
-                      Expanded(child: Text("Hiện thị")),
+                      Expanded(child: Text('display'.tr)),
                       Text("Danh mục, tìm kiếm"),
                       Icon(Icons.navigate_next),
                     ],
@@ -802,7 +802,7 @@ class _ThemspdvState extends State<Themspdv> {
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Row(
                     children: [
-                      Expanded(child: Text("Loại sản phẩm")),
+                      Expanded(child: Text('type_product'.tr)),
                       Text(clsp.lsp.toString()),
                       Icon(Icons.navigate_next),
                     ],
@@ -893,7 +893,7 @@ class _ThemspdvState extends State<Themspdv> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text("Nổi bật"),
+                        child: Text('featured'.tr),
                       ),
                     ],
                   ),
@@ -907,9 +907,10 @@ class _ThemspdvState extends State<Themspdv> {
                     Expanded(
                       child: Container(
                         margin: new EdgeInsets.only(right: 5, left: 10),
+
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: Colors.white),
-                          child: Text("Trở lại"),
+                          child: Text('back'.tr),
                           onPressed: () {},
                         ),
                       ),
@@ -919,7 +920,7 @@ class _ThemspdvState extends State<Themspdv> {
                         margin: new EdgeInsets.only(right: 10, left: 5),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: Colors.amber),
-                          child: Text("Lưu thông tin"),
+                          child: Text('save_info'.tr),
                           onPressed: () {
                             var array = [];
                             var c = Sanpham.s(

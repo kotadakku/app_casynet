@@ -26,10 +26,10 @@ class ProductCartController extends GetxController with StateMixin {
   }
   void deleteRow(int? id ) {
     Get.defaultDialog(
-        title: 'Thông báo',
+        title: 'noti'.tr,
         middleText: 'Bạn chắc chắn xóa sản phẩm này!',
         textCancel: "Bỏ",
-        textConfirm: 'Đồng ý',
+        textConfirm: 'yes'.tr,
         confirmTextColor: Colors.white,
         onConfirm: () async {
           Get.back();
@@ -125,13 +125,13 @@ class ProductCartController extends GetxController with StateMixin {
 
         }
         else{
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           change(cartsByStore, status: RxStatus.error());
         }
       }
     } catch(error) {
-      // Get.snackbar("Thông báo", "error:: $error",
+      // Get.snackbar('noti'.tr, "error:: $error",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       change(cartsByStore, status: RxStatus.error());
     }
@@ -155,7 +155,7 @@ class ProductCartController extends GetxController with StateMixin {
           return ;
         }
       }catch(error){
-        Get.snackbar("Thông báo", "error:: $error",
+        Get.snackbar('noti'.tr, "error:: $error",
             backgroundColor: Colors.black.withOpacity(0.3));
       }
     }
@@ -173,7 +173,7 @@ class ProductCartController extends GetxController with StateMixin {
           if(result.isSuccess){
 
           }else{
-            Get.snackbar("Thông báo", result.msg.toString(),
+            Get.snackbar('noti'.tr, result.msg.toString(),
                 backgroundColor: Colors.black.withOpacity(0.3));
           }
         }
@@ -181,7 +181,7 @@ class ProductCartController extends GetxController with StateMixin {
 
       }
       catch(error){
-        // Get.snackbar("Thông báo", "error:: $error",
+        // Get.snackbar('noti'.tr, "error:: $error",
         //     backgroundColor: Colors.black.withOpacity(0.3));
         print('<ADD ITEM CART> $error');
       }

@@ -125,7 +125,7 @@ class DetailsStorePage extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Bản đồ",
+                                      'map'.tr,
                                       style: TextStyle(color: AppColors.yellowColor),
                                     )
                                   ],
@@ -152,7 +152,7 @@ class DetailsStorePage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(5.0),
                                     )
                                 ),
-                                child: Text("Hỏi đáp",
+                                child: Text('qa'.tr,
                                     style: TextStyle(color: AppColors.yellowColor))),
                           )
                       ),
@@ -172,7 +172,7 @@ class DetailsStorePage extends StatelessWidget {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                     )),
-                                child: Text("Đánh giá",
+                                child: Text('rate'.tr,
                                     style: TextStyle(color: Colors.white))),
                           )
                       ),

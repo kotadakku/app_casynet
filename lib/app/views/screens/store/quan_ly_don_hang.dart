@@ -20,7 +20,7 @@ class QuanLyDonHang extends StatelessWidget {
           onTap: (){Get.back();},
           child: Icon(Icons.arrow_back),
         ),
-        title: Text("Quản lý đơn hàng"),
+        title: Text('order_management'.tr),
         actions: [
           Container(
             margin: EdgeInsets.only(left: 10,right: 5),
@@ -85,16 +85,16 @@ class QuanLyDonHang extends StatelessWidget {
                                         indicatorColor: Color.fromARGB(255, 223, 180, 0),
                                         tabs: [
                                           Tab(
-                                            child: Text("Tất cả"),
+                                            child: Text('all'.tr),
                                           ),
                                           Tab(
-                                            child: Text("Chờ xác nhận"),
+                                            child: Text('confirming'.tr),
                                           ),
                                           Tab(
-                                            child: Text("Đã xử lý"),
+                                            child: Text('processed'.tr),
                                           ),
                                           Tab(
-                                            child: Text("Đơn hủy"),
+                                            child: Text('cancelled'.tr),
                                           ),
                                         ],
                                       ),
@@ -119,7 +119,7 @@ class QuanLyDonHang extends StatelessWidget {
                                         Image.asset(
                                             "assets/images/store/img_donhang.png"),
                                         Text(
-                                          "100 đơn",
+                                          "100 ${'order'.tr}",
                                           style: TextStyle(
                                               color: Color.fromARGB(
                                                   255, 223, 180, 0),
@@ -143,7 +143,7 @@ class QuanLyDonHang extends StatelessWidget {
                                       children: [
                                         Obx(
                                               () => Text(
-                                            "Từ : " +
+                                            "${'from'.tr} : " +
                                                 DateFormat("dd/MM/yyyy")
                                                     .format(QLDTController
                                                     .dateRange
@@ -155,7 +155,7 @@ class QuanLyDonHang extends StatelessWidget {
                                         ),
                                         Obx(
                                               () => Text(
-                                            "Đến : " +
+                                            "${'to'.tr} : " +
                                                 DateFormat("dd/MM/yyyy")
                                                     .format(QLDTController
                                                     .dateRange
@@ -202,10 +202,10 @@ class QuanLyDonHang extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -230,10 +230,10 @@ class QuanLyDonHang extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -258,10 +258,10 @@ class QuanLyDonHang extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -286,10 +286,10 @@ class QuanLyDonHang extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -314,10 +314,10 @@ class QuanLyDonHang extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
 
-                                                Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
+                                                Text("${'code_order'.tr}: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),

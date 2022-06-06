@@ -51,7 +51,7 @@ class EditMyStore extends StatelessWidget {
                                           _tripEditModalBottomSheet(context);
                                         },
                                         child: Text(
-                                          "Sửa",
+                                          'edit'.tr,
                                           style: TextStyle(
                                               color: Colors.white, fontSize: 20),
                                         ),
@@ -167,7 +167,7 @@ class EditMyStore extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                  child: Text("Số điện thoại",
+                                  child: Text('phone'.tr,
                                       style: TextStyle(
                                           color:
                                           Color.fromARGB(255, 127, 141, 171)))),
@@ -183,7 +183,7 @@ class EditMyStore extends StatelessWidget {
                                     // suffixIcon: Icon(Icons.navigate_next),
                                     counterText: "", // hide counter
 
-                                    hintText: 'Nhập số điện thoại',
+                                    hintText: 'enter_phone'.tr,
                                   ),
                                 ),
                               ),
@@ -225,7 +225,7 @@ class EditMyStore extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
-                                          Text("Giờ mở cửa",
+                                          Text('time_open'.tr,
                                               style: TextStyle(
                                                   color: Color.fromARGB(
                                                       255, 127, 141, 171)))
@@ -326,7 +326,7 @@ class EditMyStore extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text("Danh mục ngành nghề chính",
+                                      Text('main_category'.tr,
                                           style: TextStyle(
                                               color: Color.fromARGB(
                                                   255, 127, 141, 171)))
@@ -450,7 +450,7 @@ class EditMyStore extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Tỉnh/Thành Phố",
+                                        'province_city'.tr,
                                         style: TextStyle(
                                             color:
                                             Color.fromARGB(255, 127, 141, 171)),
@@ -494,7 +494,7 @@ class EditMyStore extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Quận/Huyện",
+                                        'district'.tr,
                                         style: TextStyle(
                                             color:
                                             Color.fromARGB(255, 127, 141, 171)),
@@ -587,7 +587,7 @@ class EditMyStore extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(
-                                        "Thêm +",
+                                        "${'add'.tr} +",
                                         style: TextStyle(
                                             fontSize: 15,
                                             color: Color.fromARGB(255, 0, 85, 170),
@@ -974,7 +974,7 @@ class EditMyStore extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Sửa",
+                                    'edit'.tr,
                                     style: TextStyle(
                                         color: Color.fromARGB(255, 0, 85, 170),
                                         fontSize: 15),

@@ -149,7 +149,7 @@ class ItemSellerWidget extends StatelessWidget {
                   ),
                   Expanded(
                       child: Obx(()=>Text(
-                        '${sellers[index].address ?? 'Chưa có thông tin'}',
+                        '${sellers[index].address ?? 'no-info'.tr}',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 12.sp),
                       )))

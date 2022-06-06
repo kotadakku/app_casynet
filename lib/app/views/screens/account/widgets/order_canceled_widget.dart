@@ -55,7 +55,7 @@ class OrderCanceledWidget extends StatelessWidget {
                               color: AppColors.yellowColor,
                             ),
                             Spacer(),
-                            Text('ĐÃ HỦY',
+                            Text('cancelled'.tr.toUpperCase(),
                               style: TextStyle(
                                 color: Colors.red,
                                 fontWeight: FontWeight.bold
@@ -81,7 +81,7 @@ class OrderCanceledWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Thành tiền",
+                              'sub_total'.tr,
                               style: TextStyle(color: AppColors.textGrayBoldColor),
                             ),
                             Text(
@@ -100,7 +100,7 @@ class OrderCanceledWidget extends StatelessWidget {
                               child: ElevatedButton(
                                   onPressed: () {},
                                   child: Text(
-                                    "Chi tiết đơn này",
+                                    'detail_order'.tr,
                                     style: TextStyle(color: AppColors.yellowColor),
                                   ),
                                   style:
@@ -112,7 +112,7 @@ class OrderCanceledWidget extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: () {},
                                 child: Text(
-                                  "Mua lần nữa",
+                                  'buy_again'.tr,
                                   style: TextStyle(),
                                 ),
                                 style: ElevatedButton.styleFrom(primary: AppColors.yellowColor),
@@ -141,7 +141,7 @@ class OrderCanceledWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Xem thêm", style: TextStyle(
+                    Text('more'.tr, style: TextStyle(
                         color: AppColors.yellowColor
                     ),),
                     Container(

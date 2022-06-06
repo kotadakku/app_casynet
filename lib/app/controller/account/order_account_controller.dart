@@ -5,7 +5,7 @@ import 'api/order_controller.dart';
 
 class OrderAccountController extends GetxController with GetSingleTickerProviderStateMixin{
   final List<String> listTabs = [
-    "Tất cả", "Đặt mua", "Đã hủy"
+    'all', 'purchased', 'cancelled'
   ];
   late TabController controller;
   final isLoadingAll = false.obs;

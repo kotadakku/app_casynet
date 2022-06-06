@@ -12,7 +12,7 @@ class WalletVoucherController extends GetxController with GetSingleTickerProvide
   @override
   void onInit() {
     super.onInit();
-    listTab.value = ["Có hiệu lực (${num_active.value})", "Đã sử dụng"];
+    listTab.value = ["${'available'.tr} (${num_active.value})", '${'used'.tr}'];
     controller = TabController(vsync: this, length: listTab.length);
   }
 

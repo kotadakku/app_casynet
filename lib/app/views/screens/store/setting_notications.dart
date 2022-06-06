@@ -120,7 +120,7 @@ class SettingNotications extends StatelessWidget {
                     height: 30.0.h,
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
-                  Text("Tin tức", style: TextStyle(color: AppColors.textGrayColor),),
+                  Text('news'.tr, style: TextStyle(color: AppColors.textGrayColor),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -215,7 +215,7 @@ class SettingNotications extends StatelessWidget {
                     height: 40.0.h,
                     child: Image.asset("assets/images/store/ic_thongbao_email.png",),),
                   SizedBox(width: 10.0.w,),
-                  Text("Thông báo",
+                  Text('noti'.tr,
                     style: TextStyle(fontWeight: FontWeight.bold),),
                   Expanded(child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

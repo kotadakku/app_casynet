@@ -15,7 +15,7 @@ class AttributeProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     List<String>? _attrs = [
-      "Mới nhất", "Gần tôi", "Nổi bật", "Đặt nhiều", "Uy tín", "Giá thấp", "Giá cao"
+      'latest', 'nearest', 'featured', 'bestseller', 'prestigious', 'low_price', 'high_price'
     ];
     return Padding(
         padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
@@ -26,7 +26,7 @@ class AttributeProductWidget extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text("Thuộc tính",
+                  Text('attribute'.tr,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -61,7 +61,7 @@ class AttributeProductWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(padding: EdgeInsets.only(left: 5.0.w),
-                          child: Text(_attrs[index]),
+                          child: Text(_attrs[index].tr),
                         ),
                         Obx(()=>Radio(
                           value: _attrs[index],

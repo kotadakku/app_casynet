@@ -12,7 +12,7 @@ class EditInfoController extends GetxController{
   @override
   void onInit() {
     title = Get.arguments[0];
-    if(title=='số điện thoại') isPhone = true;
+    if(title=='phone') isPhone = true;
     current_value = Get.arguments[1];
     textEditingController = TextEditingController(
         text: current_value

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
 class FollowedStorePage extends StatelessWidget {
@@ -21,7 +21,7 @@ class FollowedStorePage extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(left: 10.w, top: 15.h, bottom: 10.0.h),
             child: Text(
-              "Cửa hàng theo dõi",
+              'followed_seller'.tr,
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold
@@ -89,7 +89,7 @@ class FollowedStorePage extends StatelessWidget {
                                             margin: EdgeInsets.all(2.0),
                                             child: Icon(Icons.add, color: AppColors.textGrayColor,),
                                           ),
-                                          Text("Vào cửa hàng",
+                                          Text('go_seller'.tr,
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w300,
@@ -112,7 +112,7 @@ class FollowedStorePage extends StatelessWidget {
                                               margin: EdgeInsets.all(2.0),
                                               child: Icon(Icons.add, color: Colors.red,),
                                             ),
-                                            Text("Bỏ theo dõi",
+                                            Text('unfollow'.tr,
                                               style: TextStyle(
                                                   color: Colors.red,
                                                   fontWeight: FontWeight.w300,

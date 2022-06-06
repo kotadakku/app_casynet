@@ -25,7 +25,7 @@ class OriginProductWidget extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text("Xuất sứ",
+                  Text('origin'.tr,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

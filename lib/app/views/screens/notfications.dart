@@ -62,7 +62,7 @@ class NotificationPage extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                 child: Text(
-                  "Thông báo",
+                  'noti'.tr,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),

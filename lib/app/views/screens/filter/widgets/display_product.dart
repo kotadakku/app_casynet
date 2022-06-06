@@ -30,7 +30,7 @@ class _DisplayProductWidgetState extends State<DisplayProductWidget> {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text("Hiển thị",
+                  Text('display'.tr,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

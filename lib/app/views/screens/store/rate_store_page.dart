@@ -13,7 +13,7 @@ class RateStorePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Đánh giá",
+          'rate'.tr,
         ),
       ),
       body: Column(
@@ -83,7 +83,7 @@ class RateStorePage extends StatelessWidget {
                                       indicatorColor: Color.fromARGB(255, 223, 180, 0),
                                       tabs: [
                                         Tab(
-                                          child: Text("Tất cả"),
+                                          child: Text('all'.tr),
                                         ),
                                         Tab(
                                           child: Text("Chưa trả lời"),
@@ -151,7 +151,7 @@ class RateStorePage extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -179,7 +179,7 @@ class RateStorePage extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -207,7 +207,7 @@ class RateStorePage extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -235,7 +235,7 @@ class RateStorePage extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),
@@ -263,7 +263,7 @@ class RateStorePage extends StatelessWidget {
                                                 Text("mã đơn: 000001", style: TextStyle(fontWeight: FontWeight.w100),),
                                                 InkWell(
                                                   onTap: (){},
-                                                  child: Text("Xem chi tiết", style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
+                                                  child: Text('view_detail'.tr, style: TextStyle(fontWeight: FontWeight.w300,color: Color.fromARGB(255,0, 85, 170)),),
                                                 )
                                               ],
                                             ),

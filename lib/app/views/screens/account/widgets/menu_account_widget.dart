@@ -17,35 +17,35 @@ class MenuAccountWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthenticationManager _authManager = Get.find();
     final List<String> _menus = [
-      "Thông tin tài khoản",
-      "Địa chỉ",
-      "Tin nhắn",
-      "Đơn hàng",
-      "Ví Voucher",
-      "Quản lý tích điểm",
-      "Sản phẩm yêu thích",
-      "Cửa hàng theo dõi",
-      "Sản phẩm đã xem",
-      "Quản lý cửa hàng"
+      'info-account',
+      'address',
+      'message',
+      'order',
+      'wallet_voucher',
+      'casypoint',
+      'favourite_product',
+      'followed_seller',
+      'viewed_product',
+      'seller_manager'
     ];
     List<Widget> _menusWidget = _menus.map((e) {
       var icon;
       VoidCallback  nav = (){};
       switch (e) {
-        case "Thông tin tài khoản":
+        case 'info-account':
           icon = FontAwesomeIcons.user;
           nav = (){
             if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
             else Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: [12]); };
           break;
-        case "Địa chỉ":
+        case 'address':
           icon = FontAwesomeIcons.mapLocation;
           nav = (){
             if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
             else Get.toNamed(Routes.ACCOUNT_ADDRESS);
           };
           break;
-        case "Tin nhắn":
+        case 'message':
           icon = FontAwesomeIcons.message;
           nav = (){
             if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
@@ -53,7 +53,7 @@ class MenuAccountWidget extends StatelessWidget {
 
           };
           break;
-        case "Đơn hàng":
+        case 'order':
           icon = FontAwesomeIcons.bagShopping;
           nav = () {
             if (!_authManager.isLogged.value ||
@@ -63,7 +63,7 @@ class MenuAccountWidget extends StatelessWidget {
               Get.toNamed(Routes.ACCOUNT_ORDER, arguments: [12]);
           };
           break;
-        case "Ví Voucher":
+        case 'wallet_voucher':
           icon = FontAwesomeIcons.wallet;
           nav = () {
             if (!_authManager.isLogged.value ||
@@ -73,7 +73,7 @@ class MenuAccountWidget extends StatelessWidget {
               Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER, arguments: [12]);
           };
           break;
-        case "Quản lý tích điểm":
+        case 'casypoint':
           icon = FontAwesomeIcons.bitcoin;
           nav = () {
             if (!_authManager.isLogged.value ||
@@ -83,7 +83,7 @@ class MenuAccountWidget extends StatelessWidget {
               Get.toNamed(Routes.ACCOUNT_CASYCOIN, arguments: [12]);
           };
           break;
-        case "Sản phẩm yêu thích":
+        case 'favourite_product':
           icon = FontAwesomeIcons.heart;
           nav = () {
             if (!_authManager.isLogged.value ||
@@ -93,7 +93,7 @@ class MenuAccountWidget extends StatelessWidget {
               Get.toNamed(Routes.PRODUCTS_FAVOURITE, arguments: [12]);
           };
           break;
-        case "Cửa hàng theo dõi":
+        case 'followed_seller':
           icon = FontAwesomeIcons.store;
           nav = () {
             if (!_authManager.isLogged.value ||
@@ -103,7 +103,7 @@ class MenuAccountWidget extends StatelessWidget {
               Get.toNamed(Routes.STORE_FOLLOWED, arguments: [12]);
           };
           break;
-        case "Sản phẩm đã xem":
+        case 'viewed_product':
           icon = FontAwesomeIcons.eye;
           nav = () {
             if (!_authManager.isLogged.value ||
@@ -113,7 +113,7 @@ class MenuAccountWidget extends StatelessWidget {
               Get.toNamed(Routes.PRODUCTS_SEEN, arguments: [12]);
           };
           break;
-        case "Quản lý cửa hàng":
+        case 'seller_manager':
           icon = FontAwesomeIcons.shopware;
           nav = (){
             if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
@@ -141,7 +141,7 @@ class MenuAccountWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      e,
+                      e.tr,
                       style: TextStyle(color: AppColors.textGrayBoldColor),
                     ),
                     Container(

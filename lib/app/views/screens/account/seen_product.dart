@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
 
@@ -23,7 +24,7 @@ class SeenProductPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
             child: Text(
-              "Sản phẩm đã xem",
+              'viewed_product'.tr,
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold
@@ -129,7 +130,7 @@ class SeenProductPage extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "Xóa",
+                                          'delete'.tr,
                                           style: TextStyle(
                                               color: AppColors.textGrayBoldColor,
                                               fontSize: 12

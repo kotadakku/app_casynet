@@ -8,7 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../controller/account/order_account_controller.dart';
 
-import '../widgets/appbar_account_widget.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
 import '../widgets/order_all_widget.dart';
 import '../widgets/order_cancel_widget.dart';
 import '../../../theme/app_colors.dart';
@@ -31,7 +31,7 @@ class OrderAccountPage extends StatelessWidget{
           children: [
             Padding(
               padding: EdgeInsets.only(left: 10.w, top: 15.h),
-              child: Text("Đơn hàng của Tôi",
+              child: Text('my_order'.tr,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold
@@ -51,7 +51,7 @@ class OrderAccountPage extends StatelessWidget{
                   unselectedLabelColor: AppColors.textGrayColor,
                   labelColor: AppColors.yellowColor,
                   tabs: _tabx.listTabs.map((e) => Tab(
-                    child: Text(e,
+                    child: Text(e.tr,
                       style: TextStyle(
                       ),
                     ),

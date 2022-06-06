@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
-import '../../account/widgets/appbar_account_widget.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
 import 'widgets/step_benefit.dart';
 
 

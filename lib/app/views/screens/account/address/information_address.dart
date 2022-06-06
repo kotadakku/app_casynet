@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../routes/app_pages.dart';
-import '../widgets/appbar_account_widget.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
 import '../../../theme/app_colors.dart';
 
 
@@ -25,7 +25,7 @@ class InformationAddress extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 10.w, top: 10.h, bottom: 10.h),
-                child: Text("Thông tin địa chỉ",
+                child: Text('info_address'.tr,
                   style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold
@@ -118,7 +118,7 @@ class InformationAddress extends StatelessWidget {
                   onPressed: () {
                     Get.toNamed(Routes.ACCOUNT_ADDRESS_NEW);
                   },
-                  child: Text("Thêm địa chỉ mới"),
+                  child: Text('add_address'.tr),
                   style: ElevatedButton.styleFrom(
                       primary: AppColors.yellowColor
                   ),

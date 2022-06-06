@@ -24,8 +24,8 @@ class ThongTinCuaHang extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
-          "Thông tin cửa hàng",
+        title: Text(
+          'info_seller'.tr,
         ),
       ),
       body: SafeArea(
@@ -43,7 +43,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Tên",
+                          'name_s'.tr,
                           style: TextStyle(
                             color: AppColors.textGrayBoldColor,
                           ),
@@ -123,7 +123,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Số điện thoại",
+                          'phone'.tr,
                           style: TextStyle(
                             color: AppColors.textGrayBoldColor,
                           ),
@@ -170,7 +170,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Text("Giờ mở",
+                              child: Text('open_time'.tr,
                                   style: TextStyle(
                                       fontSize: 15, color: AppColors.textGrayBoldColor)),
                             ),
@@ -221,7 +221,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: Text("Giờ đóng",
+                              child: Text('close_time'.tr,
                                   style: TextStyle(
                                       fontSize: 15, color: AppColors.textGrayBoldColor)),
                             ),
@@ -270,7 +270,7 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Địa chỉ",
+                            'address'.tr,
                             style:
                                 TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
                           ),
@@ -278,7 +278,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         Obx(
                           () => Text(
                               controller.provinceShop.value == ""
-                                  ? "Chọn Tỉnh/Thành phố"
+                                  ? 'select_province'.tr
                                   : controller.provinceShop.value,
                               style: TextStyle(fontSize: 15)),
                         ),
@@ -313,14 +313,14 @@ class ThongTinCuaHang extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text("Quận/Huyện",
+                          child: Text('district'.tr,
                               style: TextStyle(
                                   fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         Obx(
                           () => Text(
                               controller.districtShop.value == ""
-                                  ? "Chọn Quận/Huyện"
+                                  ? 'select_district'.tr
                                   : controller.districtShop.value,
                               style: TextStyle(fontSize: 15)),
                         ),
@@ -333,7 +333,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     ),
                     onTap: () {
                       var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
-                        "title": "Chọn Quận/Huyện",
+                        "title": 'select_district'.tr,
                         "regions": controller.districtShops
                       });
                       if (data != null) {
@@ -355,14 +355,14 @@ class ThongTinCuaHang extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text("Xã/Phường",
+                          child: Text('village'.tr,
                               style: TextStyle(
                                   fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         Obx(
                           () => Text(
                               controller.communeShop.value == ""
-                                  ? "Chọn Xã/Phường"
+                                  ? 'select_village'.tr
                                   : controller.communeShop.value,
                               style: TextStyle(fontSize: 15)),
                         ),
@@ -375,7 +375,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     ),
                     onTap: () {
                       var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
-                        "title": "Chọn Xã/Phường",
+                        "title": 'select_village'.tr,
                         "regions": controller.communeShops
                       });
                       if (data != null) {
@@ -395,7 +395,7 @@ class ThongTinCuaHang extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "Số nhà, tên đường",
+                        'apartment_street'.tr,
                         style: TextStyle(color: AppColors.textGrayBoldColor),
                       ),
                       Expanded(
@@ -405,7 +405,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         onSaved: (value) {},
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Nhập số nhà, tên đường",
+                            hintText: 'enter_apartment_street'.tr,
                             hintStyle: TextStyle(
                               color: Colors.black,
                             )),
@@ -426,7 +426,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text("Danh mục ngành nghề chính",
+                          child: Text('main_category'.tr,
                               style: TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         ElevatedButton(
@@ -455,13 +455,13 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Danh mục ngành nghề",
+                            'main_category'.tr,
                             style:
                             TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
                           ),
                         ),
                         Text(
-                            "Chọn danh mục"/*controllerCate.chooseCategory.toString()*/,
+                            'select_category'.tr/*controllerCate.chooseCategory.toString()*/,
                             style: TextStyle(fontSize: 15)),
                         Icon(
                           Icons.navigate_next,
@@ -485,7 +485,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Loại cửa hàng",
+                          'type_seller'.tr,
                           style: TextStyle(
                             color: AppColors.textGrayBoldColor,
                           ),
@@ -500,7 +500,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
-                                hintText: "Xe máy",
+                                hintText: "motorcycle".tr,
                                 hintStyle: TextStyle(color: Colors.black),
                                 suffixIcon: Container(
                                   height: 10.0.h,
@@ -528,7 +528,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text("Giới thiệu cửa hàng", style: TextStyle(color: AppColors.textGrayBoldColor, fontSize: 15),),
+                          Text('introduce_seller'.tr, style: TextStyle(color: AppColors.textGrayBoldColor, fontSize: 15),),
                           Container(
                             margin: new EdgeInsets.only(right: 20),
                             child: ImageIcon(
@@ -543,7 +543,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Nhập giới thiệu cửa hàng",
+                          hintText: 'enter_descrip_seller'.tr,
 /*                          fillColor: Colors.red,*/
 
                         ),
@@ -616,7 +616,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
-                                hintText: "Nhập số điện thoại",
+                                hintText: 'enter_phone'.tr,
                                 hintStyle: TextStyle(color: Colors.black),
                                 suffixIcon: Container(
                                   height: 10.0.h,
@@ -682,7 +682,7 @@ class ThongTinCuaHang extends StatelessWidget {
                       primary: Color.fromARGB(255,222, 180, 0),
                     ),
                     child: Text(
-                      "Lưu thông tin",
+                      'save_info'.tr,
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     onPressed: () {},

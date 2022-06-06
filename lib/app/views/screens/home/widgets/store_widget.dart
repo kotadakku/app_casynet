@@ -2,6 +2,7 @@ import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/views/theme/app_style.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:app_casynet/app/views/widgets/shimmer/seller_shimmer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,6 +50,7 @@ class StoreWidget extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     _view_more('store'.tr);
                   },
@@ -95,7 +97,7 @@ class StoreWidget extends StatelessWidget {
                             // _sellerController.getSellersAPI(pageSize: '12',cat: '11');
                           },
                           activeColor: Color(0xffDFB400)),
-                      Text("Ô tô"),
+                      Text('car'.tr),
                       SizedBox(
                         width: 20,
                       ),
@@ -111,7 +113,7 @@ class StoreWidget extends StatelessWidget {
                             // _sellerController.getSellersAPI(pageSize: '12',cat: '12', type_filter: '');
                           },
                           activeColor: Color(0xffDFB400)),
-                      Text("Xe máy")
+                      Text('motorcycle'.tr)
                     ],
                   ))
                 ],
@@ -183,14 +185,14 @@ class StoreWidget extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ElevatedButton(
-                                    child: Text('Thử lại'),
+                                    child: Text('retry'.tr),
                                     onPressed: (){
                                       _sellerController.getSellersAPI(pageSize: 12, curPage: 1);
                                     },
                                   ),
                                   SizedBox(width: 10,),
                                   ElevatedButton(
-                                    child: Text('Bỏ qua'),
+                                    child: Text('skip'.tr),
                                     onPressed: (){
                                       _sellerController.error.value = '';
                                     },

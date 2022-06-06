@@ -99,11 +99,11 @@ class NewAddressController extends GetxController {
           _authManager.user_current = result.objects ?? User();
         }
         else{
-          Get.snackbar("Thông báo", "${result.msg}");
+          Get.snackbar('noti'.tr, "${result.msg}");
         }
       }
     }catch(error){
-      Get.snackbar("Thông báo", "error:: $error",
+      Get.snackbar('noti'.tr, "error:: $error",
           backgroundColor: Colors.black.withOpacity(0.3));
     }
   }

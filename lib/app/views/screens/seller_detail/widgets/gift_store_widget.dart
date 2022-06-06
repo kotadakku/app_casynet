@@ -17,7 +17,7 @@ class GiftStoreWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(top: 15.h, left: 0.w, bottom: 15.h),
-          child: Text("Quà tặng cửa hàng",
+          child: Text('gift_seller'.tr,
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold
@@ -52,7 +52,7 @@ class GiftStoreWidget extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 2.0,),
-                        Text("HSD: 14/04/2020",
+                        Text("${'expire'.tr}: 14/04/2020",
                           style: TextStyle(
                               color: AppColors.textGrayColor, fontSize: 10
                           ),)
@@ -114,7 +114,7 @@ class GiftStoreWidget extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 2.0,),
-                        Text("HSD: 14/04/2020",
+                        Text("${'expire'.tr}: 14/04/2020",
                           style: TextStyle(
                               color: AppColors.textGrayColor, fontSize: 10
                           ),)
@@ -170,7 +170,7 @@ class GiftStoreWidget extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 2.0,),
-                        Text("HSD: 14/04/2020",
+                        Text("${'expire'.tr}: 14/04/2020",
                           style: TextStyle(
                               color: AppColors.textGrayColor, fontSize: 10
                           ),)
@@ -226,7 +226,7 @@ class GiftStoreWidget extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 2.0,),
-                        Text("HSD: 14/04/2020",
+                        Text("${'expire'.tr}: 14/04/2020",
                           style: TextStyle(
                               color: AppColors.textGrayColor, fontSize: 10
                           ),)

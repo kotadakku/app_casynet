@@ -36,8 +36,7 @@ class Cart extends StatelessWidget {
                     color: AppColors.yellowColor,
                   ),
                 ),
-                const Text(
-                  "Giỏ Hàng Của Bạn ",
+                Text('your-cart'.tr,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,
@@ -104,14 +103,14 @@ class Cart extends StatelessWidget {
                         child: Container(
                           height: 40,
                           alignment: AlignmentDirectional.centerStart,
-                          child: const TextField(
+                          child: TextField(
                             
                             keyboardType: TextInputType.text,
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(5.0),
                               border: OutlineInputBorder(),
-                              hintText: 'Mã giảm giá',
+                              hintText: 'hint_voucher'.tr,
                             ),
                           ),
                         ),
@@ -133,8 +132,8 @@ class Cart extends StatelessWidget {
                                 textStyle: const TextStyle(fontSize: 15),
                               ),
                               onPressed: () {},
-                              child: const Text(
-                                'Áp dụng',
+                              child: Text(
+                                'apply'.tr,
                                 style: TextStyle(fontWeight: FontWeight.w500),
                               ),
                             ),
@@ -150,8 +149,8 @@ class Cart extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              child: const Text(
-                                "Thành tiền: ",
+                              child: Text(
+                                "${'sub_total'.tr}: ",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 149, 156, 175),
                                     fontWeight: FontWeight.w400,
@@ -174,8 +173,8 @@ class Cart extends StatelessWidget {
                       Align(
                         alignment: Alignment.topRight,
                         child: Container(
-                          child: const Text(
-                            "(Đã bao gồm VAT nếu có) ",
+                          child: Text(
+                            "(${'in_VAT'.tr}) ",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 149, 156, 175),
                                 fontWeight: FontWeight.w400,
@@ -209,12 +208,12 @@ class Cart extends StatelessWidget {
                             }
                             if(_productCartCOntroller.checkBoxProduct.length <= 0){
                               print("error");
-                              Get.snackbar("Thông báo", "Vui lòng chọn ít nhất một sản phẩm để tiếp tục",);
+                              Get.snackbar('noti'.tr, "Vui lòng chọn ít nhất một sản phẩm để tiếp tục",);
                             }
                             else Get.toNamed(Routes.CHECKOUT);
                           },
                           child: Text(
-                            'Tiến hành đặt hàng',
+                            'pro_cart'.tr,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                             ),

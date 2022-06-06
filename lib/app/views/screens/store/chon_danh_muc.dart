@@ -16,7 +16,7 @@ class ChonDanhMuc extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
         title: Text(
-          "Chọn danh mục",
+          'select_category'.tr,
           // style: TextStyle(fontSize: 17, color: Colors.black),
         ),
         actions:  [

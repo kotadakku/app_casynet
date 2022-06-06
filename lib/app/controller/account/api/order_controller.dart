@@ -44,7 +44,7 @@ class OrderController extends GetxController with StateMixin{
           change(_orderList, status: RxStatus.success());
         }
         else{
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           printError(info: result.msg.toString());
           change(_orderList, status: RxStatus.error());
@@ -52,7 +52,7 @@ class OrderController extends GetxController with StateMixin{
       }
 
     } catch(error){
-      // Get.snackbar("Thông báo", "error:: $error",
+      // Get.snackbar('noti'.tr, "error:: $error",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       change(_orderList, status: RxStatus.error());
     }
@@ -88,7 +88,7 @@ class OrderController extends GetxController with StateMixin{
           isLoadingCancel.value = false;
         }
         else{
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           printError(info: result.msg.toString());
           isLoadingCancel.value = false;
@@ -96,7 +96,7 @@ class OrderController extends GetxController with StateMixin{
       }
 
     } catch(error){
-      // Get.snackbar("Thông báo", "error:: $error",
+      // Get.snackbar('noti'.tr, "error:: $error",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       print(error);
       isLoadingCancel.value = false;
@@ -132,7 +132,7 @@ class OrderController extends GetxController with StateMixin{
           isLoadingComplete.value = false;
         }
         else{
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           printError(info: result.msg.toString());
           isLoadingComplete.value = false;
@@ -140,7 +140,7 @@ class OrderController extends GetxController with StateMixin{
       }
 
     } catch(error){
-      // Get.snackbar("Thông báo", "error:: $error",
+      // Get.snackbar('noti'.tr, "error:: $error",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       change(orderCompleteList, status: RxStatus.error());
     }

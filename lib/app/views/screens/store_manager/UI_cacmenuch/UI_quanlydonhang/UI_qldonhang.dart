@@ -24,7 +24,7 @@ class QuanLyDonHang extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          "Quản lý đơn hàng",
+          'order_management'.tr,
           style: TextStyle(color: Colors.amber),
         ),
       ),
@@ -62,7 +62,7 @@ class QuanLyDonHang extends StatelessWidget {
                                     text: "Đã giao",
                                   ),
                                   Tab(
-                                    text: "Đã hủy",
+                                    text: 'cancelled'.tr,
                                   ),
                                 ],
                                 onTap: (indext) {

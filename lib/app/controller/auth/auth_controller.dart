@@ -69,15 +69,15 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
             sigin_loading.value = false;
             Get.back();
             scaffoldMessenger.showSnackBar(
-              const SnackBar(content: Text('Đăng nhập thành công'), duration: Duration(seconds: 1)),
+              SnackBar(content: Text('login_success'.tr), duration: Duration(seconds: 1)),
             );
           }
           else {
             sigin_loading.value = false;
             Get.defaultDialog(
-                title: 'Thông báo',
+                title: 'noti'.tr,
                 middleText: '${result.msg}!',
-                textConfirm: 'Xác nhận',
+                textConfirm: 'confirm'.tr,
                 confirmTextColor: Colors.white,
                 onConfirm: () {
                   Get.back();
@@ -90,9 +90,9 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
       catch(error){
         sigin_loading.value = false;
         Get.defaultDialog(
-            title: 'Thông báo',
+            title: 'noti'.tr,
             middleText: '${error}!',
-            textConfirm: 'Xác nhận',
+            textConfirm: 'confirm'.tr,
             confirmTextColor: Colors.white,
             onConfirm: () {
               Get.back();

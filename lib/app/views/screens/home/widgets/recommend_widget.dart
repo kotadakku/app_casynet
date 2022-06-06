@@ -93,7 +93,7 @@ class RecommendWidget extends StatelessWidget {
                               _homeController.updateIsCarRecommend();
                             },
                             activeColor: Color(0xffDFB400)),
-                        Text("Ô tô"),
+                        Text('car'.tr),
                         SizedBox(width: 20,),
                         Radio(
                             value: false,
@@ -103,7 +103,7 @@ class RecommendWidget extends StatelessWidget {
                             },
                             activeColor: Color(0xffDFB400)
                         ),
-                        Text("Xe máy")
+                        Text('motorcycle'.tr)
                       ],
                     ))
 
@@ -116,7 +116,7 @@ class RecommendWidget extends StatelessWidget {
                       SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),
                       SizedBox(width: 5,),
                       Text(
-                        "Lọc",
+                        'filter'.tr,
                         style: TextStyle(
                           color: Color(0xffB7BAC1),
                         ),
@@ -169,14 +169,14 @@ class RecommendWidget extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ElevatedButton(
-                                    child: Text('Thử lại'),
+                                    child: Text('retry'.tr),
                                     onPressed: (){
                                       _recommendController.getRecommendProductsAPI();
                                     },
                                   ),
                                   SizedBox(width: 10,),
                                   ElevatedButton(
-                                    child: Text('Bỏ qua'),
+                                    child: Text('skip'.tr),
                                     onPressed: (){
                                       _recommendController.error.value = '';
                                     },

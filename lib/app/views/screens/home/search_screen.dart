@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '../../theme/app_colors.dart';
 
 class SearchSreen extends StatelessWidget {
@@ -33,14 +34,13 @@ class SearchSreen extends StatelessWidget {
             border: OutlineInputBorder(
               borderSide: BorderSide.none
             ),
-            hintText: "Search"
+            hintText: 'search'.tr
           ),
 
         ),
       ),
       body: Center(
-        child: Text(""
-            "Tìm kiếm"),
+        child: Text('search'.tr),
       )
     );
   }

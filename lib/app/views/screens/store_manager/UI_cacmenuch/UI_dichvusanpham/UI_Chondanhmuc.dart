@@ -36,7 +36,7 @@ class _chondanhmucState extends State<chondanhmuc> {
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
-            "Chọn danh mục",
+            'select_category'.tr,
             style: TextStyle(color: Colors.black),
           ),
           leading: Container(

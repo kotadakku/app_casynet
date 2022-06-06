@@ -28,7 +28,7 @@ class News extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Tin tức",
+          'news'.tr,
           // style: TextStyle(fontSize: 17, color: Colors.black),
         ),
         actions: [
@@ -62,7 +62,7 @@ class News extends StatelessWidget {
                   focusColor: AppColors.yellowColor,
                   contentPadding: EdgeInsets.all(5.0),
                   prefixIcon: Icon(Icons.search),
-                  hintText: "Tìm kiếm",
+                  hintText: 'search'.tr,
                   hintStyle: TextStyle(color: AppColors.textGrayBoldColor),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2.0),

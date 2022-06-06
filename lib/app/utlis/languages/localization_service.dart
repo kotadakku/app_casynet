@@ -1,10 +1,12 @@
 import 'dart:collection';
 
+import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:app_casynet/app/utlis/languages/st_vi.dart';
 import 'package:app_casynet/app/utlis/languages/st_en.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LocalizationService extends Translations {
 
@@ -35,8 +37,9 @@ class LocalizationService extends Translations {
   });
 
 // function change language nếu bạn không muốn phụ thuộc vào ngôn ngữ hệ thống
-  static void changeLocale(String langCode) {
-    final locale = _getLocaleFromLanguage(langCode: langCode);
+  static void changeLocale(String langCode) async {
+    await GetStorageProvider().save(key: CacheManagerKey.LANGUAGE.toString(), value: langCode);
+    final locale = _getLocaleFromLanguage();
     Get.updateLocale(locale!);
   }
 
@@ -46,8 +49,10 @@ class LocalizationService extends Translations {
     'vi_VN': vi,
   };
 
-  static Locale? _getLocaleFromLanguage({String? langCode}) {
-    var lang = langCode ?? Get.deviceLocale?.languageCode;
+  static Locale? _getLocaleFromLanguage(){
+
+    GetStorage box = GetStorage();
+    var lang = box.read(CacheManagerKey.LANGUAGE.toString())??'vi';
     for (int i = 0; i < langCodes.length; i++) {
       if (lang == langCodes[i]) return locales[i];
     }

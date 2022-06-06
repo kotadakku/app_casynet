@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_sizes.dart';
@@ -17,7 +18,7 @@ class BottomWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 20,),
-            Text('Giới thiệu  -  Thông tin cần thiết  -  Liên hệ',
+            Text('${'introduce'.tr}  -  ${'nes_info'.tr}  -  ${'contact'.tr}',
               style: TextStyle(
                   fontSize: 15
               ),

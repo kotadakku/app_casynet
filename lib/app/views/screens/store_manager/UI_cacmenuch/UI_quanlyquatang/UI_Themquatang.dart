@@ -33,7 +33,7 @@ class ThemQuaTang extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          "Thêm mới quà tặng",
+          'add_gift'.tr,
           style: TextStyle(color: Colors.black),
         ),
         leading: Container(
@@ -128,7 +128,7 @@ class ThemQuaTang extends StatelessWidget {
                               style: BorderStyle.solid,
                             ),
                           ),
-                          child: Text("Thêm ảnh/ video",
+                          child: Text('add_image'.tr,
                               maxLines: 2, textAlign: TextAlign.center),
                           onPressed: () {
                             x.value = x.value + " ";
@@ -153,7 +153,7 @@ class ThemQuaTang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Tiêu đề",
+                            'title'.tr,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -166,7 +166,7 @@ class ThemQuaTang extends StatelessWidget {
                     Container(
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: "Nhập tiêu đề",
+                          hintText: 'enter_title'.tr,
                           counterText: "",
                           border: InputBorder.none,
                         ),
@@ -194,7 +194,7 @@ class ThemQuaTang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Mô tả",
+                            'description'.tr,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -207,7 +207,7 @@ class ThemQuaTang extends StatelessWidget {
                     Container(
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: "Nhập mô tả",
+                          hintText: 'enter_descrip'.tr,
                           counterText: "",
                           border: InputBorder.none,
                         ),
@@ -238,7 +238,7 @@ class ThemQuaTang extends StatelessWidget {
                     height: 50,
                     child: Row(
                       children: [
-                        Expanded(child: Text("Hiện thị")),
+                        Expanded(child: Text('display'.tr)),
                         Obx(
                           () => ImageIcon(
                             AssetImage("assets/images/Icon/icon_dung2.png"),
@@ -280,7 +280,7 @@ class ThemQuaTang extends StatelessWidget {
                     height: 50,
                     child: Row(
                       children: [
-                        Expanded(child: Text("Ngày bắt đầu")),
+                        Expanded(child: Text('start_date'.tr)),
                         OutlinedButton(
                           style: ElevatedButton.styleFrom(
                             side: BorderSide(color: Colors.white),
@@ -327,7 +327,7 @@ class ThemQuaTang extends StatelessWidget {
                     height: 50,
                     child: Row(
                       children: [
-                        Expanded(child: Text("Ngày kết thúc")),
+                        Expanded(child: Text('end_date'.tr)),
                         OutlinedButton(
                           style: ElevatedButton.styleFrom(
                             side: BorderSide(color: Colors.white),
@@ -374,7 +374,7 @@ class ThemQuaTang extends StatelessWidget {
                     height: 50,
                     child: Row(
                       children: [
-                        Expanded(child: Text("Gửi mail cho tất cả khách hàng")),
+                        Expanded(child: Text('send_mail'.tr)),
                         Obx(
                           () => Text(textgmkh.value),
                         ),
@@ -408,7 +408,7 @@ class ThemQuaTang extends StatelessWidget {
                     height: 50,
                     child: Row(
                       children: [
-                        Expanded(child: Text("Khách hàng")),
+                        Expanded(child: Text('customer'.tr)),
                       ],
                     ),
                   ),
@@ -423,9 +423,10 @@ class ThemQuaTang extends StatelessWidget {
                   Expanded(
                     child: Container(
                       margin: new EdgeInsets.only(right: 5, left: 10),
+
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: Colors.white),
-                        child: Text("Trở lại"),
+                        child: Text('back'.tr),
                         onPressed: () {
 
                         },
@@ -437,7 +438,7 @@ class ThemQuaTang extends StatelessWidget {
                       margin: new EdgeInsets.only(right: 10, left: 5),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: Colors.amber),
-                        child: Text("Lưu quà tặng"),
+                        child: Text('save_gift'.tr),
                         onPressed: () {},
                       ),
                     ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../account/widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import 'widgets/attribute_product_widget.dart';
 import 'widgets/bottom_button.dart';
 import 'widgets/category_product.dart';
@@ -38,7 +38,7 @@ class FilterProductPage2 extends StatelessWidget {
                         Get.back();
                       },
                     ),
-                    Text("Lọc sản phẩm",
+                    Text('filter_product'.tr,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),

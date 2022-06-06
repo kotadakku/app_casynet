@@ -15,7 +15,7 @@ class EditInfomation extends StatelessWidget {
       child: Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Sửa ${editInfoController.title}"),
+        title: Text("${'edit'.tr} ${editInfoController.title.tr}"),
         actions: [
           Obx(()=>
               IconButton(

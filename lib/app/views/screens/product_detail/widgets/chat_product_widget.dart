@@ -22,12 +22,12 @@ class ChatProductWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Hỏi đáp",
+              Text('qa'.tr,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),),
-              Text("${chats.length} hỏi đáp",
+              Text("${chats.length} ${'qa'.tr}",
               style: TextStyle(
                   color: AppColors.textGrayColor
               ),)
@@ -62,7 +62,7 @@ class ChatProductWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(()=>Text(isReadMore.value ? "Ẩn bớt" : "Xem tất cả", style: TextStyle(
+              Obx(()=>Text(isReadMore.value ? 'hide'.tr : 'see_all'.tr, style: TextStyle(
                 color: AppColors.yellowColor,
               ),)),
               Obx(()=>Icon(isReadMore.value ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded, color: AppColors.yellowColor,))

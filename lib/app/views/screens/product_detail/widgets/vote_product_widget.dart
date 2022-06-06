@@ -20,7 +20,7 @@ class VoteProductWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(left: 10.0.w, top: 10.h),
-          child: Text("Đánh giá sản phẩm", style: TextStyle(
+          child: Text('rate_product'.tr, style: TextStyle(
               fontWeight: FontWeight.bold
           ),),
         ),
@@ -59,7 +59,7 @@ class VoteProductWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text("(2 lượt đánh giá)")
+                      Text("(2 ${'reviews'.tr})")
                     ],
 
                   )
@@ -200,14 +200,14 @@ class VoteProductWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Ảnh gửi từ khách hàng (34)",
+              Text("${'photo_customer'.tr} (34)",
                 style: TextStyle(
 
                 ),
               ),
               Row(
                 children: [
-                  Text("Xem tất cả",
+                  Text('see_all'.tr,
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w400

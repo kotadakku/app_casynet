@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../controller/account/change_password_controller.dart';
 
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 
 
@@ -26,7 +26,7 @@ class ChangePasswordAccount extends StatelessWidget {
             SizedBox(height: 30.h,),
             Padding(
               padding: EdgeInsets.only(left: 10.w),
-              child: Text("Thay đổi mật khẩu",
+              child: Text('change_pass'.tr,
                 style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold
@@ -39,7 +39,7 @@ class ChangePasswordAccount extends StatelessWidget {
             Padding(padding: EdgeInsets.only(left: 10.w), child: Row(
               children: [
                 Expanded(
-                    child: Text("Mật khẩu mới",
+                    child: Text('new_pass'.tr,
                       style: TextStyle(
                           color: AppColors.textGrayBoldColor
                       ),
@@ -60,7 +60,7 @@ class ChangePasswordAccount extends StatelessWidget {
                                 },
                               ),
 
-                              hintText: "Nhập mật khẩu",
+                              hintText: 'enter_pass'.tr,
                               hintStyle: TextStyle(
                                   color: AppColors.textGrayColor
                               )
@@ -76,7 +76,7 @@ class ChangePasswordAccount extends StatelessWidget {
             Padding(padding: EdgeInsets.only(left: 10.w), child: Row(
               children: [
                 Expanded(
-                  child: Text("Xác nhận mật khẩu",
+                  child: Text('repeat_pass'.tr,
                     style: TextStyle(
                         color: AppColors.textGrayBoldColor
                     ),
@@ -94,7 +94,7 @@ class ChangePasswordAccount extends StatelessWidget {
                               Icon(Icons.visibility_outlined, color: AppColors.yellowColor,), onTap: (){
                               c.changeObscureConfirmPassword(!c.isObscureConfirmPassword.value);
                             },),
-                            hintText: "Xác nhận mật khẩu",
+                            hintText: 'repeat_pass'.tr,
                             hintStyle: TextStyle(
                                 color: AppColors.textGrayColor
                             ),
@@ -110,7 +110,7 @@ class ChangePasswordAccount extends StatelessWidget {
             Padding(padding: EdgeInsets.symmetric(horizontal: 10.w), child: Row(
               children: [
                 Expanded(
-                  child: Text("Mã xác minh",
+                  child: Text('veri_code'.tr,
                     style: TextStyle(
                         color: AppColors.textGrayBoldColor
                     ),
@@ -120,7 +120,7 @@ class ChangePasswordAccount extends StatelessWidget {
                   textAlign: TextAlign.end,
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Nhập mã xác minh",
+                      hintText: 'enter_veri_code'.tr,
                       hintStyle: TextStyle(
                           color: AppColors.textGrayColor
                       )
@@ -141,7 +141,7 @@ class ChangePasswordAccount extends StatelessWidget {
                     primary: AppColors.yellowColor,
                     side: BorderSide(color: AppColors.yellowColor),
                   ),
-                  child: Text("Gửi mã xác minh",
+                  child: Text('send_code'.tr,
                     style: TextStyle(
                         color: AppColors.yellowColor
                     ),
@@ -152,7 +152,7 @@ class ChangePasswordAccount extends StatelessWidget {
             Container(
                 alignment: Alignment.topRight,
                 padding: EdgeInsets.only(right: 10.w, top: 10.h, bottom: 10.h),
-                child: Text("Mã xác minh được gửi vào số điện thoại của bạn",
+                child: Text('veri_note'.tr,
                   style: TextStyle(
                       color: AppColors.textGrayColor
                   ),
@@ -165,7 +165,7 @@ class ChangePasswordAccount extends StatelessWidget {
                 onPressed: () {
 
                 },
-                child: Text("Lưu mật khẩu"),
+                child: Text('save_pass'.tr),
                 style: ElevatedButton.styleFrom(
                     primary: AppColors.yellowColor
                 ),

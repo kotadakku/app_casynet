@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../theme/app_colors.dart';
 
@@ -35,7 +36,7 @@ class DataStorePage extends StatelessWidget {
                           ),)
                         ],
                       ),
-                      Text("Sản phẩm",
+                      Text('product'.tr,
                         style: TextStyle(
                             color: AppColors.textGrayColor,
                             fontSize: 18
@@ -56,7 +57,7 @@ class DataStorePage extends StatelessWidget {
                           ),)
                         ],
                       ),
-                      Text("Giao dịch",
+                      Text('transactions'.tr,
                         style: TextStyle(
                             color: AppColors.textGrayColor,
                             fontSize: 18
@@ -77,7 +78,7 @@ class DataStorePage extends StatelessWidget {
                           ),)
                         ],
                       ),
-                      Text("Tỷ lệ phản hồi",
+                      Text('response_rate'.tr,
                         style: TextStyle(
                             color: AppColors.textGrayColor,
                             fontSize: 18
@@ -94,7 +95,7 @@ class DataStorePage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 15.0.h),
               child: Column(
                 children: [
-                  _buildItem(title: "Doanh số",color: Colors.blue,trailing: 'đ 50.000.000'),
+                  _buildItem(title: 'turnover'.tr,color: Colors.blue,trailing: 'đ 50.000.000'),
                   _buildItem(title: "Đơn hàng",color: Colors.green,trailing: '50'),
                   _buildItem(title: "Tỷ lệ chuyển đổi",color: Colors.yellow,trailing: '0.00%'),
                   _buildItem(title: "Doanh thu/Đơn",color: Colors.red,trailing: '50'),

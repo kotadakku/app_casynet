@@ -43,10 +43,10 @@ class IntroStoreWidget extends StatelessWidget {
                     color: AppColors.yellowColor,
                   ),
                 )),
-            Text("Giờ mở cửa  "),
+            Text('time_open'.tr),
             controller.store.value.timeOpen == 'null' ||
                     controller.store.value.timeClose == 'null'
-                ? Text("Đang tải ...")
+                ? Text("${'loading'.tr} ...")
                 : Text(
                     "${controller.store.value.timeOpen}  -  ${controller.store.value.timeClose}",
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -66,7 +66,8 @@ class IntroStoreWidget extends StatelessWidget {
                     color: AppColors.yellowColor,
                   ),
                 )),
-            Text("Điện thoại  "),
+            Text('phone'.tr),
+            SizedBox(width: 5.0.w,),
             Text(
               controller.store.value.phone.toString(),
               style: TextStyle(
@@ -118,7 +119,7 @@ class IntroStoreWidget extends StatelessWidget {
                         ),
                         controller.store.value.totalProduct.toString() ==
                                 'null'
-                            ? Text("Đang tải ...")
+                            ? Text("${'loading'.tr} ...")
                             : Text(
                                 controller.store.value.totalProduct.toString(),
                                 style: TextStyle(
@@ -129,7 +130,7 @@ class IntroStoreWidget extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "Sản phẩm",
+                      'product'.tr,
                       style: TextStyle(color: AppColors.textGrayColor, fontSize: 18),
                     )
                   ],
@@ -152,7 +153,7 @@ class IntroStoreWidget extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "Giao dịch",
+                      'transactions'.tr,
                       style: TextStyle(color: AppColors.textGrayColor, fontSize: 18),
                     )
                   ],
@@ -175,7 +176,7 @@ class IntroStoreWidget extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "Tỷ lệ phản hồi",
+                      'response_rate'.tr,
                       style: TextStyle(color: AppColors.textGrayColor, fontSize: 18),
                     )
                   ],
@@ -198,10 +199,10 @@ class IntroStoreWidget extends StatelessWidget {
                   size: AppSize.iconSize,
                 ),
               ),
-              Text("Tham gia: "),
+              Text("${'participation'.tr}: "),
               Text(
                 controller.store.value.participationTime ??
-                    'Chưa có thông tin',
+                    'no-info'.tr,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -232,7 +233,7 @@ class IntroStoreWidget extends StatelessWidget {
                     controller.store.value.rate.toString(),
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text(" Chất lượng")
+                  Text('quality'.tr)
                 ],
               ),
               Row(
@@ -245,7 +246,7 @@ class IntroStoreWidget extends StatelessWidget {
                       size: AppSize.iconSize,
                     ),
                   ),
-                  Text("Báo xấu: "),
+                  Text("${'bad_report'.tr}: "),
                   Text(
                     '${controller.store.value.bad_message ?? 0}',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -265,7 +266,7 @@ class IntroStoreWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               child: Text(
-                "Giới thiệu cửa hàng",
+                'introduce_seller'.tr,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -299,7 +300,7 @@ class IntroStoreWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Obx(() => Text(
-                            isReadMore.value ? "Xem thêm" : "Ẩn bớt",
+                            isReadMore.value ? 'more'.tr : 'hide'.tr,
                             style: TextStyle(color: AppColors.yellowColor),
                           )),
                       Container(
@@ -400,7 +401,7 @@ class IntroStoreWidget extends StatelessWidget {
                                     _homeController.updateIsCarReservation();
                                   },
                                   activeColor: Color(0xffDFB400)),
-                              Text("Ô tô"),
+                              Text('car'.tr),
                               SizedBox(
                                 width: 20,
                               ),
@@ -412,7 +413,7 @@ class IntroStoreWidget extends StatelessWidget {
                                     _homeController.updateIsCarReservation();
                                   },
                                   activeColor: Color(0xffDFB400)),
-                              Text("Xe máy")
+                              Text('motorcycle'.tr)
                             ],
                           ))
                     ],
@@ -486,7 +487,7 @@ class IntroStoreWidget extends StatelessWidget {
                   padding: EdgeInsets.only(top: 15.h, left: 10.w, bottom: 15.h),
                   width: ScreenUtil().screenWidth,
                   child: Text(
-                    'Sản phẩm nổi bật',
+                    'featured_product'.tr,
                     style: TextStyle(
                         color: Color(0xffDFB400),
                         fontSize: 16,
@@ -526,7 +527,7 @@ class IntroStoreWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Xem thêm",
+                      'more'.tr,
                       style: TextStyle(color: AppColors.yellowColor),
                     ),
                     Container(

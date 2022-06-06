@@ -247,7 +247,7 @@ class ChiTietDonHang extends StatelessWidget {
                           ),
                           Container(
                             margin: new EdgeInsets.only(bottom: 10),
-                            child: Text("Thành Tiền"),
+                            child: Text('sub_total'.tr),
                           ),
                         ],
                       ),
@@ -357,7 +357,7 @@ class ChiTietDonHang extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("MÃ ĐƠN HÀNG"),
+                      Text('code_order'.tr.toUpperCase()),
                       Container(
                         margin: new EdgeInsets.only(right: 10),
                         child: Text("#000000372"),
@@ -435,7 +435,7 @@ class ChiTietDonHang extends StatelessWidget {
                         margin: new EdgeInsets.only(right: 10, left: 5),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: Colors.amber),
-                          child: Text("Xác nhận"),
+                          child: Text('confirm'.tr),
                           onPressed: () {},
                         ),
                       ),

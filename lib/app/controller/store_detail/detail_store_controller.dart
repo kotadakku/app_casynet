@@ -11,7 +11,7 @@ import '../../data/repo/seller_repo.dart';
 class DetailStoreController extends GetxController with GetSingleTickerProviderStateMixin, StateMixin  {
 
   final List<String> listTabs = [
-    "Giới thiệu", "Sản phẩm (200)", "Tin tức", "Đánh giá", "Hỏi đáp"
+    'introduce'.tr, "${'product'.tr} (200)", 'news'.tr, 'rate'.tr, 'qa'.tr
   ];
   final productSellerList = <Product>[].obs;
   final productFeaturedSellerList = <Product>[].obs;
@@ -59,14 +59,14 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
           isLoading.value = false;
 
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
           isLoading.value = false;
         }
       }
     } catch (e) {
-      Get.snackbar("Thông báo", "error:: $e",
+      Get.snackbar('noti'.tr, "error:: $e",
           backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       isLoading.value = false;
@@ -104,7 +104,7 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
           change(productSellerList,status: RxStatus.success());
           // isLoadingProduct.value = false;
         } else {
-          Get.snackbar("Thông báo", result.msg.toString(),
+          Get.snackbar('noti'.tr, result.msg.toString(),
               backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
           change(productSellerList,status: RxStatus.empty());
@@ -112,7 +112,7 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
         }
       }
     } catch (e) {
-      Get.snackbar("Thông báo", "error:: $e",
+      Get.snackbar('noti'.tr, "error:: $e",
           backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       change(productSellerList,status: RxStatus.empty());
@@ -157,7 +157,7 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
           change(productFeaturedSellerList,status: RxStatus.success());
           // isLoadingProduct.value = false;
         } else {
-          Get.snackbar("Thông báo", result.msg.toString(),
+          Get.snackbar('noti'.tr, result.msg.toString(),
               backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
           change(productFeaturedSellerList,status: RxStatus.empty());
@@ -165,7 +165,7 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
         }
       }
     } catch (e) {
-      Get.snackbar("Thông báo", "error:: $e",
+      Get.snackbar('noti'.tr, "error:: $e",
           backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       change(productFeaturedSellerList,status: RxStatus.empty());

@@ -55,7 +55,7 @@ class ImageProductWidget extends StatelessWidget {
                             children: [
                               Icon(Icons.favorite_border, color: Colors.red, size: AppSize.iconSize,),
                               SizedBox(width: 5,),
-                              Text("Yêu thích",
+                              Text('like'.tr,
                                 style: TextStyle(
 
                                     color: Colors.red
@@ -80,7 +80,7 @@ class ImageProductWidget extends StatelessWidget {
                             children: [
                               Icon(Icons.share, color: AppColors.textGrayColor, size: AppSize.iconSize,),
                               SizedBox(width: 5,),
-                              Text("Chia sẻ",
+                              Text('share'.tr,
                                 style: TextStyle(
                                     color: AppColors.textGrayColor
                                 ),

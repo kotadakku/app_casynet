@@ -74,7 +74,7 @@ class ItemCart extends StatelessWidget {
                       width: 5.0,
                     ),
                     Text(
-                      "Quà Tặng Cửa Hàng ",
+                      'gift_seller'.tr,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15.0.sp,
@@ -355,15 +355,14 @@ class ItemCart extends StatelessWidget {
                                     },
                                     child: SizedBox(
                                         child: Row(
-                                      children: const [
-                                        Icon(
+                                      children: [
+                                        const Icon(
                                           Icons.delete,
                                           size: 15,
                                         ),
-                                        Text(
-                                          "Xóa",
+                                        Text('delete'.tr,
                                           style: TextStyle(fontSize: 10),
-                                        )
+                                        ),
                                       ],
                                     )),
                                   ),

@@ -82,7 +82,7 @@ class CheckoutPage extends StatelessWidget {
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  _checkoutController.address_default.id != null?"Thay đổi":"Thêm",
+                                  _checkoutController.address_default.id != null?"Thay đổi":'add'.tr,
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
@@ -360,8 +360,8 @@ class CheckoutPage extends StatelessWidget {
                             textStyle: const TextStyle(fontSize: 15),
                           ),
                           onPressed: () {},
-                          child: const Text(
-                            'Áp dụng',
+                          child: Text(
+                            'apply'.tr,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                             ),
@@ -381,8 +381,8 @@ class CheckoutPage extends StatelessWidget {
                           child: Container(
                             height: 40.0,
                             margin: const EdgeInsets.only(left: 5.0, top: 10.0),
-                            child: const Text(
-                              "Thành tiền: ",
+                            child: Text(
+                              "${'sub_total'.tr}: ",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 149, 156, 175),
                                   fontWeight: FontWeight.w400,
@@ -415,8 +415,8 @@ class CheckoutPage extends StatelessWidget {
                       Container(
                         height: 20,
                         margin: const EdgeInsets.only(right: 5.0),
-                        child: const Text(
-                          "(Đã bao gồm VAT nếu có) ",
+                        child: Text(
+                          "(${'in_VAT'.tr}) ",
                           style: TextStyle(
                               color: Color.fromARGB(255, 149, 156, 175),
                               fontWeight: FontWeight.w400,
@@ -444,8 +444,8 @@ class CheckoutPage extends StatelessWidget {
                       onPressed: () {
                         Get.toNamed(Routes.CHECKOUT_SUCCESS);
                       },
-                      child: const Text(
-                        'Tiến hành đặt hàng',
+                      child: Text(
+                        'pro_cart'.tr,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                         ),

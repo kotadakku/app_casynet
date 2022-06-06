@@ -34,8 +34,8 @@ class NewPost extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0))),
                 ),
                 onPressed: () {},
-                child: const Text(
-                  "Lưu",
+                child: Text(
+                  'save'.tr,
                   style: TextStyle(color: Colors.black),
                 )),
           )
@@ -114,7 +114,7 @@ class NewPost extends StatelessWidget {
                                       style: BorderStyle.solid,
                                     ),
                                   ),
-                                  child: const Text("Thêm ảnh/ video",
+                                  child: Text('add_image'.tr,
                                       maxLines: 2,
                                       textAlign: TextAlign.center),
                                   onPressed: () {

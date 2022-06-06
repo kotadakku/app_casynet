@@ -27,7 +27,7 @@ class DistrictProductWidget extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  const Text("Quận/Huyện",
+                  Text('district'.tr,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

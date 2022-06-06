@@ -56,14 +56,14 @@ class ProductsController extends GetxController with StateMixin{
           change(productList, status: RxStatus.success());
 
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
           change(productList, status: RxStatus.error());
         }
       }
     } catch (e) {
-      // Get.snackbar("Thông báo", "error:: $e",
+      // Get.snackbar('noti'.tr, "error:: $e",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       change(productList, status: RxStatus.error());

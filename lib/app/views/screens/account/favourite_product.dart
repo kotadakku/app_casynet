@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
-import 'widgets/appbar_account_widget.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_sizes.dart';
 
@@ -22,7 +23,7 @@ class FavouriteProductPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
             child: Text(
-              "Sản phẩm yêu thích",
+              'favourite_product'.tr,
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold
@@ -130,7 +131,7 @@ class FavouriteProductPage extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            "Xóa",
+                                            'delete'.tr,
                                             style: TextStyle(
                                                 color: AppColors.textGrayBoldColor,
                                                 fontSize: 12

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../theme/app_colors.dart';
-import '../../account/widgets/appbar_account_widget.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
 import 'widgets/step_benefit.dart';
 
 class Introduction extends StatelessWidget {
@@ -43,7 +44,7 @@ class Introduction extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       color: AppColors.backgroundColor,
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Text("Giới thiệu",
+                      child: Text('introduce'.tr,
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold

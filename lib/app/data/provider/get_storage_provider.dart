@@ -24,4 +24,4 @@ class GetStorageProvider {
     await _box().remove(key);
   }
 }
-enum CacheManagerKey {TOKEN, TOKEN_ADMIN , USER, USER_LOGIN, }
+enum CacheManagerKey {TOKEN, TOKEN_ADMIN , USER, USER_LOGIN, LANGUAGE }

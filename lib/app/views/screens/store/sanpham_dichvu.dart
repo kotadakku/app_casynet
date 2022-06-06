@@ -60,7 +60,7 @@ class SanPhamDichVu extends StatelessWidget {
                           children: [
                             Container(
                               width: 500,
-                              child: const TabBar(
+                              child: TabBar(
                                 labelColor:
                                 Color.fromARGB(255, 223, 180, 0),
                                 unselectedLabelColor: Colors.grey,
@@ -68,7 +68,7 @@ class SanPhamDichVu extends StatelessWidget {
                                 Color.fromARGB(255, 223, 180, 0),
                                 tabs: [
                                   Tab(
-                                    child: Text("Tất cả"),
+                                    child: Text('all'.tr),
                                   ),
                                   Tab(
                                     child: Text("Còn hàng"),
@@ -353,9 +353,8 @@ class SanPhamDichVu extends StatelessWidget {
                                                                         MainAxisAlignment.start,
                                                                         crossAxisAlignment:
                                                                         CrossAxisAlignment.start,
-                                                                        children: const [
-                                                                          Text(
-                                                                            "Xóa",
+                                                                        children: [
+                                                                          Text('delete'.tr,
                                                                             style: TextStyle(color: AppColors.textGrayColor),
                                                                           ),
                                                                           Divider(
@@ -391,9 +390,9 @@ class SanPhamDichVu extends StatelessWidget {
                                                                         MainAxisAlignment.start,
                                                                         crossAxisAlignment:
                                                                         CrossAxisAlignment.start,
-                                                                        children: const [
+                                                                        children: [
                                                                           Text(
-                                                                            "Sửa",
+                                                                            'edit'.tr,
                                                                             style: TextStyle(color: AppColors.textGrayColor),
                                                                           ),
                                                                           Divider(
@@ -431,7 +430,7 @@ class SanPhamDichVu extends StatelessWidget {
                                                             ),
                                                           ),
                                                           OutlinedButton(
-                                                            child: Text("Hiển thị",
+                                                            child: Text('display'.tr,
                                                               style: TextStyle(
                                                                   color: Colors.white
                                                               ),

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../widgets/appbar_account_widget.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
 import '../widgets/order_cancel_widget.dart';
 import '../../../theme/app_colors.dart';
 
@@ -35,7 +36,7 @@ class OrderDetailComplete extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("ID ĐƠN HÀNG: 372302050"),
-                      Text("ĐÃ HỦY",
+                      Text('cancelled'.tr.toUpperCase(),
                         style: TextStyle(
                             color: Colors.red,
                             fontSize: 12
@@ -85,7 +86,7 @@ class OrderDetailComplete extends StatelessWidget {
                           height: 30,
                           child: ElevatedButton(
                             onPressed: (){},
-                            child: Text("Mua lần nữa"),
+                            child: Text('buy_again'.tr),
                             style: ElevatedButton.styleFrom(
                                 primary: AppColors.yellowColor
                             ),
@@ -118,7 +119,7 @@ class OrderDetailComplete extends StatelessWidget {
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text("Sửa",
+                              Text('edit'.tr,
                                 style: TextStyle(
                                     color: AppColors.textLink,
                                     decoration: TextDecoration.underline

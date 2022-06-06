@@ -22,7 +22,7 @@ class GiftStorePage extends StatelessWidget {
           },
           child: Icon(Icons.arrow_back),
         ),
-        title: Text("Quà tặng cửa hàng",),
+        title: Text('gift_seller'.tr),
         actions: [
           InkWell(
             onTap: (){
@@ -143,7 +143,7 @@ class GiftStorePage extends StatelessWidget {
                                                         mainAxisAlignment: MainAxisAlignment.start,
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Text("Chia sẻ",
+                                                          Text('share'.tr,
                                                             style: TextStyle(
                                                                 color: AppColors.textGrayColor
                                                             ),
@@ -177,7 +177,7 @@ class GiftStorePage extends StatelessWidget {
                                                         mainAxisAlignment: MainAxisAlignment.start,
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Text("Sửa",
+                                                          Text('edit'.tr,
                                                             style: TextStyle(
                                                                 color: AppColors.textGrayColor
                                                             ),
@@ -211,7 +211,7 @@ class GiftStorePage extends StatelessWidget {
                                                         mainAxisAlignment: MainAxisAlignment.start,
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Text("Xóa",
+                                                          Text('delete'.tr,
                                                             style: TextStyle(
                                                                 color: AppColors.textGrayColor
                                                             ),

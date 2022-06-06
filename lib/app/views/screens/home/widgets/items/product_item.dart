@@ -93,11 +93,11 @@ class ItemProductWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10.0.h,),
-            products[index].seller == null ? Text('Chưa có thông tin') : Row(
+            products[index].seller == null ? Text('no-info'.tr) : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(child:
-                Obx(()=>Text( products[index].seller?.name ?? 'Chưa có thông tin',
+                Obx(()=>Text( products[index].seller?.name ?? 'no-info'.tr,
                   style: TextStyle(
                     fontSize: 12,
 

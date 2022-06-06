@@ -37,6 +37,7 @@ abstract class Routes{
   static const SEARCH = '/search';
 
   static const MY_STORE = '/my_store';
+  static const MY_STORE_CREATE = '/my_store/create';
   static const MY_STORE_PRODUCT = '/my_store/product';
   static const MY_STORE_REVENUE= '/my_store/revenue';
   static const MY_STORE_GIFT = '/my_store/gift';

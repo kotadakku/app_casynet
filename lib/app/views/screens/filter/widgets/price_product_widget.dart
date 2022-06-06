@@ -21,7 +21,7 @@ class PriceProductWidget extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text("Theo giá",
+                  Text('by_price'.tr,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -55,7 +55,7 @@ class PriceProductWidget extends StatelessWidget {
                           return Row(
                             children: [
                               ElevatedButton(
-                                child: Text("Giá cao",
+                                child: Text('high_price'.tr,
                                   style: TextStyle(
                                       color: is_high_price ? Colors.white: AppColors.textGrayColor
                                   ),
@@ -76,7 +76,7 @@ class PriceProductWidget extends StatelessWidget {
                               SizedBox(width: 10,),
                               ElevatedButton(
                                 child: Text(
-                                  "Giá thấp",
+                                  'low_price'.tr,
                                   style: TextStyle(
                                       color: !is_high_price ? Colors.white: AppColors.textGrayColor
                                   ),
@@ -105,7 +105,7 @@ class PriceProductWidget extends StatelessWidget {
                               flex: 1,
                               child: Row(
                                 children: [
-                                  const Text("Từ "),
+                                  Text('from'.tr),
 
                                   Container(
                                     width: 120.w,
@@ -160,7 +160,7 @@ class PriceProductWidget extends StatelessWidget {
                               flex: 1,
                               child: Row(
                                 children: [
-                                  const Text("Đến "),
+                                  Text('to'.tr),
                                   Container(
                                     width: 120.w,
                                     height: 30,

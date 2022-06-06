@@ -3,6 +3,7 @@ import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -68,7 +69,7 @@ class RegisterWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50.0),
                         ),
                         hintStyle: const TextStyle(fontSize: 12),
-                        hintText: 'Họ và tên',
+                        hintText: 'name'.tr,
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Icon(
@@ -167,7 +168,7 @@ class RegisterWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(50.0),
                           ),
                           hintStyle: const TextStyle(fontSize: 12),
-                          hintText: 'Số điện thoại',
+                          hintText: 'phone'.tr,
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(
@@ -216,7 +217,7 @@ class RegisterWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(50.0),
                           ),
                           hintStyle: const TextStyle(fontSize: 12),
-                          hintText: 'Mật khẩu',
+                          hintText: 'password'.tr,
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(
@@ -278,7 +279,7 @@ class RegisterWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(50.0),
                           ),
                           hintStyle: const TextStyle(fontSize: 12),
-                          hintText: 'Xác nhận mật khẩu',
+                          hintText: 'repeat_pass'.tr,
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Icon(
@@ -296,7 +297,7 @@ class RegisterWidget extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  // TextField Ngày sinh
+                  // TextField 'birthday'.tr
                   TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       cursorColor: AppColors.yellowColor,
@@ -333,7 +334,7 @@ class RegisterWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50.0),
                         ),
                         hintStyle: const TextStyle(fontSize: 12),
-                        hintText: 'Ngày sinh',
+                        hintText: 'birthday'.tr,
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: IconButton(
@@ -351,7 +352,7 @@ class RegisterWidget extends StatelessWidget {
                   // CHọn giới tính
                   Row(
                     children: [
-                      Text("Giới tính"),
+                      Text('sex'.tr),
                       Obx(() => Radio(
                           value: true,
                           groupValue: _isMale.value,
@@ -359,7 +360,7 @@ class RegisterWidget extends StatelessWidget {
                             _isMale.value = !_isMale.value;
                           },
                           activeColor: Color(0xffDFB400))),
-                      Text("Nam"),
+                      Text('male'.tr),
                       SizedBox(
                         width: 20,
                       ),
@@ -370,7 +371,7 @@ class RegisterWidget extends StatelessWidget {
                             _isMale.value = !_isMale.value;
                           },
                           activeColor: Color(0xffDFB400))),
-                      Text("Nữ")
+                      Text('female'.tr)
                     ],
                   ),
                   // Checkbox xác nhận nhận thông tin
@@ -388,7 +389,7 @@ class RegisterWidget extends StatelessWidget {
                       SizedBox(
                           width: 250,
                           child: Text(
-                            "Nhận thông tin và chương trình khuyến mãi của Casynet qua email",
+                            'accept_noti'.tr,
                             overflow: TextOverflow.visible,
                             maxLines: 2,
                           ))
@@ -411,7 +412,7 @@ class RegisterWidget extends StatelessWidget {
                       else {
                         Get.defaultDialog(
                             middleText: 'Vui lòng nhập đầy đủ thông tin',
-                            title:  'Thông báo',
+                            title:  'noti'.tr,
                             textConfirm: 'OK',
                             confirmTextColor: Colors.white,
                             onConfirm: () {
@@ -436,35 +437,36 @@ class RegisterWidget extends StatelessWidget {
                           width: 10.0,
                         ),
                         Text(
-                          "Tạo tài khoản",
+                          'create_account'.tr,
                           style: TextStyle(),
                         )
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   RichText(
                     text: TextSpan(
                       children: [
                         TextSpan(
                           text:
-                          'Khi bạn nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo ',
+                          'notify_span1'.tr,
                           style: new TextStyle(color: Colors.black),
                         ),
                         TextSpan(
-                          text: 'điều kiện sử dụng và chính  sách ',
+                          text: 'notify_span2'.tr,
                           style: new TextStyle(color: Colors.blue),
                           recognizer: new TapGestureRecognizer()..onTap = () {},
                         ),
-                        TextSpan(
-                          text: 'của Casynet',
-                          style: new TextStyle(color: Colors.black),
-                        ),
+                        // TextSpan(
+                        //   text: 'của Casynet',
+                        //   style: new TextStyle(color: Colors.black),
+                        // ),
                       ],
                     ),
                   ),
+                  SizedBox(height: 10.h,)
                 ]),
               ],
             ),

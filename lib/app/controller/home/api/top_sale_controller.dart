@@ -55,14 +55,14 @@ class TopSaleController extends GetxController with StateMixin {
             );
           }
         } else {
-          // Get.snackbar("Thông báo", result.msg.toString(),
+          // Get.snackbar('noti'.tr, result.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
           change(_topSaleList, status: RxStatus.error());
         }
       }
     } catch (e) {
-      // Get.snackbar("Thông báo", "error:: $e",
+      // Get.snackbar('noti'.tr, "error:: $e",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       change(_topSaleList, status: RxStatus.error());

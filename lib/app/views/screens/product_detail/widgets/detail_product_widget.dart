@@ -21,7 +21,7 @@ class DetailProductWidget extends StatelessWidget {
         Divider(color: AppColors.textGrayColor,),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: Text("Chi tiết sản phẩm", style: TextStyle(
+          child: Text('description_product'.tr, style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),),
@@ -73,7 +73,7 @@ class DetailProductWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(isReadMore.value ? "Ẩn bớt" : "Xem thêm",
+              Text(isReadMore.value ? 'hide'.tr : 'more'.tr,
                 style: TextStyle(
                     color: AppColors.yellowColor
                 ),

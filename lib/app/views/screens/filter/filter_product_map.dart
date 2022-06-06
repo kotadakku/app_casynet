@@ -1,16 +1,11 @@
-import 'package:app_casynet/app/controller/stores/stores_controller.dart';
-import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import '../../../controller/filter/filter_map_controller.dart';
-import '../../../controller/filter/map_controller.dart';
-import '../../../data/model/seller.dart';
-import '../account/widgets/appbar_account_widget.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/appbar/appbar_account_widget.dart';
 
 class FilterProductMap extends StatelessWidget {
   FilterProductMap({Key? key,}) : super(key: key);
@@ -54,7 +49,7 @@ class FilterProductMap extends StatelessWidget {
                                   _isCar.value = !_isCar.value;
                                 },
                                 activeColor: Color(0xffDFB400)),
-                            Text("Ô tô"),
+                            Text('car'.tr),
                             SizedBox(
                               width: 20,
                             ),
@@ -65,7 +60,7 @@ class FilterProductMap extends StatelessWidget {
                                   _isCar.value = !_isCar.value;
                                 },
                                 activeColor: Color(0xffDFB400)),
-                            Text("Xe máy")
+                            Text("motorcycle".tr)
                           ],
                         ))
                   ],
@@ -76,13 +71,14 @@ class FilterProductMap extends StatelessWidget {
                       "assets/home/store/icon_filter.svg",
                       width: 15,
                     ),
+
                     SizedBox(
                       width: 5,
                     ),
                     Text(
-                      "Lọc",
+                      'filter'.tr,
                       style: TextStyle(
-                          color: AppColors.textLink
+                        color: Color(0xffB7BAC1),
                       ),
                     ),
                     SizedBox(
@@ -125,15 +121,14 @@ class FilterProductMap extends StatelessWidget {
                     child: Image.asset("assets/images/account/image_user.png"),
                   )),
                   title: Text(
-                    "Vị trí của tôi",
+                    'my_location'.tr,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     "165 Vũ Phạm Hàm, Yên Hòa, Cầu Giấy...",
                     style: TextStyle(color: AppColors.textGrayColor, fontSize: 12),
                   ),
-                  trailing: Text(
-                    "Sửa",
+                  trailing: Text('edit'.tr,
                     style: TextStyle(color: AppColors.textLink),
                   ),
                 ),

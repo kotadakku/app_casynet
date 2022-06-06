@@ -103,7 +103,7 @@ class DetailProductPage extends StatelessWidget {
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.add), Text("Đặt hàng")],
+                        children: [Icon(Icons.add), Text('order'.tr)],
                       )),
                 ),
               ],

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../theme/app_colors.dart';
 
@@ -23,7 +24,7 @@ class ContactPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   color: AppColors.backgroundColor,
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Text("Liên hệ",
+                  child: Text('contact'.tr,
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold
@@ -54,7 +55,7 @@ class ContactPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        hintText: "Họ và tên",
+                        hintText: 'name'.tr,
                         hintStyle: TextStyle(
                             color: AppColors.textGrayColor,
                             fontSize: 14
@@ -118,7 +119,7 @@ class ContactPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        hintText: "Số điện thoại",
+                        hintText: 'phone'.tr,
                         hintStyle: TextStyle(
                             color: AppColors.textGrayColor,
                             fontSize: 14
