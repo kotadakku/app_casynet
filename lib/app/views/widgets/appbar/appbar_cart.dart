@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/controller/cart/api/product_cart_controller.dart';
+import 'package:app_casynet/app/views/widgets/appbar/widgets/buttom_select_region.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,9 +23,6 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    NewAddressController regioncontroller = Get.find<NewAddressController>();
-    SearchController searchController = Get.find();
 
     return AppBar(
       backgroundColor: Colors.white,
@@ -73,47 +71,7 @@ class AppBarCartWidget extends StatelessWidget implements PreferredSizeWidget {
 
               ),
               hintText: 'Search Casynet',
-              suffixIcon: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: (){
-                  var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
-                    "title": "Chọn tỉnh/ thành phố", "regions": regioncontroller.provinces
-                  });
-                  if(data != null){
-                    data.then((value){
-                      searchController.setLocation(value['name']);
-                    });
-                  }
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0.w),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      VerticalDivider(
-                        width: 20,
-                        thickness: 1,
-                        indent: 5,
-                        endIndent: 5,
-                        color: AppColors.textGrayColor,
-                      ),
-                      SizedBox(width: 2.0.w,),
-                      SvgPicture.asset(
-                          "assets/images/home/icon_location.svg",
-                          width: 14.sp),
-                      SizedBox(width: 5.0.w,),
-                      Obx(()=> Text(
-                        searchController.location.value,
-                        style: TextStyle(
-                          color: AppColors.textGrayColor,
-                          fontSize: 13,
-                        ),
-                      ),),
-                      SizedBox(width: 5.0.w,),
-                    ],
-                  ),
-                ),
-              )
+              suffixIcon: ButtonSelectRegion()
           ),
         ),
       ),

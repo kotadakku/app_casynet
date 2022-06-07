@@ -46,7 +46,7 @@ class SelectRegionPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(regions[index]['name']),
+                              Text(regions[index].name),
                               Container(height: 10, width: 10, child: Icon(Icons.arrow_forward_ios, size: 12,),)
                             ],
                           )
