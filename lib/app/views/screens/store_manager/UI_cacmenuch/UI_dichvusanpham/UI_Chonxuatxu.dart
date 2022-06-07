@@ -63,7 +63,7 @@ class _chonxuatxuState extends State<chonxuatxu> {
                                                 return RadioListTile(
                                                     title: Text(GetXuatxu
                                                         .xuatxu[indext]
-                                                        .tenxuatxu
+                                                        .name
                                                         .toString()),
                                                     value: indext,
                                                     groupValue:
@@ -72,13 +72,13 @@ class _chonxuatxuState extends State<chonxuatxu> {
                                                       GetXuatxu.idxs.value =
                                                           int.parse(GetXuatxu
                                                               .xuatxu[indext]
-                                                              .idxuaxu
+                                                              .id
                                                               .toString());
                                                       GetXuatxu
                                                               .tenxuatxu.value =
                                                           GetXuatxu
                                                               .xuatxu[indext]
-                                                              .tenxuatxu
+                                                              .name
                                                               .toString();
                                                       GetXuatxu.countqg.value =
                                                           int.parse(

@@ -1010,13 +1010,13 @@ class getxuatxu extends GetxController {
   var countqg = 0.obs;
   var idxs = 0.obs;
   var tenxuatxu = "Chọn xuất xứ".obs;
-  Future<List<Xuatxu>> fetchXuatxu() async {
+  Future<List<Origin>> fetchXuatxu() async {
     final response = await http.get(Uri.parse(
         "https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php"));
-    List<Xuatxu> pp = [];
+    List<Origin> pp = [];
     if (response.statusCode == 200) {
       List<dynamic> list = json.decode(response.body);
-      pp = list.map((e) => Xuatxu.fromJson(e)).toList();
+      pp = list.map((e) => Origin.fromJson(e)).toList();
       xuatxu.value = pp;
     }
     return pp;
@@ -1029,13 +1029,13 @@ class getImagesp extends GetxController {
   var countqg = 0.obs;
   var idxs = 0.obs;
   var tenxuatxu = "Chọn xuất xứ".obs;
-  Future<List<Xuatxu>> fetchXuatxu() async {
+  Future<List<Origin>> fetchXuatxu() async {
     final response = await http.get(Uri.parse(
         "https://coaxial-typewriter.000webhostapp.com/Server/SelectImagesp.php"));
-    List<Xuatxu> pp = [];
+    List<Origin> pp = [];
     if (response.statusCode == 200) {
       List<dynamic> list = json.decode(response.body);
-      pp = list.map((e) => Xuatxu.fromJson(e)).toList();
+      pp = list.map((e) => Origin.fromJson(e)).toList();
       xuatxu.value = pp;
     }
     return pp;

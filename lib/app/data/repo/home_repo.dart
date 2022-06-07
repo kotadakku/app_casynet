@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';
 import '../model/category.dart';
+import '../model/origin.dart';
 import '../model/product.dart';
 import '../provider/api/responses.dart';
 import '../model/seller.dart';
@@ -203,5 +204,9 @@ class HomePageRepo{
       final errorMessage = DioExceptions.fromDioError(error);
       return Responses<User>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
+  }
+
+  Future<Responses<Origin>>  getOrigins({Map<String, dynamic>? queryParameters}) async {
+    return Responses<Origin>(statusCode: CODE_ERROR, msg: "");
   }
 }
