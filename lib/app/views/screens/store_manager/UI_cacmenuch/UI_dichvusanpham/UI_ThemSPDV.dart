@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -674,11 +675,19 @@ class _ThemspdvState extends State<Themspdv> {
                   ),
                 ),
               ),
-              Container(
-                height: 50,
-                color: Colors.white,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Color.fromRGBO(200, 200, 200, 200),
+                    ),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Row(
                     children: [
                       Expanded(child: Text("Tình trạng kho hàng")),
@@ -686,14 +695,16 @@ class _ThemspdvState extends State<Themspdv> {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {},
                 ),
               ),
-              Container(
-                height: 50,
-                color: Colors.white,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+                  Get.to(chondanhmuc());
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  color: Colors.white,
                   child: Row(
                     children: [
                       Expanded(child: Text("Danh mục")),
@@ -711,7 +722,7 @@ class _ThemspdvState extends State<Themspdv> {
                                     children: [
                                       Container(
                                         padding:
-                                            EdgeInsets.only(right: 5, left: 5),
+                                        EdgeInsets.only(right: 5, left: 5),
                                         height: 30,
                                         child: Center(
                                           child: Text(getdms
@@ -719,7 +730,7 @@ class _ThemspdvState extends State<Themspdv> {
                                               .toString()),
                                         ),
                                         color:
-                                            Color.fromARGB(255, 241, 243, 253),
+                                        Color.fromARGB(255, 241, 243, 253),
                                         // decoration: BoxDecoration(
                                         //     border: Border.all(color: Colors.black)
                                         // ),
@@ -741,9 +752,9 @@ class _ThemspdvState extends State<Themspdv> {
                                               },
                                               child: SizedBox(
                                                   child: Icon(
-                                                Icons.close,
-                                                size: 10,
-                                              )),
+                                                    Icons.close,
+                                                    size: 10,
+                                                  )),
                                             ),
                                           ),
                                         ),
@@ -758,16 +769,22 @@ class _ThemspdvState extends State<Themspdv> {
                       // Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.to(chondanhmuc());
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                color: Colors.white,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+
+              InkWell(
+                onTap: (){
+
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Color.fromRGBO(200, 200, 200, 200),
+                    ),
+                  ),
                   child: Row(
                     children: [
                       Expanded(child: Text('display'.tr)),
@@ -775,14 +792,23 @@ class _ThemspdvState extends State<Themspdv> {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {},
                 ),
               ),
-              Container(
-                height: 50,
-                color: Colors.white,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+
+
+              InkWell(
+                onTap: (){
+                  Get.to(chonxuatxu());
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Color.fromRGBO(200, 200, 200, 200),
+                    ),
+                  ),
                   child: Row(
                     children: [
                       Expanded(child: Text("Xuất xứ")),
@@ -790,16 +816,22 @@ class _ThemspdvState extends State<Themspdv> {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.to(chonxuatxu());
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                color: Colors.white,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+                  Get.to(chonloaisanpham());
+                },
+
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Color.fromRGBO(200, 200, 200, 200),
+                    ),
+                  ),
                   child: Row(
                     children: [
                       Expanded(child: Text('type_product'.tr)),
@@ -807,11 +839,9 @@ class _ThemspdvState extends State<Themspdv> {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.to(chonloaisanpham());
-                  },
                 ),
               ),
+
               Container(
                 height: 50,
                 decoration: BoxDecoration(
@@ -909,7 +939,6 @@ class _ThemspdvState extends State<Themspdv> {
                         margin: new EdgeInsets.only(right: 5, left: 10),
 
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.white),
                           child: Text('back'.tr),
                           onPressed: () {},
                         ),

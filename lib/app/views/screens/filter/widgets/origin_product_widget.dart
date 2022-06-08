@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/filter/filter_product_controller.dart';
+import '../../../../controller/home/api/origin_controller.dart';
 import '../../../theme/app_colors.dart';
 
 class OriginProductWidget extends StatelessWidget {
@@ -12,10 +13,8 @@ class OriginProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FilterOriginController controller = Get.find<FilterOriginController>();
+    OriginController originController = Get.find();
 
-    List<String> _countrys = [
-      'Mỹ', 'Việt Nam', 'Trung Quốc', 'Nhật Bản', 'Thái Lan', 'Thụy Điển'
-    ];
     return Padding(
         padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
         child:  Column(
@@ -53,7 +52,7 @@ class OriginProductWidget extends StatelessWidget {
                   width: double.infinity,
                   child: Obx(()=>Wrap(
                     spacing: 5.0.w,
-                    children: _countrys.map((e){
+                    children: originController.originList.take(6).map((e){
                       bool isContain = controller.isContain(e);
                       return Row(
                         mainAxisSize: MainAxisSize.min,
@@ -63,7 +62,7 @@ class OriginProductWidget extends StatelessWidget {
                             child: ElevatedButton(
                               child: Row(
                                 children: [
-                                  Text(e,
+                                  Text(e.name,
                                     style: TextStyle(
                                         color: isContain ? Colors.white : AppColors.textGrayColor
                                     ),

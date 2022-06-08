@@ -1,6 +1,7 @@
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'widgets/Appbar.dart';
@@ -18,6 +19,7 @@ class MenuCuahang extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Appbars(),
@@ -72,43 +74,48 @@ class MenuCuahang extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child: ImageIcon(
-                            AssetImage("assets/images/Icon/icon_dashboard.png"),
-                            color: Colors.amber,
+              InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.STORE_MANAGER_CONTROL);
+                },
+                child: Container(
+                    height: 50,
+                    padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: ImageIcon(
+                              AssetImage("assets/images/Icon/icon_dashboard.png"),
+                              color: Colors.amber,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            'dashboard'.tr,
-                            style: TextStyle(fontSize: 20),
+                          Expanded(
+                            child: Text(
+                              'dashboard'.tr,
+                              style: TextStyle(
+                                  fontSize: 20
+                              ),
+                            ),
                           ),
-                        ),
-                        Icon(Icons.navigate_next),
-                      ],
+                          Icon(Icons.navigate_next),
+                        ],
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => bangdieukhien(ii: 1,)));
-                    Get.toNamed(Routes.STORE_MANAGER_CONTROL);
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
-                  child: Row(
+
+              InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.STORE_MANAGER_INFO);
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  child:  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -122,21 +129,23 @@ class MenuCuahang extends StatelessWidget {
                       Expanded(
                         child: Text(
                           'info_seller'.tr,
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20,
+
+                          ),
                         ),
                       ),
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.toNamed(Routes.STORE_MANAGER_INFO);
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.STORE_MANAGER_ORDERS);
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -154,15 +163,15 @@ class MenuCuahang extends StatelessWidget {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.toNamed(Routes.STORE_MANAGER_ORDERS);
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.STORE_MANAGER_PRODUCTS);
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -182,15 +191,15 @@ class MenuCuahang extends StatelessWidget {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.toNamed(Routes.STORE_MANAGER_PRODUCTS);
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.STORE_MANAGER_GIFTS);
+                },
+                child:  Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -211,15 +220,15 @@ class MenuCuahang extends StatelessWidget {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.toNamed(Routes.STORE_MANAGER_GIFTS);
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.STORE_MANAGER_NOTIS);
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -240,15 +249,15 @@ class MenuCuahang extends StatelessWidget {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {
-                    Get.toNamed(Routes.STORE_MANAGER_NOTIS);
-                  },
                 ),
               ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
+              InkWell(
+                onTap: (){
+
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -269,14 +278,13 @@ class MenuCuahang extends StatelessWidget {
                       Icon(Icons.navigate_next),
                     ],
                   ),
-                  onPressed: () {},
-                ),
+                )
               ),
               Container(
                 margin: new EdgeInsets.only(top: 20),
                 height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   child: Text(
                     "Đi đến cửa hàng",
                     style: TextStyle(fontSize: 20),

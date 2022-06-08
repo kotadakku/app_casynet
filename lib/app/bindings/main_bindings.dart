@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../controller/account/new_address_controller.dart';
 import '../controller/auth/authentication_manager.dart';
 import '../controller/cart/api/product_cart_controller.dart';
+import '../controller/home/api/origin_controller.dart';
 import '../controller/home/api/region_controller.dart';
 import '../controller/product_detail/detail_app_controller.dart';
 import '../controller/home/api/banner_controller.dart';
@@ -25,6 +26,7 @@ class MainBindings extends Bindings {
     Get.lazyPut(() => BannerController());
     Get.lazyPut(() => DetailAppController(), fenix: true );
     Get.put(RegionController());
+    Get.put(OriginController());
     // Get.put(ConnectivityService());
     Get.put(DetailAppController());
     Get.put(ProductCartController());

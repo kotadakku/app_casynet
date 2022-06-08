@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ThemThongBao extends StatelessWidget {
@@ -147,10 +148,14 @@ class ThemThongBao extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 50,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.white),
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                color: Colors.white,
                 child: Row(
                   children: [
                     Expanded(
@@ -160,11 +165,9 @@ class ThemThongBao extends StatelessWidget {
                     Icon(Icons.navigate_next),
                   ],
                 ),
-                onPressed: (){
-
-                },
               ),
-            ),
+            )
+
           ],
         ),
       ),
