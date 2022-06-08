@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/bindings/store_manager/product/select_category_binding.dart';
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
 import 'package:app_casynet/app/views/screens/account/widgets/edit_info.dart';
 import 'package:app_casynet/app/views/screens/contact.dart';
@@ -9,6 +10,8 @@ import 'package:app_casynet/app/views/screens/store/notications_customer.dart';
 import 'package:app_casynet/app/views/screens/store/quan_ly_doanh_thu.dart';
 import 'package:app_casynet/app/views/screens/store/quan_ly_don_hang.dart';
 import 'package:app_casynet/app/views/screens/store/rate_store_page.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Chondanhmuc.dart';
+import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Chonxuatxu.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Dichvusanpham.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_ThemSPDV.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_quanlydonhang/UI_chitietdonhang.dart';
@@ -35,6 +38,7 @@ import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../bindings/my_store/new_seller_binding.dart';
 import '../bindings/products_bindings.dart';
+import '../bindings/store_manager/product/product_manager_binding.dart';
 import '../bindings/stores_bindings.dart';
 import '../data/model/seller.dart';
 import '../views/screens/account/account_base.dart';
@@ -259,10 +263,20 @@ class AppPages {
     GetPage(
       name: Routes.STORE_MANAGER_PRODUCTS,
       page: ()=> DichVuSanPham(),
+      binding: ProductManagerBinding(),
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ADD_PRODUCT,
       page: () => Themspdv()
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_SELECT_ORIGIN,
+      page: () => SelectOriginPage()
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_SELECT_CATEGORY,
+      page: () => SelectCategory(),
+      binding: SelectCategoryBinding()
     ),
     GetPage(
       name: Routes.STORE_MANAGER_GIFTS,

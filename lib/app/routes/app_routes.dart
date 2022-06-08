@@ -55,10 +55,14 @@ abstract class Routes{
   static const STORE_MANAGER_ORDERS = '/manager_store/orders';
   static const STORE_MANAGER_PRODUCTS = '/manager_store/products';
   static const STORE_MANAGER_ADD_PRODUCT = '/manager_store/add_product';
+  static const STORE_MANAGER_SELECT_ORIGIN = '/manager_store/select_origin';
+  static const STORE_MANAGER_SELECT_CATEGORY = '/manager_store/category';
   static const STORE_MANAGER_GIFTS = '/manager_store/gifts';
   static const STORE_MANAGER_ADD_GIFT = '/manager_store/add_gift';
   static const STORE_MANAGER_NOTIS = '/manager_store/notis';
   static const STORE_MANAGER_ADD_NOTI = '/manager_store/add_noti';
+
+
 
 
 

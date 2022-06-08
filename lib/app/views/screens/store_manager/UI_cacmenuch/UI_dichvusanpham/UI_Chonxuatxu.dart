@@ -1,4 +1,6 @@
 
+import 'package:app_casynet/app/controller/home/api/origin_controller.dart';
+import 'package:app_casynet/app/controller/store_manager/product/select_origin_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -7,104 +9,98 @@ import 'package:get/get.dart';
 import '../../CheckInternet.dart';
 import 'UI_ThemSPDV.dart';
 
-class chonxuatxu extends StatefulWidget {
-  @override
-  State<chonxuatxu> createState() => _chonxuatxuState();
-}
+class SelectOriginPage extends StatelessWidget {
+  SelectOriginPage({Key? key}) : super(key: key);
+  final SelectOriginController _selectOriginController = Get.find();
+  final OriginController _originController = Get.find();
 
-final GetXuatxu = Get.put(getxuatxu());
-final checkinternet CheckInternet = Get.put(checkinternet());
-var x="".obs;
-
-class _chonxuatxuState extends State<chonxuatxu> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          "Chọn xuất xứ",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Obx(
-          () => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    if (CheckInternet.satatusinternet.toString() == "No Internet") {
-                      return Center(
-                        child: Text(CheckInternet.satatusinternet.toString()),
-                      );
-                    } else {
-                      return Column(
-                        children: [
-                          FutureBuilder(
-                            future: GetXuatxu.fetchXuatxu(),
-                            builder: (context, snapshot) {
-                              if (GetXuatxu.xuatxu.length == 0) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              } else {
-                                return SingleChildScrollView(
-                                  child: Obx(() => Column(
-                                        children: [
-                                          ListView.builder(
-                                              shrinkWrap: true,
-                                              physics:
-                                                  NeverScrollableScrollPhysics(),
-                                              itemCount:
-                                                  GetXuatxu.xuatxu.length,
-                                              itemBuilder: (context, indext) {
-                                                return RadioListTile(
-                                                    title: Text(GetXuatxu
-                                                        .xuatxu[indext]
-                                                        .name
-                                                        .toString()),
-                                                    value: indext,
-                                                    groupValue:
-                                                        GetXuatxu.countqg.value,
-                                                    onChanged: (value) {
-                                                      GetXuatxu.idxs.value =
-                                                          int.parse(GetXuatxu
-                                                              .xuatxu[indext]
-                                                              .id
-                                                              .toString());
-                                                      GetXuatxu
-                                                              .tenxuatxu.value =
-                                                          GetXuatxu
-                                                              .xuatxu[indext]
-                                                              .name
-                                                              .toString();
-                                                      GetXuatxu.countqg.value =
-                                                          int.parse(
-                                                              value.toString());
-                                                      Get.back();
-                                                    });
-                                              }),
-                                        ],
-                                      )),
-                                );
-                              }
-                            },
-                          )
-                        ],
-                      );
-                    }
-                  },
-                ),
-              Offstage(
-                offstage: true,
-                child: Text(CheckInternet.satatusinternet.toString()),
+    return WillPopScope(
+        child: Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text(
+                "Chọn xuất xứ",
+                style: TextStyle(color: Colors.black),
               ),
-            ],
-          ),
+              actions: [
+                Obx(()=>
+                    IconButton(
+                        onPressed: (){
+                          _selectOriginController.onSaveValue();
+                        },
+                        icon: Icon(Icons.check ,
+                            color: _selectOriginController.isChange.value
+                                ? Colors.green
+                                : Colors.grey
+                        )
+                    )
+                )
+              ],
+
+
+
+            ),
+            body: Column(
+              children: [
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount:
+                    _originController.originList.length,
+                    itemBuilder: (context, index) {
+                      return Obx(()=>RadioListTile<int>(
+                          title: Text(_originController.originList[index].name!),
+                          value: _originController.originList[index].id!,
+                          groupValue: _selectOriginController.selectId.value,
+                          onChanged: (value) {
+                            _selectOriginController.changeValue(value,_originController.originList[index].name! );
+                          }
+                      )
+                      );
+                    }),
+              ],
+            )
         ),
-      ),
+        onWillPop:()=> _onWillPop(context));;
+  }
+  Future<bool> _onWillPop(BuildContext context) async {
+    late bool? exitResult;
+    FocusManager.instance.primaryFocus?.unfocus();
+    if(_selectOriginController.isChange != false){
+      exitResult = await showDialog(
+        context: context,
+        builder: (context) => _buildExitDialog(context),
+      );
+      if(exitResult == false){
+        Get.back(result: _selectOriginController.selectIdEnd.value);
+      }
+      else{
+        _selectOriginController.onSaveValue();
+        Get.back(result: _selectOriginController.selectIdEnd.value);
+      }
+    }
+    else{
+      Get.back(result: _selectOriginController.selectIdEnd.value);
+    }
+
+    return true;
+  }
+
+  AlertDialog _buildExitDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Hủy thay đổi'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Get.back(result: false),
+          child: Text('HỦY'),
+        ),
+        TextButton(
+          onPressed: () => Get.back(result: true),
+          child: Text('LƯU THAY ĐỔI'),
+        ),
+      ],
     );
   }
 }
+

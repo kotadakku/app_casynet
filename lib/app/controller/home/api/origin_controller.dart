@@ -4,9 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../../config/api_params.dart';
+import '../../../data/model/origin.dart';
 
 class OriginController extends GetxController{
-  final originList = [].obs;
+  final originList = <Origin>[].obs;
   final isLoadingAPI = false.obs;
   final error = "".obs;
 
