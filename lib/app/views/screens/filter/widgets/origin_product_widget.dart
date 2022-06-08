@@ -62,7 +62,7 @@ class OriginProductWidget extends StatelessWidget {
                             child: ElevatedButton(
                               child: Row(
                                 children: [
-                                  Text(e.name,
+                                  Text(e.name!,
                                     style: TextStyle(
                                         color: isContain ? Colors.white : AppColors.textGrayColor
                                     ),

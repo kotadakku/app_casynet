@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:app_casynet/app/controller/store_manager/product/add_product_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,12 +11,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../data/model/category.dart';
-import '../../../../../data/model/Sanpham.dart';
 import '../../../../../data/model/origin.dart';
+import '../../../../../routes/app_pages.dart';
 import '../../CheckInternet.dart';
 import 'UI_Chondanhmuc.dart';
 import 'UI_Chonloaisanpham.dart';
-import 'UI_Chonxuatxu.dart';
 import 'danhmuc.dart';
 
 class Themspdv extends StatefulWidget {
@@ -26,36 +26,7 @@ class Themspdv extends StatefulWidget {
 final getdms = Get.put(getdanhmuc());
 
 class _ThemspdvState extends State<Themspdv> {
-  var _date = new DateTime.now().obs;
-  final clsp = Get.put(chonloaisp());
-  final GetXuatxu = Get.put(getxuatxu());
-  final name = TextEditingController();
-  final motasanpham = TextEditingController();
-  final soluongnhapkho = TextEditingController();
-  final soluongconlai = TextEditingController();
-  final gia = TextEditingController();
-  final giakhuyenmai = TextEditingController();
-  var demname = 0.obs;
-  var demmotasanpham = 0.obs;
-  var status = false.obs;
-  var statushtsp = false.obs;
-  var statushttc = false.obs;
-  var textst = "không".obs;
-  var textsthtsp = "không".obs;
-  var textsthttc = "không".obs;
-  var chon = "".obs;
-  var cc="".obs;
-  var _controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/images/videos/butterfly.mp4").obs;
-  late Future<void> _initializeVideoPlayerFuture;
-  var playpause = false.obs;
-  @override
-  void initState() {
-    super.initState();
-    soluongnhapkho.text = 0.toString();
-    soluongconlai.text = 0.toString();
-    gia.text = 0.toString();
-
-  }
+  final AddProductController _addProductController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +60,10 @@ class _ThemspdvState extends State<Themspdv> {
       if(imagepicker.length>0){
         for(int i=0;i<imagepicker.length;i++){
           if(imagepicker[i].toString().contains(".mp4")){
-            _controller.value = VideoPlayerController.file((imagepicker[i]));
-            _initializeVideoPlayerFuture = _controller.value.initialize();
-            _controller.value.setLooping(true);
-            _controller.value.setVolume(1.0);
+            _addProductController.controller.value = VideoPlayerController.file((imagepicker[i]));
+            _addProductController.initializeVideoPlayerFuture = _addProductController.controller.value.initialize();
+            _addProductController.controller.value.setLooping(true);
+            _addProductController.controller.value.setVolume(1.0);
           }
         }
       }
@@ -295,9 +266,9 @@ class _ThemspdvState extends State<Themspdv> {
                                         return Stack(
                                           children: [
                                             AspectRatio(
-                                              aspectRatio: _controller.value.value.aspectRatio,
+                                              aspectRatio: _addProductController.controller.value.value.aspectRatio,
                                               child: VideoPlayer(
-                                                _controller.value,
+                                                _addProductController.controller.value,
                                               ),
                                             ),
                                                 Positioned(
@@ -305,16 +276,16 @@ class _ThemspdvState extends State<Themspdv> {
                                                       Row(
                                                         children: [
                                                           TextButton(
-                                                            child: Icon(playpause.value? Icons.pause:Icons.play_arrow),
+                                                            child: Icon(_addProductController.playpause.value? Icons.pause:Icons.play_arrow),
                                                             onPressed: () {
-                                                              if(_controller.value.value.isPlaying){
-                                                                _controller.value.pause();
-                                                                playpause.value=false;
-                                                                cc.value="s";
+                                                              if(_addProductController.controller.value.value.isPlaying){
+                                                                _addProductController.controller.value.pause();
+                                                                _addProductController.playpause.value=false;
+                                                                _addProductController.cc.value="s";
                                                               }else{
-                                                                _controller.value.play();
-                                                                playpause.value=true;
-                                                                cc.value="x";
+                                                                _addProductController.controller.value.play();
+                                                                _addProductController.playpause.value=true;
+                                                                _addProductController.cc.value="x";
                                                               }
 
                                                             },
@@ -382,7 +353,7 @@ class _ThemspdvState extends State<Themspdv> {
                             ),
                           ),
                           Container(
-                            child: Text(demname.toString() + "/120"),
+                            child: Text(_addProductController.demname.toString() + "/120"),
                           ),
                         ],
                       ),
@@ -397,9 +368,9 @@ class _ThemspdvState extends State<Themspdv> {
                         ),
                         maxLength: 120,
                         maxLines: 2,
-                        controller: name,
+                        controller: _addProductController.name,
                         onChanged: (text) {
-                          demname.value = text.length;
+                          _addProductController.demname.value = text.length;
                         },
                       ),
                     ),
@@ -427,7 +398,7 @@ class _ThemspdvState extends State<Themspdv> {
                             ),
                           ),
                           Container(
-                            child: Text(demmotasanpham.toString() + "/3000"),
+                            child: Text(_addProductController.demmotasanpham.toString() + "/3000"),
                           ),
                         ],
                       ),
@@ -442,9 +413,9 @@ class _ThemspdvState extends State<Themspdv> {
                         ),
                         maxLength: 3000,
                         maxLines: 2,
-                        controller: motasanpham,
+                        controller: _addProductController.motasanpham,
                         onChanged: (text) {
-                          demmotasanpham.value = text.length;
+                          _addProductController.demmotasanpham.value = text.length;
                         },
                       ),
                     ),
@@ -485,20 +456,20 @@ class _ThemspdvState extends State<Themspdv> {
                   child: Row(
                     children: [
                       Expanded(child: Text("Yêu cầu hẹn trước")),
-                      Text(textst.toString()),
+                      Text(_addProductController.textst.toString()),
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Obx(
                           () => CupertinoSwitch(
-                            value: status.value,
+                            value: _addProductController.status.value,
                             onChanged: (val) {
-                              status.value = !status.value;
-                              if (status.value == true) {
-                                textst.value = "có";
+                              _addProductController.status.value = !_addProductController.status.value;
+                              if (_addProductController.status.value == true) {
+                                _addProductController.textst.value = "có";
                               } else {
-                                textst.value = "không";
+                                _addProductController.textst.value = "không";
                               }
-                              print(status);
+                              print(_addProductController.status);
                             },
                           ),
                         ),
@@ -523,15 +494,15 @@ class _ThemspdvState extends State<Themspdv> {
                       // Text("0"),
                       Expanded(
                         child: TextField(
-                          controller: soluongnhapkho,
+                          controller: _addProductController.soluongnhapkho,
                           textDirection: TextDirection.rtl,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                           ),
                           onTap: () {
-                            if (soluongnhapkho.text == "0") {
-                              soluongnhapkho.text = "";
+                            if (_addProductController.soluongnhapkho.text == "0") {
+                              _addProductController.soluongnhapkho.text = "";
                             }
                           },
                         ),
@@ -560,11 +531,11 @@ class _ThemspdvState extends State<Themspdv> {
                         child: Row(
                           children: [
                             Container(
-                              child: Obx(() => Text(_date.value.day.toString() +
+                              child: Obx(() => Text(_addProductController.date.value.day.toString() +
                                   "/" +
-                                  _date.value.month.toString() +
+                                  _addProductController.date.value.month.toString() +
                                   "/" +
-                                  _date.value.year.toString())),
+                                  _addProductController.date.value.year.toString())),
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 10),
@@ -576,12 +547,12 @@ class _ThemspdvState extends State<Themspdv> {
                         onPressed: () async {
                           DateTime? newdate = await showDatePicker(
                             context: context,
-                            initialDate: _date.value,
+                            initialDate: _addProductController.date.value,
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2025),
                           );
                           if (newdate != null) {
-                            _date.value = newdate;
+                            _addProductController.date.value = newdate;
                           }
                         },
                       ),
@@ -605,15 +576,15 @@ class _ThemspdvState extends State<Themspdv> {
                       Text('price'.tr),
                       Expanded(
                         child: TextField(
-                          controller: gia,
+                          controller: _addProductController.gia,
                           textDirection: TextDirection.rtl,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                           ),
                           onTap: () {
-                            if (gia.text == "0") {
-                              gia.text = "";
+                            if (_addProductController.gia.text == "0") {
+                              _addProductController.gia.text = "";
                             }
                           },
                         ),
@@ -623,7 +594,7 @@ class _ThemspdvState extends State<Themspdv> {
                           height: 40,
                           width: 200,
                           child: TextField(
-                            controller: giakhuyenmai,
+                            controller: _addProductController.giakhuyenmai,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               fillColor: Colors.red,
@@ -658,15 +629,15 @@ class _ThemspdvState extends State<Themspdv> {
                       ),
                       Expanded(
                         child: TextField(
-                          controller: soluongconlai,
+                          controller: _addProductController.soluongconlai,
                           textDirection: TextDirection.rtl,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                           ),
                           onTap: () {
-                            if (soluongconlai.text == "0") {
-                              soluongconlai.text = "";
+                            if (_addProductController.soluongconlai.text == "0") {
+                              _addProductController.soluongconlai.text = "";
                             }
                           },
                         ),
@@ -698,8 +669,11 @@ class _ThemspdvState extends State<Themspdv> {
                 ),
               ),
               InkWell(
-                onTap: (){
-                  Get.to(chondanhmuc());
+                onTap: () async {
+                  var value = await Get.toNamed(Routes.STORE_MANAGER_SELECT_CATEGORY);
+                  if(value != null){
+                    _addProductController.listCategorySelected.addAll(value);
+                  };
                 },
                 child: Container(
                   height: 50,
@@ -707,71 +681,59 @@ class _ThemspdvState extends State<Themspdv> {
                   color: Colors.white,
                   child: Row(
                     children: [
-                      Expanded(child: Text("Danh mục")),
                       Expanded(
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemCount: getdms.getdanhmuctid.length,
-                            itemBuilder: (context, index) {
-                              return Center(
-                                child: Container(
-                                  padding: EdgeInsets.only(right: 20),
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 10.w),
+                            child: Text("Danh mục"),
+                          )
+                      ),
+                      if(_addProductController.listCategorySelected.length>=0) Expanded(
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: _addProductController.listCategorySelected.length,
+                              reverse: true,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  alignment: Alignment.centerRight,
                                   child: Stack(
                                     clipBehavior: Clip.none,
                                     children: [
                                       Container(
-                                        padding:
-                                        EdgeInsets.only(right: 5, left: 5),
-                                        height: 30,
+                                        padding: EdgeInsets.only(right: 10, left: 10),
+                                        margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                                        height: 40,
                                         child: Center(
-                                          child: Text(getdms
-                                              .getdanhmuctid[index].title
+                                          child: Text(_addProductController.listCategorySelected[index].name
                                               .toString()),
                                         ),
                                         color:
                                         Color.fromARGB(255, 241, 243, 253),
-                                        // decoration: BoxDecoration(
-                                        //     border: Border.all(color: Colors.black)
-                                        // ),
                                       ),
                                       Positioned(
-                                        width: 20,
-                                        height: 20,
-                                        right: -8,
-                                        top: -8,
-                                        child: ClipOval(
-                                          child: Material(
-                                            color: Color.fromARGB(255, 241, 243,
-                                                253), // Button color
-                                            child: InkWell(
-                                              splashColor: Colors.red,
-                                              onTap: () {
-                                                getdms.getdanhmuctid
-                                                    .removeAt(index);
-                                              },
-                                              child: SizedBox(
-                                                  child: Icon(
-                                                    Icons.close,
-                                                    size: 10,
-                                                  )),
-                                            ),
-                                          ),
-                                        ),
+                                          width: 20,
+                                          height: 20,
+                                          right: 0,
+                                          top: 0,
+                                          child: FloatingActionButton(
+                                            child: Icon(Icons.close, size: 8,),
+                                            onPressed: (){
+                                              _addProductController.listCategorySelected
+                                                  .removeAt(index);
+                                            },
+                                          )
                                       ),
                                     ],
                                   ),
-                                ),
-                              );
-                            }),
-                      ),
+                                );
+                              })
+                      )
                       // Text("Lựa chọn danh mục"),
                       // Icon(Icons.navigate_next),
                     ],
                   ),
                 ),
               ),
-
               InkWell(
                 onTap: (){
 
@@ -797,8 +759,11 @@ class _ThemspdvState extends State<Themspdv> {
 
 
               InkWell(
-                onTap: (){
-                  Get.to(chonxuatxu());
+                onTap: () async {
+                  var value = await Get.toNamed(Routes.STORE_MANAGER_SELECT_ORIGIN);
+                  if(value != null){
+                    _addProductController.tenxuatxu.value = value.toString();
+                  };
                 },
                 child: Container(
                   height: 50,
@@ -812,7 +777,7 @@ class _ThemspdvState extends State<Themspdv> {
                   child: Row(
                     children: [
                       Expanded(child: Text("Xuất xứ")),
-                      Text(GetXuatxu.tenxuatxu.toString()),
+                      Obx(()=> Text(_addProductController.tenxuatxu.value),),
                       Icon(Icons.navigate_next),
                     ],
                   ),
@@ -835,7 +800,7 @@ class _ThemspdvState extends State<Themspdv> {
                   child: Row(
                     children: [
                       Expanded(child: Text('type_product'.tr)),
-                      Text(clsp.lsp.toString()),
+                      Text(_addProductController.clsp.lsp.toString()),
                       Icon(Icons.navigate_next),
                     ],
                   ),
@@ -855,18 +820,18 @@ class _ThemspdvState extends State<Themspdv> {
                   child: Row(
                     children: [
                       Expanded(child: Text("Hiện thị sản phẩm")),
-                      Text(textsthtsp.toString()),
+                      Text(_addProductController.textsthtsp.toString()),
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Obx(
                           () => CupertinoSwitch(
-                            value: statushtsp.value,
+                            value: _addProductController.statushtsp.value,
                             onChanged: (val) {
-                              statushtsp.value = !statushtsp.value;
-                              if (statushtsp.value == true) {
-                                textsthtsp.value = "có";
+                              _addProductController.statushtsp.value = !_addProductController.statushtsp.value;
+                              if (_addProductController.statushtsp.value == true) {
+                                _addProductController.textsthtsp.value = "có";
                               } else {
-                                textsthtsp.value = "không";
+                                _addProductController.textsthtsp.value = "không";
                               }
                             },
                           ),
@@ -889,18 +854,18 @@ class _ThemspdvState extends State<Themspdv> {
                   child: Row(
                     children: [
                       Expanded(child: Text("Hiện thị ở trang chính")),
-                      Text(textsthttc.toString()),
+                      Text(_addProductController.textsthttc.toString()),
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Obx(
                           () => CupertinoSwitch(
-                            value: statushttc.value,
+                            value: _addProductController.statushttc.value,
                             onChanged: (val) {
-                              statushttc.value = !statushttc.value;
-                              if (statushttc.value == true) {
-                                textsthttc.value = "có";
+                              _addProductController.statushttc.value = !_addProductController.statushttc.value;
+                              if (_addProductController.statushttc.value == true) {
+                                _addProductController.textsthttc.value = "có";
                               } else {
-                                textsthttc.value = "không";
+                                _addProductController.textsthttc.value = "không";
                               }
                             },
                           ),
@@ -951,27 +916,6 @@ class _ThemspdvState extends State<Themspdv> {
                           style: ElevatedButton.styleFrom(primary: Colors.amber),
                           child: Text('save_info'.tr),
                           onPressed: () {
-                            var array = [];
-                            var c = Sanpham.s(
-                                "vbn",
-                                name.text,
-                                motasanpham.text,
-                                soluongnhapkho.text,
-                                gia.text,
-                                giakhuyenmai.text,
-                                soluongconlai.text,
-                                GetXuatxu.idxs.toString(),
-                                "loaisanpham",
-                                status.toString(),
-                                _date.value.day.toString() +
-                                    "/" +
-                                    _date.value.month.toString() +
-                                    "/" +
-                                    _date.value.year.toString(),
-                                statushtsp.toString(),
-                                statushttc.toString(),
-                                "hienthiotrangchinh");
-                            print(c.toJson());
                           },
                         ),
                       ),
@@ -991,24 +935,7 @@ class chonloaisp extends GetxController {
   var lsp = "Chọn loại sp".obs;
 }
 
-// class getdanhmuc extends GetxController {
-//   var ischeck = false.obs;
-//   var danhmucs = [].obs;
-//   var getdanhmuctid = [].obs;
-//   var dem = 0.obs;
-//   Future fetchdanhmucsp() async {
-//     final response = await http.get(Uri.parse(
-//         "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
-//     if (response.statusCode == 200) {
-//       var list = json.decode(response.body);
-//       getdms.danhmucs.value =
-//           list.map((e) => Danhmucsanpham.fromJson(e)).toList();
-//       if (getdms.danhmucs.value != null) {
-//         ischeck.value = true;
-//       }
-//     }
-//   }
-// }
+
 class getdanhmuc extends GetxController {
   var danhmucsp = [].obs;
   var getdanhmuctid = [].obs;
@@ -1033,24 +960,7 @@ class getdanhmuc extends GetxController {
   }
 }
 
-class getxuatxu extends GetxController {
-  final checkinternet CheckInternet = Get.put(checkinternet());
-  var xuatxu = [].obs;
-  var countqg = 0.obs;
-  var idxs = 0.obs;
-  var tenxuatxu = "Chọn xuất xứ".obs;
-  Future<List<Origin>> fetchXuatxu() async {
-    final response = await http.get(Uri.parse(
-        "https://coaxial-typewriter.000webhostapp.com/Server/Xuatxu.php"));
-    List<Origin> pp = [];
-    if (response.statusCode == 200) {
-      List<dynamic> list = json.decode(response.body);
-      pp = list.map((e) => Origin.fromJson(e)).toList();
-      xuatxu.value = pp;
-    }
-    return pp;
-  }
-}
+
 
 class getImagesp extends GetxController {
   final checkinternet CheckInternet = Get.put(checkinternet());
