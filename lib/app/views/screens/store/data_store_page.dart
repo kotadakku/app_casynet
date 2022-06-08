@@ -13,7 +13,7 @@ class DataStorePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        title: Text("Dữ liệu"),
+        title: const Text("Dữ liệu"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -27,7 +27,7 @@ class DataStorePage extends StatelessWidget {
                   Column(
                     children: [
                       Row(
-                        children: [
+                        children: const [
                           Icon(Icons.add, color: AppColors.yellowColor,),
                           Text("100", style: TextStyle(
                               color: AppColors.yellowColor,

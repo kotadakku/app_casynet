@@ -19,7 +19,9 @@ class AddressRepo {
       if(response != null){
         // String html = response.data
         List<Province> dataAddress = List<Province>.from(
+
             (response.data).map((e) => Province.fromJson(e)));
+
 
         return Responses<Province>(isSuccess: true, listObjects: dataAddress);
       }

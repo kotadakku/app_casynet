@@ -43,7 +43,7 @@ class ProfileAccountWidget extends StatelessWidget {
           ),),
         // Tên
         title: Text('${controller.user_current.firstname?? "user_312312"} ${controller.user_current.lastname??''}',
-          style: TextStyle(
+          style: const TextStyle(
               color: AppColors.yellowColor,
               fontWeight: FontWeight.bold
           ),
@@ -51,8 +51,8 @@ class ProfileAccountWidget extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10,),
-            Text(
+            const SizedBox(height: 10,),
+             Text(
               "Tài khoản Facebook",
               style: TextStyle(
                   color: AppColors.textGrayBoldColor
@@ -60,7 +60,7 @@ class ProfileAccountWidget extends StatelessWidget {
             ),
             // Ngày tham gia
             Text("${'joined'.tr}: ${controller.user_current.created_at?? '__/__/20__'}",
-              style: TextStyle(
+              style: const TextStyle(
                   color: AppColors.textGrayBoldColor
               ),
             )
