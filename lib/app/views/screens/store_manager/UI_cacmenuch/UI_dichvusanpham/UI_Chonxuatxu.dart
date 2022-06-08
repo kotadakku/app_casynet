@@ -52,9 +52,9 @@ class SelectOriginPage extends StatelessWidget {
                       return Obx(()=>RadioListTile<int>(
                           title: Text(_originController.originList[index].name!),
                           value: _originController.originList[index].id!,
-                          groupValue: _selectOriginController.selectId.value,
+                          groupValue: _selectOriginController.selectOrigin.value.id ?? 0,
                           onChanged: (value) {
-                            _selectOriginController.changeValue(value,_originController.originList[index].name! );
+                            _selectOriginController.changeValue(_originController.originList[index]);
                           }
                       )
                       );
@@ -73,15 +73,15 @@ class SelectOriginPage extends StatelessWidget {
         builder: (context) => _buildExitDialog(context),
       );
       if(exitResult == false){
-        Get.back(result: _selectOriginController.selectIdEnd.value);
+        Get.back();
       }
       else{
-        _selectOriginController.onSaveValue();
+
         Get.back(result: _selectOriginController.selectIdEnd.value);
       }
     }
     else{
-      Get.back(result: _selectOriginController.selectIdEnd.value);
+      Get.back();
     }
 
     return true;

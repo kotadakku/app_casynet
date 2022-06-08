@@ -762,7 +762,7 @@ class _ThemspdvState extends State<Themspdv> {
                 onTap: () async {
                   var value = await Get.toNamed(Routes.STORE_MANAGER_SELECT_ORIGIN);
                   if(value != null){
-                    _addProductController.tenxuatxu.value = value.toString();
+                    _addProductController.selectOrigin.value = value;
                   };
                 },
                 child: Container(
@@ -777,7 +777,7 @@ class _ThemspdvState extends State<Themspdv> {
                   child: Row(
                     children: [
                       Expanded(child: Text("Xuất xứ")),
-                      Obx(()=> Text(_addProductController.tenxuatxu.value),),
+                      Obx(()=> Text('${_addProductController.selectOrigin.value.name??''}'),),
                       Icon(Icons.navigate_next),
                     ],
                   ),

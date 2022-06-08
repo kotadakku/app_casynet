@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../data/model/category.dart';
+import '../../../data/model/origin.dart';
 import '../../../views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_ThemSPDV.dart';
 
 class AddProductController extends GetxController{
@@ -29,7 +30,9 @@ class AddProductController extends GetxController{
   var controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/images/videos/butterfly.mp4").obs;
   late Future<void> initializeVideoPlayerFuture;
   var playpause = false.obs;
+
   final listCategorySelected = <Category>[].obs;
+  final selectOrigin = Origin().obs;
 
   @override
   void onInit() {
