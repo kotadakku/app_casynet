@@ -32,12 +32,12 @@ class Cart extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: Icon(Icons.shopping_cart,
+                  child: const Icon(Icons.shopping_cart,
                     color: AppColors.yellowColor,
                   ),
                 ),
                 Text('your-cart'.tr,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class Cart extends StatelessWidget {
                             Container(
                               child: Text(
                                 "${'sub_total'.tr}: ",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color.fromARGB(255, 149, 156, 175),
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16),
@@ -160,7 +160,7 @@ class Cart extends StatelessWidget {
                             Container(
                                 child: Obx(()=>Text(
                                   '${IntToPrice(_productCartCOntroller.sumPriceValue.value).intToPrice()} đ',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color:
                                       Color.fromARGB(255, 255, 69, 69),
                                       fontWeight: FontWeight.w400,
@@ -175,7 +175,7 @@ class Cart extends StatelessWidget {
                         child: Container(
                           child: Text(
                             "(${'in_VAT'.tr}) ",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color.fromARGB(255, 149, 156, 175),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 13),
