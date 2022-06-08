@@ -14,5 +14,9 @@ class ApiConfig {
   static const products = '/rest/V1/products/';
 
   // static const dataAddress = '/pub/media/api_json/RegionJson/Region.json';
-  static const dataProvince = 'http://192.168.1.227:8081/api/v1/provinces?countryId=1';
+  static const baseUrl2 = 'http://192.168.1.226:8081';
+  static const provinces = '/api/v1/provinces';
+  static const districts = '/api/v1/districts';
+  static const villages = '/api/v1/villages';
+  static const origin = '/api/v1/products/origin';
 }

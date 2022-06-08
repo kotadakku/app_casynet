@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:app_casynet/app/data/model/banner_slider.dart';
 import 'package:app_casynet/app/data/model/sales.dart';
 import 'package:dio/dio.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';
 import '../model/category.dart';
+import '../model/origin.dart';
 import '../model/product.dart';
 import '../provider/api/responses.dart';
 import '../model/seller.dart';
@@ -196,12 +198,36 @@ class HomePageRepo{
       );
       if(response != null){
         User user = User.successLogin(response.data);
-        return Responses<User>(isSuccess: true, objects: user);
+        return Responses<User>(isSuccess: true, statusCode: CODE_SUCCESS, objects: user);
       }
       return Responses<User>(statusCode: CODE_RESPONSE_NULL, msg: '');
     } catch(error){
       final errorMessage = DioExceptions.fromDioError(error);
       return Responses<User>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<Origin>>  getOrigins({Map<String, dynamic>? queryParameters, Options? options }) async {
+    try{
+      final response = await ApiRequest().get(
+        path: ApiConfig.baseUrl2 + ApiConfig.origin,
+        options: options,
+        queryParameters: queryParameters
+      );
+      if(response != null){
+        List<Origin> origins = List<Origin>.from(
+            (response.data as List).map((e) => Origin.fromJson(e))
+        );
+        return Responses<Origin>(statusCode: CODE_SUCCESS, isSuccess: true,
+            listObjects: origins);
+      }
+      else {
+        return Responses<Origin>(statusCode: CODE_RESPONSE_NULL, msg: '');
+      }
+    }
+    catch (e){
+      final errorMessage = DioExceptions.fromDioError(e);
+      return Responses<Origin>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
 }

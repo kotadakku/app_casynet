@@ -1,18 +1,12 @@
-class Xuatxu {
-  String? idxuaxu;
-  String? tenxuatxu;
+class Origin {
+  int? id;
+  String? name;
 
-  Xuatxu({this.idxuaxu, this.tenxuatxu});
+  Origin({this.id, this.name});
 
-  Xuatxu.fromJson(Map<String, dynamic> json) {
-    idxuaxu = json['Idxuaxu'];
-    tenxuatxu = json['Tenxuatxu'];
+  Origin.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Idxuaxu'] = this.idxuaxu;
-    data['Tenxuatxu'] = this.tenxuatxu;
-    return data;
-  }
 }

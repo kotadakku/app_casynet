@@ -75,4 +75,5 @@ class HomeController extends GetxController{
   void callPhone(String s) {
     launch("tel:$s");
   }
+
 }

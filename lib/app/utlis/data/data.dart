@@ -52,18 +52,49 @@ class Country{
 }
 
 class Province{
-  // List<String> provinces = [];
-  int? provincesId;
-  String? province;
+  int? id;
+  String? name;
   String? provinceCode;
 
-  Province({this.provincesId, this.province, this.provinceCode});
+  Province({this.id, this.name, this.provinceCode});
 
   Province.fromJson(Map<String, dynamic> json){
     print("data Province: --" + json.toString()+ "--");
 
-    this.provincesId = json[0]["id"];
-    this.province = json[0]["province"];
-    this.provinceCode = json[0]["provinceCode"];
+    this.id = json["id"];
+    this.name = json["province"];
+    this.provinceCode = json["provinceCode"];
+  }
+}
+
+class District{
+  int? id;
+  String? name;
+  String? districtCode;
+
+  District({this.id, this.name, this.districtCode});
+
+  District.fromJson(Map<String, dynamic> json){
+    print("data Province: --" + json.toString()+ "--");
+
+    this.id = json["id"];
+    this.name = json["district"];
+    this.districtCode = json["districtCode"];
+  }
+}
+
+class Village{
+  int? id;
+  String? name;
+  String? villageCode;
+
+  Village({this.id, this.name, this.villageCode});
+
+  Village.fromJson(Map<String, dynamic> json){
+    print("data Province: --" + json.toString()+ "--");
+
+    this.id = json["id"];
+    this.name = json["village"];
+    this.villageCode = json["villageCode"];
   }
 }
