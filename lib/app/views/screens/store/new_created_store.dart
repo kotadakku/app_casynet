@@ -130,6 +130,7 @@ class NewCreatedStore extends StatelessWidget {
                                   },
                                   decoration: const InputDecoration(
                                     border: InputBorder.none,
+                                    // enabledBorder: OutlineInputBorder(),
                                     // suffixIcon: Icon(Icons.navigate_next),
 
                                     hintText: 'Nhập tên cửa hàng',

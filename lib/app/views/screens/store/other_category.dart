@@ -18,8 +18,9 @@ class OtherCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
+    return WillPopScope(
+
+      onWillPop: () => _onWillPopOtherCategory(context),
       child: Scaffold(
         appBar: AppBar(
           leading: InkWell(
@@ -101,4 +102,14 @@ class OtherCategory extends StatelessWidget {
       ),
     );
   }
+
+  Future<bool> _onWillPopOtherCategory(BuildContext context) async{
+    late bool? exitResult;
+
+
+    return true;
+  }
 }
+
+
+

@@ -6,6 +6,10 @@ import '../home/api/category_controller.dart';
 
 class NewCreatedStoreController extends GetxController{
 
+  final isChange = false.obs;
+  final isSave = true.obs;
+
+
   var chonDanhmuc = "- Chọn -".obs;
   var chooseMainCategory = "- Chọn -".obs;
 
