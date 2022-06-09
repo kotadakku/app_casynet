@@ -38,6 +38,7 @@ import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../bindings/my_store/new_seller_binding.dart';
 import '../bindings/products_bindings.dart';
+import '../bindings/store_manager/product/create_product_binding.dart';
 import '../bindings/store_manager/product/product_manager_binding.dart';
 import '../bindings/stores_bindings.dart';
 import '../data/model/seller.dart';
@@ -267,7 +268,8 @@ class AppPages {
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ADD_PRODUCT,
-      page: () => Themspdv()
+      page: () => Themspdv(),
+      binding: CreateProductBinding(),
     ),
     GetPage(
       name: Routes.STORE_MANAGER_SELECT_ORIGIN,

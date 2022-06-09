@@ -7,7 +7,6 @@ import '../../../controller/store_manager/product/select_category_controller.dar
 class ProductManagerBinding extends Bindings{
   @override
   void dependencies() {
-    Get.put(AddProductController());
-    Get.put(SelectOriginController());
+
   }
 }
