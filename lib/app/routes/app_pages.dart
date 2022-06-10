@@ -1,4 +1,6 @@
 
+import 'package:app_casynet/app/bindings/store_manager/gift/create_gift_binding.dart';
+import 'package:app_casynet/app/bindings/store_manager/gift/gift_manager_binding.dart';
 import 'package:app_casynet/app/bindings/store_manager/product/select_category_binding.dart';
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
 import 'package:app_casynet/app/views/screens/account/widgets/edit_info.dart';
@@ -283,10 +285,12 @@ class AppPages {
     GetPage(
       name: Routes.STORE_MANAGER_GIFTS,
       page: ()=> QuanLyQuaTang(),
+      binding: GiftManagerBinding()
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ADD_GIFT,
       page: ()=> ThemQuaTang(),
+      binding: CreateGiftBinding(),
     ),
     GetPage(
       name: Routes.STORE_MANAGER_NOTIS,

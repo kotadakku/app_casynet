@@ -1,6 +1,8 @@
 
+import 'package:app_casynet/app/controller/store_manager/gift/gift_manager_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../../routes/app_pages.dart';
@@ -8,6 +10,7 @@ import '../../UI_cuahang.dart';
 import 'UI_Themquatang.dart';
 
 class QuanLyQuaTang extends StatelessWidget {
+  GiftManagerController _giftManagerController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,18 +55,34 @@ class QuanLyQuaTang extends StatelessWidget {
             children: [
               Container(
                 height: 50,
+                padding: EdgeInsets.only(top: 10.h, right: 10.w, bottom: 10.h),
                 child: Row(
                   children: [
                     Container(
-                      child: Checkbox(
-                        value: false,
+                      child: Obx(()=>Checkbox(
+                        value: _giftManagerController.isSelectedAll.value,
                         onChanged: (value) {
-                          // iscs[index] = value!;
+                          _giftManagerController.selectAllGift(value);
                         },
-                      ),
+                      ),)
                     ),
-                    Text('delete'.tr),
-                    Text("20 ${'record'.tr}"),
+                    Spacer(),
+                    Obx(()=>
+                    _giftManagerController.isSelectedAll.value ?
+                    ElevatedButton(
+                        onPressed: (){
+                          _giftManagerController.deleteAllGift();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red
+                        ),
+                        child: Row(
+                          children: [
+                            Text('delete'.tr),
+                            Text(" 20 ${'record'.tr}"),],
+                        )
+                    ): SizedBox()
+                    )
 
                   ],
                 ),
@@ -71,7 +90,7 @@ class QuanLyQuaTang extends StatelessWidget {
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: 2,
+                itemCount: 4,
                 itemBuilder: (context, index) {
                   return Container(
                     color: Colors.white,
@@ -79,12 +98,17 @@ class QuanLyQuaTang extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          child: Checkbox(
-                            value: false,
+                          child: Obx(()=>Checkbox(
+                            value: _giftManagerController.ckeckInList(index),
                             onChanged: (value) {
-                              // iscs[index] = value!;
+                              if(value == true){
+                                _giftManagerController.listSelected.add(index);
+                              }
+                              else{
+                                _giftManagerController.listSelected.remove(index);
+                              }
                             },
-                          ),
+                          ),)
                         ),
                         Expanded(
                           child: Container(
@@ -93,7 +117,7 @@ class QuanLyQuaTang extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(right: 10),
                                   child: Row(
-                                    children: [
+                                    children: const [
                                       Expanded(
                                         child: Text(
                                           "Thay lốp Maxxis chính hãng miễn phí",
