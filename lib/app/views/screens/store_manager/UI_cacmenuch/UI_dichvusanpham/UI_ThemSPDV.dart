@@ -216,7 +216,7 @@ class Themspdv extends StatelessWidget {
                             autovalidateMode: AutovalidateMode.disabled,
                             validator: (value){
                               if(value?.trim()==''){
-                                return "Đây là trường bắt buộc!";
+                                return 'required_field'.tr;
                               }
                             },
                             onSaved: (value){
@@ -270,7 +270,7 @@ class Themspdv extends StatelessWidget {
                             autovalidateMode: AutovalidateMode.disabled,
                             validator: (value){
                               if(value?.trim()==''){
-                                return "Đây là trường bắt buộc!";
+                                return 'required_field'.tr;
                               }
                             },
                             onSaved: (value){
@@ -578,7 +578,10 @@ class Themspdv extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       FocusManager.instance.primaryFocus!.unfocus();
-                      var value = await Get.toNamed(Routes.STORE_MANAGER_SELECT_CATEGORY);
+                      var value = await Get.toNamed(
+                          Routes.STORE_MANAGER_SELECT_CATEGORY,
+                        arguments: [_addProductController.listCategorySelected.value]
+                      );
                       if(value != null){
                         _addProductController.listCategorySelected.clear();
                         _addProductController.listCategorySelected.addAll(value);

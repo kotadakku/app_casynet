@@ -82,42 +82,42 @@ class AddProductController extends GetxController{
      print(await product.toJson());
      isLoading.value = false;
 
-    //  try{
-    //    final result = await ProductRepo().createProduct(
-    //      sellerId: 1,
-    //      data: dio.FormData.fromMap(await product.toJson()),
-    //      options: Options(
-    //          headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huIiwicm9sZXMiOlsiUk9MRV9NQU5BR0VSIiwiUk9MRV9VU0VSIl0sImlzcyI6Ii9sb2dpbiIsImV4cCI6MTY1NDc0MTk4Mn0.X6A8NE7NYIYW8BiGQDNVwJKDK1BNXacV8KO_pck9FEc'}
-    //      ),
-    //    );
-    //    if (result.statusCode == CODE_SUCCESS) {
-    //      // product.value = result.objects ?? Product();
-    //      // if(_sellerDetail){
-    //      //   change(_sellerDetail, status: RxStatus.empty());
-    //      //   return;
-    //      // }
-    //      isLoading.value = false;
-    //      Get.back();
-    //      scaffoldMessenger.showSnackBar(
-    //        const SnackBar(content: Text('Thêm thành công!'), duration: Duration(seconds: 1)),
-    //      );
-    //    }
-    //    else{
-    //      print(result.msg.toString());
-    //      isLoading.value = false;
-    //      scaffoldMessenger.showSnackBar(
-    //        const SnackBar(content: Text('Thêm thất bại!'), duration: Duration(seconds: 1)
-    //        )
-    //      );
-    //    }
-    //  } catch (error){
-    //    print(error.toString());
-    //    isLoading.value = false;
-    //    scaffoldMessenger.showSnackBar(
-    //      const SnackBar(content: Text('Thêm thất bại!'), duration: Duration(seconds: 1)
-    //      )
-    //    );
-    //  }
+     try{
+       final result = await ProductRepo().createProduct(
+         sellerId: 1,
+         data: dio.FormData.fromMap(await product.toJson()),
+         options: Options(
+             headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huIiwicm9sZXMiOlsiUk9MRV9NQU5BR0VSIiwiUk9MRV9VU0VSIl0sImlzcyI6Ii9sb2dpbiIsImV4cCI6MTY1NDc0MTk4Mn0.X6A8NE7NYIYW8BiGQDNVwJKDK1BNXacV8KO_pck9FEc'}
+         ),
+       );
+       if (result.statusCode == CODE_SUCCESS) {
+         // product.value = result.objects ?? Product();
+         // if(_sellerDetail){
+         //   change(_sellerDetail, status: RxStatus.empty());
+         //   return;
+         // }
+         isLoading.value = false;
+         Get.back();
+         scaffoldMessenger.showSnackBar(
+           const SnackBar(content: Text('Thêm thành công!'), duration: Duration(seconds: 1)),
+         );
+       }
+       else{
+         print(result.msg.toString());
+         isLoading.value = false;
+         scaffoldMessenger.showSnackBar(
+           const SnackBar(content: Text('Thêm thất bại!'), duration: Duration(seconds: 1)
+           )
+         );
+       }
+     } catch (error){
+       print(error.toString());
+       isLoading.value = false;
+       scaffoldMessenger.showSnackBar(
+         const SnackBar(content: Text('Thêm thất bại!'), duration: Duration(seconds: 1)
+         )
+       );
+     }
     }
   }
 

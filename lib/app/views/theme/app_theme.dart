@@ -26,6 +26,9 @@ class AppTheme{
 
       ),
       inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(
+          color: AppColors.textGrayColor
+        ),
         errorStyle: TextStyle(
           color: AppColors.yellowColor,
         ),

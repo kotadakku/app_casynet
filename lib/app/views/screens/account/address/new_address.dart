@@ -144,20 +144,18 @@ class NewAddress extends StatelessWidget {
                           Expanded(
                               child: TextFormField(
                             readOnly: true,
-                            onTap: () {
-                              var data = Get.toNamed(Routes.SELECT_REGION,
+                            onTap: () async {
+                              var value = await Get.toNamed(Routes.SELECT_REGION,
                                   arguments: {
                                     "title": "Chọn tỉnh/ thành phố",
                                     "regions": _regionController.provinces
                                   });
-                              if (data != null) {
-                                data.then((value) {
-                                  controller.textProvinceCotroller.text =
-                                      value.name;
-                                  _regionController.getDistrictsApi(value.id);
-                                  controller.textDistrictController.clear();
-                                  controller.textCommuneController.clear();
-                                });
+                              if (value != null) {
+                                controller.textProvinceCotroller.text =
+                                    value.name;
+                                _regionController.getDistrictsApi(value.id);
+                                controller.textDistrictController.clear();
+                                controller.textCommuneController.clear();
                               }
                             },
                             controller: controller.textProvinceCotroller,
@@ -204,20 +202,18 @@ class NewAddress extends StatelessWidget {
                           Expanded(
                               child: TextFormField(
                             readOnly: true,
-                            onTap: () {
-                              var data = Get.toNamed(Routes.SELECT_REGION,
+                            onTap: () async {
+                              var value = await Get.toNamed(Routes.SELECT_REGION,
                                   arguments: {
                                     "title": "Chọn Quận/Huyện phố",
                                     "regions": _regionController.districts
                                   });
 
-                              if (data != null) {
-                                data.then((value) {
-                                  controller.textDistrictController.text =
-                                      value.name;
-                                  _regionController.getVillagesApi(value.id);
-                                  controller.textCommuneController.clear();
-                                });
+                              if (value != null) {
+                                controller.textDistrictController.text =
+                                    value.name;
+                                _regionController.getVillagesApi(value.id);
+                                controller.textCommuneController.clear();
                               }
                             },
                             controller: controller.textDistrictController,
@@ -265,17 +261,15 @@ class NewAddress extends StatelessWidget {
                             onSaved: (value) {
                               // address.
                             },
-                            onTap: () {
-                              var data = Get.toNamed(Routes.SELECT_REGION,
+                            onTap: () async {
+                              var value = await  Get.toNamed(Routes.SELECT_REGION,
                                   arguments: {
                                     "title": "Chọn xã/ phường",
                                     "regions": _regionController.communes
                                   });
-                              if (data != null) {
-                                data.then((value) {
-                                  controller.textCommuneController.text =
-                                      value.name;
-                                });
+                              if (value != null) {
+                                controller.textCommuneController.text =
+                                    value.name;
                               }
                             },
                             textAlign: TextAlign.end,

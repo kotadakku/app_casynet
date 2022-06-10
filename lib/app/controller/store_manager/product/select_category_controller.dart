@@ -12,8 +12,9 @@ class SelectCategoryController extends GetxController{
 
   @override
   void onInit() {
-    AddProductController _productController = Get.find();
-    listCategorySelected.addAll(_productController.listCategorySelected);
+    if(Get.arguments[0] != null){
+      listCategorySelected.addAll(Get.arguments[0]);
+    }
   }
 
   bool isCategorySelected(Category? category){

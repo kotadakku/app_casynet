@@ -1,6 +1,7 @@
 
 import 'package:app_casynet/app/data/provider/api/responses.dart';
 import 'package:app_casynet/app/data/model/seller.dart';
+import 'package:dio/dio.dart';
 
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';
@@ -37,6 +38,26 @@ class SellerRepo{
             (response.data as List).map((e) => Seller.fromJson(e))
         );
         return Responses<Seller>(isSuccess: true, listObjects: sellers);
+      }
+      return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
+    } catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<Seller>> createSeller({data, Map<String, dynamic>? queryParameters, Options? options}) async {
+    try{
+      final response = await ApiRequest().post(
+        path: ApiConfig.baseUrl2 + "/api/v1/sellers",
+        queryParameters: queryParameters,
+        options: options,
+        data: data
+      );
+      if(response != null){
+        Seller seller = Seller();
+        // Seller seller = Seller.fromJson(response.data);
+        return Responses<Seller>(statusCode: CODE_SUCCESS, objects: seller);
       }
       return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
     } catch(error){

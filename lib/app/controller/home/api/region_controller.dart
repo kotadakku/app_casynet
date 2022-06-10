@@ -49,6 +49,7 @@ class RegionController extends GetxController{
   Future<void> getDistrictsApi(int provinceId) async {
     isLoadAPI.value = true;
     error.value = " ";
+    communes.clear();
     try{
       final result = await AddressRepo().getDistricts(
           queryParameters: {

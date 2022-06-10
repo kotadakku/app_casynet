@@ -12,7 +12,6 @@ class Address {
   String? countryId;
   String? addressNumber; //  = add
   int? postcode = 98761;
-
   String? firstname;
   String? lastname;
   String? phone;
@@ -22,6 +21,11 @@ class Address {
   String? default_address;
   bool default_shipping = true;
   bool default_billing = true;
+
+  int? provinceId;
+  int? districtId;
+  int? villageId;
+  String? specificAddress;
 
   // ignore: unused_element
   Address._(
