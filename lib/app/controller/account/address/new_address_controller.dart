@@ -1,7 +1,5 @@
 
-import 'dart:convert';
-
-import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+import 'package:app_casynet/app/controller/account/auth/authentication_manager.dart';
 import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:dio/dio.dart';
@@ -9,11 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data.dart';
-import '../../data/model/address.dart';
-import '../../data/model/user.dart';
-import '../../data/repo/address_repo.dart';
-import '../../utlis/data/data.dart';
+import '../../../data/model/address.dart';
+import '../../../data/model/user.dart';
+import '../auth/authentication_manager.dart';
 
 
 class NewAddressController extends GetxController {

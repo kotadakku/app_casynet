@@ -1,5 +1,3 @@
-import 'package:app_casynet/app/controller/auth/auth_controller.dart';
-import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:app_casynet/app/controller/home/api/region_controller.dart';
 import 'package:app_casynet/app/data/model/address.dart';
 import 'package:app_casynet/app/data/model/user.dart';
@@ -7,7 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/account/new_address_controller.dart';
+import '../../../../controller/account/auth/authentication_manager.dart';
+import '../../../../controller/account/address/new_address_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../widgets/appbar/appbar_account_widget.dart';

@@ -1,4 +1,4 @@
-import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+
 import 'package:app_casynet/app/controller/cart/api/product_cart_controller.dart';
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:app_casynet/app/utlis/int_to_price.dart';
@@ -6,6 +6,7 @@ import 'package:app_casynet/app/views/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../controller/account/auth/authentication_manager.dart';
 import '../../widgets/appbar/appbar_cart.dart';
 import 'widgets/itemCart.dart';
 

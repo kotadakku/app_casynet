@@ -2,7 +2,8 @@ import 'package:app_casynet/app/controller/cart/api/payment_method_controller.da
 import 'package:app_casynet/app/controller/cart/api/shipping_method_controller.dart';
 import 'package:get/get.dart';
 
-import '../controller/cart/checkout_controller.dart';
+import '../../controller/cart/checkout_controller.dart';
+
 
 class CartBinding extends Bindings{
   @override

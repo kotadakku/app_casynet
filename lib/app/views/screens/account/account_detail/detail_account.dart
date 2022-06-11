@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:app_casynet/app/controller/account/account_detail_controller.dart';
+import 'package:app_casynet/app/controller/account/account_detail/account_detail_controller.dart';
 import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,10 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
-import '../../../routes/app_pages.dart';
-import '../../theme/app_colors.dart';
-import '../../widgets/shadow_of_doubt.dart';
-import '../../widgets/appbar/appbar_account_widget.dart';
+import '../../../../routes/app_pages.dart';
+import '../../../theme/app_colors.dart';
+import '../../../widgets/shadow_of_doubt.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
 
 class AccountDetailPage extends StatelessWidget {
   const AccountDetailPage({Key? key}) : super(key: key);

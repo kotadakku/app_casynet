@@ -2,13 +2,12 @@
 import 'dart:convert';
 
 import 'package:app_casynet/app/controller/cart/api/product_cart_controller.dart';
-import 'package:app_casynet/app/data/provider/api/api_provider.dart';
 import 'package:app_casynet/app/data/provider/get_storage_provider.dart';
 import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../data/model/user.dart';
+
+import '../../../data/model/user.dart';
 
 
 class AuthenticationManager extends GetxController {

@@ -1,9 +1,10 @@
-import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
+
 import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/model/user.dart';
+import '../../../data/model/user.dart';
+import 'authentication_manager.dart';
 
 class AuthController extends GetxController with GetSingleTickerProviderStateMixin {
   late final AuthenticationManager _authManager;

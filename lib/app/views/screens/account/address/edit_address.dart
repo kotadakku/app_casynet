@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/account/edit_address_controller.dart';
+import '../../../../controller/account/address/edit_address_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../widgets/appbar/appbar_account_widget.dart';

@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../data/model/category.dart';
-import '../../data/model/seller.dart';
+import '../../../data/model/category.dart';
+import '../../../data/model/seller.dart';
 
-class NewAddressShopController extends GetxController{
+class UpdateSellerController extends GetxController{
 
   late GlobalKey<FormState> formStateKeyShop;
   late Address addressShop;
@@ -27,11 +27,13 @@ class NewAddressShopController extends GetxController{
   RxString districtShop = "".obs;
   RxString communeShop = "".obs;
 
-  final Seller seller = Seller();
+  Seller seller = Seller();
   final Address address = Address();
-  final isLoading = false.obs;
+  final isUpdating = false.obs;
   var lat;
   var lon;
+  final isLoading = false.obs;
+
   final ScaffoldMessengerState scaffoldMessenger = Get.find<ScaffoldMessengerState>();
 
   @override
@@ -61,14 +63,14 @@ class NewAddressShopController extends GetxController{
           )
         );
         if(result.statusCode == CODE_SUCCESS){
-          isLoading.value = false;
+          isUpdating.value = false;
           Get.back();
                scaffoldMessenger.showSnackBar(
                  const SnackBar(content: Text('Thêm thành công!'), duration: Duration(seconds: 1)),
                );
         }else{
            print(result.msg.toString());
-           isLoading.value = false;
+           isUpdating.value = false;
            scaffoldMessenger.showSnackBar(
              const SnackBar(content: Text('Thêm thất bại!'), duration: Duration(seconds: 1)
              )
@@ -77,12 +79,29 @@ class NewAddressShopController extends GetxController{
 
       }catch(error){
         print(error.toString());
-         isLoading.value = false;
+         isUpdating.value = false;
          scaffoldMessenger.showSnackBar(
            const SnackBar(content: Text('Thêm thất bại!'), duration: Duration(seconds: 1)
            )
          );
       }
+
+    }
+
+  }
+
+  void getDetailSeller() async{
+    try{
+      final result = await SellerRepo().getSellers();
+      if(result.statusCode == CODE_SUCCESS){
+        isLoading.value = false;
+        seller = result.objects!;
+
+      }else{
+        isLoading.value = false;
+      }
+    } catch(error){
+      isLoading.value = false;
 
     }
 

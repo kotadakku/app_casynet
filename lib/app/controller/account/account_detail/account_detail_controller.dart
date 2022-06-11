@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import '../../data/model/user.dart';
-import '../../data/provider/get_storage_provider.dart';
-import '../../data/repo/account_repo.dart';
+import '../../../data/model/user.dart';
+import '../../../data/provider/get_storage_provider.dart';
+import '../../../data/repo/account_repo.dart';
 import '../auth/authentication_manager.dart';
 
 class AccountDetailController extends GetxController{

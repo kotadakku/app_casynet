@@ -1,4 +1,4 @@
-import 'package:app_casynet/app/controller/auth/auth_controller.dart';
+
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../controller/auth/authentication_manager.dart';
+import '../../../../controller/account/auth/auth_controller.dart';
 import '../../../../data/model/user.dart';
 
 import '../../../theme/app_colors.dart';

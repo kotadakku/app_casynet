@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../controller/account/change_password_controller.dart';
+import '../../../../controller/account/account_detail/change_password_controller.dart';
 
-import '../../widgets/appbar/appbar_account_widget.dart';
-import '../../theme/app_colors.dart';
+import '../../../widgets/appbar/appbar_account_widget.dart';
+import '../../../theme/app_colors.dart';
 
 
 class ChangePasswordAccount extends StatelessWidget {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/model/address.dart';
+import '../../../data/model/address.dart';
+import '../auth/authentication_manager.dart';
 import '../auth/authentication_manager.dart';
 
 class EditAddressController extends GetxController{

@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'app/bindings/main_bindings.dart';
+import 'app/bindings/home/main_bindings.dart';
 import 'app/controller/home/home_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/utlis/languages/localization_service.dart';

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../controller/filter/filter_product_controller.dart';
+import '../../controller/filter/filter_product_controller.dart';
 
 class FilterProductBindings extends Bindings{
   @override
@@ -10,5 +10,6 @@ class FilterProductBindings extends Bindings{
     Get.lazyPut(() => FilterDistrictController());
     Get.lazyPut(() => FilterPriceController());
     Get.lazyPut(() => FilterOriginController());
+    Get.lazyPut(() => FilterProductController());
   }
 }
