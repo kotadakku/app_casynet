@@ -28,43 +28,58 @@ class SelectCategory extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Column(
-        children: [
-          ListView.builder(
-            itemCount: _categoryController.categoriesList.length,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Obx(
-                    () => Container(
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        value: _selectCategoryController.isCategorySelected(_categoryController.categoriesList[index]),
-                        activeColor: Colors.amber,
-                        onChanged: (value) {
-                          _selectCategoryController.onChangeCheckbox(_categoryController.categoriesList[index]);
-                        },
-                      ),
-                      Text('${_categoryController.categoriesList[index].name}'),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-          Container(
-            child: ElevatedButton(
-              child: Obx(()=>
-                  Text(
-                      "Lưu ${_selectCategoryController.listCategorySelected.length} (Tùy chọn)")
-              ),
-              onPressed: () {
-                Get.back(result: _selectCategoryController.listCategorySelected);
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+              itemCount: _categoryController.categoriesList.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Obx(
+                      () => CheckboxListTile(
+                          controlAffinity: ListTileControlAffinity.leading, // check box hiện bên trái
+                          activeColor: const Color.fromARGB(255, 223, 180, 0),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('${_categoryController.categoriesList[index].name}'),
+                            ],
+                          ),
+                          value: _selectCategoryController.isCategorySelected(_categoryController.categoriesList[index]),
+                          onChanged: (bool? value){
+                            _selectCategoryController.onChangeCheckbox(_categoryController.categoriesList[index]);
+                          }),
+                  /*Container(
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: _selectCategoryController.isCategorySelected(_categoryController.categoriesList[index]),
+                          activeColor: Colors.amber,
+                          onChanged: (value) {
+                            _selectCategoryController.onChangeCheckbox(_categoryController.categoriesList[index]);
+                          },
+                        ),
+                        Text('${_categoryController.categoriesList[index].name}'),
+                      ],
+                    ),
+                  ),*/
+                );
               },
             ),
-          ),
-        ],
+            Container(
+              child: ElevatedButton(
+                child: Obx(()=>
+                    Text(
+                        "Lưu ${_selectCategoryController.listCategorySelected.length} (Tùy chọn)")
+                ),
+                onPressed: () {
+                  Get.back(result: _selectCategoryController.listCategorySelected);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     ),
       onWillPop: () => _onWillPop(context)

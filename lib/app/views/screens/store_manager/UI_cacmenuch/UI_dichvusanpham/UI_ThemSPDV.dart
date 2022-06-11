@@ -18,6 +18,7 @@ import 'UI_Chonloaisanpham.dart';
 import 'danhmuc.dart';
 
 
+
 class Themspdv extends StatelessWidget {
   Themspdv({Key? key}) : super(key: key);
   final AddProductController _addProductController = Get.find();
@@ -27,7 +28,7 @@ class Themspdv extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Thêm Dịch vụ/ Sản phẩm",
           style: TextStyle(color: Colors.black),
         ),
@@ -36,6 +37,7 @@ class Themspdv extends StatelessWidget {
     );
   }
   Widget themspdvs(BuildContext context) {
+
     return Stack(
       children: [
         Container(
@@ -657,7 +659,7 @@ class Themspdv extends StatelessWidget {
                           // Icon(Icons.navigate_next),
                         ],
                       ),
-                    ),
+                    )
                   ),
                   InkWell(
                     onTap: (){

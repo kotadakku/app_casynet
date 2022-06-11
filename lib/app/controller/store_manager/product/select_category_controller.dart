@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../data/model/category.dart';
 
 class SelectCategoryController extends GetxController{
-  final listCategorySelected = <Category>[].obs;
+  final listCategorySelected = <Category>[].obs; // mảng tạm
   final isChange = false.obs;
 
 

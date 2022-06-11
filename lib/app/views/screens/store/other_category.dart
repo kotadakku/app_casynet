@@ -1,11 +1,9 @@
 import 'package:app_casynet/app/controller/home/api/category_controller.dart';
-import 'package:app_casynet/app/controller/store/choose_category_controller.dart';
-import 'package:app_casynet/app/controller/store/new_created_store_controller.dart';
+import 'package:app_casynet/app/controller/store/other_category_controller.dart';
 import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class OtherCategory extends StatelessWidget {
   OtherCategory({
@@ -14,23 +12,30 @@ class OtherCategory extends StatelessWidget {
 
   // final List<Category> itemCategory;
   CategoryController dataCtr = Get.find();
-  NewCreatedStoreController newCreatedStoreController = Get.find();
+  OtherCategoryController _otherCateController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
+    return WillPopScope(
+
+      onWillPop: () => _onWillPopOtherCategory(context),
       child: Scaffold(
         appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: Icon(Icons.arrow_back),
-          ),
+
           title: const Text("Chọn danh mục nghề khác"),
           actions: [
-
+            IconButton(
+                onPressed: (){
+                  Get.back(result: _otherCateController.listOtherCategory);
+                  print("List danh mục khác ${_otherCateController.listOtherCategory.length}");
+                  for(var i = 0; i < _otherCateController.listOtherCategory.length; i++){
+                    //print("List danh mục khác 01 ${_otherCateController.listOtherCategory[i].name}");
+                    print("List danh mục khác 01 ${_otherCateController.listOtherCategory[i].name}");
+                  }
+                },
+                icon: const Icon(Icons.check,
+                  color: Colors.grey,
+                ))
           ],
         ),
         body: SafeArea(
@@ -62,7 +67,7 @@ class OtherCategory extends StatelessWidget {
                               Container(
                                 width: 40.w,
                                 height: 40.h,
-                                color: Color.fromARGB(255, 223, 180, 0),
+                                color: const Color.fromARGB(255, 223, 180, 0),
                               ),
                               Positioned(
                                   left: 12.w,
@@ -78,17 +83,19 @@ class OtherCategory extends StatelessWidget {
                           )
                         ],
                       ),
-                      value: newCreatedStoreController.listOtherCategory.value
-                          .contains(dataCtr.categoriesList[index].id),
+                      value: _otherCateController.isCategorySelected(dataCtr.categoriesList[index]),
+                        /*_otherCateController.listOtherCategory.value
+                          .contains(dataCtr.categoriesList[index].id),*/
                       onChanged: (bool? value) {
-                        //
-                        if (newCreatedStoreController.listOtherCategory.value
+                        _otherCateController.onChangeCheckbox(dataCtr.categoriesList[index]);
+                       /* if (_otherCateController.listOtherCategory.value
                             .contains(dataCtr.categoriesList[index].id)) {
-                          newCreatedStoreController.listOtherCategory
-                              .remove(dataCtr.categoriesList[index].id);
-                        } else
-                          newCreatedStoreController.listOtherCategory
-                              .add(dataCtr.categoriesList[index].id);
+                          _otherCateController.listOtherCategory.remove(dataCtr.categoriesList[index].id);
+
+                        } else {
+                          _otherCateController.listOtherCategory.add(dataCtr.categoriesList[index].id);
+
+                        }*/
                       },
                       controlAffinity: ListTileControlAffinity.leading,// checkbox hiện bên trái
                     ),
@@ -99,6 +106,44 @@ class OtherCategory extends StatelessWidget {
           ),
         ),
       ),
+
     );
   }
+
+  Future<bool> _onWillPopOtherCategory(BuildContext context) async{
+    late bool? exitResult;
+    FocusManager.instance.primaryFocus?.unfocus();
+    if(_otherCateController.isChange != false){
+      exitResult = await showDialog(
+          context: context,
+          builder: (context) => _buildExitDialog(context),
+      );
+      if(exitResult == false){
+        Get.back();
+      }else{
+        Get.back(result: _otherCateController.listOtherCategory);
+      }
+    }else{
+      Get.back();
+    }
+    return true;
+  }
 }
+
+AlertDialog _buildExitDialog(BuildContext context) {
+  return AlertDialog(
+    title: const Text("Huỷ thay đổi"),
+    actions: [
+      TextButton(
+          onPressed: () => Get.back(result: false),
+          child: Text("Hủy")
+      ),
+      TextButton(
+          onPressed: () => Get.back(result: true),
+          child: Text("Lưu thay đổi"))
+    ],
+  );
+}
+
+
+

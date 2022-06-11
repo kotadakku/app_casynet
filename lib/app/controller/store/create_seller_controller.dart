@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../data/model/category.dart';
 import '../../data/model/seller.dart';
 
 class CreateSellerController extends GetxController{
@@ -9,6 +10,8 @@ class CreateSellerController extends GetxController{
   final open_time = "".obs;
   final close_time = "".obs;
   Seller seller = Seller();
+
+  final listOtherCateSelected = <Category>[].obs;
 
   @override
   void onInit() {

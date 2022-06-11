@@ -1,4 +1,4 @@
-import 'package:app_casynet/app/controller/store/new_created_store_controller.dart';
+import 'package:app_casynet/app/controller/store/other_category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,7 +10,7 @@ import '../../widgets/image_network_loading.dart';
 class MainCategory extends StatelessWidget {
   MainCategory({Key? key}) : super(key: key);
   CategoryController dataCtr = Get.find();
-  NewCreatedStoreController chooseController = Get.find();
+  OtherCategoryController chooseController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Material(
