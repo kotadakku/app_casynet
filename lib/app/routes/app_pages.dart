@@ -1,6 +1,8 @@
 
 import 'package:app_casynet/app/bindings/store_manager/gift/create_gift_binding.dart';
 import 'package:app_casynet/app/bindings/store_manager/gift/gift_manager_binding.dart';
+import 'package:app_casynet/app/bindings/store_manager/news/news_manager.binding.dart';
+import 'package:app_casynet/app/bindings/store_manager/notification/create_noti_binding.dart';
 import 'package:app_casynet/app/bindings/store_manager/product/select_category_binding.dart';
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
 import 'package:app_casynet/app/views/screens/account/widgets/edit_info.dart';
@@ -40,6 +42,9 @@ import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../bindings/my_store/new_seller_binding.dart';
 import '../bindings/products_bindings.dart';
+import '../bindings/store_manager/news/create_new_binding.dart';
+import '../bindings/store_manager/notification/notification_manager_binding.dart';
+import '../bindings/store_manager/notification/update_noti_binding.dart';
 import '../bindings/store_manager/product/create_product_binding.dart';
 import '../bindings/store_manager/product/product_manager_binding.dart';
 import '../bindings/stores_bindings.dart';
@@ -74,6 +79,8 @@ import '../views/screens/store/sanpham_dichvu.dart';
 import '../views/screens/store/setting_notications.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Bangdieukhien.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Thongtincuahang.dart';
+import '../views/screens/store_manager/UI_cacmenuch/UI_quanlytintuc/create_news_page.dart';
+import '../views/screens/store_manager/UI_cacmenuch/UI_quanlytintuc/news_manager_page.dart';
 
 part './app_routes.dart';
 
@@ -294,11 +301,24 @@ class AppPages {
     ),
     GetPage(
       name: Routes.STORE_MANAGER_NOTIS,
-      page: ()=>QuanLyThongBao()
+      page: ()=>QuanLyThongBao(),
+      binding: NotificationManagerBinding()
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ADD_NOTI,
       page: () => ThemThongBao(),
+      binding: CreateNotificationBinding()
+    ),
+    GetPage(
+      name: Routes.STORE_MANAGER_NEWS,
+      page: ()=> NewsManagerPage(),
+      binding: NewsManagerBinding()
+
+    ),
+    GetPage(
+        name: Routes.STORE_MANAGER_ADD_NEW,
+        page: () => CreateNewPage(),
+      binding: CreateNewBinding()
     )
   ];
 

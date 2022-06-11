@@ -62,9 +62,6 @@ abstract class Routes{
   static const STORE_MANAGER_NOTIS = '/manager_store/notis';
   static const STORE_MANAGER_ADD_NOTI = '/manager_store/add_noti';
 
-
-
-
-
-
+  static const STORE_MANAGER_NEWS = '/manager_store/news';
+  static const STORE_MANAGER_ADD_NEW = '/manager_store/add_news';
 }

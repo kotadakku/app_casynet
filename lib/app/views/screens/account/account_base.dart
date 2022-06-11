@@ -83,7 +83,7 @@ class AccountBasePage extends StatelessWidget {
                                   builder: (controller){
                                     return ElevatedButton(
                                       onPressed: () {
-                                        Get.toNamed(Routes.MY_STORE_CREATE);
+                                        Get.toNamed(Routes.MY_STORE);
                                       },
                                       child: Text(controller.user_current.storeId == null ? 'my_seller'.tr: "Tạo cửa hàng",
                                         style: TextStyle(

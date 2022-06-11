@@ -1,12 +1,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../../controller/store_manager/notification/notification_manager_controller.dart';
 import '../../../../../routes/app_pages.dart';
 import 'UI_Themthongbao.dart';
 
 class QuanLyThongBao extends StatelessWidget {
+  NotificationManagerController _notificationManagerController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,18 +45,33 @@ class QuanLyThongBao extends StatelessWidget {
             children: [
               Container(
                 height: 50,
+                padding: EdgeInsets.only(top: 10.h, right: 10.w, bottom: 10.h),
                 child: Row(
                   children: [
                     Container(
-                      child: Checkbox(
-                        value: false,
+                      child: Obx(()=>Checkbox(
+                        value: _notificationManagerController.isSelectedAll.value,
                         onChanged: (value) {
-                          // iscs[index] = value!;
+                          _notificationManagerController.selectAllNoti(value);
                         },
-                      ),
+                      ),)
                     ),
-                    Text('delete'.tr),
-                    Text("20 ${'record'.tr}"),
+                    Spacer(),
+                    Obx(()=>_notificationManagerController.isSelectedAll.value ?
+                    ElevatedButton(onPressed: (){
+                      _notificationManagerController.deleteAllNotifications();
+                    },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red
+                        ),
+                      child: Row(
+                        children: [
+                          Text('delete'.tr),
+                          Obx(()=>Text(" ${_notificationManagerController.listSelected.length} ${'record'.tr}"),)
+                        ],
+                      ))
+                        : SizedBox()
+                    )
 
                   ],
                 ),
@@ -69,11 +87,13 @@ class QuanLyThongBao extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          child: Checkbox(
-                            value: false,
+                          child: Obx(()=>Checkbox(
+                            value: _notificationManagerController.ckeckInList(index),
                             onChanged: (value) {
-                              // iscs[index] = value!;
-                            },
+                              _notificationManagerController.ckeckInList(index) ?
+                              _notificationManagerController.listSelected.remove(index) :
+                              _notificationManagerController.listSelected.add(index);
+                            },)
                           ),
                         ),
                         Expanded(

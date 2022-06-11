@@ -39,8 +39,8 @@ class CreateGiftController extends GetxController{
     if(formKey.currentState!.validate()){
       isLoading.value = true;
       formKey.currentState!.save();
-
-
+      gift.isDisplay  = isDisplay.value;
+      gift.isSendEmail = isSendEmail.value;
       try{
         final result = await GiftRepo().createGift(
 
