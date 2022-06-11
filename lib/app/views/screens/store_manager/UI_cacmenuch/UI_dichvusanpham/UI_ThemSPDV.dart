@@ -19,6 +19,8 @@ import 'UI_Chonloaisanpham.dart';
 import 'danhmuc.dart';
 
 class Themspdv extends StatefulWidget {
+  const Themspdv({Key? key}) : super(key: key);
+
   @override
   State<Themspdv> createState() => _ThemspdvState();
 }
@@ -34,7 +36,7 @@ class _ThemspdvState extends State<Themspdv> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Thêm Dịch vụ/ Sản phẩm",
           style: TextStyle(color: Colors.black),
         ),
@@ -90,7 +92,7 @@ class _ThemspdvState extends State<Themspdv> {
       showModalBottomSheet(context: context,backgroundColor: Colors.transparent, builder: (context){
         return Container(
           height: 255,
-          margin: EdgeInsets.only(left: 5,right: 5),
+          margin: const EdgeInsets.only(left: 5,right: 5),
           child: Column(
             children: [
               Container(
@@ -314,7 +316,7 @@ class _ThemspdvState extends State<Themspdv> {
                           height: 90,
                           child: OutlinedButton(
                             style: ElevatedButton.styleFrom(
-                              side: BorderSide(
+                              side: const BorderSide(
                                 color: Colors.amber,
                                 style: BorderStyle.solid,
                               ),
@@ -687,7 +689,8 @@ class _ThemspdvState extends State<Themspdv> {
                             child: Text("Danh mục"),
                           )
                       ),
-                      if(_addProductController.listCategorySelected.length>=0) Expanded(
+                      _addProductController.listCategorySelected.length > 0
+                          ? Expanded(
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
@@ -728,6 +731,7 @@ class _ThemspdvState extends State<Themspdv> {
                                 );
                               })
                       )
+                          : Row(children: [ Text("Chọn"), Icon(Icons.navigate_next)],)
                       // Text("Lựa chọn danh mục"),
                       // Icon(Icons.navigate_next),
                     ],

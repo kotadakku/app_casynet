@@ -11,6 +11,8 @@ import '../../../data/repo/home_repo.dart';
 
 
 class CategoryController extends GetxController{
+
+
   final categoriesList = <Category>[].obs;
   final isLoadingAPI = false.obs;
   final isLoadingDB = false.obs;
@@ -19,6 +21,7 @@ class CategoryController extends GetxController{
   void onInit() {
     _getCategoryDB();
     getCategoriesAPI();
+
   }
 
   void _getCategoryDB() {

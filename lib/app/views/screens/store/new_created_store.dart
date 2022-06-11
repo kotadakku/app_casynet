@@ -1,5 +1,5 @@
 
-import 'package:app_casynet/app/controller/store/new_created_store_controller.dart';
+import 'package:app_casynet/app/controller/store/other_category_controller.dart';
 import 'package:app_casynet/app/views/screens/store/short_description.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ import 'other_category.dart';
 class NewCreatedStore extends StatelessWidget {
   NewCreatedStore({Key? key}) : super(key: key);
   final CreateSellerController _createSellerController = Get.find();
-  final NewCreatedStoreController chooseCategory = Get.find();
+  final OtherCategoryController chooseCategory = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +64,7 @@ class NewCreatedStore extends StatelessWidget {
                                       height: 100,
                                       child: OutlinedButton(
                                         onPressed: () {
+                                          // FocusManager.instance.primaryFocus?.unfocus();
                                           _tripEditModalBottomSheet(context);
                                         },
                                         child: Text(
@@ -136,7 +137,7 @@ class NewCreatedStore extends StatelessWidget {
                                     hintText: 'Nhập tên cửa hàng',
                                   ),
                                   onTap: (){
-                                    // FocusManager.instance.primaryFocus?.unfocus();
+                                    FocusManager.instance.primaryFocus?.unfocus();
 
                                   },
                                 ),
@@ -410,8 +411,12 @@ class NewCreatedStore extends StatelessWidget {
                             child: InkWell(
                               splashColor: const Color.fromARGB(255, 188, 195, 216),
                               // splashColor: Colors.blue,
-                              onTap: () {
-                                Get.to(OtherCategory());
+                              onTap: () async {
+                                var value = await Get.to(OtherCategory());
+                                if(value != null){
+                                  //chooseCategory.listOtherCateSelected.removeRange(0, _createSellerController.listOtherCateSelected.length - 1);
+                                  chooseCategory.listOtherCategory.addAll(value);
+                                }
                               },
 
                               child: Row(
@@ -426,13 +431,54 @@ class NewCreatedStore extends StatelessWidget {
                                                   255, 127, 141, 171)))
                                     ],
                                   ),
-                                  Expanded(
+                                  chooseCategory.listOtherCategory.length > 0
+                                  ? Expanded(
+                                      child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          itemCount: chooseCategory.listOtherCategory.length,
+                                          reverse: true,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              alignment: Alignment.centerRight,
+                                              child: Stack(
+                                                clipBehavior: Clip.none,
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.only(right: 10, left: 10),
+                                                    margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                                                    height: 40,
+                                                    child: Center(
+                                                      child: Text(chooseCategory.listOtherCategory[index].name
+                                                          .toString()),
+                                                    ),
+                                                    color:
+                                                    Color.fromARGB(255, 241, 243, 253),
+                                                  ),
+                                                  Positioned(
+                                                      width: 20,
+                                                      height: 20,
+                                                      right: 0,
+                                                      top: 0,
+                                                      child: FloatingActionButton(
+                                                        child: Icon(Icons.close, size: 8,),
+                                                        onPressed: (){
+                                                          _createSellerController.listOtherCateSelected
+                                                              .removeAt(index);
+                                                        },
+                                                      )
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          })
+                                  )
+                                  : Expanded(
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            chooseCategory.listOtherCategory.length > 0 ?
-                                            "Kiểm tra đã chọn" : chooseCategory.chonDanhmuc.toString() ,
+                                            chooseCategory.chonDanhmuc.toString() ,
                                           ),
                                           Icon(Icons.navigate_next),
                                         ],
