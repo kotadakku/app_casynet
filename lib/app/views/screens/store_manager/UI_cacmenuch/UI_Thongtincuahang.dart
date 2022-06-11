@@ -1,11 +1,16 @@
+import 'package:app_casynet/app/controller/filter/map_controller.dart';
 import 'package:app_casynet/app/controller/store/new_address_shop_controller.dart';
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../controller/home/api/region_controller.dart';
 import '../../../../controller/store/choose_category_controller.dart';
 import '../../../theme/app_colors.dart';
 import '../../store/chon_danh_muc.dart';
@@ -19,6 +24,8 @@ class ThongTinCuaHang extends StatelessWidget {
 
     final ChooseCategoryController controllerCate = Get.put(ChooseCategoryController());
     NewAddressShopController controller = Get.put(NewAddressShopController());
+    RegionController _regionController = Get.find();
+    MapController mapController = Get.find();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,41 +45,45 @@ class ThongTinCuaHang extends StatelessWidget {
                   child: Image.network(
                       "https://xemaynghean.com/wp-content/uploads/2019/03/50272791_137653880484230_7970165378053570560_n-1024x554.jpg"),
                 ),
-                Padding(
-                    padding: EdgeInsets.only(left: 10.0.w),
-                    child: Row(
-                      children: [
-                        Text(
-                          'name_s'.tr,
-                          style: TextStyle(
-                            color: AppColors.textGrayBoldColor,
+                Container(
+                    height: 50,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10, left: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'name_s'.tr,
+                            style: TextStyle(
+                              color: AppColors.textGrayBoldColor,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            cursorColor: Colors.black,
-                            textAlign: TextAlign.end,
-                            onSaved: (value) {
-                              // if()
-                            },
-                            decoration: InputDecoration(
+                          Expanded(
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              textAlign: TextAlign.end,
+                              onSaved: (value) {
+                                if(value?.trim() != ''){
+                                  controller.seller.name = value?.trim();
+                                }
+                                // if()
+                              },
+                              validator: (value){
+                                if(value?.trim() == ''){
+                                  return 'required_field'.tr;
+                                }
+                              },
+                              decoration: InputDecoration(
                                 // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
-                                border: InputBorder.none,
-                                hintText: "Cửa hàng xe máy Hùng Sơn",
-                                hintStyle: TextStyle(color: Colors.black),
-                                suffixIcon: Container(
-                                  height: 10.0.h,
-                                  width: 10.0.w,
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 12,
-                                    color: AppColors.textGrayBoldColor,
+                                  border: InputBorder.none,
+                                  hintText: 'enter_name'.tr,
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.only(top: 10, left: 10, right: 10),
                                   ),
-                                )),
-                          ),
-                        )
-                      ],
-                    )),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
                 Divider(
                   indent: 10,
                 ),
@@ -98,8 +109,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             decoration: InputDecoration(
                                 // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
-                                hintText: "cuahangxemayhungson",
-                                hintStyle: TextStyle(color: Colors.black),
+                                hintText: "",
                                 suffixIcon: Container(
                                   height: 10.0.h,
                                   width: 10.0.w,
@@ -116,7 +126,8 @@ class ThongTinCuaHang extends StatelessWidget {
                 Divider(
                   indent: 10,
                 ),
-                Padding(
+                Container(
+                    height: 50,
                     padding: EdgeInsets.only(
                       left: 10.0.w,
                     ),
@@ -133,22 +144,26 @@ class ThongTinCuaHang extends StatelessWidget {
                             cursorColor: Colors.black,
                             textAlign: TextAlign.end,
                             onSaved: (value) {
+                              controller.seller.phone = value?.trim();
                               // if()
                             },
+                            validator: (value){
+                              if(value?.trim() == ''){
+                                return 'required_field'.tr;
+                              }
+                              if (!RegExp(r"^0[0-9]{9}$").hasMatch(value!)) {
+                                return "Số điện thoại không hợp lệ";
+                              }
+                            },
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
-                                hintText: "0978666555",
-                                hintStyle: TextStyle(color: Colors.black),
-                                suffixIcon: Container(
-                                  height: 10.0.h,
-                                  width: 10.0.w,
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 12,
-                                    color: AppColors.textGrayBoldColor,
-                                  ),
-                                )),
+
+                                hintText: "enter_phone".tr,
+                                isDense: true,
+                                contentPadding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                            ),
                           ),
                         )
                       ],
@@ -177,7 +192,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             Obx(
                               () => Text(
                                   controller.open_hours.value == ""
-                                      ? "08:00"
+                                      ? ""
                                       : controller.open_hours.value,
                                   style: TextStyle(fontSize: 15)),
                             ),
@@ -189,6 +204,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           ],
                         ),
                         onTap: () async {
+                          FocusManager.instance.primaryFocus!.unfocus();
                           TimeOfDay? value = await showTimePicker(
                             context: context,
                             builder: (context, childWidget) {
@@ -228,7 +244,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             Obx(
                               () => Text(
                                   controller.closer_hours.value == ""
-                                      ? "20:00"
+                                      ? ""
                                       : controller.closer_hours.value,
                                   style: TextStyle(fontSize: 15)),
                             ),
@@ -240,6 +256,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           ],
                         ),
                         onTap: () async {
+                          FocusManager.instance.primaryFocus!.unfocus();
                           TimeOfDay? value = await showTimePicker(
                             context: context,
                             builder: (context, childWidget) {
@@ -289,16 +306,18 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () {
-                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                    onTap: () async {
+                      FocusManager.instance.primaryFocus!.unfocus();
+                      var value = await Get.toNamed(Routes.SELECT_REGION, arguments: {
                         "title": "Chọn tỉnh/ thành phố",
-                        "regions": controller.provinceShops
+                        "regions": _regionController.provinces
                       });
-                      if (data != null) {
-                        data.then((value) {
-                          controller.provinceShop.value = value['name'];
-                          controller.updateDistrictShop(value['id']);
-                        });
+                      if (value != null) {
+                        controller.provinceShop.value = value.name;
+                        _regionController.getDistrictsApi(value.id);
+                        controller.address.provinceId = value.id;
+                        controller.districtShop.value = "";
+                        controller.communeShop.value = "";
                       }
                     },
                   ),
@@ -331,16 +350,17 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () {
-                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                    onTap: () async {
+                      FocusManager.instance.primaryFocus!.unfocus();
+                      var value = await Get.toNamed(Routes.SELECT_REGION, arguments: {
                         "title": 'select_district'.tr,
-                        "regions": controller.districtShops
+                        "regions":  _regionController.districts
                       });
-                      if (data != null) {
-                        data.then((value) {
-                          controller.districtShop.value = value['name'];
-                          controller.updateCommuneShop(value['id']);
-                        });
+                      if (value != null) {
+                        controller.districtShop.value = value.name;
+                        controller.address.districtId = value.id;
+                        _regionController.getVillagesApi(value.id);
+                        controller.communeShop.value = "";
                       }
                     },
                   ),
@@ -373,16 +393,15 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () {
-                      var data = Get.toNamed(Routes.SELECT_REGION, arguments: {
+                    onTap: () async {
+                      FocusManager.instance.primaryFocus!.unfocus();
+                      var value = await Get.toNamed(Routes.SELECT_REGION, arguments: {
                         "title": 'select_village'.tr,
-                        "regions": controller.communeShops
+                        "regions": _regionController.communes
                       });
-                      if (data != null) {
-                        data.then((value) {
-                          controller.communeShop.value = value['name'];
-                          controller.updateCommuneShop(value['id']);
-                        });
+                      if (value != null) {
+                        controller.communeShop.value = value.name;
+                        controller.address.villageId = value.id;
                       }
                     },
                   ),
@@ -402,22 +421,58 @@ class ThongTinCuaHang extends StatelessWidget {
                           child: TextFormField(
                         cursorColor: AppColors.textGrayBoldColor,
                         textAlign: TextAlign.end,
-                        onSaved: (value) {},
+
+                        onSaved: (value) {
+                          controller.address.specificAddress = value;
+                        },
+                        onFieldSubmitted: (value){
+                          if(value!= null){
+                            FocusManager.instance.primaryFocus!.unfocus();
+                            mapController.addMarkerByAddress(value);
+                          }
+                        },
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'enter_apartment_street'.tr,
-                            hintStyle: TextStyle(
-                              color: Colors.black,
-                            )),
-                      ))
+                      )
+                          )
+                      )
                     ],
                   ),
                 ),
                 Container(
                   color: Colors.white,
                   height: 300,
-                  child: Image.network(
-                      "https://media-cdn-v2.laodong.vn/Storage/newsportal/2018/11/29/643923/Screen-Shot-2018-11-.png"),
+                  child: GetBuilder<MapController>(
+                    init: MapController(),
+                    builder: (mapController){
+                      return GoogleMap(
+                        onLongPress: (position){
+                          print("${position.latitude} ${position.longitude}");
+                          mapController.pinMarker(position);
+                          controller.lon = position.longitude;
+                          controller.lat = position.latitude;
+                        },
+                        markers: mapController.markers,
+                        mapType: MapType.terrain,
+                        initialCameraPosition: mapController.currentLocationCamera,
+                        myLocationEnabled: true,
+
+                        onCameraMove: (position){
+
+                        },
+                        gestureRecognizers: Set()..add(Factory<VerticalDragGestureRecognizer>(
+                                () => VerticalDragGestureRecognizer()
+                        )),
+                        scrollGesturesEnabled: true,
+                        onMapCreated: (GoogleMapController controller) {
+                          mapController.controller.complete(controller);
+                          mapController.googleMapController = controller;
+
+                        },
+                      );
+                    },
+                  )
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 10.0.w, right: 15.0.w),
@@ -460,18 +515,79 @@ class ThongTinCuaHang extends StatelessWidget {
                             TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
                           ),
                         ),
-                        Text(
-                            'select_category'.tr/*controllerCate.chooseCategory.toString()*/,
-                            style: TextStyle(fontSize: 15)),
-                        Icon(
-                          Icons.navigate_next,
-                          color: AppColors.textGrayBoldColor,
-                          size: 20,
+                        Obx(()=>
+                        controller.listCategorySelected.value.length>0
+                            ? Expanded(
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount: controller.listCategorySelected.value.length,
+                                reverse: true,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    alignment: Alignment.centerRight,
+                                    child: Stack(
+                                      clipBehavior: Clip.none,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.only(right: 10, left: 10),
+                                          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                                          height: 40,
+                                          child: Center(
+                                            child: Text(controller.listCategorySelected[index].name
+                                                .toString()),
+                                          ),
+                                          color:
+                                          Color.fromARGB(255, 241, 243, 253),
+                                        ),
+                                        Positioned(
+                                            width: 20,
+                                            height: 20,
+                                            right: 0,
+                                            top: 0,
+                                            child: FloatingActionButton(
+                                              heroTag: '${index}',
+                                              child: Icon(Icons.close, size: 8,),
+                                              onPressed: (){
+                                                controller.listCategorySelected
+                                                    .removeAt(index);
+                                              },
+                                            )
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                })
+                        )
+                            : Row(
+                          children: [
+                            Text(
+                              'select_category'.tr,
+                              textAlign: TextAlign.end,
+                            ),
+                            Icon(Icons.navigate_next),
+                          ],
+                        )
                         ),
+                        // Text(
+                        //     'select_category'.tr/*controllerCate.chooseCategory.toString()*/,
+                        //     style: TextStyle(fontSize: 15)),
+                        // Icon(
+                        //   Icons.navigate_next,
+                        //   color: AppColors.textGrayBoldColor,
+                        //   size: 20,
+                        // ),
                       ],
                     ),
-                    onTap: () {
-                      Get.to(()=>const ChonDanhMuc());
+                    onTap: () async {
+                      FocusManager.instance.primaryFocus!.unfocus();
+                      var value = await Get.toNamed(Routes.STORE_MANAGER_SELECT_CATEGORY,
+                        arguments: [controller.listCategorySelected.value]
+                      );
+                      if(value != null){
+                        controller.listCategorySelected.clear();
+                        controller.listCategorySelected.addAll(value);
+                      };
                     },
                   ),
                 ),
@@ -538,8 +654,11 @@ class ThongTinCuaHang extends StatelessWidget {
                         ],
                       ),
                       Expanded(
-                        child: TextField(
+                        child: TextFormField(
                         maxLines: 5,
+                        onSaved: (value){
+                          controller.seller.description = value;
+                        },
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -685,7 +804,9 @@ class ThongTinCuaHang extends StatelessWidget {
                       'save_info'.tr,
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.saveSeller();
+                    },
                   ),
                 ),
               ],

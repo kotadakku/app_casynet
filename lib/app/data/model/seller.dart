@@ -1,6 +1,7 @@
 
 
 import 'package:app_casynet/app/config/config_db.dart';
+import 'package:app_casynet/app/data/model/address.dart';
 
 class Seller {
   int? id;
@@ -26,6 +27,7 @@ class Seller {
   String? ownerShop;
   int? rateFeedback;
   int? totalTransaction;
+  Address? address_seller;
 
 
   Seller(
@@ -84,6 +86,26 @@ class Seller {
     data[DBConfig.SELLER_RATE] = this.rate;
     data[DBConfig.SELLER_PHONE] = this.phone;
     data[DBConfig.SELLER_ADDRESS] = this.address;
+    return data;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = name;
+    data['phone'] = phone;
+    data['openTime'] = timeOpen;
+    data['closeTime'] = timeClose;
+    data['lat'] = lat;
+    data['lon'] = lon;
+    data['description'] = rate;
+    data['facebookLink'] = phone;
+    data['zaloLink'] = address;
+    data['avatar'] = avatar_image;
+    data['backgroundImage'] = backgroundImage;
+    data['provinceId'] = address_seller?.provinceId;
+    data['districtId'] = address_seller?.districtId;
+    data['villageId'] = address_seller?.villageId;
+    data['specificAddress'] = address_seller?.specificAddress;
     return data;
   }
 

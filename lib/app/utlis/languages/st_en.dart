@@ -137,6 +137,7 @@ const Map<String, String> en = {
   'received' : 'Received',
   'register': 'Register',
   'repeat_pass': 'Repeat password',
+  'required_field': 'This is a required field',
   'reservation': "Reservation",
   'reset' : 'Reset',
   'response_rate' : 'Response rate',

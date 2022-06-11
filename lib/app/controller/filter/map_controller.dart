@@ -4,8 +4,6 @@ import 'package:geocoding/geocoding.dart' as geocoding;
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-
-import '../../data/model/seller.dart';
 import '../../data/model/seller.dart';
 
 class MapController extends GetxController {
@@ -99,6 +97,53 @@ class MapController extends GetxController {
       CameraUpdate.newCameraPosition(
         CameraPosition(
           target: LatLng(lat, lon),
+          zoom: 15.0,
+        ),
+      ),
+    );
+    update();
+  }
+
+  void pinMarker(LatLng position) async {
+    String destinationCoordinatesString =
+        '($position.latitude, $position.longitude)';
+    Marker destinationMarker = Marker(
+      markerId: MarkerId(destinationCoordinatesString),
+      position: LatLng(position.latitude, position.longitude),
+      infoWindow: InfoWindow(
+      ),
+      icon: BitmapDescriptor.defaultMarker,
+    );
+    markers.clear();
+    markers.add(destinationMarker);
+    update();
+  }
+
+  void addMarkerByAddress(String address) async {
+
+    List<geocoding.Location> destinationPlacemark = await geocoding.locationFromAddress(address);
+    double destinationLatitude = destinationPlacemark[0].latitude;
+    double destinationLongitude = destinationPlacemark[0].longitude;
+    String destinationCoordinatesString =
+        '($destinationLatitude, $destinationLongitude)';
+    // Start Location Marker
+
+    print(destinationCoordinatesString);
+    markers.clear();
+    Marker destinationMarker = Marker(
+      markerId: MarkerId(destinationCoordinatesString),
+      position: LatLng(destinationLatitude, destinationLongitude),
+      infoWindow: InfoWindow(
+        snippet: address,
+      ),
+      icon: BitmapDescriptor.defaultMarker,
+    );
+    markers.add(destinationMarker);
+
+    googleMapController?.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(destinationLatitude, destinationLongitude),
           zoom: 15.0,
         ),
       ),

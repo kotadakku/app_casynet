@@ -1,4 +1,6 @@
 
+import 'package:app_casynet/app/bindings/store_manager/gift/create_gift_binding.dart';
+import 'package:app_casynet/app/bindings/store_manager/gift/gift_manager_binding.dart';
 import 'package:app_casynet/app/bindings/store_manager/product/select_category_binding.dart';
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
 import 'package:app_casynet/app/views/screens/account/widgets/edit_info.dart';
@@ -38,6 +40,7 @@ import '../bindings/filter_product_controller.dart';
 import '../bindings/home_bindings.dart';
 import '../bindings/my_store/new_seller_binding.dart';
 import '../bindings/products_bindings.dart';
+import '../bindings/store_manager/product/create_product_binding.dart';
 import '../bindings/store_manager/product/product_manager_binding.dart';
 import '../bindings/stores_bindings.dart';
 import '../data/model/seller.dart';
@@ -267,7 +270,8 @@ class AppPages {
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ADD_PRODUCT,
-      page: () => Themspdv()
+      page: () => Themspdv(),
+      binding: CreateProductBinding(),
     ),
     GetPage(
       name: Routes.STORE_MANAGER_SELECT_ORIGIN,
@@ -281,10 +285,12 @@ class AppPages {
     GetPage(
       name: Routes.STORE_MANAGER_GIFTS,
       page: ()=> QuanLyQuaTang(),
+      binding: GiftManagerBinding()
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ADD_GIFT,
       page: ()=> ThemQuaTang(),
+      binding: CreateGiftBinding(),
     ),
     GetPage(
       name: Routes.STORE_MANAGER_NOTIS,

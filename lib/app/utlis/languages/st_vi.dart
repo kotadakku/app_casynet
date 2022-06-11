@@ -137,6 +137,7 @@ const Map<String, String> vi = {
   'received' : 'Đã nhận',
   'register' : 'Đăng ký',
   'repeat_pass' : 'Xác nhận mật khẩu',
+  'required_field': 'Đây là trường bắt buộc',
   'reservation': "Đặt chỗ",
   'reset' : 'Thiết lập lại',
   'response_rate' : 'Tỷ lệ phản hồi',

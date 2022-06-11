@@ -1,5 +1,6 @@
 import 'package:app_casynet/app/config/config_db.dart';
 import 'package:app_casynet/app/data/model/seller.dart';
+import 'package:dio/dio.dart';
 
 class Product {
   int? id;
@@ -19,10 +20,14 @@ class Product {
   Seller? seller;
   String? description;
   int? requiredOptions;
+  bool? isDisplay;
+  bool? isFeatured;
   int? catId;
   List<String>? tags;
-  List<String>? images;
+  List<String>? images = [];
   List<Option>? options;
+  List<int>? categories = [];
+  int? originId;
 
 
 
@@ -122,17 +127,30 @@ class Product {
     // );
   }
 
-  Map<String, dynamic> toJson() {
+  Future<Map<String, dynamic>> toJson() async {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['isCar'] = this.isCar;
     data['name'] = this.name;
+    data['description'] = this.description;
+    data['isOptionRequired'] = this.requiredOptions;
+    data['sku'] = this.sku;
+    data['amount'] = this.amount;
     data['price'] = this.price;
     data['officialPrice'] = this.officialPrice;
-    data['likeQty'] = this.likeQty;
-    data['commentQty'] = this.commentQty;
-    data['rate'] = this.rate;
-    data['coinPoint'] = this.coinPoint;
+    data['isDisplay'] = this.isDisplay;
+    data['isFeature'] = this.isFeatured;
+    data['category'] = this.categories;
+    data['originId'] = this.originId;
+    final files = [];
+    await Future.forEach<String>(images!, (element) async {
+      String fileName = element .split('/').last;
+      files.add(
+        await MultipartFile.fromFile(element, filename: fileName),
+      );
+    });
+
+    data['images'] = files;
+    data['thumbnail'] = files.length>0 ? files[0] : null;
     return data;
   }
   Map<String, dynamic> toJsonDB(int catId) {
