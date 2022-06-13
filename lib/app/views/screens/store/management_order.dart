@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../../controller/store/datetime_range_controller.dart';
 
-class QuanLyDonHang extends StatelessWidget {
+class OrderManagement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateTimeRangeController QLDTController =

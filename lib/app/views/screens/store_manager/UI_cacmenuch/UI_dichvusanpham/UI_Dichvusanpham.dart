@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
+import '../../../../../controller/store_manager/add_product/get_category_controller.dart';
 import '../../../../../routes/app_pages.dart';
 import 'UI_ThemSPDV.dart';
 
@@ -36,6 +37,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
       curve: Curves.easeIn,
     );
   }
+  final getdms = Get.put(getdanhmuc());
 
   @override
   Widget build(BuildContext context) {

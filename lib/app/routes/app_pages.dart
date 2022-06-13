@@ -13,8 +13,8 @@ import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:app_casynet/app/views/screens/store/mystore.dart';
 import 'package:app_casynet/app/views/screens/store/news.dart';
 import 'package:app_casynet/app/views/screens/store/notications_customer.dart';
-import 'package:app_casynet/app/views/screens/store/quan_ly_doanh_thu.dart';
-import 'package:app_casynet/app/views/screens/store/quan_ly_don_hang.dart';
+import 'package:app_casynet/app/views/screens/store/management_revenue.dart';
+import 'package:app_casynet/app/views/screens/store/management_order.dart';
 import 'package:app_casynet/app/views/screens/store/rate_store_page.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Chondanhmuc.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Chonxuatxu.dart';
@@ -276,7 +276,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ORDERS,
-      page: ()=> QuanLyDonHang(),
+      page: ()=> OrderManagement(),
       binding: OrderManagerBinding()
     ),
     GetPage(

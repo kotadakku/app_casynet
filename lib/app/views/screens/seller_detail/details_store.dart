@@ -9,7 +9,7 @@ import '../../widgets/appbar/appbar_cart.dart';
 import '../../widgets/image_network_loading.dart';
 import '../../widgets/loading_screen.dart';
 import '../seller_detail/store_map.dart';
-import 'widgets/aq_store_widget.dart';
+import 'widgets/answer_question_store_widget.dart';
 import 'widgets/intro_store_widget.dart';
 import 'widgets/new_store_widget.dart';
 import 'widgets/product_store.dart';

@@ -11,8 +11,8 @@ import 'data_store_page.dart';
 import 'edit_mystore.dart';
 import 'sanpham_dichvu.dart';
 import 'notications_customer.dart';
-import 'quan_ly_doanh_thu.dart';
-import 'quan_ly_don_hang.dart';
+import 'management_revenue.dart';
+import 'management_order.dart';
 import 'question_answer.dart';
 import 'rate_store_page.dart';
 import 'setting_notications.dart';
@@ -192,7 +192,7 @@ class MyStorePage extends StatelessWidget {
                 splashColor: const Color.fromARGB(255, 188, 195, 216),
                 // splashColor: Colors.blue,
                 onTap: () {
-                  Get.to(QuanLyDonHang());
+                  Get.to(OrderManagement());
                 },
                 child: Container(
                   margin: const EdgeInsets.only(left: 5.0, right: 5.0),
