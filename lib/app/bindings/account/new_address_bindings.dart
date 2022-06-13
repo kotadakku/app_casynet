@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
 
-import '../../controller/account/new_address_controller.dart';
+import '../../controller/account/address/new_address_controller.dart';
 
 class NewAddressBinding extends Bindings{
 

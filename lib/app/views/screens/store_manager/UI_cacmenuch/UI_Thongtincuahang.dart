@@ -1,5 +1,5 @@
 import 'package:app_casynet/app/controller/filter/map_controller.dart';
-import 'package:app_casynet/app/controller/store/new_address_shop_controller.dart';
+import 'package:app_casynet/app/controller/store_manager/seller/update_seller_controller.dart';
 import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -8,12 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../controller/home/api/region_controller.dart';
-import '../../../../controller/store/choose_category_controller.dart';
 import '../../../theme/app_colors.dart';
-import '../../store/chon_danh_muc.dart';
 
 class ThongTinCuaHang extends StatelessWidget {
   const ThongTinCuaHang({Key? key}) : super(key: key);
@@ -22,8 +19,7 @@ class ThongTinCuaHang extends StatelessWidget {
   Widget build(BuildContext context) {
     final widthdt = MediaQuery.of(context).size.width;
 
-    final ChooseCategoryController controllerCate = Get.put(ChooseCategoryController());
-    NewAddressShopController controller = Get.put(NewAddressShopController());
+    UpdateSellerController controller = Get.find();
     RegionController _regionController = Get.find();
     MapController mapController = Get.find();
 

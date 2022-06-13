@@ -6,12 +6,6 @@ import 'package:get/get.dart';
 
 import 'widgets/Appbar.dart';
 import 'widgets/Bottommenu.dart';
-import 'UI_cacmenuch/UI_Bangdieukhien.dart';
-import 'UI_cacmenuch/UI_Thongtincuahang.dart';
-import 'UI_cacmenuch/UI_dichvusanpham/UI_Dichvusanpham.dart';
-import 'UI_cacmenuch/UI_quanlydonhang/UI_qldonhang.dart';
-import 'UI_cacmenuch/UI_quanlyquatang/UI_Quanlyquatang.dart';
-import 'UI_cacmenuch/UI_quanlythongbao/UI_Quanlythongbao.dart';
 
 class MenuCuahang extends StatelessWidget {
   const MenuCuahang({Key? key}) : super(key: key);
@@ -253,6 +247,8 @@ class MenuCuahang extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
+                  print("error");
+                  Get.toNamed(Routes.STORE_MANAGER_NEWS);
 
                 },
                 child: Container(

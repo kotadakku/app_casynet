@@ -1,4 +1,4 @@
-import 'package:app_casynet/app/config/config_db.dart';
+import 'package:app_casynet/app/config/config.dart';
 
 class Sales{
   int? id;

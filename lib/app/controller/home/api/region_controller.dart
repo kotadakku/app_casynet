@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/repo/address_repo.dart';
-import '../../../utlis/data/data.dart';
+import 'package:app_casynet/app/data/data.dart';
 
 class RegionController extends GetxController{
   final isLoadAPI = false.obs;

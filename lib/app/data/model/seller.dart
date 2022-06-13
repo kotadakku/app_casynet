@@ -1,7 +1,7 @@
 
 
-import 'package:app_casynet/app/config/config_db.dart';
-import 'package:app_casynet/app/data/model/address.dart';
+import 'package:app_casynet/app/config/config.dart';
+import 'package:app_casynet/app/data/data.dart';
 
 class Seller {
   int? id;

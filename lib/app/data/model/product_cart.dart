@@ -1,6 +1,5 @@
 
-import 'package:app_casynet/app/data/model/product.dart';
-import 'package:app_casynet/app/data/model/seller.dart';
+import 'package:app_casynet/app/data/data.dart';
 
 class ProductCart {
   // API thiếu tên cửa hàng

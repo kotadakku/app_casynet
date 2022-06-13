@@ -1,4 +1,3 @@
-import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:app_casynet/app/controller/cart/api/payment_method_controller.dart';
 import 'package:app_casynet/app/controller/cart/checkout_controller.dart';
 import 'package:app_casynet/app/views/widgets/appbar/appbar_cart.dart';

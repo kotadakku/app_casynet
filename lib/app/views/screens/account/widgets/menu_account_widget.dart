@@ -4,10 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../controller/auth/authentication_manager.dart';
+import '../../../../controller/account/auth/authentication_manager.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
-import '../../store_manager/UI_cuahang.dart';
 
 
 class MenuAccountWidget extends StatelessWidget {

@@ -1,5 +1,5 @@
-import 'package:app_casynet/app/config/config_db.dart';
-import 'package:app_casynet/app/data/model/seller.dart';
+import 'package:app_casynet/app/config/config.dart';
+import 'package:app_casynet/app/data/data.dart';
 import 'package:dio/dio.dart';
 
 class Product {

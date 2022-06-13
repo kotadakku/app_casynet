@@ -11,7 +11,7 @@ import '../../../data/model/product.dart';
 import '../../../data/provider/db_provider.dart';
 import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/account_repo.dart';
-import '../../auth/authentication_manager.dart';
+import '../../account/auth/authentication_manager.dart';
 
 class ProductCartController extends GetxController with StateMixin {
   final _productsCartList = <ProductCart>[].obs;

@@ -1,9 +1,9 @@
 
-import 'package:app_casynet/app/controller/auth/authentication_manager.dart';
 import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../controller/account/auth/authentication_manager.dart';
 import '../../../theme/app_colors.dart';
 import '../../../widgets/shadow_of_doubt.dart';
 

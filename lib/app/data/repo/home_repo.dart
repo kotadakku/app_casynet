@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:app_casynet/app/data/model/banner_slider.dart';
 import 'package:app_casynet/app/data/model/sales.dart';
 import 'package:dio/dio.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../config/api_config.dart';
 import '../../config/api_params.dart';

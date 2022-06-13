@@ -1,10 +1,10 @@
 
-import 'package:app_casynet/app/controller/auth/auth_controller.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../controller/account/auth/auth_controller.dart';
 import '../../../../data/model/user.dart';
 import '../../../theme/app_colors.dart';
 

@@ -12,15 +12,12 @@ class UpdateGiftController extends GetxController{
   List<dynamic> imagepicker = [].obs;
   var x = "".obs;
   late File imagepk;
-
-  var ngaybatdau = new DateTime.now().obs;
-  var ngayketthuc = new DateTime.now().obs;
   final isDisplay = false.obs;
   final startDate = "".obs;
   final expireDate = "".obs;
   final isSendEmail = true.obs;
   Gift gift = Gift();
-  final isLoading = false.obs;
+  final isUpdating = false.obs;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -37,7 +34,7 @@ class UpdateGiftController extends GetxController{
 
   void updateGift(int id) async {
     if(formKey.currentState!.validate()){
-      isLoading.value = true;
+      isUpdating.value = true;
       formKey.currentState!.save();
 
 
@@ -47,15 +44,15 @@ class UpdateGiftController extends GetxController{
         );
 
         if(result.statusCode== CODE_SUCCESS){
-          isLoading.value = false;
+          isUpdating.value = false;
         }
         else{
-          isLoading.value = false;
+          isUpdating.value = false;
           print(result.msg);
         }
 
       }catch(e){
-        isLoading.value = false;
+        isUpdating.value = false;
       }
 
     }

@@ -1,8 +1,11 @@
 import 'dart:math';
 
+import 'package:app_casynet/app/controller/home/api/promotion_controller.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../home/api/reservation_controller.dart';
 
 
 class FilterDisplayController extends GetxController with GetSingleTickerProviderStateMixin{
@@ -243,5 +246,42 @@ class FilterOriginController extends GetxController with GetSingleTickerProvider
 
   void expand() {
     expandOriginController.isCompleted ? expandOriginController.reverse() : expandOriginController.forward();
+  }
+}
+
+class FilterProductController extends GetxController{
+  late var controller;
+  FilterPriceController _filterPriceController = Get.find();
+  FilterAttrController _filterAttrController = Get.find();
+  FilterCategoriesController _filterCategoriesController = Get.find();
+  FilterDisplayController _filterDisplayController = Get.find();
+  FilterOriginController _filterOriginController = Get.find();
+
+  @override
+  void onInit() {
+    controller = Get.arguments['controller'];
+  }
+
+  void searchProduct() {
+    if(controller is ReservationController){
+      final min = _filterPriceController.price_min;
+      final max = _filterPriceController.price_max;
+      (controller as ReservationController).getReservationProductsAPI(minPrice: min.value, maxPrice: max.value);
+    }
+    if(controller is PromotionController){
+
+    }
+    if(controller is ReservationController){
+
+    }
+  }
+
+  void resetFilter() {
+    Get.find<FilterDistrictController>().clear();
+    _filterCategoriesController.clear();
+    _filterDisplayController.clear();
+    _filterAttrController.clear();
+    _filterOriginController.clear();
+    _filterPriceController.clear();
   }
 }

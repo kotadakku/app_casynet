@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../controller/auth/authentication_manager.dart';
+import '../../../controller/account/auth/authentication_manager.dart';
 import '../../../routes/app_pages.dart';
 
 class Splash_1 extends StatefulWidget {

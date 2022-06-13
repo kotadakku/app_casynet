@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/account/edit_info_controller.dart';
+import '../../../../controller/account/account_detail/edit_info_controller.dart';
 
 class EditInfomation extends StatelessWidget {
   EditInfomation({Key? key}) : super(key: key);

@@ -7,8 +7,8 @@ import '../../../../controller/filter/filter_product_controller.dart';
 import '../../../theme/app_colors.dart';
 
 class BottomButtonWidget extends StatelessWidget {
-  final controller;
-  const BottomButtonWidget({Key? key, this.controller}) : super(key: key);
+  BottomButtonWidget({Key? key}) : super(key: key);
+  FilterProductController _filterProductController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +37,7 @@ class BottomButtonWidget extends StatelessWidget {
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                           ),
                           onPressed: () {
-                            Get.find<FilterDistrictController>().clear();
-                            Get.find<FilterCategoriesController>().clear();
-                            Get.find<FilterDisplayController>().clear();
-                            Get.find<FilterAttrController>().clear();
-                            Get.find<FilterOriginController>().clear();
-                            Get.find<FilterPriceController>().clear();
+                            _filterProductController.resetFilter();
                           },
                         ),
                       )
@@ -63,11 +58,7 @@ class BottomButtonWidget extends StatelessWidget {
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
                           ),
                           onPressed: () {
-                            if(controller is ReservationController){
-                              final min = Get.find<FilterPriceController>().price_min;
-                              final max = Get.find<FilterPriceController>().price_max;
-                              (controller as ReservationController).getReservationProductsAPI(minPrice: min.value, maxPrice: max.value);
-                            }
+                            _filterProductController.searchProduct();
                             Get.back();
                           },
                         ),

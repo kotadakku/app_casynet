@@ -1,7 +1,5 @@
-import 'package:app_casynet/data.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
-import '../../config/config_db.dart';
+import 'package:app_casynet/app/config/config.dart';
 
 class NotificationModel{
   String? title;
@@ -12,9 +10,10 @@ class NotificationModel{
   String? dataBody;
   String? dataImageUrl;
   bool? isSeen;
+  bool? isSendEmail;
+  List<int>? customers;
   DateTime? timeReceive;
 
-  NotificationModel.init(this.dataId,this.dataTitle,this.dataBody,this.dataImageUrl,this.isSeen,this.timeReceive);
   NotificationModel({this.title, this.body, this.imageUrl, this.dataId,
       this.dataTitle, this.dataBody, this.dataImageUrl, this.isSeen, this.timeReceive});
 
@@ -46,4 +45,14 @@ class NotificationModel{
       'isseen': isSeen,
       'timereceive': timeReceive,*/
      }
+
+  Map<String, dynamic> toJsonApi()  {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    // data['id'] = this.dataId;
+    data["title"] = this.dataTitle ??  this.title;
+    data['description'] = this.dataBody ?? this.body;
+    data['isSendEmail'] = this.dataImageUrl ?? this.imageUrl;
+    data['customers'] = this.isSeen.toString();
+    return data;
+  }
 }

@@ -3,7 +3,7 @@ import 'package:app_casynet/app/data/model/checkout/shipping_method.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/address.dart';
-import '../auth/authentication_manager.dart';
+import '../account/auth/authentication_manager.dart';
 
 class CheckoutController extends GetxController{
   RxString selectPayment = "".obs;

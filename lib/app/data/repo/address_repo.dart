@@ -1,12 +1,10 @@
 
 import 'package:app_casynet/app/config/api_config.dart';
-import 'package:app_casynet/app/data/provider/api/exceptions.dart';
-import 'package:app_casynet/app/utlis/data/data.dart';
 import 'package:dio/dio.dart';
+import 'package:app_casynet/app/data/data.dart';
 
 import '../../config/api_params.dart';
-import '../provider/api/api_provider.dart';
-import '../provider/api/responses.dart';
+
 
 class AddressRepo {
   Future<Responses<Province>?> getProvinces({Map<String, dynamic>? queryParameters, Options? options}) async{

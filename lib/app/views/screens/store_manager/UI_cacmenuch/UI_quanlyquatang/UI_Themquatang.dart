@@ -284,6 +284,7 @@ class ThemQuaTang extends StatelessWidget {
                               );
                               if (newdate != null) {
                                 _createGiftController.startDate.value = DateFormat('dd/MM/yyyy').format(newdate);
+                                _createGiftController.gift.startDate = newdate;
                               }
                             },
                           ),
@@ -326,6 +327,7 @@ class ThemQuaTang extends StatelessWidget {
                               );
                               if (newdate != null) {
                                 _createGiftController.expireDate.value = DateFormat('dd/MM/yyyy').format(newdate);
+                                _createGiftController.gift.expireDate = newdate;
                               }
                             },
                           ),
