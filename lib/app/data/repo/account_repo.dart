@@ -1,13 +1,6 @@
-import 'package:app_casynet/app/data/model/order.dart';
-import 'package:app_casynet/app/data/model/product_cart.dart';
-
 import 'package:dio/dio.dart';
-import '../model/user.dart';
-import '../provider/api/api_provider.dart';
-import '../../config/api_config.dart';
-import '../../config/api_params.dart';
-import '../provider/api/responses.dart';
-import '../provider/api/exceptions.dart';
+import 'package:app_casynet/app/data/data.dart';
+import 'package:app_casynet/app/config/config.dart';
 
 class AccountRepo{
   Future<Responses<Order>> getOrders({data, Options? options, Map<String, dynamic>? queryParameters}) async{

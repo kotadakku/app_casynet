@@ -1,14 +1,7 @@
 
-import 'package:app_casynet/app/data/provider/api/responses.dart';
-import 'package:app_casynet/app/data/model/seller.dart';
 import 'package:dio/dio.dart';
-
-import '../../config/api_config.dart';
-import '../../config/api_params.dart';
-import '../provider/api/responses.dart';
-import '../model/seller.dart';
-import '../provider/api/api_provider.dart';
-import '../provider/api/exceptions.dart';
+import 'package:app_casynet/app/config/config.dart';
+import 'package:app_casynet/app/data/data.dart';
 
 class SellerRepo{
   Future<Responses<Seller>> getSeller(String seller_url) async {

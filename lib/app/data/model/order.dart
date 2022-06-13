@@ -1,6 +1,4 @@
-
-
-import 'package:app_casynet/app/data/model/product.dart';
+import 'package:app_casynet/app/data/data.dart';
 
 class Order{
   int? idStore;

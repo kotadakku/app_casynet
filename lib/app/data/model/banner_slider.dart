@@ -1,4 +1,6 @@
-import '../../config/config_db.dart';
+
+
+import 'package:app_casynet/app/config/config.dart';
 
 class BannerSlider {
   int? id;

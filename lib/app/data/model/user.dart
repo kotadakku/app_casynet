@@ -1,4 +1,4 @@
-import 'package:app_casynet/app/data/model/address.dart';
+import 'package:app_casynet/app/data/data.dart';
 import 'package:app_casynet/app/utlis/app_config.dart';
 
 class User{

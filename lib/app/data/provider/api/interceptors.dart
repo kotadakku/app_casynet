@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../config/api_config.dart';
-import '../get_storage_provider.dart';
-import 'api_provider.dart';
+import 'package:app_casynet/app/config/config.dart';
+import 'package:app_casynet/app/data/data.dart';
+
 
 class LoggingInterceptors extends Interceptor {
 

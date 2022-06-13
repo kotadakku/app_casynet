@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
-import '../../config/config_db.dart';
+import 'package:app_casynet/app/config/config.dart';
 
 class DatabaseHelper{
 

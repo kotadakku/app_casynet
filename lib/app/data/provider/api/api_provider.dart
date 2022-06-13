@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-
-import '../../../config/api_config.dart';
+import 'package:app_casynet/app/config/config.dart';
 import 'interceptors.dart';
 
 class ApiRequest{

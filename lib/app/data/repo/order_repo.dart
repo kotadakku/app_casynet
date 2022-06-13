@@ -1,11 +1,6 @@
 import 'package:dio/dio.dart';
-
-import '../../config/api_config.dart';
-import '../../config/api_params.dart';
-import '../model/order.dart';
-import '../provider/api/api_provider.dart';
-import '../provider/api/exceptions.dart';
-import '../provider/api/responses.dart';
+import 'package:app_casynet/app/data/data.dart';
+import 'package:app_casynet/app/config/config.dart';
 
 class OrderRepo{
 

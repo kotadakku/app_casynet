@@ -1,10 +1,7 @@
-import 'package:app_casynet/app/data/model/product.dart';
+import 'package:app_casynet/app/config/config.dart';
 import 'package:dio/dio.dart';
-import '../../config/api_config.dart';
-import '../../config/api_params.dart';
-import '../provider/api/responses.dart';
-import '../provider/api/api_provider.dart';
-import '../provider/api/exceptions.dart';
+
+import 'package:app_casynet/app/data/data.dart';
 
 class ProductRepo{
   Future<Responses<Product>> getProduct({data, required String sku, Options? options, Map<String, dynamic>? queryParameters}) async {
