@@ -1,7 +1,11 @@
+import 'package:app_casynet/app/config/api_params.dart';
+import 'package:app_casynet/app/data/repo/user_repo.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/product.dart';
+import '../../data/provider/get_storage_provider.dart';
 import '../../data/repo/product_repo.dart';
 
 class DetailProductController extends GetxController with GetSingleTickerProviderStateMixin{
@@ -14,11 +18,18 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
   RxBool isLive = true.obs;
   RxBool followed = true.obs;
   var date = "".obs;
+  final isLike = false.obs;
   TextEditingController date_controller = TextEditingController();
   TextEditingController hours_controller = TextEditingController();
   TextEditingController note_controller = TextEditingController();
   FocusNode hours_focus = FocusNode();
   FocusNode date_focus = FocusNode();
+
+  final isLoadingFeatured = false.obs;
+
+  final productFeaturedList = [].obs;
+
+  final errorgetFeatures = ''.obs;
 
   @override
   void onInit() {
@@ -32,6 +43,32 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
       curve: Curves.fastOutSlowIn,
     );
     getParameter();
+    checkUserFollow();
+    checkUserLike();
+    getProductFeatureAPI(category_id: 12);
+  }
+  void checkUserLike() async {
+    try{
+      final result = await UserRepo().ckeckUserLike();
+      if(result.statusCode == CODE_SUCCESS){
+        isLike.value = result.objects ?? false;
+      }
+    } catch (error){
+
+    }
+
+  }
+  void likeProduct() async {
+    isLike.value = !isLike.value;
+    try{
+      final result = await UserRepo().likeProduct();
+      if(result.statusCode == CODE_SUCCESS){
+        isLike.value = result.objects ?? false;
+      }
+    } catch (error){
+
+    }
+
   }
   getParameter(){
     if(Get.arguments['product'] !=null){
@@ -71,4 +108,63 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
       isLoading.value = false;
     }
   }
+  Future<void> checkUserFollow() async {
+    try {
+      final result = await UserRepo().isFollowSeller(
+      );
+      if (result.statusCode == CODE_SUCCESS) {
+        followed.value = result.objects ?? false;
+      }
+    }
+    catch (error) {
+
+    }
+  }
+  void followSeller() async {
+    followed.value = followed.value;
+    try{
+      final result = await UserRepo().followSeller();
+    }
+    catch(error){
+
+    }
+  }
+  Future<void> getProductFeatureAPI({required int category_id,}) async {
+    isLoadingFeatured.value = true;
+    final tokenAdmin = await GetStorageProvider().get(
+        key: CacheManagerKey.TOKEN_ADMIN.toString());
+    isLoadingFeatured.value = false;
+    try {
+      final result = await ProductRepo().getProducts(
+          options: Options(
+              headers: {'Authorization': 'Bearer $tokenAdmin'}
+          ),
+          queryParameters: {
+            'searchCriteria[pageSize]': '12',
+            'searchCriteria[currentPage]': '1',
+            'searchCriteria[sortOrders][0][direction]': 'DESC',
+            'searchCriteria[filterGroups][2][filters][0][field]': 'category_id',
+            'searchCriteria[filterGroups][2][filters][0][value]': '$category_id',
+          }
+      );
+      if (result != null) {
+        if (result.isSuccess) {
+          productFeaturedList.value = result.listObjects ?? [];
+          isLoadingFeatured.value = false;
+          // isLoadingProduct.value = false;
+        } else {
+          print(result.msg.toString());
+          isLoadingFeatured.value = false;
+          errorgetFeatures.value = result.msg.toString();
+          // isLoadingProduct.value = false;
+        }
+      }
+    } catch (e) {
+      print(e);
+      errorgetFeatures.value = 'Hệ thống đang gặp vấn đề';
+      isLoadingFeatured.value = false;
+      // isLoadingProduct.value = false;
+    }
+  }
+
 }

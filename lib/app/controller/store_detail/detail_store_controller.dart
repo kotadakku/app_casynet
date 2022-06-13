@@ -55,8 +55,6 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
     }
   }
 
-
-
   Future<void> getDetailSellerAPI(
       {String seller_url = '98-vo-chi-cong'}) async {
     isLoading.value = true;

@@ -13,8 +13,8 @@ import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:app_casynet/app/views/screens/store/mystore.dart';
 import 'package:app_casynet/app/views/screens/store/news.dart';
 import 'package:app_casynet/app/views/screens/store/notications_customer.dart';
-import 'package:app_casynet/app/views/screens/store/quan_ly_doanh_thu.dart';
-import 'package:app_casynet/app/views/screens/store/quan_ly_don_hang.dart';
+import 'package:app_casynet/app/views/screens/store/management_revenue.dart';
+import 'package:app_casynet/app/views/screens/store/management_order.dart';
 import 'package:app_casynet/app/views/screens/store/rate_store_page.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Chondanhmuc.dart';
 import 'package:app_casynet/app/views/screens/store_manager/UI_cacmenuch/UI_dichvusanpham/UI_Chonxuatxu.dart';
@@ -79,6 +79,7 @@ import '../views/screens/sellers/stores.dart';
 import '../views/screens/store/data_store_page.dart';
 import '../views/screens/store/gift_store_page.dart';
 import '../views/screens/store/new_created_store.dart';
+import '../views/screens/store/other_category.dart';
 import '../views/screens/store/question_answer.dart';
 import '../views/screens/store/sanpham_dichvu.dart';
 import '../views/screens/store/setting_notications.dart';
@@ -278,7 +279,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.STORE_MANAGER_ORDERS,
-      page: ()=> QuanLyDonHang(),
+      page: ()=> OrderManagement(),
       binding: OrderManagerBinding()
     ),
     GetPage(
@@ -318,7 +319,13 @@ class AppPages {
     GetPage(
       name: Routes.STORE_MANAGER_ADD_NOTI,
       page: () => ThemThongBao(),
-      binding: CreateNotificationBinding()
+        binding: CreateNotificationBinding()
+    ),
+    GetPage(
+        name: Routes.MY_STORE_CATEGORY,
+        page: () => OtherCategory(),
+        binding: NewSellerBinding(),
+
     ),
     GetPage(
       name: Routes.STORE_MANAGER_NEWS,

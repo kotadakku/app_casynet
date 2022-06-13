@@ -5,13 +5,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../controller/store_manager/add_product/get_category_controller.dart';
 import 'UI_ThemSPDV.dart';
 
-final getdms = Get.put(getdanhmuc());
+
 
 
 class SelectCategory extends StatelessWidget {
   SelectCategory({Key? key}) : super(key: key);
+  final getdms = Get.put(getdanhmuc());
 
   final CategoryController _categoryController = Get.find();
   final SelectCategoryController _selectCategoryController = Get.find();

@@ -11,7 +11,6 @@ class NewSellerBinding extends Bindings{
   void dependencies() {
     Get.lazyPut(() => CreateSellerController());
     Get.lazyPut(() => OtherCategoryController());
-    Get.lazyPut(() => OtherCategoryController());
   }
 
 }

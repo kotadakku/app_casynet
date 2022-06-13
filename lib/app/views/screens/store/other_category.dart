@@ -21,17 +21,11 @@ class OtherCategory extends StatelessWidget {
       onWillPop: () => _onWillPopOtherCategory(context),
       child: Scaffold(
         appBar: AppBar(
-
           title: const Text("Chọn danh mục nghề khác"),
           actions: [
             IconButton(
                 onPressed: (){
                   Get.back(result: _otherCateController.listOtherCategory);
-                  print("List danh mục khác ${_otherCateController.listOtherCategory.length}");
-                  for(var i = 0; i < _otherCateController.listOtherCategory.length; i++){
-                    //print("List danh mục khác 01 ${_otherCateController.listOtherCategory[i].name}");
-                    print("List danh mục khác 01 ${_otherCateController.listOtherCategory[i].name}");
-                  }
                 },
                 icon: const Icon(Icons.check,
                   color: Colors.grey,
@@ -42,18 +36,18 @@ class OtherCategory extends StatelessWidget {
           child: SingleChildScrollView(
             child: Container(
               margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
-              child: ListView.separated(
+              child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                separatorBuilder: (BuildContext context, int index) {
+                /*separatorBuilder: (BuildContext context, int index) {
                   return const Divider(
                     height: 4.0,
                     thickness: 1.0,
                   );
-                },
+                },*/
                 itemCount: dataCtr.categoriesList.length,
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: ( context, index) {
                   return Obx(
                     () => CheckboxListTile(
                       activeColor: const Color.fromARGB(255, 223, 180, 0),

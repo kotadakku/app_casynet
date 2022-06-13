@@ -135,8 +135,7 @@ class InformationStoreWidget extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                       ),
                       onPressed: () {
-                        print("Followed");
-                        controller.followed.value = !controller.followed.value;
+                        controller.followSeller();
                       },
                     )
                 ),

@@ -34,7 +34,7 @@ class DetailProductPage extends StatelessWidget {
             backgroundColor: Colors.white,
             appBar: AppBarCartWidget(),
             body: Obx(()=>_detailProductController.isLoading.value ?
-              LoadingScreen():
+              const LoadingScreen():
               Column(
               mainAxisSize: MainAxisSize.max,
               children: [

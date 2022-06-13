@@ -11,7 +11,7 @@ import '../../../theme/app_colors.dart';
 import '../../../theme/app_sizes.dart';
 
 class ImageProductWidget extends StatelessWidget {
-  DetailProductController controller;
+  DetailProductController controller = Get.find();
   ImageProductWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
@@ -53,7 +53,11 @@ class ImageProductWidget extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.favorite_border, color: Colors.red, size: AppSize.iconSize,),
+                              Obx(() => controller.isLike.value
+                                  ? Icon(Icons.favorite, color: Colors.red, size: AppSize.iconSize,)
+                                  :  Icon(Icons.favorite_border, color: Colors.red, size: AppSize.iconSize,),
+                              ),
+
                               SizedBox(width: 5,),
                               Text('like'.tr,
                                 style: TextStyle(
@@ -67,7 +71,9 @@ class ImageProductWidget extends StatelessWidget {
                               primary: Colors.white,
 
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
-                          ), onPressed: () {  },
+                          ), onPressed: () {
+                          controller.likeProduct();
+                        },
                         ),
                       ),
                       SizedBox(width: 5.w,),

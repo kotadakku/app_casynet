@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:app_casynet/app/controller/store_manager/product/add_product_controller.dart';
 import 'package:app_casynet/app/views/theme/app_colors.dart';
@@ -10,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:video_player/video_player.dart';
 
+import '../../../../../controller/store_manager/add_product/get_category_controller.dart';
 import '../../../../../data/model/category.dart';
 import '../../../../../data/model/origin.dart';
 import '../../../../../routes/app_pages.dart';
@@ -20,6 +20,9 @@ import 'danhmuc.dart';
 
 
 class Themspdv extends StatelessWidget {
+
+  final getdms = Get.put(getdanhmuc());
+
   Themspdv({Key? key}) : super(key: key);
   final AddProductController _addProductController = Get.find();
   @override
@@ -876,36 +879,36 @@ class Themspdv extends StatelessWidget {
 }
 
 
-final getdms = Get.put(getdanhmuc());
+
 
 class chonloaisp extends GetxController {
   var lsp = "Chọn loại sp".obs;
 }
 
 
-class getdanhmuc extends GetxController {
-  var danhmucsp = [].obs;
-  var getdanhmuctid = [].obs;
-  var dem = 0.obs;
-  var nothing = [].obs;
-  Future<List<Category>> fetchDanhmuc() async {
-    final response = await http.get(Uri.parse(
-        "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
-    List<dynamic> list = json.decode(response.body);
-    List<Category> pp = [];
-
-    pp = list.map((e) => Category.fromJson(e)).toList();
-    if (getdms.nothing.length == 0) {
-      for (int i = 0; i < pp.length; i++) {
-        getdms.nothing.add(danhmuc(
-            title: pp[i].imageUrl.toString(),
-            id: int.parse(pp[i].id.toString())));
-      }
-    }
-    danhmucsp.value = pp;
-    return pp;
-  }
-}
+// class getdanhmuc extends GetxController {
+//   var danhmucsp = [].obs;
+//   var getdanhmuctid = [].obs;
+//   var dem = 0.obs;
+//   var nothing = [].obs;
+//   Future<List<Category>> fetchDanhmuc() async {
+//     final response = await http.get(Uri.parse(
+//         "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
+//     List<dynamic> list = json.decode(response.body);
+//     List<Category> pp = [];
+//
+//     pp = list.map((e) => Category.fromJson(e)).toList();
+//     if (getdms.nothing.length == 0) {
+//       for (int i = 0; i < pp.length; i++) {
+//         getdms.nothing.add(danhmuc(
+//             title: pp[i].imageUrl.toString(),
+//             id: int.parse(pp[i].id.toString())));
+//       }
+//     }
+//     danhmucsp.value = pp;
+//     return pp;
+//   }
+// }
 
 
 
