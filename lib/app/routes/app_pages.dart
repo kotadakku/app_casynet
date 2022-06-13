@@ -69,6 +69,7 @@ import '../views/screens/sellers/stores.dart';
 import '../views/screens/store/data_store_page.dart';
 import '../views/screens/store/gift_store_page.dart';
 import '../views/screens/store/new_created_store.dart';
+import '../views/screens/store/other_category.dart';
 import '../views/screens/store/question_answer.dart';
 import '../views/screens/store/sanpham_dichvu.dart';
 import '../views/screens/store/setting_notications.dart';
@@ -299,6 +300,11 @@ class AppPages {
     GetPage(
       name: Routes.STORE_MANAGER_ADD_NOTI,
       page: () => ThemThongBao(),
+    ),
+    GetPage(
+        name: Routes.MY_STORE_CATEGORY,
+        page: () => OtherCategory(),
+        binding: NewSellerBinding(),
     )
   ];
 

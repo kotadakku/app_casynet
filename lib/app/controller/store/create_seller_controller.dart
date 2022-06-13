@@ -20,5 +20,6 @@ class CreateSellerController extends GetxController{
 
   void createSeller() {
     print(seller.toJsonDB());
+
   }
 }

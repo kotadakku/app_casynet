@@ -1,5 +1,6 @@
 
 import 'package:app_casynet/app/controller/store/other_category_controller.dart';
+import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:app_casynet/app/views/screens/store/short_description.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -412,10 +413,14 @@ class NewCreatedStore extends StatelessWidget {
                               splashColor: const Color.fromARGB(255, 188, 195, 216),
                               // splashColor: Colors.blue,
                               onTap: () async {
-                                var value = await Get.to(OtherCategory());
+                                FocusManager.instance.primaryFocus!.unfocus();
+                                var value = await Get.toNamed(
+                                    Routes.MY_STORE_CATEGORY,
+                                    arguments: [_createSellerController.listOtherCateSelected.value]
+                                );
                                 if(value != null){
-                                  //chooseCategory.listOtherCateSelected.removeRange(0, _createSellerController.listOtherCateSelected.length - 1);
-                                  chooseCategory.listOtherCategory.addAll(value);
+                                  _createSellerController.listOtherCateSelected.clear();
+                                  _createSellerController.listOtherCateSelected.addAll(value);
                                 }
                               },
 
@@ -431,58 +436,62 @@ class NewCreatedStore extends StatelessWidget {
                                                   255, 127, 141, 171)))
                                     ],
                                   ),
-                                  chooseCategory.listOtherCategory.length > 0
-                                  ? Expanded(
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          shrinkWrap: true,
-                                          itemCount: chooseCategory.listOtherCategory.length,
-                                          reverse: true,
-                                          itemBuilder: (context, index) {
-                                            return Container(
-                                              alignment: Alignment.centerRight,
-                                              child: Stack(
-                                                clipBehavior: Clip.none,
-                                                children: [
-                                                  Container(
-                                                    padding: EdgeInsets.only(right: 10, left: 10),
-                                                    margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
-                                                    height: 40,
-                                                    child: Center(
-                                                      child: Text(chooseCategory.listOtherCategory[index].name
-                                                          .toString()),
+
+                                  Obx(
+                                      () => _createSellerController.listOtherCateSelected.length > 0
+                                    ? Expanded(
+                                        child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            shrinkWrap: true,
+                                            itemCount: _createSellerController.listOtherCateSelected.length,
+                                            reverse: true,
+                                            itemBuilder: (context, index) {
+                                              return Container(
+                                                alignment: Alignment.centerRight,
+                                                child: Stack(
+                                                  clipBehavior: Clip.none,
+                                                  children: [
+                                                    Container(
+                                                      padding: EdgeInsets.only(right: 10, left: 10),
+                                                      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                                                      height: 40,
+                                                      child: Center(
+                                                        child: Text(_createSellerController.listOtherCateSelected[index].name
+                                                            .toString()),
+                                                      ),
+                                                      color:
+                                                      Color.fromARGB(255, 241, 243, 253),
                                                     ),
-                                                    color:
-                                                    Color.fromARGB(255, 241, 243, 253),
-                                                  ),
-                                                  Positioned(
-                                                      width: 20,
-                                                      height: 20,
-                                                      right: 0,
-                                                      top: 0,
-                                                      child: FloatingActionButton(
-                                                        child: Icon(Icons.close, size: 8,),
-                                                        onPressed: (){
-                                                          _createSellerController.listOtherCateSelected
-                                                              .removeAt(index);
-                                                        },
-                                                      )
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          })
+                                                    Positioned(
+                                                        width: 20,
+                                                        height: 20,
+                                                        right: 0,
+                                                        top: 0,
+                                                        child: FloatingActionButton(
+                                                          child: Icon(Icons.close, size: 8,),
+                                                          onPressed: (){
+                                                            _createSellerController.listOtherCateSelected
+                                                                .removeAt(index);
+
+                                                          },
+                                                        )
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            })
+                                    )
+                                    : Expanded(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              chooseCategory.chonDanhmuc.toString() ,
+                                            ),
+                                            Icon(Icons.navigate_next),
+                                          ],
+                                        )),
                                   )
-                                  : Expanded(
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            chooseCategory.chonDanhmuc.toString() ,
-                                          ),
-                                          Icon(Icons.navigate_next),
-                                        ],
-                                      ))
                                 ],
                               ),
                             )),

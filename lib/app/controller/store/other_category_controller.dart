@@ -7,30 +7,24 @@ import '../home/api/category_controller.dart';
 
 class OtherCategoryController extends GetxController{
 
-  var isChange = false.obs;
-  final isSave = true.obs;
+
+  // final isSave = true.obs;
 
 
   var chonDanhmuc = "- Chọn -".obs;
   var chooseMainCategory = "- Chọn -".obs;
 
 
-  final listOtherCategory =  <Category>[].obs;
-
-  final newlistOtherCategory =  <Category>[].obs;// mảng tạm chứa danh mục nghề khác
-
+  final listOtherCategory =  <Category>[].obs;// mảng tạm chứa danh mục nghề khác
+  var isChange = false.obs;
 
   var checkOtherCategory = false.obs;
 
   @override
   void onInit() {
-    CreateSellerController _creSellerController = Get.find();
-    for(var i = 0; i < _creSellerController.listOtherCateSelected.length; i++){
-      print("List danh mục khác ${_creSellerController.listOtherCateSelected[i].name}");
-      print("List danh mục khác ${_creSellerController.listOtherCateSelected[i].name}");
-    }
-    listOtherCategory.remove(true);
-    // listOtherCategory.addAll(_creSellerController.listOtherCateSelected);
+    // if(Get.arguments[0] != null){
+    //   listOtherCategory.addAll(Get.arguments[0]);
+    // }
   }
 
   bool isCategorySelected(Category? category){
