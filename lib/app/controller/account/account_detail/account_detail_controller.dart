@@ -6,6 +6,7 @@ import 'dart:io';
 import '../../../data/model/user.dart';
 import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/account_repo.dart';
+import '../../../data/repo/user_repo.dart';
 import '../auth/authentication_manager.dart';
 
 class AccountDetailController extends GetxController{
@@ -31,7 +32,7 @@ class AccountDetailController extends GetxController{
     AuthenticationManager authenticationManager = Get.find();
     try{
       final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
-      final result = await AccountRepo().updateUserAccount(
+      final result = await UserRepo().updateUserAccount(
           data: user.value.toEditJson(),
           options: Options(
               headers: {

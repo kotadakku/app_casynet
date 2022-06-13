@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 import '../../../data/model/address.dart';
 import '../../../data/model/user.dart';
+import '../../../data/repo/user_repo.dart';
 import '../auth/authentication_manager.dart';
 
 
@@ -24,7 +25,7 @@ class NewAddressController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
+
     super.onInit();
     _authManager = Get.put(AuthenticationManager());
     formStateKey = GlobalKey<FormState>();
@@ -45,7 +46,7 @@ class NewAddressController extends GetxController {
   void createAddress(Address new_address) async {
     try{
       String? token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
-      final result = await HomePageRepo().updateAddress(
+      final result = await UserRepo().updateAddress(
         data: new_address.toJsonAddress(),
         options: Options(
           headers: {

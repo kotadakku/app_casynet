@@ -8,7 +8,7 @@ import 'items/bottom_category_item.dart';
 
 class CategoryBottomWidget extends StatelessWidget {
   CategoryBottomWidget({Key? key}) : super(key: key);
-  CategoryController _fetchDataController = Get.find();
+  final CategoryController _fetchDataController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,29 +30,6 @@ class CategoryBottomWidget extends StatelessWidget {
             ));
           }),
         )
-        /*Wrap(
-            runSpacing: 10,
-            spacing: 10,
-            children: [
-              CategoryItemBottom(
-                  images_url: "assets/images/home/category/bt_ruaxethaydau.svg",
-                  name: "Rửa xe thay dầu"),
-              CategoryItemBottom(
-                  images_url: "assets/images/home/category/bt_suachuaxe.svg",
-                  name: "Sửa chữa xe"),
-              CategoryItemBottom(
-                  images_url: "assets/images/home/category/bt_dochoiphukien.svg",
-                  name: "Đồ chơi, phụ kiện xe"),
-              CategoryItemBottom(
-                  images_url: "assets/images/home/category/bt_muabanxe.svg",
-                  name: "Mua bán xe"),
-              CategoryItemBottom(
-                  images_url: "assets/images/home/category/bt_chamsocxe.svg",
-                  name: "Chăm sóc xe"),
-              CategoryItemBottom(
-                  images_url: "assets/images/home/category/bt_lopacquy.svg",
-                  name: "Lốp và ác quy xe"),
-            ]),*/
         );
   }
 }

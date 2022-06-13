@@ -8,6 +8,7 @@ import '../../../config/config_db.dart';
 import '../../../data/model/product.dart';
 import '../../../data/provider/get_storage_provider.dart';
 import '../../../data/repo/home_repo.dart';
+import '../../../data/repo/product_repo.dart';
 
 
 class ReservationController extends GetxController{
@@ -27,7 +28,7 @@ class ReservationController extends GetxController{
     isLoadingAPI.value = true;
     error.value = "";
     try {
-      final result = await HomePageRepo().getProducts(
+      final result = await ProductRepo().getProducts(
           options: Options(
               headers: {'Authorization': 'Bearer $token_admin'}
           ),

@@ -102,7 +102,7 @@ class ProductCartController extends GetxController with StateMixin {
     print("<GET PRODUCT API>");
     change(cartsByStore, status: RxStatus.loading());
     try{
-      final result = await AccountRepo().getProductsCart(
+      final result = await CartRepo().getProductsCart(
         options: Options(
           headers: {
             'Authorization' : 'Bearer $token'
@@ -142,7 +142,7 @@ class ProductCartController extends GetxController with StateMixin {
 
     if(productCart.cartId == null){
       try{
-        final result = await AccountRepo().getCartId(
+        final result = await CartRepo().getCartId(
           options: Options(
               headers: {
                 'Authorization' : 'Bearer $token'
@@ -161,7 +161,7 @@ class ProductCartController extends GetxController with StateMixin {
     }
     else{
       try{
-        final result = await AccountRepo().addProductCart(
+        final result = await CartRepo().addProductCart(
           data: productCart.toJsonPost(qty),
             options: Options(
               headers: {

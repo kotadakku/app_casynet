@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../data/model/seller.dart';
 import '../../data/repo/home_repo.dart';
+import '../../data/repo/seller_repo.dart';
 import '../home/api/seller_controller.dart';
 
 class StoresController extends GetxController {
@@ -15,6 +16,7 @@ class StoresController extends GetxController {
   int _pageSizeNumber = 12;
   bool _isLoading = false;
   final isLoadingApi = false.obs;
+  final error = ''.obs;
 
 
 
@@ -55,9 +57,10 @@ class StoresController extends GetxController {
   }
   Future<void> getSellersAPI({bool first_load = false, int pageSize = 12,int curPage= 1,  String? type_filter }) async {
     MapController mapController = Get.find();
+
     if(first_load) isLoadingApi.value = true;
     try {
-      final result = await HomePageRepo().getSellers(
+      final result = await SellerRepo().getSellers(
           queryParameters: {
             'lat': mapController.currentLocation.latitude,   /*21.0012507,*/  // lat user
             'lng': mapController.currentLocation.longitude,     /*105.7938183,*/ // long user
@@ -75,6 +78,7 @@ class StoresController extends GetxController {
         } else {
           // Get.snackbar('noti'.tr, resultLM.msg.toString(),
           //     backgroundColor: Colors.black.withOpacity(0.3));
+          error.value = result.msg.toString();
           print(result.msg.toString());
           isLoadingApi.value = false;
         }
@@ -83,6 +87,7 @@ class StoresController extends GetxController {
       // Get.snackbar('noti'.tr, "error:: $e",
       //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
+      error.value = 'Hệ thống đang gặp vấn đề';
       isLoadingApi.value = false;
     }
   }

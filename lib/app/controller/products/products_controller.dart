@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import '../../data/model/product.dart';
 import '../../data/provider/get_storage_provider.dart';
 import '../../data/repo/home_repo.dart';
+import '../../data/repo/product_repo.dart';
 
-class ProductsController extends GetxController with StateMixin{
+class ProductsController extends GetxController{
   final productList = <Product>[].obs;
   late String category_name;
   late int category_id;
@@ -13,18 +14,19 @@ class ProductsController extends GetxController with StateMixin{
   final isLoading = false.obs;
   final haveNextPage = true.obs;
   int page = 1;
+  final error = ''.obs;
   @override
   void onInit() {
     getParameters();
 
   }
-  Future<void> getProductsAPI({bool first_load = true, int pageSize = 12, int currentPage = 1, int minPrice=0, int maxPrice=9999999999, required int category_id}) async {
-    final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
-    if(first_load) change(productList, status: RxStatus.loading());
+  Future<void> getProductsAPI({bool first_load = true, int pageSize = 12, int currentPage = 1, int minPrice=0, int maxPrice=9999999999}) async {
+    final tokenAdmin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
+    if(first_load) isLoading.value = true;
     try {
-      final result = await HomePageRepo().getProducts(
+      final result = await ProductRepo().getProducts(
           options: Options(
-              headers: {'Authorization': 'Bearer $token_admin'}
+              headers: {'Authorization': 'Bearer $tokenAdmin'}
           ),
           queryParameters: {
 
@@ -47,26 +49,25 @@ class ProductsController extends GetxController with StateMixin{
           productList.value = result.listObjects ?? []
               :productList.addAll(result.listObjects ?? []);
           if(result.listObjects!.length < pageSize){
+            isLoading.value = false;
             haveNextPage.value = false;
           }
           if(productList.isEmpty){
-            change(productList, status: RxStatus.empty());
+            isLoading.value = false;
             return;
           }
-          change(productList, status: RxStatus.success());
+          isLoading.value = false;
 
         } else {
-          // Get.snackbar('noti'.tr, result.msg.toString(),
-          //     backgroundColor: Colors.black.withOpacity(0.3));
           print(result.msg.toString());
-          change(productList, status: RxStatus.error());
+          error.value = result.msg.toString();
+          isLoading.value = false;
         }
       }
     } catch (e) {
-      // Get.snackbar('noti'.tr, "error:: $e",
-      //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
-      change(productList, status: RxStatus.error());
+      error.value = 'Hệ thống đang gặp vấn đề';
+      isLoading.value = false;
     }
 
   }
@@ -75,21 +76,21 @@ class ProductsController extends GetxController with StateMixin{
     if(!isLoading.value && haveNextPage.value){
       isLoading.value = true;
       page +=1;
-      await getProductsAPI(first_load: false, category_id: category_id, currentPage: page);
+      await getProductsAPI(first_load: false, currentPage: page);
       isLoading.value = false;
     }
   }
 
   void getParameters(){
     category_name = Get.arguments[0].toString();
-    category_id = Get.arguments[1];
+    category_id = Get.arguments[1] ?? 1;
     if(Get.arguments[2]!= null){
-      change(productList, status: RxStatus.loading());
+      isLoading.value = true;
       productList.addAll(Get.arguments[2]);
-      change(productList, status: RxStatus.success());
+      isLoading.value = false;
     }
     else{
-      getProductsAPI(first_load: true, category_id: category_id, currentPage: page);
+      getProductsAPI(first_load: true, currentPage: page);
     }
 
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/user.dart';
+import '../../../data/repo/user_repo.dart';
 import 'authentication_manager.dart';
 
 class AuthController extends GetxController with GetSingleTickerProviderStateMixin {
@@ -61,7 +62,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   Future<void> loginUser(User user) async {
       sigin_loading.value = true;
       try{
-        final result = await HomePageRepo().getTokenUser(
+        final result = await UserRepo().getTokenUser(
           user.toJsonLogin(),
         );
         if(result != null){
@@ -105,7 +106,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   Future<void> registerUser(User user) async {
     register_loading.value = true;
     try{
-      final result = await HomePageRepo().createUser(user.toJsonRegister());
+      final result = await UserRepo().createUser(user.toJsonRegister());
       if(result != null){
         if(result.isSuccess){
           register_loading.value = false;

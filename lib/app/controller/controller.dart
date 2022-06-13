@@ -25,6 +25,6 @@ export 'filter/map_controller.dart';
 
 export 'home/banner_page_view_controller.dart';
 export 'home/home_controller.dart';
-export 'home/search_controller.dart';
+export 'home/appbar_controller.dart';
 export 'home/api/banner_controller.dart';
 export 'home/api/category_controller.dart';

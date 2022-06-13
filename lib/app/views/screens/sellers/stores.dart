@@ -1,4 +1,6 @@
 import 'package:app_casynet/app/views/widgets/appbar/appbar_home_widget.dart';
+import 'package:app_casynet/app/views/widgets/loading_overlay_shimmer.dart';
+import 'package:app_casynet/app/views/widgets/shimmer/seller_shimmer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,8 +21,6 @@ class StoreHomeMore extends StatelessWidget {
     StoresController _sellersController = Get.find();
 
     var category = Get.arguments[0].toString();
-    // int pageNumber ;
-    // int pageSizeNumber ;
 
     return Scaffold(
       appBar: AppBarHomeWidget(),
@@ -123,27 +123,35 @@ class StoreHomeMore extends StatelessWidget {
             color: Color(0xffF1F3FD),
           ),),
           Expanded(
-            child: Obx(()=>
-              GridView.builder(
-                shrinkWrap: true,
-                controller: _sellersController.scrollController,
-                padding: EdgeInsets.symmetric(horizontal: 5.0.w),
-                physics: const AlwaysScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 2 / 2.3,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5),
-                itemCount: _sellersController.sellerListLoadMore.length,
-                itemBuilder: (BuildContext ctx, index) {
-                  return ItemSellerWidget(
-                    index: index,
-                    sellers: _sellersController.sellerListLoadMore,
-                  );
-                }
+            child: RefreshIndicator(
+              onRefresh: () => _sellersController.getSellersAPI(first_load: true),
+              child: Obx(()=>
+                LoadingOverlayShimmer(
+                  isLoadingAPI: _sellersController.isLoadingApi.value, isLoadingDB: false,
+                  child: GridView.builder(
+                      shrinkWrap: true,
+                      controller: _sellersController.scrollController,
+                      padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                      physics: const BouncingScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 2 / 2.3,
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5),
+                      itemCount: _sellersController.sellerListLoadMore.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return ItemSellerWidget(
+                          index: index,
+                          sellers: _sellersController.sellerListLoadMore,
+                        );
+                      }
 
-              )
-            ),
+                  ),
+                  funcRetry: () => _sellersController.getSellersAPI(first_load: true),
+                  funcSkip: () => _sellersController.error.value = '')
+
+              ),
+            )
           )
           // CategoryBottomWidget(),
           // BottomWidget(),

@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/home/bottombar_controller.dart';
 import 'package:app_casynet/app/controller/product_detail/detail_product_controller.dart';
 import 'package:app_casynet/app/views/widgets/loading_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ import 'widgets/vote_product_widget.dart';
 
 class DetailProductPage extends StatelessWidget {
   final DetailProductController _detailProductController = Get.find<DetailProductController>();
+  final BottombarController _bottombarController = Get.find();
   DetailProductPage({Key? key}) : super(key: key);
 
   @override
@@ -82,7 +84,7 @@ class DetailProductPage extends StatelessWidget {
                             action: SnackBarAction(
                               label: "Kiểm tra",
                               onPressed: () {
-                                Get.put(HomeController()).tabIndex.value = 2;
+                                _bottombarController.tabIndex.value = 2;
                                 Get.toNamed(Routes.HOME);
                               },
                             ),

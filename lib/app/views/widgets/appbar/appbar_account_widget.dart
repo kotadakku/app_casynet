@@ -7,8 +7,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/account/address/new_address_controller.dart';
+import '../../../controller/home/bottombar_controller.dart';
 import '../../../controller/home/home_controller.dart';
-import '../../../controller/home/search_controller.dart';
+import '../../../controller/home/appbar_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../button_language.dart';
@@ -19,18 +20,15 @@ class AppBarAccountWidget extends StatelessWidget implements PreferredSizeWidget
   // You can set it to kToolbarHeight to get the default appBar height.
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
+  BottombarController _bottombarController = Get.find();
   @override
   Widget build(BuildContext context) {
-
-
-
     return AppBar(
       backgroundColor: Colors.white,
       leading: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: (){
-          Get.put(HomeController()).tabIndex.value = 0;
+          _bottombarController.tabIndex.value = 0;
           Get.offNamed(Routes.HOME);
         },
         child: Container(

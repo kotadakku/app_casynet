@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../data/model/product.dart';
 import '../../data/model/seller.dart';
 import '../../data/provider/get_storage_provider.dart';
+import '../../data/repo/product_repo.dart';
 import '../../data/repo/seller_repo.dart';
 
 class DetailStoreController extends GetxController with GetSingleTickerProviderStateMixin, StateMixin  {
@@ -80,7 +81,7 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     change(productSellerList, status: RxStatus.loading());
     try {
-      final result = await HomePageRepo().getProducts(
+      final result = await ProductRepo().getProducts(
           options: Options(
               headers: {'Authorization': 'Bearer $token_admin'}
           ),
@@ -131,7 +132,7 @@ class DetailStoreController extends GetxController with GetSingleTickerProviderS
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     change(productFeaturedSellerList, status: RxStatus.loading());
     try {
-      final result = await HomePageRepo().getProducts(
+      final result = await ProductRepo().getProducts(
           options: Options(
               headers: {'Authorization': 'Bearer $token_admin'}
           ),

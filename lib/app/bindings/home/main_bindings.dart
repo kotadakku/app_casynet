@@ -7,6 +7,8 @@ import '../../controller/account/auth/authentication_manager.dart';
 import '../../controller/cart/api/product_cart_controller.dart';
 import '../../controller/home/api/origin_controller.dart';
 import '../../controller/home/api/region_controller.dart';
+import '../../controller/home/appbar_controller.dart';
+import '../../controller/home/bottombar_controller.dart';
 import '../../controller/product_detail/detail_app_controller.dart';
 import '../../controller/home/api/banner_controller.dart';
 import '../../controller/home/api/category_controller.dart';
@@ -22,6 +24,8 @@ class MainBindings extends Bindings {
   void dependencies() {
 
     Get.put(HomeController());
+    Get.put(BottombarController());
+
     Get.put(RegionController());
     Get.put(OriginController());
     // Get.put(ConnectivityService());
@@ -37,6 +41,7 @@ class MainBindings extends Bindings {
     Get.put(FetchBannerController());
     Get.put(MapController());
     Get.put(NotificationService());
+
 
 
   }

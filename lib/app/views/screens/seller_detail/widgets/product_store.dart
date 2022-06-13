@@ -54,6 +54,7 @@ class ProductStoreWidget extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
+                      behavior: HitTestBehavior.translucent,
                       child: Row(
                         children: [
                           SvgPicture.asset("assets/images/home/store/icon_filter.svg", width: 15,),

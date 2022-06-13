@@ -4,6 +4,7 @@ import 'package:app_casynet/app/config/config.dart';
 import 'package:app_casynet/app/data/data.dart';
 
 class SellerRepo{
+
   Future<Responses<Seller>> getSeller(String seller_url) async {
     try{
       final response = await ApiRequest().get(

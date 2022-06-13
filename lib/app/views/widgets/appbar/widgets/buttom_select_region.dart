@@ -6,17 +6,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/home/api/region_controller.dart';
-import '../../../../controller/home/search_controller.dart';
+import '../../../../controller/home/appbar_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 
 class ButtonSelectRegion extends StatelessWidget {
-  const ButtonSelectRegion({Key? key}) : super(key: key);
+  ButtonSelectRegion({Key? key}) : super(key: key);
+  RegionController _regionController = Get.find();
+  AppbarController _appbarController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    RegionController _regionController = Get.find();
-    SearchController searchController = Get.find();
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: (){
@@ -25,7 +26,7 @@ class ButtonSelectRegion extends StatelessWidget {
         });
         if(data != null){
           data.then((value){
-            searchController.setLocation(value.name);
+            _appbarController.setLocation(value.name);
           });
         }
       },
@@ -47,7 +48,7 @@ class ButtonSelectRegion extends StatelessWidget {
                 width: 14),
             SizedBox(width: 5.0.w,),
             Obx(()=> Text(
-              searchController.location.value,
+              _appbarController.location.value,
               style: TextStyle(
                 color: AppColors.textGrayColor,
                 fontSize: 13,

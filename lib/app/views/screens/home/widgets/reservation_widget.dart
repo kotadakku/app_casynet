@@ -155,19 +155,6 @@ class ReservationWidget extends StatelessWidget {
                           );
                         }
                     ),
-
-                    // Padding(padding: EdgeInsets.only(bottom: 15.h),
-                    //     child:
-                    //     Wrap(
-                    //       spacing: 5.0.w,
-                    //       runSpacing: 10.0,
-                    //       children: (_ReservationController.reservationProductList as List).map((e) =>
-                    //           ItemProductWidget(
-                    //             product: e
-                    //           ),
-                    //       ).toList(),
-                    //     )
-                    // ),
                     _ReservationController.error == ''? SizedBox()
                         : Positioned.fill(
                         child: Container(

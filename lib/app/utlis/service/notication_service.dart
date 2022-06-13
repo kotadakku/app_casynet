@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/controller/home/bottombar_controller.dart';
 import 'package:app_casynet/app/controller/home/home_controller.dart';
 import 'package:app_casynet/app/data/model/notification.dart';
 import 'package:app_casynet/app/config/config_db.dart';
@@ -13,20 +14,19 @@ class NotificationService extends GetxController{
 
   late final FirebaseMessaging _messaging;
   late var totalNotificationCounter = 0;
-  HomeController _homeController = Get.find();
+
+  final BottombarController _bottombarController = Get.find();
 
   @override
   void onInit() {
 
     // get all db sqlite
     getNotifications();
-
-
    // sự kiện lắng nghe
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       NotificationModel notification = NotificationModel.fromJson(message);
       notificationList.add(notification);
-      if(_homeController.tabIndex == 1) updateSeenNotification();
+      if(_bottombarController.tabIndex == 1) updateSeenNotification();
       updateTotalNotication();
       update();
     });
@@ -72,7 +72,7 @@ class NotificationService extends GetxController{
         // ham get
         updateTotalNotication();
 
-        if(_homeController.tabIndex == 1) updateSeenNotification();
+        if(_bottombarController.tabIndex == 1) updateSeenNotification();
         update();
 
         if(notification != null){
@@ -99,7 +99,7 @@ class NotificationService extends GetxController{
       print('<Init Message> ${initialMessage.data}');
       NotificationModel notification = NotificationModel.fromJson(initialMessage);
       notificationList.add(notification);
-      if(_homeController.tabIndex == 1) updateSeenNotification();
+      if(_bottombarController.tabIndex == 1) updateSeenNotification();
       updateTotalNotication();
       update();
 
@@ -142,6 +142,4 @@ class NotificationService extends GetxController{
     update();
 
   }
-
-
 }

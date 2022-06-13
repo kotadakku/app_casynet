@@ -7,7 +7,7 @@ class NotificationRepo{
   Future<Responses<NotificationModel>> getNotificationModels({Options? options, Map<String, dynamic>? queryParameters}) async{
     try{
       final response = await ApiRequest().get(
-        path: ApiConfig.baseUrl + '/rest/V1/orders',
+        path: ApiConfig.baseUrl + '/rest/V1/',
         options: options,
         queryParameters: queryParameters,
 
@@ -28,7 +28,7 @@ class NotificationRepo{
   Future<Responses<NotificationModel>> getNotificationModel({Options? options, Map<String, dynamic>? queryParameters}) async{
     try{
       final response = await ApiRequest().get(
-        path: ApiConfig.baseUrl + '/rest/V1/orders',
+        path: ApiConfig.baseUrl + '/rest/V1/',
         options: options,
         queryParameters: queryParameters,
 
@@ -47,7 +47,7 @@ class NotificationRepo{
   Future<Responses<NotificationModel>> createNotificationModel({data, Options? options, Map<String, dynamic>? queryParameters}) async{
     try{
       final response = await ApiRequest().post(
-          path: ApiConfig.baseUrl + '/rest/V1/orders',
+          path: ApiConfig.baseUrl + '/rest/V1/',
           options: options,
           queryParameters: queryParameters,
           data: data
@@ -67,7 +67,7 @@ class NotificationRepo{
   Future<Responses<NotificationModel>> updateNotificationModel({data, required int id, Options? options, Map<String, dynamic>? queryParameters}) async{
     try{
       final response = await ApiRequest().put(
-          path: ApiConfig.baseUrl + '/rest/V1/orders',
+          path: ApiConfig.baseUrl + '/rest/V1/',
           options: options,
           queryParameters: queryParameters,
           data: data

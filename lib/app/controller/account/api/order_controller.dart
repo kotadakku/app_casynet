@@ -4,6 +4,8 @@ import 'package:app_casynet/app/data/repo/account_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
+import '../../../data/repo/order_repo.dart';
+
 class OrderController extends GetxController with StateMixin{
   final _orderList = <Order>[].obs;
   final orderCanceledList = <Order>[].obs;
@@ -23,7 +25,7 @@ class OrderController extends GetxController with StateMixin{
     if(first_load) change(_orderList, status: RxStatus.loading());
     final tokenAdmin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     try{
-      final result = await AccountRepo().getOrders(
+      final result = await OrderRepo().getOrders(
         queryParameters: {
           'searchCriteria[pageSize]': '$pageSize',
           'searchCriteria[currentPage]': '$currentPage'
@@ -62,7 +64,7 @@ class OrderController extends GetxController with StateMixin{
     if(first_load) isLoadingCancel.value = true;
     final tokenAdmin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     try{
-      final result = await AccountRepo().getOrders(
+      final result = await OrderRepo().getOrders(
           queryParameters: {
             'searchCriteria[filterGroups][0][filters][0][field]': 'status',
             'searchCriteria[filterGroups][0][filters][0][value]': 'canceled',
@@ -108,7 +110,7 @@ class OrderController extends GetxController with StateMixin{
     if(first_load) isLoadingComplete.value = true;
     final tokenAdmin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
     try{
-      final result = await AccountRepo().getOrders(
+      final result = await OrderRepo().getOrders(
           queryParameters: {
             'searchCriteria[filterGroups][0][filters][0][field]': 'status',
             'searchCriteria[filterGroups][0][filters][0][value]': 'complete',

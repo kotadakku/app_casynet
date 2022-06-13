@@ -1,4 +1,5 @@
 import 'package:app_casynet/app/views/widgets/appbar/appbar_home_widget.dart';
+import 'package:app_casynet/app/views/widgets/loading_overlay_shimmer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ import '../home/widgets/store_widget.dart';
 
 class ProductsPage extends StatelessWidget {
   ProductsPage({Key? key}) : super(key: key);
-  ProductsController _productsController = Get.find();
+  final ProductsController _productsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,8 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarHomeWidget(),
       body: SafeArea(
+        child: RefreshIndicator(
+          onRefresh: () => _productsController.getProductsAPI(first_load: true),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -107,10 +110,10 @@ class ProductsPage extends StatelessWidget {
                     Text('motorcycle'.tr)
                   ],
                 ),),
-                _productsController.obx((state) => Padding(padding: EdgeInsets.only(bottom: 15.h),
-                    child: state.isEmpty ?
-                    Text("Không có sẳn phẩm nào để hiển thi") :
-                    GridView.builder(
+                Obx(()=>LoadingOverlayShimmer(
+                    isLoadingAPI: _productsController.isLoading.value,
+                    isLoadingDB: false,
+                    child: GridView.builder(
                         shrinkWrap: true,
                         padding: EdgeInsets.symmetric(horizontal: 5.0.w),
                         physics: const NeverScrollableScrollPhysics(),
@@ -127,10 +130,9 @@ class ProductsPage extends StatelessWidget {
                           );
                         }
                     ),
-                ),
-                  onLoading: ItemSellerShimmer(),
-                  onEmpty: Text('Không có sản phẩm nào để hiển thị'),
-                ),
+                    funcRetry: () => _productsController.getProductsAPI(first_load: true),
+                    funcSkip: () => _productsController.error.value = ''
+                )),
                 Obx(()=>_productsController.haveNextPage.value ? _productsController.isLoading.value ?
                 SizedBox(
                   height: 50,
@@ -167,6 +169,7 @@ class ProductsPage extends StatelessWidget {
               ],
             ),
           )
+        ),
       ),
     );
   }

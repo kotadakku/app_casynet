@@ -11,6 +11,9 @@ import 'widgets/signin_widget.dart';
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
 
+  Home({required int home}){}
+
+
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.find();

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app_casynet/app/controller/home/bottombar_controller.dart';
 import 'package:app_casynet/app/views/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -40,11 +41,12 @@ void main() async {
   await GetStorage.init();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
 
 
   // This widgets is the root of your application.
@@ -83,7 +85,7 @@ class MyApp extends StatelessWidget {
 
 
 class Home extends StatelessWidget {
-  final HomeController _homeController = Get.put(HomeController());
+  final BottombarController _bottombarController = Get.find();
   Home({Key? key}) : super(key: key);
 
   @override
@@ -96,7 +98,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigator(),
         body:Obx(()=>IndexedStack(
-          index: _homeController.tabIndex.value,
+          index: _bottombarController.tabIndex.value,
           children: [
             HomePage(),
             NotificationPage(),
@@ -111,14 +113,14 @@ class Home extends StatelessWidget {
   }
   Future<bool> _onWillPop(BuildContext context) async {
     late bool? exitResult;
-    if(_homeController.tabIndex.value == 0){
+    if(_bottombarController.tabIndex.value == 0){
       exitResult = await showDialog(
         context: context,
         builder: (context) => _buildExitDialog(context),
       );
     }
     else {
-      _homeController.tabIndex.value = 0;
+      _bottombarController.tabIndex.value = 0;
       exitResult =  false;
     }
 

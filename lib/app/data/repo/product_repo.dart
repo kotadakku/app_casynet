@@ -4,6 +4,25 @@ import 'package:dio/dio.dart';
 import 'package:app_casynet/app/data/data.dart';
 
 class ProductRepo{
+  Future<Responses<Product>> getProducts({Options? options, Map<String, dynamic>? queryParameters}) async {
+    try{
+      final response = await ApiRequest().get(
+          path: ApiConfig.baseUrl + ApiConfig.products,
+          options: options,
+          queryParameters: queryParameters
+      );
+      if(response != null){
+        List<Product> products = List<Product>.from(
+            (response.data['items'] as List).map((e) => Product.fromJson1(e))
+        );
+        return Responses<Product>(isSuccess: true, listObjects: products);
+      }
+      return Responses<Product>(statusCode: CODE_RESPONSE_NULL, msg: "");
+    } catch (error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
   Future<Responses<Product>> getProduct({data, required String sku, Options? options, Map<String, dynamic>? queryParameters}) async {
     try{
       final response = await ApiRequest().get(

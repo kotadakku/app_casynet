@@ -64,7 +64,7 @@ class CategoryItemBottom extends StatelessWidget {
             ));
       }),
       onTap: () {
-        Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, id]);
+        Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [name, id, null]);
       },
     );
   }

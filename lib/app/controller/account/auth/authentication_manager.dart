@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/user.dart';
+import '../../../data/repo/user_repo.dart';
 
 
 class AuthenticationManager extends GetxController {
@@ -45,7 +46,7 @@ class AuthenticationManager extends GetxController {
         headers: {'Authorization': 'Bearer $token'}
     );
 
-    final result = await HomePageRepo().getUser(opt);
+    final result = await UserRepo().getUser(opt);
     if (result != null) {
       if (result.isSuccess && result.objects != null) {
         user_current = result.objects!;

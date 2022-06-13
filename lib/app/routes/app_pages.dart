@@ -41,6 +41,7 @@ import '../bindings/account/wallet_voucher_bindings.dart';
 import '../bindings/cart/cart_binding.dart';
 import '../bindings/filter/filter_product_binding.dart';
 import '../bindings/home/home_bindings.dart';
+import '../bindings/home/search_binding.dart';
 import '../bindings/my_store/new_seller_binding.dart';
 import '../bindings/product_detail/detail_product_bindings.dart';
 import '../bindings/products/products_bindings.dart';
@@ -100,7 +101,9 @@ class AppPages {
     ),
     GetPage(
       name: Routes.SEARCH,
-      page: ()=> SearchSreen()),
+      page: ()=> SearchPage(),
+      binding: SearchBinding()
+    ),
     GetPage(
       name: Routes.FILTER,
       page:() => FilterProductPage2(),
@@ -173,7 +176,7 @@ class AppPages {
     GetPage(
       name: Routes.PRODUCTS_BY_CATEGORY,
       page:()=> ProductsPage(),
-      binding:ProductsBindings(),
+      binding: ProductsBindings(),
     ),
     GetPage(
       name: Routes.STORE_HOME_MORE,

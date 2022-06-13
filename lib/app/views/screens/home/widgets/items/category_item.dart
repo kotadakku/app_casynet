@@ -18,7 +18,7 @@ class ItemCategoryWidget extends StatelessWidget {
       GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: (){
-          Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id]);
+          Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id, null]);
         },
         child: Container(
           child: Column(
