@@ -115,7 +115,7 @@ class ProfileStoreWidget extends StatelessWidget {
                             height: 30,
                             child: Obx(()=>ElevatedButton(
                               onPressed: () {
-                                controller.followed.value = !controller.followed.value;
+                                controller.followSeller();
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,

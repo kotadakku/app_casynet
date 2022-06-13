@@ -1,7 +1,9 @@
+import 'package:app_casynet/app/views/widgets/loading_overlay_shimmer.dart';
 import 'package:app_casynet/app/views/widgets/shimmer/seller_shimmer.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,11 +22,10 @@ import 'gift_store_widget.dart';
 class IntroStoreWidget extends StatelessWidget {
   IntroStoreWidget({Key? key, required this.controller}) : super(key: key);
   DetailStoreController controller = Get.find();
-  HomeController _homeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    var isReadMore = false.obs;
+
 
     return SingleChildScrollView(
         child: Column(
@@ -44,13 +45,10 @@ class IntroStoreWidget extends StatelessWidget {
                   ),
                 )),
             Text('time_open'.tr),
-            controller.store.value.timeOpen == 'null' ||
-                    controller.store.value.timeClose == 'null'
-                ? Text("${'loading'.tr} ...")
-                : Text(
-                    "${controller.store.value.timeOpen}  -  ${controller.store.value.timeClose}",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+            Text(
+                " ${controller.store.value.timeOpen ?? '00:00'}  -  ${controller.store.value.timeClose??'00:00'}",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
           ],
         ),
         Row(
@@ -117,16 +115,13 @@ class IntroStoreWidget extends StatelessWidget {
                           Icons.add,
                           color: AppColors.yellowColor,
                         ),
-                        controller.store.value.totalProduct.toString() ==
-                                'null'
-                            ? Text("${'loading'.tr} ...")
-                            : Text(
-                                controller.store.value.totalProduct.toString(),
-                                style: TextStyle(
-                                    color: AppColors.yellowColor,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
-                              )
+                        Text(
+                          '${controller.store.value.totalProduct ?? 0}',
+                          style: TextStyle(
+                              color: AppColors.yellowColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        )
                       ],
                     ),
                     Text(
@@ -144,7 +139,7 @@ class IntroStoreWidget extends StatelessWidget {
                           color: AppColors.yellowColor,
                         ),
                         Text(
-                          "145",
+                          '${controller.store.value.totalTransaction ?? 0}',
                           style: TextStyle(
                               color: AppColors.yellowColor,
                               fontSize: 16,
@@ -167,7 +162,7 @@ class IntroStoreWidget extends StatelessWidget {
                           color: AppColors.yellowColor,
                         ),
                         Text(
-                          "75%",
+                            '${controller.store.value.rateFeedback ?? 0}',
                           style: TextStyle(
                               color: AppColors.yellowColor,
                               fontSize: 16,
@@ -230,7 +225,7 @@ class IntroStoreWidget extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    controller.store.value.rate.toString(),
+                    '${controller.store.value.rate??0.0} ',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text('quality'.tr)
@@ -270,26 +265,18 @@ class IntroStoreWidget extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-            //   child: Obx(()=> AnimatedSize(
-            //       duration: const Duration(milliseconds: 300),
-            //       child: ConstrainedBox(
-            //           constraints: isReadMore.value
-            //               ? const BoxConstraints()
-            //               : const BoxConstraints(maxHeight: 70),
-            //           child: controller.store.intro_store.toString() == 'null' ? Text("Đang tải...") : Text(
-            //             controller.store.intro_store.toString(),
-            //             style: const TextStyle(fontSize: 16),
-            //             softWrap: true,
-            //             overflow: TextOverflow.fade,
-            //           )))),
-            // ),
+            Obx(()=>AnimatedContainer(
+              duration: const Duration(microseconds: 500),
+              height: controller.isReadMore.value ? null : 100,
+              child: Html(
+              data: controller.store.value.description ?? '<h5>Chưa có thông tin</h5>',
+              ),
+            ),),
 
             GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  isReadMore.value = !isReadMore.value;
+                  controller.isReadMore.value = !controller.isReadMore.value;
                 },
                 child: Material(
                   elevation: 1,
@@ -300,13 +287,13 @@ class IntroStoreWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Obx(() => Text(
-                            isReadMore.value ? 'more'.tr : 'hide'.tr,
+                        controller.isReadMore.value ? 'more'.tr : 'hide'.tr,
                             style: TextStyle(color: AppColors.yellowColor),
                           )),
                       Container(
                         margin: EdgeInsets.all(5.0),
                         child: Obx(() => Icon(
-                              isReadMore.value
+                          controller.isReadMore.value
                                   ? Icons.keyboard_arrow_down_sharp
                                   : Icons.keyboard_arrow_up_sharp,
                               color: AppColors.yellowColor,
@@ -324,98 +311,100 @@ class IntroStoreWidget extends StatelessWidget {
         // ReservationWidget(),
 
         // Đặt chỗ
-        Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              Material(
-                elevation: 2,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12.0.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+        Column(
+          children: [
+            Material(
+              elevation: 1,
+              color: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 12.0.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(left: 10.w),
+                          child: const CircleAvatar(
+                            child: Text(
+                              "123",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Color(0xffDFB400),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'reservation'.tr.toUpperCase(),
+                          style: AppStyle.texttitleProduct,
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        _view_more('reservation'.tr, 31);
+                      },
+                      child: Row(
                         children: [
-                          Container(
-                            padding: EdgeInsets.only(left: 10.w),
-                            child: const CircleAvatar(
-                              child: Text(
-                                "123",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Color(0xffDFB400),
+                          Text(
+                            'more'.tr,
+                            style: const TextStyle(
+                              color: Color(0xffB7BAC1),
                             ),
                           ),
                           const SizedBox(
-                            width: 15,
+                            width: 5.0,
                           ),
-                          Text(
-                            'reservation'.tr.toUpperCase(),
-                            style: AppStyle.texttitleProduct,
+                          Container(
+                            padding: EdgeInsets.only(right: 10.0),
+                            child: SvgPicture.asset(
+                              "assets/home/store/icon_xemthem.svg",
+                              width: 5,
+                            ),
                           )
                         ],
                       ),
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          _view_more('reservation'.tr, 31);
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              'more'.tr,
-                              style: const TextStyle(
-                                color: Color(0xffB7BAC1),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 5.0,
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(right: 10.0),
-                              child: SvgPicture.asset(
-                                "assets/home/store/icon_xemthem.svg",
-                                width: 5,
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
-              Row(
+            ),
+            Material(
+              elevation: 1,
+              color: Colors.white,
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
                       Obx(() => Row(
-                            children: [
-                              Radio(
-                                  value: true,
-                                  groupValue:
-                                  _homeController.isCarReservation.value,
-                                  onChanged: (value) {
-                                    _homeController.updateIsCarReservation();
-                                  },
-                                  activeColor: Color(0xffDFB400)),
-                              Text('car'.tr),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Radio(
-                                  value: false,
-                                  groupValue:
-                                  _homeController.isCarReservation.value,
-                                  onChanged: (value) {
-                                    _homeController.updateIsCarReservation();
-                                  },
-                                  activeColor: Color(0xffDFB400)),
-                              Text('motorcycle'.tr)
-                            ],
-                          ))
+                        children: [
+                          Radio(
+                              value: true,
+                              groupValue:
+                              controller.isCarReservation.value,
+                              onChanged: (value) {
+                                controller.updateIsCarReservation();
+                              },
+                              activeColor: Color(0xffDFB400)),
+                          Text('car'.tr),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Radio(
+                              value: false,
+                              groupValue:
+                              controller.isCarReservation.value,
+                              onChanged: (value) {
+                                controller.updateIsCarReservation();
+                              },
+                              activeColor: Color(0xffDFB400)),
+                          Text('motorcycle'.tr)
+                        ],
+                      ))
                     ],
                   ),
                   GestureDetector(
@@ -446,42 +435,48 @@ class IntroStoreWidget extends StatelessWidget {
                   )
                 ],
               ),
-              controller.obx(
-                (state) => Padding(
-                    padding: EdgeInsets.only(bottom: 15.h),
-                    child: state.isEmpty
-                        ? Text("Không có sẳn phẩm nào để hiển thi")
-                        : Wrap(
-                            spacing: 5.0.w,
-                            runSpacing: 10.0,
-                            children: (state as List)
-                                .map(
-                                  (e) => ItemProductWidget(
-                                      products: state,
-                                    index:1,
-
-                                  ),
-                                )
-                                .toList(),
-                          )),
-                onLoading: ItemSellerShimmer(),
-                onEmpty: Text('Không có sản phẩm nào để hiển thị'),
-              )
-            ],
-          ),
+            )
+          ],
         ),
 
-        Container(
-          color: AppColors.backgroundColor,
-          height: 10,
-        ),
+        Obx(()=>LoadingOverlayShimmer(
+            isLoadingAPI: controller.isLoadingProduct.value,
+            isLoadingDB: false,
+            shimmer: ItemSellerShimmer(),
+            funcRetry: () => controller.getProductSellerAPI(category_id: 12),
+            funcSkip: () => controller.errorGetProduct.value = '',
+            error: controller.errorGetProduct.value,
+            child: controller.productSellerList.length>0? GridView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 2 / 3.3,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5),
+                itemCount: controller.productSellerList.length,
+                itemBuilder: (BuildContext ctx, index) {
+                  return ItemProductWidget(
+                    index: index,
+                    products: controller.productSellerList,
+                  );
+                }
+            ) : SizedBox(
+              height: 30,
+              child: Center(
+                child: Text('Không có sản phẩm để hiển thị'),
+              ),
+            )
+        ),),
+        Divider(),
         Container(
           color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Material(
-                elevation: 5,
+                elevation: 1,
                 color: Colors.white,
                 child: Container(
                   padding: EdgeInsets.only(top: 15.h, left: 10.w, bottom: 15.h),
@@ -495,31 +490,41 @@ class IntroStoreWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
+
+
+              Obx(()=>LoadingOverlayShimmer(
+                  isLoadingAPI: controller.isLoadingFeatured.value,
+                  isLoadingDB: false,
+                  funcRetry: () => controller.getProductSellerAPI(category_id: 12),
+                  funcSkip: () => controller.errorgetFeatures.value = '',
+                  error: controller.errorgetFeatures.value,
+                  shimmer: ItemSellerShimmer(),
+                  child: controller.productFeaturedSellerList.length>0 ? GridView.builder(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 2 / 3.3,
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5),
+                      itemCount: controller.productFeaturedSellerList.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return ItemProductWidget(
+                          index: index,
+                          products: controller.productFeaturedSellerList,
+                        );
+                      }
+                  ): SizedBox(
+                    height: 30,
+                    child: Center(
+                      child: Text('Không có sản phẩm để hiển thị'),
+                    ),
+                  )
               ),
-              controller.obx((state) => Padding(
-                    padding: EdgeInsets.only(bottom: 15.h),
-                    child: state.isEmpty
-                        ? Center(child: CircularProgressIndicator(),)
-                        : Wrap(
-                            spacing: 5.0.w,
-                            runSpacing: 10.0,
-                            children: controller.productFeaturedSellerList.map(
-                              (e) {
-                                return GestureDetector(
-                                  child: ItemProductWidget(
-                                    products: controller.productFeaturedSellerList,
-                                    index: 1,
-                                  ),
-                                  onTap: () {
-                                    Get.toNamed(Routes.PRODUCT_DETAIL);
-                                  },
-                                );
-                              },
-                            ).toList()),
-                  )),
-              Material(
+              ),
+              Obx(()=>controller.productFeaturedSellerList.length>0
+                ? Material(
                 elevation: 1,
                 color: Colors.white,
                 child: Row(
@@ -540,7 +545,9 @@ class IntroStoreWidget extends StatelessWidget {
                     )
                   ],
                 ),
-              ),
+              ): SizedBox()
+              )
+
             ],
           ),
         )
@@ -549,10 +556,14 @@ class IntroStoreWidget extends StatelessWidget {
   }
 
   void _filter_product() {
-    Get.toNamed(Routes.FILTER_PRODUCT, arguments: {'controller': controller});
+    Get.toNamed(Routes.FILTER_PRODUCT,
+        arguments: {
+          'controller': controller
+        }
+    );
   }
 
   void _view_more(title, id) {
-    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: [title, id]);
+    Get.toNamed(Routes.PRODUCTS_BY_CATEGORY, arguments: ['reservation', 12, controller.productSellerList]);
   }
 }

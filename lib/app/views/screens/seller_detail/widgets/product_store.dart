@@ -1,15 +1,21 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../controller/store_detail/detail_store_controller.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
+import '../../../widgets/loading_overlay_shimmer.dart';
+import '../../../widgets/shimmer/seller_shimmer.dart';
+import '../../home/widgets/items/product_item.dart';
 import 'gift_store_widget.dart';
 
 
 class ProductStoreWidget extends StatelessWidget {
-  const ProductStoreWidget({Key? key}) : super(key: key);
+  ProductStoreWidget({Key? key}) : super(key: key);
+  final DetailStoreController _detailStoreController = Get.find<DetailStoreController>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,29 +34,28 @@ class ProductStoreWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        // Obx(()=>Row(
-                        //   children: [
-                        //     Radio(
-                        //         value: true,
-                        //         groupValue: c.isCar.value,
-                        //         onChanged: (value){
-                        //           c.isCar.value = !c.isCar.value;
-                        //         },
-                        //         activeColor: Color(0xffDFB400)),
-                        //     Text("Ô tô"),
-                        //     SizedBox(width: 20,),
-                        //     Radio(
-                        //         value: false,
-                        //         groupValue: c.isCar.value,
-                        //         onChanged: (value){
-                        //           c.isCar.value = !c.isCar.value;
-                        //         },
-                        //         activeColor: Color(0xffDFB400)
-                        //     ),
-                        //     Text("Xe máy")
-                        //   ],
-                        // ))
-
+                        Obx(()=>Row(
+                          children: [
+                            Radio(
+                                value: true,
+                                groupValue: _detailStoreController.isCarReservation.value,
+                                onChanged: (value){
+                                  _detailStoreController.isCarReservation.value = !_detailStoreController.isCarReservation.value;
+                                },
+                                activeColor: Color(0xffDFB400)),
+                            Text("Ô tô"),
+                            SizedBox(width: 20,),
+                            Radio(
+                                value: false,
+                                groupValue: _detailStoreController.isCarReservation.value,
+                                onChanged: (value){
+                                  _detailStoreController.isCarReservation.value = !_detailStoreController.isCarReservation.value;
+                                },
+                                activeColor: Color(0xffDFB400)
+                            ),
+                            Text("Xe máy")
+                          ],
+                        )),
                       ],
                     ),
                     GestureDetector(
@@ -75,51 +80,40 @@ class ProductStoreWidget extends StatelessWidget {
 
                   ],
                 ),
-                Wrap(
-                  spacing: 10.0,
-                  runSpacing: 10.0,
-                  children: [
-                    // GestureDetector(
-                    //   child: ItemProductWidget(
-                    //       book_image: "assets/images/home/book/image.png",
-                    //       distance: 4.5,
-                    //       price: "1.290.000đ",
-                    //       price_discount: "1.390.000đ",
-                    //       book_name: "Máy rửa xe Catorex - CTR",
-                    //       book_category: "Điện máy Đỗ Dũng"
-                    //   ),
-                    //   onTap: (){
-                    //     Get.to(Routes.PRODUCT_DETAIL);
-                    //   },
-                    // ),
-                    // ItemProductWidget(
-                    //     book_image: "assets/images/home/store/cuahang1.png",
-                    //     distance: 4.5,
-                    //     price: "1.290.000đ",
-                    //     price_discount: "1.390.000đ",
-                    //     book_name: "Máy rửa xe Catorex - CTR",
-                    //     book_category: "Điện máy Đỗ Dũng"
-                    // ),
-                    // ItemProductWidget(
-                    //     book_image: "assets/images/home/book/image.png",
-                    //     distance: 4.5,
-                    //     price: "1.290.000đ",
-                    //     price_discount: "1.390.000đ",
-                    //     book_name: "Máy rửa xe Catorex - CTR",
-                    //     book_category: "Điện máy Đỗ Dũng"
-                    // ),
-                    // ItemProductWidget(
-                    //     book_image: "assets/images/home/store/cuahang1.png",
-                    //     distance: 4.5,
-                    //     price: "1.290.000đ",
-                    //     price_discount: "1.390.000đ",
-                    //     book_name: "Máy rửa xe Catorex - CTR",
-                    //     book_category: "Điện máy Đỗ Dũng"
-                    // ),
-                  ],
+                Obx(()=>LoadingOverlayShimmer(
+                    isLoadingAPI: _detailStoreController.isLoadingFeatured.value,
+                    isLoadingDB: false,
+                    funcRetry: () => _detailStoreController.getProductSellerAPI(category_id: 12),
+                    funcSkip: () => _detailStoreController.errorgetFeatures.value = '',
+                    error: _detailStoreController.errorgetFeatures.value,
+                    shimmer: ItemSellerShimmer(),
+                    child: _detailStoreController.productFeaturedSellerList.length>0 ? GridView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(horizontal: 5.0.w),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 3.3,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
+                        itemCount: _detailStoreController.productFeaturedSellerList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return ItemProductWidget(
+                            index: index,
+                            products: _detailStoreController.productFeaturedSellerList,
+                          );
+                        }
+                    ): SizedBox(
+                      height: 30,
+                      child: Center(
+                        child: Text('Không có sản phẩm để hiển thị'),
+                      ),
+                    )
+                ),
                 ),
                 Divider(height: 20,),
-                Row(
+                Obx(()=>_detailStoreController.productFeaturedSellerList.length>0
+                    ?Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -131,6 +125,7 @@ class ProductStoreWidget extends StatelessWidget {
                       child: Icon(Icons.keyboard_arrow_down_sharp, color: AppColors.yellowColor, size: 15,),
                     )
                   ],
+                ): SizedBox()
                 )
               ],
             ),
@@ -140,6 +135,10 @@ class ProductStoreWidget extends StatelessWidget {
     );
   }
   void _filter_product() {
-    Get.toNamed(Routes.FILTER);
+    Get.toNamed(Routes.FILTER_PRODUCT,
+        arguments: {
+          'controller': _detailStoreController
+      }
+    );
   }
 }

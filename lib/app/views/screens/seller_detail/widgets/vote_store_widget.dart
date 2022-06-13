@@ -259,8 +259,8 @@ class CardChatItem extends StatelessWidget {
                   SizedBox(height: 10,),
                   Text(message)
                 ],
-              )),
-
+              )
+          ),
         ],
       ),
     );

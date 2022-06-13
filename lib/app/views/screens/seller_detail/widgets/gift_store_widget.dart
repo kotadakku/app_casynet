@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/store_detail/detail_store_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +9,8 @@ import '../../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 
 class GiftStoreWidget extends StatelessWidget {
-  const GiftStoreWidget({Key? key}) : super(key: key);
+  GiftStoreWidget({Key? key}) : super(key: key);
+  DetailStoreController _detailStoreController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,9 @@ class GiftStoreWidget extends StatelessWidget {
                     Expanded(flex: 2, child:
                     GestureDetector(
                       onTap: (){
+                        _detailStoreController.addVoucher(1); // pass id voucher
                         Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER);
+
                       },
                       child: Stack(
                         children: [
