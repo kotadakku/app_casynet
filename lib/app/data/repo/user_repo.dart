@@ -238,4 +238,26 @@ class UserRepo{
       return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
+  Future<Responses<bool>> resetPassword({required String email, Options? options}) async {
+    try{
+      final response = await ApiRequest().put(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/password',
+          options: options,
+          queryParameters: {
+            "email": email,
+            "template": "email_reset",
+            "websiteId": 1
+          }
+      );
+      if(response!=null){
+        bool isSuccess = response.data;
+        return Responses<bool>(statusCode: CODE_SUCCESS, objects: isSuccess);
+      }
+      return Responses<bool>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<bool>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
 }

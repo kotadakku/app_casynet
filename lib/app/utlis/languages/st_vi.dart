@@ -48,6 +48,7 @@ const Map<String, String> vi = {
   'enter_name' : 'Nhập họ và tên',
   'enter_descrip' : 'Nhập mô tả',
   'enter_descrip_seller' : 'Nhập giới thiệu cửa hàng',
+  'enter_email': 'Nhập email',
   'main_category' : 'Main category',
   'enter_pass' : 'Nhập mật khẩu',
   'enter_phone' : 'Nhập số điện thoại',

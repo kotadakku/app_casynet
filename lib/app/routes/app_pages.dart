@@ -8,6 +8,7 @@ import 'package:app_casynet/app/bindings/store_manager/order/order_manager_bindi
 import 'package:app_casynet/app/bindings/store_manager/product/select_category_binding.dart';
 import 'package:app_casynet/app/views/screens/account/address/select_region.dart';
 import 'package:app_casynet/app/views/screens/account/widgets/edit_info.dart';
+import 'package:app_casynet/app/views/screens/auth/enter_email.dart';
 import 'package:app_casynet/app/views/screens/contact.dart';
 import 'package:app_casynet/app/views/screens/home/search_screen.dart';
 import 'package:app_casynet/app/views/screens/store/mystore.dart';
@@ -67,7 +68,6 @@ import '../views/screens/account/order/order_account.dart';
 import '../views/screens/account/seen_product.dart';
 import '../views/screens/account/wallet_voucher.dart';
 import '../views/screens/auth/auth.dart';
-import '../views/screens/auth/auth.dart';
 import '../views/screens/cart/checkout_page.dart';
 import '../views/screens/filter/filter_product.dart';
 import '../views/screens/filter/filter_product_2.dart';
@@ -124,6 +124,9 @@ class AppPages {
       name: Routes.AUTH,
       page: ()=> AuthPage(),
       binding: AuthBindings(),
+    ),
+    GetPage(name: Routes.ACCOUNT_ENTER_EMAIL_RESET,
+      page:() => EnterEmailReset(),
     ),
     GetPage(name: Routes.CHECKOUT,
       page: ()=>CheckoutPage(),

@@ -36,10 +36,7 @@ class StoreWidget extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.only(left: 15.0.w, right: 15.0),
                       child: CircleAvatar(
-                        child: Text(
-                          "123",
-                          style: TextStyle(color: Colors.white),
-                        ),
+                        child: SvgPicture.asset("assets/images/home/store/icon_seller.svg", color: Colors.white,height: 18,),
                         backgroundColor: Color(0xffDFB400),
                       ),
                     ),

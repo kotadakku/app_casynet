@@ -1,8 +1,12 @@
 
+import 'package:app_casynet/app/config/api_params.dart';
 import 'package:app_casynet/app/data/repo/home_repo.dart';
+import 'package:app_casynet/app/routes/app_pages.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/data.dart';
 import '../../../data/model/user.dart';
 import '../../../data/repo/user_repo.dart';
 import 'authentication_manager.dart';
@@ -12,6 +16,7 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
   late TabController controller;
   var sigin_loading = false.obs;
   var register_loading = false.obs;
+  final isSending = false.obs;
 
   var isObscurePassword = true.obs;
   var isRegisterObscurePassword = true.obs;
@@ -144,5 +149,49 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
 
   changeObscurePassword(value) => isObscurePassword.value = value;
   changeRegisterObscurePassword(value) => isRegisterObscurePassword.value = value;
+
+  void resetPassword(String email) async {
+    isSending.value = true;
+    final result = await UserRepo().resetPassword(email: email,
+    );
+    if(result.statusCode == CODE_SUCCESS){
+      if(result.objects==true){
+        isSending.value = false;
+        Get.defaultDialog(
+            title: 'noti'.tr,
+            middleText: 'Vui lòng check lại mail và đăng nhập lại sau!!',
+            textConfirm: 'confirm'.tr,
+            confirmTextColor: Colors.white,
+            onConfirm: () {
+              Get.toNamed(Routes.AUTH, arguments: 0);
+            },
+
+        );
+
+      }else{
+        isSending.value = false;
+        Get.defaultDialog(
+            title: 'noti'.tr,
+            middleText: 'Email không hợp lệ!',
+            textConfirm: 'confirm'.tr,
+            confirmTextColor: Colors.white,
+            onConfirm: () {
+              Get.back();
+            },
+        );
+      }
+    }else{
+      isSending.value = false;
+      Get.defaultDialog(
+          title: 'noti'.tr,
+          middleText: result.msg.toString(),
+          textConfirm: 'confirm'.tr,
+          confirmTextColor: Colors.white,
+          onConfirm: () {
+            Get.back();
+          },
+      );
+    }
+  }
 
 }

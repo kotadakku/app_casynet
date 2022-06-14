@@ -41,12 +41,7 @@ class PromotionWidget extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.only(left: 10.w),
                           child: CircleAvatar(
-                            child: Text(
-                              "123",
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
-                            ),
+                            child: SvgPicture.asset("assets/images/home/ic_promotion.svg", color: Colors.white,height: 18,),
                             backgroundColor: Color(0xffDFB400),
                           ),),
                         SizedBox(width: 15,),

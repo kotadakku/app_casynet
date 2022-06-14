@@ -47,6 +47,7 @@ const Map<String, String> en = {
   'enter_apartment_street' : 'Enter Apartment, street',
   'enter_descrip' : 'Enter description',
   'enter_descrip_seller' : 'Enter description seller',
+  'enter_email': 'Enter email',
   "enter_name" : "Enter name",
   'enter_pass' : 'Enter password',
   "enter_phone" : "Enter phone",
