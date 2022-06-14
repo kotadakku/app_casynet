@@ -76,16 +76,12 @@ class StoresController extends GetxController {
           isLoadingApi.value = false;
 
         } else {
-          // Get.snackbar('noti'.tr, resultLM.msg.toString(),
-          //     backgroundColor: Colors.black.withOpacity(0.3));
           error.value = result.msg.toString();
           print(result.msg.toString());
           isLoadingApi.value = false;
         }
       }
     } catch (e) {
-      // Get.snackbar('noti'.tr, "error:: $e",
-      //     backgroundColor: Colors.black.withOpacity(0.3));
       print(e);
       error.value = 'Hệ thống đang gặp vấn đề';
       isLoadingApi.value = false;

@@ -13,7 +13,7 @@ import '../../../data/repo/user_repo.dart';
 
 class AuthenticationManager extends GetxController {
   final isLogged = false.obs;
-  late User user_current = User();
+  final user_current = User().obs;
   ProductCartController _ProductCartController = Get.put(
       ProductCartController());
 
@@ -34,13 +34,14 @@ class AuthenticationManager extends GetxController {
         key: CacheManagerKey.USER_LOGIN.toString(),
         value: json.encode(user.toJsonLogin())
       );
-      await fetchUserAPI(token);
+      await fetchUserAPI();
       isLogged.value = true;
       _ProductCartController.getCartAPI(token);
     }
   }
 
-  Future<void> fetchUserAPI(String token) async {
+  Future<void> fetchUserAPI() async {
+    final token = await GetStorageProvider().get(key: CacheManagerKey.TOKEN.toString());
     print("<AUTH> GET API");
     Options opt = Options(
         headers: {'Authorization': 'Bearer $token'}
@@ -49,7 +50,7 @@ class AuthenticationManager extends GetxController {
     final result = await UserRepo().getUser(opt);
     if (result != null) {
       if (result.isSuccess && result.objects != null) {
-        user_current = result.objects!;
+        user_current.value = result.objects!;
       }
       else {
         print(result.msg);
@@ -60,14 +61,12 @@ class AuthenticationManager extends GetxController {
 
   Future<void> getDataUser(String token) async {
     final stringUser = await GetStorageProvider().get(key: CacheManagerKey.USER.toString());
-
-
     if (stringUser != null) {
       print("<AUTH> GET DB");
-      user_current = User.successLogin(json.decode(stringUser));
+      user_current.value = User.successLogin(json.decode(stringUser));
     }
     else {
-      fetchUserAPI(token);
+      fetchUserAPI();
       _ProductCartController.getCartAPI(token);
     }
   }

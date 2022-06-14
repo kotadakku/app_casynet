@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/routes/app_pages.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,7 +44,7 @@ class SignInWidget extends StatelessWidget {
                         return "Không tồn tại tài khoản";
                         }*/
                         },
-                        initialValue: '0376488863@casynet.gmail.com',
+                        initialValue: 'a123@gmail.com',
                         textAlignVertical: TextAlignVertical.center,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -72,7 +73,7 @@ class SignInWidget extends StatelessWidget {
                     Obx(()=>TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       obscureText: authController.isObscurePassword.value,
-                      initialValue: '123456',
+                      initialValue: 'Ab123456',
   
                       onSaved: (value){
                         user.password = value;
@@ -118,7 +119,14 @@ class SignInWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('forgot_pass'.tr),
+                        GestureDetector(
+                          child: Text('forgot_pass'.tr,
+                            style: TextStyle(decoration: TextDecoration.underline,
+                            color: Colors.blue)),
+                          onTap: () {
+                            Get.toNamed(Routes.ACCOUNT_ENTER_EMAIL_RESET);
+                          },
+                        ),
                         Text('help'.tr)
                       ],
                     ),

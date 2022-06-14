@@ -1,18 +1,15 @@
+import 'package:app_casynet/app/controller/controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../widgets/Appbar.dart';
+import 'package:app_casynet/app/views/views.dart';
 
 class BangDieuKhien extends StatelessWidget {
+  final DashboardController _dashboardController = Get.find();
   @override
   Widget build(BuildContext context) {
-    var heightdon = 540.obs;
-    var tinh = 0.obs;
-    var ss = "".obs;
-    int sopt=10;
+
     final widthdt = MediaQuery.of(context).size.width;
-    final heightdt = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -42,7 +39,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10, top: 5),
                                 child: Text(
-                                  "30.000",
+                                  '${_dashboardController.sellerDashboard.value.turnover}',
                                   style: TextStyle(fontSize: 25),
                                 ),
                               ),
@@ -80,7 +77,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10, top: 5),
                                 child: Text(
-                                  "3250",
+                                  '${_dashboardController.sellerDashboard.value.total_products_sold}',
                                   style: TextStyle(fontSize: 25),
                                 ),
                               ),
@@ -203,7 +200,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10, top: 5),
                                 child: Text(
-                                  "30",
+                                    '${_dashboardController.sellerDashboard.value.total_products_sold_today}',
                                   style: TextStyle(fontSize: 25),
                                 ),
                               ),
@@ -241,7 +238,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10, top: 5),
                                 child: Text(
-                                  "3.250.000",
+                                  '${_dashboardController.sellerDashboard.value.turnover_today}',
                                   style: TextStyle(fontSize: 15),
                                 ),
                               ),
@@ -280,7 +277,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10, top: 5),
                                 child: Text(
-                                  "400",
+                                  '${_dashboardController.sellerDashboard.value.total_products_sold_month}',
                                   style: TextStyle(fontSize: 25),
                                 ),
                               ),
@@ -318,7 +315,7 @@ class BangDieuKhien extends StatelessWidget {
                               Container(
                                 margin: new EdgeInsets.only(left: 10, top: 5),
                                 child: Text(
-                                  "6.250.000",
+                                  '${_dashboardController.sellerDashboard.value.total_order_month}',
                                   style: TextStyle(fontSize: 15),
                                 ),
                               ),
@@ -351,104 +348,104 @@ class BangDieuKhien extends StatelessWidget {
                 ),
               ),
               DefaultTabController(length: 3,
-                  child: Column(
-                    children: [
-                      Obx(
-                            () => Container(
-                          color: Color.fromRGBO(200, 200, 200, 200),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                color: Colors.white,
-                                height: 40,
-                                child: ListView(
-                                  scrollDirection: Axis.horizontal,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          margin: new EdgeInsets.only(top: 10, left: 10),
-                                          height: 40,
-                                          child: TabBar(
-                                            isScrollable: true,
-                                            indicatorColor: Colors.amber,
-                                            labelColor: Colors.amber,
-                                            unselectedLabelColor: Colors.black,
-                                            tabs: [
-                                              Tab(
-                                                text: "Đơn hàng cuối",
-                                              ),
-                                              Tab(
-                                                text: "Bán chạy nhất",
-                                              ),
-                                              Tab(
-                                                text: "Sản phẩm được xem",
-                                              ),
-                                            ],
-                                            onTap: (indext) {
-                                              print(indext);
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: heightdon.toDouble(),
-                                child: ListView(
-                                  scrollDirection: Axis.horizontal,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        DataTable(
-                                          columns: [
-                                            DataColumn(
-                                              label: Text('#'),
+                child: Column(
+                  children: [
+                    Obx(() =>
+                      Container(
+                        color: Color.fromRGBO(200, 200, 200, 200),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              color: Colors.white,
+                              height: 40,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        margin: new EdgeInsets.only(top: 10, left: 10),
+                                        height: 40,
+                                        child: TabBar(
+                                          isScrollable: true,
+                                          indicatorColor: Colors.amber,
+                                          labelColor: Colors.amber,
+                                          unselectedLabelColor: Colors.black,
+                                          tabs: [
+                                            Tab(
+                                              text: "Đơn hàng cuối",
                                             ),
-                                            DataColumn(
-                                              label: Text('Ngày đặt hàng'),
+                                            Tab(
+                                              text: "Bán chạy nhất",
                                             ),
-                                            DataColumn(
-                                              label: Text('Khách hàng'),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Tổng tiền hàng'),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Hiện thị'),
+                                            Tab(
+                                              text: "Sản phẩm được xem",
                                             ),
                                           ],
-                                          rows: _createRows(sopt),
+                                          onTap: (indext) {
+                                            print(indext);
+                                          },
                                         ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            Container(
+                              height: _dashboardController.heightdon.toDouble(),
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Column(
+                                    children: [
+                                      DataTable(
+                                        columns: [
+                                          DataColumn(
+                                            label: Text('#'),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Ngày đặt hàng'),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Khách hàng'),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Tổng tiền hàng'),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Hiện thị'),
+                                          ),
+                                        ],
+                                        rows: _createRows(_dashboardController.sopt),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Obx(()=>Container(
-                        margin: new EdgeInsets.only(left: 10,right: 10,bottom: 10),
-                        width: widthdt,
+                    ),
+                    Obx(()=>Container(
+                      margin: new EdgeInsets.only(left: 10,right: 10,bottom: 10),
+                      width: widthdt,
 
-                        child: ElevatedButton (
-                          style: ElevatedButton.styleFrom(primary: Colors.amber),
-                          child: Text('more'.tr+ss.toString()),
-                          onPressed: () {
-                            heightdon = heightdon + 500-tinh.toInt();
+                      child: ElevatedButton (
+                        style: ElevatedButton.styleFrom(primary: Colors.amber),
+                        child: Text('more'.tr+_dashboardController.ss.toString()),
+                        onPressed: () {
+                          _dashboardController.heightdon = _dashboardController.heightdon + 500-_dashboardController.tinh.toInt();
 
-                            sopt=sopt+10;
-                            tinh=20.obs;
-                          },
-                        ),
-                      )),
-                    ],
-                  ),
+                          _dashboardController.sopt=_dashboardController.sopt+10;
+                          _dashboardController.tinh = 20.obs;
+                        },
+                      ),
+                    )),
+                  ],
+                ),
               ),
             ],
           ),

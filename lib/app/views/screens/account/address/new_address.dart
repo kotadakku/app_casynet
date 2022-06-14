@@ -3,6 +3,7 @@ import 'package:app_casynet/app/data/model/address.dart';
 import 'package:app_casynet/app/data/model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/account/auth/authentication_manager.dart';
@@ -35,7 +36,7 @@ class NewAddress extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      padding: EdgeInsets.symmetric(vertical: 15.0.h, horizontal: 10.w),
                       child: Text(
                         'add_address'.tr,
                         style: TextStyle(
@@ -362,7 +363,7 @@ class NewAddress extends StatelessWidget {
                           // controller.address.default_shipping = controller.switch_default.value;
                           // controller.formStateKey.currentState?.save();
                           // controller.postAddress();
-                          address.email = authController.user_current.email;
+                          address.email = authController.user_current.value.email;
                           controller.formStateKey.currentState?.save();
 
                           controller.createAddress(address);

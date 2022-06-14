@@ -33,6 +33,7 @@ abstract class Routes{
   static const STORE_DETAIL = '/store';
   static const MESSAGES = '/messages';
   static const AUTH = '/auth';
+  static String ACCOUNT_ENTER_EMAIL_RESET = '/forget_password';
 
   static const SEARCH = '/search';
 
@@ -65,4 +66,6 @@ abstract class Routes{
 
   static const STORE_MANAGER_NEWS = '/manager_store/news';
   static const STORE_MANAGER_ADD_NEW = '/manager_store/add_news';
+
+
 }

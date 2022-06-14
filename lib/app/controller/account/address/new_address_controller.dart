@@ -56,7 +56,7 @@ class NewAddressController extends GetxController {
       );
       if(result != null){
         if(result.isSuccess){
-          _authManager.user_current = result.objects ?? User();
+          _authManager.user_current.value = result.objects ?? User();
         }
         else{
           Get.snackbar('noti'.tr, "${result.msg}");

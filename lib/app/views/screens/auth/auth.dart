@@ -89,7 +89,7 @@ class AuthPage extends StatelessWidget {
               ),
             )
         )
-    );;
+    );
   }
 }
 

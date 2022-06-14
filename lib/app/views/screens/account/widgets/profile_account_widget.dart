@@ -34,7 +34,7 @@ class ProfileAccountWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: ClipOval(
-                  child: ImageNetworkLoading(image_url: controller.user_current.image.toString()),
+                  child: ImageNetworkLoading(image_url: controller.user_current.value.image.toString()),
                 ),
 
               ),
@@ -42,7 +42,7 @@ class ProfileAccountWidget extends StatelessWidget {
             ],
           ),),
         // Tên
-        title: Text('${controller.user_current.firstname?? "user_312312"} ${controller.user_current.lastname??''}',
+        title: Text('${controller.user_current.value.firstname?? "user_312312"} ${controller.user_current.value.lastname??''}',
           style: const TextStyle(
               color: AppColors.yellowColor,
               fontWeight: FontWeight.bold
@@ -59,7 +59,7 @@ class ProfileAccountWidget extends StatelessWidget {
               ),
             ),
             // Ngày tham gia
-            Text("${'joined'.tr}: ${controller.user_current.created_at?? '__/__/20__'}",
+            Text("${'joined'.tr}: ${controller.user_current.value.created_at?? '__/__/20__'}",
               style: const TextStyle(
                   color: AppColors.textGrayBoldColor
               ),

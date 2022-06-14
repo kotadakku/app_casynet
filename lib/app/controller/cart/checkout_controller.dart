@@ -15,8 +15,8 @@ class CheckoutController extends GetxController{
   @override
   void onInit() {
     AuthenticationManager authenticationManager = Get.find();
-    if(authenticationManager.user_current.addresses.isNotEmpty){
-      address_default = authenticationManager.user_current.addresses
+    if(authenticationManager.user_current.value.addresses.isNotEmpty){
+      address_default = authenticationManager.user_current.value.addresses
           .where((element) => element.default_shipping == true).first;
     }
   }

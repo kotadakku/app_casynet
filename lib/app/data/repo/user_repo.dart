@@ -145,7 +145,7 @@ class UserRepo{
 
   Future<Responses<bool>> ckeckUserLike({Options? options, Map<String, dynamic>? queryParameters}) async {
     try{
-      final response = await ApiRequest().put(
+      final response = await ApiRequest().post(
           path: ApiConfig.baseUrl + '/rest/V1/customers/me',
           options: options,
           queryParameters: queryParameters
@@ -163,7 +163,7 @@ class UserRepo{
 
   Future<Responses<bool>> likeProduct({Options? options, Map<String, dynamic>? queryParameters}) async {
     try{
-      final response = await ApiRequest().put(
+      final response = await ApiRequest().post(
           path: ApiConfig.baseUrl + '/rest/V1/customers/me',
           options: options,
           queryParameters: queryParameters
@@ -171,6 +171,109 @@ class UserRepo{
       if(response!=null){
         bool isLiked = response.data;
         return Responses<bool>(isSuccess: true, statusCode: CODE_SUCCESS, objects: isLiked);
+      }
+      return Responses<bool>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<bool>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<Product>> getFollowedSeller({Map<String, String>? queryParameters, Options? options}) async {
+    try{
+      final response = await ApiRequest().get(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/me',
+          options: options,
+          queryParameters: queryParameters
+      );
+      if(response!=null){
+        List<Product> products = List.from(
+            (response.data as List).map((e) => Product.fromJson(e))
+        );
+        return Responses<Product>(isSuccess: true, statusCode: CODE_SUCCESS, listObjects: products);
+      }
+      return Responses<Product>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<Product>> getViewedProduct({Map<String, String>? queryParameters, Options? options}) async {
+    try{
+      final response = await ApiRequest().get(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/me',
+          options: options,
+          queryParameters: queryParameters
+      );
+      if(response!=null){
+        List<Product> products = List.from(
+            (response.data as List).map((e) => Product.fromJson(e))
+        );
+        return Responses<Product>(isSuccess: true, statusCode: CODE_SUCCESS, listObjects: products);
+      }
+      return Responses<Product>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Product>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<Seller>> getFavoutiteProduct({Map<String, String>? queryParameters, Options? options}) async {
+    try{
+      final response = await ApiRequest().get(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/me',
+          options: options,
+          queryParameters: queryParameters
+      );
+      if(response!=null){
+        List<Seller> sellers = List.from(
+            (response.data as List).map((e) => Seller.fromJson(e))
+        );
+        return Responses<Seller>(isSuccess: true, statusCode: CODE_SUCCESS, listObjects: sellers);
+      }
+      return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<bool>> resetPassword({required String email, Options? options}) async {
+    try{
+      final response = await ApiRequest().put(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/password',
+          options: options,
+          queryParameters: {
+            "email": email,
+            "template": "email_reset",
+            "websiteId": 1
+          }
+      );
+      if(response!=null){
+        bool isSuccess = response.data;
+        return Responses<bool>(statusCode: CODE_SUCCESS, objects: isSuccess);
+      }
+      return Responses<bool>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<bool>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
+  Future<Responses<bool>> changePassword({required String current_password, required new_password, Map<String, dynamic>? queryParameters, Options? options}) async {
+    try{
+      final response = await ApiRequest().put(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/me/password',
+          options: options,
+          queryParameters: {
+            "currentPassword": current_password,
+            "newPassword": new_password
+          }
+      );
+      if(response!=null){
+        bool isSuccess = response.data;
+        return Responses<bool>(statusCode: CODE_SUCCESS, objects: isSuccess);
       }
       return Responses<bool>(statusCode: CODE_RESPONSE_NULL, msg: '');
     }catch(error){
