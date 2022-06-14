@@ -60,4 +60,20 @@ class SellerRepo{
     }
   }
 
+  Future<Responses<Seller>>  getInfomationDashboard() async {
+    try{
+      final response = await ApiRequest().get(
+        path: ApiConfig.baseUrl + '/pub/media/api_json/Seller Detail Json/' + '.json',
+      );
+      if(response != null){
+        Seller seller = Seller.fromJson(response.data);
+        return Responses<Seller>(isSuccess: true, objects: seller);
+      }
+      return Responses<Seller>(statusCode: CODE_RESPONSE_NULL, msg: "");
+    } catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<Seller>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
+
 }

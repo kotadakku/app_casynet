@@ -29,6 +29,16 @@ class Seller {
   int? totalTransaction;
   Address? address_seller;
 
+  int? turnover ;
+  int? total_products_sold;
+  int? total_order;
+  int? total_products;
+  int? turnover_today;
+  int? total_products_sold_today;
+  int? total_order_today;
+  int? total_products_sold_month;
+  int? total_order_month;
+
 
   Seller(
   {this.id,
@@ -107,6 +117,18 @@ class Seller {
     data['villageId'] = address_seller?.villageId;
     data['specificAddress'] = address_seller?.specificAddress;
     return data;
+  }
+
+  Seller.fromDashboard(e){
+    turnover = e['turnover'];
+    total_products_sold = e['total_products_sold'];
+    total_order = e['total_order'];
+    total_products = e['total_products'];
+    turnover_today = e['turnover_today'];
+    total_products_sold_today = e['total_products_sold_today'];
+    total_order_today = e['total_order_today'];
+    total_products_sold_month = e['total_products_sold_month'];
+    total_order_month = e['total_order_month'];
   }
 
 }

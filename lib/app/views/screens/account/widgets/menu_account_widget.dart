@@ -34,20 +34,20 @@ class MenuAccountWidget extends StatelessWidget {
         case 'info-account':
           icon = FontAwesomeIcons.user;
           nav = (){
-            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            if(!_authManager.isLogged.value || _authManager.user_current.value.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
             else Get.toNamed(Routes.ACCOUNT_DETAIL, arguments: [12]); };
           break;
         case 'address':
           icon = FontAwesomeIcons.mapLocation;
           nav = (){
-            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            if(!_authManager.isLogged.value || _authManager.user_current.value.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
             else Get.toNamed(Routes.ACCOUNT_ADDRESS);
           };
           break;
         case 'message':
           icon = FontAwesomeIcons.message;
           nav = (){
-            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            if(!_authManager.isLogged.value || _authManager.user_current.value.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
             else  Get.toNamed(Routes.MESSAGES,  arguments: [12]);
 
           };
@@ -56,7 +56,7 @@ class MenuAccountWidget extends StatelessWidget {
           icon = FontAwesomeIcons.bagShopping;
           nav = () {
             if (!_authManager.isLogged.value ||
-                _authManager.user_current.id == null)
+                _authManager.user_current.value.id == null)
               Get.toNamed(Routes.AUTH, arguments: 0);
             else
               Get.toNamed(Routes.ACCOUNT_ORDER, arguments: [12]);
@@ -66,7 +66,7 @@ class MenuAccountWidget extends StatelessWidget {
           icon = FontAwesomeIcons.wallet;
           nav = () {
             if (!_authManager.isLogged.value ||
-                _authManager.user_current.id == null)
+                _authManager.user_current.value.id == null)
               Get.toNamed(Routes.AUTH, arguments: 0);
             else
               Get.toNamed(Routes.ACCOUNT_WALLET_VOUCHER, arguments: [12]);
@@ -76,7 +76,7 @@ class MenuAccountWidget extends StatelessWidget {
           icon = FontAwesomeIcons.bitcoin;
           nav = () {
             if (!_authManager.isLogged.value ||
-                _authManager.user_current.id == null)
+                _authManager.user_current.value.id == null)
               Get.toNamed(Routes.AUTH, arguments: 0);
             else
               Get.toNamed(Routes.ACCOUNT_CASYCOIN, arguments: [12]);
@@ -86,7 +86,7 @@ class MenuAccountWidget extends StatelessWidget {
           icon = FontAwesomeIcons.heart;
           nav = () {
             if (!_authManager.isLogged.value ||
-                _authManager.user_current.id == null)
+                _authManager.user_current.value.id == null)
               Get.toNamed(Routes.AUTH, arguments: 0);
             else
               Get.toNamed(Routes.PRODUCTS_FAVOURITE, arguments: [12]);
@@ -96,7 +96,7 @@ class MenuAccountWidget extends StatelessWidget {
           icon = FontAwesomeIcons.store;
           nav = () {
             if (!_authManager.isLogged.value ||
-                _authManager.user_current.id == null)
+                _authManager.user_current.value.id == null)
               Get.toNamed(Routes.AUTH, arguments: 0);
             else
               Get.toNamed(Routes.STORE_FOLLOWED, arguments: [12]);
@@ -106,7 +106,7 @@ class MenuAccountWidget extends StatelessWidget {
           icon = FontAwesomeIcons.eye;
           nav = () {
             if (!_authManager.isLogged.value ||
-                _authManager.user_current.id == null)
+                _authManager.user_current.value.id == null)
               Get.toNamed(Routes.AUTH, arguments: 0);
             else
               Get.toNamed(Routes.PRODUCTS_SEEN, arguments: [12]);
@@ -115,7 +115,7 @@ class MenuAccountWidget extends StatelessWidget {
         case 'seller_manager':
           icon = FontAwesomeIcons.shopware;
           nav = (){
-            if(!_authManager.isLogged.value || _authManager.user_current.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
+            if(!_authManager.isLogged.value || _authManager.user_current.value.id == null) Get.toNamed(Routes.AUTH, arguments: 0);
             else Get.toNamed(Routes.STORE_MANAGER);
 
           };

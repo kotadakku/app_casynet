@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/account/api/voucher_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,8 @@ import '../../theme/app_colors.dart';
 
 
 class WalletVoucherPage extends StatelessWidget {
-  const WalletVoucherPage({Key? key}) : super(key: key);
+  WalletVoucherPage({Key? key}) : super(key: key);
+  VoucherController _voucherController = Get.find();
 
   @override
   Widget build(BuildContext context) {

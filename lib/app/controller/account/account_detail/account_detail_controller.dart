@@ -5,7 +5,6 @@ import 'dart:io';
 
 import '../../../data/model/user.dart';
 import '../../../data/provider/get_storage_provider.dart';
-import '../../../data/repo/account_repo.dart';
 import '../../../data/repo/user_repo.dart';
 import '../auth/authentication_manager.dart';
 
@@ -18,7 +17,7 @@ class AccountDetailController extends GetxController{
   @override
   void onInit() {
     AuthenticationManager authenticationManager = Get.find();
-    user.value = authenticationManager.user_current;
+    user.value = authenticationManager.user_current.value;
   }
 
   Future<void> pickimagecamera({bool isCamera = false}) async {
@@ -42,7 +41,7 @@ class AccountDetailController extends GetxController{
       );
       if(result != null){
         if(result.isSuccess){
-          authenticationManager.user_current = result.objects ?? User();
+          authenticationManager.user_current.value = result.objects ?? User();
         }
         else{
           printError(info: result.msg.toString());

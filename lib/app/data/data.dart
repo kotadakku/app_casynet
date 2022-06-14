@@ -23,7 +23,6 @@ export 'provider/api/interceptors.dart';
 export 'provider/api/responses.dart';
 export 'provider/get_storage_provider.dart';
 
-export 'repo/account_repo.dart';
 export 'repo/address_repo.dart';
 export 'repo/cart_repo.dart';
 export 'repo/gift_repo.dart';
@@ -33,3 +32,5 @@ export 'repo/notification_repo.dart';
 export 'repo/order_repo.dart';
 export 'repo/product_repo.dart';
 export 'repo/seller_repo.dart';
+export 'repo/voucher_repo.dart';
+export 'repo/casypoint_repo.dart';

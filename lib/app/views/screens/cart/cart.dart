@@ -203,7 +203,7 @@ class Cart extends StatelessWidget {
                           ),
                           // sự kiện chuyển màn
                           onPressed: () {
-                            if(!_authenticationManager.isLogged.value || _authenticationManager.user_current.id == null){
+                            if(!_authenticationManager.isLogged.value || _authenticationManager.user_current.value.id == null){
                               Get.toNamed(Routes.AUTH, arguments: 0);
                               return;
                             }

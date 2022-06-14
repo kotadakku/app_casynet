@@ -32,7 +32,7 @@ class AccountBasePage extends StatelessWidget {
                 children: [
                   // Nút đăng nhập/ đăng ký
                   Obx((){
-                    if(!_authManager.isLogged.value || _authManager.user_current == null){
+                    if(!_authManager.isLogged.value || _authManager.user_current.value.id! == null){
                       return Padding(padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,7 +84,7 @@ class AccountBasePage extends StatelessWidget {
                                       onPressed: () {
                                         Get.toNamed(Routes.MY_STORE);
                                       },
-                                      child: Text(controller.user_current.storeId == null ? 'my_seller'.tr: "Tạo cửa hàng",
+                                      child: Text(controller.user_current.value.storeId == null ? 'my_seller'.tr: "Tạo cửa hàng",
                                         style: TextStyle(
                                             color: Colors.white
                                         ),

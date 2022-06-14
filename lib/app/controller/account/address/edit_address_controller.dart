@@ -18,10 +18,13 @@ class EditAddressController extends GetxController{
   void onInit() {
     _authManager = Get.put(AuthenticationManager());
     formStateKey = GlobalKey<FormState>();
-    address = Address();
-    textProvinceCotroller = TextEditingController();
-    textDistrictController = TextEditingController();
-    textCommuneController = TextEditingController();
+    if(Get.arguments[0] != null){
+      address = Get.arguments[0];
+    }
+    textProvinceCotroller = TextEditingController(text: address.province);
+    textDistrictController = TextEditingController(text: address.district);
+    textCommuneController = TextEditingController(text: '');
+    switch_default.value = address.default_shipping;
   }
 
   void updateAddress(int id){

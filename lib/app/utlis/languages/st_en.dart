@@ -43,6 +43,7 @@ const Map<String, String> en = {
   'do-quit' : 'Do you want to quit?',
   'description_product' : 'Product description',
   'description' : 'Description',
+  'edit_address' : 'Edit address',
   'enter_apartment_street' : 'Enter Apartment, street',
   'enter_descrip' : 'Enter description',
   'enter_descrip_seller' : 'Enter description seller',

@@ -43,6 +43,7 @@ const Map<String, String> vi = {
   'do-quit' : 'Bạn có muốn thoát?',
   'description_product' : 'Chi tiết sản phẩm',
   'description' : 'Mô tả',
+  'edit_address' : 'Sửa địa chỉ',
   'enter_apartment_street' : 'Nhập số nhà, tên đường',
   'enter_name' : 'Nhập họ và tên',
   'enter_descrip' : 'Nhập mô tả',

@@ -1,17 +1,11 @@
 
-import 'package:app_casynet/app/config/config_db.dart';
-import 'package:app_casynet/app/data/model/product_cart.dart';
-import 'package:app_casynet/app/data/repo/cart_repo.dart';
+import 'package:app_casynet/app/config/config.dart';
+import 'package:app_casynet/app/data/data.dart';
 import "package:collection/collection.dart";
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../data/model/product.dart';
-import '../../../data/provider/db_provider.dart';
-import '../../../data/provider/get_storage_provider.dart';
-import '../../../data/repo/account_repo.dart';
-import '../../account/auth/authentication_manager.dart';
+import 'package:app_casynet/app/controller/controller.dart';
 
 class ProductCartController extends GetxController with StateMixin {
   final _productsCartList = <ProductCart>[].obs;

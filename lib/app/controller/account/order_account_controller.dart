@@ -28,7 +28,6 @@ class OrderAccountController extends GetxController with GetSingleTickerProvider
     super.onClose();
   }
   void loadMoreAll() async {
-
     OrderController orderController = Get.find();
     if(!isLoadingAll.value){
       isLoadingAll.value = true;
