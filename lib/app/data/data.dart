@@ -15,6 +15,7 @@ export 'model/product_cart.dart';
 export 'model/sales.dart';
 export 'model/seller.dart';
 export 'model/user.dart';
+export 'model/rate_comment.dart';
 
 export 'provider/db_provider.dart';
 export 'provider/api/api_provider.dart';
@@ -33,3 +34,4 @@ export 'repo/notification_repo.dart';
 export 'repo/order_repo.dart';
 export 'repo/product_repo.dart';
 export 'repo/seller_repo.dart';
+export 'repo/rate_coment_repo.dart';

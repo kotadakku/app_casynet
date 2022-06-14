@@ -19,4 +19,6 @@ class ApiConfig {
   static const districts = '/api/v1/districts';
   static const villages = '/api/v1/villages';
   static const origin = '/api/v1/products/origin';
+
+  static const ratecomment  = '';
 }

@@ -1,5 +1,5 @@
 import 'package:app_casynet/app/config/api_params.dart';
-import 'package:app_casynet/app/data/repo/home_repo.dart';
+import 'package:app_casynet/app/data/data.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +12,10 @@ import '../../data/repo/seller_repo.dart';
 import '../../data/repo/user_repo.dart';
 
 class DetailStoreController extends GetxController with GetTickerProviderStateMixin {
+
+  var isLoadingRateCmtAPI = false.obs;
+  var errorRateCmt = "".obs;
+  final rateCmtList = <Rate>[].obs;
 
   var isReadMore = false.obs;
   final isCarReservation = false.obs;
@@ -201,6 +205,36 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
       );
     }
     catch(error){
+
+    }
+  }
+
+  // đánh giá bình luận
+  Future<void> getRateCommentAPI() async{
+    isLoadingRateCmtAPI.value = true;
+    errorRateCmt.value = "";
+    try{
+      final result = await RateCommentRepo().getRateComent();
+
+      if(result != null){
+        if(result.isSuccess){
+          rateCmtList.value = result.listObjects ?? [];
+          isLoadingRateCmtAPI.value = false;
+          if(rateCmtList.length <= 0){
+            errorRateCmt.value = "Không có đánh giá bình luận nào";
+            return;
+          }
+        }else{
+          isLoadingRateCmtAPI.value = false;
+          errorRateCmt.value = "${result.msg.toString()}";
+          print(result.msg.toString());
+        }
+
+      }
+    }catch (e){
+      print(e);
+      errorRateCmt.value = "Hệ thống đang có vẫn đề!";
+      isLoadingRateCmtAPI.value = false;
 
     }
   }

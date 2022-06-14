@@ -228,8 +228,8 @@ class WalletVoucherPage extends StatelessWidget {
                           fit: StackFit.passthrough,
                           children: [
                             Container(
-                            width: 100,
-                            height: 100,
+                            width: 100.w,
+                            height: 100.h,
                             margin: EdgeInsets.all(5.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -242,8 +242,8 @@ class WalletVoucherPage extends StatelessWidget {
                                     children: [
                                       Image.asset(
                                         "assets/images/account/right_background.png",
-                                        width: 100,
-                                        height: 100,
+                                        width: 100.w,
+                                        height: 100.h,
                                       ),
                                       Positioned(
                                           left: 0,
@@ -298,7 +298,7 @@ class WalletVoucherPage extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 10,
+                                  width: 10.w,
                                 ),
                                 Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -350,8 +350,8 @@ class WalletVoucherPage extends StatelessWidget {
                             )),
 
                             Container(
-                              width: 100,
-                              height: 100,
+                              width: 100.w,
+                              height: 100.h,
                               margin: EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
                                 color: Colors.grey.withOpacity(0.5),
