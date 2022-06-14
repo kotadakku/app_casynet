@@ -56,4 +56,44 @@ const Map<String, dynamic> info_dashboard = {
   "total_order_month": 32
 };
 
+List<Map<String, dynamic>>  rateNotMes =[
+  {
+    "id" : 1,
+    "avatar" : "https://casynet.vn/media/lof/seller/thumbnail/1652086413.png",
+    "username" : "ngocbichdsad",
+    "rate" : 4.0,
+    "content" : "Shop tin cay",
+    "time" : "20/3/2022",
+    "isMe" : false
+  },
+  {
+    "id" : 2,
+    "avatar" : "https://casynet.vn/media/lof/seller/thumbnail/1652086413.png",
+    "username" : "ngocbichdsad",
+    "rate" : 4.0,
+    "content" : "Shop tin cay",
+    "time" : "20/3/2022",
+    "isMe" : false
+  },
+  {
+    "id" : 1,
+    "avatar" : "https://casynet.vn/media/lof/seller/thumbnail/1652086413.png",
+    "username" : "ngocbichsadsa",
+    "rate" : 4.5,
+    "content" : "Shop tin cay",
+    "time" : "20/3/2022",
+    "isMe" : true
+  },
+];
+
+Map<String, dynamic>  Rate_me =
+  {
+    "id" : 1,
+    "avatar" : "https://casynet.vn/media/lof/seller/thumbnail/1652086413.png",
+    "username" : "me",
+    "rate" : 4.5,
+    "content" : "Shop tin cay",
+    "time" : "20/3/2022",
+  };
+
 
