@@ -260,4 +260,25 @@ class UserRepo{
       return Responses<bool>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
+
+  Future<Responses<bool>> changePassword({required String current_password, required new_password, Map<String, dynamic>? queryParameters, Options? options}) async {
+    try{
+      final response = await ApiRequest().put(
+          path: ApiConfig.baseUrl + '/rest/V1/customers/me/password',
+          options: options,
+          queryParameters: {
+            "currentPassword": current_password,
+            "newPassword": new_password
+          }
+      );
+      if(response!=null){
+        bool isSuccess = response.data;
+        return Responses<bool>(statusCode: CODE_SUCCESS, objects: isSuccess);
+      }
+      return Responses<bool>(statusCode: CODE_RESPONSE_NULL, msg: '');
+    }catch(error){
+      final errorMessage = DioExceptions.fromDioError(error);
+      return Responses<bool>(statusCode: CODE_ERROR, msg: errorMessage.toString());
+    }
+  }
 }

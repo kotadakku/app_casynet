@@ -34,3 +34,4 @@ export 'repo/product_repo.dart';
 export 'repo/seller_repo.dart';
 export 'repo/voucher_repo.dart';
 export 'repo/casypoint_repo.dart';
+export 'repo/user_repo.dart';
