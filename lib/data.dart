@@ -64,7 +64,13 @@ List<Map<String, dynamic>>  rateNotMes =[
     "rate" : 4.0,
     "content" : "Shop tin cay",
     "time" : "20/3/2022",
-    "isMe" : false
+    "reply" : {
+      "id" : 2,
+      "avatar" : "https://casynet.vn/media/lof/seller/thumbnail/1652086413.png",
+      "username" : "Cong ty ABC",
+      "content" : "Cam on a",
+      "time" : "20/3/2022",
+    },
   },
   {
     "id" : 2,
@@ -86,7 +92,7 @@ List<Map<String, dynamic>>  rateNotMes =[
   },
 ];
 
-Map<String, dynamic>  Rate_me =
+Map<String, dynamic>  rate_me =
   {
     "id" : 1,
     "avatar" : "https://casynet.vn/media/lof/seller/thumbnail/1652086413.png",

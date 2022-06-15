@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,8 @@ import 'card_chat_item.dart';
 import 'gift_store_widget.dart';
 
 class VoteStoreWidget extends StatelessWidget {
-  const VoteStoreWidget({Key? key}) : super(key: key);
+  VoteStoreWidget({Key? key}) : super(key: key);
+  DetailStoreController _detailStoreController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -155,14 +157,154 @@ class VoteStoreWidget extends StatelessWidget {
             color: AppColors.backgroundColor,
             height: 10,
           ),
-          Obx(()=>ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: isReadMore.value ? 5: chats.length,
-              itemBuilder: (context, index){
-                return CardChatItem(isFromMe: chats[index]['isMe'], nameUser:  chats[index]['user_name'], message:  chats[index]['content']);
-              }
-          )),
+          _detailStoreController.rateMe.value.id == null
+              ? Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                child: Text('Đánh giá ngay',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              RatingBar.builder(
+                initialRating: 5,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemSize: 25,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  _detailStoreController.rateSeller(rating);
+                  print(rating);
+                },
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                          height: 40,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(5.0),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: AppColors.yellowColor
+                                  )
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: AppColors.textGrayColor
+                                  )
+                              ),
+                            ),
+                          ),
+                        )
+                    ),
+                    Container(
+                      width: 30,
+                      height: 30,
+                      child: Icon(Icons.send, color: AppColors.textGrayColor,),
+                    )
+
+                  ],
+                ),
+              )
+            ],
+          )
+              : Container(
+            padding: EdgeInsets.only(left: 10.w, right: 30.w, top: 10.h, bottom: 10.h),
+            margin: EdgeInsets.only(left: 0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.horizontal(left: Radius.circular(10.0)),
+              color: Colors.white,
+            ),
+            child: Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  margin: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(color: Colors.blueAccent),
+                      image: DecorationImage(
+                        image: NetworkImage('${_detailStoreController.rateMe.value.avatar}'),
+                        fit: BoxFit.fill,
+                      )
+                  ),
+                ),
+                Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 150,
+                          child: Text('${_detailStoreController.rateMe.value.userName}', style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            color: Colors.blue,
+                            // fontWeight: FontWeight.w400
+                          ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            RatingBarIndicator(
+                              rating: _detailStoreController.rateMe.value.rateTotal ?? 0.0,
+                              unratedColor: Colors.amber.withOpacity(0.2),
+                              itemBuilder: (context, index) => const Icon(
+                                Icons.star_outlined,
+                                color: Colors.amber,
+                              ),
+                              itemCount: 5,
+                              itemSize: 18.0,
+                              direction: Axis.horizontal,
+                            ),
+
+                            SizedBox(width: 10.w,),
+                            Text('${_detailStoreController.rateMe.value.rateTotal}',
+                              style: TextStyle(
+                                  color: AppColors.textGrayColor,
+                                  fontSize: 12
+                              ),
+
+                            )
+                          ],
+                        ),
+
+                        SizedBox(height: 10.h,),
+                        Text('${_detailStoreController.rateMe.value.content}')
+                      ],
+                    ))
+              ],
+            ),
+          ),
+
+          Obx(()=> _detailStoreController.rateCmtList.length>0
+              ? ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemCount: _detailStoreController.rateCmtList.length,
+                itemBuilder: (context, index) => CardChatItem(
+                  rate: _detailStoreController.rateCmtList[index],
+                )
+              )
+              : SizedBox(
+                height: 20,
+                child: Text('Chưa có bình luận nào'),
+              )
+          ),
+
           Divider(),
           GestureDetector(
             onTap: (){

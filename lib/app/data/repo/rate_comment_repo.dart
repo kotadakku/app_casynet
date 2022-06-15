@@ -24,8 +24,4 @@ class RateCommentRepo{
       return Responses<Rate>(statusCode: CODE_ERROR, msg: errorMessage.toString());
     }
   }
-
-
-
-
 }

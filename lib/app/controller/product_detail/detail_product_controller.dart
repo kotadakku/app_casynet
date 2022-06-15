@@ -4,9 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data.dart';
 import '../../data/model/product.dart';
 import '../../data/provider/get_storage_provider.dart';
 import '../../data/repo/product_repo.dart';
+import 'package:app_casynet/app/data/data.dart';
 
 class DetailProductController extends GetxController with GetSingleTickerProviderStateMixin{
   late AnimationController controller;
@@ -31,6 +33,10 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
 
   final errorgetFeatures = ''.obs;
 
+  final rateCmtList = <Rate>[].obs;
+  var rateMe = Rate().obs;
+  final isLoadingRateCmtAPI = false.obs;
+
   @override
   void onInit() {
     controller = AnimationController(
@@ -46,6 +52,7 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
     checkUserFollow();
     checkUserLike();
     getProductFeatureAPI(category_id: 12);
+    getRateCommentAPI();
   }
   void checkUserLike() async {
     try{
@@ -165,6 +172,43 @@ class DetailProductController extends GetxController with GetSingleTickerProvide
       isLoadingFeatured.value = false;
       // isLoadingProduct.value = false;
     }
+  }
+  Future<void> getRateCommentAPI() async{
+    isLoadingRateCmtAPI.value = true;
+
+    rateNotMes.forEach((e) {
+      rateCmtList.add(Rate.fromJson(e));
+    });
+
+    rateMe.value = Rate.fromJson(rate_me);
+
+    isLoadingRateCmtAPI.value = false;
+
+    // errorRateCmt.value = "";
+    // try{
+    //   final result = await RateCommentRepo().getRateComent();
+    //
+    //   if(result != null){
+    //     if(result.isSuccess){
+    //       rateCmtList.value = result.listObjects ?? [];
+    //       isLoadingRateCmtAPI.value = false;
+    //       if(rateCmtList.length <= 0){
+    //         errorRateCmt.value = "Không có đánh giá bình luận nào";
+    //         return;
+    //       }
+    //     }else{
+    //       isLoadingRateCmtAPI.value = false;
+    //       errorRateCmt.value = "${result.msg.toString()}";
+    //       print(result.msg.toString());
+    //     }
+    //
+    //   }
+    // }catch (e){
+    //   print(e);
+    //   errorRateCmt.value = "Hệ thống đang có vẫn đề!";
+    //   isLoadingRateCmtAPI.value = false;
+    //
+    // }
   }
 
 }

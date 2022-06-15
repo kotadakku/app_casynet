@@ -81,12 +81,12 @@ class AQStoreWidget extends StatelessWidget {
                     ),
                   )),
 
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: chats.length,
-                    itemBuilder: (context, index) => CardChatItem(isFromMe: chats[index]['isMe'], nameUser:  chats[index]['user_name'], message:  chats[index]['content'], time: '', nameCompany: '',)
-                  ),
+                  // ListView.builder(
+                  //   shrinkWrap: true,
+                  //   physics: NeverScrollableScrollPhysics(),
+                  //   itemCount: chats.length,
+                  //   itemBuilder: (context, index) => CardChatItem(isFromMe: chats[index]['isMe'], nameUser:  chats[index]['user_name'], message:  chats[index]['content'], time: '', nameCompany: '',)
+                  // ),
 
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
