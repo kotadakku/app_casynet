@@ -33,7 +33,7 @@ export 'repo/notification_repo.dart';
 export 'repo/order_repo.dart';
 export 'repo/product_repo.dart';
 export 'repo/seller_repo.dart';
-export 'repo/rate_coment_repo.dart';
+export 'repo/rate_comment_repo.dart';
 export 'repo/voucher_repo.dart';
 export 'repo/casypoint_repo.dart';
 export 'repo/user_repo.dart';

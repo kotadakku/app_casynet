@@ -1,3 +1,4 @@
+import 'package:app_casynet/app/controller/controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,8 @@ import '../../../theme/app_colors.dart';
 import '../../seller_detail/widgets/card_chat_item.dart';
 
 class ChatProductWidget extends StatelessWidget {
-  const ChatProductWidget({Key? key}) : super(key: key);
+  ChatProductWidget({Key? key}) : super(key: key);
+  DetailProductController _detailProductController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +46,9 @@ class ChatProductWidget extends StatelessWidget {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemCount: isReadMore.value ? chats.length : 5,
+          itemCount: _detailProductController.rateCmtList.length,
           itemBuilder: (context, index) => CardChatItem(
-            isFromMe: chats[index]['isMe'],
-            nameCompany: chats[index]['user_name'],
-            message: chats[index]['content'],
-            time: chats[index]['time'],
-            nameUser: '',
+            rate: _detailProductController.rateCmtList[index],
           )
           ,
         )),

@@ -1,5 +1,6 @@
 import 'package:app_casynet/app/config/api_params.dart';
 import 'package:app_casynet/app/data/data.dart';
+import 'package:app_casynet/data.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,6 +36,7 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
   final errorGetProduct = ''.obs;
   final errorgetFeatures = ''.obs;
   final store = Seller().obs;
+  var rateMe = Rate().obs;
 
   @override
   void onInit() {
@@ -44,6 +46,7 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
     checkUserLike();
     getProductSellerAPI(category_id: 5);
     getProductFeaturedSellerAPI(category_id: 5);
+    getRateCommentAPI();
   }
 
   @override
@@ -59,8 +62,7 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
     }
   }
 
-  Future<void> getDetailSellerAPI(
-      {String seller_url = '98-vo-chi-cong'}) async {
+  Future<void> getDetailSellerAPI({String seller_url = '98-vo-chi-cong'}) async {
     isLoading.value = true;
     try {
       final result = await SellerRepo().getSeller(seller_url);
@@ -122,9 +124,7 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
   }
 
 // nổi bật
-  Future<void> getProductFeaturedSellerAPI({
-    required int category_id,
-  }) async {
+  Future<void> getProductFeaturedSellerAPI({required int category_id,}) async {
     isLoadingFeatured.value = true;
     final tokenAdmin = await GetStorageProvider().get(
         key: CacheManagerKey.TOKEN_ADMIN.toString());
@@ -212,31 +212,44 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
   // đánh giá bình luận
   Future<void> getRateCommentAPI() async{
     isLoadingRateCmtAPI.value = true;
-    errorRateCmt.value = "";
-    try{
-      final result = await RateCommentRepo().getRateComent();
 
-      if(result != null){
-        if(result.isSuccess){
-          rateCmtList.value = result.listObjects ?? [];
-          isLoadingRateCmtAPI.value = false;
-          if(rateCmtList.length <= 0){
-            errorRateCmt.value = "Không có đánh giá bình luận nào";
-            return;
-          }
-        }else{
-          isLoadingRateCmtAPI.value = false;
-          errorRateCmt.value = "${result.msg.toString()}";
-          print(result.msg.toString());
-        }
+    rateNotMes.forEach((e) {
+      rateCmtList.add(Rate.fromJson(e));
+    });
 
-      }
-    }catch (e){
-      print(e);
-      errorRateCmt.value = "Hệ thống đang có vẫn đề!";
-      isLoadingRateCmtAPI.value = false;
+    rateMe.value = Rate.fromJson(rate_me);
 
-    }
+    isLoadingRateCmtAPI.value = false;
+
+    // errorRateCmt.value = "";
+    // try{
+    //   final result = await RateCommentRepo().getRateComent();
+    //
+    //   if(result != null){
+    //     if(result.isSuccess){
+    //       rateCmtList.value = result.listObjects ?? [];
+    //       isLoadingRateCmtAPI.value = false;
+    //       if(rateCmtList.length <= 0){
+    //         errorRateCmt.value = "Không có đánh giá bình luận nào";
+    //         return;
+    //       }
+    //     }else{
+    //       isLoadingRateCmtAPI.value = false;
+    //       errorRateCmt.value = "${result.msg.toString()}";
+    //       print(result.msg.toString());
+    //     }
+    //
+    //   }
+    // }catch (e){
+    //   print(e);
+    //   errorRateCmt.value = "Hệ thống đang có vẫn đề!";
+    //   isLoadingRateCmtAPI.value = false;
+    //
+    // }
+  }
+
+  void rateSeller(double rating) {
+
   }
 }
 
