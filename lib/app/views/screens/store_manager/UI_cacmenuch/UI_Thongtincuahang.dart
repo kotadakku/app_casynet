@@ -201,19 +201,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                         onTap: () async {
                           FocusManager.instance.primaryFocus!.unfocus();
-                          TimeOfDay? value = await showTimePicker(
-                            context: context,
-                            builder: (context, childWidget) {
-                              return MediaQuery(
-                                  data: MediaQuery.of(context).copyWith(
-                                    // Using 24-Hour format
-                                      alwaysUse24HourFormat: true),
-                                  // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
-                                  child: childWidget!);
-                            },
-                            initialTime: TimeOfDay.now(),
-                          );
-                          controller.open_hours.value = '${value?.hour}:${value?.minute}';
+                          controller.showDateTimePicker(context, isOpen: true);
                         },
                       ),
                     ),
@@ -239,7 +227,7 @@ class ThongTinCuaHang extends StatelessWidget {
                             ),
                             Obx(
                               () => Text(
-                                  controller.closer_hours.value == ""
+                                  controller.closer_hours.value == null
                                       ? ""
                                       : controller.closer_hours.value,
                                   style: TextStyle(fontSize: 15)),
@@ -253,19 +241,9 @@ class ThongTinCuaHang extends StatelessWidget {
                         ),
                         onTap: () async {
                           FocusManager.instance.primaryFocus!.unfocus();
-                          TimeOfDay? value = await showTimePicker(
-                            context: context,
-                            builder: (context, childWidget) {
-                              return MediaQuery(
-                                  data: MediaQuery.of(context).copyWith(
-                                    // Using 24-Hour format
-                                      alwaysUse24HourFormat: true),
-                                  // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
-                                  child: childWidget!);
-                            },
-                            initialTime: TimeOfDay.now(),
-                          );
-                          controller.closer_hours.value = '${value?.hour}:${value?.minute}';
+
+                          controller.showDateTimePicker(context);
+
                         },
                       ),
                     ),

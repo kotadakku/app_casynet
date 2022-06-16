@@ -6,6 +6,7 @@ import 'package:app_casynet/app/data/model/product.dart';
 import 'package:app_casynet/app/data/repo/product_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -38,9 +39,10 @@ class AddProductController extends GetxController{
   var x = "".obs;
   late File imagepk;
 
+  final Map<int, VideoPlayerController> videoControllers = {};
+
   var controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/images/videos/butterfly.mp4").obs;
   late Future<void> initializeVideoPlayerFuture;
-  var playpause = false.obs;
 
   final listCategorySelected = <Category>[].obs;
   final selectOrigin = Origin().obs;
@@ -121,44 +123,81 @@ class AddProductController extends GetxController{
     }
   }
 
-  Future pickvideo() async {
-    final XFile? video = await ImagePicker().pickVideo(source: ImageSource.camera);
-    if (video != null) {
-      imagepk = File(video.path);
-      imagepicker.add(imagepk);
-    }
-    return imagepicker;
-  }
-  Future hienvideo() async{
-    if(imagepicker.length>0){
-      for(int i=0;i<imagepicker.length;i++){
-        if(imagepicker[i].toString().contains(".mp4")){
-          controller.value = VideoPlayerController.file((imagepicker[i]));
-          initializeVideoPlayerFuture = controller.value.initialize();
-          controller.value.setLooping(true);
-          controller.value.setVolume(1.0);
+  Future<void> pickFile({String type = 'img', bool isCamera = true }) async {
+    switch(type){
+      case 'img' : {
+        if(isCamera){
+          final XFile? photo = await ImagePicker().pickImage(source:ImageSource.camera);
+          if (photo != null) {
+            imagepk = File(photo.path);
+            imagepicker.add(imagepk);
+          }
+        }
+        else{
+          final List<XFile>? images = await ImagePicker().pickMultiImage();
+          if (images != null) {
+            for(int i=0;i<images.length;i++){
+              imagepk = File(images[i].path);
+              imagepicker.add(imagepk);
+            }
+          }
+        }
+      }
+      break;
+      case 'vid':{
+        final XFile? video = await ImagePicker().pickVideo(source: isCamera ? ImageSource.camera : ImageSource.gallery);
+        if (video != null) {
+          imagepk = File(video.path);
+          imagepicker.add(imagepk);
+          videoControllers[imagepicker.indexOf(imagepk)] = VideoPlayerController.file((imagepicker[imagepicker.length-1]))
+            ..setLooping(true)
+            ..setVolume(1.0);
         }
       }
     }
   }
-  Future pickimagecamera() async {
-    final XFile? photo = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (photo != null) {
-      imagepk = File(photo.path);
-      imagepicker.add(imagepk);
-    }
-  }
 
-  Future pickimage() async {
-    final List<XFile>? images = await ImagePicker().pickMultiImage();
-    if (images != null) {
-      for(int i=0;i<images.length;i++){
-        imagepk = File(images[i].path);
-        imagepicker.add(imagepk);
-      }
-
-
-    }
+  void showActionSheet(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoActionSheet(
+        title: const Text('Thêm ảnh-video sản phẩm'),
+        // message: const Text('Message'),
+        actions: <CupertinoActionSheetAction>[
+          CupertinoActionSheetAction(
+            isDefaultAction: true,
+            onPressed: () {
+              pickFile();
+              Get.back();
+            },
+            child: Text('take_photo'.tr),
+          ),
+          CupertinoActionSheetAction(
+            onPressed: () {
+              pickFile(isCamera: false);
+              Get.back();
+            },
+            child: Text('gallery_photo'.tr),
+          ),
+          CupertinoActionSheetAction(
+            isDestructiveAction: true,
+            onPressed: () {
+              pickFile(type: 'vid');
+              Get.back();
+            },
+            child: Text('take_video'.tr),
+          ),
+          CupertinoActionSheetAction(
+            isDestructiveAction: true,
+            onPressed: () {
+              pickFile(type: 'vid', isCamera: false);
+              Get.back();
+            },
+            child: Text('gallery_video'.tr),
+          )
+        ],
+      ),
+    );
   }
   void showbottonsheet(context){
     showModalBottomSheet(context: context,backgroundColor: Colors.transparent, builder: (context){
@@ -189,7 +228,7 @@ class AddProductController extends GetxController{
                 ),
                 child: Text("Chụp ảnh",style: TextStyle(color: Colors.blue,),),
                 onPressed: (){
-                  pickimagecamera();
+                  pickFile();
                 },
               ),
             ),
@@ -202,7 +241,7 @@ class AddProductController extends GetxController{
                 ),
                 child: Text("Quay video",style: TextStyle(color: Colors.blue,),),
                 onPressed: (){
-                  pickvideo();
+                  pickFile(type: 'vid');
 
                 },
               ),
@@ -215,15 +254,7 @@ class AddProductController extends GetxController{
                 ),
                 child: Text("Thư viện ảnh",style: TextStyle(color: Colors.blue,),),
                 onPressed: (){
-                  pickimage();
-                  for(int i=0;i<imagepicker.length;i++){
-                    if(imagepicker[i].toString().contains(".jpg")){
-                      print("anh");
-                    }
-                    if(imagepicker[i].toString().contains(".mp4")){
-                      print("video");
-                    }
-                  }
+                  pickFile(type: 'img', isCamera: false);
                 },
               ),
             ),
@@ -236,7 +267,7 @@ class AddProductController extends GetxController{
                 ),
                 child: Text("Thư viện video",style: TextStyle(color: Colors.blue,),),
                 onPressed: (){
-
+                  pickFile(type: 'vid', isCamera: false);
                 },
               ),
             ),
@@ -250,7 +281,7 @@ class AddProductController extends GetxController{
                 ),
                 child: Text("Hủy",style: TextStyle(color: Colors.black,),),
                 onPressed: (){
-
+                  Get.back();
                 },
               ),
             ),
@@ -258,5 +289,15 @@ class AddProductController extends GetxController{
         ),
       );
     });
+  }
+
+  void onPauseVideo(int index) {
+    if( videoControllers[index]!.value.isPlaying){
+      videoControllers[index]?.pause();
+      update();
+    }else{
+     videoControllers[index]?.play();
+     update();
+    }
   }
 }

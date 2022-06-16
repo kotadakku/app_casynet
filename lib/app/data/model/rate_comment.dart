@@ -1,25 +1,30 @@
 
 class Rate{
-  int? idRate;
+  int? id;
   String? avatar;
   String? userName;
-  double? rateTatol;
+  double? rateTotal;
   String? content;
-  DateTime? time;
-  List<String> reply = [];
+  String? time;
+  Rate? reply;
+
+  Rate();
+
 
   Rate.fromJson(Map<String,dynamic> json){
-    this.idRate = json['idRate'];
+    this.id = json['id'];
     this.avatar = json['avatar'];
-    this.userName = json['userName'];
-    this.rateTatol = json['rateTatol'];
+    this.userName = json['username'];
+    this.rateTotal = json['rate'];
     this.content = json['content'];
     this.time = json['time'];
     if(json['reply'] != null){
-      json['reply'].forEach((value){
-        reply = [];
-        reply.add(value);
-      });
+      reply = Rate();
+      reply?.id = json['reply']['id'];
+      reply?.avatar = json['reply']['avatar'];
+      reply?.userName = json['reply']['username'];
+      reply?.content = json['reply']['content'];
+      reply?.time = json['reply']['time'];
     }
   }
 }

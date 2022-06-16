@@ -6,16 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:video_player/video_player.dart';
 
 import '../../../../../controller/store_manager/add_product/get_category_controller.dart';
-import '../../../../../data/model/category.dart';
-import '../../../../../data/model/origin.dart';
 import '../../../../../routes/app_pages.dart';
-import '../../CheckInternet.dart';
 import 'UI_Chonloaisanpham.dart';
-import 'danhmuc.dart';
 
 
 
@@ -118,39 +113,31 @@ class Themspdv extends StatelessWidget {
                                     return Container(
                                       width: 100,
                                       child: FutureBuilder(
-                                        future: _addProductController.hienvideo(),
+                                        future: _addProductController.videoControllers[index]?.initialize(),
                                         builder: (context, snapshot) {
-
                                           return Stack(
                                             children: [
                                               AspectRatio(
-                                                aspectRatio: _addProductController.controller.value.value.aspectRatio,
+                                                aspectRatio:  _addProductController.videoControllers[index]?.value.aspectRatio??1.6,
                                                 child: VideoPlayer(
-                                                  _addProductController.controller.value,
+                                                  _addProductController.videoControllers[index]!,
                                                 ),
                                               ),
                                               Positioned(
-                                                child: Obx(()=>
-                                                    Row(
-                                                      children: [
-                                                        TextButton(
-                                                          child: Icon(_addProductController.playpause.value? Icons.pause:Icons.play_arrow),
-                                                          onPressed: () {
-                                                            if(_addProductController.controller.value.value.isPlaying){
-                                                              _addProductController.controller.value.pause();
-                                                              _addProductController.playpause.value=false;
-                                                              _addProductController.cc.value="s";
-                                                            }else{
-                                                              _addProductController.controller.value.play();
-                                                              _addProductController.playpause.value=true;
-                                                              _addProductController.cc.value="x";
-                                                            }
-
-                                                          },
-                                                        ),
-                                                      ],
+                                                child: Center(
+                                                  child: TextButton(
+                                                    child: GetBuilder<AddProductController>(
+                                                      init: AddProductController(),
+                                                      builder: (controller){
+                                                        return Icon(controller.videoControllers[index]!.value.isPlaying ? Icons.pause:Icons.play_arrow);
+                                                      },
                                                     ),
-                                                ),
+                                                    onPressed: () {
+                                                      _addProductController.onPauseVideo(index);
+
+                                                    },
+                                                  ),
+                                                )
                                               ),
                                             ],
                                           );
@@ -180,7 +167,7 @@ class Themspdv extends StatelessWidget {
                                 child: Text('add_image'.tr,
                                     maxLines: 2, textAlign: TextAlign.center),
                                 onPressed: () {
-                                  _addProductController.showbottonsheet(context);
+                                  _addProductController.showActionSheet(context);
                                 },
                               ),
                             ),
@@ -886,47 +873,5 @@ class chonloaisp extends GetxController {
 }
 
 
-// class getdanhmuc extends GetxController {
-//   var danhmucsp = [].obs;
-//   var getdanhmuctid = [].obs;
-//   var dem = 0.obs;
-//   var nothing = [].obs;
-//   Future<List<Category>> fetchDanhmuc() async {
-//     final response = await http.get(Uri.parse(
-//         "https://coaxial-typewriter.000webhostapp.com/Server/Danhmucsanpham.php"));
-//     List<dynamic> list = json.decode(response.body);
-//     List<Category> pp = [];
-//
-//     pp = list.map((e) => Category.fromJson(e)).toList();
-//     if (getdms.nothing.length == 0) {
-//       for (int i = 0; i < pp.length; i++) {
-//         getdms.nothing.add(danhmuc(
-//             title: pp[i].imageUrl.toString(),
-//             id: int.parse(pp[i].id.toString())));
-//       }
-//     }
-//     danhmucsp.value = pp;
-//     return pp;
-//   }
-// }
 
 
-
-class getImagesp extends GetxController {
-  final checkinternet CheckInternet = Get.put(checkinternet());
-  var xuatxu = [].obs;
-  var countqg = 0.obs;
-  var idxs = 0.obs;
-  var tenxuatxu = "Chọn xuất xứ".obs;
-  Future<List<Origin>> fetchXuatxu() async {
-    final response = await http.get(Uri.parse(
-        "https://coaxial-typewriter.000webhostapp.com/Server/SelectImagesp.php"));
-    List<Origin> pp = [];
-    if (response.statusCode == 200) {
-      List<dynamic> list = json.decode(response.body);
-      pp = list.map((e) => Origin.fromJson(e)).toList();
-      xuatxu.value = pp;
-    }
-    return pp;
-  }
-}

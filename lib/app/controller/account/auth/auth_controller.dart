@@ -1,14 +1,14 @@
 
+import 'dart:io';
+
 import 'package:app_casynet/app/config/api_params.dart';
-import 'package:app_casynet/app/data/repo/home_repo.dart';
 import 'package:app_casynet/app/routes/app_pages.dart';
-import 'package:dio/dio.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../data/data.dart';
-import '../../../data/model/user.dart';
-import '../../../data/repo/user_repo.dart';
+import 'package:intl/intl.dart';
+import 'package:app_casynet/app/data/data.dart';
 import 'authentication_manager.dart';
 
 class AuthController extends GetxController with GetSingleTickerProviderStateMixin {
@@ -191,6 +191,44 @@ class AuthController extends GetxController with GetSingleTickerProviderStateMix
             Get.back();
           },
       );
+    }
+  }
+
+
+  void showDateBirthdayPicker(BuildContext context) {
+    if(Platform.isAndroid){
+      showDatePicker(
+        context: context,
+        initialDate: DateTime.now().subtract(Duration(days:1)),
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now().subtract(Duration(days:1)),
+      ).then((value){
+        birthDayTextController.text = DateFormat("yyyy/MM/dd").format(value!);
+      });
+    }
+    else{
+      showCupertinoModalPopup<void>(
+          context: context,
+          builder: (BuildContext context) => Container(
+            height: 216,
+            padding: const EdgeInsets.only(top: 6.0),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: CupertinoDatePicker(
+                initialDateTime: DateTime.now().subtract(Duration(days:1)),
+                mode: CupertinoDatePickerMode.date,
+                use24hFormat: true,
+                // This is called when the user changes the date.
+                onDateTimeChanged: (DateTime newDate) {
+                  birthDayTextController.text = DateFormat("yyyy/MM/dd").format(newDate);
+                },
+              ),
+            ),
+          ));
     }
   }
 
