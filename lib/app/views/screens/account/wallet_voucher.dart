@@ -202,14 +202,14 @@ class WalletVoucherPage extends StatelessWidget {
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Expanded(child: Text(
+                                          const Expanded(child: Text(
                                             "Có hiệu lực từ: 16.03.2020  00:00",
                                             overflow: TextOverflow.fade,
                                             style: TextStyle(fontSize: 12),
                                           ),),
                                           Text(
                                             'condition'.tr,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 12, color: AppColors.textLink),
                                           ),
                                           SizedBox(width: 10.w,),
@@ -226,144 +226,147 @@ class WalletVoucherPage extends StatelessWidget {
                     ListView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
-                        itemBuilder: (context, index) => Stack(
-                          fit: StackFit.passthrough,
-                          children: [
-                            Container(
-                            width: 100.w,
-                            height: 100.h,
-                            margin: EdgeInsets.all(5.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                    width: 1, color: AppColors.textGrayColor.withOpacity(0.5))),
-                            child: Row(
-                              children: [
-                                Container(
-                                  child: Stack(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/account/right_background.png",
-                                        width: 100.w,
-                                        height: 100.h,
-                                      ),
-                                      Positioned(
-                                          left: 0,
-                                          child: Image.asset(
-                                              "assets/images/account/background.png")),
-                                      Positioned(
-                                          right: -5,
-                                          child: Image.asset(
-                                            "assets/images/account/right_background.png",
-                                            fit: BoxFit.fitHeight,
-                                            height: 100,
-                                          )),
-                                      Positioned.fill(
-                                          child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: Container(
-                                                padding: EdgeInsets.all(5.0),
-                                                child: Column(
-                                                  mainAxisSize: MainAxisSize.min,
-                                                  children: [
-                                                    Text(
-                                                      "MIỄN PHÍ VẪN CHUYỂN",
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.white),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Container(
-                                                      height: 30,
-                                                      child: ElevatedButton(
-                                                          onPressed: () {},
-                                                          child: Text(
-                                                            'use_now'.tr,
-                                                            style: TextStyle(
-                                                                color: Colors.blue),
-                                                          ),
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                              padding:
-                                                              EdgeInsets.all(
-                                                                  5.0),
-                                                              primary:
-                                                              Colors.white)),
-                                                    )
-                                                  ],
-                                                ),
-                                              ))),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.all(2.0),
-                                      decoration: BoxDecoration(color: AppColors.yellowColor),
-                                      child: Text(
-                                        "AirPay- Tối đa 70k  ",
-                                        style: TextStyle(color: Colors.white,
-                                          fontSize: 12
-                                        ),
-                                      ),
-                                    ),
-                                    Text("Mã miễn phí vận chuyển"),
-                                    Container(
-                                      padding: EdgeInsets.all(3.0),
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 1, color: AppColors.yellowColor)),
-                                      child: Text(
-                                        "AirPay- Tối đa 70k  ",
-                                        style: TextStyle(color: AppColors.yellowColor),
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Có hiệu lực từ: 16.03.2020  00:00",
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                        SizedBox(
-                                          width: 30,
-                                        ),
-                                        Text(
-                                          'condition'.tr,
-                                          style: const TextStyle(
-                                              fontSize: 12, color: AppColors.textLink),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            )),
-
-                            Container(
+                        itemBuilder: (context, index) => IntrinsicHeight(
+                          child: Stack(
+                            fit: StackFit.passthrough,
+                            children: [
+                              Container(
                               width: 100.w,
                               height: 100.h,
                               margin: EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
-                                color: Colors.grey.withOpacity(0.5),
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                    width: 1, color: AppColors.textGrayColor.withOpacity(0.5)
-                                )
-                              ),
-                            )
-                          ],
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(
+                                      width: 1, color: AppColors.textGrayColor.withOpacity(0.5))),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    child: Stack(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/account/right_background.png",
+                                          width: 100.w,
+                                          height: 100.h,
+                                        ),
+                                        Positioned(
+                                            left: 0,
+                                            child: Image.asset(
+                                                "assets/images/account/background.png")),
+                                        Positioned(
+                                            right: -5,
+                                            child: Image.asset(
+                                              "assets/images/account/right_background.png",
+                                              fit: BoxFit.fitHeight,
+                                              height: 100,
+                                            )),
+                                        Positioned.fill(
+                                            child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: Container(
+                                                  padding: EdgeInsets.all(5.0),
+                                                  child: Column(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    children: [
+                                                      Text(
+                                                        "MIỄN PHÍ VẪN CHUYỂN",
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            color: Colors.white),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Container(
+                                                        height: 30,
+                                                        child: ElevatedButton(
+                                                            onPressed: () {},
+                                                            child: Text(
+                                                              'use_now'.tr,
+                                                              style: TextStyle(
+                                                                  color: Colors.blue),
+                                                            ),
+                                                            style: ElevatedButton
+                                                                .styleFrom(
+                                                                padding:
+                                                                EdgeInsets.all(5.0),
+                                                                primary:
+                                                                Colors.white)),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ))),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(2.0),
+                                        decoration: BoxDecoration(color: AppColors.yellowColor),
+                                        child: Text(
+                                          "AirPay- Tối đa 70k  ",
+                                          style: TextStyle(color: Colors.white,
+                                            fontSize: 12
+                                          ),
+                                        ),
+                                      ),
+                                      Text("Mã miễn phí vận chuyển"),
+                                      Container(
+                                        padding: EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 1, color: AppColors.yellowColor)),
+                                        child: Text(
+                                          "AirPay- Tối đa 70k  ",
+                                          style: TextStyle(color: AppColors.yellowColor),
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        // crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        children: [
+                                          Text(
+                                            "Có hiệu lực từ: 16.03.2020  00:00",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                          Text(
+                                            'condition'.tr,
+                                            style: const TextStyle(
+                                                fontSize: 12, color: AppColors.textLink),
+                                          ),
+
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )),
+
+                              Container(
+                                width: 100.w,
+                                height: 100.h,
+                                margin: EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(
+                                      width: 1, color: AppColors.textGrayColor.withOpacity(0.5)
+                                  )
+                                ),
+                              )
+                            ],
+                          ),
                         )
                     )
                   ],
