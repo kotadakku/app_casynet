@@ -1142,10 +1142,9 @@ class NewCreatedStore extends StatelessWidget {
                                         fontSize: 15),
                                   )
                                 ],
-                              ))),
-
-
-
+                              )
+                          )
+                      ),
 
                     ],
                   ),

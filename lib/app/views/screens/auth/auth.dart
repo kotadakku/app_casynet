@@ -81,6 +81,7 @@ class AuthPage extends StatelessWidget {
                       children: [
                         SignInWidget(),
                         RegisterWidget()
+
                       ],
                     ),
                     )

@@ -4,6 +4,7 @@ import 'package:app_casynet/app/controller/home/bottombar_controller.dart';
 import 'package:app_casynet/app/views/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -114,42 +115,70 @@ class Home extends StatelessWidget {
   Future<bool> _onWillPop(BuildContext context) async {
     late bool? exitResult;
     if(_bottombarController.tabIndex.value == 0){
-      exitResult = await showDialog(
-        context: context,
-        builder: (context) => _buildExitDialog(context),
-      );
+      if(Platform.isAndroid) {
+        exitResult = await _buildExitDialogAndroid(context);
+      } else {
+        exitResult = await _buildExitDialogIOS(context);
+      }
     }
     else {
       _bottombarController.tabIndex.value = 0;
       exitResult =  false;
     }
 
-    return exitResult ?? false;
+    return exitResult;
   }
 
-  AlertDialog _buildExitDialog(BuildContext context) {
-    return AlertDialog(
-      title: Text('confirm'.tr),
-      content: Text('do-quit'.tr),
-      actionsAlignment: MainAxisAlignment.spaceEvenly,
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => Get.back(result: false),
-          child: Text(
-            'no'.tr, style: TextStyle(
-            color: Colors.red
-          ),
-          ),
-          style: ElevatedButton.styleFrom(
+  Future<bool> _buildExitDialogAndroid(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('confirm'.tr),
+          content: Text('do-quit'.tr),
+          actionsAlignment: MainAxisAlignment.spaceEvenly,
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Get.back(result: false),
+              child: Text(
+                'no'.tr, style: TextStyle(
+                  color: Colors.red
+              ),
+              ),
+              style: ElevatedButton.styleFrom(
 
-          ),
+              ),
+            ),
+            TextButton(
+              onPressed: () => Get.back(result: true),
+              child: Text('yes'.tr),
+            ),
+          ],
+        )
+      );
+    }
+  Future<bool> _buildExitDialogIOS(BuildContext context) async {
+      return await showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          title: Text('confirm'.tr),
+          content: Text('do-quit'.tr),
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+              isDefaultAction: true,
+              onPressed: () {
+                Get.back(result: false);
+              },
+              child: Text('no'.tr),
+            ),
+            CupertinoDialogAction(
+              isDestructiveAction: true,
+              onPressed: () {
+                Get.back(result: true);
+              },
+              child: Text('yes'.tr),
+            )
+          ],
         ),
-        TextButton(
-          onPressed: () => Get.back(result: true),
-          child: Text('yes'.tr),
-        ),
-      ],
-    );
-  }
-
+      );
+    }
 }

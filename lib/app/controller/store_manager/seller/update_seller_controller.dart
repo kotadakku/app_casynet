@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:app_casynet/app/config/api_params.dart';
 import 'package:app_casynet/app/data/model/address.dart';
 import 'package:app_casynet/app/data/model/product.dart';
@@ -6,6 +8,7 @@ import 'package:app_casynet/app/data/repo/seller_repo.dart';
 import 'package:app_casynet/data.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -105,5 +108,52 @@ class UpdateSellerController extends GetxController{
 
     }
 
+  }
+
+  void showDateTimePicker(BuildContext context, {bool isOpen = false}) async {
+    if(Platform.isAndroid){
+      TimeOfDay? value = await showTimePicker(
+        context: context,
+        builder: (context, childWidget) {
+          return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                // Using 24-Hour format
+                  alwaysUse24HourFormat: true),
+              // If you want 12-Hour format, just change alwaysUse24HourFormat to false or remove all the builder argument
+              child: childWidget!);
+        },
+        initialTime: TimeOfDay.now(),
+      );
+      if(value!= null){
+        isOpen ? open_hours.value = '${value.hour}:${value.minute}' : closer_hours.value = '${value.hour}:${value.minute}';
+      }
+
+    } else{
+      showCupertinoModalPopup<void>(
+          context: context,
+          builder: (BuildContext context) => Container(
+            height: 216,
+            padding: const EdgeInsets.only(top: 6.0),
+            // The Bottom margin is provided to align the popup above the system navigation bar.
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            // Provide a background color for the popup.
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            // Use a SafeArea widget to avoid system overlaps.
+            child: SafeArea(
+              top: false,
+              child: CupertinoDatePicker(
+                initialDateTime: DateTime.now(),
+                mode: CupertinoDatePickerMode.time,
+                use24hFormat: true,
+                // This is called when the user changes the time.
+                onDateTimeChanged: (DateTime newTime) {
+                  isOpen ? open_hours.value = '${newTime.hour}:${newTime.minute}' : closer_hours.value = '${newTime.hour}:${newTime.minute}';
+                },
+              ),
+            ),
+          ));
+    }
   }
 }

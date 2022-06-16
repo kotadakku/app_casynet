@@ -310,15 +310,7 @@ class RegisterWidget extends StatelessWidget {
                       },
                       readOnly: true,
                       onTap: (){
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now().subtract(Duration(days:1)),
-                          firstDate: DateTime(1900),
-                          lastDate: DateTime.now().subtract(Duration(days:1)),
-                        ).then((value){
-                          authController.birthDayTextController.text = DateFormat("yyyy/MM/dd").format(value!);
-
-                        });
+                        authController.showDateBirthdayPicker(context);
                       },
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(

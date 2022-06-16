@@ -21,7 +21,7 @@ class LoadingOverlay extends StatelessWidget {
           Container(
             height: 200,
             child: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
           )
         ],
