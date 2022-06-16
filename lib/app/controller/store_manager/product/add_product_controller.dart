@@ -43,7 +43,6 @@ class AddProductController extends GetxController{
 
   var controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/images/videos/butterfly.mp4").obs;
   late Future<void> initializeVideoPlayerFuture;
-  var playpause = false.obs;
 
   final listCategorySelected = <Category>[].obs;
   final selectOrigin = Origin().obs;
@@ -158,19 +157,6 @@ class AddProductController extends GetxController{
     }
   }
 
-
-  Future hienvideo() async{
-    if(imagepicker.length>0){
-      for(int i=0;i<imagepicker.length;i++){
-        if(imagepicker[i].toString().contains(".mp4")){
-          controller.value = VideoPlayerController.file((imagepicker[i]));
-          initializeVideoPlayerFuture = controller.value.initialize();
-          controller.value.setLooping(true);
-          controller.value.setVolume(1.0);
-        }
-      }
-    }
-  }
   void showActionSheet(BuildContext context) {
     showCupertinoModalPopup<void>(
       context: context,
