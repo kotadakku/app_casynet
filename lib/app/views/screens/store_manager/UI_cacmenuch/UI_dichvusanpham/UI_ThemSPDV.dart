@@ -113,36 +113,31 @@ class Themspdv extends StatelessWidget {
                                     return Container(
                                       width: 100,
                                       child: FutureBuilder(
-                                        future: _addProductController.hienvideo(),
+                                        future: _addProductController.videoControllers[index]?.initialize(),
                                         builder: (context, snapshot) {
                                           return Stack(
                                             children: [
                                               AspectRatio(
-                                                aspectRatio: _addProductController.controller.value.value.aspectRatio,
+                                                aspectRatio:  _addProductController.videoControllers[index]?.value.aspectRatio??1.6,
                                                 child: VideoPlayer(
-                                                  _addProductController.controller.value,
+                                                  _addProductController.videoControllers[index]!,
                                                 ),
                                               ),
                                               Positioned(
-                                                child: Obx(()=>
-                                                    Center(
-                                                      child: TextButton(
-                                                        child: Icon(_addProductController.playpause.value? Icons.pause:Icons.play_arrow),
-                                                        onPressed: () {
-                                                          if(_addProductController.controller.value.value.isPlaying){
-                                                            _addProductController.controller.value.pause();
-                                                            _addProductController.playpause.value=false;
-                                                            _addProductController.cc.value="s";
-                                                          }else{
-                                                            _addProductController.controller.value.play();
-                                                            _addProductController.playpause.value=true;
-                                                            _addProductController.cc.value="x";
-                                                          }
+                                                child: Center(
+                                                  child: TextButton(
+                                                    child: GetBuilder<AddProductController>(
+                                                      init: AddProductController(),
+                                                      builder: (controller){
+                                                        return Icon(controller.videoControllers[index]!.value.isPlaying ? Icons.pause:Icons.play_arrow);
+                                                      },
+                                                    ),
+                                                    onPressed: () {
+                                                      _addProductController.onPauseVideo(index);
 
-                                                        },
-                                                      ),
-                                                    )
-                                                ),
+                                                    },
+                                                  ),
+                                                )
                                               ),
                                             ],
                                           );

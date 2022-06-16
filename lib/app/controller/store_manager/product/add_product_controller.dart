@@ -39,6 +39,8 @@ class AddProductController extends GetxController{
   var x = "".obs;
   late File imagepk;
 
+  final Map<int, VideoPlayerController> videoControllers = {};
+
   var controller=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/images/videos/butterfly.mp4").obs;
   late Future<void> initializeVideoPlayerFuture;
   var playpause = false.obs;
@@ -141,16 +143,16 @@ class AddProductController extends GetxController{
             }
           }
         }
-
       }
       break;
       case 'vid':{
-        if(isCamera){
-          final XFile? video = await ImagePicker().pickVideo(source: isCamera ? ImageSource.gallery: ImageSource.camera);
-          if (video != null) {
-            imagepk = File(video.path);
-            imagepicker.add(imagepk);
-          }
+        final XFile? video = await ImagePicker().pickVideo(source: isCamera ? ImageSource.camera : ImageSource.gallery);
+        if (video != null) {
+          imagepk = File(video.path);
+          imagepicker.add(imagepk);
+          videoControllers[imagepicker.indexOf(imagepk)] = VideoPlayerController.file((imagepicker[imagepicker.length-1]))
+            ..setLooping(true)
+            ..setVolume(1.0);
         }
       }
     }
@@ -301,5 +303,15 @@ class AddProductController extends GetxController{
         ),
       );
     });
+  }
+
+  void onPauseVideo(int index) {
+    if( videoControllers[index]!.value.isPlaying){
+      videoControllers[index]?.pause();
+      update();
+    }else{
+     videoControllers[index]?.play();
+     update();
+    }
   }
 }
