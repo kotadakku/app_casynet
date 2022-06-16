@@ -16,6 +16,7 @@ export 'model/sales.dart';
 export 'model/seller.dart';
 export 'model/user.dart';
 export 'model/rate_comment.dart';
+export 'model/voucher.dart';
 
 export 'provider/db_provider.dart';
 export 'provider/api/api_provider.dart';
