@@ -112,15 +112,18 @@ class Themspdv extends StatelessWidget {
                                   }else if(_addProductController.imagepicker[index].toString().contains(".mp4")){
                                     return Container(
                                       width: 100,
+                                      margin: EdgeInsets.symmetric(horizontal: 5.0.w),
                                       child: FutureBuilder(
                                         future: _addProductController.videoControllers[index]?.initialize(),
                                         builder: (context, snapshot) {
                                           return Stack(
                                             children: [
-                                              AspectRatio(
-                                                aspectRatio:  _addProductController.videoControllers[index]?.value.aspectRatio??1.6,
-                                                child: VideoPlayer(
-                                                  _addProductController.videoControllers[index]!,
+                                              Center(
+                                                child: AspectRatio(
+                                                  aspectRatio:  _addProductController.videoControllers[index]?.value.aspectRatio??1.6,
+                                                  child: VideoPlayer(
+                                                    _addProductController.videoControllers[index]!,
+                                                  ),
                                                 ),
                                               ),
                                               Positioned(

@@ -291,12 +291,16 @@ class AddProductController extends GetxController{
     });
   }
 
-  void onPauseVideo(int index) {
+  void onPauseVideo(int index) async {
     if( videoControllers[index]!.value.isPlaying){
-      videoControllers[index]?.pause();
+      await videoControllers[index]?.pause();
       update();
     }else{
-     videoControllers[index]?.play();
+
+     videoControllers.keys.where((element) => element !=index).forEach((element) {
+       videoControllers[element]?.pause();
+     });
+     await videoControllers[index]?.play();
      update();
     }
   }
