@@ -11,7 +11,7 @@ import '../../../widgets/appbar/appbar_account_widget.dart';
 class EditAddress extends StatelessWidget {
   EditAddress({Key? key}) : super(key: key);
   EditAddressController controller = Get.find<EditAddressController>();
-  RegionController _regionController = Get.find();
+  final RegionController _regionController = Get.find();
   @override
   Widget build(BuildContext context) {
 
@@ -30,23 +30,23 @@ class EditAddress extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 15.0.h, horizontal: 10.w),
                       child: Text(
                         'edit_address'.tr,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       indent: 10,
                     ),
                     //NHap ho va ten
                     Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         children: [
                           Expanded(
                               child: Text(
                                 'enter_name'.tr,
                                 style:
-                                TextStyle(color: AppColors.textGrayBoldColor),
+                                const TextStyle(color: AppColors.textGrayBoldColor),
                               )),
                           Expanded(
                               child: TextFormField(
@@ -62,31 +62,30 @@ class EditAddress extends StatelessWidget {
                                     val.removeAt(0);
                                     controller.address.lastname = val.join(" ");
                                   }
-                                  ;
                                 },
                                 /*=> controller.address.firstname = value!,*/
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'enter_name'.tr,
                                     hintStyle:
-                                    TextStyle(color: AppColors.textGrayColor)),
+                                    const TextStyle(color: AppColors.textGrayColor)),
                               ))
                         ],
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       indent: 10,
                     ),
                     // Nhap so dien thoai
                     Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         children: [
                           Expanded(
                               child: Text(
                                 'phone'.tr,
                                 style:
-                                TextStyle(color: AppColors.textGrayBoldColor),
+                                const TextStyle(color: AppColors.textGrayBoldColor),
                               )),
                           Expanded(
                               child: TextFormField(
@@ -112,18 +111,18 @@ class EditAddress extends StatelessWidget {
                                   border: InputBorder.none,
                                   hintText: 'enter_phone'.tr,
                                   hintStyle:
-                                  TextStyle(color: AppColors.textGrayColor),
+                                  const TextStyle(color: AppColors.textGrayColor),
                                 ),
                               ))
                         ],
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       indent: 10,
                     ),
                     // Nhap thanh pho
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: 10,
                       ),
                       child: Row(
@@ -132,7 +131,7 @@ class EditAddress extends StatelessWidget {
                               child: Text(
                                 'province_city'.tr,
                                 style:
-                                TextStyle(color: AppColors.textGrayBoldColor),
+                                const TextStyle(color: AppColors.textGrayBoldColor),
                               )),
                           Expanded(
                               child: TextFormField(
@@ -157,14 +156,14 @@ class EditAddress extends StatelessWidget {
                                     (value) /*=> controller.address.province = value!*/ {
                                       controller.address.province = value; // tỉnh thành phố
                                 },
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     contentPadding:
                                     EdgeInsets.symmetric(vertical: 15.0),
                                     border: InputBorder.none,
                                     hintText: "Chọn tỉnh/ thành phố",
                                     hintStyle:
                                     TextStyle(color: AppColors.textGrayColor),
-                                    suffixIcon: Container(
+                                    suffixIcon: SizedBox(
                                       height: 10,
                                       width: 10,
                                       child: Icon(
@@ -176,12 +175,12 @@ class EditAddress extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       indent: 10,
                     ),
                     // Nhap quan huyen
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: 10,
                       ),
                       child: Row(
@@ -190,7 +189,7 @@ class EditAddress extends StatelessWidget {
                               child: Text(
                                 'district'.tr,
                                 style:
-                                TextStyle(color: AppColors.textGrayBoldColor),
+                                const TextStyle(color: AppColors.textGrayBoldColor),
                               )),
                           Expanded(
                               child: TextFormField(
@@ -215,14 +214,14 @@ class EditAddress extends StatelessWidget {
                                     (value) /*=> controller.address.district = value!*/ {
                                       controller.address.district = value;
                                 },
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     contentPadding:
                                     EdgeInsets.symmetric(vertical: 15.0),
                                     hintText: "Chọn quận/ huyện",
                                     hintStyle:
                                     TextStyle(color: AppColors.textGrayColor),
-                                    suffixIcon: Container(
+                                    suffixIcon: SizedBox(
                                       height: 10,
                                       width: 10,
                                       child: Icon(
@@ -234,19 +233,19 @@ class EditAddress extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       indent: 10,
                     ),
                     //Chon xa phuong
                     Padding(
-                      padding: EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Row(
                         children: [
                           Expanded(
                               child: Text(
                                 'village'.tr,
                                 style:
-                                TextStyle(color: AppColors.textGrayBoldColor),
+                                const TextStyle(color: AppColors.textGrayBoldColor),
                               )),
                           Expanded(
                               child: TextFormField(
@@ -268,14 +267,14 @@ class EditAddress extends StatelessWidget {
                                 textAlign: TextAlign.end,
                                 controller: controller.textCommuneController,
                                 cursorColor: AppColors.textGrayBoldColor,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     contentPadding:
                                     EdgeInsets.symmetric(vertical: 15.0),
                                     border: InputBorder.none,
                                     hintText: "Chọn Phường/Xã",
                                     hintStyle:
                                     TextStyle(color: AppColors.textGrayColor),
-                                    suffixIcon: Container(
+                                    suffixIcon: SizedBox(
                                       height: 10,
                                       width: 10,
                                       child: Icon(
@@ -287,19 +286,19 @@ class EditAddress extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       indent: 10,
                     ),
                     // Nhap dia chi cu the
                     Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         children: [
                           Expanded(
                               child: Text(
                                 'specific_address'.tr,
                                 style:
-                                TextStyle(color: AppColors.textGrayBoldColor),
+                                const TextStyle(color: AppColors.textGrayBoldColor),
                               )),
                           Expanded(
                               child: TextFormField(
@@ -310,7 +309,7 @@ class EditAddress extends StatelessWidget {
                                     (value) /*=> controller.address.street[0] = value!*/ {
                                       controller.address.street.add(value!);
                                 },
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Nhập địa chỉ cụ thể",
                                     hintStyle:
@@ -319,20 +318,20 @@ class EditAddress extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Divider(
+                    const Divider(
                       indent: 10,
                     ),
                     //Swich
                     Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('set_default_address'.tr,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: AppColors.textGrayBoldColor)),
                           Obx(() => Switch(
                               value: controller.switch_default.value,
@@ -347,21 +346,17 @@ class EditAddress extends StatelessWidget {
                       height: 10,
                       color: AppColors.backgroundColor,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          // controller.address.default_shipping = controller.switch_default.value;
-                          // controller.formStateKey.currentState?.save();
-                          // controller.postAddress();
-                          // controller.address.email = authController.user_current.value.email;
+
                           controller.formStateKey.currentState?.save();
 
-                          // controller.createAddress(address);
                           print(controller.address.toJsonAddress());
                         },
                         child: Text('edit_address'.tr),
@@ -372,6 +367,6 @@ class EditAddress extends StatelessWidget {
                   ]),
             ),
           )),
-    );;
+    );
   }
 }

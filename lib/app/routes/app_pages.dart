@@ -78,11 +78,13 @@ import '../views/screens/seller_detail/details_store.dart';
 import '../views/screens/sellers/stores.dart';
 import '../views/screens/store/data_store_page.dart';
 import '../views/screens/store/gift_store_page.dart';
+import '../views/screens/store/main_category.dart';
 import '../views/screens/store/new_created_store.dart';
 import '../views/screens/store/other_category.dart';
 import '../views/screens/store/question_answer.dart';
 import '../views/screens/store/sanpham_dichvu.dart';
 import '../views/screens/store/setting_notications.dart';
+import '../views/screens/store/type_product.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Bangdieukhien.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Thongtincuahang.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_quanlytintuc/create_news_page.dart';
@@ -340,6 +342,14 @@ class AppPages {
         name: Routes.STORE_MANAGER_ADD_NEW,
         page: () => CreateNewPage(),
       binding: CreateNewBinding()
+    ),
+    GetPage(
+        name: Routes.MY_STORE_MAINCATEGORY,
+        page: () => MainCategory()
+    ),
+    GetPage(
+        name: Routes.MY_STORE_TYPEPRODUCT,
+        page: () => TypeProduct()
     )
   ];
 

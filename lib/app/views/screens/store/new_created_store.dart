@@ -419,6 +419,7 @@ class NewCreatedStore extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  // giờ đóng cửa
                                   Expanded(
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -467,7 +468,7 @@ class NewCreatedStore extends StatelessWidget {
                                   const Color.fromARGB(255, 188, 195, 216),
                               // splashColor: Colors.blue,
                               onTap: () {
-                                Get.to(MainCategory());
+                                Get.toNamed(Routes.MY_STORE_MAINCATEGORY);
                               },
 
                               child: Row(
@@ -645,7 +646,7 @@ class NewCreatedStore extends StatelessWidget {
                                   const Color.fromARGB(255, 188, 195, 216),
                               // splashColor: Colors.blue,
                               onTap: () {
-                                Get.to(TypeProduct());
+                                Get.toNamed(Routes.MY_STORE_TYPEPRODUCT);
                               },
 
                               child: Row(

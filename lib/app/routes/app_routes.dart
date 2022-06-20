@@ -49,6 +49,10 @@ abstract class Routes{
   static const MY_STORE_DATA = '/my_store/data';
   static const MY_STORE_NEWS = '/my_store/news';
   static const MY_STORE_CATEGORY = '/my_store/category';
+  static const MY_STORE_MAINCATEGORY = 'my_store/maincategory';
+  static const MY_STORE_TYPEPRODUCT = 'my_store/typeproduct';
+  // static const MY_STORE_CATEGORY = '';
+
 
   static const STORE_MANAGER = '/manager_store';
   static const STORE_MANAGER_CONTROL = '/manager_store/control';
