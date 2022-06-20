@@ -8,9 +8,7 @@ import '../home/api/category_controller.dart';
 class OtherCategoryController extends GetxController{
 
 
-  // final isSave = true.obs;
-
-
+  final isAgree = true.obs;
   var chonDanhmuc = "- Chọn -".obs;
   var chooseMainCategory = "- Chọn -".obs;
 

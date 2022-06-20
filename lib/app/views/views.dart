@@ -137,6 +137,7 @@ export 'screens/store/select_category.dart';
 export 'screens/store/setting_notications.dart';
 export 'screens/store/short_description.dart';
 export 'screens/store/themsanphamdichvu.dart';
+export 'screens/store/type_product.dart';
 
 export 'screens/store_manager/CheckInternet.dart';
 export 'screens/store_manager/UI_cuahang.dart';

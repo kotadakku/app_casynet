@@ -44,7 +44,7 @@ class SignInWidget extends StatelessWidget {
                         return "Không tồn tại tài khoản";
                         }*/
                         },
-                        initialValue: 'a123@gmail.com',
+                        initialValue: '0357873039',
                         textAlignVertical: TextAlignVertical.center,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -73,7 +73,7 @@ class SignInWidget extends StatelessWidget {
                     Obx(()=>TextFormField(
                       textAlignVertical: TextAlignVertical.center,
                       obscureText: authController.isObscurePassword.value,
-                      initialValue: 'Ab123456',
+                      initialValue: 'vgs@123',
   
                       onSaved: (value){
                         user.password = value;

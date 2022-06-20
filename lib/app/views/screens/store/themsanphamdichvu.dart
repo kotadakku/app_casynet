@@ -913,7 +913,4 @@ class ThemSanPhamDichVu extends StatelessWidget {
         });
   }
 }
-/*class ChonDanhMucController extends GetxController{
-  var chonDanhmuc = "Lựa chọn".obs;
 
-}*/

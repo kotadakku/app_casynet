@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:app_casynet/app/controller/store_manager/product/add_product_controller.dart';
 import 'package:app_casynet/app/views/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,7 +37,7 @@ class Themspdv extends StatelessWidget {
     return Stack(
       children: [
         Container(
-            color: Color.fromARGB(255, 241, 243, 253),
+            color: const Color.fromARGB(255, 241, 243, 253),
             child: Form(
               key: _addProductController.formKey,
               child: ListView(
@@ -47,7 +45,7 @@ class Themspdv extends StatelessWidget {
                 children: [
                   //Them image
                   Container(
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 10),
                     color: Colors.white,
                     height: 100,
                     child: SingleChildScrollView(
@@ -61,14 +59,18 @@ class Themspdv extends StatelessWidget {
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return FutureBuilder(builder: (context, snapshot) {
-                                  if(_addProductController.imagepicker[index].toString().contains(".jpg")){
+                                  if(_addProductController.imagepicker[index].toString().contains(".jpg") 
+                                      || _addProductController.imagepicker[index].toString().contains(".png")
+                                        || _addProductController.imagepicker[index].toString().contains(".jpeg")
+                                           ||  _addProductController.imagepicker[index].toString().contains(".gif")
+                                  ){
                                     return Row(
                                       children: [
                                         Stack(
                                           clipBehavior: Clip.none,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.only(
+                                              margin: const EdgeInsets.only(
                                                   bottom: 5, left: 5, top: 5),
                                               color: Colors.red,
                                               child: Image.file(
@@ -85,7 +87,7 @@ class Themspdv extends StatelessWidget {
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius.circular(20.0),
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 241, 243, 253),
                                                   border: Border.all(
                                                     width: 1,
@@ -93,7 +95,7 @@ class Themspdv extends StatelessWidget {
                                                   ),
                                                 ),
                                                 child: IconButton(
-                                                  icon: Icon(
+                                                  icon: const Icon(
                                                     Icons.close,
                                                     size: 12,
                                                   ),
@@ -109,8 +111,15 @@ class Themspdv extends StatelessWidget {
                                         // Text(x.toString()),
                                       ],
                                     );
-                                  }else if(_addProductController.imagepicker[index].toString().contains(".mp4")){
+                                  }else if(_addProductController.imagepicker[index].toString().contains(".mp4")
+                                      || _addProductController.imagepicker[index].toString().contains(".avi")
+                                      || _addProductController.imagepicker[index].toString().contains(".mkv")
+                                      || _addProductController.imagepicker[index].toString().contains(".vob")
+                                      || _addProductController.imagepicker[index].toString().contains(".divx")
+                                      || _addProductController.imagepicker[index].toString().contains(".flv")
+                                  ){
                                     return Container(
+
                                       width: 100,
                                       margin: EdgeInsets.symmetric(horizontal: 5.0.w),
                                       child: FutureBuilder(
@@ -148,7 +157,7 @@ class Themspdv extends StatelessWidget {
                                       ),
                                     );
                                   }else{
-                                    return Text("cv");
+                                    return const Text("cv");
                                   }
                                 },
                                 );
@@ -157,12 +166,12 @@ class Themspdv extends StatelessWidget {
                           ),
                           Center(
                             child: Container(
-                              margin: EdgeInsets.only(left: 20),
+                              margin: const EdgeInsets.only(left: 20),
                               width: 110,
                               height: 90,
                               child: OutlinedButton(
                                 style: ElevatedButton.styleFrom(
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     color: Colors.amber,
                                     style: BorderStyle.solid,
                                   ),
@@ -182,31 +191,27 @@ class Themspdv extends StatelessWidget {
                   //Them ten
                   Container(
                     color: Colors.white,
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 10),
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+                          margin: const EdgeInsets.only(top: 10, right: 10, left: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                child: Text(
-                                  "Tên sản phẩm",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
+                              const Text(
+                                "Tên sản phẩm",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
                                 ),
                               ),
-                              Container(
-                                child: Obx(()=>Text(_addProductController.demname.toString() + "/120"),)
-                              ),
+                              Obx(()=>Text(_addProductController.demname.toString() + "/120"),),
                             ],
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           child: TextFormField(
                             autovalidateMode: AutovalidateMode.disabled,
                             validator: (value){
@@ -217,7 +222,7 @@ class Themspdv extends StatelessWidget {
                             onSaved: (value){
                               _addProductController.product.name = value;
                             },
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: "Nhập tên sản phẩm",
                               counterText: "",
                               border: InputBorder.none,
@@ -235,32 +240,28 @@ class Themspdv extends StatelessWidget {
                   ),
                   //Them mo ta
                   Container(
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 10),
                     color: Colors.white,
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                          margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                child: Text(
-                                  "Mô tả sản phẩm",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
+                              const Text(
+                                "Mô tả sản phẩm",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
                                 ),
                               ),
-                              Container(
-                                child: Text(_addProductController.demmotasanpham.toString() + "/3000"),
-                              ),
+                              Text(_addProductController.demmotasanpham.toString() + "/3000"),
                             ],
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           child: TextFormField(
                             autovalidateMode: AutovalidateMode.disabled,
                             validator: (value){
@@ -271,7 +272,7 @@ class Themspdv extends StatelessWidget {
                             onSaved: (value){
                               _addProductController.product.description = value;
                             },
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: "Nhập mô tả sản phẩm",
                               counterText: "",
                               border: InputBorder.none,
@@ -292,14 +293,14 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                        children: const [
                           Expanded(
                             child: Text("Mã sản phẩm(SKU)"),
                           ),
@@ -313,17 +314,17 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
-                          Expanded(child: Text("Yêu cầu hẹn trước")),
+                          const Expanded(child: Text("Yêu cầu hẹn trước")),
                           Text(_addProductController.isOption.value ? 'Có': 'Không'),
                           Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: const EdgeInsets.only(left: 10),
                             child: Obx(
                                   () => CupertinoSwitch(
                                 value: _addProductController.isOption.value,
@@ -342,21 +343,21 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
-                          Expanded(child: Text("Số lượng nhập kho")),
+                          const Expanded(child: Text("Số lượng nhập kho")),
                           // Text("0"),
                           Expanded(
                             child: TextField(
                               controller: _addProductController.soluongnhapkho,
                               textDirection: TextDirection.rtl,
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                               ),
                               onTap: () {
@@ -375,17 +376,17 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(left: 10),
+                      margin: const EdgeInsets.only(left: 10),
                       child: Row(
                         children: [
-                          Expanded(child: Text("Ngày hết hạn")),
+                          const Expanded(child: Text("Ngày hết hạn")),
                           OutlinedButton(
                             style: ElevatedButton.styleFrom(
-                              side: BorderSide(color: Colors.white),
+                              side: const BorderSide(color: Colors.white),
                             ),
                             child: Row(
                               children: [
@@ -397,8 +398,8 @@ class Themspdv extends StatelessWidget {
                                       _addProductController.date.value.year.toString())),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 10),
-                                  child: ImageIcon(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: const ImageIcon(
                                       AssetImage("assets/images/Icon/icon_date.png")),
                                 ),
                               ],
@@ -421,7 +422,7 @@ class Themspdv extends StatelessWidget {
                   ),
                   Container(
                     height: 50,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       border: Border(
                           bottom: BorderSide(
@@ -429,7 +430,7 @@ class Themspdv extends StatelessWidget {
                           )),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
                           Text('price'.tr),
@@ -451,7 +452,7 @@ class Themspdv extends StatelessWidget {
                               controller: _addProductController.gia,
                               textDirection: TextDirection.rtl,
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 isDense: true,
                                 contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
@@ -484,12 +485,12 @@ class Themspdv extends StatelessWidget {
                                 fillColor: Colors.red.withOpacity(0.8),
                                 filled: true,
                                 hintText: "Giá khuyến mại",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.white),
                                 isDense: true,
-                                contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                                 border: InputBorder.none,
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               onTap: () {},
                             ),
                           ),
@@ -502,14 +503,14 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: Text("Số lượng còn lại"),
                           ),
                           Expanded(
@@ -532,7 +533,7 @@ class Themspdv extends StatelessWidget {
                               controller: _addProductController.soluongconlai,
                               textDirection: TextDirection.rtl,
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                                 border: InputBorder.none,
                                 isDense: true,
@@ -557,12 +558,12 @@ class Themspdv extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(
-                          color: Color.fromRGBO(200, 200, 200, 200),
+                          color: const Color.fromRGBO(200, 200, 200, 200),
                         ),
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                       child: Row(
-                        children: [
+                        children: const [
                           Expanded(child: Text("Tình trạng kho hàng")),
                           Text("Còn hàng"),
                           Icon(Icons.navigate_next),
@@ -591,7 +592,7 @@ class Themspdv extends StatelessWidget {
                           Expanded(
                               child: Padding(
                                 padding: EdgeInsets.only(right: 10.w),
-                                child: Text("Danh mục"),
+                                child: const Text("Danh mục"),
                               )
                           ),
                           Obx(()=>
@@ -609,15 +610,15 @@ class Themspdv extends StatelessWidget {
                                         clipBehavior: Clip.none,
                                         children: [
                                           Container(
-                                            padding: EdgeInsets.only(right: 10, left: 10),
-                                            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                                            padding: const EdgeInsets.only(right: 10, left: 10),
+                                            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
                                             height: 40,
                                             child: Center(
                                               child: Text(_addProductController.listCategorySelected[index].name
                                                   .toString()),
                                             ),
                                             color:
-                                            Color.fromARGB(255, 241, 243, 253),
+                                            const Color.fromARGB(255, 241, 243, 253),
                                           ),
                                           Positioned(
                                               width: 20,
@@ -626,7 +627,7 @@ class Themspdv extends StatelessWidget {
                                               top: 0,
                                               child: FloatingActionButton(
                                                 heroTag: '${index}',
-                                                child: Icon(Icons.close, size: 8,),
+                                                child: const Icon(Icons.close, size: 8,),
                                                 onPressed: (){
                                                   _addProductController.listCategorySelected
                                                       .removeAt(index);
@@ -639,7 +640,7 @@ class Themspdv extends StatelessWidget {
                                   })
                           )
                               : Row(
-                            children: [
+                            children: const [
                               Text(
                                 "Chọn danh mục",
                                 textAlign: TextAlign.end,
@@ -664,14 +665,14 @@ class Themspdv extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(
-                          color: Color.fromRGBO(200, 200, 200, 200),
+                          color: const Color.fromRGBO(200, 200, 200, 200),
                         ),
                       ),
                       child: Row(
                         children: [
                           Expanded(child: Text('display'.tr)),
-                          Text("Danh mục, tìm kiếm"),
-                          Icon(Icons.navigate_next),
+                          const Text("Danh mục, tìm kiếm"),
+                          const Icon(Icons.navigate_next),
                         ],
                       ),
                     ),
@@ -691,14 +692,14 @@ class Themspdv extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(
-                          color: Color.fromRGBO(200, 200, 200, 200),
+                          color: const Color.fromRGBO(200, 200, 200, 200),
                         ),
                       ),
                       child: Row(
                         children: [
-                          Expanded(child: Text("Xuất xứ")),
+                          const Expanded(child: Text("Xuất xứ")),
                           Obx(()=> Text('${_addProductController.selectOrigin.value.name??''}'),),
-                          Icon(Icons.navigate_next),
+                          const Icon(Icons.navigate_next),
                         ],
                       ),
                     ),
@@ -714,14 +715,14 @@ class Themspdv extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(
-                          color: Color.fromRGBO(200, 200, 200, 200),
+                          color: const Color.fromRGBO(200, 200, 200, 200),
                         ),
                       ),
                       child: Row(
                         children: [
                           Expanded(child: Text('type_product'.tr)),
                           Text(_addProductController.clsp.lsp.toString()),
-                          Icon(Icons.navigate_next),
+                          const Icon(Icons.navigate_next),
                         ],
                       ),
                     ),
@@ -732,17 +733,17 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
-                          Expanded(child: Text("Hiện thị sản phẩm")),
+                          const Expanded(child: Text("Hiện thị sản phẩm")),
                           Text(_addProductController.isDisplay.value ? 'Có': 'Không'),
                           Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: const EdgeInsets.only(left: 10),
                             child: Obx(
                                   () => CupertinoSwitch(
                                 value: _addProductController.isDisplay.value,
@@ -761,17 +762,17 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
-                          Expanded(child: Text("Hiện thị ở trang chính")),
+                          const Expanded(child: Text("Hiện thị ở trang chính")),
                           Text(_addProductController.textsthttc.toString()),
                           Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: const EdgeInsets.only(left: 10),
                             child: Obx(
                                   () => CupertinoSwitch(
                                 value: _addProductController.statushttc.value,
@@ -795,11 +796,11 @@ class Themspdv extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Color.fromRGBO(200, 200, 200, 200),
+                        color: const Color.fromRGBO(200, 200, 200, 200),
                       ),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
                           Expanded(
@@ -807,7 +808,7 @@ class Themspdv extends StatelessWidget {
                           ),
                           Obx(()=>Text(_addProductController.isFeatured.value ? 'có' : 'không'),),
                           Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: const EdgeInsets.only(left: 10),
                             child: Obx(
                                   () => CupertinoSwitch(
                                 value: _addProductController.isFeatured.value,
@@ -823,12 +824,12 @@ class Themspdv extends StatelessWidget {
                   ),
                   Container(
                     height: 50,
-                    margin: new EdgeInsets.only(top: 20, bottom: 20),
+                    margin: const EdgeInsets.only(top: 20, bottom: 20),
                     child: Row(
                       children: [
                         Expanded(
                           child: Container(
-                            margin: new EdgeInsets.only(right: 5, left: 10),
+                            margin: const EdgeInsets.only(right: 5, left: 10),
 
                             child: ElevatedButton(
                               child: Text('back'.tr),
@@ -840,7 +841,7 @@ class Themspdv extends StatelessWidget {
                         ),
                         Expanded(
                           child: Container(
-                            margin: new EdgeInsets.only(right: 10, left: 5),
+                            margin: const EdgeInsets.only(right: 10, left: 5),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(primary: Colors.amber),
                               child: Text('save_info'.tr),
@@ -859,10 +860,10 @@ class Themspdv extends StatelessWidget {
         ),
         Obx(()=>_addProductController.isLoading.value ? Container(
           color: AppColors.backgroundColor.withOpacity(0.5),
-          child: Center(
+          child: const Center(
             child: CircularProgressIndicator.adaptive(),
           ),
-        ) : SizedBox())
+        ) : const SizedBox())
       ],
     );
   }

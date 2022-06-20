@@ -44,7 +44,7 @@ class AccountDetailPage extends StatelessWidget {
                           ),
                           child:  Stack(
                             children: [
-                              Positioned.fill(
+                              Positioned.fill (
                                   child: InkWell(
                                     onTap: (){
                                       accountDetailController.pickimagecamera();

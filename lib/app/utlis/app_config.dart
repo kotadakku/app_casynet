@@ -2,5 +2,5 @@
 class AppConfig{
 
 
-  static const String URL_IMAGE_CUSTOMER=  'https://client.casynet.com/pub/media/customer';
+  static const String URL_IMAGE_CUSTOMER=  'https://casynet.vn/pub/media/customer';
 }

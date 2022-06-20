@@ -21,7 +21,7 @@ class ProfileAccountWidget extends StatelessWidget {
         leading: Container(
           child: Stack(
             children: [
-              ShadowOfDoubt(
+              const ShadowOfDoubt(
                 diameter: 60,
                 origin: Offset(0,60),
               ),

@@ -97,6 +97,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/store/
+    - assets/images/store/ic_thongbao_email.png
     - assets/images/cart/
     - assets/images/splash/
     - assets/images/home/

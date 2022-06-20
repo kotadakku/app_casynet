@@ -1,14 +1,16 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-import 'UI_ThemSPDV.dart';
-class chonloaisanpham extends StatelessWidget {
+import '../../../controller/store/create_seller_controller.dart';
+
+class TypeProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cls=Get.put(chonloaisp());
+    // final cls=Get.put(chonloaisp());
+    final CreateSellerController _typeProductCtl = Get.find();
     List<dynamic> list=["Ô tô","Xe máy"];
     var chon="".obs;
     return Scaffold(
@@ -27,7 +29,7 @@ class chonloaisanpham extends StatelessWidget {
             return ListTile(
               title:  Text(list[index]),
               onTap: () {
-                cls.lsp.value=list[index];
+                _typeProductCtl.typeProSelected.value=list[index];
                 Get.back();
               },
             );
