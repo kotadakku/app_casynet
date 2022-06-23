@@ -33,11 +33,20 @@ class PromotionController extends GetxController{
               headers: {'Authorization': 'Bearer $token_admin'}
           ),
           queryParameters: {
+
             'searchCriteria[pageSize]': '12',
             'searchCriteria[currentPage]': '1',
             'searchCriteria[sortOrders][0][direction]': 'DESC',
             'searchCriteria[filterGroups][0][filters][0][field]': 'category_id',
             'searchCriteria[filterGroups][0][filters][0][value]': '5'
+
+            // 'searchCriteria[filterGroups][0][filters][0][field]': 'product_types',
+            // 'searchCriteria[filterGroups][0][filters][0][value]': '5',
+            // 'searchCriteria[filterGroups][0][filters][1][field]': 'product_types',
+            // 'searchCriteria[filterGroups][0][filters][0][value]': '21.0012507',
+            // 'searchCriteria[filterGroups][0][filters][2][field]': 'product_types',
+            // 'searchCriteria[filterGroups][0][filters][0][value]': '105.7938183',
+
           }
       );
       if (result != null) {

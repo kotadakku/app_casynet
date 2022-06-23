@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/style.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../../routes/app_pages.dart';
@@ -25,7 +27,7 @@ class ItemCategoryWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               ImageNetworkLoading(image_url: image_url, width: 50, height: 50,),
-              Text(title),
+              Text(title, style:  TextStyle(fontSize: 15.0.sp),),
             ],
           ),
           decoration: BoxDecoration(

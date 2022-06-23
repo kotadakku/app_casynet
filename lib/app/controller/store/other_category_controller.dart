@@ -20,9 +20,7 @@ class OtherCategoryController extends GetxController{
 
   @override
   void onInit() {
-    // if(Get.arguments[0] != null){
-    //   listOtherCategory.addAll(Get.arguments[0]);
-    // }
+
   }
 
   bool isCategorySelected(Category? category){

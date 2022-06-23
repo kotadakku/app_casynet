@@ -52,10 +52,10 @@ class ItemSellerWidget extends StatelessWidget {
                     color: AppColors.textGrayBoldColor,
                     size: AppSize.iconSize,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 2,
                   ),
-                  Obx(()=>Text('${this.sellers[index].likeQty  ?? 0}', style: TextStyle(fontSize: 13)))
+                  Obx(()=>Text('${this.sellers[index].likeQty  ?? 0}', style: const TextStyle(fontSize: 13)))
                 ],
               ),
               Row(
@@ -166,10 +166,10 @@ class ItemSellerWidget extends StatelessWidget {
                 const SizedBox(
                   width: 3,
                 ),
-                Obx(()=>Text(
+                Text(
                   "${sellers[index].distance.toStringAsFixed(2) ?? 0.0} km",
                   style: TextStyle(fontSize: 12.sp),
-                ))
+                )
               ],
             ),
           ],

@@ -13,10 +13,18 @@ class Category {
     if(json['custom_attributes']!=null){
       json['custom_attributes'].forEach((value){
         if(value['attribute_code']=='map_icon'){
-          imageUrl = 'https://client.casynet.com/pub/media/catalog/category/'+ value['value'];
+          imageUrl = 'https://casynet.vn/pub/media/catalog/category/'+ value['value'];
         }
       });
     }
+    // if(json['custom_attributes']!=null){
+    //   json['custom_attributes'].forEach((value){
+    //     if(value['attribute_code']=='map_icon'){
+    //       imageUrl = 'https://casynet.vn/pub/media/catalog/category/'+ value['value'];
+    //     }
+    //   });
+    // }
+
 
   }
 

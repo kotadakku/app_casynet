@@ -108,7 +108,8 @@ class AccountBasePage extends StatelessWidget {
                   // Tùy chọn người dùng
                   MenuAccountWidget(),
                   Obx((){
-                    if(_authManager.isLogged.value || _authManager.user_current == null) return Padding(
+                    if(_authManager.isLogged.value || _authManager.user_current == null) {
+                      return Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.w),
                         child: OutlinedButton(
                           onPressed: () {
@@ -129,7 +130,7 @@ class AccountBasePage extends StatelessWidget {
                           ),
                         )
                     );
-                    else return Text('');
+                    } else return Text('');
                   })
 
                 ],

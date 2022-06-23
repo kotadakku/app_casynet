@@ -83,6 +83,7 @@ import '../views/screens/store/new_created_store.dart';
 import '../views/screens/store/other_category.dart';
 import '../views/screens/store/question_answer.dart';
 import '../views/screens/store/sanpham_dichvu.dart';
+import '../views/screens/store/select_region.dart';
 import '../views/screens/store/setting_notications.dart';
 import '../views/screens/store/type_product.dart';
 import '../views/screens/store_manager/UI_cacmenuch/UI_Bangdieukhien.dart';
@@ -350,6 +351,10 @@ class AppPages {
     GetPage(
         name: Routes.MY_STORE_TYPEPRODUCT,
         page: () => TypeProduct()
+    ),
+    GetPage(
+        name: Routes.MY_STORE_SELECT_REGION,
+        page: () => SelectRegion()
     )
   ];
 

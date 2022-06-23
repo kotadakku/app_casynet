@@ -1,19 +1,17 @@
 import 'package:app_casynet/app/views/widgets/appbar/appbar_home_widget.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay_shimmer.dart';
-import 'package:app_casynet/app/views/widgets/shimmer/seller_shimmer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
 import '../../../controller/stores/stores_controller.dart';
 import '../../../routes/app_pages.dart';
-import '../../widgets/bottom_widget.dart';
-import '../home/widgets/category_bottom_widget.dart';
 import '../home/widgets/items/seller_item.dart';
 
 class StoreHomeMore extends StatelessWidget {
-  StoreHomeMore({Key? key}) : super(key: key);
+   StoreHomeMore({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +25,17 @@ class StoreHomeMore extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
                     Container(
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                         child: Text(
                           "123",
                           style: TextStyle(color: Colors.white),
@@ -45,12 +43,12 @@ class StoreHomeMore extends StatelessWidget {
                         backgroundColor: Color(0xffDFB400),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
                     Text(
                       category,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Color(0xffDFB400),
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -65,16 +63,16 @@ class StoreHomeMore extends StatelessWidget {
                         "assets/images/home/store/icon_filter.svg",
                         width: 15,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Text(
+                      const Text(
                         " Bộ lọc",
                         style: TextStyle(
                           color: Color(0xffB7BAC1),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       )
                     ],
@@ -91,11 +89,11 @@ class StoreHomeMore extends StatelessWidget {
           SizedBox(
             height: 5,
             child: Container(
-              color: Color(0xffF1F3FD),
+              color: const Color(0xffF1F3FD),
             ),
           ),
 
-          Obx(()=>Row(
+          Row(
             children: [
               Radio(
                   value: true,
@@ -104,9 +102,9 @@ class StoreHomeMore extends StatelessWidget {
                     _sellersController.isCar.value =  !_sellersController.isCar.value;
                     _sellersController.getSellersAPI(first_load: true, type_filter: '5');
                   },
-                  activeColor: Color(0xffDFB400)),
+                  activeColor: const Color(0xffDFB400)),
               Text('car'.tr),
-              SizedBox(width: 20,),
+              const SizedBox(width: 20,),
               Radio(
                   value: false,
                   groupValue: _sellersController.isCar.value,
@@ -114,13 +112,13 @@ class StoreHomeMore extends StatelessWidget {
                     _sellersController.isCar.value = !_sellersController.isCar.value;
                     _sellersController.getSellersAPI(first_load: true, type_filter: '6');
                   },
-                  activeColor: Color(0xffDFB400)
+                  activeColor: const Color(0xffDFB400)
               ),
               Text('motorcycle'.tr)
             ],
-          ),),
+          ),
           SizedBox(height: 10,child: Container(
-            color: Color(0xffF1F3FD),
+            color: const Color(0xffF1F3FD),
           ),),
           Expanded(
             child: RefreshIndicator(

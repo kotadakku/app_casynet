@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/store/create_seller_controller.dart';
+import '../../../controller/store/region_store_controller.dart';
 import '../../views.dart';
 
 class NewCreatedStore extends StatelessWidget {
@@ -17,6 +18,7 @@ class NewCreatedStore extends StatelessWidget {
 
   final CreateSellerController _createSellerController = Get.find();
   final OtherCategoryController chooseCategory = Get.find();
+  final RegionStoreController _regionStoreController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,7 @@ class NewCreatedStore extends StatelessWidget {
           },
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Obx(
-              () => Form(
+            child:  Form(
                 key: _createSellerController.formKey,
                 child: Column(
                   children: [
@@ -43,6 +44,7 @@ class NewCreatedStore extends StatelessWidget {
                       children: [
 // Ảnh đại diện
                         Stack(
+                          alignment: AlignmentDirectional.center,
                           children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width,
@@ -64,94 +66,94 @@ class NewCreatedStore extends StatelessWidget {
                                       ),
                                     )
                                   : Image.file(File(_createSellerController
-                                      .imgBackground_selected.value))),
+                                      .imgBackground_selected.value),
+                                fit: BoxFit.fitWidth,
+                              )
+                              ),
                             ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Obx(
-                                () => _createSellerController
-                                            .image_selected.value ==
-                                        ""
-                                    ? Container(
-                                        decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  "assets/images/store/ic_thongbao_email.png"),
-                                              // mage.file(),
-                                            ),
-                                            shape: BoxShape.circle),
-                                        width: 100,
-                                        height: 100,
-                                        child: OutlinedButton(
-                                          onPressed: () {
-                                            showActionSheet(
-                                              context,
-                                              "Sửa hình đại diện",
-                                            );
-                                          },
-                                          child: Text(
-                                            'edit'.tr,
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
+                            Obx(
+                              () => _createSellerController
+                                          .image_selected.value ==
+                                      ""
+                                  ? Container(
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/images/store/ic_thongbao_email.png"),
+                                            fit: BoxFit.fill,
                                           ),
-                                          style: OutlinedButton.styleFrom(
-                                            side: const BorderSide(
-                                                width: 2.0,
-                                                color: Color.fromARGB(
-                                                    255, 223, 180, 0)),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                            ),
-                                            elevation: 10,
-                                            padding: const EdgeInsets.only(
-                                                bottom: 10.0),
-                                          ),
+                                          shape: BoxShape.circle),
+
+                                      width: 100,
+                                      height: 100,
+                                      child: OutlinedButton(
+                                        onPressed: () {
+                                          showActionSheet(
+                                            context,
+                                            "Sửa hình đại diện",
+                                          );
+                                        },
+                                        child: Text(
+                                          'edit'.tr,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
                                         ),
-                                      )
-                                    : Container(
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: FileImage(File(
-                                                    _createSellerController
-                                                        .image_selected
-                                                        .value))),
-                                            shape: BoxShape.circle),
-                                        width: 100,
-                                        height: 100,
-                                        child: OutlinedButton(
-                                          onPressed: () {
-                                            // _tripEditModalBottomSheet(context, (value){
-                                            //   //gan = value
-                                            // });
-                                            showActionSheet(
-                                              context,
-                                              "Sửa hình đại diện",
-                                            );
-                                          },
-                                          child: Text(
-                                            'edit'.tr,
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
+                                        style: OutlinedButton.styleFrom(
+                                          side: const BorderSide(
+                                              width: 2.0,
+                                              color: Color.fromARGB(
+                                                  255, 223, 180, 0)),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
                                           ),
-                                          style: OutlinedButton.styleFrom(
-                                            side: const BorderSide(
-                                                width: 2.0,
-                                                color: Color.fromARGB(
-                                                    255, 223, 180, 0)),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                            ),
-                                            elevation: 10,
-                                            padding: const EdgeInsets.only(
-                                                bottom: 10.0),
-                                          ),
+                                          elevation: 10,
+                                          padding: const EdgeInsets.only(
+                                              bottom: 10.0),
                                         ),
                                       ),
-                              ),
+                                    )
+                                  : Container(
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: FileImage(File(
+                                                  _createSellerController
+                                                      .image_selected
+                                                      .value)),
+                                            fit: BoxFit.fill,
+                                          ),
+                                          shape: BoxShape.circle),
+                                      width: 100,
+                                      height: 100,
+                                      child: OutlinedButton(
+                                        onPressed: () {
+                                          showActionSheet(
+                                            context,
+                                            "Sửa hình đại diện",
+                                          );
+                                        },
+                                        child: Text(
+                                          'edit'.tr,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
+                                        style: OutlinedButton.styleFrom(
+                                          side: const BorderSide(
+                                              width: 2.0,
+                                              color: Color.fromARGB(
+                                                  255, 223, 180, 0)),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                          ),
+                                          elevation: 10,
+                                          padding: const EdgeInsets.only(
+                                              bottom: 10.0),
+                                        ),
+                                      ),
+                                    ),
                             ),
                           ],
                         ),
@@ -181,7 +183,7 @@ class NewCreatedStore extends StatelessWidget {
                       children: [
 //Nhập Tên cửa hàng
                         Container(
-                          margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,7 +205,7 @@ class NewCreatedStore extends StatelessWidget {
                                   onSaved: (value) {
                                     _createSellerController.seller.name = value;
                                   },
-                                  decoration: const InputDecoration(
+                                  decoration:  const InputDecoration(
                                     border: InputBorder.none,
                                     // enabledBorder: OutlineInputBorder(),
                                     // suffixIcon: Icon(Icons.navigate_next),
@@ -211,8 +213,8 @@ class NewCreatedStore extends StatelessWidget {
                                     hintText: 'Nhập tên cửa hàng',
                                   ),
                                   onTap: () {
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus();
+                                    // FocusManager.instance.primaryFocus
+                                    //     ?.unfocus();
                                   },
                                 ),
                               ),
@@ -223,13 +225,13 @@ class NewCreatedStore extends StatelessWidget {
                           height: 1,
                           child: Container(
                             margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Nhập link cửa hàng
                         Container(
-                          margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,13 +267,13 @@ class NewCreatedStore extends StatelessWidget {
                           height: 1,
                           child: Container(
                             margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Số điện thoại
                         Container(
-                          margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -314,15 +316,13 @@ class NewCreatedStore extends StatelessWidget {
                         SizedBox(
                           height: 1,
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Giờ mở cửa
                         Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
                               splashColor:
@@ -382,15 +382,13 @@ class NewCreatedStore extends StatelessWidget {
                         SizedBox(
                           height: 1,
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Giờ đóng cửa
                         Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
                               splashColor:
@@ -453,16 +451,14 @@ class NewCreatedStore extends StatelessWidget {
                         SizedBox(
                           height: 1,
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Danh mục ngành nghề chính
                         Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
-                            height: 50.0,
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                            height: 50.0.h,
                             child: InkWell(
                               splashColor:
                                   const Color.fromARGB(255, 188, 195, 216),
@@ -488,9 +484,11 @@ class NewCreatedStore extends StatelessWidget {
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Text(
-                                        chooseCategory.chooseMainCategory
-                                            .toString(),
+                                      Obx(
+                                        ()=> Text(
+                                          chooseCategory.chooseMainCategory
+                                              .toString(),
+                                        ),
                                       ),
                                       const Icon(Icons.navigate_next),
                                     ],
@@ -501,15 +499,13 @@ class NewCreatedStore extends StatelessWidget {
                         SizedBox(
                           height: 1,
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Danh mục nghề khác
                         Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
                             child: InkWell(
                               splashColor:
@@ -631,19 +627,17 @@ class NewCreatedStore extends StatelessWidget {
                         SizedBox(
                           height: 1,
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Loại hình
                         Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             height: 50.0,
-                            child: InkWell(
-                              splashColor:
-                                  const Color.fromARGB(255, 188, 195, 216),
+                            child: GestureDetector(
+                              // splashColor:
+                              //     const Color.fromARGB(255, 188, 195, 216),
                               // splashColor: Colors.blue,
                               onTap: () {
                                 Get.toNamed(Routes.MY_STORE_TYPEPRODUCT);
@@ -666,10 +660,12 @@ class NewCreatedStore extends StatelessWidget {
                                       child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children:  [
-                                      Text(
-                                        _createSellerController.typeProSelected.toString(),
+                                      Obx(
+                                          ()=> Text(
+                                          _createSellerController.typeProSelected.value.toString(),
+                                        ),
                                       ),
-                                      Icon(Icons.navigate_next),
+                                      const Icon(Icons.navigate_next),
                                     ],
                                   ))
                                 ],
@@ -679,109 +675,134 @@ class NewCreatedStore extends StatelessWidget {
                           height: 1,
                           child: Container(
                             margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                                 EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
-//Tỉnh/Thành Phố
-                        Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
-                            height: 50.0,
-                            child: InkWell(
-                              splashColor:
-                                  const Color.fromARGB(255, 188, 195, 216),
-                              // splashColor: Colors.blue,
-                              onTap: () {},
-
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'province_city'.tr,
-                                        style: const TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 127, 141, 171)),
-                                      )
-                                    ],
-                                  ),
-                                  Expanded(
-                                      child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: const [
-                                      Text(
-                                        "Hà Nội",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      Icon(Icons.navigate_next),
-                                    ],
+// Tỉnh/Thành Phố
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0.w,right:  10.0.w),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                    'province_city'.tr,
+                                    style:
+                                    const TextStyle(color: AppColors.textGrayBoldColor),
+                                  )),
+                              Expanded(
+                                  child: TextFormField(
+                                    readOnly: true,
+                                    onTap: () async {
+                                      var value = await Get.toNamed(Routes.MY_STORE_SELECT_REGION,
+                                          arguments: {
+                                            "title": "Chọn tỉnh/ thành phố",
+                                            "regions": _regionStoreController.provinces
+                                          });
+                                      if (value != null) {
+                                        _createSellerController.textProvinceCtr.text = value.name;
+                                        _regionStoreController.getDistrictsApi(value.id);
+                                        _createSellerController.textDistrictCtr.clear();
+                                        // _createSellerController.textCommuneController.clear();
+                                      }
+                                    },
+                                    controller: _createSellerController.textProvinceCtr,
+                                    textAlign: TextAlign.end,
+                                    onSaved:
+                                        (value) /*=> controller.address.province = value!*/ {
+                                      _createSellerController.address?.province = value; // tỉnh thành phố
+                                    },
+                                    decoration: const InputDecoration(
+                                        contentPadding:
+                                        EdgeInsets.symmetric(vertical: 15.0),
+                                        border: InputBorder.none,
+                                        hintText: "Chọn tỉnh/ thành phố",
+                                        hintStyle:
+                                        TextStyle(color: AppColors.textGrayColor),
+                                        suffixIcon: SizedBox(
+                                          height: 10,
+                                          width: 10,
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 12,
+                                          ),
+                                        )),
                                   ))
-                                ],
-                              ),
-                            )),
+                            ],
+                          ),
+                        ),
+
                         SizedBox(
                           height: 1,
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Quận/Huyện
-                        Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
-                            height: 50.0,
-                            child: InkWell(
-                              splashColor:
-                                  const Color.fromARGB(255, 188, 195, 216),
-                              // splashColor: Colors.blue,
-                              onTap: () {},
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0.w,right: 10.0.w),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                    'district'.tr,
+                                    style:
+                                    const TextStyle(color: AppColors.textGrayBoldColor),
+                                  )),
+                              Expanded(
+                                  child: TextFormField(
+                                    readOnly: true,
+                                    onTap: () async {
+                                      var value = await Get.toNamed(Routes.SELECT_REGION,
+                                          arguments: {
+                                            "title": "Chọn Quận/Huyện phố",
+                                            "regions": _regionStoreController.districts
+                                          });
 
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'district'.tr,
-                                        style: const TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 127, 141, 171)),
-                                      )
-                                    ],
-                                  ),
-                                  Expanded(
-                                      child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: const [
-                                      Text(
-                                        "Thanh Xuân",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      Icon(Icons.navigate_next),
-                                    ],
+                                      if (value != null) {
+                                        _createSellerController.textProvinceCtr.text =
+                                            value.name;
+                                        // _regionStoreController.getVillagesApi(value.id);
+                                        // _createSellerController.textCommuneController.clear();
+                                      }
+                                    },
+                                    controller: _createSellerController.textDistrictCtr,
+                                    textAlign: TextAlign.end,
+                                    onSaved:
+                                        (value) /*=> controller.address.district = value!*/ {
+                                      _createSellerController.address?.district = value;
+                                    },
+                                    decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        contentPadding:
+                                        EdgeInsets.symmetric(vertical: 15.0),
+                                        hintText: "Chọn quận/ huyện",
+                                        hintStyle:
+                                        TextStyle(color: AppColors.textGrayColor),
+                                        suffixIcon: SizedBox(
+                                          height: 10,
+                                          width: 10,
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 12,
+                                          ),
+                                        )),
                                   ))
-                                ],
-                              ),
-                            )),
+                            ],
+                          ),
+                        ),
+
                         SizedBox(
-                          height: 1,
+                          height: 1.h,
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                             color: const Color.fromARGB(255, 217, 217, 217),
                           ),
                         ),
 //Địa chỉ cửa hàng
                         Container(
-                          margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                          margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                           height: 50.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -812,15 +833,15 @@ class NewCreatedStore extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.0.h,
                       child: Container(
                         color: const Color.fromARGB(255, 217, 217, 217),
                       ),
                     ),
 //Liên kết mạng xã hội
                     Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-                        height: 50.0,
+                        margin:  EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                        height: 50.0.h,
                         child: InkWell(
                           splashColor: const Color.fromARGB(255, 188, 195, 216),
                           // splashColor: Colors.blue,
@@ -858,13 +879,13 @@ class NewCreatedStore extends StatelessWidget {
                     SizedBox(
                       height: 1,
                       child: Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                         color: const Color.fromARGB(255, 217, 217, 217),
                       ),
                     ),
 //facebook
                     Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                         height: 50.0,
                         child: InkWell(
                           splashColor: const Color.fromARGB(255, 188, 195, 216),
@@ -902,13 +923,13 @@ class NewCreatedStore extends StatelessWidget {
                     SizedBox(
                       height: 1,
                       child: Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                         color: const Color.fromARGB(255, 217, 217, 217),
                       ),
                     ),
 //zalo
                     Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                         height: 50.0,
                         child: InkWell(
                           splashColor: const Color.fromARGB(255, 188, 195, 216),
@@ -946,14 +967,14 @@ class NewCreatedStore extends StatelessWidget {
                     SizedBox(
                       height: 1,
                       child: Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                         color: const Color.fromARGB(255, 217, 217, 217),
                       ),
                     ),
 //Youtube
                     Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-                        height: 50.0,
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                        height: 50.0.h,
                         child: InkWell(
                           splashColor: const Color.fromARGB(255, 188, 195, 216),
                           // splashColor: Colors.blue,
@@ -988,15 +1009,15 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                         )),
                     SizedBox(
-                      height: 10,
+                      height: 10.0.h,
                       child: Container(
                         color: const Color.fromARGB(255, 217, 217, 217),
                       ),
                     ),
 //Mô tả ngắn
                     Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-                        height: 50.0,
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                        height: 50.0.h,
                         child: InkWell(
                           splashColor: const Color.fromARGB(255, 188, 195, 216),
                           // splashColor: Colors.blue,
@@ -1035,14 +1056,14 @@ class NewCreatedStore extends StatelessWidget {
                     SizedBox(
                       height: 1,
                       child: Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                         color: const Color.fromARGB(255, 217, 217, 217),
                       ),
                     ),
 //Chi tiết về về cửa hàng
                     Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-                        height: 50.0,
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                        height: 50.0.h,
                         child: InkWell(
                           splashColor: const Color.fromARGB(255, 188, 195, 216),
                           // splashColor: Colors.blue,
@@ -1073,14 +1094,14 @@ class NewCreatedStore extends StatelessWidget {
                           ),
                         )),
                     SizedBox(
-                      height: 10,
+                      height: 10.0.h,
                       child: Container(
                         color: const Color.fromARGB(255, 217, 217, 217),
                       ),
                     ),
 // check box đồng ý điều khoản
                     Container(
-                        margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
                         height: 50.0,
                         child: Row(
                           children: [
@@ -1121,8 +1142,8 @@ class NewCreatedStore extends StatelessWidget {
                         )),
 // btn xem trước và Tạo cửa hàng
                     Container(
-                      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-                      height: 70.0,
+                      margin: EdgeInsets.only(left: 10.0.w, right: 10.0.w),
+                      height: 70.0.h,
                       alignment: Alignment.center,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1163,8 +1184,8 @@ class NewCreatedStore extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                margin: const EdgeInsets.all(5.0),
-                                height: 50,
+                                margin: EdgeInsets.all(10.0.sp),
+                                height: 50.0.h,
                                 child: TextButton(
                                   style: TextButton.styleFrom(
                                     backgroundColor:
@@ -1199,7 +1220,7 @@ class NewCreatedStore extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+
           ),
         ),
       ),

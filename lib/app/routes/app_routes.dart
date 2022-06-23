@@ -26,6 +26,7 @@ abstract class Routes{
   static const PRODUCTS_BY_CATEGORY = '/products';
 
 
+
   static const STORE_HOME_MORE= '/storemore';
 
   static const CONTACT = '/contact';
@@ -49,9 +50,9 @@ abstract class Routes{
   static const MY_STORE_DATA = '/my_store/data';
   static const MY_STORE_NEWS = '/my_store/news';
   static const MY_STORE_CATEGORY = '/my_store/category';
-  static const MY_STORE_MAINCATEGORY = 'my_store/maincategory';
-  static const MY_STORE_TYPEPRODUCT = 'my_store/typeproduct';
-  // static const MY_STORE_CATEGORY = '';
+  static const MY_STORE_MAINCATEGORY = '/my_store/maincategory';
+  static const MY_STORE_TYPEPRODUCT = '/my_store/typeproduct';
+  static const MY_STORE_SELECT_REGION = '/my_store/select_region';
 
 
   static const STORE_MANAGER = '/manager_store';

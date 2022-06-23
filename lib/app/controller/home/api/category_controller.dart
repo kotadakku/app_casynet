@@ -32,7 +32,7 @@ class CategoryController extends GetxController{
         isLoadingDB.value = false;
         getCategoriesAPI();
       }else{
-        print('<Load Category> Load DB');
+        print('<Load Category> Load DB: ');
         value?.forEach((element) {
           categoriesList.add(Category(
             id: element[DBConfig.CATEGORY_COLUMN_ID],
@@ -45,6 +45,7 @@ class CategoryController extends GetxController{
       }
     });
   }
+
   Future<void> getCategoriesAPI() async {
     isLoadingAPI.value = true;
     final token_admin = await GetStorageProvider().get(key: CacheManagerKey.TOKEN_ADMIN.toString());
@@ -54,8 +55,8 @@ class CategoryController extends GetxController{
             headers: {'Authorization': 'Bearer $token_admin'}
         ),
         queryParameters: {
-          'searchCriteria[filterGroups][0][filters][0][field]': 'level',
-          'searchCriteria[filterGroups][0][filters][0][value]': '3',
+          'searchCriteria[filterGroups][0][filters][0][field]': 'cms_id',/*level*//*cms_id*/
+          'searchCriteria[filterGroups][0][filters][0][value]': 'banner-mobile',/*3*//*banner-mobile*/
           'searchCriteriafilterGroups[filters][0][condition_type]': 'eq',
         }
       );

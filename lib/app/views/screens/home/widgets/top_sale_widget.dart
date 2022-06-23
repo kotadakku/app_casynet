@@ -31,27 +31,27 @@ class TopSaleWidget extends StatelessWidget {
                   ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     itemCount: _saleController.topSaleList.length,
                     itemBuilder: (context, index){
 
                       if(_saleController.topSaleList.length ==0){
-                        return Text("Không có dữ liệu");
+                        return const Text("Không có dữ liệu");
                       }
                       else{
                         return CardItem(image_url: _saleController.topSaleList[index].image, title: _saleController.topSaleList[index].title);
                       }
                     },
                   ),
-                  _saleController.error == ''? SizedBox()
+                  _saleController.error == ''? const SizedBox()
                       : Positioned.fill(
                       child: Container(
                         color: AppColors.backgroundColor.withOpacity(0.5),
-                        padding: EdgeInsets.only(top: 100),
+                        padding: const EdgeInsets.only(top: 100),
                         child: Column(
                           children: [
                             Text("${_saleController.error}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold
                               ),
                             ),

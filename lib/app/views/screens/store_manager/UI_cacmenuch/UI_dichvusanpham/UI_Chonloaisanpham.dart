@@ -27,7 +27,7 @@ class chonloaisanpham extends StatelessWidget {
             return ListTile(
               title:  Text(list[index]),
               onTap: () {
-                cls.lsp.value=list[index];
+                cls.lsp.value=list[index].toString();
                 Get.back();
               },
             );

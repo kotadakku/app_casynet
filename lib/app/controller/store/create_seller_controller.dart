@@ -1,18 +1,26 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../data/model/address.dart';
 import '../../data/model/category.dart';
 import '../../data/model/seller.dart';
 
 class CreateSellerController extends GetxController {
+
+  late var formKey;
+
+  Address? address;
+  late TextEditingController textProvinceCtr;
+  late TextEditingController textDistrictCtr;
 
   var typeProSelected = "- Chọn -".obs;
   var image_selected = "".obs;
   var imgBackground_selected = "".obs;
   var btnTakePhoto = true.obs;
   var btnGalleryPhoto = true.obs;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final open_time = "".obs;
   final close_time = "".obs;
   Seller seller = Seller();
@@ -20,7 +28,22 @@ class CreateSellerController extends GetxController {
   final listOtherCateSelected = <Category>[].obs;
 
   @override
-  void onInit() {}
+  void onInit() {
+    formKey = GlobalKey<FormState>();
+    textProvinceCtr = TextEditingController(text: address?.province);
+    textDistrictCtr = TextEditingController(text: address?.district);
+    // textCommuneController = TextEditingController(text: '');
+  }
+
+
+  @override
+  void onReady() {
+
+    if(Get.arguments[0] != null){
+      address = Get.arguments[0];
+    }
+
+  }
 
   void createSeller() {
     print(seller.toJsonDB());
@@ -58,4 +81,5 @@ class CreateSellerController extends GetxController {
     }
 
   }
+
 }

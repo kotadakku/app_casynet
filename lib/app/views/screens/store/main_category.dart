@@ -64,7 +64,7 @@ class MainCategory extends StatelessWidget {
                                     Container(
                                       width: 40.w,
                                       height: 40.h,
-                                      color: Color.fromARGB(255, 223, 180, 0),
+                                      color: const Color.fromARGB(255, 223, 180, 0),
                                     ),
                                     Positioned(
                                         left: 12.w,

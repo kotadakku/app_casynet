@@ -1,18 +1,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../controller/store/create_seller_controller.dart';
 
 class TypeProduct extends StatelessWidget {
+  const TypeProduct({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     // final cls=Get.put(chonloaisp());
     final CreateSellerController _typeProductCtl = Get.find();
     List<dynamic> list=["Ô tô","Xe máy"];
-    var chon="".obs;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -22,7 +22,7 @@ class TypeProduct extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Container(
+      body: SizedBox(
         child: ListView.builder(
           itemCount: list.length,
           itemBuilder: (context, index) {
