@@ -93,29 +93,31 @@ class StoreHomeMore extends StatelessWidget {
             ),
           ),
 
-          Row(
-            children: [
-              Radio(
-                  value: true,
-                  groupValue: _sellersController.isCar.value,
-                  onChanged: (value){
-                    _sellersController.isCar.value =  !_sellersController.isCar.value;
-                    _sellersController.getSellersAPI(first_load: true, type_filter: '5');
-                  },
-                  activeColor: const Color(0xffDFB400)),
-              Text('car'.tr),
-              const SizedBox(width: 20,),
-              Radio(
-                  value: false,
-                  groupValue: _sellersController.isCar.value,
-                  onChanged: (value){
-                    _sellersController.isCar.value = !_sellersController.isCar.value;
-                    _sellersController.getSellersAPI(first_load: true, type_filter: '6');
-                  },
-                  activeColor: const Color(0xffDFB400)
-              ),
-              Text('motorcycle'.tr)
-            ],
+          Obx(
+            ()=> Row(
+              children: [
+                Radio(
+                    value: true,
+                    groupValue: _sellersController.isCar.value,
+                    onChanged: (value){
+                      _sellersController.isCar.value =  !_sellersController.isCar.value;
+                      _sellersController.getSellersAPI(first_load: true, type_filter: '5');
+                    },
+                    activeColor: const Color(0xffDFB400)),
+                Text('car'.tr),
+                const SizedBox(width: 20,),
+                Radio(
+                    value: false,
+                    groupValue: _sellersController.isCar.value,
+                    onChanged: (value){
+                      _sellersController.isCar.value = !_sellersController.isCar.value;
+                      _sellersController.getSellersAPI(first_load: true, type_filter: '6');
+                    },
+                    activeColor: const Color(0xffDFB400)
+                ),
+                Text('motorcycle'.tr)
+              ],
+            ),
           ),
           SizedBox(height: 10,child: Container(
             color: const Color(0xffF1F3FD),
