@@ -390,13 +390,11 @@ class Themspdv extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                Container(
-                                  child: Obx(() => Text(_addProductController.date.value.day.toString() +
-                                      "/" +
-                                      _addProductController.date.value.month.toString() +
-                                      "/" +
-                                      _addProductController.date.value.year.toString())),
-                                ),
+                                Obx(() => Text(_addProductController.date.value.day.toString() +
+                                    "/" +
+                                    _addProductController.date.value.month.toString() +
+                                    "/" +
+                                    _addProductController.date.value.year.toString())),
                                 Container(
                                   margin: const EdgeInsets.only(left: 10),
                                   child: const ImageIcon(
@@ -517,8 +515,9 @@ class Themspdv extends StatelessWidget {
                             child: TextFormField(
                               onSaved: (value){
                                 if(value?.trim() != '' && int.tryParse(value!) == null){
-                                  if(int.parse(value) > 0)
-                                  _addProductController.product.amount = int.parse(value);
+                                  if(int.parse(value) > 0) {
+                                    _addProductController.product.amount = int.parse(value);
+                                  }
                                 }
                                 _addProductController.product.amount = 0;
                               },
@@ -581,7 +580,7 @@ class Themspdv extends StatelessWidget {
                       if(value != null){
                         _addProductController.listCategorySelected.clear();
                         _addProductController.listCategorySelected.addAll(value);
-                      };
+                      }
                     },
                     child: Container(
                       height: 50,
@@ -684,7 +683,7 @@ class Themspdv extends StatelessWidget {
                       var value = await Get.toNamed(Routes.STORE_MANAGER_SELECT_ORIGIN);
                       if(value != null){
                         _addProductController.selectOrigin.value = value;
-                      };
+                      }
                     },
                     child: Container(
                       height: 50,

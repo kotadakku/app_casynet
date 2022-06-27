@@ -1,13 +1,8 @@
 
 import 'package:app_casynet/app/controller/home/api/origin_controller.dart';
 import 'package:app_casynet/app/controller/store_manager/product/select_origin_controller.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../CheckInternet.dart';
-import 'UI_ThemSPDV.dart';
 
 class SelectOriginPage extends StatelessWidget {
   SelectOriginPage({Key? key}) : super(key: key);
@@ -20,7 +15,7 @@ class SelectOriginPage extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text(
+              title: const Text(
                 "Chọn xuất xứ",
                 style: TextStyle(color: Colors.black),
               ),
@@ -62,7 +57,7 @@ class SelectOriginPage extends StatelessWidget {
               ],
             )
         ),
-        onWillPop:()=> _onWillPop(context));;
+        onWillPop:()=> _onWillPop(context));
   }
   Future<bool> _onWillPop(BuildContext context) async {
     late bool? exitResult;

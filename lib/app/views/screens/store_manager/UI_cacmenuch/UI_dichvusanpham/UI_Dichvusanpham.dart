@@ -1,14 +1,14 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controller/store_manager/add_product/get_category_controller.dart';
 import '../../../../../routes/app_pages.dart';
-import 'UI_ThemSPDV.dart';
 
 class DichVuSanPham extends StatefulWidget {
+  const DichVuSanPham({Key? key}) : super(key: key);
+
   @override
   State<DichVuSanPham> createState() => _DichVuSanPhamState();
 }
@@ -30,7 +30,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
     // TODO: implement initState
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1, ));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1, ));
     // _controller.forward();
     _animation = CurvedAnimation(
       parent: _controller,
@@ -49,9 +49,9 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
             Expanded(
               child: Container(
                 height: 40,
-                color: Color.fromARGB(224, 224, 224, 224),
-                margin: new EdgeInsets.only(top: 40, bottom: 40),
-                child: TextField(
+                color: const Color.fromARGB(224, 224, 224, 224),
+                margin: const EdgeInsets.only(top: 40, bottom: 40),
+                child: const TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Tìm kiếm trên cửa hàng',
@@ -63,7 +63,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
             Container(
               height: 40,
               width: 80,
-              margin: new EdgeInsets.only(left: 10),
+              margin: const EdgeInsets.only(left: 10),
 
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(primary: Colors.amber),
@@ -85,11 +85,11 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
       ),
       body: Obx(
         () => Container(
-          color: Color.fromARGB(255, 241, 243, 253),
+          color: const Color.fromARGB(255, 241, 243, 253),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 50,
                   child: Row(
                     children: [
@@ -109,18 +109,18 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                 AnimatedList(
                   key: _key,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   initialItemCount: 6,
                   itemBuilder: (context, index,animated) {
                     return Obx(
                       () => Container(
                         color: Colors.white,
-                        margin: new EdgeInsets.only(bottom: 10),
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: Column(
                           children: [
                             Container(
-                              margin: new EdgeInsets.only(left: 10, right: 10),
-                              decoration: BoxDecoration(
+                              margin: const EdgeInsets.only(left: 10, right: 10),
+                              decoration: const BoxDecoration(
                                   border: Border(
                                 bottom: BorderSide(
                                     width: 1.0,
@@ -128,7 +128,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                               )),
                               height: 50,
                               child: Row(
-                                children: [
+                                children: const [
                                   Expanded(
                                       child:
                                           Text("Bảo hiểm vận chuyển hàng hóa")),
@@ -168,7 +168,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                     },
                                   ),
                                   Container(
-                                    margin: new EdgeInsets.only(right: 10),
+                                    margin: const EdgeInsets.only(right: 10),
                                     child: Image.network(
                                       "https://image.bnews.vn/MediaUpload/Org/2020/10/29/winner-x-bike-sport.jpg",
                                       width: 100,
@@ -185,14 +185,14 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              margin: new EdgeInsets.only(),
-                                              child: Text("Mã: 01-303",
+                                              margin: const EdgeInsets.only(),
+                                              child: const Text("Mã: 01-303",
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
                                             ),
                                             Container(
-                                              margin: new EdgeInsets.only(right: 5),
+                                              margin: const EdgeInsets.only(right: 5),
                                               child: Text("${'amount'.tr}:1000",
                                                   maxLines: 1,
                                                   overflow:
@@ -204,7 +204,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                           children: [
                                             Expanded(
                                               child: Container(
-                                                margin: new EdgeInsets.only(),
+                                                margin: const EdgeInsets.only(),
                                                 child: Text("${'type'.tr}: Sản phẩm",
                                                     maxLines: 1,
                                                     overflow:
@@ -212,7 +212,7 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                               ),
                                             ),
                                             Container(
-                                              margin: new EdgeInsets.only(right: 5),
+                                              margin: const EdgeInsets.only(right: 5),
                                               child: Text("${'price'.tr}: 1.000.000",
                                                   maxLines: 1,
                                                   overflow:
@@ -224,14 +224,12 @@ class _DichVuSanPhamState extends State<DichVuSanPham>
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                               Expanded(
-                                                child: Container(
-                                                  child: Text("${'type_product'.tr}: xe máy\nNgày hết hạn: 15/10/2025\nNổi bật: có\nXuất xứ: Việt Nam\nYêu cầu hẹn trước: có",maxLines: maxliness[index],),
-                                                ),
+                                                child: Text("${'type_product'.tr}: xe máy\nNgày hết hạn: 15/10/2025\nNổi bật: có\nXuất xứ: Việt Nam\nYêu cầu hẹn trước: có",maxLines: maxliness[index],),
                                               ),
                                             Container(
-                                              margin: EdgeInsets.only(right: 5),
+                                              margin: const EdgeInsets.only(right: 5),
                                               child: InkWell(
-                                                child: Text(xemthugon[index],style: TextStyle(color: Colors.blue),),
+                                                child: Text(xemthugon[index],style: const TextStyle(color: Colors.blue),),
                                                 onTap: () {
                                                   if(maxliness[index]==1){
                                                     maxliness[index]=5;

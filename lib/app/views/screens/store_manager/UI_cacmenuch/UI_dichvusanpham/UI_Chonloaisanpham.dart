@@ -5,12 +5,13 @@ import 'package:get/get.dart';
 
 import 'UI_ThemSPDV.dart';
 class chonloaisanpham extends StatelessWidget {
+  const chonloaisanpham({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     final cls=Get.put(chonloaisp());
     List<dynamic> list=["Ô tô","Xe máy"];
-    var chon="".obs;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -20,20 +21,18 @@ class chonloaisanpham extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Container(
-        child: ListView.builder(
-          itemCount: list.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title:  Text(list[index]),
-              onTap: () {
-                cls.lsp.value=list[index].toString();
-                Get.back();
-              },
-            );
+      body: ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title:  Text(list[index]),
+            onTap: () {
+              cls.lsp.value=list[index].toString();
+              Get.back();
+            },
+          );
 
-          },
-        ),
+        },
       ),
     );
   }

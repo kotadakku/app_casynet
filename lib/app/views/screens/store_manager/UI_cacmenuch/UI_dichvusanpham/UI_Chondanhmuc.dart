@@ -27,7 +27,7 @@ class SelectCategory extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'select_category'.tr,
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
         ),
       ),
       body: SingleChildScrollView(
@@ -36,7 +36,7 @@ class SelectCategory extends StatelessWidget {
             ListView.builder(
               itemCount: _categoryController.categoriesList.length,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Obx(
                       () => CheckboxListTile(
@@ -114,11 +114,11 @@ class SelectCategory extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           onPressed: () => Get.back(result: false),
-          child: Text('HỦY'),
+          child: const Text('HỦY'),
         ),
         TextButton(
           onPressed: () => Get.back(result: true),
-          child: Text('LƯU THAY ĐỔI'),
+          child: const Text('LƯU THAY ĐỔI'),
         ),
       ],
     );

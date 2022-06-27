@@ -1,7 +1,6 @@
 import 'package:app_casynet/app/controller/filter/map_controller.dart';
 import 'package:app_casynet/app/controller/store_manager/seller/update_seller_controller.dart';
 import 'package:app_casynet/app/routes/app_pages.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -37,19 +36,17 @@ class ThongTinCuaHang extends StatelessWidget {
             key: controller.formStateKeyShop,
             child: Column(
               children: [
-                Container(
-                  child: Image.network(
-                      "https://xemaynghean.com/wp-content/uploads/2019/03/50272791_137653880484230_7970165378053570560_n-1024x554.jpg"),
-                ),
-                Container(
+                Image.network(
+                    "https://xemaynghean.com/wp-content/uploads/2019/03/50272791_137653880484230_7970165378053570560_n-1024x554.jpg"),
+                SizedBox(
                     height: 50,
                     child: Container(
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       child: Row(
                         children: [
                           Text(
                             'name_s'.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: AppColors.textGrayBoldColor,
                             ),
                           ),
@@ -73,14 +70,14 @@ class ThongTinCuaHang extends StatelessWidget {
                                   border: InputBorder.none,
                                   hintText: 'enter_name'.tr,
                                   isDense: true,
-                                  contentPadding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                                  contentPadding: const EdgeInsets.only(top: 10, left: 10, right: 10),
                                   ),
                             ),
                           )
                         ],
                       )),
                 ),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Padding(
@@ -89,7 +86,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           "Link",
                           style: TextStyle(
                             color: AppColors.textGrayBoldColor,
@@ -106,10 +103,10 @@ class ThongTinCuaHang extends StatelessWidget {
                                 // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
                                 hintText: "",
-                                suffixIcon: Container(
+                                suffixIcon: SizedBox(
                                   height: 10.0.h,
                                   width: 10.0.w,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
                                     color: AppColors.textGrayBoldColor,
@@ -119,7 +116,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         )
                       ],
                     )),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Container(
@@ -131,7 +128,7 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Text(
                           'phone'.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColors.textGrayBoldColor,
                           ),
                         ),
@@ -158,13 +155,13 @@ class ThongTinCuaHang extends StatelessWidget {
 
                                 hintText: "enter_phone".tr,
                                 isDense: true,
-                                contentPadding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                                contentPadding: const EdgeInsets.only(top: 10, left: 10, right: 10),
                             ),
                           ),
                         )
                       ],
                     )),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Row(
@@ -182,7 +179,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text('open_time'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15, color: AppColors.textGrayBoldColor)),
                             ),
                             Obx(
@@ -190,9 +187,9 @@ class ThongTinCuaHang extends StatelessWidget {
                                   controller.open_hours.value == ""
                                       ? ""
                                       : controller.open_hours.value,
-                                  style: TextStyle(fontSize: 15)),
+                                  style: const TextStyle(fontSize: 15)),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.access_time,
                               color: Color.fromARGB(255, 0, 74, 165),
                               size: 15,
@@ -222,7 +219,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text('close_time'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15, color: AppColors.textGrayBoldColor)),
                             ),
                             Obx(
@@ -230,9 +227,9 @@ class ThongTinCuaHang extends StatelessWidget {
                                   controller.closer_hours.value == null
                                       ? ""
                                       : controller.closer_hours.value,
-                                  style: TextStyle(fontSize: 15)),
+                                  style: const TextStyle(fontSize: 15)),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.access_time,
                               color: Color.fromARGB(255, 0, 74, 165),
                               size: 15,
@@ -250,7 +247,7 @@ class ThongTinCuaHang extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  color: Color.fromARGB(255, 243, 242, 255),
+                  color: const Color.fromARGB(255, 243, 242, 255),
                   height: 15.0.h,
                 ),
                 Container(
@@ -263,7 +260,7 @@ class ThongTinCuaHang extends StatelessWidget {
                           child: Text(
                             'address'.tr,
                             style:
-                                TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
+                                const TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
                           ),
                         ),
                         Obx(
@@ -271,9 +268,9 @@ class ThongTinCuaHang extends StatelessWidget {
                               controller.provinceShop.value == ""
                                   ? 'select_province'.tr
                                   : controller.provinceShop.value,
-                              style: TextStyle(fontSize: 15)),
+                              style: const TextStyle(fontSize: 15)),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.navigate_next,
                           color: AppColors.textGrayBoldColor,
                           size: 20,
@@ -296,7 +293,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     },
                   ),
                 ),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Container(
@@ -307,7 +304,7 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text('district'.tr,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         Obx(
@@ -315,9 +312,9 @@ class ThongTinCuaHang extends StatelessWidget {
                               controller.districtShop.value == ""
                                   ? 'select_district'.tr
                                   : controller.districtShop.value,
-                              style: TextStyle(fontSize: 15)),
+                              style: const TextStyle(fontSize: 15)),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.navigate_next,
                           color: AppColors.textGrayBoldColor,
                           size: 20,
@@ -339,7 +336,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     },
                   ),
                 ),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Container(
@@ -350,7 +347,7 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text('village'.tr,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         Obx(
@@ -358,9 +355,9 @@ class ThongTinCuaHang extends StatelessWidget {
                               controller.communeShop.value == ""
                                   ? 'select_village'.tr
                                   : controller.communeShop.value,
-                              style: TextStyle(fontSize: 15)),
+                              style: const TextStyle(fontSize: 15)),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.navigate_next,
                           color: AppColors.textGrayBoldColor,
                           size: 20,
@@ -380,16 +377,16 @@ class ThongTinCuaHang extends StatelessWidget {
                     },
                   ),
                 ),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 10, right: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Row(
                     children: [
                       Text(
                         'apartment_street'.tr,
-                        style: TextStyle(color: AppColors.textGrayBoldColor),
+                        style: const TextStyle(color: AppColors.textGrayBoldColor),
                       ),
                       Expanded(
                           child: TextFormField(
@@ -456,13 +453,13 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text('main_category'.tr,
-                              style: TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor)),
+                              style: const TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor)),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red,
                           ),
-                          child: Text(
+                          child: const Text(
                             "Mua bán xe",
                             style: TextStyle(color: Colors.white),
                           ),
@@ -473,7 +470,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     onTap: () {},
                   ),
                 ),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Container(
@@ -486,11 +483,11 @@ class ThongTinCuaHang extends StatelessWidget {
                           child: Text(
                             'main_category'.tr,
                             style:
-                            TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
+                            const TextStyle(fontSize: 15, color: AppColors.textGrayBoldColor),
                           ),
                         ),
                         Obx(()=>
-                        controller.listCategorySelected.value.length>0
+                        controller.listCategorySelected.value.isNotEmpty
                             ? Expanded(
                             child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -504,15 +501,15 @@ class ThongTinCuaHang extends StatelessWidget {
                                       clipBehavior: Clip.none,
                                       children: [
                                         Container(
-                                          padding: EdgeInsets.only(right: 10, left: 10),
-                                          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                                          padding: const EdgeInsets.only(right: 10, left: 10),
+                                          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
                                           height: 40,
                                           child: Center(
                                             child: Text(controller.listCategorySelected[index].name
                                                 .toString()),
                                           ),
                                           color:
-                                          Color.fromARGB(255, 241, 243, 253),
+                                          const Color.fromARGB(255, 241, 243, 253),
                                         ),
                                         Positioned(
                                             width: 20,
@@ -521,7 +518,7 @@ class ThongTinCuaHang extends StatelessWidget {
                                             top: 0,
                                             child: FloatingActionButton(
                                               heroTag: '${index}',
-                                              child: Icon(Icons.close, size: 8,),
+                                              child: const Icon(Icons.close, size: 8,),
                                               onPressed: (){
                                                 controller.listCategorySelected
                                                     .removeAt(index);
@@ -539,7 +536,7 @@ class ThongTinCuaHang extends StatelessWidget {
                               'select_category'.tr,
                               textAlign: TextAlign.end,
                             ),
-                            Icon(Icons.navigate_next),
+                            const Icon(Icons.navigate_next),
                           ],
                         )
                         ),
@@ -561,11 +558,11 @@ class ThongTinCuaHang extends StatelessWidget {
                       if(value != null){
                         controller.listCategorySelected.clear();
                         controller.listCategorySelected.addAll(value);
-                      };
+                      }
                     },
                   ),
                 ),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Padding(
@@ -576,7 +573,7 @@ class ThongTinCuaHang extends StatelessWidget {
                       children: [
                         Text(
                           'type_seller'.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColors.textGrayBoldColor,
                           ),
                         ),
@@ -591,11 +588,11 @@ class ThongTinCuaHang extends StatelessWidget {
                               // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
                                 hintText: "motorcycle".tr,
-                                hintStyle: TextStyle(color: Colors.black),
-                                suffixIcon: Container(
+                                hintStyle: const TextStyle(color: Colors.black),
+                                suffixIcon: SizedBox(
                                   height: 10.0.h,
                                   width: 10.0.w,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
                                     color: AppColors.textGrayBoldColor,
@@ -605,7 +602,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         )
                       ],
                     )),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Container(
@@ -618,10 +615,10 @@ class ThongTinCuaHang extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text('introduce_seller'.tr, style: TextStyle(color: AppColors.textGrayBoldColor, fontSize: 15),),
+                          Text('introduce_seller'.tr, style: const TextStyle(color: AppColors.textGrayBoldColor, fontSize: 15),),
                           Container(
-                            margin: new EdgeInsets.only(right: 20),
-                            child: ImageIcon(
+                            margin: const EdgeInsets.only(right: 20),
+                            child: const ImageIcon(
                               AssetImage("assets/images/Icon/icon_butchi.png"),
                             ),
                           ),
@@ -633,7 +630,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         onSaved: (value){
                           controller.seller.description = value;
                         },
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'enter_descrip_seller'.tr,
@@ -644,7 +641,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Padding(
@@ -653,7 +650,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           "Loại giao diện",
                           style: TextStyle(
                             color: AppColors.textGrayBoldColor,
@@ -670,11 +667,11 @@ class ThongTinCuaHang extends StatelessWidget {
                               // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
                                 hintText: "NCI CASYNET",
-                                hintStyle: TextStyle(color: Colors.black),
-                                suffixIcon: Container(
+                                hintStyle: const TextStyle(color: Colors.black),
+                                suffixIcon: SizedBox(
                                   height: 10.0.h,
                                   width: 10.0.w,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
                                     color: AppColors.textGrayBoldColor,
@@ -684,7 +681,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         )
                       ],
                     )),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Padding(
@@ -693,7 +690,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           "SĐT Zalo",
                           style: TextStyle(
                             color: AppColors.textGrayBoldColor,
@@ -710,11 +707,11 @@ class ThongTinCuaHang extends StatelessWidget {
                               // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
                                 hintText: 'enter_phone'.tr,
-                                hintStyle: TextStyle(color: Colors.black),
-                                suffixIcon: Container(
+                                hintStyle: const TextStyle(color: Colors.black),
+                                suffixIcon: SizedBox(
                                   height: 10.0.h,
                                   width: 10.0.w,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
                                     color: AppColors.textGrayBoldColor,
@@ -724,7 +721,7 @@ class ThongTinCuaHang extends StatelessWidget {
                         )
                       ],
                     )),
-                Divider(
+                const Divider(
                   indent: 10,
                 ),
                 Padding(
@@ -733,7 +730,7 @@ class ThongTinCuaHang extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           "Mã cộng tác viên",
                           style: TextStyle(
                             color: AppColors.textGrayBoldColor,
@@ -750,11 +747,11 @@ class ThongTinCuaHang extends StatelessWidget {
                               // contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                                 border: InputBorder.none,
                                 hintText: "bht123456",
-                                hintStyle: TextStyle(color: Colors.black),
-                                suffixIcon: Container(
+                                hintStyle: const TextStyle(color: Colors.black),
+                                suffixIcon: SizedBox(
                                   height: 10.0.h,
                                   width: 10.0.w,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_forward_ios,
                                     size: 12,
                                     color: AppColors.textGrayBoldColor,
@@ -767,16 +764,16 @@ class ThongTinCuaHang extends StatelessWidget {
 
                 Container(
                   height: 50,
-                  margin: new EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       left: 10, right: 10, bottom: 20, top: 20),
                   width: widthdt,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255,222, 180, 0),
+                      primary: const Color.fromARGB(255,222, 180, 0),
                     ),
                     child: Text(
                       'save_info'.tr,
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     onPressed: () {
                       controller.saveSeller();

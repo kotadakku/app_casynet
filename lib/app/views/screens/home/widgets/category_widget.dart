@@ -1,21 +1,17 @@
 
-import 'package:app_casynet/app/views/widgets/image_network_loading.dart';
 import 'package:app_casynet/app/views/widgets/loading_overlay.dart';
-import 'package:app_casynet/app/views/widgets/shimmer_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import '../../../../controller/home/api/category_controller.dart';
-import '../../../../routes/app_pages.dart';
-import '../../../theme/app_colors.dart';
 import '../../../theme/app_style.dart';
 import '../../../widgets/shimmer/category_shimmer.dart';
 import 'items/category_item.dart';
 
 class CategoryWidget extends StatelessWidget {
   CategoryWidget({Key? key}) : super(key: key);
-  CategoryController _fetchDataController = Get.find();
+  final CategoryController _fetchDataController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,7 @@ class CategoryWidget extends StatelessWidget {
                           builder: (context, constraints) {
                             int device = constraints.maxWidth>=780 ? 5 : 3;
                             return  Obx(()=>GridView.builder(
-                              physics: BouncingScrollPhysics(),
+                              physics: const BouncingScrollPhysics(),
                               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                                 maxCrossAxisExtent: constraints.maxHeight/2,
                                 childAspectRatio: 80/(ScreenUtil().screenWidth/device),
@@ -61,7 +57,7 @@ class CategoryWidget extends StatelessWidget {
                 _fetchDataController.isLoadingAPI.value ?
                 Container(height: 160,
                     color: Colors.grey.withOpacity(0.3),
-                    child: Center(
+                    child: const Center(
                       child: CircularProgressIndicator(),
                     )
                 )

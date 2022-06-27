@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Appbars extends StatelessWidget {
@@ -8,9 +7,9 @@ class Appbars extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      color: Color.fromARGB(224, 224, 224, 224),
-      margin: new EdgeInsets.only(top: 40, bottom: 40),
-      child: TextField(
+      color: const Color.fromARGB(224, 224, 224, 224),
+      margin: const EdgeInsets.only(top: 40, bottom: 40),
+      child: const TextField(
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Tìm kiếm trên cửa hàng',
