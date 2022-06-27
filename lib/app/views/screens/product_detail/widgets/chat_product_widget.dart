@@ -1,5 +1,4 @@
 import 'package:app_casynet/app/controller/controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,14 +9,14 @@ import '../../seller_detail/widgets/card_chat_item.dart';
 
 class ChatProductWidget extends StatelessWidget {
   ChatProductWidget({Key? key}) : super(key: key);
-  DetailProductController _detailProductController = Get.find();
+  final DetailProductController _detailProductController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     var isReadMore = false.obs;
     return ListView(
       scrollDirection: Axis.vertical,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
         Padding(
@@ -26,25 +25,25 @@ class ChatProductWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('qa'.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),),
               Text("${chats.length} ${'qa'.tr}",
-              style: TextStyle(
+              style: const TextStyle(
                   color: AppColors.textGrayColor
               ),)
             ],
           ),
         ),
-        Divider(
+        const Divider(
           height: 10,
           color: AppColors.textGrayColor,
         ),
 
         Obx(()=>ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemCount: _detailProductController.rateCmtList.length,
           itemBuilder: (context, index) => CardChatItem(
@@ -52,7 +51,7 @@ class ChatProductWidget extends StatelessWidget {
           )
           ,
         )),
-        Divider(height: 20,),
+        const Divider(height: 20,),
         GestureDetector(
           onTap: (){
             isReadMore.value = !isReadMore.value;
@@ -62,7 +61,7 @@ class ChatProductWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(()=>Text(isReadMore.value ? 'hide'.tr : 'see_all'.tr, style: TextStyle(
+              Obx(()=>Text(isReadMore.value ? 'hide'.tr : 'see_all'.tr, style: const TextStyle(
                 color: AppColors.yellowColor,
               ),)),
               Obx(()=>Icon(isReadMore.value ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded, color: AppColors.yellowColor,))
@@ -70,7 +69,7 @@ class ChatProductWidget extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
 
       ],
     );

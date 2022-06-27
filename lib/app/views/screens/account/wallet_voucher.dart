@@ -3,7 +3,6 @@ import 'package:app_casynet/app/controller/account/api/voucher_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../controller/account/wallet_voucher_controller.dart';
 import '../../widgets/appbar/appbar_account_widget.dart';
@@ -30,7 +29,7 @@ class WalletVoucherPage extends StatelessWidget {
                 children: [
                   Text(
                     'wallet_voucher'.tr,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   SizedBox(
                     width: 10.w,
@@ -38,10 +37,10 @@ class WalletVoucherPage extends StatelessWidget {
                   Expanded(
                     child: Container(
                       height: 35,
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       child: TextField(
                         cursorColor: AppColors.textGrayColor,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.textGrayColor,
                           fontSize: 14
                         ),
@@ -50,20 +49,20 @@ class WalletVoucherPage extends StatelessWidget {
                             fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(width: 1.0, color: AppColors.textGrayColor),
+                              borderSide: const BorderSide(width: 1.0, color: AppColors.textGrayColor),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(width: 1.0, color: AppColors.yellowColor),
+                              borderSide: const BorderSide(width: 1.0, color: AppColors.yellowColor),
                             ),
-                            contentPadding: EdgeInsets.all(5.0),
+                            contentPadding: const EdgeInsets.all(5.0),
                             hintText: 'add_voucher'.tr,
-                            hintStyle: TextStyle(color: AppColors.textGrayColor)
+                            hintStyle: const TextStyle(color: AppColors.textGrayColor)
                         ),
                       ),
                     )
                   ),
-                  Container(
+                  SizedBox(
                     height: 35,
                     child: ElevatedButton(
                       onPressed: () {},
@@ -78,7 +77,7 @@ class WalletVoucherPage extends StatelessWidget {
             ),
             // Tabbar
             Container(
-              decoration: BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: Colors.white),
               child: TabBar(
                   controller: _tabx.controller,
                   indicatorColor: AppColors.yellowColor,
@@ -88,7 +87,7 @@ class WalletVoucherPage extends StatelessWidget {
                       .map((e) => Tab(
                     child: Text(
                       e,
-                      style: TextStyle(),
+                      style: const TextStyle(),
                     ),
                   )).toList()),
             ),
@@ -100,7 +99,7 @@ class WalletVoucherPage extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemBuilder: (context, index) => Container(
-                          margin: EdgeInsets.all(5.0),
+                          margin: const EdgeInsets.all(5.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             border: Border.all(
@@ -134,18 +133,18 @@ class WalletVoucherPage extends StatelessWidget {
                                           child: Align(
                                               alignment: Alignment.centerRight,
                                               child: Container(
-                                                padding: EdgeInsets.all(5.0),
+                                                padding: const EdgeInsets.all(5.0),
                                                 child: Column(
                                                   mainAxisSize: MainAxisSize.min,
                                                   children: [
-                                                    Text(
+                                                     const Text(
                                                       "MIỄN PHÍ VẪN CHUYỂN",
                                                       textAlign: TextAlign.center,
                                                       style: TextStyle(
                                                           fontSize: 14,
                                                           color: Colors.white),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
                                                     Container(
@@ -154,11 +153,11 @@ class WalletVoucherPage extends StatelessWidget {
                                                         onPressed: () {},
                                                         child: Text(
                                                           'use_now'.tr,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               color: Colors.blue),
                                                         ),
                                                         style: ElevatedButton.styleFrom(
-                                                          padding:  EdgeInsets.all(5.0),
+                                                          padding:  const EdgeInsets.all(5.0),
                                                           primary:
                                                           Colors.white
                                                         )
@@ -170,7 +169,7 @@ class WalletVoucherPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
@@ -180,20 +179,20 @@ class WalletVoucherPage extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.all(2.0),
-                                        decoration: BoxDecoration(color: AppColors.yellowColor),
-                                        child: Text(
+                                        padding: const EdgeInsets.all(2.0),
+                                        decoration: const BoxDecoration(color: AppColors.yellowColor),
+                                        child: const Text(
                                           "AirPay- Tối đa 70k  ",
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
-                                      Text("Mã miễn phí vận chuyển"),
+                                      const Text("Mã miễn phí vận chuyển"),
                                       Container(
-                                        padding: EdgeInsets.all(3.0),
+                                        padding: const EdgeInsets.all(3.0),
                                         decoration: BoxDecoration(
                                             border: Border.all(
                                                 width: 1, color: AppColors.yellowColor)),
-                                        child: Text(
+                                        child: const Text(
                                           "AirPay- Tối đa 70k  ",
                                           style: TextStyle(color: AppColors.yellowColor),
                                         ),
@@ -233,7 +232,7 @@ class WalletVoucherPage extends StatelessWidget {
                               Container(
                               width: 100.w,
                               height: 100.h,
-                              margin: EdgeInsets.all(5.0),
+                              margin: const EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   border: Border.all(
@@ -262,39 +261,38 @@ class WalletVoucherPage extends StatelessWidget {
                                         Positioned.fill(
                                             child: Align(
                                                 alignment: Alignment.centerRight,
-                                                child: Container(
-                                                  padding: EdgeInsets.all(5.0),
-                                                  child: Column(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: [
-                                                      Text(
-                                                        "MIỄN PHÍ VẪN CHUYỂN",
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            color: Colors.white),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Container(
-                                                        height: 30,
-                                                        child: ElevatedButton(
-                                                            onPressed: () {},
-                                                            child: Text(
-                                                              'use_now'.tr,
-                                                              style: TextStyle(
-                                                                  color: Colors.blue),
-                                                            ),
-                                                            style: ElevatedButton
-                                                                .styleFrom(
-                                                                padding:
-                                                                EdgeInsets.all(5.0),
-                                                                primary:
-                                                                Colors.white)),
-                                                      )
-                                                    ],
-                                                  ),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                     Text(
+                                                      "MIỄN PHÍ VẪN CHUYỂN",
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 14.0.sp,
+                                                          color: Colors.white),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Container(
+                                                      height: 30,
+                                                      padding: EdgeInsets.all(5.0.sp),
+                                                      child: ElevatedButton(
+                                                          onPressed: () {},
+                                                          child: Text(
+                                                            'use_now'.tr,
+                                                            style:  TextStyle(fontSize: 13.0.sp,
+                                                                color: Colors.blue),
+                                                          ),
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                              alignment: const Alignment(0, 0),
+                                                              padding:
+                                                              const EdgeInsets.all(5.0),
+                                                              primary:
+                                                              Colors.white)),
+                                                    )
+                                                  ],
                                                 ))),
                                       ],
                                     ),
@@ -308,22 +306,22 @@ class WalletVoucherPage extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.all(2.0),
-                                        decoration: BoxDecoration(color: AppColors.yellowColor),
-                                        child: Text(
+                                        padding: const EdgeInsets.all(2.0),
+                                        decoration: const BoxDecoration(color: AppColors.yellowColor),
+                                        child: const Text(
                                           "AirPay- Tối đa 70k  ",
                                           style: TextStyle(color: Colors.white,
                                             fontSize: 12
                                           ),
                                         ),
                                       ),
-                                      Text("Mã miễn phí vận chuyển"),
+                                      const Text("Mã miễn phí vận chuyển"),
                                       Container(
-                                        padding: EdgeInsets.all(3.0),
+                                        padding: const EdgeInsets.all(3.0),
                                         decoration: BoxDecoration(
                                             border: Border.all(
                                                 width: 1, color: AppColors.yellowColor)),
-                                        child: Text(
+                                        child: const Text(
                                           "AirPay- Tối đa 70k  ",
                                           style: TextStyle(color: AppColors.yellowColor),
                                         ),
@@ -333,7 +331,7 @@ class WalletVoucherPage extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                         // crossAxisAlignment: CrossAxisAlignment.stretch,
                                         children: [
-                                          Text(
+                                          const Text(
                                             "Có hiệu lực từ: 16.03.2020  00:00",
                                             style: TextStyle(fontSize: 12),
                                           ),
@@ -356,7 +354,7 @@ class WalletVoucherPage extends StatelessWidget {
                               Container(
                                 width: 100.w,
                                 height: 100.h,
-                                margin: EdgeInsets.all(5.0),
+                                margin: const EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
                                   color: Colors.grey.withOpacity(0.5),
                                   borderRadius: BorderRadius.circular(10.0),

@@ -39,7 +39,7 @@ class ProductsPage extends StatelessWidget {
                       Row(
                         children: [
                           SizedBox(width: 15,),
-                          Container(child: CircleAvatar(
+                          Container(child: const CircleAvatar(
                             child: Text(
                               "123",
                               style: TextStyle(
@@ -51,7 +51,7 @@ class ProductsPage extends StatelessWidget {
                           SizedBox(width: 15,),
                           Text(
                             _productsController.category_name.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color(0xffDFB400),
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold
@@ -67,11 +67,11 @@ class ProductsPage extends StatelessWidget {
                             SizedBox(width: 5,),
                             Text(
                               "filter".tr,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0xffB7BAC1),
                               ),
                             ),
-                            SizedBox(width: 10,)
+                            const SizedBox(width: 10,)
                           ],
                         ),
                         onTap: (){
@@ -96,7 +96,7 @@ class ProductsPage extends StatelessWidget {
                         onChanged: (value){
                           _productsController.isCar.value = !_productsController.isCar.value;
                         },
-                        activeColor: Color(0xffDFB400)),
+                        activeColor: const Color(0xffDFB400)),
                     Text('car'.tr),
                     SizedBox(width: 20,),
                     Radio(
@@ -134,7 +134,7 @@ class ProductsPage extends StatelessWidget {
                     funcSkip: () => _productsController.error.value = ''
                 )),
                 Obx(()=>_productsController.haveNextPage.value ? _productsController.isLoading.value ?
-                SizedBox(
+                const SizedBox(
                   height: 50,
                   child: Center(
                     child: CircularProgressIndicator.adaptive(),
@@ -148,7 +148,7 @@ class ProductsPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('more'.tr, style: TextStyle(
+                        Text('more'.tr, style: const TextStyle(
                             color: AppColors.yellowColor
                         ),),
                         Container(

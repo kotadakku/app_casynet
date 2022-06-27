@@ -60,7 +60,7 @@ class ImageProductWidget extends StatelessWidget {
 
                               SizedBox(width: 5,),
                               Text('like'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
 
                                     color: Colors.red
                                 ),

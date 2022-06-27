@@ -21,7 +21,7 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(()=>LoadingOverlay(
         isLoading: _fetchDataController.isLoadingDB.value,
-        shimmer: CategoryShimer(),
+        shimmer: const CategoryShimer(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,7 +45,7 @@ class CategoryWidget extends StatelessWidget {
                               ),
 
                               scrollDirection: Axis.horizontal,
-                              padding: EdgeInsets.all(0.0),
+                              padding: const EdgeInsets.all(0.0),
                               shrinkWrap: true,
                               itemCount: _fetchDataController.categoriesList.length,
                               itemBuilder: (context, index)=>ItemCategoryWidget(

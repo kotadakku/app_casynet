@@ -132,6 +132,7 @@ const Map<String, String> en = {
   'processed' : 'Processed',
   'pro_cart' : 'Proceed to order',
   'purchased' : 'Purchased',
+  'preview': 'Preview',
   'qa' : 'Q&A',
   'quality' : 'Quality',
   'rate' : 'Rate',

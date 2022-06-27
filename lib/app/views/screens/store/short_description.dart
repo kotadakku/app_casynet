@@ -1,4 +1,5 @@
 
+import 'package:app_casynet/app/controller/controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,9 @@ import 'package:get/get.dart';
 import 'new_created_store.dart';
 
 class ShortDescription extends StatelessWidget {
+
+  CreateSellerController _createSellerCtr = Get.find();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -42,6 +46,7 @@ class ShortDescription extends StatelessWidget {
                     maxLines: 6,
                     keyboardType: TextInputType.text,
                     textAlign: TextAlign.left,
+                    controller: _createSellerCtr.textShortDescription,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       // suffixIcon: Icon(Icons.navigate_next),

@@ -14,16 +14,24 @@ class CreateSellerController extends GetxController {
   Address? address;
   late TextEditingController textProvinceCtr;
   late TextEditingController textDistrictCtr;
+  late TextEditingController textShortDescription;
 
   var typeProSelected = "- Chọn -".obs;
   var image_selected = "".obs;
   var imgBackground_selected = "".obs;
+  var nameSeller = "".obs;
   var btnTakePhoto = true.obs;
   var btnGalleryPhoto = true.obs;
 
   final open_time = "".obs;
   final close_time = "".obs;
   Seller seller = Seller();
+
+  final linkFacebook = "".obs;
+  final linkZalo = "".obs;
+  final linkYoutube = "".obs;
+
+
 
   final listOtherCateSelected = <Category>[].obs;
 

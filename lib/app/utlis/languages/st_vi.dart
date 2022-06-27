@@ -132,6 +132,7 @@ const Map<String, String> vi = {
   'processed' : 'Đã xử lý',
   'pro_cart' : 'Tiến hành đặt hàng',
   'purchased' : 'Đã mua',
+  'preview': 'Xem trước',
   'qa' : 'Hỏi đáp',
   'quality' : 'Chất lượng',
   'rate' : 'Đánh giá',

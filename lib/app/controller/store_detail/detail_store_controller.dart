@@ -97,8 +97,7 @@ class DetailStoreController extends GetxController with GetTickerProviderStateMi
             'searchCriteria[currentPage]': '1',
             'searchCriteria[sortOrders][0][direction]': 'DESC',
             'searchCriteria[filterGroups][0][filters][0][field]': 'seller_id',
-            'searchCriteria[filterGroups][0][filters][0][value]': '${store.value
-                .id}',
+            'searchCriteria[filterGroups][0][filters][0][value]': '${store.value.id}',
             'searchCriteria[filterGroups][2][filters][0][field]': 'category_id',
             'searchCriteria[filterGroups][2][filters][0][value]': '$category_id',
           }

@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
           _homeController.refreshAPI();
         },
         child: SingleChildScrollView(
-          physics: RangeMaintainingScrollPhysics(),
+          physics: const RangeMaintainingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -39,28 +39,28 @@ class HomePage extends StatelessWidget {
               BannerHomeWidget(),
               // Khuyến mãi
               TopSaleWidget(),
-              SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
+              SizedBox(height: 10.h, child: Container(color: const Color(0xffF1F3FD),),),
 
               SizedBox(height: 10.h),
               //Danh mục
               CategoryWidget(),
 
-              SizedBox(height: 10.h, child: Container(color: Color(0xffF1F3FD),),),
+              SizedBox(height: 10.h, child: Container(color: const Color(0xffF1F3FD),),),
 
               //Cửa hàng
               StoreWidget(),
-              SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+              SizedBox(height: 30.h, child: Container(color: const Color(0xffF1F3FD),),),
               // Đặt chỗ
               ReservationWidget(),
               // Khuyến mãi
-              SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+              SizedBox(height: 30.h, child: Container(color: const Color(0xffF1F3FD),),),
               PromotionWidget(),
-              SizedBox(height: 30.h, child: Container(color: Color(0xffF1F3FD),),),
+              SizedBox(height: 30.h, child: Container(color: const Color(0xffF1F3FD),),),
               RecommendWidget(),
               // Danh mục
               CategoryBottomWidget(),
 
-              BottomWidget(),
+              const BottomWidget(),
             ],
           ),
         ),

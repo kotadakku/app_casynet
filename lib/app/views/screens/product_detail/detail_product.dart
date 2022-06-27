@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cart/api/product_cart_controller.dart';
-import '../../../controller/home/home_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/appbar/appbar_cart.dart';
@@ -44,14 +43,14 @@ class DetailProductPage extends StatelessWidget {
                       children: [
                         ImageProductWidget(controller: _detailProductController,),
                         InformationProductWidget(controller: _detailProductController,),
-                        _detailProductController.product.value.requiredOptions == 0 ? SizedBox() :  RevervationProductWidget(controller: _detailProductController,),
+                        _detailProductController.product.value.requiredOptions == 0 ? const SizedBox() :  RevervationProductWidget(controller: _detailProductController,),
                         InformationStoreWidget(controller: _detailProductController,),
                         DetailProductWidget(controller: _detailProductController,),
                         Container(
                           height: 10,
                           color: AppColors.backgroundColor,
                         ),
-                        VoteProductWidget(),
+                        const VoteProductWidget(),
                         Container(
                           height: 10,
                           color: AppColors.backgroundColor,
@@ -80,7 +79,7 @@ class DetailProductPage extends StatelessWidget {
                           _productCartController.incrementProductCartDB(_detailProductController.product.value);
 
                           final snackBar = SnackBar(
-                            content: Text("Thêm thành công"),
+                            content: const Text("Thêm thành công"),
                             action: SnackBarAction(
                               label: "Kiểm tra",
                               onPressed: () {
@@ -105,7 +104,7 @@ class DetailProductPage extends StatelessWidget {
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.add), Text('order'.tr)],
+                        children: [const Icon(Icons.add), Text('order'.tr)],
                       )),
                 ),
               ],

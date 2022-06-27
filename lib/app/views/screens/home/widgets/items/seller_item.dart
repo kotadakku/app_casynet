@@ -167,7 +167,7 @@ class ItemSellerWidget extends StatelessWidget {
                   width: 3,
                 ),
                 Text(
-                  "${sellers[index].distance.toStringAsFixed(2) ?? 0.0} km",
+                  "${sellers[index].distance?.toStringAsFixed(2) ?? 0.0} km",
                   style: TextStyle(fontSize: 12.sp),
                 )
               ],

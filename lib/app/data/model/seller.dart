@@ -39,6 +39,12 @@ class Seller {
   int? total_products_sold_month;
   int? total_order_month;
 
+  String? linkSeller;
+  String? linkFacebook;
+  String? linkZalo;
+  String? linkYoutube;
+  String? detailSeller;
+
 
   Seller(
   {this.id,
@@ -54,6 +60,7 @@ class Seller {
     this.backgroundImage,
     this.timeOpen,
     this.timeClose,
+    this.linkSeller,
     this.description,
     this.lat,
     this.lon,
